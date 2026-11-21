@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-4-4b-4c-4d-active",
-  "updated_at": "2026-11-21T03:06:30-06:00",
+  "wave": "wave-2-round-4-complete-verified",
+  "updated_at": "2026-11-21T03:42:30-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -123,8 +123,8 @@
         {
           "repo": "Foundation-0/hawking (Arm R4-4)",
           "label_stripped": "Signed-holonomy indefinite DtN difference Delta Lambda_partial(chi) driven by rank-2 Krein flip w_e[(e_u+e_v)^2 - (e_u-e_v)^2] coupling monopole unmasking, multipole negative inertia, & c_harm=1-R_eff",
-          "status": "round4_portal",
-          "ref": "R4-P04 / AUDIT-047"
+          "status": "verified",
+          "ref": "AUDIT-047R N2 CONFIRMED (check_040, Foundation-0/hawking#1 @ 2cc38330)"
         },
         {
           "repo": "google-deepmind/formal-conjectures@d8d031d (Arm R4-2)",
@@ -141,8 +141,8 @@
         {
           "repo": "judegomila/zeta-explorer@694eb35f9144 (Arm R4B-1)",
           "label_stripped": "Weil/Li/Nyman-Beurling positivity Gram/Schur PSD criteria across 190+ RH obstruction routes",
-          "status": "round4b_portal",
-          "ref": "R4B-P01 / AUDIT-049 (SF-01)"
+          "status": "verified",
+          "ref": "AUDIT-049 N1 (check_041, Foundation-0/math0#17 @ 273ff84d)"
         },
         {
           "repo": "judegomila/canculus@ef76861b4e84 (Arm R4B-2)",
@@ -153,8 +153,26 @@
         {
           "repo": "Alpoge-Buckmaster-Coiculescu cc.pdf (Arm R4D-2)",
           "label_stripped": "3D incompressible Euler Leray pressure projection I - k k^T / ||k||^2 as exact rank-1 Schur complement on localized Craik-Criminale Kelvin waves [#23 Schur unification]",
-          "status": "round4d_portal",
-          "ref": "R4D-P02 / AUDIT-053 (SF-01 #23)"
+          "status": "verified",
+          "ref": "AUDIT-053R N1 (check_043, SF-01 #23, Foundation-0/math0#17 @ 273ff84d)"
+        },
+        {
+          "repo": "tristanbuckmaster/navier-stokes@ad53419de079 (Arm R4D-1)",
+          "label_stripped": "Certificate.SignedTree multifrontal Schur-complement coercivity with weighted Gershgorin enclosure & NullPair Krein pivots [#24 Schur unification]",
+          "status": "verified",
+          "ref": "AUDIT-052 N1 (check_044, SF-01 #24)"
+        },
+        {
+          "repo": "Foundation-0/continuum#3@7fe4ee22 (Arm R4E)",
+          "label_stripped": "Double-slit 16x16 GKSL Schur pinching + linear triple-slit looped-trajectory Schur backaction (degree-0 intensity invariant vs Kerr lambda^2) [#25 Schur unification]",
+          "status": "verified",
+          "ref": "AUDIT-054 N1 (check_045, SF-01 #25)"
+        },
+        {
+          "repo": "Foundation-0/aletheia#1@58207b42 (Arm R4C / v1.3.0)",
+          "label_stripped": "8-Glyph Aletheia Operator Calculus (\u29c4, \u29c5, \u29b7, \u27e0, \u29c7, \u29ba, \u2a69, \u2ae9; 0/227,540 Lean hits) proving PSD [\u29c4,\u29b7] Loewner screening (C1) & rational metric on H^1(G,B;Z_2) (C6)",
+          "status": "verified",
+          "ref": "AUDIT-051 & AUDIT-055 N1 (check_042 / check_046)"
         }
       ]
     },
@@ -204,8 +222,8 @@
         {
           "repo": "judegomila/dbn-lambda-01787854-candidate-audit@a74738deb6d5 (Arm R4B-1)",
           "label_stripped": "de Bruijn-Newman heat-flow zero-free barrier & transfer-operator enclosures (Lambda <= 0.1787854 vs Polymath15 0.22)",
-          "status": "round4b_portal",
-          "ref": "R4B-P01 / AUDIT-049 (SF-02)"
+          "status": "verified",
+          "ref": "AUDIT-049 N1 (check_041, Foundation-0/math0#17 @ 273ff84d)"
         }
       ]
     },
@@ -360,14 +378,20 @@
         {
           "repo": "judegomila/dbn-lambda-01787854-candidate-audit@a74738deb6d5 + zeta-explorer@694eb35f9144 + OnCo@d43842087851 (Arm R4B-1/2)",
           "label_stripped": "Fail-closed C directed-rounding interval certificates + lean/aristotle & zeta-explorer Lean lemmas + OnCo cited KG/MCP provenance",
-          "status": "round4b_portal",
-          "ref": "R4B-P01 / R4B-P02 / AUDIT-049 / AUDIT-050"
+          "status": "verified",
+          "ref": "AUDIT-049 & AUDIT-050 N1 (check_041 / check_039)"
         },
         {
           "repo": "tristanbuckmaster/{navier-stokes@ad53419de079,fluid_lean@d0124689230b} (Arm R4D-1)",
           "label_stripped": "Lean-4 fluid PDE blowup formalizations (navier-stokes, affinecore, boussinesq-blowup, euler-blowup) audited via aletheia v1.2 --lean-audit vs openai/NavierStokesAndEuler",
-          "status": "round4d_portal",
-          "ref": "R4D-P01 / AUDIT-052"
+          "status": "verified",
+          "ref": "AUDIT-052 N1 (check_044, Foundation-0/math0#17 @ 273ff84d)"
+        },
+        {
+          "repo": "Foundation-0/aletheia#1@58207b42 (v1.3.0)",
+          "label_stripped": "ALETHEIA-CLI-01 --allow-project-import extend fix + stdlib `aletheia calculus` 8-glyph CLI + 13/13 R5 mutation gate",
+          "status": "verified",
+          "ref": "AUDIT-055 N1 (check_046)"
         }
       ]
     },
@@ -429,8 +453,8 @@
         {
           "repo": "anthropics/flt@6e837e75 + Foundation-0/hawking (Arm R4-1 / R4-4)",
           "label_stripped": "Character-twisted Hecke eigensystem (Def_AutomorphicForm_HeckeEigensystem.twist) & Z_2 cocycle holonomy chi in H^1(G,Z_2) governing signed 2-lift Ramanujan expansion",
-          "status": "round4_portal",
-          "ref": "R4-P01 / R4-P04 / AUDIT-044 / AUDIT-047"
+          "status": "verified",
+          "ref": "AUDIT-044 N1 & AUDIT-047R N2 (check_037 / check_040)"
         },
         {
           "repo": "judegomila/canculus@ef76861b4e84 (Arm R4B-2)",
@@ -441,8 +465,14 @@
         {
           "repo": "Alpoge-Buckmaster-Coiculescu cc.pdf Appendix C (Arm R4D-2)",
           "label_stripped": "Exact rational parameter-inequality polytope & Farkas feasibility/sensitivity audit for multi-scale 3D Euler singularity exponents",
-          "status": "round4d_portal",
-          "ref": "R4D-P02 / AUDIT-053 (SF-05)"
+          "status": "verified",
+          "ref": "AUDIT-053R N1 (check_043, SF-05, Foundation-0/math0#17 @ 273ff84d)"
+        },
+        {
+          "repo": "Foundation-0/continuum#3@7fe4ee22 (Arm R4E)",
+          "label_stripped": "16-vertex Fine-Farkas CHSH delayed-choice eraser no-go proving 3-4-5 quantum correlator 14/5 > 2 is infeasible in any local classical continuum model",
+          "status": "verified",
+          "ref": "AUDIT-054 N1 (check_045, SF-05)"
         }
       ]
     },
@@ -486,8 +516,8 @@
         {
           "repo": "Foundation-0/incentre-lattices (Arm R4-1)",
           "label_stripped": "23 Niemeier/Umbral root-lattice companions of Leech Lambda_24 (Theta_L = E_4^3 - c_L Delta) & sparse Ramanujan mixers vs dense SpinQuant H_96",
-          "status": "round4_portal",
-          "ref": "R4-P01 / R4-P05 / AUDIT-044 / AUDIT-048"
+          "status": "verified",
+          "ref": "AUDIT-044 & AUDIT-048R N1 (check_037 / check_036)"
         }
       ]
     },

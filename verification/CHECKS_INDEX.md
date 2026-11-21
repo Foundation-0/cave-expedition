@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_040`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_046`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-050`).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_040` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-055`, `46` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_046` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -45,3 +45,9 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_038_audit045_ramanujan_mock_shadows.py` | 446 | `a4255b3895144a32` | `indexed (domain PR)` | check_038_audit045_ramanujan_mock_shadows.py |
 | `check_039_audit050_canculus_onco.py` | 254 | `7968837e5226e1a9` | `indexed (domain PR)` | check_039_audit050_canculus_onco.py |
 | `check_040_audit047_hawking_theorem.py` | 512 | `5bb38f6afa3d9070` | `indexed (domain PR)` | check_040_audit047_hawking_theorem.py |
+| `check_041_audit049_judegomila_zeta_dbn.py` | 339 | `eabdafd75bd64793` | `indexed (domain PR)` | check_041_audit049_judegomila_zeta_dbn.py |
+| `check_042_audit051_operator_calculus.py` | 384 | `88a636c06fa6b846` | `indexed (domain PR)` | check_042_audit051_operator_calculus.py |
+| `check_043_audit053_buckmaster_euler_cc.py` | 246 | `6931f6943121225b` | `indexed (domain PR)` | check_043_audit053_buckmaster_euler_cc.py |
+| `check_044_audit052_buckmaster_fluid_lean.py` | 325 | `4dccb55654372d23` | `indexed (domain PR)` | check_044_audit052_buckmaster_fluid_lean.py |
+| `check_045_audit054_double_slit.py` | 310 | `7fd4b9c008828409` | `indexed (domain PR)` | check_045_audit054_double_slit.py |
+| `check_046_audit055_aletheia_v130.py` | 248 | `26b2917be0b83154` | `indexed (domain PR)` | check_046_audit055_aletheia_v130.py |

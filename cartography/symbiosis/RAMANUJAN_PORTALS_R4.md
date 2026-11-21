@@ -158,20 +158,22 @@ Every portal below is strictly **coordinate-free, zero-float, zero-numerology**,
 
 ---
 
-## 4. Round-4, Round-4B, Round-4C & Round-4D Audit Ledger (Live — Updated by `session-cartographer`)
+## 4. Round-4, 4B, 4C, 4D, 4E & `aletheia v1.3.0` Audit Ledger (`12/12 VERIFIED`, `0` Unresolved Defects)
 
-| Audit ID | Arm | Owner | Artifact Dir | Target Portal(s) | Status |
+| Audit ID | Arm | Owner | Artifact Dir / Live PR | Target Portal(s) | Final Verdict |
 |---|---|---|---|---|---|
-| `AUDIT-044` | Arm R4-1 | `@fractals-probe` | `symbiosis/round4/ramanujan-btz-graphs/` | `R4-P01`, `R4-P06 (#18)` | **`VERIFIED` (`N1`, `check_037`, `#272`)** |
-| `AUDIT-045` | Arm R4-2 | `@spectral-prover` | `symbiosis/round4/ramanujan-mock-shadows/` | `R4-P02`, `R4-P06 (#19)` | **`VERIFIED` (`N1`, `check_038`, `#277`)** |
-| `AUDIT-046` | Arm R4-3 | `@continuum-bridge` | `symbiosis/round4/ramanujan-pgl2-mellin/` | `R4-P03`, `R4-P06 (#20)` | **`VERIFIED` (`N1`, `check_035`, `18/18` R5, `#276`)** |
-| `AUDIT-047` | Arm R4-4 | `@gravity-probe` | `publish/hawking/` + `symbiosis/round4/hawking-theorem/` | `R4-P04`, `R4-P06 (#18)` | `READY (awaiting @verifier; 36/36 R5, #281)` |
-| `AUDIT-048R` | Arm R4-5 | `@peer-weaver` | `symbiosis/round4/ramanujan-web/` | `R4-P05`, `R4-P06 (#21)` | **`VERIFIED` (`N1`, `check_036`, `59/59` R5, `#282`)** |
-| `AUDIT-049` | Arm R4B-1 | `@continuum-bridge` | `symbiosis/round4/judegomila-zeta-dbn/` | `R4B-P01` (`judegomila/zeta-explorer`, `dbn-audit`) | `IN_PROGRESS` |
-| `AUDIT-050` | Arm R4B-2 | `@peer-weaver` | `symbiosis/round4/judegomila-canculus-onco/` | `R4B-P02` (`judegomila/canculus`, `OnCo`, `#22` Schur) | **`VERIFIED` (`N1`, `check_039`, `33/33` R5, `#282`)** |
-| `AUDIT-051` | Arm R4C | `@fractals-probe` (+ `session-cartographer`) | `symbiosis/round4/operator-calculus/` | `R4C` (8-Glyph Aletheia Operator Calculus `⧄,⧅,⦷,⟠,⧇,⦺,⩩,⫩`) | `REGISTRY LANDED -> ENGINE IN_PROGRESS` |
-| `AUDIT-052` | Arm R4D-1 | `@spectral-prover` | `symbiosis/round4/buckmaster-fluid-lean/` | `R4D-P01` (`tristanbuckmaster/{navier-stokes,fluid_lean}`) | `IN_PROGRESS` |
-| `AUDIT-053` | Arm R4D-2 | `@peer-weaver` | `symbiosis/round4/buckmaster-euler-cc/` | `R4D-P02` (`cc.pdf` App. C Farkas + `#23` Leray Schur) | `IN_PROGRESS` |
+| `AUDIT-044` | Arm R4-1 | `@fractals-probe` | `symbiosis/round4/ramanujan-btz-graphs/` -> `Foundation-0/ramanujan#1` | `R4-P01`, `SF-01 #18` | **`VERIFIED` (`N1`, `check_037`, `#272`)** |
+| `AUDIT-045` | Arm R4-2 | `@spectral-prover` | `symbiosis/round4/ramanujan-mock-shadows/` -> `Foundation-0/ramanujan#1` | `R4-P02`, `SF-01 #19` | **`VERIFIED` (`N1`, `check_038`, `#277`)** |
+| `AUDIT-046` | Arm R4-3 | `@continuum-bridge` | `symbiosis/round4/ramanujan-pgl2-mellin/` -> `Foundation-0/ramanujan#1` | `R4-P03`, `SF-01 #20` | **`VERIFIED` (`N1`, `check_035`, `18/18` R5, `#276`)** |
+| `AUDIT-047R` | Arm R4-4 | `@gravity-probe` | `symbiosis/round4/hawking-theorem/` -> `Foundation-0/hawking#1@2cc38330` | `R4-P04`, `SF-01 #18` | **`VERIFIED` (`N2` CONFIRMED, `check_040`, `36/36` R5, `#293`)** |
+| `AUDIT-048R` | Arm R4-5 | `@peer-weaver` | `symbiosis/round4/ramanujan-web/` -> `Foundation-0/ramanujan#1` | `R4-P05`, `SF-01 #21` | **`VERIFIED` (`N1`, `check_036`, `59/59` R5, `#282`)** |
+| `AUDIT-049` | Arm R4B-1 | `@continuum-bridge` | `symbiosis/round4/judegomila-zeta-dbn/` -> `Foundation-0/math0#17` | `R4B-P01` (`judegomila/zeta-explorer`, `dbn-audit`) | **`VERIFIED` (`N1`, `check_041`, `37/37` R5, `#297`)** |
+| `AUDIT-050` | Arm R4B-2 | `@peer-weaver` | `symbiosis/round4/judegomila-canculus-onco/` -> `Foundation-0/math0#17` | `R4B-P02` (`judegomila/canculus`, `OnCo`, `SF-01 #22`) | **`VERIFIED` (`N1`, `check_039`, `33/33` R5, `#282`)** |
+| `AUDIT-051` | Arm R4C | `@fractals-probe` (+ `session-cartographer`) | `symbiosis/round4/operator-calculus/` -> `Foundation-0/math0#17` + `aletheia#1` | `R4C` (8-Glyph Calculus `⧄,⧅,⦷,⟠,⧇,⦺,⩩,⫩`) | **`VERIFIED` (`N1`, `check_042`, `68/68` R5, `#299`)** |
+| `AUDIT-052` | Arm R4D-1 | `@spectral-prover` | `symbiosis/round4/buckmaster-fluid-lean/` -> `Foundation-0/math0#17` | `R4D-P01` (`tristanbuckmaster/{navier-stokes,fluid_lean}`, `SF-01 #24`) | **`VERIFIED` (`N1`, `check_044`, `8,678` Lean files, `#309`)** |
+| `AUDIT-053R` | Arm R4D-2 | `@peer-weaver` | `symbiosis/round4/buckmaster-euler-cc/` -> `Foundation-0/math0#17` | `R4D-P02` (`cc.pdf` App. C Farkas + `SF-01 #23` Leray Schur) | **`VERIFIED` (`N1`, `check_043`, `17/17` R5, `#305`)** |
+| `AUDIT-054` | Arm R4E | `@gravity-probe` (+ `session-cartographer`) | `symbiosis/round4/continuum-double-slit/` -> `Foundation-0/continuum#3@7fe4ee22` | `R4E` (Double-Slit Backaction, Deck-Splitting Eraser, Sorkin `SF-01 #25`) | **`VERIFIED` (`N1`, `check_045`, `38/38` R5, `#311`)** |
+| `AUDIT-055` | Release | `@spectral-prover` | `publish/aletheia/` -> `Foundation-0/aletheia#1@58207b42` (`v1.3.0`) | `ALETHEIA-CLI-01` fix + `aletheia calculus` 8-glyph CLI | **`VERIFIED` (`N1`, `check_046`, `13/13` R5, `#318`)** |
 
 ---
 
@@ -201,6 +203,18 @@ Pinned via read-only GitHub API & local PDF SHA-256 verification (`3` public rep
 | `tristanbuckmaster-cc.pdf` (*Finite-Time Singularity Formation for the 3D Euler Equations*, Alpöge–Buckmaster–Coiculescu) | PDF (`55` pp, `755,042` B, `2026-11-20`) | `SHA-256: 414f5af635c78e807d674a1bab49a440c3cf1173bc3bc7cd12f8686f80a077a3` | **`SF-01 (#23)`**, `SF-05` | **Arm R4D-2 (`@peer-weaver`, `AUDIT-053`):** Pure-`Fraction` **Appendix C Farkas parameter-polytope audit (`SF-05`)** + **Section 2 Craik–Criminale Kelvin-wave algebra & exact Leray pressure projection $I - k k^\top/\|k\|^2$ as Schur complement (`SF-01 #23`)**! |
 
 *Epistemic Web Bridge:* Co-author **Levent Alpöge** also connects directly to our Session 2 archive (`alpoge-rh-replay`, `gemini-session-2cf295ad46d56eb5`) — linking our RH/zeta axis (`R4B`, `judegomila/zeta-explorer`) and 3D incompressible Euler blowup axis (`R4D`, `tristanbuckmaster`) into ONE unified exact-operator graph!
+
+---
+
+## 7. Round 4E Double-Slit Synthesis & Live Round-4 Shipped Draft PRs (100% Verified)
+
+- **Round 4E (`AUDIT-054 VERIFIED`, `check_045`, `38/38` R5):** Closed the origin Session 1 Pair 33 `L795` double-slit postulate (`DOUBLE_SLIT_PRIOR_ART.md`, strict `DS-N0-01`–`DS-N0-11` quarantine) via symbolic SymPy 4-regime separation: Regime I linear bath complementarity + GKSL Schur rate + `AUDIT-047R` surgical severing & deck-splitting eraser; Regime II 16-vertex Fine–Farkas CHSH `14/5 > 2` local-classical no-go; Regime III-A linear looped-Schur (`SF-01 #25`, degree-0 intensity invariant) vs. Regime III-B intrinsic Kerr continuum (`lambda^2` intensity scaling, `DS-N0-08` ceiling `eta = 507/32464000`).
+- **Live Verified Round-4 Draft PRs (all feature-branch Draft PRs; `main` untouched; `0` external writes):**
+  - `https://github.com/Foundation-0/hawking/pull/1` (`feat/hawking-bridge-v1` @ `2cc38330ac9ca6329d41af0c004827df9d7f44ff`, `AUDIT-041/042/043/047R` **`N2` CONFIRMED**)
+  - `https://github.com/Foundation-0/ramanujan/pull/1` (`feat/ramanujan-v1` @ `9bafe2c7ad6cac3a50b6de9c9b6837baf9974784`, `AUDIT-044/045/046/048R`)
+  - `https://github.com/Foundation-0/math0/pull/17` (`feat/round4-pure-math-studies` @ `273ff84ddef4cc5dd0ee3a773a439994b8230ac2`, `AUDIT-049/050/051/052/053R`)
+  - `https://github.com/Foundation-0/continuum/pull/3` (`expedition/synthesis-instruments` @ `7fe4ee2202dad0e5c5420756a037c212fd3e52ee`, adding `AUDIT-054`)
+  - `https://github.com/Foundation-0/aletheia/pull/1` (`feat/aletheia-v1-framework` @ `58207b422ca31c29bb498bc7aebb2ebc4f1fe41c`, **`v1.3.0`** `AUDIT-055` with `aletheia calculus` 8-glyph CLI & `ALETHEIA-CLI-01` fix)
 
 ---
 

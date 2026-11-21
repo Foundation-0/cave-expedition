@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-2-round-4-4b-4c-4d-active",
-  "updated_at": "2026-11-21T03:14:30-06:00",
+  "wave": "wave-2-round-4-complete-verified",
+  "updated_at": "2026-11-21T03:42:30-06:00",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -208,7 +208,7 @@
     {
       "id": "Foundation-0/hawking",
       "kind": "foundation0_round4_ship",
-      "role": "The Hawking Theorem & Observer-Invariant Horizon Reduction (unifying AUDIT-041/042/043 + signed-holonomy Krein-Schur / Ramanujan 2-lift gap; Arm R4-4 / AUDIT-047)"
+      "role": "LIVE Draft PR #1 (feat/hawking-bridge-v1 @ 2cc38330): AUDIT-041/042/043 (N1) + AUDIT-047R (N2 CONFIRMED: Boundary Double-Schur Holographic Hodge-1, Surgical Krein-Severing, Parallel-Sum Screening & Ramanujan 2-Lift Floor)"
     },
     {
       "id": "judegomila",
@@ -223,12 +223,12 @@
     {
       "id": "Foundation-0/ramanujan",
       "kind": "foundation0_round4_ship",
-      "role": "Dedicated pure-math repository for Srinivasa Ramanujan exact-operator synthesis (AUDIT-044 BTZ Ramanujan graphs/Niemeier, AUDIT-045 Mock-Modular Shadows/Rank-Crank Schur, AUDIT-046 PGL(2) Rogers-Ramanujan/Mellin Equalizer, AUDIT-048R Integer RPT/Givens/CS-11 PSLQ kill; Draft PR #1 feat/ramanujan-v1)"
+      "role": "LIVE Draft PR #1 (feat/ramanujan-v1 @ 9bafe2c7): AUDIT-044 BTZ Ramanujan/Niemeier, AUDIT-045 Mock-Modular/Rank-Crank Schur, AUDIT-046 PGL(2)/Mellin Equalizer, AUDIT-048R Integer RPT/Givens/CS-11 PSLQ kill"
     },
     {
       "id": "Foundation-0/math0",
       "kind": "foundation0_round4_ship",
-      "role": "Canonical Foundation-0 home for general pure-mathematical studies (Aletheia Operator Calculus AUDIT-051, judegomila zeta/DBN/canculus AUDIT-049/050, Alpoge-Buckmaster-Coiculescu 3D Euler AUDIT-053)"
+      "role": "LIVE Draft PR #17 (feat/round4-pure-math-studies @ 273ff84d): 5 verified standalone studies (AUDIT-049 judegomila zeta/DBN, AUDIT-050 canculus/OnCo, AUDIT-051 8-Glyph Calculus, AUDIT-052 8,678-file Fluid-PDE/SignedTree, AUDIT-053R 3D Euler Farkas/Leray)"
     }
   ],
   "edges": [
@@ -1149,7 +1149,7 @@
       "typed_operator": "Arm R4-1 (AUDIT-044): Exact Bareiss integer Ramanujan certifier 4p I - A_perp^2 >= 0 on p-adic BTZ quotients T_p/Gamma (pinned to anthropics/flt@6e837e75 Def_CerednikDrinfeld_HeckeTower & Def_AutomorphicForm_HeckeEigensystem.twist), all 2^{beta_1} signed Z_2 2-lifts, & Niemeier/Umbral companions of Leech Lambda_24",
       "target_anomaly": "Certifying exact integer Ramanujan expansion & signed 2-lift spectral gaps on p-adic BTZ quotients with zero floating-point eigensolvers",
       "status": "verified",
-      "audit_id": "AUDIT-044 (N1 VERIFIED; check_037; 840 H^1 lifts chord-basis invariant + BTZ Krein (k,|B|-2k,k) + 24 Niemeier + anthropics-flt@6e837e75)"
+      "audit_id": "AUDIT-044 (N1 VERIFIED; check_037; live Foundation-0/ramanujan#1 @ 9bafe2c7; 840 H^1 lifts + BTZ Krein (k,|B|-2k,k) + 24 Niemeier)"
     },
     {
       "id": "R4-E02",
@@ -1163,7 +1163,7 @@
       "typed_operator": "Arm R4-2 (AUDIT-045): Exact integer Bareiss Hankel/Stieltjes Schur-inertia separation of modular (Delta, E_4, 1/eta) vs mock-modular (order-3/5/7 mock theta) vs false-theta q-series + Dyson rank / Andrews-Garvan crank mod {5,7,11} + aletheia v1.2 --lean-audit on formal-conjectures@d8d031d (RamanujanTau.lean tau_two:=sorry, PartitionParity.lean, Gourevitch.lean) & openai/math@4eaee8754 (CubicThetaRamanujan*.lean) [#19 Schur unification candidate]",
       "target_anomaly": "Exact integer Hankel Schur-inertia obstruction separating Zwegers mock-modular shadows from modular forms + forensic Lean-4 audit of Ramanujan statements",
       "status": "verified",
-      "audit_id": "AUDIT-045 (N1 VERIFIED; check_038; 20 mock thetas + Euler-Witt shadow rank collapse + Rank-Crank Schur + 20 Lean files audited)"
+      "audit_id": "AUDIT-045 (N1 VERIFIED; check_038; live Foundation-0/ramanujan#1 @ 9bafe2c7; 20 mock thetas + Euler-Witt rank collapse + Rank-Crank Schur #19)"
     },
     {
       "id": "R4-E03",
@@ -1177,7 +1177,7 @@
       "typed_operator": "Arm R4-3 (AUDIT-046): Exact PGL(2,Q(q)) Rogers-Ramanujan & Gollnitz-Gordon 4-point cross-ratio invariance + 1D hard-core q-Jacobi Schur peeling + Ramanujan Master Theorem / Mellin pole separation (anchored to anthropics/formal-math@16a5ce4 MellinCalculus.lean, openai/math@4eaee8754 HeckeSevenEighths.lean, & Session 1 Pair 30 D_L=Poles(zeta_L)) killing 1+2+3+...=-1/12 numerology [#20 Schur unification candidate]",
       "target_anomaly": "Coordinate-free PGL(2,Q(q)) cross-ratio laws for Rogers-Ramanujan convergents & airtight Mellin-pole separation from divergent-sum numerology",
       "status": "verified",
-      "audit_id": "AUDIT-046 (N1 VERIFIED; check_035; 18/18 R5; symbolic CR law + Klein/j + W=3 tropical 3/2<2 + symbolic regulator equalizer & RMT)"
+      "audit_id": "AUDIT-046 (N1 VERIFIED; check_035; 18/18 R5; live Foundation-0/ramanujan#1 @ 9bafe2c7; symbolic CR law #20 + Klein/j + regulator equalizer)"
     },
     {
       "id": "R4-E04",
@@ -1190,8 +1190,8 @@
       ],
       "typed_operator": "Arm R4-4 (AUDIT-047): Foundation-0/hawking & Candidate N2 Hawking-Holonomy Indefinite DtN Theorem unifying AUDIT-041/042/043 + R4-1 via rank-2 Krein flip L^chi - L = sum w_e[(e_u+e_v)(e_u+e_v)^T - (e_u-e_v)(e_u-e_v)^T], coupling boundary monopole unmasking Phi_partial(chi), multipole Krein negative inertia n_-(Delta Lambda_partial), R_eff(e)/c_harm(e), & Ramanujan 2-lift spectral floor (quarantined against Harary 1953, Zaslavsky 1982, Curtis-Ingerman-Morrow 1998, Kenyon 2011) [#18 Schur unification candidate]",
       "target_anomaly": "Proving or refuting an exact coordinate-free N2 Hawking-Holonomy Krein-Schur theorem strictly beyond Zaslavsky/Kenyon & shipping Foundation-0/hawking",
-      "status": "round4_ready_for_verifier",
-      "audit_id": "AUDIT-047 (N2 CONFIRMED on 4-part finite-graph theorem check_040; 36/36 R5; AUDIT-047R README patch READY for Foundation-0/hawking#1 push)"
+      "status": "verified",
+      "audit_id": "AUDIT-047R (N2 CONFIRMED & VERIFIED; check_040; 36/36 R5; live Foundation-0/hawking#1 @ 2cc38330; 4-part Boundary Double-Schur / Surgical Krein-Severing #18 / Parallel-Sum Screening / Ramanujan 2-Lift Floor)"
     },
     {
       "id": "R4-E05",
@@ -1205,7 +1205,7 @@
       "typed_operator": "Arm R4-5 (AUDIT-048): Pure-integer Ramanujan sums c_q(n) & orthogonal Ramanujan-subspace Schur projection (anchored to openai/math@4eaee8754 EgyptianFractions/RamanujanProduct.lean & RamanujanEuler.lean) vs float DCT/FFT (NousResearch/DisTrO), sparse Ramanujan mixers vs dense SpinQuant H_96, & CS-11 null-equivalence kill-shot against float PSLQ / Ramanujan-Machine mirages [#21 Schur unification candidate]",
       "target_anomaly": "Replacing float DCT/FFT and heuristic float PSLQ mirages with exact integer Ramanujan-subspace Schur projections & CS-11 algebraic certifiers",
       "status": "verified",
-      "audit_id": "AUDIT-048R (N1 VERIFIED; check_036; 59/59 R5; N=24 RPT + coordinate-free BFS Ramanujan certifier + ordered-layer Givens obstruction + CS-11 PSLQ kill)"
+      "audit_id": "AUDIT-048R (N1 VERIFIED; check_036; 59/59 R5; live Foundation-0/ramanujan#1 @ 9bafe2c7; N=24 integer RPT #21 + BFS Ramanujan certifier + CS-11 PSLQ kill)"
     },
     {
       "id": "R4B-E01",
@@ -1218,8 +1218,8 @@
       ],
       "typed_operator": "Arm R4B-1 (AUDIT-049): Strictly read-only audit of judegomila/zeta-explorer@694eb35f9144 (190+ RH obstruction atlas: Weil/Li/Nyman-Beurling/transfer-operators/heat-flow + aletheia v1.2 --lean-audit) & judegomila/dbn-lambda-01787854-candidate-audit@a74738deb6d5 (Law-2 Steelman + Law-3 Adversarial Tomography on C fail-closed interval certificates Lambda<=0.1787854 vs Polymath15 0.22 + lean/aristotle layer)",
       "target_anomaly": "Mapping 190+ RH barrier routes onto SF-01..05 & auditing C fail-closed interval certificates + Aristotle Lean lemmas",
-      "status": "round4b_active",
-      "audit_id": "AUDIT-049 (in_progress)"
+      "status": "verified",
+      "audit_id": "AUDIT-049 (N1 VERIFIED; check_041; 37/37 R5; live Foundation-0/math0#17 @ 273ff84d; 326-file Lean census + Polymath 15 + hardened Dini + ALETHEIA-CLI-01 catch)"
     },
     {
       "id": "R4B-E02",
@@ -1233,7 +1233,7 @@
       "typed_operator": "Arm R4B-2 (AUDIT-050): Strictly read-only Beyond-Language exact-operator bridge from judegomila/canculus@ef76861b4e84 (route normal form, adaptation closure, robust cuts) to Moissanite-Labs/weft#227 (WEFT-T5 Lafont normal forms) & AUDIT-029/042/043 min-cut/tropical-peeling/Schur adaptation + judegomila/OnCo@d43842087851 (245\u2605 cited KG/MCP/CLI provenance schema)",
       "target_anomaly": "Testing exact algebraic identities/counterexamples in canculus adaptation closure & robust cuts + harvesting OnCo citation-graph architecture",
       "status": "verified",
-      "audit_id": "AUDIT-050 (N1 VERIFIED; check_039; 33/33 R5; live Node.js CANC-B1..B4 repro + #22 2x2 feedback Schur/PGL(2) + tropical Bellman-Ford + OnCo KG gates)"
+      "audit_id": "AUDIT-050 (N1 VERIFIED; check_039; 33/33 R5; live Foundation-0/math0#17 @ 273ff84d; live Node.js CANC-B1..B4 repro + #22 2x2 feedback Schur/PGL(2) + OnCo KG gates)"
     },
     {
       "id": "R4C-E01",
@@ -1247,8 +1247,8 @@
       ],
       "typed_operator": "Arm R4C (AUDIT-051): The Aletheia Operator Calculus \u2014 8 empirically 0/227,540-Lean-hit Unicode Sm glyphs (\u29c4 Schur, \u29c5 Shadow, \u29b7 Holonomy-Unmask, \u27e0 Observer-Equalizer, \u29c7 Cohom-Obstruction, \u29ba Krein-Inertia, \u2a69 Exact-Null-Eq, \u2ae9 R5-Refusal-Gate) with executable pure-Q parser/evaluator & commutator discovery (already yielding PSD [\u29c4,\u29b7] monotonic horizon screening theorem #274)",
       "target_anomaly": "Compressing multi-line expedition obstructions into 1-line compositional algebra & discovering exact operator commutator laws",
-      "status": "round4c_active",
-      "audit_id": "AUDIT-051 (registry landed; engine in_progress)"
+      "status": "verified",
+      "audit_id": "AUDIT-051 (N1 VERIFIED; check_042; 68/68 R5; live Foundation-0/math0#17 @ 273ff84d & Foundation-0/aletheia#1 v1.3.0 @ 58207b42; 8 glyphs 0/227,540 Lean hits + C1 PSD screening + C6 rational metric on H^1)"
     },
     {
       "id": "R4D-E01",
@@ -1261,8 +1261,8 @@
       ],
       "typed_operator": "Arm R4D-1 (AUDIT-052): Strictly read-only aletheia v1.2.0 --lean-audit across tristanbuckmaster/navier-stokes@ad53419de079 & tristanbuckmaster/fluid_lean@d0124689230b (affinecore, boussinesq-blowup, euler-blowup), cross-compared against openai/NavierStokesAndEuler@f9e8bc5 (AUDIT-036) & AUDIT-010/015R/027",
       "target_anomaly": "Auditing landmark Lean-4 fluid-PDE blowup formalizations for axioms, sorrys, and finite-dimensional spectral/interval bounds",
-      "status": "round4d_active",
-      "audit_id": "AUDIT-052 (in_progress)"
+      "status": "verified",
+      "audit_id": "AUDIT-052 (N1 VERIFIED; check_044; live Foundation-0/math0#17 @ 273ff84d; 8,678-file fluid-PDE Lean audit + 0/6 enable_nanoda catch + #24 SignedTree multifrontal Schur coercivity + Kuhn Sperner)"
     },
     {
       "id": "R4D-E02",
@@ -1275,8 +1275,37 @@
       ],
       "typed_operator": "Arm R4D-2 (AUDIT-053): Strictly read-only pure-Fraction verification of Alpoge-Buckmaster-Coiculescu cc.pdf (SHA-256 414f5af6..., 55pp): Appendix C exact rational parameter-inequality polytope / Farkas sensitivity (SF-05) + Section 2 localized Craik-Criminale Kelvin-wave amplification & exact Leray pressure projection I - k k^T / ||k||^2 as Schur complement (#23 Schur unification)",
       "target_anomaly": "Exact rational verification of 3D Euler singularity parameter polytope (App. C) & Leray-Schur wave amplification algebra (Sec. 2)",
-      "status": "round4d_active",
-      "audit_id": "AUDIT-053 (in_progress)"
+      "status": "verified",
+      "audit_id": "AUDIT-053R (N1 VERIFIED; check_043; 17/17 R5; live Foundation-0/math0#17 @ 273ff84d; symbolic Farkas-1..3 + App. C BigInt tower + #23 3D Euler Leray Schur)"
+    },
+    {
+      "id": "R4E-E01",
+      "portal": "R4E / SF-01 (#25) / SF-05 / SF-07",
+      "direction": "bidirectional",
+      "source": "Foundation-0/gravity",
+      "target": "Foundation-0/continuum",
+      "owner_arms": [
+        "gravity-probe",
+        "session-cartographer"
+      ],
+      "typed_operator": "Arm R4E (AUDIT-054): Symbolic 4-regime Double-Slit & Triple-Slit Continuum-Observer Tomography closing Session 1 Pair 33 L795 \u2014 Regime I linear bath complementarity + 16x16 GKSL Schur rate + AUDIT-047R surgical severing & deck-splitting eraser; Regime II 16-vertex Fine-Farkas CHSH 14/5 > 2 local-classical no-go; Regime III-A linear looped-Schur Sorkin (#25, degree-0 intensity invariant) vs III-B intrinsic Kerr continuum (lambda^2 scaling, DS-N0-08 ceiling 507/32464000)",
+      "target_anomaly": "Separating linear coupled quantum backaction, local classical slit disturbance, linear looped-trajectory Schur coupling, and intrinsic nonlinear Kerr continua",
+      "status": "verified",
+      "audit_id": "AUDIT-054 (N1 VERIFIED; check_045; 38/38 R5; live Foundation-0/continuum#3 @ 7fe4ee22)"
+    },
+    {
+      "id": "R4F-E01",
+      "portal": "R4F / SF-04 / SF-01..07",
+      "direction": "bidirectional",
+      "source": "Foundation-0/aletheia",
+      "target": "Foundation-0/cave-expedition",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Release AUDIT-055: Foundation-0/aletheia v1.3.0 shipping ALETHEIA-CLI-01 fix (--allow-project-import action=extend), stdlib aletheia/calculus.py & `aletheia calculus` 8-glyph CLI (\u29c4 \u29c5 \u29b7 \u27e0 \u29c7 \u29ba \u2a69 \u2ae9), Round-4 evidence pack, and synchronized 1.3.0 plugin/docs",
+      "target_anomaly": "Promoting verified 8-glyph operator calculus and hardened Lean audit CLI into permanent cross-repo verification infrastructure",
+      "status": "verified",
+      "audit_id": "AUDIT-055 (N1 VERIFIED; check_046; 13/13 R5; live Foundation-0/aletheia#1 v1.3.0 @ 58207b42)"
     }
   ],
   "round1_summary": {
@@ -1344,30 +1373,32 @@
     "audits_in_flight": []
   },
   "round4_ramanujan_hawking_summary": {
-    "status": "active",
+    "status": "100_percent_verified",
     "portal_doc": "symbiosis/round4/cartography/RAMANUJAN_PORTALS_R4.md",
     "arms_total": 5,
-    "arms_verified": 4,
+    "arms_verified": 5,
     "audits_verified": [
       "AUDIT-044 (N1)",
       "AUDIT-045 (N1)",
       "AUDIT-046 (N1)",
+      "AUDIT-047R (N2 CONFIRMED)",
       "AUDIT-048R (N1)"
     ],
     "audits_in_flight": [],
-    "schur_unification_target": "17 -> 23 ways (#18 Surgical Krein-Severing DtN, #19 Hankel/Euler-Witt & Rank-Crank Shadow, #20 PGL(2,Q(q)) Rogers-Ramanujan Schur Peeling, #21 Integer Ramanujan-Subspace Projection, #22 Canculus 2x2 Feedback Schur, #23 3D Euler Leray Pressure Schur)",
+    "schur_unification_target": "25-Way Verified Exact Schur-Complement Unification (Wave 1 #1..8 + Wave 2 R1-R3B #9..17 + Round 4 #18..25)",
     "law4_n0_quarantine_count": 17,
-    "audits_ready_for_verifier": [
-      "AUDIT-047"
-    ],
+    "audits_ready_for_verifier": [],
     "dedicated_repos": {
-      "hawking": "https://github.com/Foundation-0/hawking (AUDIT-047 N2 confirmed; feat/hawking-bridge-v1)",
-      "ramanujan": "https://github.com/Foundation-0/ramanujan (AUDIT-044/045/046/048R verified; feat/ramanujan-v1)",
-      "math0": "https://github.com/Foundation-0/math0 (general pure math: AUDIT-049/050/051/053)"
-    }
+      "hawking": "https://github.com/Foundation-0/hawking/pull/1 (feat/hawking-bridge-v1 @ 2cc38330ac9ca6329d41af0c004827df9d7f44ff; AUDIT-047R N2 CONFIRMED)",
+      "ramanujan": "https://github.com/Foundation-0/ramanujan/pull/1 (feat/ramanujan-v1 @ 9bafe2c7ad6cac3a50b6de9c9b6837baf9974784; AUDIT-044/045/046/048R)",
+      "math0": "https://github.com/Foundation-0/math0/pull/17 (feat/round4-pure-math-studies @ 273ff84ddef4cc5dd0ee3a773a439994b8230ac2; AUDIT-049/050/051/052/053R)",
+      "continuum": "https://github.com/Foundation-0/continuum/pull/3 (expedition/synthesis-instruments @ 7fe4ee2202dad0e5c5420756a037c212fd3e52ee; AUDIT-054)",
+      "aletheia_v130": "https://github.com/Foundation-0/aletheia/pull/1 (feat/aletheia-v1-framework @ 58207b422ca31c29bb498bc7aebb2ebc4f1fe41c; AUDIT-055 v1.3.0)"
+    },
+    "schur_unification_verified_count": 25
   },
   "round4b_judegomila_summary": {
-    "status": "active",
+    "status": "100_percent_verified",
     "read_only_enforced": true,
     "pinned_repos": {
       "zeta-explorer": "694eb35f9144ad223d6f8a6afa7398a116146b1b",
@@ -1376,16 +1407,15 @@
       "OnCo": "d43842087851281084d0f9e7171f555635361e7f"
     },
     "arms_total": 2,
-    "arms_verified": 1,
+    "arms_verified": 2,
     "audits_verified": [
+      "AUDIT-049 (N1)",
       "AUDIT-050 (N1)"
     ],
-    "audits_in_flight": [
-      "AUDIT-049"
-    ]
+    "audits_in_flight": []
   },
   "round4c_operator_calculus_summary": {
-    "status": "registry_landed_engine_in_progress",
+    "status": "100_percent_verified_shipped_aletheia_v130",
     "registry_files": [
       "symbiosis/round4/operator-calculus/GLYPH_REGISTRY.md",
       "symbiosis/round4/operator-calculus/glyph_registry.json"
@@ -1403,12 +1433,14 @@
       "\u2a69 (U+2A69 exact_null_equiv)",
       "\u2ae9 (U+2AE9 r5_refusal_gate)"
     ],
-    "audits_in_flight": [
-      "AUDIT-051"
+    "audits_in_flight": [],
+    "audits_verified": [
+      "AUDIT-051 (N1; 68/68 R5)",
+      "AUDIT-055 (aletheia v1.3.0 CLI)"
     ]
   },
   "round4d_buckmaster_euler_summary": {
-    "status": "active",
+    "status": "100_percent_verified",
     "read_only_enforced": true,
     "pinned_sources": {
       "tristanbuckmaster/navier-stokes": "ad53419de079eb8f95f60313473374624a348546",
@@ -1416,11 +1448,21 @@
       "tristanbuckmaster-cc.pdf": "sha256:414f5af635c78e807d674a1bab49a440c3cf1173bc3bc7cd12f8686f80a077a3 (55pp, 2026-11-20)"
     },
     "arms_total": 2,
-    "arms_verified": 0,
-    "audits_verified": [],
-    "audits_in_flight": [
-      "AUDIT-052",
-      "AUDIT-053"
-    ]
+    "arms_verified": 2,
+    "audits_verified": [
+      "AUDIT-052 (N1; 8,678 Lean files + #24 SignedTree Schur)",
+      "AUDIT-053R (N1; 17/17 R5 + #23 Leray Schur)"
+    ],
+    "audits_in_flight": []
+  },
+  "round4e_double_slit_and_aletheia_v130_summary": {
+    "status": "100_percent_verified",
+    "audits_verified": [
+      "AUDIT-054 (N1; 38/38 R5; continuum#3 @ 7fe4ee22; #25 Double-Slit Schur)",
+      "AUDIT-055 (N1; 13/13 R5; aletheia#1 v1.3.0 @ 58207b42)"
+    ],
+    "audits_in_flight": [],
+    "total_round4_audits_verified": 12,
+    "total_unresolved_defects": 0
   }
 }
