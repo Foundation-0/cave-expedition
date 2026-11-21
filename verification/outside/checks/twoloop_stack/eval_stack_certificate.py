@@ -383,14 +383,21 @@ def part_b2_controls(seed=881002):
     res["c_zero"] = int_checker(Qok, ("accept", (0, L, D)))
     res["bool_in_D"] = int_checker(Qok, ("accept", (c, L, [True] + D[1:])))
     res["fraction_c"] = int_checker(Qok, ("accept", (F(c), L, D)))
+    # c = 0 with D = 0 makes the identity 0 = 0 true for every matrix, so only the guard on c refuses it
+    res["c_zero_and_D_zero_on_indefinite_matrix"] = int_checker(Qbad, ("accept", (0, L, [0] * len(D))))
     res["c_bits"] = c.bit_length()
     kb, x = int_certificate(Qbad)
     res["honest_refute_smaller_s"] = int_checker(Qbad, (kb, x))
     res["refute_vector_on_ok_matrix"] = int_checker(Qok, (kb, x))
+    # a witness with x^T Q x = 0 does not show that Q is not PSD, so it must not count as a refutation
+    res["refute_zero_vector"] = int_checker(Qok, ("refute", [0] * len(x)))
     need(res["honest_accept"] == "accept" and res["honest_refute_smaller_s"] == "reject", "honest paths")
-    for k in ("replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
-              "refute_vector_on_ok_matrix"):
+    refused = ("replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
+               "refute_vector_on_ok_matrix",
+               "c_zero_and_D_zero_on_indefinite_matrix", "refute_zero_vector")
+    for k in refused:
         need(res[k] == "malformed", f"control {k} not refused")
+    res["controls_refused"] = len(refused)
     return res
 
 
@@ -441,7 +448,7 @@ def main():
     print(json.dumps(out, indent=1, default=str))
     b1 = out["B1_soundness_and_exactness"]
     print("RESULT: PASS eval_stack_certificate: Q_stack PSD iff sigma_max^2 <= s on %d probes (exact), integer checker agrees, %d must-fail controls refused, gain table and N=4 demo held"
-          % (b1["s_probes"], 7))
+          % (b1["s_probes"], out["B2_integer_checker_controls"]["controls_refused"]))
     return 0
 
 
