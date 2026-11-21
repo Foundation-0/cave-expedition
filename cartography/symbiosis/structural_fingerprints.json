@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-6-complete",
-  "updated_at": "2026-11-21T16:23:00-06:00",
+  "wave": "wave-2-round-7-complete",
+  "updated_at": "2026-11-21T17:09:00-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -197,6 +197,12 @@
           "label_stripped": "Stacked-adapter exact fraction-free Bareiss Gram Schur (Q_stack singular-G_kk blind-drift witness dw=[0,3,4], SignedTree multifrontal Schur, KKT R_H4) + Fisher-Schur WI-4 (+55% preconditioning KL trap 401/225) [#29 Schur unification]",
           "status": "verified",
           "ref": "AUDIT-061R & AUDIT-064 N1 (check_055 / check_054, SF-01 #29, warp-drive#12 @ 10ae3b33 & #15 @ e6ad0967)"
+        },
+        {
+          "repo": "zenodo/23644664-rns-pnp (Arm R7-3)",
+          "label_stripped": "Coupling Gramian W=B^T B blindness on Tseitin-K_4 (W_SAT=W_UNSAT=8I_6), Bareiss/FL G_10 spectral inversion (lambda_min^2>9>lambda_2^2), & 5-point Sidewalk/Extended-Pivot/Mycielski-M_4 exact zero-float refutations",
+          "status": "verified",
+          "ref": "AUDIT-070R N1 (check_062, 51/51 R5, Foundation-0/math0#19 @ 55cd6f57)"
         }
       ]
     },
@@ -428,6 +434,12 @@
           "label_stripped": "Hardened 4-stage warp-modeld verifier (80/80 upstream R5 mutate, 72 tests PASS), immutable 5-op bounded controller (126/126 R5, 18/18 controls), & aletheia v1.4.0 AST local refusal-wrapper auto-detection (74 mutants on bareiss_gram_gate.py), loads_strict_json/JSONL, and --strict-ancestors",
           "status": "verified",
           "ref": "AUDIT-062R/063R2/065/066R/067R N1 (check_052/053/056/057/058; 22/22 red-team bypasses closed)"
+        },
+        {
+          "repo": "magnitudedev/magnitude@d89dfff (Arm R7-1)",
+          "label_stripped": "Exact Rust lattice.rs RoundingCells::width (0/212 SymPy mismatches), RMS-only 6144 outlier erasure & 65,536x F32 Activation drift, pure-Q Ville supermartingale, & 9 fail-closed warp-drive/siliquant trust-boundary gates",
+          "status": "verified",
+          "ref": "AUDIT-068R N1 (check_060, 19/19 R5, Moissanite-Labs/siliquant#26 @ 7eb484d7)"
         }
       ]
     },
@@ -515,6 +527,12 @@
           "label_stripped": "Z_2 neuron sign-symmetry lineage gauge (SwiGLU 50% null vs Pythia/Falcon-H1 non-Z_2 83-87% false-positive confounder)",
           "status": "verified",
           "ref": "AUDIT-059 N1 (check_048, Moissanite-Labs/siliquant#24 @ d4c54e43)"
+        },
+        {
+          "repo": "frobenius-sat-benchmark (Arm R7-4)",
+          "label_stripped": "150/150 Table-2 PAR-2 forensics (175.5x-522.6x mutually-solved vs 86.77%-94.75% timeout share; Hard-SPN 62.53x = CDCL; SHA-256 k=28 wall) + clean-room AIG-hybrid (Z_2 H^1 Gauss/PB/CEC) vs pure-DPLL & 0-XOR3 unstructured critical 3-SAT wall",
+          "status": "verified",
+          "ref": "AUDIT-071R N1 (check_059, 49/49 R5, Foundation-0/math0#19 @ 55cd6f57)"
         }
       ]
     },
@@ -653,6 +671,12 @@
           "label_stripped": "Family-separated split equalizer defeating 98% split-leakage trap (49/50 leaky vs 0/24 clean), log-prob margin equalizer WI-6 defeating text-only argmax shadow (10x margin drop at identical argmax), & CS-12 Trust-Boundary Shadow detector",
           "status": "verified",
           "ref": "AUDIT-063R2/064/066R/067R N1 (check_054/056/057/058)"
+        },
+        {
+          "repo": "alphaxiv/openresearch-index (Arm R7-2)",
+          "label_stripped": "Exact Delta_2 weight-sensitivity polytope (29.1899% full-rank stability, 10/3x task leverage), K_4 CI clique, stale equal-weight og:image, bipartite model-harness dim ker(X)=3 -> 1 (2 OpenCode bridges), & formal Tao observability gates G1..G5C",
+          "status": "verified",
+          "ref": "AUDIT-069R N1 (check_061, 91/91 R5, Foundation-0/math0#19 @ 55cd6f57)"
         }
       ]
     }

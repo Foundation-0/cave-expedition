@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_058`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_062`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-067R`, `58` scripts total).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_058` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-071R`, `62` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_062` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -63,3 +63,7 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_056_audit063_bounded_controller.py` | 621 | `1968adfbfc9e4d67` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-063 (Round 6 Arm R6-3). |
 | `check_057_audit067_aletheia_v140.py` | 332 | `6223cbed90030a1e` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-067 (aletheia v1.4.0). |
 | `check_058_audit066_warp_drive_pra.py` | 461 | `b3daba08ff62d35e` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-066 (warp-drive Draft PR-A). |
+| `check_059_audit071_frobenius_sat.py` | 271 | `e3080a45fa025d37` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-071 (Round 7 Arm R7-4). |
+| `check_060_audit068_magnitude.py` | 458 | `9927a411a4a57956` | `indexed (domain PR)` | Independent zero-shared-code verification & adversarial red-team for AUDIT-068. |
+| `check_061_audit069_openresearch_index.py` | 463 | `3dc1ceabc1587158` | `indexed (domain PR)` | Independent zero-shared-code verification & adversarial red-team for AUDIT-069. |
+| `check_062_audit070_zenodo_rns_pnp.py` | 424 | `04165a0959823443` | `indexed (domain PR)` | Independent zero-shared-code verification & adversarial red-team for AUDIT-070. |

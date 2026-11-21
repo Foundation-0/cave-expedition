@@ -1,0 +1,163 @@
+{
+  "schema": "aletheia.round7_catalog.v1",
+  "wave": "wave-2-round-7",
+  "status": "100_percent_verified_published",
+  "updated_at": "2026-11-21T17:09:00-06:00",
+  "owner": "session-cartographer",
+  "read_only_enforced": true,
+  "zero_external_writes": true,
+  "vectors": [
+    {
+      "arm": "R7-1",
+      "audit_id": "AUDIT-068R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_060_audit068_magnitude.py",
+      "r5_killed": "19/19",
+      "defects_closed": 4,
+      "owner": "peer-weaver",
+      "work_dir": "symbiosis/round7/arm1-magnitude",
+      "source_url": "https://github.com/magnitudedev/magnitude",
+      "pinned_commit": "d89dfffcbb2f27251e99163934c04770b453339c",
+      "tracked_files": 6216,
+      "dirty_files": 0,
+      "rust_inference_subdirs": [
+        "catalog",
+        "conversion",
+        "docs",
+        "engine",
+        "evaluation",
+        "ggml",
+        "native",
+        "scripts",
+        "seismic",
+        "seismic-std",
+        "service",
+        "solver"
+      ],
+      "bridges": [
+        "Moissanite-Labs/warp-drive#15",
+        "Moissanite-Labs/siliquant#24",
+        "Moissanite-Labs/hillclimb#4"
+      ],
+      "live_pr": "https://github.com/Moissanite-Labs/siliquant/pull/26",
+      "live_commit": "7eb484d7d5274482f4d4a73d4012277438bf3c36"
+    },
+    {
+      "arm": "R7-2",
+      "audit_id": "AUDIT-069R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_061_audit069_openresearch_index.py",
+      "r5_killed": "91/91",
+      "defects_closed": 2,
+      "owner": "continuum-bridge",
+      "work_dir": "symbiosis/round7/arm2-openresearch-index",
+      "source_urls": [
+        "https://alphaxiv.org/blog/introducing-openresearch-intelligence-index",
+        "https://github.com/alphaXiv/OpenResearch"
+      ],
+      "pinned_digests": {
+        "index_html_sha256": "ac66dd30e7c2f53566041fd9968b1ebbe29e14370bd98ce6e5e8ac7f51d2533f",
+        "openresearch_sh_html_sha256": "9e00c6f0a2e0b10f4c120a3e39c0edf123a9b1594e2d3e4b99fed5cb99a2a516",
+        "blogpost_js_sha256": "54dfc538b7057456e510900b19caec5a8f491fb23f305fef5fb9269a0fbceba3",
+        "cost_vs_score_png_sha256": "51541703586bffabf9cee98bf2287294edead2a4c9434655e5ba83abc72bd8e7",
+        "tsr_script4_txt_sha256": "d4b1575a7a1caaefcf2fd6577f8d13206c014c4b7a457ce80c730b21a217bc7a",
+        "openresearch_repo_commit": "48f42c45"
+      },
+      "bridges": [
+        "Foundation-0/aletheia#1",
+        "Moissanite-Labs/warp-drive#13",
+        "alphaxiv/OpenResearch"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/19",
+      "live_commit": "55cd6f571ae28810de7ffe1be2b844e0f26684e6"
+    },
+    {
+      "arm": "R7-3",
+      "audit_id": "AUDIT-070R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_062_audit070_zenodo_rns_pnp.py",
+      "r5_killed": "51/51",
+      "defects_closed": 3,
+      "owner": "spectral-prover",
+      "work_dir": "symbiosis/round7/arm3-zenodo-rns-pnp",
+      "source_url": "https://zenodo.org/records/23644664",
+      "doi": "10.5281/zenodo.23644664",
+      "record_files_count": 12,
+      "pinned_digests": {
+        "record_23644664_json_sha256": "6198464ca730db99a8cdfcc2f203479a6a5623cdeb08917ab7de490cb526144e",
+        "code_v00_zip_sha256": "13b63a9e38bb03955e2dfa8e2c04470510b93e1958fcced225c1a06cba60486f",
+        "code_v01_zip_sha256": "2710ac5dc90a7eedaca60f7e34f6ea1e30c6d821e74f68397503f916568d1cb4",
+        "code_v02_zip_sha256": "059a283348f672c109e63e01e349d6b0adb58df3e9fbe0e1b3f3859c2542d3bd",
+        "code_v03_zip_sha256": "52f8ff0b16b726c37256df27778ec537e18766e50ed335cb4d7f21e1fdddfaac"
+      },
+      "bridges": [
+        "Foundation-0/spectral-inertia",
+        "Foundation-0/aletheia#1",
+        "Arm R7-4 Frobenius SAT"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/19",
+      "live_commit": "55cd6f571ae28810de7ffe1be2b844e0f26684e6"
+    },
+    {
+      "arm": "R7-4",
+      "audit_id": "AUDIT-071R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_059_audit071_frobenius_sat.py",
+      "r5_killed": "49/49",
+      "defects_closed": 3,
+      "owner": "fractals-probe",
+      "work_dir": "symbiosis/round7/arm4-frobenius-sat",
+      "artifact_label": "Frobenius Table 2 (30-instance, 8-family sequential 1-core SAT benchmark gauntlet)",
+      "artifact_sha256": "1af95eb5a4e57c65e5dc15d42780451b9be66cef83efe4e32ccd83528f98355d",
+      "image_dimensions": "1018x1200",
+      "instances_count": 30,
+      "families_count": 8,
+      "solvers_count": 5,
+      "timeout_ms": 30000,
+      "par2_penalty_ms": 60000,
+      "bridges": [
+        "Arm R7-3 Zenodo 23644664",
+        "Foundation-0/hawking#1",
+        "Foundation-0/aletheia#1"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/19",
+      "live_commit": "55cd6f571ae28810de7ffe1be2b844e0f26684e6"
+    }
+  ],
+  "phase3_live_prs": [
+    {
+      "track": "R7-P1",
+      "repo": "Foundation-0/math0",
+      "pr_number": 19,
+      "url": "https://github.com/Foundation-0/math0/pull/19",
+      "is_draft": true,
+      "branch": "feat/round7-complexity-sat-index-studies",
+      "commit_sha": "55cd6f571ae28810de7ffe1be2b844e0f26684e6",
+      "audit_ids": ["AUDIT-069R", "AUDIT-070R", "AUDIT-071R"],
+      "r5_killed": "191/191"
+    },
+    {
+      "track": "R7-P2",
+      "repo": "Moissanite-Labs/siliquant",
+      "pr_number": 26,
+      "url": "https://github.com/Moissanite-Labs/siliquant/pull/26",
+      "is_draft": true,
+      "branch": "feat/magnitude-autotune-quant-bridge",
+      "commit_sha": "7eb484d7d5274482f4d4a73d4012277438bf3c36",
+      "audit_ids": ["AUDIT-068R"],
+      "r5_killed": "19/19"
+    }
+  ],
+  "law4_n0_quarantine_count": 12,
+  "aggregate_metrics": {
+    "round7_audits_verified": 4,
+    "r5_mutants_killed": 210,
+    "r5_mutants_total": 210,
+    "defects_caught_and_closed": 12,
+    "unresolved_defects": 0
+  }
+}
