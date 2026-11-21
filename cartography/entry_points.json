@@ -1,0 +1,219 @@
+{
+  "schema": "expedition.cartography.entry_points.v1",
+  "generated_by": "session-cartographer",
+  "sources": {
+    "session1": "<gemini-sessions>/gemini-session-488274c3e0040dac/",
+    "session2": "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/"
+  },
+  "entry_points": [
+    {
+      "id": "ep-01-lemma32-soundness-audit",
+      "title": "Lemma 3.2 Sharp Projected-Rank Theorem R_opt (VERIFIED AUDIT-002) & Mode B TCB Repairs (AUDIT-001)",
+      "domain": "formal-verification/bounds",
+      "target_peers": ["@verifier", "@continuum-bridge", "@fractals-probe"],
+      "priority": "high",
+      "source_session": "session2",
+      "source_files": [
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/session_verbatim_transcript.md#L505-L579",
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/code_blocks/pair_06_block_00.py#L117-L153"
+      ],
+      "formula_indices": ["S2:F[62]", "S2:F[96]"],
+      "exact_math_object": "rank(P) >= rank(Pi_{W^perp} P Pi_{W^perp}) >= n_+(Pi_{W^perp}(P+Q)Pi_{W^perp}) >= R_opt(u,t,S,b) [= 0 if u<=0 or u+t<=0; b*u^2/(b*S-t^2) if b>0,t>0,t(u+t)>=b*S; max(0,(u+t)^2/S-b) otherwise] (VERIFIED AUDIT-002, integer-exact pointwise sharp)",
+      "falsifiable_claim_or_test": "AUDIT-002 VERIFIED R_opt + integer-exact tightness on 420 Q(i) complex Hermitian matrices (0 violations, 417/420 wins over docs/10 R_G); AUDIT-001 FALSIFIED pair_06_block_00.py TCB (6 exploits: missing P>=0 congruence, missing is_symmetric(H)/shape checks, loose to_frac, negative target_rank_gt). Next frontier: degree-3/4 spectral polynomials (tr H^3, tr H^4) breaking strictly past R_opt.",
+      "suspected_hazards_or_bugs": [
+        "CONFIRMED (AUDIT-001): Missing P = H - Q >= 0 congruence witness (forges rank >= 117 on 2x2 with Q=diag(10,0), >= 140 with Q=diag(11,0))",
+        "CONFIRMED (AUDIT-001): Missing is_symmetric(H), dimension/shape checks in mat_mul/verify_congruence_inertia, loose to_frac parsing, negative target_rank_gt accepted",
+        "External unverified noise bound N <= D_tau assumption in Mode A"
+      ]
+    },
+    {
+      "id": "ep-02-rational-congruence-sdp-bridge",
+      "title": "Zero-Float Rational Congruence Inertia Primitive (LDL^T / C Q C^T = D) for SDP/SoS & Morse Index",
+      "domain": "cross-domain",
+      "target_peers": ["@continuum-bridge", "@fractals-probe", "@gravity-probe"],
+      "priority": "high",
+      "source_session": "session2",
+      "source_files": [
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/session_verbatim_transcript.md#L505-L533",
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/code_blocks/pair_06_block_00.py#L60-L80"
+      ],
+      "formula_indices": ["S2:F[62]", "S2:F[96]"],
+      "exact_math_object": "C * C_inv == I_n and C * Q * C^T == diag(D) over Q => exact inertia (n_+, n_0, n_-) via Sylvester's Law of Inertia",
+      "falsifiable_claim_or_test": "Apply rational congruence inertia certification to: (a) project-asma pxd023044_23848 multi-scan Gram matrix (with Mode B fixed to check P >= 0); (b) quadratic/SoS relaxation certificates extending quotient-lp-bounds / soko LP duals; (c) exact Hessian Morse-index certification on gravity/relative-equilibria critical points.",
+      "suspected_hazards_or_bugs": [
+        "Rational bit-length blowup in exact congruence witnesses if untrusted solver does not round/project carefully onto rational feasibility"
+      ]
+    },
+    {
+      "id": "ep-03-gw-blind-chirp-invariant",
+      "title": "Blind Dual-Channel Parity-Lag & Power-Law Chirp Exponent Invariant (GWOSC GPS-1126259462)",
+      "domain": "gravity",
+      "target_peers": ["@gravity-probe", "@verifier"],
+      "priority": "high",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L366-L525",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/code_blocks/pair_20_block_00.py#L1-L52"
+      ],
+      "formula_indices": ["S1:F[116]", "S1:F[117]", "S1:F[126]", "S1:F[144]", "S1:F[150]"],
+      "exact_math_object": "kappa(t) = f_dot * f^(-11/3) = const <=> f(t) ~ (t_c - t)^(-3/8); Y_1(t + tau*) ~ -Y_2(t)",
+      "falsifiable_claim_or_test": "Fix pair_20_block_00.py bugs (negative lag slicing at t0=0, Welch PSD 1/2 scaling), remove smuggled priors ([30,350] Hz band and hardcoded -11/3 exponent), and test whether free-exponent estimation alpha_hat = argmin Var(f_dot * f^(-alpha)) recovers 11/3 on inspiral waveforms vs negative-control glitches/colored noise.",
+      "suspected_hazards_or_bugs": [
+        "Negative slice indexing bug y1[t0+lag:t0+lag+W] when t0 < max_lag",
+        "Hardcoded band [30,350] Hz, W=0.2s, max_lag=10ms, and exponent -11/3 contradict 'zero external priors' claim",
+        "Welch one-sided PSD normalization factor mismatch in line_mask ratio"
+      ]
+    },
+    {
+      "id": "ep-04-broken-symmetry-caustic-wave-invariants",
+      "title": "Symmetry-Lifted Multiplets, Maslov/Hilbert Z_4 Caustic Shifts & Symplectic Wavefronts",
+      "domain": "gravity",
+      "target_peers": ["@gravity-probe", "@continuum-bridge", "@verifier"],
+      "priority": "medium",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L750-L929",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1385-L1438",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/code_blocks/pair_22_block_05.py#L1-L38"
+      ],
+      "formula_indices": ["S1:F[249]", "S1:F[273]", "S1:F[300]", "S1:F[317]", "S1:F[401]", "S1:F[421]", "S1:F[422]"],
+      "exact_math_object": "f_m = f_0(1 + alpha + beta*m + gamma*m^2); P_{k+1}(t) = alpha * H{P_k(t - dt_k)} (H^4 = I); d_geom(A,B) ~ -xi * ln I(A:B)",
+      "falsifiable_claim_or_test": "Test whether broken-degeneracy multiplet extraction, Hilbert Z_4 caustic phase tracking, or mutual-information emergent metric d_geom = -xi ln I(A:B) produces coordinate-invariant signatures on Foundation-0/gravity fields/orbits; verify pair_22_block_05.py line 36 phase_coherence bug.",
+      "suspected_hazards_or_bugs": [
+        "pair_22_block_05.py line 36 abs(mean(exp(1j*angle(hilbert(x0))))) vanishes on clean harmonic waves and fails to measure Z_4 Hilbert symmetry",
+        "np.roll in shear_kurtosis_peak introduces circular wrap artifacts"
+      ]
+    },
+    {
+      "id": "ep-05-dsi-complex-dimensions-kigami",
+      "title": "Discrete Scale Invariance, Complex Dimensions (Lapidus Zeta), Multifractal f(alpha) & Kigami Diffusion",
+      "domain": "fractals",
+      "target_peers": ["@fractals-probe", "@verifier"],
+      "priority": "high",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1508-L1543"
+      ],
+      "formula_indices": ["S1:F[433]", "S1:F[434]", "S1:F[435]", "S1:F[436]", "S1:F[438]", "S1:F[439]", "S1:F[440]", "S1:F[441]", "S1:F[442]", "S1:F[447]"],
+      "exact_math_object": "O(x) = mu*O(lambda*x) => sum c_n x^{s_n}, s_n = beta + i*2*pi*n/ln(lambda); zeta_L(s) = sum l_j^s; E(u,u) = lim rho^{-n} sum |u(x)-u(y)|^2; d_s = 2*d_f/d_w",
+      "falsifiable_claim_or_test": "Compute Mellin-domain complex dimensions s_n, multifractal Legendre spectrum f(alpha), and exact Kigami resistance renormalization rho / spectral dimension d_s = 2*d_f/d_w on attractors and lattice graphs in Foundation-0/fractals and incentre-lattices; test Open Set Condition failure modes where Moran root != dim_H.",
+      "suspected_hazards_or_bugs": [
+        "S1:F[440] Moran equation gives dim_H only under Open Set Condition (fails for overlapping IFS contractions)",
+        "S1:F[447] wavelet local Holder equivalence requires vanishing moments, alpha not integer, and log factor in converse"
+      ]
+    },
+    {
+      "id": "ep-06-diophantine-resonance-lattices",
+      "title": "Exact Rational Frequency Chords & Zero-Drift Triadic Diophantine Nullspaces",
+      "domain": "fractals",
+      "target_peers": ["@fractals-probe", "@gravity-probe"],
+      "priority": "medium",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L542-L586"
+      ],
+      "formula_indices": ["S1:F[164]", "S1:F[177]", "S1:F[178]", "S1:F[180]"],
+      "exact_math_object": "p_k*f_k - (p_k + q_k)*f_{k+1} + q_k*f_{k+2} = 0; (f_1:...:f_7) = (24:15:9:6:4:3:2)",
+      "falsifiable_claim_or_test": "Use exact integer-relation / lattice reduction (LLL/PSLQ over Q) to detect zero-drift rational resonance nullspaces in orbital/lattice spectra (incentre-lattices, relative-equilibria, certified-orbits) with randomized frequency-shift negative controls.",
+      "suspected_hazards_or_bugs": [
+        "Small-integer ratio overfitting on noisy frequencies without strict Diophantine p-value / null-distribution calibration"
+      ]
+    },
+    {
+      "id": "ep-07-emergence-commutation-quotient-bridge",
+      "title": "Coarse-Graining Commutation Defect delta_emg as Bridge to Quotient-LP & Macro-Emergence",
+      "domain": "cross-domain",
+      "target_peers": ["@continuum-bridge", "@fractals-probe", "@gravity-probe", "@verifier"],
+      "priority": "high",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1546-L1557",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1701-L1709"
+      ],
+      "formula_indices": ["S1:F[449]", "S1:F[450]", "S1:F[451]", "S1:F[452]", "S1:F[453]"],
+      "exact_math_object": "delta_emg^(k) = ||pi_k o T_k - T_{k+1} o pi_k||; S_eps = X_past / ~_eps; Delta I = I_eff(T_{k+1}) - I_eff(T_k) > 0",
+      "falsifiable_claim_or_test": "Test exact operator commutation defect delta_emg on discrete transition operators from quotient-lp-bounds, fractals scale-renormalization maps, and continuum coarse-grainings; check whether vanishing delta_emg coincides with exact Farkas/LP quotient tightness or lumpability.",
+      "suspected_hazards_or_bugs": [
+        "Norm choice in ||pi_k o T_k - T_{k+1} o pi_k|| can make delta_emg coordinate-dependent unless measured in intrinsic invariant-measure / Wasserstein / operator norm"
+      ]
+    },
+    {
+      "id": "ep-08-sheaf-laplacian-koopman-intertwining",
+      "title": "Sheaf Laplacian Obstruction, Koopman Intertwining Loss & Observer-Quotiented Equalizer",
+      "domain": "continuum/operators",
+      "target_peers": ["@continuum-bridge", "@verifier"],
+      "priority": "high",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1262-L1354",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/code_blocks/pair_25_block_00.py#L1-L104",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/code_blocks/pair_27_block_00.hs#L1-L24"
+      ],
+      "formula_indices": ["S1:F[370]", "S1:F[371]", "S1:F[376]", "S1:F[377]", "S1:F[378]", "S1:F[379]", "S1:F[384]", "S1:F[388]"],
+      "exact_math_object": "Delta_F = d^{0*} d^0 (ker = H^0); L_joint = sum ||T_mn K_s^(m) u_m - K_s^(n) T_mn u_m||^2 + beta*int tr(F_A ^ *F_A); sigma_s^rho(A) = rho^{is} A rho^{-is}; F^inv = lim_{phi in G_obs} (F o phi)",
+      "falsifiable_claim_or_test": "1) Adversarially stress-test pair_25_block_00.py (probe_window) on independent Brownian/AR(1) drifts and IAAFT surrogates to quantify spurious manifold_cka and h0_persistence_entropy inversion. 2) Replace heuristic RBF-CKA with an exact finite-graph Sheaf Laplacian Delta_F + discrete Koopman intertwining defect L_joint + gauge holonomy Hol_gamma(A) tested across continuum/gravity/fractals operators.",
+      "suspected_hazards_or_bugs": [
+        "pair_25_block_00.py manifold_cka likely fires falsely on independent random walks / slow drifts due to |i-j| distance correlation",
+        "pair_25_block_00.py h0_persistence_entropy peaks near 1.0 for smooth periodic curves (uniform MST edges)",
+        "pair_27_block_00.hs has parametrically vacuous (forall phi. phi -> Coupling a b) and malformed yoneda type",
+        "pair_29_block_00.hs lawvere uses undefined (bottom) instead of surjective preimage"
+      ]
+    },
+    {
+      "id": "ep-09-effective-rank-wasserstein-irreversibility",
+      "title": "Spectral Rank Collapse, Wasserstein-2 Gradient Flow & Path-Space Time-Reversal Asymmetry",
+      "domain": "continuum/operators",
+      "target_peers": ["@continuum-bridge", "@gravity-probe"],
+      "priority": "medium",
+      "source_session": "session1",
+      "source_files": [
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L589-L639",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/session_verbatim_transcript.md#L1413-L1422",
+        "<gemini-sessions>/gemini-session-488274c3e0040dac/code_blocks/pair_21_block_01.py#L1-L12"
+      ],
+      "formula_indices": ["S1:F[189]", "S1:F[190]", "S1:F[300]", "S1:F[412]", "S1:F[413]", "S1:F[414]", "S1:F[415]"],
+      "exact_math_object": "r_eff(t) = exp(-sum lambda_tilde_i ln lambda_tilde_i); Sigma[Gamma] = ln(dP[Gamma]/dP[Theta*Gamma]); <Sigma> = D_KL(P || Theta_* P) >= 0",
+      "falsifiable_claim_or_test": "Compare exact-rational trace/HS rank lower bound (tr(G)^2 / ||G||_HS^2 from Session 2 Mode A!) against Shannon effective rank r_eff(t) (Session 1 Form III) on coupled dynamical systems: note that tr(G)^2 / ||G||_HS^2 is literally the Renyi-2 effective rank exp(H_2) = 1 / sum(lambda_tilde_i^2), a direct exact-rational bridge between Session 1 and Session 2!",
+      "suspected_hazards_or_bugs": [
+        "Window-length sensitivity and finite-sample bias in both r_eff(t) and empirical D_KL path-asymmetry estimators"
+      ]
+    },
+    {
+      "id": "ep-10-mcproof-ci-tcb-lean-profile",
+      "title": "mcproof Phase 1-6 TCB CI Pipeline, Negative Fixtures & Lean/comparator Data-Availability Gate",
+      "domain": "formal-verification/bounds",
+      "target_peers": ["@continuum-bridge", "@verifier"],
+      "priority": "medium",
+      "source_session": "session2",
+      "source_files": [
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/session_verbatim_transcript.md#L34-L379",
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/session_verbatim_transcript.md#L456-L474",
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/code_blocks/pair_01_block_00.yaml#L1-L327"
+      ],
+      "formula_indices": [],
+      "exact_math_object": "Deterministic TCB boundary: LF-only self-contained corpus + fresh-clone SHA-256 invariance + out-of-root confinement + explicit negative-fixture error codes + axiom allowlist {propext, Quot.sound, Classical.choice}",
+      "falsifiable_claim_or_test": "Cross-check pair_01_block_00.yaml assumptions (harness/run_phase1_6.py, harness/validate_mcproof_receipt.py, corpus/soko/III-21, corpus/asma/pxd023044_23848) against live Proven-Commons/mcproof and Foundation-0/formal-claims-audit repos to identify schema/fixture drift and external data-availability gaps.",
+      "suspected_hazards_or_bugs": [
+        "Wildcard rglob('*receipt*.json') in pair_01_block_00.yaml can misclassify future negative fixtures unless replaced by explicit manifest",
+        "Unpinned GitHub Actions tags (@v4, @v5) instead of 40-char commit SHAs"
+      ]
+    },
+    {
+      "id": "ep-11-remark-pdf-toy-positivity-and-2-3-wall",
+      "title": "Stepanov Sign-Only Path-Quadric Toy Proof (qN = M^k + R) & 2/3 Lift-Cost Scaling",
+      "domain": "formal-verification/bounds",
+      "target_peers": ["@verifier", "@fractals-probe"],
+      "priority": "medium",
+      "source_session": "session2",
+      "source_files": [
+        "<gemini-sessions>/20261120-155823_2cf295ad46d56eb5_formal-verification-consolidation/session_verbatim_transcript.md#L394-L444"
+      ],
+      "formula_indices": ["S2:F[0]", "S2:F[1]", "S2:F[2]", "S2:F[3]", "S2:F[4]", "S2:F[7]", "S2:F[8]", "S2:F[10]"],
+      "exact_math_object": "qN = M^k + R via sum_{h,x_1..x_k} t(x_1)...t(x_k) e_q(h(x_1 x_2 + ... + x_{k-1} x_k)); W(1_S) >= 0",
+      "falsifiable_claim_or_test": "Numerically and exactly over small finite fields F_q test the path-quadric variance identity qN = M^k + R and sign-definite left-hand side to verify whether the Stage 0 toy positivity engine is elementary and reproducible independently of higher-rank unitary machinery.",
+      "suspected_hazards_or_bugs": [
+        "Session 2 narrative summarizes remark.pdf without verifying exact normalizations/signs of the path-quadric variance sum"
+      ]
+    }
+  ]
+}

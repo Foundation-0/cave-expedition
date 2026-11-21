@@ -1,0 +1,303 @@
+{
+  "schema": "expedition.peer_web.frontier_seams.v1",
+  "generated_by": "peer-weaver",
+  "snapshot_date": "2026-11-20",
+  "master_plan_url": "https://github.com/siliconcordat/.github/issues/5",
+  "hardware_plan_url": "https://github.com/aska-physical/dock/issues/8",
+  "peer_novelty_score": "none_counted (new packaging of known parts; 0 Fable PRs merged to main; Grok permutation-sums#2 merged as finite checks, not proofs)",
+  "cloned_siliconcordat_repos": [
+    "<local-repos>/siliconcordat-github",
+    "<local-repos>/siliconcordat-loom",
+    "<local-repos>/siliconcordat-mde",
+    "<local-repos>/siliconcordat-weft",
+    "<local-repos>/siliconcordat-warp",
+    "<local-repos>/siliconcordat-exo"
+  ],
+  "local_workshop_context": {
+    "root": "<local-workshop>/",
+    "access_mode": "read-only",
+    "anchors": [
+      {
+        "path": "<local-workshop>/share/mine.md",
+        "timestamp": "2026-11-20T02:40",
+        "core_idea": "Only open parameters can activate; ancillary hub opens/closes pathways (e.g. biology open, astrophysics shut even on overlapping concept 'fluid dynamics'); closed pathways cost zero compute.",
+        "github_link": "https://github.com/siliconcordat/loom/pull/5"
+      },
+      {
+        "path": "<local-workshop>/helm/state.json",
+        "timestamp": "2026-11-20T02:40",
+        "core_idea": "Focus 'only open parameters can activate', locks, steering axes (hold=20, scope=30, ask=25), two-sided merge/rebase inbox."
+      },
+      {
+        "path": "<local-workshop>/diagrams/current.md",
+        "timestamp": "2026-11-20T01:19",
+        "core_idea": "Charminar (lightweight) / Geminus (power) + 5-node Warp flow: fixed frontier model + dynamic creative/ingestion models + weight-space parametric flow fused with MDE/harness/OS."
+      }
+    ]
+  },
+  "already_solved_or_packaged_by_peers": [
+    {
+      "id": "Grok-perm",
+      "repo": "Foundation-0/permutation-sums",
+      "refs": ["Foundation-0/permutation-sums#1", "Foundation-0/permutation-sums#2 (MERGED)", "Foundation-0/math0#16"],
+      "standing": "verified_finite_check",
+      "summary": "Exact finite checks (n<=20) for derangements, menage numbers & TV vs Poisson(2), 3 rook boards (refutes printed asym permanent 26 vs true 36), and one 3x3 Gaussian-rational unitary (per|U|^2=41/81 refuting 0.2639; |per U|^2=1/81; Cayley inverse H). Exposed wrong arXiv:2611.00338 citation (Brazil election) vs Lim arXiv:2611.01434.",
+      "do_not_duplicate": "Finite checks n<=20, 3 rook boards, and single 3x3 unitary in verify.py.",
+      "limits": "Not a proof; no general girth bound beyond two 6-cycles; no boson-sampling simulation or Roos (2024) proof."
+    },
+    {
+      "id": "Loom-08",
+      "repo": "siliconcordat/loom",
+      "refs": ["siliconcordat/loom#5", "siliconcordat/mde#6"],
+      "standing": "proposed",
+      "summary": "docs/08-contextual-compute.md: ancillary hub sets open parameter field before fixed cloud model runs; closed pathways never scored.",
+      "do_not_duplicate": "Prose design note on contextual compute.",
+      "limits": "No schema, no mathematical formalization, no test, unlinked to docs/09 or docs/10."
+    },
+    {
+      "id": "T1-T23-GateContracts",
+      "repo": "siliconcordat/loom",
+      "refs": ["siliconcordat/loom#8", "siliconcordat/loom#9 (DRAFT)"],
+      "standing": "verified_theorems_and_harness / hypothesis_contracts",
+      "summary": "docs/09-gate-contracts.md + gatecheck.py + verify_gate_contracts.py: 4 gate contracts, 5 metamorphic relations (R1-R5), 14 claims (11 verified, 3 hypotheses), 18-row snapshot across 8 repos, 32 internal sabotages + 34 external single-edit mutants all caught in python3 and -O. Includes Latch (Claim 10), matched early-warning (Claim 11), binary closure defect & polarity (Claims 12-13).",
+      "do_not_duplicate": "4-contract taxonomy, R1-R5 JSON toy harness, binary closure census, linear Latch proof.",
+      "limits": "R1-R5 are necessary not sufficient and miss Clause 5; snapshot adapters unpublished; physics side of T5 unaddressed; T3 second half unproved; 2/3 pre-registered predictions missed."
+    },
+    {
+      "id": "T20-ExactInertia",
+      "repo": "siliconcordat/loom",
+      "refs": ["siliconcordat/loom#6", "siliconcordat/loom#7 (DRAFT)", "aska-physical/fibral-rigidity#5"],
+      "standing": "verified_in_draft",
+      "summary": "docs/10-exact-inertia-certificates.md + inertia_cert.py (~150 lines) + verify_inertia.py (30 tests, 12/12 guard mutants killed). Rational P M P* = L D L* Sylvester checker (size<=64), trace rank-bound family R(c) and R_G = 2 tr P1 + (tr Q)^2/b - ||M||^2, 2-bar non-affine truss box (4 PD corners, singular interior (0.9,1.1)), and low-rank adapter spectral bound Q(s)=s G_B - G_B G_A G_B.",
+      "do_not_duplicate": "Single-implementation Python LDL* checker, affine-box proof, fixed-scale R_G, synthetic 64x64 rank<=32 timing table.",
+      "limits": "R_G is NOT scale-invariant (strictly beaten by SEAM-01); no second independent checker; 12x slowdown rank 16->32; no Lean proof (T8 incomplete); no real checkpoint; non-affine box certification unaddressed beyond 1 example."
+    },
+    {
+      "id": "T21-NoLogScaling",
+      "repo": "Foundation-0/fractals",
+      "refs": ["Foundation-0/fractals#57", "Foundation-0/fractals#58 (DRAFT)"],
+      "standing": "verified_in_draft",
+      "summary": "BigInt integer power inequality (y_b/y_a)^q >= (x_b/x_a)^p in window/steps/all-pairs modes on 5 printed series (Ising M/chi/G, percolation seed 401, Sabra plain moment). 3,000 checks vs 80-digit logs; 24/25 mutants caught.",
+      "do_not_duplicate": "2-point straight-slope BigInt power comparison on printed rounded tables.",
+      "limits": "Ignores measurement error bars, corrections to scaling (L^-omega), shell oscillations/DSI, and multi-seed variance."
+    },
+    {
+      "id": "T7-RigidityReplay",
+      "repo": "Foundation-0/incentre-lattices",
+      "refs": ["Foundation-0/incentre-lattices#104", "Foundation-0/incentre-lattices#105 (DRAFT)"],
+      "standing": "verified_in_draft",
+      "summary": "Exact Q(i) and mod-p (3 primes = 1 mod 8) replay of cross-polytope, generic-q, k-plane, q=0 rigidity counts and stress basis for n=2..8; 22 tests, 12/14 mutants killed.",
+      "do_not_duplicate": "Pointwise exact rigidity counts for n=2..8 at 8 Pythagorean wavevectors.",
+      "limits": "Finite wavevector sample only (not all q); no elastic constants (PR #102 separate); equal bar length checked mod p only, not exact Q(sqrt2)."
+    },
+    {
+      "id": "T22-CostRounding",
+      "repo": "Foundation-0/quotient-lp-bounds",
+      "refs": ["Foundation-0/quotient-lp-bounds#3", "Foundation-0/quotient-lp-bounds#4 (DRAFT)"],
+      "standing": "verified_in_draft",
+      "summary": "Proves flooring cost shares preserves budget, stale potentials fail (1-edge counterexample cost 1/2, D=1), recomputed potentials lose <= |P|/D (max ratio 6/7 across 18 runs); 8 tests + 5 must-fail controls.",
+      "do_not_duplicate": "Single-share floor-vs-ceil rounding proofs and tests.",
+      "limits": "Independent checker has no partition concept; no theorem for integer bound ceil(sum h_i); no Lean proof."
+    },
+    {
+      "id": "T16-CanonVectors",
+      "repo": "siliconcordat/mde",
+      "refs": ["siliconcordat/mde#7", "siliconcordat/mde#8 (DRAFT)", "siliconcordat/exo#7"],
+      "standing": "verified_in_draft",
+      "summary": "Demonstrates Python vs Rust float-printing SHA-256 split (1e-05 vs 0.00001) and 503/1000 thousandths rounding up in f32 vs exact n/1024. Ships zone-canon-v0.json (7 accept, 10 reject) with Python + Rust runners.",
+      "do_not_duplicate": "Float-printing SHA-256 divergence reproducer or basic 17-case canon vector runner.",
+      "limits": "No live behaviour change in mde/exo/warp; missing lone-surrogate, leading-zero, Infinity, and hex-escape vectors."
+    },
+    {
+      "id": "T2-RepairSignal",
+      "repo": "Moissanite-Labs/weft-loom",
+      "refs": ["Moissanite-Labs/weft-loom#38 (DRAFT)"],
+      "standing": "preregistered_running",
+      "summary": "Preregistered 4-arm paired experiment testing whether exact signed failure amounts speed LLM repair over constraint+location; 46 tests, 28/28 mutations killed.",
+      "do_not_duplicate": "Synthetic repair-signal preregistration harness.",
+      "limits": "Mid-size model run in progress; small model (~19h) pending; no empirical result yet."
+    },
+    {
+      "id": "T18-RouteReplay-T6-III21",
+      "repo": "ahrazzle/soko",
+      "refs": ["ahrazzle/soko#71", "ahrazzle/soko#72 (DRAFT)", "ahrazzle/soko#73 (DRAFT)", "ahrazzle/soko#78"],
+      "standing": "verified_in_draft",
+      "summary": "Route-replay soundness gate over 66 routes (3,063 keys) + 15,592 off-route steps; refutes drafted switch quotient (19 missing edges, 4 drops of 2); proves winding identity on 22 Part III routes; measures 43 post-crate III-21 positions (a in 57..60, b=5 vs published 74/75/76).",
+      "do_not_duplicate": "Catalog route replay and III-21 move-sum vs winding measurement.",
+      "limits": "Blocked on soko#78 (do published 74/75/76 count A presses?); native engine lacks per-state export."
+    },
+    {
+      "id": "T10-T14-T15-T17-StackFindings",
+      "repo": "siliconcordat/{weft,warp,exo}, Proven-Commons/mcproof, aska-physical/{dock,fibral-rigidity,cfrp-masts}",
+      "refs": ["weft#10", "warp#10-16", "exo#7-8", "mcproof#8-14", "soko#65-70,#74-77", "qlp#1-2", "dock#8", "fibral-rigidity#3", "cfrp-masts#3"],
+      "standing": "verified_reproducers",
+      "summary": "Comprehensive reproducers for loader bypasses, oracle gap (15/23 bare, 14/14 adapter), unbacked agent memory, -O assert bypasses, loose red-flag typing, and check-deletion test gaps (33/42 qlp, 4/20 mcproof, 3/13 soko).",
+      "do_not_duplicate": "Re-discovering these exact bug reproducers.",
+      "limits": "Mostly open issues/draft PRs awaiting review and architectural redesign (especially warp#11-13,#15-16)."
+    }
+  ],
+  "failed_predictions_and_gaps": [
+    {
+      "id": "Fable-Prediction-1",
+      "score": "MISS",
+      "source": "siliconcordat/loom#9 docs/09 Section 7.6",
+      "predicted": "warp per-adapter stack check is missing or unsound because per-adapter norms are not closed under stacking.",
+      "actual": "warp uses a sound Cauchy-Schwarz worst-case rule (N * sum <= joint_bound), imposing a 1/N^2 per-adapter budget penalty and ignoring composed certificates (warp#15).",
+      "opportunity": "Exact concatenated Gram-matrix spectral/Frobenius certification eliminates the N^2 penalty (SEAM-06)."
+    },
+    {
+      "id": "Fable-Prediction-2",
+      "score": "PARTIAL_HIT",
+      "source": "siliconcordat/loom#9 docs/09 Section 7.6",
+      "predicted": "warp Stage 3 canaries are a fixed readable list and mount receipts omit oracle class.",
+      "actual": "True on live CLI path (9 prompts, temp 0, seed 42, agent-readable dir, no oracle class in receipt — warp#16), but an unwired ExternalCommandCanaryRunner class exists in canary.py.",
+      "opportunity": "Formalize holdout budget & sealed canary rotation under Contract 2/3."
+    },
+    {
+      "id": "Fable-Prediction-3",
+      "score": "MISS",
+      "source": "siliconcordat/loom#9 docs/09 Section 7.6",
+      "predicted": "At least one Rust gate in the 5 layers has a debug_assert! or unchecked submitter-controlled integer wrap in release profile.",
+      "actual": "Only mde holds Rust; no debug_assert! present, and the sole submitter-controlled subtraction sits behind an explicit range check.",
+      "opportunity": "Cross-language canonicalization & integer-bound checks remain open at schema level (mde#7/#8)."
+    },
+    {
+      "id": "Gap-Physics-Side-T5-T19-T4",
+      "score": "UNADDRESSED",
+      "source": "siliconcordat/.github#5 rows T4, T5, T19; docs/09 Section 6.2 Record C",
+      "detail": "T5 explicitly notes 'The physics side is not addressed.' T19 Latch demo on Foundation-0/gravity (commit 8f96c4b2) had weak/sample-sharing outside anchors. T4 weighted model comparison with permuted null was never run on real gravity/fractals residuals."
+    },
+    {
+      "id": "Gap-T3-Second-Half",
+      "score": "UNPROVED",
+      "source": "siliconcordat/.github#5 row T3; docs/09 Claim 9 & Falsifier #6",
+      "detail": "Second half of two-loop routing (that halting adaptation and revising the specification beats continued adaptation in an omitted-variable model on fresh anchors) is explicitly unproved."
+    },
+    {
+      "id": "Gap-T8-Lean-Sylvester-And-Second-Checker",
+      "score": "INCOMPLETE",
+      "source": "siliconcordat/.github#5 row T8; docs/10 Section 6",
+      "detail": "Lean Sylvester witness lemmas lack 3x3 and n x n lift; docs/10 exact inertia checker has no second independent implementation and hits pure-Fraction blowup above rank 32."
+    }
+  ],
+  "frontier_seams": [
+    {
+      "id": "SEAM-01",
+      "slug": "rank-bound-sharp-envelope",
+      "title": "Scale-Invariant Sharp Projected Positive-Inertia / Novel-Subspace Rank Envelope R_opt^perp (AUDIT-002 VERIFIED) & Higher-Moment Frontier",
+      "priority": "critical",
+      "status": "VERIFIED (AUDIT-002, N2 confirmed over arXiv:2608.13637v2, arXiv:2609.33043, arXiv:2610.08965v1, loom#7 docs/10); active branch @spectral-prover",
+      "target_workers": ["@spectral-prover", "@verifier", "@fractals-probe", "@continuum-bridge"],
+      "builds_on_peers": ["siliconcordat/loom#6", "siliconcordat/loom#7 (docs/10 Section 3)", "T8", "arXiv:2608.13637v2 (Alpoege-Furman Lemma 3.2)", "arXiv:2609.33043 & arXiv:2610.08965v1 (Knausgaard Lemmas 2.1 & 6.1)"],
+      "links_to_cartography": ["ep-01-lemma32-soundness-audit", "ep-02-rational-congruence-sdp-bridge", "ep-09-effective-rank-wasserstein-irreversibility", "frontier_portals.md#Portal-1"],
+      "why_peers_stopped_here": "Knausgaard (arXiv:2610.08965v1 Lemmas 2.1 & 6.1) proved tr A^2 >= tr varphi_c(P) + 2t tr Q - t^2 p (recovering additive rank-trace for total rank(P) at c=1) without W^perp projection, scale-invariant envelope R_opt, or sharpness. Fable (loom#7 docs/10) derived non-scale-invariant R_G.",
+      "exact_math_object": "rank(P) >= rank(Pi_{W^perp} P Pi_{W^perp}) >= n_+(Pi_{W^perp}(P+Q)Pi_{W^perp}) >= R_opt(u,t,S,b), where R_opt = 0 if (u<=0 or u+t<=0); else b*u^2/(b*S - t^2) if (b>0, t>0, t(u+t)>=bS); else max(0, (u+t)^2/S - b). Integer-exact pointwise sharp: min rank(P) = max(1, ceil(R_opt)) for all feasible (u,t,S,b) with u>0.",
+      "novelty_thesis": "Full-text check of arXiv:2610.08965v1 confirms Knausgaard Lemmas 2.1/6.1 already cover the additive two-level clipped-trace inequality for total P, whereas (a) the strictly tighter W^perp projected positive-inertia chain n_+(Pi_{W^perp} H Pi_{W^perp}) >= R_opt, (b) the closed-form scale-invariant two-regime envelope R_opt, (c) integer-exact pointwise sharpness, and (d) explicit W+W^perp slack identity are genuinely new (N2). Breaking past R_opt mathematically requires higher spectral moments (tr H^3, tr H^4) or projected clipped-trace bounds (assigned to @spectral-prover).",
+      "falsification_or_verification_test": "AUDIT-002 VERIFIED on 420 exact Q(i) complex Hermitian matrices (0 violations, 417/420 wins over R_G, 71/420 strict n_+(H_perp) < rank(P_perp)) + 200 constructive sharpness realizations. Next: @spectral-prover higher-moment exact rational lower bounds strictly beating max(1, ceil(R_opt))."
+    },
+    {
+      "id": "SEAM-02",
+      "slug": "quantitative-closure-defect-quotient-lp",
+      "title": "Quantitative Closure Defect Bridging Operator Commutation (delta_emg), Quotient-LP Tightness, and Physics Coarse-Graining",
+      "priority": "high",
+      "target_workers": ["@continuum-bridge", "@fractals-probe", "@verifier"],
+      "builds_on_peers": ["siliconcordat/loom#8", "siliconcordat/loom#9 (docs/09 Section 7, T5)", "Foundation-0/quotient-lp-bounds#3", "Foundation-0/quotient-lp-bounds#4"],
+      "links_to_cartography": ["ep-07-emergence-commutation-quotient-bridge", "ep-08-sheaf-laplacian-koopman-intertwining"],
+      "why_peers_stopped_here": "docs/09 Claims 12-13 treat closure defect as binary (0/1) and explicitly leave the physics side untouched; quotient-lp-bounds#3/#4 only bounds single-share flooring without multi-partition or integer-ceiling bounds.",
+      "exact_math_object": "Quantitative fork/commutation defect delta_emg = ||pi o T_micro - T_macro o pi|| (in Wasserstein-1 / Markov / Farkas dual norm) bounding quotient LP gap d(x) - d_S(pi(x)) and multi-share integer ceiling ceil(sum h_i).",
+      "novelty_thesis": "Replace binary closure polarity with an exact quantitative inequality connecting operator commutation defect / Sheaf Laplacian H^0 obstruction to Farkas-dual LP slack and coarse-graining error.",
+      "falsification_or_verification_test": "Compute exact delta_emg vs exact quotient-LP gap on quotient-lp-bounds instances, soko quotients, fractals scale maps, and continuum transitions; search for counterexamples where small delta_emg produces unbounded LP slack."
+    },
+    {
+      "id": "SEAM-03",
+      "slug": "gravity-latch-outside-anchors-early-warning",
+      "title": "Physics Side of the Latch (T19) & Matched Residual Early Warning with Permuted Nulls (T4) on Foundation-0/gravity",
+      "priority": "high",
+      "target_workers": ["@gravity-probe", "@verifier"],
+      "builds_on_peers": ["siliconcordat/loom#9 (T4, T5, T19 Record C)", "Foundation-0/gravity#1,#5,#6,#7,#20,#28,#29"],
+      "links_to_cartography": ["ep-03-gw-blind-chirp-invariant", "ep-04-broken-symmetry-caustic-wave-invariants"],
+      "why_peers_stopped_here": "Fable's gravity Latch demo (8f96c4b2) used one 14-point binned table with weak/sample-sharing outside anchors, and T4 permuted-null weighted comparison was never run on real gravity data.",
+      "exact_math_object": "Exact orthogonal residual complement P_perp = I - P (dim m - rank(Phi)) on gravity model Jacobians paired with sample-disjoint outside anchors + weighted model comparison under IAAFT/permuted nulls.",
+      "novelty_thesis": "Quantify exactly which gravity anomalies (185 km/s scale convergence, AeST/SPARC residuals, GW free-exponent chirp) survive outside the fit span Col(Phi) against truly disjoint anchors and permuted nulls versus which are Latch artifacts.",
+      "falsification_or_verification_test": "Compute sin^2(w, Col(Phi)) for each gravity audit statistic; verify whether low-sin^2 audits fail to track injected physical leaks after fitting while high-sin^2 / sample-disjoint anchors catch them above permuted-null p-values."
+    },
+    {
+      "id": "SEAM-04",
+      "slug": "non-affine-inertia-box-certification",
+      "title": "Exact Non-Affine Parametric Inertia & Stability Certification Over Continuous Parameter Boxes",
+      "priority": "high",
+      "target_workers": ["@fractals-probe", "@gravity-probe", "@verifier"],
+      "builds_on_peers": ["siliconcordat/loom#7 (docs/10 Section 4)", "aska-physical/fibral-rigidity#5", "Foundation-0/incentre-lattices#100,#102,#104,#105"],
+      "links_to_cartography": ["ep-02-rational-congruence-sdp-bridge", "ep-06-diophantine-resonance-lattices"],
+      "why_peers_stopped_here": "docs/10 Section 4.3 only proved corner-sufficiency for affine matrix families and gave 1 non-affine 2-bar counterexample; incentre-lattices#105 only verified rigidity at 8 isolated wavevectors.",
+      "exact_math_object": "Exact rational subdivision / Bernstein / interval-Sylvester congruence certifier for parametric Hermitian matrices M(t) over boxes t in B subset Q^k (certifying uniform inertia or isolating interior zero-mode hypersurfaces det M(t) = 0).",
+      "novelty_thesis": "Certify exact stability/Morse index across continuous parameter boxes for non-affine trusses (fibral-rigidity), Bloch wavevector / fold-angle spaces (incentre-lattices#100/#105), and gravitational equilibria (relative-equilibria / point-charges).",
+      "falsification_or_verification_test": "Must catch the interior singularity (0.9, 1.1) in the 2-bar box where all 4 corners are PD, certify strictly PD sub-boxes with zero floats, and extend to continuous Bloch/fold boxes in incentre-lattices and relative-equilibria."
+    },
+    {
+      "id": "SEAM-05",
+      "slug": "exact-nonlog-curvature-error-brackets-dsi",
+      "title": "Exact Rational Cross-Ratio Curvature, Period-p DSI Null-Equivalence & Interval Error-Bar Propagation Without Logarithms",
+      "priority": "high",
+      "target_workers": ["@fractals-probe", "@verifier"],
+      "builds_on_peers": ["Foundation-0/fractals#57", "Foundation-0/fractals#58 (T21)"],
+      "links_to_cartography": ["ep-05-dsi-complex-dimensions-kigami", "frontier_portals.md#Portal-2"],
+      "why_peers_stopped_here": "fractals#57/#58 only checks 2-point integer power slopes on printed rounded numbers, ignoring error bars, finite-size corrections L^-omega, and period-3/DSI oscillations.",
+      "exact_math_object": "Interval-rational power brackets [(y_b-e_b)/(y_a+e_a)]^q >= (x_b/x_a)^p, dyadic cross-ratio R_k = (y_{k+1} y_{k-1}) / y_k^2, subleading ratio (R_{k+1}-1)/(R_k-1), and period-p Null-Equivalence product Pi_p(k) = prod_{j=0}^{p-1} R_{k+j} = (y_{k+p}/y_k)/(y_{k+p-1}/y_{k-1}) == 1 identically on any period-p DSI modulation while stride y_{k+p}/y_k = lambda^(beta*p) isolates exact beta.",
+      "novelty_thesis": "Turn no-log integer inequalities into a rigorous exact Null-Equivalence scale-operator instrument detecting monotone finite-size convergence (percolation/Ising), period-p DSI complex dimensions (Sabra/fractals), and Kigami resistance renormalization rho with zero floats or logs.",
+      "falsification_or_verification_test": "Check whether R_k - 1 certifies monotone approach to 91/48 in multi-seed percolation and whether Pi_3(k) -> 1 separates genuine DSI period-3 shell oscillation in Sabra from randomized/shuffled surrogate scales with zero floats."
+    },
+    {
+      "id": "SEAM-06",
+      "slug": "contextual-compute-gating-meets-gate-contracts",
+      "title": "Formalizing Contextual Compute (docs/08) via Context-Site Sheaf Obstruction (Delta_F), Closure Defect (docs/09) & Exact Stacked-Adapter Spectral Certificates (warp#15 + docs/10)",
+      "priority": "high",
+      "target_workers": ["@continuum-bridge", "@verifier"],
+      "builds_on_peers": ["siliconcordat/loom#5 (docs/08)", "siliconcordat/loom#7 (docs/10)", "siliconcordat/loom#9 (docs/09)", "siliconcordat/warp#13,#15,#16", "workshop/share/mine.md"],
+      "links_to_cartography": ["ep-07-emergence-commutation-quotient-bridge", "ep-08-sheaf-laplacian-koopman-intertwining", "frontier_portals.md#Portal-4"],
+      "why_peers_stopped_here": "docs/08 (contextual compute) is prose-only and completely unlinked to docs/09 (closure defect/Latch) and warp#15 (1/N^2 stack rule penalty).",
+      "exact_math_object": "Context-site cellular sheaf Laplacian Delta_F = d^{0*} d^0 (gluing obstruction lambda_min(Delta_F)), open-pathway projection Pi_open, exact concatenated Gram spectral certificate Q_stack(s) = s G_B - G_B G_A G_B (rank = sum r_i) replacing warp's 1/N^2 Cauchy-Schwarz rule, and Portal 1 projected novel-subspace leakage rank(Pi_{W^perp} P Pi_{W^perp}).",
+      "novelty_thesis": "Quantify both exact norm-budget recovery over warp#15's 1/N^2 penalty and exact sheaf-obstruction / closure-defect conditions under which closing a zone (astrophysics) on a shared carrier concept ('fluid dynamics') produces zero fork vs. RMSNorm/subspace bleed.",
+      "falsification_or_verification_test": "Demonstrate an exact stacked low-rank adapter suite rejected by warp#15's 1/N^2 rule yet certified safe by exact concatenated Q_stack(s) inertia, and construct a minimal shared-concept cellular-sheaf model testing docs/08's falsifier via lambda_min(Delta_F) and docs/09's closure defect."
+    },
+    {
+      "id": "SEAM-07",
+      "slug": "two-loop-routing-omitted-variable-theorem",
+      "title": "Exact Omitted-Variable Theorem & Phase Boundary for Two-Loop Routing (T3 / Claim 9 Second Half)",
+      "priority": "medium",
+      "target_workers": ["@continuum-bridge", "@verifier"],
+      "builds_on_peers": ["siliconcordat/loom#9 (T3, Claim 9, Falsifier #6)", "Proven-Commons/mcproof#12", "Moissanite-Labs/weft-loom#38"],
+      "links_to_cartography": ["ep-08-sheaf-laplacian-koopman-intertwining", "ep-10-mcproof-ci-tcb-lean-profile"],
+      "why_peers_stopped_here": "Fable proved only the first half of T3 (Latch hides absorbed audits) and explicitly left the second half (when halting adaptation & revising the specification strictly wins on unseen anchors) unproved.",
+      "exact_math_object": "Omitted-variable system y = Phi theta + Psi gamma + eps; exact excess risk on unseen anchors as a function of principal angles theta_k(Col(Phi), Col(Psi)) and anchor alignment.",
+      "novelty_thesis": "Derive and verify the exact sharp phase boundary separating regimes where further proposer adaptation helps fresh anchors (Falsifier #6 holds) from regimes where adaptation provably worsens unseen anchors and only specification revision succeeds.",
+      "falsification_or_verification_test": "Verify exact rational phase-boundary formula across synthetic & gradient-descent loops with controlled principal angles between Phi, Psi, and unseen anchor basis."
+    },
+    {
+      "id": "SEAM-08",
+      "slug": "second-inertia-checker-lean-t8-and-perm-sums",
+      "title": "Second Independent Exact Inertia Checker, Lean 4 n x n Sylvester Lift (T8), and Analytic Extensions of permutation-sums",
+      "priority": "medium",
+      "target_workers": ["@verifier", "@fractals-probe", "@continuum-bridge"],
+      "builds_on_peers": ["siliconcordat/loom#7 (docs/10 Section 6)", "T8 (Lean Sylvester witnesses)", "Foundation-0/permutation-sums#1,#2"],
+      "links_to_cartography": ["ep-01-lemma32-soundness-audit", "ep-02-rational-congruence-sdp-bridge", "ep-11-remark-pdf-toy-positivity-and-2-3-wall"],
+      "why_peers_stopped_here": "docs/10 has only one Python checker (no independent certificate checker, no Lean proof, pure-Fraction blowup); Grok's permutation-sums stopped at finite n<=20 table checks.",
+      "exact_math_object": "Zero-shared-code exact Hermitian inertia checker (exact Faddeev-LeVerrier char-poly + Sturm/Descartes or Bareiss rational pivot / Lean 4 n x n Sylvester witness) + Gaussian-rational Cayley-transform unitary/permanent variance bounds.",
+      "novelty_thesis": "Close the TCB gap named in docs/10 Section 6 (independent checker + mod-p accelerated or Lean-verified Sylvester witness) and push permutation-sums past finite checks into exact permanent/girth/complex-estimator inequalities.",
+      "falsification_or_verification_test": "Differential test independent checker against loom#7's 1,000-matrix property suite and all 12 guard-removal mutants; check exact permanent/variance bounds beyond n=6."
+    },
+    {
+      "id": "SEAM-09",
+      "slug": "witness-map-conservation-of-separation",
+      "title": "Unifying fractals/witness-map Single-Particle vs. Coherent-Crowd Crossover via Coupled Record-Rate & Observer-Invariant Subspace F^inv",
+      "priority": "high",
+      "target_workers": ["@gravity-probe", "@fractals-probe", "@verifier"],
+      "builds_on_peers": ["Foundation-0/fractals#3", "Foundation-0/fractals#48", "Foundation-0/fractals#54", "Foundation-0/gravity C-03 & C-15"],
+      "links_to_cartography": ["ep-08-sheaf-laplacian-koopman-intertwining", "frontier_portals.md#Portal-3"],
+      "why_peers_stopped_here": "fractals/README.md lines 168-191 explicitly state single-particle witness number W breaks down between lone dark-matter particles (W=0) and 10^93-particle coherent crowd lumps (watched by stars yet keeping internal interference).",
+      "exact_math_object": "Coupled system+witness operator ratio W_op comparing Holevo witness record rate against intrinsic modular flow ln(Delta_{rho_A}) and observer-invariant pointer-commuting subspace F^inv.",
+      "novelty_thesis": "In a coupled N-boson coherent-condensate + gravitational probe model, macroscopic branch superpositions decohere super-extensively as N^2 (W_op >> 1) while internal phase granules inside a single branch live in ker(disturbance) = F^inv and remain coherent.",
+      "falsification_or_verification_test": "Exact finite-dimensional two-mode condensate + gravitational probe simulation (N=1..N>>1) verifying purity decay, Holevo record rate, and exact modular-flow spectrum across the single-particle-to-crowd crossover."
+    }
+  ]
+}
