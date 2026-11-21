@@ -7,6 +7,7 @@ Umbrella index, discovery methodology, Wave 2+ compute handoff, cross-domain car
 - **[`METHODOLOGY.md`](METHODOLOGY.md)** — *Portal-Driven Scientific Discovery: How to Run an Anti-Cave Research Swarm* (empirical Pass 1 vs. Pass 2+ inflection, all 5 audited cross-worker chain reactions, the 5 Operational Laws, and anti-pattern red flags).
 - **[`templates/portal-swarm-protocol.md`](templates/portal-swarm-protocol.md)** — Drop-in reusable multi-agent swarm & single-agent playbook (coordinator checklists, copy-pasteable role briefs, exact-vs-sampled decision matrix, and pre-push hygiene gate).
 - **[`NEXT_WAVES_COMPUTE.md`](NEXT_WAVES_COMPUTE.md)** & **[`next_waves_manifest.json`](next_waves_manifest.json)** — Portable, compute-tiered Wave 2+ execution handoff for stronger workstations and clusters (Waves 2A–2D across heavy lattice search, nonlinear AeST/GWOSC PDEs, Lean 4 / higher-moment SOS, and large-scale telemetry/LLM adapter benchmarks).
+- **The Aletheia Method Plugin ([`.agents/plugins/aletheia-research/`](.agents/plugins/aletheia-research/))** — Ships ready-to-use as an Antigravity workspace plugin (`plugin.json`, `rules/AGENTS.md`, `skills/aletheia-research/SKILL.md` + references), so any peer or stronger compute machine cloning `cave-expedition` inherits **The Aletheia Method** automatically.
 
 > **Provenance & Verification Discipline:** Every claim marked `VERIFIED` below was independently re-executed and adversarially audited against the 9-gate, R1–R5 anti-shadow protocol in [`verification/PROTOCOL.md`](verification/PROTOCOL.md) (extending `siliconcordat/loom#8` / `#9`). Exact algebraic claims are certified in zero-float rational (`Fraction`), Gaussian rational ($\mathbb{Q}(i)$), $\mathbb{Z}[\sqrt{2}]$, or exact symbolic (`SymPy`) arithmetic and independently cross-checked by clean-room Faddeev–LeVerrier/Descartes/Sturm oracles under all Python optimizer/warning parity modes (`-B`, `-O -B`, `-B -W error`). All intermediate `PARTIAL/FRAGILE` / `FALSIFIED` audits and defect repairs are logged permanently in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) per Gate 8.
 
@@ -75,6 +76,8 @@ cave-expedition/
 ├── next_waves_manifest.json                   # Machine-readable Wave 2+ manifest (expedition.next_waves.v1)
 ├── templates/
 │   └── portal-swarm-protocol.md               # Drop-in reusable multi-agent & single-agent discovery playbook
+├── .agents/
+│   └── plugins/aletheia-research/             # Ready-to-use Antigravity workspace plugin (The Aletheia Method)
 ├── cartography/
 │   ├── session1_instrument_map.md             # Extracted mathematical objects, operators/sheaves & falsifiable entry points (Session 1)
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
@@ -85,7 +88,7 @@ cave-expedition/
 │   └── frontier_seams.json                    # Structured catalog of high-leverage cross-repo seams (SEAM-01..SEAM-09)
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
-    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-020R)
+    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-021)
     └── checks/                                # All 14 independent adversarial verification scripts (check_001..check_014)
 ```
 
