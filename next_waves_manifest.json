@@ -1,0 +1,324 @@
+{
+  "schema": "expedition.next_waves.v1",
+  "generated_by": "peer-weaver",
+  "snapshot_date": "2026-11-20",
+  "umbrella_repo": "https://github.com/Foundation-0/cave-expedition",
+  "umbrella_sync_pr": "https://github.com/Foundation-0/cave-expedition/pull/1",
+  "master_bus_index_comment": "https://github.com/siliconcordat/.github/issues/5#issuecomment-7054768981",
+  "methodology_docs": [
+    "METHODOLOGY.md",
+    "templates/portal-swarm-protocol.md",
+    "verification/PROTOCOL.md",
+    "verification/AUDIT_LOG.md"
+  ],
+  "compute_tiers": {
+    "tier_1_cpu": {
+      "label": "Tier 1: Multi-Core Exact & Scientific CPU",
+      "hardware": "16-32 CPU cores, 32-64 GiB RAM",
+      "toolchain": ["python3>=3.12", "numpy", "scipy", "sympy", "h5py", "node>=18", "git", "gh"]
+    },
+    "tier_2_formal_heavy_exact": {
+      "label": "Tier 2: Heavy Exact Algebra & Machine-Checked Lean 4",
+      "hardware": "64+ CPU cores, 128-256 GiB RAM",
+      "toolchain": ["tier_1_cpu", "elan", "lean4", "lake", "mathlib", "optional:python-flint", "optional:cvxpy-proposer-only"]
+    },
+    "tier_3_gpu_checkpoints": {
+      "label": "Tier 3: GPU Model & Multi-Adapter Serving",
+      "hardware": "1-2x 24-80 GB VRAM GPU, 64+ GiB RAM",
+      "toolchain": ["tier_1_cpu", "llama.cpp", "torch", "open-weights-gguf-checkpoint", "lora-adapters"]
+    }
+  },
+  "waves": [
+    {
+      "wave_id": "Wave-2A",
+      "name": "Heavy Exact Lattice & Combinatorial Search",
+      "tasks": [
+        {
+          "id": "W2A-1",
+          "title": "Global Bar-Preserving Continuation (or Obstruction) for 16D Barnes-Wall Lambda_16 & 24D Leech Lambda_24/sqrt(2)",
+          "compute_tier": "tier_2_formal_heavy_exact",
+          "target_repos": ["https://github.com/Foundation-0/incentre-lattices"],
+          "target_prs": ["https://github.com/Foundation-0/incentre-lattices/pull/106"],
+          "starting_commits": {
+            "incentre-lattices_main": "2d374ff",
+            "incentre-lattices_pr106": "33ff6da"
+          },
+          "wave1_audits": ["AUDIT-009 (N2)", "AUDIT-017 (N2)", "AUDIT-020R (N2)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/incentre-lattices.git && cd incentre-lattices && gh pr checkout 106 && cd results/expedition-dn-e8-folds && python3 -I -O -B -W error verify_bw16_leech24.py",
+          "mathematical_hypothesis": "Either a continuous bar-preserving globally non-overlapping curve (certified via a dimension-free Loewner/block-diagonal invariant, avoiding 16D ~4e7 and 24D ~1.1e13 R^2=11 ellipsoid enumeration) connects Lambda_16 to F_16 and/or Lambda_24/sqrt(2) to F_24, OR an exact global topological/combinatorial separation obstruction exists.",
+          "oracle_class": "exact",
+          "falsification_gate": "Falsified if any candidate curve breaks exact bar norm ||u_i(s)||^2 == 2, flips sgn(det L(s)), or admits any Z^n contact norm < 2 under exact Fraction/Z[sqrt(2)] Bernstein verification and independent LLL/BKZ adversary checks."
+        },
+        {
+          "id": "W2A-2",
+          "title": "24D Leech O(24)-Isotropic Elastic Collapse & Symmetric Hadamard/Golay Generator Search",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/incentre-lattices"],
+          "target_prs": [
+            "https://github.com/Foundation-0/incentre-lattices/pull/107",
+            "https://github.com/Foundation-0/incentre-lattices/pull/106"
+          ],
+          "starting_commits": {
+            "incentre-lattices_main": "2d374ff",
+            "incentre-lattices_pr107": "edc795b",
+            "incentre-lattices_pr106": "33ff6da"
+          },
+          "wave1_audits": ["AUDIT-019 (N2)", "AUDIT-020R (N2)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/incentre-lattices.git && cd incentre-lattices && gh pr checkout 107 && python3 -I -O -B -W error results/expedition-fold-sheaf-collapse/fold_sheaf_collapse.py",
+          "mathematical_hypothesis": "1) The 196,560-vector Leech lattice (a spherical 11-design) jams to an exact O(24)-isotropic 300x300 Cauchy-Born elasticity tensor (A(Lambda_24) == 1); 2) Search over 24x24 Golay/Hadamard coset generators determines whether a diagonally symmetrizable C_24 realizes a 24D rank-0 floppy vs rank-1 auxetic bifurcation.",
+          "oracle_class": "exact",
+          "falsification_gate": "Falsified if exact Fraction Cauchy-Born E_ijkl violates C_11 - C_12 - 2*C_44 == 0, or if exhaustive orbit search proves zero bar-preserving Lambda_24 generators are diagonally symmetrizable (a verified obstruction)."
+        },
+        {
+          "id": "W2A-3",
+          "title": "m >= 5 Dyadic Farkas Extremal-Ray Classification & Multi-Seed / 34-Shell Zero-Log Verification",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/fractals"],
+          "target_prs": ["https://github.com/Foundation-0/fractals/pull/60"],
+          "starting_commits": {
+            "fractals_main": "48b923b",
+            "fractals_pr60": "f6cb822"
+          },
+          "wave1_audits": ["AUDIT-010 (N2 Thm B / N1 A,C)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/fractals.git && cd fractals && gh pr checkout 60 && cd studies/expedition-mult-farkas-dsi && python3 -I -O -B -W error verify_mult_farkas_dsi.py > /dev/null",
+          "mathematical_hypothesis": "Closed-form extremal-ray characterization of the zero-log monotone-curvature cone extends from m=4 (4 rays, AUDIT-010) to m=5..8 and general m (accounting for verifier's m=5 ray (3,2,1)), certifying 50-seed percolation and 34-shell Sabra scaling curvature without logarithms.",
+          "oracle_class": "exact + sampled",
+          "falsification_gate": "Exact cone theorem falsified if any random rational instance (>=1,000 trials) disagrees between proposed extremal rays and exact Fourier-Motzkin / primal LP witness builder."
+        }
+      ]
+    },
+    {
+      "wave_id": "Wave-2B",
+      "name": "Heavy Physics PDEs & Astrophysical Sweeps",
+      "tasks": [
+        {
+          "id": "W2B-1",
+          "title": "Nonlinear AeST Spherical Collapse PDE: lambda_s = 0 Yukawa Branch vs lambda_s > 0 Anti-Gravity",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/gravity"],
+          "target_prs": ["https://github.com/Foundation-0/gravity/pull/30"],
+          "starting_commits": {
+            "gravity_main": "8f96c4b",
+            "gravity_pr30": "00d8b1b"
+          },
+          "target_paths": [
+            "research/value-assessment-20261112/closure/caustic_control.py",
+            "studies/expedition-aest-helmholtz-probes/probe1_aest_helmholtz_closure.py"
+          ],
+          "wave1_audits": ["AUDIT-011R (N2)", "AUDIT-013R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/gravity.git && cd gravity && gh pr checkout 30 && python3 -I -O -B -W error studies/expedition-aest-helmholtz-probes/probe1_aest_helmholtz_closure.py",
+          "mathematical_hypothesis": "The lambda_s = 0 zero-sound-speed Yukawa branch (G_AA = M_0^2/(M_0^2 + k^2/a^2) > 0, uniformly certified (2,0,1) in AUDIT-013R) avoids nonlinear shell-crossing caustics and baryon-segregation instabilities seen in lambda_s > 0 anti-gravity during spherical/pancake collapse.",
+          "oracle_class": "sampled (converged PDE) + exact (conservation laws)",
+          "falsification_gate": "Falsified if under converged grid refinement (N=256..2048) with verified top-hat collapse control, lambda_s = 0 develops caustics earlier than or indistinguishable from lambda_s > 0."
+        },
+        {
+          "id": "W2B-2",
+          "title": "2D (m, r) Galactic Wave-DM Phase Diagram: Sgr A* Horizon Decoherence vs Stellar Stirring (tStir)",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/fractals"],
+          "target_prs": ["https://github.com/Foundation-0/fractals/pull/59"],
+          "starting_commits": {
+            "fractals_main": "48b923b",
+            "fractals_pr59": "84535c1"
+          },
+          "target_paths": [
+            "witness-map/model.js",
+            "studies/expedition-witness-zeno-schur/probe4_witness_zeno_schur.py"
+          ],
+          "wave1_audits": ["AUDIT-018 (N2)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/fractals.git && cd fractals && gh pr checkout 59 && python3 -I -O -B -W error studies/expedition-witness-zeno-schur/probe4_witness_zeno_schur.py",
+          "mathematical_hypothesis": "Mapping Gamma_BH^CM (m^-10 scaling, m* = 2.83e-20 eV at Sgr A* 8.18 kpc) against stellar gravitational stirring (tStir) over m in [1e-22, 1e-18] eV and r in [1e-3, 1e2] kpc identifies sharp horizon-dominated vs star-dominated CM classicalization regimes while preserving internal granule coherence in V_inv.",
+          "oracle_class": "exact (scaling) + anchor (live node witness-map/model.js)",
+          "falsification_gate": "Must match live node witness-map/model.js constants to <1e-12 rel diff; falsified if horizon decoherence is everywhere subdominant to tStir across [1e-22, 1e-18] eV or violates internal-granule invariance."
+        },
+        {
+          "id": "W2B-3",
+          "title": "Real GWOSC HDF5 Strain & Gravity Spy Glitch Benchmark for Blind Scale-Invariant Box-Cox Chirp Estimator",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/gravity"],
+          "target_prs": ["https://github.com/Foundation-0/gravity/pull/30"],
+          "starting_commits": {
+            "gravity_main": "8f96c4b",
+            "gravity_pr30": "00d8b1b"
+          },
+          "target_paths": ["studies/expedition-aest-helmholtz-probes/probe2_latch_outside_anchors_and_chirp.py"],
+          "wave1_audits": ["AUDIT-012 (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/gravity.git && cd gravity && gh pr checkout 30 && python3 -I -O -B -W error studies/expedition-aest-helmholtz-probes/probe2_latch_outside_anchors_and_chirp.py",
+          "mathematical_hypothesis": "Blind free-exponent chirp estimator alpha_hat = argmin Var(f_dot * f^-alpha) (extended with multi-taper low-SNR ridge tracking) recovers alpha_hat ~ 11/3 on real GWOSC high-SNR BBH/BNS strains while maintaining low false-alarm rate on time-slid detector background and real LIGO Gravity Spy glitches.",
+          "oracle_class": "sampled",
+          "falsification_gate": "Pre-registered ROC / false-alarm criterion on time-slid real noise & real whistle/blip/koi-fish glitches; falsified if real-glitch FP rate breaches pre-registered threshold or alpha_hat fails to concentrate near 11/3 without hardcoded [30,350] Hz or -11/3 priors."
+        }
+      ]
+    },
+    {
+      "wave_id": "Wave-2C",
+      "name": "Higher-Moment SDP/SOS & Machine-Checked Lean 4",
+      "tasks": [
+        {
+          "id": "W2C-1",
+          "title": "Machine-Checked Lean 4 Compilation & Lift of SpectralInertia (R_opt, Sylvester T8, A2-A4) & project-asma Mobius CR3/CR4",
+          "compute_tier": "tier_2_formal_heavy_exact",
+          "target_repos": [
+            "https://github.com/Foundation-0/spectral-inertia",
+            "https://github.com/Foundation-0/project-asma"
+          ],
+          "target_prs": [
+            "https://github.com/siliconcordat/loom/pull/10",
+            "https://github.com/Foundation-0/project-asma/pull/101"
+          ],
+          "starting_commits": {
+            "spectral-inertia_main": "8394da9",
+            "loom_pr10": "77d9a7e",
+            "project-asma_main": "4817821",
+            "project-asma_pr101": "0bef037"
+          },
+          "target_paths": [
+            "lean/SpectralInertia/Basic.lean",
+            "formal/AsmaIdentifiabilityProofs.lean",
+            "formal/lakefile.toml"
+          ],
+          "wave1_audits": ["AUDIT-002 (N2)", "AUDIT-006R (N2/N1)", "AUDIT-014 (N2)", "AUDIT-016R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/spectral-inertia.git && cd spectral-inertia && python3 -I -O -B -W error run_all.py",
+          "mathematical_hypothesis": "All scalar/polynomial lemmas in Basic.lean plus matrix-level Mathlib theorems for W+W^perp projected positive inertia, n x n Sylvester congruence (T8), Higher-Moment A2-A4, and project-asma Portal 11 Mobius CR3/CR4 compile cleanly in Lean 4 with zero sorryAx and standard axioms only.",
+          "oracle_class": "exact",
+          "falsification_gate": "Lean 4 kernel build (`lake build`) + `#print axioms` audit permitting only {propext, Quot.sound, Classical.choice}; falsified if any proof requires unstated hypotheses or fails elaboration."
+        },
+        {
+          "id": "W2C-2",
+          "title": "Degree-6/8 Stieltjes-Hankel & Weighted-Weyl SOS Certificates on Full project-asma MS2 Gram Matrices",
+          "compute_tier": "tier_2_formal_heavy_exact",
+          "target_repos": [
+            "https://github.com/Foundation-0/spectral-inertia",
+            "https://github.com/Foundation-0/project-asma"
+          ],
+          "target_prs": ["https://github.com/Foundation-0/project-asma/pull/101"],
+          "starting_commits": {
+            "spectral-inertia_main": "8394da9",
+            "project-asma_pr101": "0bef037"
+          },
+          "target_paths": [
+            "spectral_inertia/higher_moments.py",
+            "spectral_inertia/examples/scan23848_benchmark.py"
+          ],
+          "wave1_audits": ["AUDIT-014 (N2)", "AUDIT-016R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/spectral-inertia.git && cd spectral-inertia && python3 -I -O -B -W error spectral_inertia/examples/scan23848_benchmark.py",
+          "mathematical_hypothesis": "Degree-6/8 rational SOS / Stieltjes-Hankel and W^perp-compressed clipped-trace witnesses (proposed by float SDP and projected to exact Fraction SOS) strictly increase certified integer chimeric rank ceilings on real n=16..128 MS2 spectra over AUDIT-014's degree-4/6 bounds.",
+          "oracle_class": "exact",
+          "falsification_gate": "Every certificate must pass pure-stdlib zero-float SOS + dual-oracle PLDL*/Faddeev-LeVerrier verification under -I -O -B -W error; falsified if integer rank ceilings never improve over A2/A4 or exact rational bit-length blowup prevents checking."
+        },
+        {
+          "id": "W2C-3",
+          "title": "Large-Scale Complex-Hermitian Non-Affine Parametric Box Certification (incentre-lattices#100, relative-equilibria, certified-orbits)",
+          "compute_tier": "tier_2_formal_heavy_exact",
+          "target_repos": [
+            "https://github.com/Foundation-0/spectral-inertia",
+            "https://github.com/Foundation-0/incentre-lattices",
+            "https://github.com/Foundation-0/relative-equilibria",
+            "https://github.com/Foundation-0/certified-orbits"
+          ],
+          "target_prs": [
+            "https://github.com/Foundation-0/incentre-lattices/pull/100",
+            "https://github.com/Foundation-0/incentre-lattices/pull/105"
+          ],
+          "starting_commits": {
+            "spectral-inertia_main": "8394da9",
+            "incentre-lattices_main": "2d374ff"
+          },
+          "target_paths": [
+            "spectral_inertia/box_certifier.py",
+            "spectral_inertia/examples/bloch_and_hessian_boxes.py"
+          ],
+          "wave1_audits": ["AUDIT-015R (N1/N2)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/spectral-inertia.git && cd spectral-inertia && python3 -I -O -B -W error spectral_inertia/examples/bloch_and_hessian_boxes.py",
+          "mathematical_hypothesis": "Parallelized symbolic-Hermitian Bernstein + 1x1/2x2 block-Gershgorin subdivision certifies continuous Bloch wavevector / fold-angle boxes for incentre-lattices (n=3..5, lifting #105 from 8 isolated points) and exact zero-float Morse indices for n=6..8 relative-equilibria and 3-body periodic orbits.",
+          "oracle_class": "exact",
+          "falsification_gate": "Falsified if any certified leaf disagrees with independent Descartes/Sturm exact inertia at interior rational test points or accepts a non-Hermitian symbolic matrix."
+        }
+      ]
+    },
+    {
+      "wave_id": "Wave-2D",
+      "name": "Large-Sample Telemetry, Large Transition Graphs & Real-Checkpoint Contextual Compute",
+      "tasks": [
+        {
+          "id": "W2D-1",
+          "title": "Production Empirical Rank-p (n_surrogates >= 1000) Quadratic-EDMD Koopman-Sheaf Benchmarks on Real Archives",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": ["https://github.com/Foundation-0/continuum"],
+          "target_prs": ["https://github.com/Foundation-0/continuum/pull/3"],
+          "starting_commits": {
+            "continuum_main": "1c9a9ef",
+            "continuum_pr3": "12a1686"
+          },
+          "target_paths": ["expedition-synthesis/audit_continuum_probes.py"],
+          "wave1_audits": ["AUDIT-007R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/continuum.git && cd continuum && gh pr checkout 3 && python3 -I -O -B -W error expedition-synthesis/audit_continuum_probes.py",
+          "mathematical_hypothesis": "Upgrading audit_continuum_probes.py to empirical rank p-values with max-lag FWER control at n_surrogates >= 1000 eliminates the AUDIT-007R single-trial right-tail inflation and reliably detects nonlinear coupling + exact lag in real multi-channel EEG, seismic, and climate archives.",
+          "oracle_class": "sampled",
+          "falsification_gate": "Pre-registered FWER alpha=0.01 on IAAFT & cross-subject mismatched negative controls; falsified if empirical false-positive rate exceeds 2*alpha or fails to outperform linear cross-correlation/CKA on nonlinear couplings."
+        },
+        {
+          "id": "W2D-2",
+          "title": "Scaling Iterative Multi-Quotient Farkas Peeling & Q[q] Doob Homotopy to Full ahrazzle/soko Rooms",
+          "compute_tier": "tier_1_cpu",
+          "target_repos": [
+            "https://github.com/Foundation-0/quotient-lp-bounds",
+            "https://github.com/ahrazzle/soko"
+          ],
+          "target_prs": [
+            "https://github.com/Foundation-0/quotient-lp-bounds/pull/5",
+            "https://github.com/ahrazzle/soko/pull/72"
+          ],
+          "starting_commits": {
+            "quotient-lp-bounds_main": "65d8df3",
+            "quotient-lp-bounds_pr5": "996108a"
+          },
+          "target_paths": [
+            "studies/expedition-farkas-peeling/tropical_quotient_sheaf_bridge.py",
+            "studies/expedition-farkas-peeling/portal78_homotopy_bregman_bridge.py"
+          ],
+          "wave1_audits": ["AUDIT-004 (N2)", "AUDIT-008R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/quotient-lp-bounds.git && cd quotient-lp-bounds && gh pr checkout 5 && python3 -I -O -B -W error studies/expedition-farkas-peeling/tropical_quotient_sheaf_bridge.py",
+          "mathematical_hypothesis": "Order-optimized Iterative Multi-Quotient Farkas Peeling scales to 10^4-10^6-state Sokoban/soko Part III abstractions (III-14, III-20, III-21) and certifies strictly higher exact lower bounds than single-partition operator counting.",
+          "oracle_class": "exact",
+          "falsification_gate": "Every peeled bound must pass exact 1-Lipschitz check on all edges, 0 violations across all 66 catalogued soko routes (soko#72), and explicit dead-state handling (soko#76); falsified if any bound exceeds a winning route or never improves on multi-hero rooms."
+        },
+        {
+          "id": "W2D-3",
+          "title": "Real-Checkpoint Contextual Compute (docs/08) Sheaf Obstruction & Exact Stacked-Adapter Gram Gate (warp#15)",
+          "compute_tier": "tier_3_gpu_checkpoints",
+          "target_repos": [
+            "https://github.com/siliconcordat/loom",
+            "https://github.com/siliconcordat/warp",
+            "https://github.com/siliconcordat/weft",
+            "https://github.com/Moissanite-Labs/weft-loom",
+            "https://github.com/Foundation-0/continuum",
+            "https://github.com/Foundation-0/project-asma"
+          ],
+          "target_prs": [
+            "https://github.com/siliconcordat/loom/pull/5",
+            "https://github.com/siliconcordat/loom/pull/7",
+            "https://github.com/siliconcordat/loom/pull/9",
+            "https://github.com/siliconcordat/loom/pull/10",
+            "https://github.com/Foundation-0/continuum/pull/3",
+            "https://github.com/Foundation-0/project-asma/pull/101"
+          ],
+          "starting_commits": {
+            "loom_main": "0214e87",
+            "continuum_pr3": "12a1686",
+            "project-asma_pr101": "0bef037"
+          },
+          "target_paths": [
+            "studies/expedition-mobius-ropt/optimal_inertia_rank.py",
+            "expedition-synthesis/two_loop_omitted_variable.py"
+          ],
+          "wave1_audits": ["AUDIT-004 (N2)", "AUDIT-005 (N1)", "AUDIT-006R (N2/N1)", "AUDIT-016R (N1)"],
+          "bootstrap_command": "git clone https://github.com/Foundation-0/project-asma.git && cd project-asma && gh pr checkout 101 && python3 -I -O -B -W error studies/expedition-mobius-ropt/optimal_inertia_rank.py",
+          "mathematical_hypothesis": "1) Exact concatenated Gram inertia Q_stack(s) = s*G_B - G_B*G_A*G_B inside warp-modeld removes warp#15's 1/N^2 Cauchy-Schwarz penalty on real multi-adapter GGUF stacks within mount latency budget while blocking warp#13 forgeries; 2) Contextual Compute (docs/08) open-pathway gating eliminates cross-domain activation on shared carrier concepts ('fluid dynamics') and quantifies nonlinear Latch blindness (docs/09 Falsifiers #5/#6) on real checkpoints.",
+          "oracle_class": "exact (GGUF Gram/inertia gate) + sampled (real-checkpoint canary & Latch trials)",
+          "falsification_gate": "Exact gate must reject 8*B and alpha=32 forgeries with zero floats; falsified if exact Gram checking exceeds warp latency budget at production ranks, if a closed astrophysics adapter activates on biology 'fluid dynamics' prompts, or if low-sin^2 Latch audits still track independent gaps in nonlinear training (docs/09 Falsifier #5)."
+        }
+      ]
+    }
+  ]
+}

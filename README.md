@@ -1,6 +1,12 @@
 # Cave Expedition — First-Principles Discovery, Cartography & Adversarial Verification Ledger
 
-Umbrella index, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`Foundation-0`](https://github.com/Foundation-0) and [`siliconcordat`](https://github.com/siliconcordat) repository ecosystem.
+Umbrella index, discovery methodology, Wave 2+ compute handoff, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`Foundation-0`](https://github.com/Foundation-0) and [`siliconcordat`](https://github.com/siliconcordat) repository ecosystem.
+
+### Start Here (Methodology, Playbook & Wave 2+ Compute Handoff)
+
+- **[`METHODOLOGY.md`](METHODOLOGY.md)** — *Portal-Driven Scientific Discovery: How to Run an Anti-Cave Research Swarm* (empirical Pass 1 vs. Pass 2+ inflection, all 5 audited cross-worker chain reactions, the 5 Operational Laws, and anti-pattern red flags).
+- **[`templates/portal-swarm-protocol.md`](templates/portal-swarm-protocol.md)** — Drop-in reusable multi-agent swarm & single-agent playbook (coordinator checklists, copy-pasteable role briefs, exact-vs-sampled decision matrix, and pre-push hygiene gate).
+- **[`NEXT_WAVES_COMPUTE.md`](NEXT_WAVES_COMPUTE.md)** & **[`next_waves_manifest.json`](next_waves_manifest.json)** — Portable, compute-tiered Wave 2+ execution handoff for stronger workstations and clusters (Waves 2A–2D across heavy lattice search, nonlinear AeST/GWOSC PDEs, Lean 4 / higher-moment SOS, and large-scale telemetry/LLM adapter benchmarks).
 
 > **Provenance & Verification Discipline:** Every claim marked `VERIFIED` below was independently re-executed and adversarially audited against the 9-gate, R1–R5 anti-shadow protocol in [`verification/PROTOCOL.md`](verification/PROTOCOL.md) (extending `siliconcordat/loom#8` / `#9`). Exact algebraic claims are certified in zero-float rational (`Fraction`), Gaussian rational ($\mathbb{Q}(i)$), $\mathbb{Z}[\sqrt{2}]$, or exact symbolic (`SymPy`) arithmetic and independently cross-checked by clean-room Faddeev–LeVerrier/Descartes/Sturm oracles under all Python optimizer/warning parity modes (`-B`, `-O -B`, `-B -W error`). All intermediate `PARTIAL/FRAGILE` / `FALSIFIED` audits and defect repairs are logged permanently in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) per Gate 8.
 
@@ -12,7 +18,7 @@ A central empirical and mathematical finding of the expedition is that **eight d
 
 | # | Domain / Repo | Exact Schur-Complement Mechanism | Audit & Novelty | Key Certified Invariant |
 |---|---|---|---|---|
-| **1** | Spectral Inertia ([`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia), `loom#7`) | Optimal scale-invariant projected-inertia envelope $R_{\mathrm{opt}}(u,t,S,b)$ | [`AUDIT-002`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | $\operatorname{rank}(P)\ge\operatorname{rank}(\Pi_{W^\perp}P\Pi_{W^\perp})\ge n_+(\Pi_{W^\perp}H\Pi_{W^\perp})\ge R_{\mathrm{opt}} = \frac{u^2}{S-t^2/b}$, integer-exact pointwise sharp |
+| **1** | Spectral Inertia ([`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia), `loom#7`) | Optimal scale-invariant projected-inertia envelope $R_{\mathrm{opt}}(u,t,S,b)$ | [`AUDIT-002`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | $\operatorname{rank}(P)\ge\operatorname{rank}(\Pi_{W^\perp}P\Pi_{W^\perp})\ge n_+(\Pi_{W^\perp}H\Pi_{W^\perp})\ge R_{\mathrm{opt}}$ (strong-interference branch $\frac{u^2}{S-t^2/b}$), integer-exact pointwise sharp |
 | **2** | Higher-Moment Spectral Bounds ([`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia), [`loom#10`](https://github.com/siliconcordat/loom/pull/10)) | Stieltjes–Hankel moment hierarchy $R_{H,2m}$ + noise-annihilating quartic SOS ($R_{W4}$) | [`AUDIT-014`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Scan 23848 Mode B lifted to exact `1` across $\rho\in[0,0.95]$; $R_{H4}/R_{W4}$ strictly beat $R_{\mathrm{opt}}$ on complex non-commuting $\mathbb{Q}(i)$ witnesses |
 | **3** | Lattice Elasticity & Context Sheaves ([`incentre-lattices#107`](https://github.com/Foundation-0/incentre-lattices/pull/107), [`continuum#3`](https://github.com/Foundation-0/continuum/pull/3), `loom#5`) | Cellular sheaf Laplacian elastic stiffness tensor $C = 2^{-n}(K - B^\top \Delta_{\mathcal{F}}^{-1} B)$ | [`AUDIT-004`](verification/AUDIT_LOG.md) (`N1`), [`AUDIT-019`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Zero-float elastic Schur complement + Master Rank-1 Stress Collapse $\sigma^* = C^\top\operatorname{diag}(\tau^*)C + 2\operatorname{diag}(\tau^*)C$ along $F_n \to D_n, E_8$ |
 | **4** | Coarse-Graining & Maslov Homotopy ([`quotient-lp-bounds#5`](https://github.com/Foundation-0/quotient-lp-bounds/pull/5), [`continuum#3`](https://github.com/Foundation-0/continuum/pull/3)) | Tropical multi-quotient Farkas peeling tower + $\mathbb{Q}[q]$ Doob $h$-transform | [`AUDIT-004`](verification/AUDIT_LOG.md) (**`N2`** Part A), [`AUDIT-008R`](verification/AUDIT_LOG.md) (`N1`, `exact`) | Tightens single-quotient LP `64` $\to$ `124` (exact); proves bidirectional linear-vs-tropical emergence separation & 5-state single-$q$ accidental lumpability |
@@ -27,7 +33,7 @@ A central empirical and mathematical finding of the expedition is that **eight d
 
 **Every deliverable across all five expedition tracks has reached `VERIFIED` status with zero unresolved defects** (full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
 
-### Confirmed `N2` Breakthroughs (11 Genuine New-Ground Results)
+### Confirmed `N2` Breakthroughs (10 Genuine New-Ground Results + 1 `N1`/`N2`)
 
 | Audit | Branch / Artifact | Oracle | Breakthrough Summary |
 |---|---|---|---|
@@ -64,6 +70,11 @@ A central empirical and mathematical finding of the expedition is that **eight d
 cave-expedition/
 ├── README.md                                  # Executive map, 8-way Schur unification, ledger & repro guide
 ├── LICENSE                                    # Apache License 2.0
+├── METHODOLOGY.md                             # Portal-Driven Scientific Discovery: Pass 1->2+ anatomy, 5 chains, 5 laws & red flags
+├── NEXT_WAVES_COMPUTE.md                      # Compute-tiered Wave 2+ execution handoff for stronger workstations/clusters
+├── next_waves_manifest.json                   # Machine-readable Wave 2+ manifest (expedition.next_waves.v1)
+├── templates/
+│   └── portal-swarm-protocol.md               # Drop-in reusable multi-agent & single-agent discovery playbook
 ├── cartography/
 │   ├── session1_instrument_map.md             # Extracted mathematical objects, operators/sheaves & falsifiable entry points (Session 1)
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
@@ -76,20 +87,6 @@ cave-expedition/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-020R)
     └── checks/                                # All 14 independent adversarial verification scripts (check_001..check_014)
-        ├── check_001_lemma32_and_tcb.py
-        ├── check_002_session1_instruments.py
-        ├── check_003_seam01_ropt.py           # Zero-dependency standalone stdlib verifier (AUDIT-002)
-        ├── check_004_continuum_bridge_suite.py
-        ├── check_005_portal78.py
-        ├── check_006_fractals_deliverables.py
-        ├── check_007_gravity_probes.py
-        ├── check_008_spectral_inertia.py
-        ├── check_009_e8_spinor_fold.py
-        ├── check_010_spectral_inertia_reaudit.py
-        ├── check_011_gravity_reaudit_and_probe4.py
-        ├── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
-        ├── check_013_bw16_leech24.py
-        └── check_014_bw16_leech24_reaudit.py
 ```
 
 **Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
@@ -102,7 +99,7 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 
 | Artifact | Live GitHub URL | Audits Covered |
 |---|---|---|
-| **Umbrella Expedition Hub (this repo)** | [`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition) | `AUDIT-001`–`AUDIT-020R` (`check_001`–`check_014`) |
+| **Umbrella Expedition Hub (this repo + sync Draft PR)** | [`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition) + [Draft PR `#1`](https://github.com/Foundation-0/cave-expedition/pull/1) | `AUDIT-001`–`AUDIT-021` (`check_001`–`check_014`) |
 | **Spectral Inertia & Higher-Moment Bounds (Standalone Repo)** | [`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia) | `AUDIT-002`, `014`, `015R`, `016R` |
 | **Loom Higher-Moment Note (Draft PR)** | [`siliconcordat/loom#10`](https://github.com/siliconcordat/loom/pull/10) | `docs/11-spectral-inertia-higher-moments.md` |
 | **Relativistic Gravity: AeST Helmholtz Schur, Latch LOCO & Box Certifier (Draft PR)** | [`Foundation-0/gravity#30`](https://github.com/Foundation-0/gravity/pull/30) | `AUDIT-011R`, `012`, `013R` |
