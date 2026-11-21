@@ -1,33 +1,33 @@
 # Cave Expedition — First-Principles Discovery, Cartography & Adversarial Verification Ledger
 
-Umbrella index, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`siliconcordat`](https://github.com/siliconcordat) and [`Foundation-0`](https://github.com/Foundation-0) repository ecosystem.
+Umbrella index, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`Foundation-0`](https://github.com/Foundation-0) and [`siliconcordat`](https://github.com/siliconcordat) repository ecosystem.
 
-> **Provenance & Verification Discipline:** Every claim marked `VERIFIED` below was independently re-executed and adversarially audited against the 9-gate, R1–R5 anti-shadow protocol in [`verification/PROTOCOL.md`](verification/PROTOCOL.md) (extending `siliconcordat/loom#8` / `#9`). Exact algebraic claims are certified in zero-float rational (`Fraction`), Gaussian rational ($\mathbb{Q}(i)$), $\mathbb{Z}[\sqrt{2}]$, or exact symbolic (`SymPy`) arithmetic and independently cross-checked by clean-room Faddeev–LeVerrier/Descartes/Sturm oracles under all Python optimizer/warning parity modes (`-B`, `-O -B`, `-B -W error`). Failed prototypes and intermediate `PARTIAL/FRAGILE` / `FALSIFIED` audits are logged permanently in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) per Gate 8.
+> **Provenance & Verification Discipline:** Every claim marked `VERIFIED` below was independently re-executed and adversarially audited against the 9-gate, R1–R5 anti-shadow protocol in [`verification/PROTOCOL.md`](verification/PROTOCOL.md) (extending `siliconcordat/loom#8` / `#9`). Exact algebraic claims are certified in zero-float rational (`Fraction`), Gaussian rational ($\mathbb{Q}(i)$), $\mathbb{Z}[\sqrt{2}]$, or exact symbolic (`SymPy`) arithmetic and independently cross-checked by clean-room Faddeev–LeVerrier/Descartes/Sturm oracles under all Python optimizer/warning parity modes (`-B`, `-O -B`, `-B -W error`). All intermediate `PARTIAL/FRAGILE` / `FALSIFIED` audits and defect repairs are logged permanently in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) per Gate 8.
 
 ---
 
 ## 1. The Eight-Way Exact Schur-Complement Unification
 
-A central empirical and mathematical finding of the expedition is that **eight distinct physical, geometric, statistical, and formal-verification frontiers across `siliconcordat` and `Foundation-0` are governed by the exact same Schur-complement / quadratic-block elimination invariant**:
+A central empirical and mathematical finding of the expedition is that **eight distinct physical, geometric, statistical, and formal-verification frontiers across `Foundation-0` and `siliconcordat` are governed by the exact same Schur-complement / quadratic-block elimination invariant**:
 
 | # | Domain / Repo | Exact Schur-Complement Mechanism | Audit & Novelty | Key Certified Invariant |
 |---|---|---|---|---|
-| **1** | Spectral Inertia (`siliconcordat/spectral-inertia`, `loom#7`) | Optimal scale-invariant projected-inertia envelope $R_{\mathrm{opt}}(u,t,S,b)$ | [`AUDIT-002`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | $\operatorname{rank}(P)\ge\operatorname{rank}(\Pi_{W^\perp}P\Pi_{W^\perp})\ge n_+(\Pi_{W^\perp}H\Pi_{W^\perp})\ge R_{\mathrm{opt}} = \frac{u^2}{S-t^2/b}$, integer-exact pointwise sharp |
-| **2** | Higher-Moment Spectral Bounds (`siliconcordat/spectral-inertia`, `loom#10`) | Stieltjes–Hankel moment hierarchy $R_{H,2m}$ + noise-annihilating quartic SOS ($R_{W4}$) | [`AUDIT-014`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Scan 23848 Mode B lifted to exact `1` across $\rho\in[0,0.95]$; $R_{H4}/R_{W4}$ strictly beat $R_{\mathrm{opt}}$ on complex non-commuting $\mathbb{Q}(i)$ witnesses |
-| **3** | Lattice Elasticity & Context Sheaves (`Foundation-0/incentre-lattices`, `continuum`, `loom#5`) | Cellular sheaf Laplacian elastic stiffness tensor $C = 2^{-n}(K - B^\top \Delta_{\mathcal{F}}^{-1} B)$ | [`AUDIT-004`](verification/AUDIT_LOG.md) (`N1`), [`AUDIT-019`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Zero-float elastic Schur complement + Master Rank-1 Stress Collapse $\sigma^* = C^\top\operatorname{diag}(\tau^*)C + 2\operatorname{diag}(\tau^*)C$ along $F_n \to D_n, E_8$ |
-| **4** | Coarse-Graining & Maslov Homotopy (`Foundation-0/quotient-lp-bounds`, `continuum`) | Tropical multi-quotient Farkas peeling tower + $\mathbb{Q}[q]$ Doob $h$-transform | [`AUDIT-004`](verification/AUDIT_LOG.md) (**`N2`** Part A), [`AUDIT-008R`](verification/AUDIT_LOG.md) (`N1`, `exact`) | Tightens single-quotient LP `64` $\to$ `124` (exact); proves bidirectional linear-vs-tropical emergence separation & 5-state single-$q$ accidental lumpability |
-| **5** | Relativistic Gravity / AeST (`Foundation-0/gravity`) | Exact Hamiltonian Schur-Complement Theorem + non-local Helmholtz Fenichel slow manifold | [`AUDIT-011R`](verification/AUDIT_LOG.md) (**`N2`**, `exact`+`num`) | $\min_{(\chi,p)} H_2 = -\frac{G_{AA}}{\widetilde{G}}\frac{D^2}{2k^2}$; closes `aest-response-gate/slow-mode` 1% gate (`24–185%` $\to$ `0.55%` / `0.00008%`) with zero fitted parameters |
-| **6** | Open Quantum Dynamics / Witness Map (`Foundation-0/fractals/witness-map`, `gravity`) | $16\times 16$ GKSL Lindblad Zeno Schur complement + Tomita–Takesaki KMS + EP2 Jordan blocks | [`AUDIT-018`](verification/AUDIT_LOG.md) (**`N2`**, `exact`+`anchor`) | $\Gamma_{\mathrm{eff}}^{\mathrm{int}} = 2\gamma_{\mathrm{tid}} + \frac{2g^2}{N^2\gamma_1}$; exact dipole cancellation $W_{\mathrm{CM}}=N^3 W_1$ vs $O(k^4)$ tidal rate; exact Sgr A* crossover laws matched to live `model.js` |
-| **7** | High-Dimensional Optimal Packing (`Foundation-0/incentre-lattices`) | Sylvester–Hadamard ($H_8 = H_2^{\otimes 3}$) $2\times 2$ Schur-complement Loewner monotonicity along $F_8 \to E_8$ | [`AUDIT-017`](verification/AUDIT_LOG.md) (**`N2` LANDMARK**, `exact`) | Zero-trig bar-preserving fold $F_8\to E_8$ ($\det=16$, kissing 240), $G(s)\succeq 6I_8+2H_8$, zero-subdivision 293,760-coeff degree-8 $\mathbb{Z}[\sqrt{2}]$ Bernstein proof, $E_6/E_7/D_n^+$ uniqueness |
-| **8** | Fractal Analysis & Self-Similarity (`Foundation-0/fractals`, Portal 10) | Kigami resistance renormalization Schur complement $L_{n+1}/L_{\mathrm{int}} = \rho^{-1} L_n$ | [`cartography/frontier_portals.md`](cartography/frontier_portals.md) (Portal 10) | Exact discrete resistance renormalization bridging `fractals` scaling laws, zero-log 4-ray multiplicative Farkas (`AUDIT-010`, **`N2`** Thm B), and sheaf elasticity |
+| **1** | Spectral Inertia ([`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia), `loom#7`) | Optimal scale-invariant projected-inertia envelope $R_{\mathrm{opt}}(u,t,S,b)$ | [`AUDIT-002`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | $\operatorname{rank}(P)\ge\operatorname{rank}(\Pi_{W^\perp}P\Pi_{W^\perp})\ge n_+(\Pi_{W^\perp}H\Pi_{W^\perp})\ge R_{\mathrm{opt}} = \frac{u^2}{S-t^2/b}$, integer-exact pointwise sharp |
+| **2** | Higher-Moment Spectral Bounds ([`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia), [`loom#10`](https://github.com/siliconcordat/loom/pull/10)) | Stieltjes–Hankel moment hierarchy $R_{H,2m}$ + noise-annihilating quartic SOS ($R_{W4}$) | [`AUDIT-014`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Scan 23848 Mode B lifted to exact `1` across $\rho\in[0,0.95]$; $R_{H4}/R_{W4}$ strictly beat $R_{\mathrm{opt}}$ on complex non-commuting $\mathbb{Q}(i)$ witnesses |
+| **3** | Lattice Elasticity & Context Sheaves ([`incentre-lattices#107`](https://github.com/Foundation-0/incentre-lattices/pull/107), [`continuum#3`](https://github.com/Foundation-0/continuum/pull/3), `loom#5`) | Cellular sheaf Laplacian elastic stiffness tensor $C = 2^{-n}(K - B^\top \Delta_{\mathcal{F}}^{-1} B)$ | [`AUDIT-004`](verification/AUDIT_LOG.md) (`N1`), [`AUDIT-019`](verification/AUDIT_LOG.md) (**`N2`**, `exact`) | Zero-float elastic Schur complement + Master Rank-1 Stress Collapse $\sigma^* = C^\top\operatorname{diag}(\tau^*)C + 2\operatorname{diag}(\tau^*)C$ along $F_n \to D_n, E_8$ |
+| **4** | Coarse-Graining & Maslov Homotopy ([`quotient-lp-bounds#5`](https://github.com/Foundation-0/quotient-lp-bounds/pull/5), [`continuum#3`](https://github.com/Foundation-0/continuum/pull/3)) | Tropical multi-quotient Farkas peeling tower + $\mathbb{Q}[q]$ Doob $h$-transform | [`AUDIT-004`](verification/AUDIT_LOG.md) (**`N2`** Part A), [`AUDIT-008R`](verification/AUDIT_LOG.md) (`N1`, `exact`) | Tightens single-quotient LP `64` $\to$ `124` (exact); proves bidirectional linear-vs-tropical emergence separation & 5-state single-$q$ accidental lumpability |
+| **5** | Relativistic Gravity / AeST ([`gravity#30`](https://github.com/Foundation-0/gravity/pull/30)) | Exact Hamiltonian Schur-Complement Theorem + non-local Helmholtz Fenichel slow manifold | [`AUDIT-011R`](verification/AUDIT_LOG.md) (**`N2`**, `exact`+`num`) | $\min_{(\chi,p)} H_2 = -\frac{G_{AA}}{\widetilde{G}}\frac{D^2}{2k^2}$; closes `aest-response-gate/slow-mode` 1% gate (`24–185%` $\to$ `0.55%` / `0.00008%`) with zero fitted parameters |
+| **6** | Open Quantum Dynamics / Witness Map ([`fractals#59`](https://github.com/Foundation-0/fractals/pull/59), `gravity`) | $16\times 16$ GKSL Lindblad Zeno Schur complement + Tomita–Takesaki KMS + EP2 Jordan blocks | [`AUDIT-018`](verification/AUDIT_LOG.md) (**`N2`**, `exact`+`anchor`) | $\Gamma_{\mathrm{eff}}^{\mathrm{int}} = 2\gamma_{\mathrm{tid}} + \frac{2g^2}{N^2\gamma_1}$; exact dipole cancellation $W_{\mathrm{CM}}=N^3 W_1$ vs $O(k^4)$ tidal rate; exact Sgr A* crossover laws matched to live `model.js` |
+| **7** | High-Dimensional Optimal Packing ([`incentre-lattices#106`](https://github.com/Foundation-0/incentre-lattices/pull/106)) | Sylvester–Hadamard ($H_8 = H_2^{\otimes 3}$) $2\times 2$ Schur-complement Loewner monotonicity along $F_8 \to E_8$ + $\Lambda_{16}/\Lambda_{24}$ unjamming | [`AUDIT-017`](verification/AUDIT_LOG.md), [`AUDIT-020R`](verification/AUDIT_LOG.md) (**`N2` LANDMARKS**, `exact`) | Zero-trig bar-preserving fold $F_8\to E_8$ ($\det=16$, kissing 240, 293,760-coeff degree-8 Bernstein proof) + $F_{16}\not\to E_8\oplus E_8$ obstruction + global-$\mathbb{Z}^n$ unjamming of 16D $\Lambda_{16}$ (`137,280` contacts) & 24D Leech $\Lambda_{24}/\sqrt{2}$ (`9,432,672` contacts) |
+| **8** | Fractal Analysis & Self-Similarity ([`fractals#60`](https://github.com/Foundation-0/fractals/pull/60), Portal 10) | Kigami resistance renormalization Schur complement $L_{n+1}/L_{\mathrm{int}} = \rho^{-1} L_n$ | [`cartography/frontier_portals.md`](cartography/frontier_portals.md) (Portal 10), [`AUDIT-010`](verification/AUDIT_LOG.md) (**`N2`** Thm B) | Exact discrete resistance renormalization bridging `fractals` scaling laws, zero-log 4-ray multiplicative Farkas completeness, and sheaf elasticity |
 
 ---
 
-## 2. Verified Discovery Ledger (`AUDIT-001` – `AUDIT-019`)
+## 2. Complete Verified Discovery Ledger (`AUDIT-001` – `AUDIT-020R`)
 
-Every active expedition track has reached `VERIFIED` status (see full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
+**Every deliverable across all five expedition tracks has reached `VERIFIED` status with zero unresolved defects** (full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
 
-### Confirmed `N2` Breakthroughs (Genuine New Ground)
+### Confirmed `N2` Breakthroughs (11 Genuine New-Ground Results)
 
 | Audit | Branch / Artifact | Oracle | Breakthrough Summary |
 |---|---|---|---|
@@ -41,8 +41,9 @@ Every active expedition track has reached `VERIFIED` status (see full evidence, 
 | **`AUDIT-017`** | `fractals-probe` (`E8_SPINOR_FOLD_PROOF.md`) | `exact` | **LANDMARK:** Canonical Sylvester–Hadamard ($H_8 = H_2^{\otimes 3}$) continuous zero-trig bar-preserving non-overlapping fold $F_8 \to E_8$ (optimal 8D sphere packing, $\det=16$, kissing 240, zero-subdivision 293,760-coeff degree-8 $\mathbb{Z}[\sqrt{2}]$ Bernstein certificate over all of $\mathbb{Z}^8$) + exact $E_6/E_7/D_n^+$ uniqueness theorem. |
 | **`AUDIT-018`** | `gravity-probe` (`probe4_witness_zeno_schur.py`) | `exact` + `anchor` | Exact $16\times 16$ symbolic GKSL Zeno Schur complement + EP2 Jordan blocks + Tomita–Takesaki KMS detailed balance + $W_{\mathrm{CM}}=N^3 W_1$ dipole cancellation unifying `loom`, `witness-map/model.js` (`0.0` / `6.43e-16` live `node` match), and `gravity` `C-03` + Sgr A* crossover masses. |
 | **`AUDIT-019`** | `continuum-bridge` (`fold_sheaf_collapse.py`) | `exact` | Universal Instantaneous Rank-1 Elastic Collapse along $F_n\to D_n$ ($\forall n\ge 3$) & $F_8\to E_8$ interior, Master Rank-1 Stress Formula, 4D Clifford-nilpotent pure-shear/zero-axial duality, 8D cyclic rank-0 floppy vs. Sylvester–Hadamard $H_8$ rank-1 auxetic `(4,4,0)` bifurcation, and exact $O(8)$-isotropic jammed $E_8$ ($A=1$) vs. $D_8$ ($A=1/3$). |
+| **`AUDIT-020R`** | `fractals-probe` (`BW16_LEECH24_UNJAMMING_PROOF.md`) | `exact` | **LANDMARK:** Exact Irreducible Root-Graph Obstruction ($F_{16}\not\to E_8\oplus E_8$ & all nontrivial $\Gamma_1\oplus\Gamma_2$, $\forall R\in O(n)$) + exact positive-orientation bar-preserving realizations & zero-float global-$\mathbb{Z}^n$ expanding Cayley unjamming of 16D Barnes–Wall $\Lambda_{16}$ (`137,280` contacts, $\det=+2$, $\tau\in[0,1/4000]$) and 24D Optimal Leech $\Lambda_{24}/\sqrt{2}$ (`9,432,672` contacts via Golay self-duality $\mathcal{G}_{24}^\perp=\mathcal{G}_{24}$, $\det=+3/256$, $\tau\in[0,10^{-10}]$), hardened with integral-norm ($\|w\|^2\in\mathbb{Z}_{\ge 2}$, $\sqrt{3}-\sqrt{2}>1/4$) Gate (2) & `9/9` controls. |
 
-### Verified `N1` Concrete Advances & Repaired Audits
+### Verified `N1` Concrete Advances & Early Defect Audits
 
 | Audit | Branch / Artifact | Oracle | Summary |
 |---|---|---|---|
@@ -55,8 +56,6 @@ Every active expedition track has reached `VERIFIED` status (see full evidence, 
 | **`AUDIT-016R`** | `spectral-prover` Track C (`dual_oracle.py`, `exact_qi.py`) | `exact` | Hardened dual-oracle $\mathbb{Q}(i)$ TCB (`PLDL*`, `C M C*=D`, Faddeev–LeVerrier+Descartes+Sturm), `41/41` killed R5 mutants (`0` survivors), plus `uncompiled_source` Lean 4 `Basic.lean`. |
 | **`AUDIT-001` / `003`** | Early session blueprint audits (`FALSIFIED` / `PARTIAL`) | `exact` / `sampled` | Exposed missing $P\succeq 0$ forgery (`Q=diag(10,0)` certifying `rank>=117`) + 5 TCB bugs in raw Session 2 draft and CKA/persistence-entropy false positives in raw Session 1 prototypes — directly motivating the hardened verified replacements above. |
 
-> **Active Frontier (Pending Independent Audit — Not Yet Included as `VERIFIED`):** `fractals-probe` has submitted Deliverable 4 (`BW16_LEECH24_UNJAMMING_PROOF.md` / `verify_bw16_leech24.py`: irreducible root-graph obstruction $F_{16}\not\to E_8\oplus E_8$ + exact bar-preserving realizations and zero-float global-$\mathbb{Z}^n$ unjamming of 16D Barnes–Wall $\Lambda_{16}$ and 24D Leech $\Lambda_{24}/\sqrt{2}$) to the verifier queue. Its verdict will be recorded in `AUDIT_LOG.md` only after independent clean-room audit completes.
-
 ---
 
 ## 3. Repository Map
@@ -68,15 +67,15 @@ cave-expedition/
 ├── cartography/
 │   ├── session1_instrument_map.md             # Extracted mathematical objects, operators/sheaves & falsifiable entry points (Session 1)
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
-│   ├── frontier_portals.md                    # 11 steelmanned cross-domain discovery portals (Portals 1–11) & full audit tracking
+│   ├── frontier_portals.md                    # 11 steelmanned cross-domain discovery portals (Portals 1–11) & complete audit tracking
 │   └── entry_points.json                      # Machine-readable catalog of 11 falsifiable entry points (ep-01..ep-11)
 ├── peer-web/
-│   ├── PEER_WEB.md                            # Live multi-repo frontier map across siliconcordat, Foundation-0, Proven-Commons & peers
+│   ├── PEER_WEB.md                            # Live multi-repo frontier map across Foundation-0, siliconcordat, Proven-Commons & peers
 │   └── frontier_seams.json                    # Structured catalog of high-leverage cross-repo seams (SEAM-01..SEAM-09)
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
-    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
-    └── checks/                                # All 12 independent adversarial verification scripts (check_001..check_012)
+    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-020R)
+    └── checks/                                # All 14 independent adversarial verification scripts (check_001..check_014)
         ├── check_001_lemma32_and_tcb.py
         ├── check_002_session1_instruments.py
         ├── check_003_seam01_ropt.py           # Zero-dependency standalone stdlib verifier (AUDIT-002)
@@ -88,23 +87,32 @@ cave-expedition/
         ├── check_009_e8_spinor_fold.py
         ├── check_010_spectral_inertia_reaudit.py
         ├── check_011_gravity_reaudit_and_probe4.py
-        └── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
+        ├── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
+        ├── check_013_bw16_leech24.py
+        └── check_014_bw16_leech24_reaudit.py
 ```
 
 **Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
 
 ---
 
-## 4. Sibling Repositories & Draft PRs
+## 4. Sibling Repositories & Live Draft PRs
 
-This umbrella repository holds the expedition's shared cartography, peer-web seam map, and independent verifier suite. Domain-specific proofs, instruments, and certificates live in their dedicated standalone repositories and Draft PRs (master live index maintained on [`siliconcordat/.github#5`](https://github.com/siliconcordat/.github/issues/5)):
+This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition)) holds the expedition's shared cartography, peer-web seam map, and independent 14-script verifier suite. Domain-specific proofs, instruments, and certificates live in their dedicated standalone repositories and Draft PRs (cross-linked on [`siliconcordat/.github#5`](https://github.com/siliconcordat/.github/issues/5)):
 
-- **Spectral Inertia & Higher-Moment Bounds (Standalone Public Repo):** [`siliconcordat/spectral-inertia`](https://github.com/siliconcordat/spectral-inertia) (`AUDIT-002`, `014`, `015R`, `016R`)
-- **Loom Higher-Moment Note (Draft PR):** [`siliconcordat/loom#10`](https://github.com/siliconcordat/loom/pull/10) (`docs/11-spectral-inertia-higher-moments.md`)
-- **Relativistic Gravity — AeST Helmholtz Schur, Latch LOCO & Box Certifier (Draft PR):** [`Foundation-0/gravity#30`](https://github.com/Foundation-0/gravity/pull/30) (Probes 1–3: `AUDIT-011R`, `012`, `013R`)
-- **Witness-Map GKSL Zeno Schur Complement (Draft PR):** [`Foundation-0/fractals#59`](https://github.com/Foundation-0/fractals/pull/59) (Probe 4: `AUDIT-018`)
-- **Lattice Folding ($F_n\to D_n$, $F_8\to E_8$) & Multiplicative Farkas DSI (Sibling Draft PRs):** [`Foundation-0/incentre-lattices`](https://github.com/Foundation-0/incentre-lattices) (`AUDIT-009`, `017`) and [`Foundation-0/fractals`](https://github.com/Foundation-0/fractals) (`AUDIT-010`)
-- **Sheaf Elastic Collapse, Tropical Peeling, Contextual Compute & Asma Cross-Ratio (Sibling Draft PRs):** [`Foundation-0/continuum`](https://github.com/Foundation-0/continuum), [`Foundation-0/incentre-lattices`](https://github.com/Foundation-0/incentre-lattices), [`Foundation-0/quotient-lp-bounds`](https://github.com/Foundation-0/quotient-lp-bounds), and [`Foundation-0/project-asma`](https://github.com/Foundation-0/project-asma) (`AUDIT-004`, `005`, `006R`, `007R`, `008R`, `019`)
+| Artifact | Live GitHub URL | Audits Covered |
+|---|---|---|
+| **Umbrella Expedition Hub (this repo)** | [`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition) | `AUDIT-001`–`AUDIT-020R` (`check_001`–`check_014`) |
+| **Spectral Inertia & Higher-Moment Bounds (Standalone Repo)** | [`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia) | `AUDIT-002`, `014`, `015R`, `016R` |
+| **Loom Higher-Moment Note (Draft PR)** | [`siliconcordat/loom#10`](https://github.com/siliconcordat/loom/pull/10) | `docs/11-spectral-inertia-higher-moments.md` |
+| **Relativistic Gravity: AeST Helmholtz Schur, Latch LOCO & Box Certifier (Draft PR)** | [`Foundation-0/gravity#30`](https://github.com/Foundation-0/gravity/pull/30) | `AUDIT-011R`, `012`, `013R` |
+| **Witness-Map $16\times 16$ GKSL Zeno Schur Complement (Draft PR)** | [`Foundation-0/fractals#59`](https://github.com/Foundation-0/fractals/pull/59) | `AUDIT-018` |
+| **Multiplicative Farkas DSI & Live Sabra/Percolation Audit (Draft PR)** | [`Foundation-0/fractals#60`](https://github.com/Foundation-0/fractals/pull/60) | `AUDIT-010` |
+| **All-$n$ $D_n$, Sylvester–Hadamard $E_8$, 16D $\Lambda_{16}$ & 24D Leech $\Lambda_{24}$ (Draft PR)** | [`Foundation-0/incentre-lattices#106`](https://github.com/Foundation-0/incentre-lattices/pull/106) | `AUDIT-009`, `017`, `020R` |
+| **Fold Sheaf Elastic Collapse & 8D Cyclic vs Hadamard Bifurcation (Draft PR)** | [`Foundation-0/incentre-lattices#107`](https://github.com/Foundation-0/incentre-lattices/pull/107) | `AUDIT-019` |
+| **Continuum Expedition Synthesis Suite — All 6 Instruments (Draft PR)** | [`Foundation-0/continuum#3`](https://github.com/Foundation-0/continuum/pull/3) | `AUDIT-004`, `005`, `006R`, `007R`, `008R`, `019` |
+| **Tropical Farkas Peeling Tower & $\mathbb{Q}[q]$ Doob Homotopy (Draft PR)** | [`Foundation-0/quotient-lp-bounds#5`](https://github.com/Foundation-0/quotient-lp-bounds/pull/5) | `AUDIT-004`, `008R` |
+| **Project Asma $PGL(2)$ Möbius Cross-Ratio & $R_{\mathrm{opt}}$ TCB (Draft PR)** | [`Foundation-0/project-asma#101`](https://github.com/Foundation-0/project-asma/pull/101) | `AUDIT-006R` |
 
 ---
 
@@ -115,14 +123,16 @@ This umbrella repository holds the expedition's shared cartography, peer-web sea
 Run under all three Gate 7 (R4) optimizer/warning parity modes directly from a fresh clone of this repository:
 
 ```bash
+git clone https://github.com/Foundation-0/cave-expedition.git
+cd cave-expedition
 python3 -I -B verification/checks/check_003_seam01_ropt.py
 python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
 ```
 
-### Cross-Repository Audit Suite (`check_001` – `check_012`)
+### Cross-Repository Audit Suite (`check_001` – `check_014`)
 
-Scripts `check_004`–`check_012` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
+Scripts `check_004`–`check_014` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
 
 | Script | Audits Covered | Oracle Class | Runtime Dependencies | Target Layout Under `EXPEDITION_ROOT` |
 |---|---|---|---|---|
@@ -133,19 +143,21 @@ Scripts `check_004`–`check_012` independently import and audit the sibling ins
 | `check_005_portal78.py` | `AUDIT-008` | `exact` | Python 3 stdlib | `synthesis/` |
 | `check_006_fractals_deliverables.py` | `AUDIT-009`, `010` | `exact` + `sampled` | `numpy`, `node` | `probes/fractals/`, `repos/fractals/` |
 | `check_007_gravity_probes.py` | `AUDIT-011`, `012`, `013` | `exact` + `sampled` | `sympy`, `numpy`, `scipy` | `probes/gravity/`, `repos/gravity/`, `repos/point-charges/` |
-| `check_008_spectral_inertia.py` | `AUDIT-014`, `015`, `016` | `exact` | `sympy` | `branches/spectral-inertia/` (`siliconcordat/spectral-inertia`) |
+| `check_008_spectral_inertia.py` | `AUDIT-014`, `015`, `016` | `exact` | `sympy` | `branches/spectral-inertia/` (`Foundation-0/spectral-inertia`) |
 | `check_009_e8_spinor_fold.py` | `AUDIT-017` | `exact` | `sympy` | `probes/fractals/` |
-| `check_010_spectral_inertia_reaudit.py` | `AUDIT-015R`, `016R` | `exact` | Python 3 stdlib | `branches/spectral-inertia/` (`siliconcordat/spectral-inertia`) |
+| `check_010_spectral_inertia_reaudit.py` | `AUDIT-015R`, `016R` | `exact` | Python 3 stdlib | `branches/spectral-inertia/` (`Foundation-0/spectral-inertia`) |
 | `check_011_gravity_reaudit_and_probe4.py` | `AUDIT-011R`, `013R`, `018` | `exact` + `anchor` | `sympy`, `node` | `probes/gravity/`, `repos/fractals/witness-map/` |
 | `check_012_continuum_bridge_reaudit_and_fold_sheaf.py` | `AUDIT-006R`, `007R`, `008R`, `019` | `exact` + `sampled` | `sympy`, `numpy` | `synthesis/`, `repos/project-asma/` |
+| `check_013_bw16_leech24.py` | `AUDIT-020` | `exact` | `sympy`, `numpy` | `probes/fractals/` |
+| `check_014_bw16_leech24_reaudit.py` | `AUDIT-020R` | `exact` | Python 3 stdlib | `probes/fractals/` |
 
 Example cross-repo audit invocation:
 
 ```bash
 export EXPEDITION_ROOT=/path/to/expedition
-python3 -I -B verification/checks/check_010_spectral_inertia_reaudit.py
-python3 -I -O -B verification/checks/check_010_spectral_inertia_reaudit.py
-python3 -I -B -W error verification/checks/check_010_spectral_inertia_reaudit.py
+python3 -I -B verification/checks/check_014_bw16_leech24_reaudit.py
+python3 -I -O -B verification/checks/check_014_bw16_leech24_reaudit.py
+python3 -I -B -W error verification/checks/check_014_bw16_leech24_reaudit.py
 ```
 
 ---
