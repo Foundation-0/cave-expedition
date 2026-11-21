@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_046`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_051`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-055`, `46` scripts total).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_046` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-060`, `51` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_051` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -51,3 +51,8 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_044_audit052_buckmaster_fluid_lean.py` | 325 | `4dccb55654372d23` | `indexed (domain PR)` | check_044_audit052_buckmaster_fluid_lean.py |
 | `check_045_audit054_double_slit.py` | 310 | `7fd4b9c008828409` | `indexed (domain PR)` | check_045_audit054_double_slit.py |
 | `check_046_audit055_aletheia_v130.py` | 248 | `26b2917be0b83154` | `indexed (domain PR)` | check_046_audit055_aletheia_v130.py |
+| `check_047_audit058_camail.py` | 564 | `b843eadef586ad19` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live upstream verification for AUDIT-058 (CAMAIL). |
+| `check_048_audit059_qwen_neuron_map.py` | 376 | `6d8dec1e3e7b17cc` | `indexed (domain PR)` | Independent zero-shared-code NumPy/SymPy + live upstream verification for AUDIT-059. |
+| `check_049_audit057_alphaxiv_openresearch.py` | 318 | `08c959af20d9c7fb` | `indexed (domain PR)` | Independent live-repro + adversarial verification for AUDIT-057 (alphaxiv/OpenResearch + 4 siblings). |
+| `check_050_audit060_alphaxiv_math_formal.py` | 352 | `69de7bbf4879b290` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live upstream verification for AUDIT-060 (alphaXiv Math Formal). |
+| `check_051_audit056_quantum_unification.py` | 436 | `dcf5d498e2555886` | `indexed (domain PR)` | Independent zero-shared-code SymPy torture test & pre-push package audit for AUDIT-056 (Foundation-0/quantum). |

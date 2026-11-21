@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-4-complete-verified",
-  "updated_at": "2026-11-21T03:42:30-06:00",
+  "wave": "wave-2-round-5-complete-verified",
+  "updated_at": "2026-11-21T12:10:00-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -173,6 +173,24 @@
           "label_stripped": "8-Glyph Aletheia Operator Calculus (\u29c4, \u29c5, \u29b7, \u27e0, \u29c7, \u29ba, \u2a69, \u2ae9; 0/227,540 Lean hits) proving PSD [\u29c4,\u29b7] Loewner screening (C1) & rational metric on H^1(G,B;Z_2) (C6)",
           "status": "verified",
           "ref": "AUDIT-051 & AUDIT-055 N1 (check_042 / check_046)"
+        },
+        {
+          "repo": "camail-official/{LinearAttentionPruning,compressm} (Arm R5-3)",
+          "label_stripped": "Rank-based linear-attention & SSM state reduction formulated as exact fiber-elimination Schur pushforward (\u29c4) + dark-state shadow (\u29c5)",
+          "status": "verified",
+          "ref": "AUDIT-058R N1 (check_047, SF-01 #26, Foundation-0/math0#18 @ 5f966226)"
+        },
+        {
+          "repo": "alphaxiv/hilbert-operator-for-progressive-encoding-hope-a (Arm R5-5)",
+          "label_stripped": "Finite Hilbert-operator exact Bareiss Schur conditioning & progressive spectral encoding",
+          "status": "verified",
+          "ref": "AUDIT-060 N1 (check_050, SF-01 #27, Foundation-0/math0#18 @ 5f966226)"
+        },
+        {
+          "repo": "Foundation-0/quantum#1@11b9eb7f (Arm R5-1)",
+          "label_stripped": "Universal Complex U(1) Surgical Severing + Two-Phase Z_4/Z_2 Single-Vertex Interior Green's-Function Tomography (1/Phi_B(u) = 1/(w c_harm |1-u|^2) + G_cut(u,v) down to |B|=1) + M-Slit Looped-Schur Order Law [#28 Schur unification]",
+          "status": "verified",
+          "ref": "AUDIT-056 N2 CONFIRMED Q2 (check_051, SF-01 #28, Foundation-0/quantum#1 @ 11b9eb7f)"
         }
       ]
     },
@@ -392,6 +410,12 @@
           "label_stripped": "ALETHEIA-CLI-01 --allow-project-import extend fix + stdlib `aletheia calculus` 8-glyph CLI + 13/13 R5 mutation gate",
           "status": "verified",
           "ref": "AUDIT-055 N1 (check_046)"
+        },
+        {
+          "repo": "alphaxiv/{OpenResearch@48f42c45,feige-231f2e0b@50b0b2de} (Arm R5-2 / R5-5)",
+          "label_stripped": "Rust research-agent harness tomography (CS-01..CS-11 / R5 \u2ae9) & aletheia v1.3.0 --lean-audit on feige-231f2e0b Lean 4",
+          "status": "verified",
+          "ref": "AUDIT-057R & AUDIT-060 N1 (check_049 / check_050)"
         }
       ]
     },
@@ -473,6 +497,12 @@
           "label_stripped": "16-vertex Fine-Farkas CHSH delayed-choice eraser no-go proving 3-4-5 quantum correlator 14/5 > 2 is infeasible in any local classical continuum model",
           "status": "verified",
           "ref": "AUDIT-054 N1 (check_045, SF-05)"
+        },
+        {
+          "repo": "qwen-neuron-map.pages.dev (Arm R5-4)",
+          "label_stripped": "Z_2 neuron sign-symmetry lineage gauge (SwiGLU 50% null vs Pythia/Falcon-H1 non-Z_2 83-87% false-positive confounder)",
+          "status": "verified",
+          "ref": "AUDIT-059 N1 (check_048, Moissanite-Labs/siliquant#24 @ d4c54e43)"
         }
       ]
     },
@@ -518,6 +548,12 @@
           "label_stripped": "23 Niemeier/Umbral root-lattice companions of Leech Lambda_24 (Theta_L = E_4^3 - c_L Delta) & sparse Ramanujan mixers vs dense SpinQuant H_96",
           "status": "verified",
           "ref": "AUDIT-044 & AUDIT-048R N1 (check_037 / check_036)"
+        },
+        {
+          "repo": "camail-official/{LoReS@1529d48e,neuro-lds@9671e84b} (Arm R5-3)",
+          "label_stripped": "Recurrent-LM quantization vs E8_Had/Leech24 covering radius & Neural LDS vs exact rational star-discrepancy",
+          "status": "verified",
+          "ref": "AUDIT-058R N1 (check_047, Foundation-0/math0#18 @ 5f966226)"
         }
       ]
     },
@@ -581,6 +617,18 @@
           "label_stripped": "Mellin-transform functional-equation equalizer (MellinCalculus.lean, HeckeSevenEighths.lean WeakFEPair, CubicThetaLocalVoronoi) & Ramanujan Master Theorem separating Mellin poles from divergent-sum numerology",
           "status": "verified",
           "ref": "AUDIT-046 N1 (check_035)"
+        },
+        {
+          "repo": "qwen-neuron-map.pages.dev (Arm R5-4)",
+          "label_stripped": "30-model, 11-lab cross-architecture 323-family neuron homology map as empirical Observer-Net Equalizer (\u27e0: 67% group match vs 9% neuron match) + 0%-16% dark shadow (\u29c5)",
+          "status": "verified",
+          "ref": "AUDIT-059 N1 (check_048, Moissanite-Labs/siliquant#24 @ d4c54e43)"
+        },
+        {
+          "repo": "Foundation-0/quantum (Arm R5-1)",
+          "label_stripped": "Unified M-slit Looped-Schur Sorkin + Deck-Splitting Eraser + GKSL Zeno + Modular-Schur Freezing in 8-glyph calculus",
+          "status": "verified",
+          "ref": "AUDIT-056 N2 Q2 / N1 Q1 & Q3 (check_051, Foundation-0/quantum#1 @ 11b9eb7f)"
         }
       ]
     }

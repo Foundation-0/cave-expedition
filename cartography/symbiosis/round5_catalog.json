@@ -1,0 +1,456 @@
+{
+  "schema": "aletheia.round5_catalog.v1",
+  "wave": "wave-2-round-5",
+  "updated_at": "2026-11-21T11:27:00-06:00",
+  "owner": "session-cartographer",
+  "read_only_enforced_on_external": true,
+  "foundation0_quantum": {
+    "repo": "Foundation-0/quantum",
+    "url": "https://github.com/Foundation-0/quantum",
+    "initial_main_sha": "ad7a81fa45cbbc36e677257e4b8cfed62a6bf1e5",
+    "protect_main": true,
+    "target_branch": "feat/quantum-v1",
+    "audit_id": "AUDIT-056"
+  },
+  "camail_official": {
+    "org": "camail-official",
+    "url": "https://github.com/camail-official",
+    "read_only": true,
+    "total_repos": 9,
+    "pinned_repos": [
+      {
+        "name": "discretax",
+        "stars": 38,
+        "sha": "d74281286a3d",
+        "lang": "Python",
+        "role": "JAX SSM collection"
+      },
+      {
+        "name": "compressm",
+        "stars": 35,
+        "sha": "2910a88a2730",
+        "lang": "Python",
+        "role": "ICLR 2026 In-Training Compression of SSMs"
+      },
+      {
+        "name": "LinearAttentionPruning",
+        "stars": 15,
+        "sha": "919d8667d951",
+        "lang": "Python",
+        "role": "State Reduction in Linear Attention: Rank-based Perspective"
+      },
+      {
+        "name": "Quotient_Recurrent_Reasoner_QRR",
+        "stars": 8,
+        "sha": "3e3c9ebecad5",
+        "lang": "Python",
+        "role": "Quotient Recurrent Reasoner"
+      },
+      {
+        "name": "neuro-lds",
+        "stars": 8,
+        "sha": "9671e84b9dfa",
+        "lang": "Python",
+        "role": "ICML 2026 Neural Low-Discrepancy Sequences"
+      },
+      {
+        "name": "LoopedActor",
+        "stars": 6,
+        "sha": "549a4e81ebd2",
+        "lang": "Python",
+        "role": "Depth-Recurrent Reasoning Models for RL"
+      },
+      {
+        "name": "LoReS",
+        "stars": 3,
+        "sha": "1529d48ed974",
+        "lang": "Python",
+        "role": "Quantizing recurrent language models"
+      },
+      {
+        "name": "Unrolled_Flow_Models_for_Reasoning_UFM",
+        "stars": 0,
+        "sha": "98336a53b789",
+        "lang": "Python",
+        "role": "Unrolled flow models for reasoning"
+      },
+      {
+        "name": "camail-official.github.io",
+        "stars": 0,
+        "sha": "27c64f3bc8c2",
+        "lang": "HTML",
+        "fork": true,
+        "role": "Lab site"
+      }
+    ]
+  },
+  "alphaxiv": {
+    "org": "alphaxiv",
+    "url": "https://github.com/alphaxiv",
+    "read_only": true,
+    "total_repos": 120,
+    "non_fork_repos": 113,
+    "language_counts": {
+      "Python": 108,
+      "TypeScript": 3,
+      "None": 3,
+      "Rust": 2,
+      "C++": 1,
+      "HTML": 1,
+      "Shell": 1,
+      "Lean": 1
+    },
+    "pinned_targets": [
+      {
+        "name": "OpenResearch",
+        "stars": 8385,
+        "sha": "48f42c450ca0",
+        "lang": "Rust",
+        "arm": "R5-2",
+        "audit": "AUDIT-057"
+      },
+      {
+        "name": "paper-implementations",
+        "stars": 210,
+        "sha": "5e4893be7c0a",
+        "lang": "Python",
+        "arm": "R5-2",
+        "audit": "AUDIT-057"
+      },
+      {
+        "name": "recursive-harness-self-improvement",
+        "stars": 4,
+        "sha": "c940864c53fe",
+        "lang": "Python",
+        "arm": "R5-2",
+        "audit": "AUDIT-057"
+      },
+      {
+        "name": "arex-towards-a-recursively-self-improving-agent",
+        "stars": 0,
+        "sha": "b913a1653b39",
+        "lang": "Python",
+        "arm": "R5-2",
+        "audit": "AUDIT-057"
+      },
+      {
+        "name": "meta-skill-creator-2035058f",
+        "stars": 0,
+        "sha": "fe5c41e27313",
+        "lang": "Python",
+        "arm": "R5-2",
+        "audit": "AUDIT-057"
+      },
+      {
+        "name": "weight-edit-minimization",
+        "stars": 0,
+        "sha": "768d7340142b",
+        "lang": "HTML",
+        "arm": "R5-4",
+        "audit": "AUDIT-059"
+      },
+      {
+        "name": "flint-goalkeeper-neuron",
+        "stars": 2,
+        "sha": "6ece43a96cef",
+        "lang": "Python",
+        "arm": "R5-4",
+        "audit": "AUDIT-059"
+      },
+      {
+        "name": "feige-231f2e0b",
+        "stars": 0,
+        "sha": "50b0b2de0940",
+        "lang": "Lean",
+        "arm": "R5-5",
+        "audit": "AUDIT-060"
+      },
+      {
+        "name": "settling-the-optimal-exponent-relating-sumsets-a",
+        "stars": 0,
+        "sha": "756551f6888c",
+        "lang": "Python",
+        "arm": "R5-5",
+        "audit": "AUDIT-060"
+      },
+      {
+        "name": "hilbert-operator-for-progressive-encoding-hope-a",
+        "stars": 0,
+        "sha": "23670f903a0f",
+        "lang": "Python",
+        "arm": "R5-5",
+        "audit": "AUDIT-060"
+      },
+      {
+        "name": "when-does-recurrence-become-an-algorithm-converg",
+        "stars": 0,
+        "sha": "7b48186b8291",
+        "lang": "Python",
+        "arm": "R5-5",
+        "audit": "AUDIT-060"
+      }
+    ]
+  },
+  "qwen_neuron_map": {
+    "url": "https://qwen-neuron-map.pages.dev",
+    "title": "Encyclopedia of LLM homologies",
+    "read_only": true,
+    "probe_tokens": 515088,
+    "shared_families": 323,
+    "kinds": 18,
+    "labs_count": 11,
+    "models_count": 30,
+    "key_equalizer_stats": {
+      "cross_seed_neuron_pair_pct": 9,
+      "cross_seed_group_pair_pct": 67,
+      "pythia_step_1k_in_family_pct": 84,
+      "pythia_step_1k_final_neuron_pct": 18,
+      "z2_confounder_pythia_falcon_sign_agree_pct": [
+        83,
+        87
+      ]
+    },
+    "models": [
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3.8-27B",
+        "slug": "/27b/",
+        "neurons": "1.11M",
+        "in_family_pct": 100,
+        "dark_unshared_pct": 0
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3.5-9B",
+        "slug": "/9b/",
+        "neurons": "393K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3.5-4B",
+        "slug": "/4b/",
+        "neurons": "295K",
+        "in_family_pct": 90,
+        "dark_unshared_pct": 10
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3-1.7B",
+        "slug": "/q3m/",
+        "neurons": "172K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3.5-2B",
+        "slug": "/q2/",
+        "neurons": "147K",
+        "in_family_pct": 93,
+        "dark_unshared_pct": 7
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3.5-0.8B",
+        "slug": "/q08/",
+        "neurons": "86K",
+        "in_family_pct": 91,
+        "dark_unshared_pct": 9
+      },
+      {
+        "lab": "Alibaba",
+        "model": "Qwen3-0.6B",
+        "slug": "/q3s/",
+        "neurons": "86K",
+        "in_family_pct": 98,
+        "dark_unshared_pct": 2
+      },
+      {
+        "lab": "Microsoft",
+        "model": "FrogNano 4B",
+        "slug": "/frog/",
+        "neurons": "295K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "Microsoft",
+        "model": "Phi-4-mini",
+        "slug": "/phi/",
+        "neurons": "262K",
+        "in_family_pct": 98,
+        "dark_unshared_pct": 2
+      },
+      {
+        "lab": "Google",
+        "model": "Gemma 4 31B",
+        "slug": "/g431/",
+        "neurons": "1.29M",
+        "in_family_pct": 87,
+        "dark_unshared_pct": 13
+      },
+      {
+        "lab": "Google",
+        "model": "Gemma 4 12B",
+        "slug": "/g412/",
+        "neurons": "737K",
+        "in_family_pct": 94,
+        "dark_unshared_pct": 6
+      },
+      {
+        "lab": "Google",
+        "model": "Gemma 4 E4B",
+        "slug": "/g4e4/",
+        "neurons": "430K",
+        "in_family_pct": 86,
+        "dark_unshared_pct": 14
+      },
+      {
+        "lab": "Google",
+        "model": "Gemma 3 1B",
+        "slug": "/gem/",
+        "neurons": "180K",
+        "in_family_pct": 93,
+        "dark_unshared_pct": 7
+      },
+      {
+        "lab": "Hugging Face",
+        "model": "SmolLM3-3B",
+        "slug": "/s3/",
+        "neurons": "396K",
+        "in_family_pct": 97,
+        "dark_unshared_pct": 3
+      },
+      {
+        "lab": "Hugging Face",
+        "model": "SmolLM2-1.7B",
+        "slug": "/s17/",
+        "neurons": "197K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "Hugging Face",
+        "model": "SmolLM2-360M",
+        "slug": "/smol/",
+        "neurons": "82K",
+        "in_family_pct": 95,
+        "dark_unshared_pct": 5
+      },
+      {
+        "lab": "Hugging Face",
+        "model": "SmolLM2-135M",
+        "slug": "/s135/",
+        "neurons": "46K",
+        "in_family_pct": 93,
+        "dark_unshared_pct": 7
+      },
+      {
+        "lab": "IBM",
+        "model": "Granite 4.2 8B",
+        "slug": "/gran8/",
+        "neurons": "512K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "IBM",
+        "model": "Granite 4.2 3B",
+        "slug": "/gran/",
+        "neurons": "328K",
+        "in_family_pct": 98,
+        "dark_unshared_pct": 2
+      },
+      {
+        "lab": "Liquid",
+        "model": "LFM2.5 2.6B",
+        "slug": "/lfm25/",
+        "neurons": "323K",
+        "in_family_pct": 99,
+        "dark_unshared_pct": 1
+      },
+      {
+        "lab": "Mistral",
+        "model": "Shieldstral 1.0 3B",
+        "slug": "/shield/",
+        "neurons": "240K",
+        "in_family_pct": 87,
+        "dark_unshared_pct": 13
+      },
+      {
+        "lab": "NVIDIA",
+        "model": "Nemotron Dory 1.0 4B",
+        "slug": "/dory/",
+        "neurons": "258K",
+        "in_family_pct": 88,
+        "dark_unshared_pct": 12
+      },
+      {
+        "lab": "TII",
+        "model": "Falcon-H1 Tiny 0.6B",
+        "slug": "/fh1/",
+        "neurons": "90K",
+        "in_family_pct": 89,
+        "dark_unshared_pct": 11
+      },
+      {
+        "lab": "Upstage",
+        "model": "TinySolar 187M",
+        "slug": "/tsolar/",
+        "neurons": "33K",
+        "in_family_pct": 85,
+        "dark_unshared_pct": 15
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m",
+        "slug": "/py0/",
+        "neurons": "37K",
+        "in_family_pct": 94,
+        "dark_unshared_pct": 6
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m, seed 1",
+        "slug": "/py1/",
+        "neurons": "37K",
+        "in_family_pct": 95,
+        "dark_unshared_pct": 5
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m, seed 2",
+        "slug": "/py2/",
+        "neurons": "37K",
+        "in_family_pct": 94,
+        "dark_unshared_pct": 6
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m at step 1,000 of 143,000",
+        "slug": "/py0a/",
+        "neurons": "37K",
+        "in_family_pct": 84,
+        "dark_unshared_pct": 16
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m at step 8,000 of 143,000",
+        "slug": "/py0b/",
+        "neurons": "37K",
+        "in_family_pct": 96,
+        "dark_unshared_pct": 4
+      },
+      {
+        "lab": "EleutherAI",
+        "model": "Pythia-160m at step 32,000 of 143,000",
+        "slug": "/py0c/",
+        "neurons": "37K",
+        "in_family_pct": 96,
+        "dark_unshared_pct": 4
+      }
+    ]
+  }
+}

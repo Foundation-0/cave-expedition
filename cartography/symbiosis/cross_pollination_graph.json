@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-2-round-4-complete-verified",
-  "updated_at": "2026-11-21T03:42:30-06:00",
+  "wave": "wave-2-round-5-complete-verified",
+  "updated_at": "2026-11-21T12:10:00-06:00",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -228,7 +228,27 @@
     {
       "id": "Foundation-0/math0",
       "kind": "foundation0_round4_ship",
-      "role": "LIVE Draft PR #17 (feat/round4-pure-math-studies @ 273ff84d): 5 verified standalone studies (AUDIT-049 judegomila zeta/DBN, AUDIT-050 canculus/OnCo, AUDIT-051 8-Glyph Calculus, AUDIT-052 8,678-file Fluid-PDE/SignedTree, AUDIT-053R 3D Euler Farkas/Leray)"
+      "role": "LIVE Draft PR #17 (Round 4: AUDIT-049..053R @ 273ff84d) + LIVE Draft PR #18 (Round 5: AUDIT-058R camail-ssm-rkhs-schur + AUDIT-060 alphaxiv-sumsets-hilbert-recurrence @ 5f966226)"
+    },
+    {
+      "id": "Foundation-0/quantum",
+      "kind": "foundation0_round5_ship",
+      "role": "LIVE Draft PR #1 (feat/quantum-v1 @ 11b9eb7f): AUDIT-056 (N2 CONFIRMED on Theorem Q2: Complex U(1) Surgical Severing + Two-Phase Z_4/Z_2 Single-Vertex Interior Green's-Function Tomography down to |B|=1; N1 Q1 M-slit Sorkin & Q3 Werner), bundling AUDIT-018 N2, AUDIT-041, AUDIT-054"
+    },
+    {
+      "id": "alphaxiv",
+      "kind": "round5_external_org_readonly",
+      "role": "Strictly read-only (120 repos, 113 non-fork): OpenResearch@48f42c45 (8,385\u2605 Rust), paper-implementations@5e4893be, weight-edit-minimization@768d7340, flint-goalkeeper-neuron@6ece43a9, feige-231f2e0b@50b0b2de (Lean), sumsets/HOPE/recurrence-convergence"
+    },
+    {
+      "id": "camail-official",
+      "kind": "round5_external_lab_readonly",
+      "role": "Strictly read-only Computational Applied Math & AI Lab (9 repos): discretax@d7428128, compressm@2910a88a (ICLR 2026), LinearAttentionPruning@919d8667, QRR@3e3c9ebe, neuro-lds@9671e84b (ICML 2026), LoopedActor@549a4e81, LoReS@1529d48e"
+    },
+    {
+      "id": "qwen-neuron-map",
+      "kind": "round5_external_dataset_readonly",
+      "role": "Strictly read-only Encyclopedia of LLM Homologies (qwen-neuron-map.pages.dev: 30 models across 11 labs, 323 shared families, 18 kinds, 515,088 tokens, 0%-16% dark unshared neurons, Z_2 sign-symmetry lineage trees)"
     }
   ],
   "edges": [
@@ -1306,6 +1326,76 @@
       "target_anomaly": "Promoting verified 8-glyph operator calculus and hardened Lean audit CLI into permanent cross-repo verification infrastructure",
       "status": "verified",
       "audit_id": "AUDIT-055 (N1 VERIFIED; check_046; 13/13 R5; live Foundation-0/aletheia#1 v1.3.0 @ 58207b42)"
+    },
+    {
+      "id": "R5-E01",
+      "portal": "R5-P01 / SF-01 / SF-05 / SF-07",
+      "direction": "bidirectional",
+      "source": "Foundation-0/hawking",
+      "target": "Foundation-0/quantum",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Arm R5-1 (AUDIT-056): Foundation-0/quantum#1 (feat/quantum-v1) bundling double-slit (AUDIT-054), GKSL Zeno N2 (AUDIT-018), Modular-Schur (AUDIT-041), & new M-slit (M=2,3,4) Looped-Schur Sorkin + Deck-Splitting Eraser + GKSL-Modular unification in 8-glyph calculus",
+      "target_anomaly": "Unifying M-slit Sorkin hierarchy, GKSL Zeno Schur, Deck-Splitting Eraser, and Modular-Schur freezing in zero-float Q/Q[i]",
+      "status": "verified",
+      "audit_id": "AUDIT-056 (N2 CONFIRMED Q2 / N1 Q1 & Q3 VERIFIED; check_051; 32/32 & 38/38 R5; live Foundation-0/quantum#1 @ 11b9eb7f; #28 Complex U(1) Surgical Severing + Two-Phase Z_4/Z_2 Tomography + M-slit Sorkin)"
+    },
+    {
+      "id": "R5-E02",
+      "portal": "R5-P02 / SF-04",
+      "direction": "bidirectional",
+      "source": "alphaxiv",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "peer-weaver"
+      ],
+      "typed_operator": "Arm R5-2 (AUDIT-057): Strictly read-only bidirectional Aletheia v1.3.0 <-> alphaxiv/OpenResearch@48f42c45 (8,385\u2605 Rust) + recursive-harness / arex / meta-skill-creator / paper-implementations tomography & CS-01..CS-11 / R5 audit",
+      "target_anomaly": "Harvesting Rust agent-research harness patterns for aletheia/hillclimb while auditing eval/verification gates for concrete R1-R5 findings",
+      "status": "verified",
+      "audit_id": "AUDIT-057R (N1 VERIFIED; check_049; 27/27 R5; 385-transition monotone reconciler lattice + 12/12 live findings incl. ORX-PG-01..04 on alphaxiv/OpenResearch@48f42c45 & 4 sibling repos)"
+    },
+    {
+      "id": "R5-E03",
+      "portal": "R5-P03 / SF-01 (#26 candidate) / SF-06",
+      "direction": "bidirectional",
+      "source": "camail-official",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Arm R5-3 (AUDIT-058): Strictly read-only exact-operator symbiosis (\u29c4 \u29c5 \u29ba \u2a69) bridging camail-official/{LinearAttentionPruning,compressm,LoReS,neuro-lds,QRR,LoopedActor,discretax} to siliquant#24, spectral-inertia R_opt/R_{H4}, Bareiss PSD, & exact rational star-discrepancy",
+      "target_anomaly": "Mapping SSM/linear-attention state reduction to Schur pushforward + dark-drift shadow & recurrent quantization to E8_Had/Leech24",
+      "status": "verified",
+      "audit_id": "AUDIT-058R (N1 VERIFIED; check_047; 49/49 R5; live Foundation-0/math0#18 @ 5f966226; CAMAIL-B1..B5 bug proofs + #26 LTI DC Schur SPA & ICML 2026 neuro-lds RKHS Schur)"
+    },
+    {
+      "id": "R5-E04",
+      "portal": "R5-P04 / SF-07 (\u27e0) / SF-01 (\u29c5) / SF-05 (\u29b7)",
+      "direction": "bidirectional",
+      "source": "qwen-neuron-map",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Arm R5-4 (AUDIT-059): Strictly read-only mining of qwen-neuron-map (30 models, 11 labs, 323 families, 18 kinds) + alphaxiv/{weight-edit-minimization,flint-goalkeeper-neuron} as empirical Observer-Net Equalizer (\u27e0) vs Dark-Neuron Shadow (\u29c5) & Z_2 sign-symmetry confounder, unlocking siliquant/weft-loom/scry/warp",
+      "target_anomaly": "Separating coordinate-dependent neuron noise (9% seed match) from universal family equalizers (67% group match) & dark-neuron quantization/edit subspaces",
+      "status": "verified",
+      "audit_id": "AUDIT-059 (N1 VERIFIED; check_048; 24/24 R5; live Moissanite-Labs/siliquant#24 @ d4c54e43; 1,504,256 neurons across 13 models + Gemma 4 E4B L10 #1/42 fan-out mystery + Qwen3.5-0.8B 21/21 anisotropy & Adjacent-brackets 11.63x/20.36x join)"
+    },
+    {
+      "id": "R5-E05",
+      "portal": "R5-P05 / SF-01 / SF-04",
+      "direction": "bidirectional",
+      "source": "alphaxiv",
+      "target": "Foundation-0/math0",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Arm R5-5 (AUDIT-060): Strictly read-only aletheia v1.3.0 --lean-audit on alphaxiv/feige-231f2e0b@50b0b2de (Lean 4) + zero-float exact verification of sumsets-exponent, Hilbert-operator HOPE (SF-01), & recurrence-to-algorithm convergence (bridging CAMAIL LoopedActor/QRR)",
+      "target_anomaly": "Auditing alphaxiv's Lean 4 & exact-math repos with aletheia v1.3.0 and Bareiss Hilbert-operator Schur conditioning",
+      "status": "verified",
+      "audit_id": "AUDIT-060 (N1 VERIFIED; check_050; 49/49 R5; live Foundation-0/math0#18 @ 5f966226; 98/98 feige-231f2e0b Lean clean + SUMSET-CW-01 catch/repair & 462-set base-12 proof + #27 HOPE Hilbert Schur & QRR U(1) Schur)"
     }
   ],
   "round1_summary": {
@@ -1463,6 +1553,31 @@
     ],
     "audits_in_flight": [],
     "total_round4_audits_verified": 12,
+    "total_unresolved_defects": 0
+  },
+  "round5_summary": {
+    "status": "100_percent_verified",
+    "portal_doc": "symbiosis/round5/cartography/ROUND5_PORTALS.md",
+    "catalog_json": "symbiosis/round5/cartography/round5_catalog.json",
+    "read_only_enforced_on_external": true,
+    "arms_total": 5,
+    "arms_verified": 5,
+    "audits_verified": [
+      "AUDIT-056 (N2 CONFIRMED Q2 / N1 Q1 & Q3; quantum#1 @ 11b9eb7f)",
+      "AUDIT-057R (N1; OpenResearch ORX-PG-01..04 + 12/12 findings)",
+      "AUDIT-058R (N1; math0#18 @ 5f966226; #26 Schur)",
+      "AUDIT-059 (N1; siliquant#24 @ d4c54e43; 1.5M neurons + Gemma 4 E4B L10)",
+      "AUDIT-060 (N1; math0#18 @ 5f966226; #27 Schur)"
+    ],
+    "audits_in_flight": [],
+    "law4_n0_quarantine_count": 20,
+    "schur_unification_verified_count": 28,
+    "schur_unification_summary": "28-Way Verified Exact Schur-Complement Unification (Wave 1 #1..8 + Wave 2 R1-R4 #9..25 + Round 5 #26 CAMAIL DC/RKHS, #27 HOPE Hilbert/QRR U(1), #28 Quantum U(1) Surgical Severing & M-Slit Looped-Schur)",
+    "live_round5_prs": {
+      "quantum": "https://github.com/Foundation-0/quantum/pull/1 (feat/quantum-v1 @ 11b9eb7f1ee309c17eb0237e40ba6849e33fc873; AUDIT-056 N2 Q2)",
+      "math0_r5": "https://github.com/Foundation-0/math0/pull/18 (feat/round5-camail-alphaxiv-math @ 5f96622695f5ec4b8d763265cb66ca7176881b0d; AUDIT-058R + AUDIT-060)",
+      "siliquant_r5": "https://github.com/Moissanite-Labs/siliquant/pull/24 (expedition/leech-l1-hadamard-symbiosis @ d4c54e43bc9f24fd76d57a7467b0c726dd0acd1f; AUDIT-059)"
+    },
     "total_unresolved_defects": 0
   }
 }
