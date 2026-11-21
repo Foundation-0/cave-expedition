@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_051`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_058`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-060`, `51` scripts total).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_051` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-067R`, `58` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_058` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -56,3 +56,10 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_049_audit057_alphaxiv_openresearch.py` | 318 | `08c959af20d9c7fb` | `indexed (domain PR)` | Independent live-repro + adversarial verification for AUDIT-057 (alphaxiv/OpenResearch + 4 siblings). |
 | `check_050_audit060_alphaxiv_math_formal.py` | 352 | `69de7bbf4879b290` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live upstream verification for AUDIT-060 (alphaXiv Math Formal). |
 | `check_051_audit056_quantum_unification.py` | 436 | `dcf5d498e2555886` | `indexed (domain PR)` | Independent zero-shared-code SymPy torture test & pre-push package audit for AUDIT-056 (Foundation-0/quantum). |
+| `check_052_audit062_warp_drive_runtime.py` | 789 | `bbbac8837eabdb26` | `indexed (domain PR)` | Independent adversarial verification & red-team audit for AUDIT-062 (Arm R6-2). |
+| `check_053_audit065_weft_cross_audit.py` | 479 | `a0f43048a6585dfd` | `indexed (domain PR)` | Independent zero-shared-code verification & red-team audit for AUDIT-065 (Arm R6-5). |
+| `check_054_audit064_warp_weight_iteration.py` | 462 | `bcc01689b58cd060` | `indexed (domain PR)` | Independent zero-shared-code SymPy + stdlib verification for AUDIT-064 (Arm R6-4). |
+| `check_055_audit061_gram_cert.py` | 477 | `698229ece3ec69a8` | `indexed (domain PR)` | Independent zero-shared-code SymPy + stdlib verification & red-team audit for AUDIT-061 (Arm R6-1). |
+| `check_056_audit063_bounded_controller.py` | 621 | `1968adfbfc9e4d67` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-063 (Round 6 Arm R6-3). |
+| `check_057_audit067_aletheia_v140.py` | 332 | `6223cbed90030a1e` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-067 (aletheia v1.4.0). |
+| `check_058_audit066_warp_drive_pra.py` | 461 | `b3daba08ff62d35e` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team audit for AUDIT-066 (warp-drive Draft PR-A). |

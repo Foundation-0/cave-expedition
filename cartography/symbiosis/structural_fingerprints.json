@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-5-complete-verified",
-  "updated_at": "2026-11-21T12:10:00-06:00",
+  "wave": "wave-2-round-6-complete",
+  "updated_at": "2026-11-21T16:23:00-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -170,13 +170,13 @@
         },
         {
           "repo": "Foundation-0/aletheia#1@58207b42 (Arm R4C / v1.3.0)",
-          "label_stripped": "8-Glyph Aletheia Operator Calculus (\u29c4, \u29c5, \u29b7, \u27e0, \u29c7, \u29ba, \u2a69, \u2ae9; 0/227,540 Lean hits) proving PSD [\u29c4,\u29b7] Loewner screening (C1) & rational metric on H^1(G,B;Z_2) (C6)",
+          "label_stripped": "8-Glyph Aletheia Operator Calculus (⧄, ⧅, ⦷, ⟠, ⧇, ⦺, ⩩, ⫩; 0/227,540 Lean hits) proving PSD [⧄,⦷] Loewner screening (C1) & rational metric on H^1(G,B;Z_2) (C6)",
           "status": "verified",
           "ref": "AUDIT-051 & AUDIT-055 N1 (check_042 / check_046)"
         },
         {
           "repo": "camail-official/{LinearAttentionPruning,compressm} (Arm R5-3)",
-          "label_stripped": "Rank-based linear-attention & SSM state reduction formulated as exact fiber-elimination Schur pushforward (\u29c4) + dark-state shadow (\u29c5)",
+          "label_stripped": "Rank-based linear-attention & SSM state reduction formulated as exact fiber-elimination Schur pushforward (⧄) + dark-state shadow (⧅)",
           "status": "verified",
           "ref": "AUDIT-058R N1 (check_047, SF-01 #26, Foundation-0/math0#18 @ 5f966226)"
         },
@@ -191,6 +191,12 @@
           "label_stripped": "Universal Complex U(1) Surgical Severing + Two-Phase Z_4/Z_2 Single-Vertex Interior Green's-Function Tomography (1/Phi_B(u) = 1/(w c_harm |1-u|^2) + G_cut(u,v) down to |B|=1) + M-Slit Looped-Schur Order Law [#28 Schur unification]",
           "status": "verified",
           "ref": "AUDIT-056 N2 CONFIRMED Q2 (check_051, SF-01 #28, Foundation-0/quantum#1 @ 11b9eb7f)"
+        },
+        {
+          "repo": "Moissanite-Labs/warp-drive#1/#12/#15 (Arms R6-1 & R6-4)",
+          "label_stripped": "Stacked-adapter exact fraction-free Bareiss Gram Schur (Q_stack singular-G_kk blind-drift witness dw=[0,3,4], SignedTree multifrontal Schur, KKT R_H4) + Fisher-Schur WI-4 (+55% preconditioning KL trap 401/225) [#29 Schur unification]",
+          "status": "verified",
+          "ref": "AUDIT-061R & AUDIT-064 N1 (check_055 / check_054, SF-01 #29, warp-drive#12 @ 10ae3b33 & #15 @ e6ad0967)"
         }
       ]
     },
@@ -413,9 +419,15 @@
         },
         {
           "repo": "alphaxiv/{OpenResearch@48f42c45,feige-231f2e0b@50b0b2de} (Arm R5-2 / R5-5)",
-          "label_stripped": "Rust research-agent harness tomography (CS-01..CS-11 / R5 \u2ae9) & aletheia v1.3.0 --lean-audit on feige-231f2e0b Lean 4",
+          "label_stripped": "Rust research-agent harness tomography (CS-01..CS-11 / R5 ⫩) & aletheia v1.3.0 --lean-audit on feige-231f2e0b Lean 4",
           "status": "verified",
           "ref": "AUDIT-057R & AUDIT-060 N1 (check_049 / check_050)"
+        },
+        {
+          "repo": "Moissanite-Labs/warp-drive#13/#15 & Foundation-0/aletheia#1 v1.4.0 (Arms R6-2/3/5 + Tracks P3-1/4)",
+          "label_stripped": "Hardened 4-stage warp-modeld verifier (80/80 upstream R5 mutate, 72 tests PASS), immutable 5-op bounded controller (126/126 R5, 18/18 controls), & aletheia v1.4.0 AST local refusal-wrapper auto-detection (74 mutants on bareiss_gram_gate.py), loads_strict_json/JSONL, and --strict-ancestors",
+          "status": "verified",
+          "ref": "AUDIT-062R/063R2/065/066R/067R N1 (check_052/053/056/057/058; 22/22 red-team bypasses closed)"
         }
       ]
     },
@@ -554,6 +566,12 @@
           "label_stripped": "Recurrent-LM quantization vs E8_Had/Leech24 covering radius & Neural LDS vs exact rational star-discrepancy",
           "status": "verified",
           "ref": "AUDIT-058R N1 (check_047, Foundation-0/math0#18 @ 5f966226)"
+        },
+        {
+          "repo": "Moissanite-Labs/warp-drive#12 (Arm R6-4)",
+          "label_stripped": "Governed last-layer blk.31 weight iteration (Qwen3.5-4B 294,912-neuron / 72,553-wire DAG tomography: L31 0 out / 14,268 in #1/32), multi-bank kv/ssm/lattice_horizontal_streams isolation (WD-SB-01..04), & Hadamard/E8/Leech24 bridge",
+          "status": "verified",
+          "ref": "AUDIT-064 N1 (check_054, 100/100 R5, warp-drive#12 @ 10ae3b33)"
         }
       ]
     },
@@ -620,7 +638,7 @@
         },
         {
           "repo": "qwen-neuron-map.pages.dev (Arm R5-4)",
-          "label_stripped": "30-model, 11-lab cross-architecture 323-family neuron homology map as empirical Observer-Net Equalizer (\u27e0: 67% group match vs 9% neuron match) + 0%-16% dark shadow (\u29c5)",
+          "label_stripped": "30-model, 11-lab cross-architecture 323-family neuron homology map as empirical Observer-Net Equalizer (⟠: 67% group match vs 9% neuron match) + 0%-16% dark shadow (⧅)",
           "status": "verified",
           "ref": "AUDIT-059 N1 (check_048, Moissanite-Labs/siliquant#24 @ d4c54e43)"
         },
@@ -629,6 +647,12 @@
           "label_stripped": "Unified M-slit Looped-Schur Sorkin + Deck-Splitting Eraser + GKSL Zeno + Modular-Schur Freezing in 8-glyph calculus",
           "status": "verified",
           "ref": "AUDIT-056 N2 Q2 / N1 Q1 & Q3 (check_051, Foundation-0/quantum#1 @ 11b9eb7f)"
+        },
+        {
+          "repo": "Moissanite-Labs/warp-drive#12/#13/#15 & Foundation-0/aletheia#1 v1.4.0 (Round 6)",
+          "label_stripped": "Family-separated split equalizer defeating 98% split-leakage trap (49/50 leaky vs 0/24 clean), log-prob margin equalizer WI-6 defeating text-only argmax shadow (10x margin drop at identical argmax), & CS-12 Trust-Boundary Shadow detector",
+          "status": "verified",
+          "ref": "AUDIT-063R2/064/066R/067R N1 (check_054/056/057/058)"
         }
       ]
     }

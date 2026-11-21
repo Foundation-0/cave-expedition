@@ -83,9 +83,9 @@ cave-expedition/
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
 │   ├── frontier_portals.md                    # 11 steelmanned cross-domain discovery portals (Portals 1–11) & complete audit tracking
 │   ├── entry_points.json                      # Machine-readable catalog of 11 falsifiable entry points (ep-01..ep-11)
-│   └── symbiosis/                             # Wave 2 Epistemic Web Cartography (Rounds 1–5, strictly sanitized)
-│       ├── cross_pollination_graph.json       # Typed 48-node, 79-edge cross-repo operator graph (Wave 1–2, 28-Way Schur)
-│       ├── structural_fingerprints.json       # Name-blind Beyond-Language fingerprint catalog (SF-01..SF-07, 89 instances)
+│   └── symbiosis/                             # Wave 2 Epistemic Web Cartography (Rounds 1–6, strictly sanitized)
+│       ├── cross_pollination_graph.json       # Typed 49-node, 86-edge cross-repo operator graph (Wave 1–2, 29-Way Schur)
+│       ├── structural_fingerprints.json       # Name-blind Beyond-Language fingerprint catalog (SF-01..SF-07, 93 instances)
 │       ├── SYMBIOSIS_PORTALS.md               # Wave 2 Rounds 1–2 cross-pollination portals (Moissanite-Labs, siliconcordat, soko)
 │       ├── ten_lab_catalog.json               # Strictly read-only 10-lab index (1,565 repos, 22 Lean 4 repos)
 │       ├── LAB_PORTALS_R3.md                  # Wave 2 Round 3 10-lab formal math & AI research portals
@@ -96,14 +96,16 @@ cave-expedition/
 │       ├── GLYPH_REGISTRY.md                  # Round 4C Aletheia Operator Calculus 8-glyph registry (0/227,540 Lean hits)
 │       ├── glyph_registry.json                # Machine-readable 8-glyph schema (⧄, ⧅, ⦷, ⟠, ⧇, ⦺, ⩩, ⫩)
 │       ├── ROUND5_PORTALS.md                  # Wave 2 Round 5 portals (quantum#1, alphaxiv, camail-official, qwen-neuron-map)
-│       └── round5_catalog.json                # Machine-readable Round 5 read-only catalog (30 models, 9 CAMAIL, 120 alphaXiv)
+│       ├── round5_catalog.json                # Machine-readable Round 5 read-only catalog (30 models, 9 CAMAIL, 120 alphaXiv)
+│       ├── ROUND6_PORTALS.md                  # Wave 2 Round 6 portals (Moissanite-Labs/warp-drive#12/#13/#15 & aletheia v1.4.0)
+│       └── round6_catalog.json                # Machine-readable Round 6 catalog (AUDIT-061R..067R, 448/448 + 80/80 R5, 22 bypasses closed)
 ├── peer-web/
 │   ├── PEER_WEB.md                            # Live multi-repo frontier map across Foundation-0, siliconcordat, Proven-Commons & peers
 │   └── frontier_seams.json                    # Structured catalog of high-leverage cross-repo seams (SEAM-01..SEAM-09)
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
-    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-060)
-    ├── CHECKS_INDEX.md                        # SHA-256 index of all 51 clean-room adversarial checks (check_001..check_051)
+    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-067R)
+    ├── CHECKS_INDEX.md                        # SHA-256 index of all 58 clean-room adversarial checks (check_001..check_058)
     └── checks/                                # Mirrored Wave 1 adversarial verification scripts (check_001..check_014)
 ```
 
@@ -128,7 +130,7 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 | **Continuum Expedition Synthesis Suite — All 6 Instruments (Draft PR)** | [`Foundation-0/continuum#3`](https://github.com/Foundation-0/continuum/pull/3) | `AUDIT-004`, `005`, `006R`, `007R`, `008R`, `019` |
 | **Tropical Farkas Peeling Tower & $\mathbb{Q}[q]$ Doob Homotopy (Draft PR)** | [`Foundation-0/quotient-lp-bounds#5`](https://github.com/Foundation-0/quotient-lp-bounds/pull/5) | `AUDIT-004`, `008R` |
 | **Project Asma $PGL(2)$ Möbius Cross-Ratio & $R_{\mathrm{opt}}$ TCB (Draft PR)** | [`Foundation-0/project-asma#101`](https://github.com/Foundation-0/project-asma/pull/101) | `AUDIT-006R` |
-| **Aletheia Verification, Lean-4 Audit & 8-Glyph Calculus Framework `v1.3.0` (Draft PR)** | [`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`58207b42`) | `AUDIT-022`, `030R`, `040R`, `055` |
+| **Aletheia Verification, Lean-4 Audit, 8-Glyph Calculus & Trust-Boundary Framework `v1.4.0` (Draft PR)** | [`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`85830ca0`) | `AUDIT-022`, `030R`, `040R`, `055`, `067R` |
 | **Wave 2 Cross-Org Symbiosis Draft PRs (`Moissanite-Labs/*`, `siliconcordat/warp#17`, `quotient-lp-bounds#5`)** | Indexed on [`siliconcordat/.github#5`](https://github.com/siliconcordat/.github/issues/5) | `AUDIT-023`–`034R`, `035`–`043` |
 | **Hawking Horizon & Observer-Invariant Suite (`AUDIT-047R` Confirmed `N2`, Draft PR)** | [`Foundation-0/hawking#1`](https://github.com/Foundation-0/hawking/pull/1) (`2cc38330`) | `AUDIT-041`, `042`, `043`, `047R` (**`N2`**) |
 | **Srinivasa Ramanujan Exact-Operator Suite (Draft PR)** | [`Foundation-0/ramanujan#1`](https://github.com/Foundation-0/ramanujan/pull/1) (`9bafe2c7`) | `AUDIT-044`, `045`, `046`, `048R` |
@@ -137,13 +139,17 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 | **Unified Quantum Obstructions & $U(1)$ Surgical Severing (`AUDIT-056` Confirmed `N2`, Draft PR)** | [`Foundation-0/quantum#1`](https://github.com/Foundation-0/quantum/pull/1) (`11b9eb7f`) | `AUDIT-018` (**`N2`**), `041`, `054`, `056` (**`N2`** Q2) |
 | **Wave 2 Round 5 Pure-Math Studies (`camail-official` SSM/RKHS + `alphaxiv` Sumsets/HOPE/Lean, Draft PR)** | [`Foundation-0/math0#18`](https://github.com/Foundation-0/math0/pull/18) (`5f966226`) | `AUDIT-058R`, `060` |
 | **Cross-Model Neuron Homology Unlock (`qwen-neuron-map` 1.5M Neurons & Gemma 4 E4B L10 Mystery, `siliquant#24`)** | [`Moissanite-Labs/siliquant#24`](https://github.com/Moissanite-Labs/siliquant/pull/24) (`d4c54e43`) | `AUDIT-028` (**`N2`**), `031` (**`N2`**), `059` |
+| **Warp-Drive Upstream Trust-Boundary Hardening & Cross-Org Gates (Draft PR-A)** | [`Moissanite-Labs/warp-drive#15`](https://github.com/Moissanite-Labs/warp-drive/pull/15) (`e6ad0967`) | `AUDIT-062R`, `065`, `066R` (`72` tests, `80/80` R5) |
+| **Warp-Drive Frozen Experiment Contract & 5-Op Bounded Controller (Draft PR-B)** | [`Moissanite-Labs/warp-drive#13`](https://github.com/Moissanite-Labs/warp-drive/pull/13) (`1ffda956`) | `AUDIT-063R2` (`126/126` R5, `18/18` controls) |
+| **Warp-Drive Governed Weight Iteration & Gram Certificate Upgrades (Draft PR-C)** | [`Moissanite-Labs/warp-drive#12`](https://github.com/Moissanite-Labs/warp-drive/pull/12) (`10ae3b33`) | `AUDIT-061R`, `064` (`200/200` R5) |
 
-### Wave 2 Extension Summary (`AUDIT-022` – `AUDIT-060`, `100% VERIFIED`, `0` Unresolved Defects)
+### Wave 2 Extension Summary (`AUDIT-022` – `AUDIT-067R`, `100% VERIFIED`, `0` Unresolved Defects)
 
-Wave 2 expanded the expedition across five verified rounds (full chronological evidence in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) and [`verification/CHECKS_INDEX.md`](verification/CHECKS_INDEX.md); all external third-party labs, researcher repos, and static websites audited strictly **READ-ONLY**):
+Wave 2 expanded the expedition across six verified rounds (full chronological evidence in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) and [`verification/CHECKS_INDEX.md`](verification/CHECKS_INDEX.md); all external third-party labs, researcher repos, and static websites audited strictly **READ-ONLY**):
 
-- **28-Way Exact Schur-Complement Unification (`SF-01`):** Expanded Wave 1's 8 mechanisms across `heedle` Shed (`AUDIT-025/027`), `soko` $R_{\mathrm{eff}}$ (`AUDIT-029`), `anthropics/jacobian-lens` (`AUDIT-039` `N2`), `formal-conjectures` `Hadamard.lean` (`AUDIT-035` `N2`), `anthropics/FlashProve` Schatten-Nuclear obstruction (`AUDIT-036` `N2`), `NousResearch/DisTrO` DCT complement (`AUDIT-039` `N2`), `zai-org/RPC-Bench` Schur/Plücker commutator (`AUDIT-037`), singular-horizon Krein null-coupling (`AUDIT-041`), $p$-adic BTZ DtN visibility/blindness (`AUDIT-042`), Boundary Double-Schur Holographic Hodge-1 & Surgical Krein-Severing (`AUDIT-047R` **`N2`**, `AUDIT-044`), Euler–Witt & Rank–Crank mock-shadow Schur (`AUDIT-045`), $PGL(2,\mathbb{Q}(q))$ Rogers–Ramanujan hard-core Schur peeling (`AUDIT-046`), exact integer Ramanujan-subspace Schur projection (`AUDIT-048R`), `judegomila/canculus` $2\times 2$ adaptive feedback Schur (`AUDIT-050`), Alpöge–Buckmaster–Coiculescu 3D Euler Leray pressure Schur (`AUDIT-053R`), `tristanbuckmaster/navier-stokes` `SignedTree` multifrontal Schur coercivity (`AUDIT-052`), Double-Slit GKSL pinching & linear looped-trajectory Sorkin Schur (`AUDIT-054`), `camail-official` LTI DC Schur SPA & ICML 2026 `neuro-lds` RKHS discrepancy Schur (`AUDIT-058R`), `alphaxiv/HOPE` progressive Hilbert-operator Schur & `QRR` $U(1)$ fiber Schur (`AUDIT-060`), and Universal Complex $U(1)$ Surgical Severing + Two-Phase $\mathbb{Z}_4/\mathbb{Z}_2$ Single-Vertex Interior Green's-Function Tomography + $M$-Slit Looped-Schur Order Law (`AUDIT-056` **`N2`** Q2).
+- **29-Way Exact Schur-Complement Unification (`SF-01`):** Expanded Wave 1's 8 mechanisms across `heedle` Shed (`AUDIT-025/027`), `soko` $R_{\mathrm{eff}}$ (`AUDIT-029`), `anthropics/jacobian-lens` (`AUDIT-039` `N2`), `formal-conjectures` `Hadamard.lean` (`AUDIT-035` `N2`), `anthropics/FlashProve` Schatten-Nuclear obstruction (`AUDIT-036` `N2`), `NousResearch/DisTrO` DCT complement (`AUDIT-039` `N2`), `zai-org/RPC-Bench` Schur/Plücker commutator (`AUDIT-037`), singular-horizon Krein null-coupling (`AUDIT-041`), $p$-adic BTZ DtN visibility/blindness (`AUDIT-042`), Boundary Double-Schur Holographic Hodge-1 & Surgical Krein-Severing (`AUDIT-047R` **`N2`**, `AUDIT-044`), Euler–Witt & Rank–Crank mock-shadow Schur (`AUDIT-045`), $PGL(2,\mathbb{Q}(q))$ Rogers–Ramanujan hard-core Schur peeling (`AUDIT-046`), exact integer Ramanujan-subspace Schur projection (`AUDIT-048R`), `judegomila/canculus` $2\times 2$ adaptive feedback Schur (`AUDIT-050`), Alpöge–Buckmaster–Coiculescu 3D Euler Leray pressure Schur (`AUDIT-053R`), `tristanbuckmaster/navier-stokes` `SignedTree` multifrontal Schur coercivity (`AUDIT-052`), Double-Slit GKSL pinching & linear looped-trajectory Sorkin Schur (`AUDIT-054`), `camail-official` LTI DC Schur SPA & ICML 2026 `neuro-lds` RKHS discrepancy Schur (`AUDIT-058R`), `alphaxiv/HOPE` progressive Hilbert-operator Schur & `QRR` $U(1)$ fiber Schur (`AUDIT-060`), Universal Complex $U(1)$ Surgical Severing + Two-Phase $\mathbb{Z}_4/\mathbb{Z}_2$ Single-Vertex Interior Green's-Function Tomography + $M$-Slit Looped-Schur Order Law (`AUDIT-056` **`N2`** Q2), and `Moissanite-Labs/warp-drive` stacked-adapter Bareiss Gram Schur (`Q_stack` singular-$G_{kk}$ blind-drift witness + `SignedTree`) & Fisher-Schur `+55%` preconditioning KL trap (`WI-4`, `AUDIT-061R` & `AUDIT-064`).
 - **Round 4C & Round 5 Highlights:** Shipped the empirically zero-collision (`0 / 227,540` Lean 4 files) 8-glyph **Aletheia Operator Calculus (`⧄, ⧅, ⦷, ⟠, ⧇, ⦺, ⩩, ⫩`)** inside `aletheia v1.3.0` (`AUDIT-051`/`055`), audited `alphaxiv/OpenResearch` (`8,385★` Rust, `12/12` live findings incl. `ORX-PG-01..04`, `AUDIT-057R`), and joined `qwen-neuron-map.pages.dev` (`1.5M` neurons) with `siliquant` to identify Gemma 4 E4B Layer 10 as `#1/42` outgoing circuit fan-out (`AUDIT-059`).
+- **Round 6 Highlights (`Moissanite-Labs/warp-drive` & `aletheia v1.4.0`):** `7/7` audits `VERIFIED` (`AUDIT-061R`–`067R`, `448/448` Phase-2 + `80/80` Phase-3 upstream R5 mutants killed, **`22/22` red-team bypasses/defects caught and closed fail-closed**); landed 3 clean own-org Draft PRs (`warp-drive#15`, `#13`, `#12` raising `certificate.py`/`ledger.py`/`server.py` mutation kill rate from `36.0%` to **`100.0%`** with `72/72` tests passing across 3 R4 modes and zero new GitHub Actions workflows), explained `ml-os#6` `Qwen3.5-4B` `blk.31` via `294,912`-neuron DAG tomography, and reverse-extracted AST local refusal-wrapper auto-detection (`74` mutants on untouched `bareiss_gram_gate.py`), strict duplicate-key/no-`NaN` JSON/JSONL, canonical `--strict-ancestors`, and `CS-12` (`Trust-Boundary Shadow`) into **`Foundation-0/aletheia#1` `v1.4.0`** (`85830ca0`).
 
 ---
 
