@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-2-round-9-complete",
-  "updated_at": "2026-11-21T21:15:00-06:00",
+  "wave": "wave-2-round-10-complete",
+  "updated_at": "2026-11-22T05:40:00Z",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -13,12 +13,12 @@
     {
       "id": "Foundation-0/aletheia",
       "kind": "framework",
-      "role": "methodology + stdlib CLI v1.4.0 (@85830ca0, AUDIT-067R): R1-R5, 8-glyph calculus, AST local refusal-wrapper auto-detection, loads_strict_json/JSONL, --strict-ancestors, CS-12, plugins"
+      "role": "methodology + stdlib CLI (v1.4.0 @ 85830ca0 + merged PR #7 @ aa471867; v2.0.0 prep integrating OWN_TERMS_FIRST, Law 2b Transformational Steelman, R6/R7, Two-Direction R3, Gate-8 col(Phi) latch, Mechanism-First Gate 9, Two-Pass Advocate, CYA-GAP-01..06)"
     },
     {
       "id": "Foundation-0/cave-expedition",
       "kind": "evidence_hub",
-      "role": "8-way Schur unification + AUDIT-001..022R"
+      "role": "Umbrella ledger AUDIT-001..088R (check_001..079); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + PRs #4-#7 outside-review reconciliation"
     },
     {
       "id": "Foundation-0/spectral-inertia",
@@ -213,12 +213,12 @@
     {
       "id": "judegomila",
       "kind": "round4b_external_researcher_readonly",
-      "role": "Strictly read-only (12 repos, 7 original): zeta-explorer@694eb35f9144 (190+ RH routes + Lean), dbn-lambda-01787854-candidate-audit@a74738deb6d5 (C fail-closed interval certs + lean/aristotle), canculus@ef76861b4e84 (adaptive pathway calculus), OnCo@d43842087851 (245★ cited KG + MCP)"
+      "role": "Strictly read-only (12 repos, 7 original): zeta-explorer@694eb35f9144 (190+ RH routes + Lean), dbn-lambda-01787854-candidate-audit@a74738deb6d5 (C fail-closed interval certs + lean/aristotle), canculus@ef76861b4e84 (adaptive pathway calculus), OnCo@d43842087851 (245\u2605 cited KG + MCP)"
     },
     {
       "id": "tristanbuckmaster",
       "kind": "round4d_external_researcher_readonly",
-      "role": "Strictly read-only (3 repos, 2 original Lean PDE): navier-stokes@ad53419de079 (260★, 2026-11-20), fluid_lean@d0124689230b (271★: affinecore, boussinesq-blowup, euler-blowup), plus Alpoge-Buckmaster-Coiculescu cc.pdf (55pp, 3D Euler finite-time singularity, SHA-256 414f5af6...)"
+      "role": "Strictly read-only (3 repos, 2 original Lean PDE): navier-stokes@ad53419de079 (260\u2605, 2026-11-20), fluid_lean@d0124689230b (271\u2605: affinecore, boussinesq-blowup, euler-blowup), plus Alpoge-Buckmaster-Coiculescu cc.pdf (55pp, 3D Euler finite-time singularity, SHA-256 414f5af6...)"
     },
     {
       "id": "Foundation-0/ramanujan",
@@ -238,7 +238,7 @@
     {
       "id": "alphaxiv",
       "kind": "round5_external_org_readonly",
-      "role": "Strictly read-only (120 repos, 113 non-fork): OpenResearch@48f42c45 (8,385★ Rust), paper-implementations@5e4893be, weight-edit-minimization@768d7340, flint-goalkeeper-neuron@6ece43a9, feige-231f2e0b@50b0b2de (Lean), sumsets/HOPE/recurrence-convergence"
+      "role": "Strictly read-only (120 repos, 113 non-fork): OpenResearch@48f42c45 (8,385\u2605 Rust), paper-implementations@5e4893be, weight-edit-minimization@768d7340, flint-goalkeeper-neuron@6ece43a9, feige-231f2e0b@50b0b2de (Lean), sumsets/HOPE/recurrence-convergence"
     },
     {
       "id": "camail-official",
@@ -258,7 +258,7 @@
     {
       "id": "magnitudedev/magnitude",
       "kind": "round7_external_repo_readonly",
-      "role": "Strictly read-only (main @ d89dfff, 8,045★, 6,216 files): Rust hardware-autotuning inference engine (inference/{seismic,solver,engine,ggml,conversion,evaluation,service}) + TS/Bun CLI/desktop"
+      "role": "Strictly read-only (main @ d89dfff, 8,045\u2605, 6,216 files): Rust hardware-autotuning inference engine (inference/{seismic,solver,engine,ggml,conversion,evaluation,service}) + TS/Bun CLI/desktop"
     },
     {
       "id": "alphaxiv/openresearch-index",
@@ -283,7 +283,7 @@
     {
       "id": "sous-labs/songe",
       "kind": "round8_external_repo_readonly",
-      "role": "Strictly read-only (main @ 5b7b1376, 174★, Python/MLX): Idle-compute local LoRA/distillation training engine for coding agents"
+      "role": "Strictly read-only (main @ 5b7b1376, 174\u2605, Python/MLX): Idle-compute local LoRA/distillation training engine for coding agents"
     },
     {
       "id": "loom-fun/unsloth-Inkling-2-Mini-loom",
@@ -293,7 +293,7 @@
     {
       "id": "southpolesteve/workers-dns-tcp",
       "kind": "round8_external_repo_readonly",
-      "role": "Strictly read-only (main @ 9a5f9002, 43★, TypeScript): Authoritative DNS-over-TCP server on Cloudflare Workers querying Gemma via dig"
+      "role": "Strictly read-only (main @ 9a5f9002, 43\u2605, TypeScript): Authoritative DNS-over-TCP server on Cloudflare Workers querying Gemma via dig"
     },
     {
       "id": "langchain/company-harness-knowledge-factory",
@@ -329,6 +329,46 @@
       "id": "arxiv/2609.15987-bpo",
       "kind": "round9_external_paper_readonly",
       "role": "Strictly read-only (Song, Xu, Zhang & Bing, Sep 14, 2026; primary preprint behind Zhihu 2084586770000261374 CDP 403): Bellman Policy Optimization (PMD -> trajectory Bellman RLVR -> smoothed complementary-probability mismatch-correction weight)"
+    },
+    {
+      "id": "Foundation-0/continuum",
+      "kind": "own_org_repo",
+      "role": "Continuum relational-perception thesis (PR #1 continuum.md @ 8d3e7345; line 16 relabeled hypothesis per AUDIT-084R) & Wave-1/Wave-2 synthesis suite (PR #3 @ 7fe4ee22)"
+    },
+    {
+      "id": "Foundation-0/aletheia#9-own-terms-first",
+      "kind": "round10_outside_proposal",
+      "role": "Outside 2-phase empirical rule proposal (OWN_TERMS_FIRST.md @ ffa0ed42, owner-confirmed 2026-11-21) + OTF-TIGHT-01..05 pure-Q tightenings (AUDIT-084R)"
+    },
+    {
+      "id": "Foundation-0/cave-expedition#4-outside-audit",
+      "kind": "round10_outside_review",
+      "role": "Two-pass outside audit of AUDIT_LOG (742f3b2b: 36 rulings, 8/8 mechanism matches, 17+1 sentence fixes, zero-aska 8-item review; reconciled in AUDIT-085R)"
+    },
+    {
+      "id": "Foundation-0/cave-expedition#5-gate5-unification",
+      "kind": "round10_outside_review",
+      "role": "Gate-5 outside check of 8-way unification (abb6d772: 16 rulings; 3/3 unproved PARTIAL claims G5-07/G5-10/G5-13 formally proved by AUDIT-085R Theorems A & B)"
+    },
+    {
+      "id": "Foundation-0/cave-expedition#6-prereg-raw-data",
+      "kind": "round10_outside_prereg",
+      "role": "Pre-registered raw-data test of continuum.md line 16 (24d77573: GWOSC/SEIS/WAVES/TESS, 0 fetched; PREREG-01..04 pre-data exact-Q fixes delivered by AUDIT-087R)"
+    },
+    {
+      "id": "Foundation-0/aletheia#6-nichochar-knowledge-factory",
+      "kind": "round10_outside_capture",
+      "role": "Verbatim 21 Nov 2026 Charriere/Chase knowledge-factory capture & qalam analysis (98db54c3) cross-audited against AUDIT-076R (KF-03d added, KF-04 loophole closed in AUDIT-087R)"
+    },
+    {
+      "id": "Moissanite-Labs/weft",
+      "kind": "own_org_repo",
+      "role": "Weft-Loom agentic evaluation & experiment repository (Wave 2 Round 1/4B/6 cross-audit target)"
+    },
+    {
+      "id": "siliconcordat/warp",
+      "kind": "own_org_repo",
+      "role": "Siliconcordat warp adapter-governance & stacked-Gram verification repository (Wave 2 PR #17 & Round 6)"
     }
   ],
   "edges": [
@@ -1330,7 +1370,7 @@
       "owner_arms": [
         "peer-weaver"
       ],
-      "typed_operator": "Arm R4B-2 (AUDIT-050): Strictly read-only Beyond-Language exact-operator bridge from judegomila/canculus@ef76861b4e84 (route normal form, adaptation closure, robust cuts) to Moissanite-Labs/weft#227 (WEFT-T5 Lafont normal forms) & AUDIT-029/042/043 min-cut/tropical-peeling/Schur adaptation + judegomila/OnCo@d43842087851 (245★ cited KG/MCP/CLI provenance schema)",
+      "typed_operator": "Arm R4B-2 (AUDIT-050): Strictly read-only Beyond-Language exact-operator bridge from judegomila/canculus@ef76861b4e84 (route normal form, adaptation closure, robust cuts) to Moissanite-Labs/weft#227 (WEFT-T5 Lafont normal forms) & AUDIT-029/042/043 min-cut/tropical-peeling/Schur adaptation + judegomila/OnCo@d43842087851 (245\u2605 cited KG/MCP/CLI provenance schema)",
       "target_anomaly": "Testing exact algebraic identities/counterexamples in canculus adaptation closure & robust cuts + harvesting OnCo citation-graph architecture",
       "status": "verified",
       "audit_id": "AUDIT-050 (N1 VERIFIED; check_039; 33/33 R5; live Foundation-0/math0#17 @ 273ff84d; live Node.js CANC-B1..B4 repro + #22 2x2 feedback Schur/PGL(2) + OnCo KG gates)"
@@ -1345,7 +1385,7 @@
         "session-cartographer",
         "fractals-probe"
       ],
-      "typed_operator": "Arm R4C (AUDIT-051): The Aletheia Operator Calculus — 8 empirically 0/227,540-Lean-hit Unicode Sm glyphs (⧄ Schur, ⧅ Shadow, ⦷ Holonomy-Unmask, ⟠ Observer-Equalizer, ⧇ Cohom-Obstruction, ⦺ Krein-Inertia, ⩩ Exact-Null-Eq, ⫩ R5-Refusal-Gate) with executable pure-Q parser/evaluator & commutator discovery (already yielding PSD [⧄,⦷] monotonic horizon screening theorem #274)",
+      "typed_operator": "Arm R4C (AUDIT-051): The Aletheia Operator Calculus \u2014 8 empirically 0/227,540-Lean-hit Unicode Sm glyphs (\u29c4 Schur, \u29c5 Shadow, \u29b7 Holonomy-Unmask, \u27e0 Observer-Equalizer, \u29c7 Cohom-Obstruction, \u29ba Krein-Inertia, \u2a69 Exact-Null-Eq, \u2ae9 R5-Refusal-Gate) with executable pure-Q parser/evaluator & commutator discovery (already yielding PSD [\u29c4,\u29b7] monotonic horizon screening theorem #274)",
       "target_anomaly": "Compressing multi-line expedition obstructions into 1-line compositional algebra & discovering exact operator commutator laws",
       "status": "verified",
       "audit_id": "AUDIT-051 (N1 VERIFIED; check_042; 68/68 R5; live Foundation-0/math0#17 @ 273ff84d & Foundation-0/aletheia#1 v1.3.0 @ 58207b42; 8 glyphs 0/227,540 Lean hits + C1 PSD screening + C6 rational metric on H^1)"
@@ -1388,7 +1428,7 @@
         "gravity-probe",
         "session-cartographer"
       ],
-      "typed_operator": "Arm R4E (AUDIT-054): Symbolic 4-regime Double-Slit & Triple-Slit Continuum-Observer Tomography closing Session 1 Pair 33 L795 — Regime I linear bath complementarity + 16x16 GKSL Schur rate + AUDIT-047R surgical severing & deck-splitting eraser; Regime II 16-vertex Fine-Farkas CHSH 14/5 > 2 local-classical no-go; Regime III-A linear looped-Schur Sorkin (#25, degree-0 intensity invariant) vs III-B intrinsic Kerr continuum (lambda^2 scaling, DS-N0-08 ceiling 507/32464000)",
+      "typed_operator": "Arm R4E (AUDIT-054): Symbolic 4-regime Double-Slit & Triple-Slit Continuum-Observer Tomography closing Session 1 Pair 33 L795 \u2014 Regime I linear bath complementarity + 16x16 GKSL Schur rate + AUDIT-047R surgical severing & deck-splitting eraser; Regime II 16-vertex Fine-Farkas CHSH 14/5 > 2 local-classical no-go; Regime III-A linear looped-Schur Sorkin (#25, degree-0 intensity invariant) vs III-B intrinsic Kerr continuum (lambda^2 scaling, DS-N0-08 ceiling 507/32464000)",
       "target_anomaly": "Separating linear coupled quantum backaction, local classical slit disturbance, linear looped-trajectory Schur coupling, and intrinsic nonlinear Kerr continua",
       "status": "verified",
       "audit_id": "AUDIT-054 (N1 VERIFIED; check_045; 38/38 R5; live Foundation-0/continuum#3 @ 7fe4ee22)"
@@ -1402,7 +1442,7 @@
       "owner_arms": [
         "spectral-prover"
       ],
-      "typed_operator": "Release AUDIT-055: Foundation-0/aletheia v1.3.0 shipping ALETHEIA-CLI-01 fix (--allow-project-import action=extend), stdlib aletheia/calculus.py & `aletheia calculus` 8-glyph CLI (⧄ ⧅ ⦷ ⟠ ⧇ ⦺ ⩩ ⫩), Round-4 evidence pack, and synchronized 1.3.0 plugin/docs",
+      "typed_operator": "Release AUDIT-055: Foundation-0/aletheia v1.3.0 shipping ALETHEIA-CLI-01 fix (--allow-project-import action=extend), stdlib aletheia/calculus.py & `aletheia calculus` 8-glyph CLI (\u29c4 \u29c5 \u29b7 \u27e0 \u29c7 \u29ba \u2a69 \u2ae9), Round-4 evidence pack, and synchronized 1.3.0 plugin/docs",
       "target_anomaly": "Promoting verified 8-glyph operator calculus and hardened Lean audit CLI into permanent cross-repo verification infrastructure",
       "status": "verified",
       "audit_id": "AUDIT-055 (N1 VERIFIED; check_046; 13/13 R5; live Foundation-0/aletheia#1 v1.3.0 @ 58207b42)"
@@ -1430,7 +1470,7 @@
       "owner_arms": [
         "peer-weaver"
       ],
-      "typed_operator": "Arm R5-2 (AUDIT-057): Strictly read-only bidirectional Aletheia v1.3.0 <-> alphaxiv/OpenResearch@48f42c45 (8,385★ Rust) + recursive-harness / arex / meta-skill-creator / paper-implementations tomography & CS-01..CS-11 / R5 audit",
+      "typed_operator": "Arm R5-2 (AUDIT-057): Strictly read-only bidirectional Aletheia v1.3.0 <-> alphaxiv/OpenResearch@48f42c45 (8,385\u2605 Rust) + recursive-harness / arex / meta-skill-creator / paper-implementations tomography & CS-01..CS-11 / R5 audit",
       "target_anomaly": "Harvesting Rust agent-research harness patterns for aletheia/hillclimb while auditing eval/verification gates for concrete R1-R5 findings",
       "status": "verified",
       "audit_id": "AUDIT-057R (N1 VERIFIED; check_049; 27/27 R5; 385-transition monotone reconciler lattice + 12/12 live findings incl. ORX-PG-01..04 on alphaxiv/OpenResearch@48f42c45 & 4 sibling repos)"
@@ -1444,21 +1484,21 @@
       "owner_arms": [
         "fractals-probe"
       ],
-      "typed_operator": "Arm R5-3 (AUDIT-058): Strictly read-only exact-operator symbiosis (⧄ ⧅ ⦺ ⩩) bridging camail-official/{LinearAttentionPruning,compressm,LoReS,neuro-lds,QRR,LoopedActor,discretax} to siliquant#24, spectral-inertia R_opt/R_{H4}, Bareiss PSD, & exact rational star-discrepancy",
+      "typed_operator": "Arm R5-3 (AUDIT-058): Strictly read-only exact-operator symbiosis (\u29c4 \u29c5 \u29ba \u2a69) bridging camail-official/{LinearAttentionPruning,compressm,LoReS,neuro-lds,QRR,LoopedActor,discretax} to siliquant#24, spectral-inertia R_opt/R_{H4}, Bareiss PSD, & exact rational star-discrepancy",
       "target_anomaly": "Mapping SSM/linear-attention state reduction to Schur pushforward + dark-drift shadow & recurrent quantization to E8_Had/Leech24",
       "status": "verified",
       "audit_id": "AUDIT-058R (N1 VERIFIED; check_047; 49/49 R5; live Foundation-0/math0#18 @ 5f966226; CAMAIL-B1..B5 bug proofs + #26 LTI DC Schur SPA & ICML 2026 neuro-lds RKHS Schur)"
     },
     {
       "id": "R5-E04",
-      "portal": "R5-P04 / SF-07 (⟠) / SF-01 (⧅) / SF-05 (⦷)",
+      "portal": "R5-P04 / SF-07 (\u27e0) / SF-01 (\u29c5) / SF-05 (\u29b7)",
       "direction": "bidirectional",
       "source": "qwen-neuron-map",
       "target": "Moissanite-Labs/siliquant",
       "owner_arms": [
         "continuum-bridge"
       ],
-      "typed_operator": "Arm R5-4 (AUDIT-059): Strictly read-only mining of qwen-neuron-map (30 models, 11 labs, 323 families, 18 kinds) + alphaxiv/{weight-edit-minimization,flint-goalkeeper-neuron} as empirical Observer-Net Equalizer (⟠) vs Dark-Neuron Shadow (⧅) & Z_2 sign-symmetry confounder, unlocking siliquant/weft-loom/scry/warp",
+      "typed_operator": "Arm R5-4 (AUDIT-059): Strictly read-only mining of qwen-neuron-map (30 models, 11 labs, 323 families, 18 kinds) + alphaxiv/{weight-edit-minimization,flint-goalkeeper-neuron} as empirical Observer-Net Equalizer (\u27e0) vs Dark-Neuron Shadow (\u29c5) & Z_2 sign-symmetry confounder, unlocking siliquant/weft-loom/scry/warp",
       "target_anomaly": "Separating coordinate-dependent neuron noise (9% seed match) from universal family equalizers (67% group match) & dark-neuron quantization/edit subspaces",
       "status": "verified",
       "audit_id": "AUDIT-059 (N1 VERIFIED; check_048; 24/24 R5; live Moissanite-Labs/siliquant#24 @ d4c54e43; 1,504,256 neurons across 13 models + Gemma 4 E4B L10 #1/42 fan-out mystery + Qwen3.5-0.8B 21/21 anisotropy & Adjacent-brackets 11.63x/20.36x join)"
@@ -1486,7 +1526,7 @@
       "owner_arms": [
         "spectral-prover"
       ],
-      "typed_operator": "Arm R6-1 (AUDIT-061): Non-author deep audit of warp-drive PR #1 (port/bareiss-gram-stack-cert @ 8d9f8155) + src/warp_modeld/certificate.py (SP-09 singular G_kk / blind-drift / SignedTree multifrontal Schur / 8-glyph ⧄ ⧅ ⦺ ⩩ ⫩ invariants)",
+      "typed_operator": "Arm R6-1 (AUDIT-061): Non-author deep audit of warp-drive PR #1 (port/bareiss-gram-stack-cert @ 8d9f8155) + src/warp_modeld/certificate.py (SP-09 singular G_kk / blind-drift / SignedTree multifrontal Schur / 8-glyph \u29c4 \u29c5 \u29ba \u2a69 \u2ae9 invariants)",
       "target_anomaly": "Certifying exact stacked-adapter Gram gates & Stage-2 FixedRadixCertificate soundness with 100% R5 kill",
       "status": "verified",
       "audit_id": "AUDIT-061R (N1 VERIFIED; check_055; 100/100 R5; 2/2 Gram escape bypasses + 8 attacks closed; PR #1 non-author review PR1-B1..B4 + WARP-CERT-01..05 + symbolic KKT R_H4 + singular-G_kk witness + SignedTree; live Moissanite-Labs/warp-drive#12 @ 10ae3b33 & certificate.py fixes in #15 @ e6ad0967)"
@@ -1572,7 +1612,7 @@
         "spectral-prover",
         "verifier"
       ],
-      "typed_operator": "Track P3-4 (AUDIT-067R): Reverse-extraction of Round-6 gems into aletheia v1.4.0 — AST local hard-refusal wrapper auto-detection (mutator.py: 74 mutants on untouched bareiss_gram_gate.py), loads_strict_json/load_strict_jsonl_file, canonical --strict-ancestors permission gate, Case Study V + CS-12 Trust-Boundary Shadow, & local plugin sync (1.4.0)",
+      "typed_operator": "Track P3-4 (AUDIT-067R): Reverse-extraction of Round-6 gems into aletheia v1.4.0 \u2014 AST local hard-refusal wrapper auto-detection (mutator.py: 74 mutants on untouched bareiss_gram_gate.py), loads_strict_json/load_strict_jsonl_file, canonical --strict-ancestors permission gate, Case Study V + CS-12 Trust-Boundary Shadow, & local plugin sync (1.4.0)",
       "target_anomaly": "Closing mutator wrapper blind spots, duplicate-key/NaN JSON smuggling, & ancestor-dir permission gaps across the entire Aletheia framework",
       "status": "verified",
       "audit_id": "AUDIT-067R (N1 VERIFIED; check_057; 14/14 tests; 13/13 fixture R5; 4/4 defects closed; live Foundation-0/aletheia#1 @ 85830ca0 + local plugin 1.4.0)"
@@ -1800,6 +1840,90 @@
       "target_anomaly": "Exposing saturation/divergence boundaries of smoothed complementary-probability mismatch correction vs Score Centering, RIPO & TII",
       "status": "verified",
       "audit_id": "AUDIT-083R (N1 VERIFIED; check_074; 83/83 R5; 7/7 defects closed + 10 extra PASS; exact algebraic identities BPO Eq.(16) == full Score Centering & BPO binary-KL == Top-1 Score Centering, |V|=2 vs |V|>=3 drift dichotomy 0/1 vs 5/24 & 203/816, BPO-SPEC-01 & cap-active triangle 8/75=10.667%; live Foundation-0/math0#21 @ 346ccb9a)"
+    },
+    {
+      "id": "R10-E01",
+      "portal": "R10-P01 / R10-P02 / R10-P03",
+      "direction": "bidirectional",
+      "source": "Foundation-0/aletheia#9-own-terms-first",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Arm R10-1 (AUDIT-084R): Phase-1 net-invariance FWER/Bonferroni gate, Walsh-Hadamard 2-rung continuum-remainder identifiability oracle, 5-class Rule-2 glyph classifier (7/8 renamings), & orthogonal Phase-1/2 composer",
+      "target_anomaly": "Decoupling empirical own-terms testing from literature translation while preventing net-axis FWER inflation (40.13%/50.00%) & single-model misspecification confounds",
+      "status": "verified",
+      "audit_id": "AUDIT-084R (N1 VERIFIED; check_075; 75/75 R5; 6/6 defects closed + 7/7 extra PASS; owner confirmed 2026-11-21)"
+    },
+    {
+      "id": "R10-E02",
+      "portal": "R10-P04 / R10-P05 / R10-P06 / R10-P07",
+      "direction": "bidirectional",
+      "source": "Foundation-0/cave-expedition#5-gate5-unification",
+      "target": "Foundation-0/cave-expedition",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Arm R10-2 (AUDIT-085R): Honest SF-01 partition (29 = 23 QH + 4 QN + 2 L) + 3 Gate-5 morphisms (M1, M2, M3) + pure-Q Theorem A (Q[q] <-> (min,+) cancellation gap + Delta=-1 necessity) & Theorem B (G5-07 universal rank n>=3 + n=2 sharpness)",
+      "target_anomaly": "Separating non-discriminating Schur mechanism taxonomy from explicit running Gate-5 morphisms and closing all 3/3 unproved PARTIAL rulings in PR #5",
+      "status": "verified",
+      "audit_id": "AUDIT-085R (N1 VERIFIED; check_076; 38/38 R5; 5/5 defects closed + 15/15 extra PASS; 8/8 aletheia#2 + 17+1 aletheia#4 + 36 PR#4 + 16 PR#5 rulings reconciled)"
+    },
+    {
+      "id": "R10-E03",
+      "portal": "R10-P08 / R10-P09 / R10-P10 / R10-P11 / R10-P12",
+      "direction": "bidirectional",
+      "source": "Foundation-0/cave-expedition#4-outside-audit",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "peer-weaver"
+      ],
+      "typed_operator": "Arm R10-3 (AUDIT-086R): Pure-Q R6/R7 Record-B gate, Two-Direction R3 Note-D certifier, sampled NOT_SHOWN, oracle/feedback contracts, Gate-8 col(Phi) subspace latch (BLIND_AUDIT_IN_COL_PHI), live 13/13 aletheia#5 + PR#7/#8 repros & v2.0 integration matrix",
+      "target_anomaly": "Closing gate-contract omissions from loom docs/09 (R6/R7, Dir-ii R3, blind col(Phi) audits) and all 11 open + 2 partial CLI/schema reproducers in aletheia#5",
+      "status": "verified",
+      "audit_id": "AUDIT-086R (N1 VERIFIED; check_078; 114/114 R5; 3/3 defects closed + 9/9 extra PASS; live git-archive verified on 58207b4, aa471867, aa920b1a)"
+    },
+    {
+      "id": "R10-E04",
+      "portal": "R10-P13 / R10-P14",
+      "direction": "bidirectional",
+      "source": "Foundation-0/cave-expedition#6-prereg-raw-data",
+      "target": "Foundation-0/continuum",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Arm R10-4 (AUDIT-087R): Pure-Q pre-data statistical-power, R o P symmetry-obstruction, mid-rank end-matching, & scale-flow capacity audit of PREREG.md (PREREG-01..04) before fetching 635 MB telemetry",
+      "target_anomaly": "Preventing 49.84% calibrated false invalidation (AND K/S<=0.10 override), time-even T3 dilution of K4, monotone-map offset leakage, & WAVES/TESS scale-flow starvation before opening real data",
+      "status": "verified",
+      "audit_id": "AUDIT-087R (N1 VERIFIED; check_077; 108/108 R5; 4/4 defects closed + 9/9 extra PASS; 0 real telemetry fetched)"
+    },
+    {
+      "id": "R10-E05",
+      "portal": "R10-P14 / R8-P05",
+      "direction": "bidirectional",
+      "source": "Foundation-0/aletheia#6-nichochar-knowledge-factory",
+      "target": "langchain/company-harness-knowledge-factory",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Arm R10-4 (AUDIT-087R): Unified Knowledge-Factory Curator Governor fusing Charriere gardener-only write-intent & Lenton KF-03d in-flight epoch nudge with AUDIT-076R Biba/BLP + closing KF-04 Data-Access/Domain-Knowledge auto-merge loophole",
+      "target_anomaly": "Closing confused-deputy auto-merge on Data-Access/Domain-Knowledge layers and unnotified in-flight stale-skill reads",
+      "status": "verified",
+      "audit_id": "AUDIT-087R (N1 VERIFIED; check_077; unified with AUDIT-076R)"
+    },
+    {
+      "id": "R10-E06",
+      "portal": "R10-P15 / R10-P01",
+      "direction": "bidirectional",
+      "source": "Foundation-0/aletheia#9-own-terms-first",
+      "target": "Foundation-0/continuum",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Arm R10-5 (AUDIT-088R): Law 2b Transformational Steelman (LAW2B_TRANSFORM_BEFORE_DISMISSAL) 7-family morphism search (T1..T7) + 4 fail-closed anti-epicycle guards (G1..G4) + 10 exact-Q vault witnesses (7 rescues incl. CS-08 +1/66 & Zhihu L112 -1/8 vs +1/8; 3 irreducible obstructions)",
+      "target_anomaly": "Preventing premature FALSIFIED dismissal of transformable mathematical cores while blocking degenerate/post-hoc epicycles and silent goalpost-moving",
+      "status": "verified",
+      "audit_id": "AUDIT-088R (N1 VERIFIED; check_079; 55/55 R5; 4/4 defects closed + 14/14 extra PASS; structural twin to OWN_TERMS_FIRST)"
     }
   ],
   "round1_summary": {
@@ -1918,14 +2042,14 @@
     "lean4_corpus_files_scanned": 227540,
     "lean4_collisions": 0,
     "glyphs": [
-      "⧄ (U+29C4 schur_pushforward)",
-      "⧅ (U+29C5 dark_mode_shadow)",
-      "⦷ (U+29B7 holonomy_unmask)",
-      "⟠ (U+27E0 observer_equalizer)",
-      "⧇ (U+29C7 cohom_obstruction)",
-      "⦺ (U+29BA krein_inertia)",
-      "⩩ (U+2A69 exact_null_equiv)",
-      "⫩ (U+2AE9 r5_refusal_gate)"
+      "\u29c4 (U+29C4 schur_pushforward)",
+      "\u29c5 (U+29C5 dark_mode_shadow)",
+      "\u29b7 (U+29B7 holonomy_unmask)",
+      "\u27e0 (U+27E0 observer_equalizer)",
+      "\u29c7 (U+29C7 cohom_obstruction)",
+      "\u29ba (U+29BA krein_inertia)",
+      "\u2a69 (U+2A69 exact_null_equiv)",
+      "\u2ae9 (U+2AE9 r5_refusal_gate)"
     ],
     "audits_in_flight": [],
     "audits_verified": [
@@ -2113,5 +2237,42 @@
       "math0_r9": "https://github.com/Foundation-0/math0/pull/21 (feat/round9-offpolicy-rl-quartet-and-jdpru @ 346ccb9a87a9777385a1c489e817f3ed38ee4955; AUDIT-078R/079R/080R/082R/083R)"
     },
     "total_unresolved_defects": 0
+  },
+  "round10_summary": {
+    "status": "100_percent_verified_pre_push_staged",
+    "portal_doc": "symbiosis/round10/cartography/ROUND10_PORTALS.md",
+    "catalog_json": "symbiosis/round10/cartography/round10_catalog.json",
+    "review_pack": "symbiosis/round10/cartography/CAVE_EXPEDITION_REVIEW_PACK.md",
+    "read_only_phase_1_2": true,
+    "zero_external_writes": true,
+    "owner_confirmed_aletheia_pr9_and_law2b": true,
+    "arms_total": 5,
+    "arms_verified": 5,
+    "audits_verified": [
+      "AUDIT-084R (N1; check_075; 75/75 R5; OWN_TERMS_FIRST + continuum#1 + cave-expedition#7)",
+      "AUDIT-085R (N1; check_076; 38/38 R5; aletheia#2/#4 + cave-expedition#4/#5 + Theorems A & B + SF-01 honest taxonomy)",
+      "AUDIT-086R (N1; check_078; 114/114 R5; R6/R7 + 2-dir R3 + Gate-8 col(Phi) latch + aletheia#5/#7/#8 + v2.0 matrix)",
+      "AUDIT-087R (N1; check_077; 108/108 R5; cave-expedition#6 PREREG-01..04 + aletheia#6 vs AUDIT-076R)",
+      "AUDIT-088R (N1; check_079; 55/55 R5; Law 2b Transformational Steelman T1..T7 + G1..G4 + 10 vault witnesses)"
+    ],
+    "audits_in_flight": [],
+    "r5_mutants_killed": "390/390 (100.0%)",
+    "live_redteam_defects_closed": 22,
+    "extra_boundary_probes_passed": 54,
+    "sf01_gate5_honest_partition": {
+      "actual_entries": 29,
+      "QH": 23,
+      "QN": 4,
+      "T_in_json": 0,
+      "L": 2,
+      "verified_morphisms": [
+        "M1 (AUDIT-017<->019 + Thm B)",
+        "M2 (AUDIT-064 WI-4<->079R RIPO)",
+        "M3 (Q[q]<->(min,+) + Thm A)"
+      ]
+    },
+    "total_unresolved_defects": 0,
+    "completion_doc": "symbiosis/round10/cartography/ROUND10_COMPLETE.md",
+    "portal_doc_preserved_sha256": "282b798cce408ffb2d1abd317b2e743bc385d0d45481ea1c6374a1c630b06808"
   }
 }

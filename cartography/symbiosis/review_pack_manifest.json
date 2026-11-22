@@ -1,0 +1,118 @@
+{
+  "schema": "expedition.review_pack_manifest.v1",
+  "round": 10,
+  "date_utc": "2026-11-22",
+  "status": "awaiting_verifier_clearance",
+  "github_writes_executed": 0,
+  "targets": [
+    {
+      "id": "cave_pr_4",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 4,
+      "pinned_head_sha": "742f3b2bf82cb4f8c1b4beb31cbe867c3d3bd574",
+      "draft_file": "reviews/review_cave_pr4.md",
+      "bytes": 4953,
+      "sha256": "c2a426043374642dc8ae378ef5085ce739e3a93544a6cffec993519e876aaa9a",
+      "recommended_action": "COMMENT_AND_ENDORSE_8_FIXES_BEFORE_MERGE",
+      "backing_audits": [
+        "AUDIT-085R",
+        "AUDIT-088R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "cave_pr_5",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 5,
+      "pinned_head_sha": "abb6d772711d133ee888c42b9ac1afe58328ddee",
+      "draft_file": "reviews/review_cave_pr5.md",
+      "bytes": 6192,
+      "sha256": "fb09e5a61726805a6fe0da8518d87764076768093b98f568a6b2692e8a63435f",
+      "recommended_action": "COMMENT_DELIVER_THEOREMS_A_B_READY_WHEN_UNDRAFTED",
+      "backing_audits": [
+        "AUDIT-085R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "cave_pr_6",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 6,
+      "pinned_head_sha": "24d7757309b5b6b7b5179be2a65387af58fd5f9b",
+      "draft_file": "reviews/review_cave_pr6.md",
+      "bytes": 5819,
+      "sha256": "5b7cfce6f53245126192d6300533f48655949392c990e093d8a0ce608412a551",
+      "recommended_action": "REQUEST_PRE_DATA_AMENDMENTS_PREREG_01_04",
+      "backing_audits": [
+        "AUDIT-087R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "cave_pr_7",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 7,
+      "pinned_head_sha": "a6b919ad21c2701a5b4eb00033652e380f7804b2",
+      "draft_file": "reviews/review_cave_pr7.md",
+      "bytes": 3201,
+      "sha256": "1169ab81137a17806ec48cf7ea64e199b0c1938a267c30786accd0ed2615338f",
+      "recommended_action": "APPROVE_READY_TO_MERGE_WHEN_UNDRAFTED",
+      "backing_audits": [
+        "AUDIT-084R",
+        "AUDIT-088R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "cave_issue_2",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "issue",
+      "number": 2,
+      "pinned_head_sha": null,
+      "draft_file": "reviews/comment_cave_issue2.md",
+      "bytes": 2582,
+      "sha256": "fe61ea865e9dfbdee424b0480ff33b2fd64ab7eff801299ed990a968f9875557",
+      "recommended_action": "POST_HONEST_GATE5_SYNTHESIS_UPDATE",
+      "backing_audits": [
+        "AUDIT-085R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "cave_issue_3",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "issue",
+      "number": 3,
+      "pinned_head_sha": null,
+      "draft_file": "reviews/comment_cave_issue3.md",
+      "bytes": 897,
+      "sha256": "0c52c4521e0e01efd33b009c696dae89fc4064542c241a293c34165baadcd642",
+      "recommended_action": "POST_RECONCILIATION_MERGE_READINESS",
+      "backing_audits": [
+        "AUDIT-085R"
+      ],
+      "posted_to_github": false
+    },
+    {
+      "id": "continuum_pr_1",
+      "repo": "Foundation-0/continuum",
+      "kind": "pull_request",
+      "number": 1,
+      "pinned_head_sha": "8d3e7345f593378fd0ba6a020509d52afc9f362e",
+      "draft_file": "reviews/review_continuum_pr1.md",
+      "bytes": 2829,
+      "sha256": "1b73860360368e7fbdc78e7a9d032f4ec2dc870336152cf5d1c8b1aac540df86",
+      "recommended_action": "POST_DIRECT_ANSWERS_TO_REVIEW_6010323491",
+      "backing_audits": [
+        "AUDIT-084R",
+        "AUDIT-087R",
+        "AUDIT-088R"
+      ],
+      "posted_to_github": false
+    }
+  ]
+}

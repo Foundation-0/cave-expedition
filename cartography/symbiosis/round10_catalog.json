@@ -1,0 +1,383 @@
+{
+  "schema": "expedition.round_catalog.v1",
+  "round": 10,
+  "wave": 2,
+  "date_utc": "2026-11-22",
+  "status": "100_percent_verified_pre_push_staged",
+  "title": "Wave 2 Round 10: Cross-Model Adversarial Synthesis of Claude Outside Review (Foundation-0/aletheia, cave-expedition, continuum) & Law-2b Transformational Steelman",
+  "policy": {
+    "github_writes_phase_1_2": 0,
+    "external_writes": 0,
+    "publish_aletheia_touched": false,
+    "publish_aletheia_local_head": "85830ca0b786f9c9cef753f7fe11f6839f2e5481",
+    "round10_portals_preserved_sha256": "282b798cce408ffb2d1abd317b2e743bc385d0d45481ea1c6374a1c630b06808",
+    "round10_completion_doc": "symbiosis/round10/cartography/ROUND10_COMPLETE.md",
+    "sf01_baseline_json_sha256": "641785cfaf046d3296611ebf70f371e6548c02862eb667e93c1f297bb753d534",
+    "owner_mandate_2026_11_21": {
+      "aletheia_pr9_direction_confirmed": true,
+      "law2b_transformational_steelman_mandated": true,
+      "autonomous_stewardship_authorized": true,
+      "verifier_clearance_required_before_github_write": true
+    },
+    "mindset": "Aletheia Laws 1-5 applied to ourselves: zero defensiveness, zero blind rubber-stamping, zero-shared-code verification of both outside critiques and our own claims."
+  },
+  "totals": {
+    "arms_total": 5,
+    "arms_verified": 5,
+    "r5_mutants_killed": 390,
+    "r5_mutants_total": 390,
+    "live_redteam_defects_closed": 22,
+    "extra_boundary_probes_passed": 54,
+    "unresolved_defects": 0
+  },
+  "sf01_gate5_upgrade": {
+    "actual_json_entries": 29,
+    "previous_prose_count": 30,
+    "partition": {
+      "QH_hermitian_quadratic": 23,
+      "QN_non_hermitian_operator": 4,
+      "T_tropical_min_plus_in_sf01_json": 0,
+      "T_tropical_min_plus_in_readme_8row": 1,
+      "L_label_only": 2
+    },
+    "qn_entries": [
+      "Foundation-0/fractals (AUDIT-018 GKSL Lindblad)",
+      "judegomila/canculus (AUDIT-050 asymmetric feedback Schur)",
+      "Foundation-0/continuum#3 (AUDIT-054 16x16 GKSL)",
+      "ShivamDuggal4/latent-lattice-language-models (AUDIT-072R 2D non-normal block Schur)"
+    ],
+    "verified_gate5_morphisms": [
+      "M1: AUDIT-017 <-> AUDIT-019 exact block congruence S_el = R_L^T S_lat R_L + Theorem B (G5-07 universal proof n>=3 + n=2 sharpness)",
+      "M2: AUDIT-064 WI-4 <-> AUDIT-079R RIPO-FS-04 exact Fisher-Schur simplex pullback diag(9/4, 49/2, 0)",
+      "M3: Q[q] Schur <-> (min,+) Kleene Star exact valuation-cancellation-gap functor + Theorem A (G5-10/G5-13 + Delta=-1 necessity)"
+    ]
+  },
+  "repos": [
+    {
+      "repo": "Foundation-0/aletheia",
+      "clone_path": "symbiosis/round10/repos/aletheia-live",
+      "main_sha": "6a6c1af8fcae1dd7b2bc6d0cc8f471cdbd64747f",
+      "refs": {
+        "feat/aletheia-v1-framework": "aa471867b21a0645c3290dea55c46b9732765ae9",
+        "pr/1": "aa471867b21a0645c3290dea55c46b9732765ae9",
+        "pr/6": "98db54c39812546e9acb8e7f9f2b39fffd46e487",
+        "pr/7": "362a8285d16eacdd14d549ccb55dec64c3a527af",
+        "pr/8": "aa920b1a908b3131c6eb3116f2e9ba21bccd0834",
+        "pr/9": "ffa0ed4290d782a945eb4f77e3423195460672d0"
+      },
+      "divergence_vs_local_publish_aletheia": {
+        "local_head": "85830ca0b786f9c9cef753f7fe11f6839f2e5481",
+        "remote_ahead_commits": 7,
+        "remote_behind_commits": 0,
+        "cause": "Merged PR #7 (fix/pr1-review-blockers, 6 commits + merge aa471867) on 2026-11-22T02:44:46Z"
+      }
+    },
+    {
+      "repo": "Foundation-0/cave-expedition",
+      "clone_path": "symbiosis/round10/repos/cave-expedition-live",
+      "main_sha": "a126bfdf9ee58285039299e5dccade3918f7efa5",
+      "refs": {
+        "pr/1": "1c589cfa5980c10af0073f85b6048d7280c10689",
+        "pr/4": "742f3b2bf82cb4f8c1b4beb31cbe867c3d3bd574",
+        "pr/5": "abb6d772711d133ee888c42b9ac1afe58328ddee",
+        "pr/6": "24d7757309b5b6b7b5179be2a65387af58fd5f9b",
+        "pr/7": "a6b919ad21c2701a5b4eb00033652e380f7804b2"
+      }
+    },
+    {
+      "repo": "Foundation-0/continuum",
+      "clone_path": "symbiosis/round10/repos/continuum-live",
+      "main_sha": "1c9a9efa068b57e2dd7a39e52286c3b72a9463e6",
+      "refs": {
+        "pr/1": "8d3e7345f593378fd0ba6a020509d52afc9f362e",
+        "anthology": "4095da19148f20e02ceb5d47ce4a2249f68b954f",
+        "expedition/synthesis-instruments": "7fe4ee2202dad0e5c5420756a037c212fd3e52ee"
+      }
+    }
+  ],
+  "portals": [
+    {
+      "id": "R10-P01",
+      "repo": "Foundation-0/aletheia",
+      "kind": "pull_request",
+      "number": 9,
+      "state": "open_draft_owner_confirmed",
+      "head_sha": "ffa0ed4290d782a945eb4f77e3423195460672d0",
+      "author": "orda-aska",
+      "arm": "R10-1",
+      "audit_id": "AUDIT-084R",
+      "primary_sha256": "bd14863344c494f1e0399d486267231fe3002fe7e005d354e2f82a8c105d6746"
+    },
+    {
+      "id": "R10-P02",
+      "repo": "Foundation-0/continuum",
+      "kind": "pull_request",
+      "number": 1,
+      "state": "open",
+      "head_sha": "8d3e7345f593378fd0ba6a020509d52afc9f362e",
+      "author": "ahrazzle",
+      "arm": "R10-1",
+      "audit_id": "AUDIT-084R",
+      "primary_sha256": "516f6080563f223a4d8da437d37aaff479988f08f9079bfa48116cbb4fdc3150"
+    },
+    {
+      "id": "R10-P03",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 7,
+      "state": "open_draft",
+      "head_sha": "a6b919ad21c2701a5b4eb00033652e380f7804b2",
+      "author": "orda-aska",
+      "arm": "R10-1",
+      "audit_id": "AUDIT-084R",
+      "primary_sha256": "a9863b2f6a3c36dd334c8415a4aef1eadba738b1a2b6ae5e500798217125158d"
+    },
+    {
+      "id": "R10-P04",
+      "repo": "Foundation-0/aletheia",
+      "kind": "issue",
+      "number": 2,
+      "state": "open",
+      "author": "orda-aska",
+      "arm": "R10-2",
+      "audit_id": "AUDIT-085R",
+      "primary_sha256": "c3166387362f8d8bca181eebbfffdae6f7af9bf838317f8e1cf86cbda2e82d15"
+    },
+    {
+      "id": "R10-P05",
+      "repo": "Foundation-0/aletheia",
+      "kind": "issue",
+      "number": 4,
+      "state": "open",
+      "author": "orda-aska",
+      "arm": "R10-2",
+      "audit_id": "AUDIT-085R",
+      "primary_sha256": "e3da52efc1e8f44fac4e237f1d08dd8f9b41a48c348a18b89686e65ccbac7fad"
+    },
+    {
+      "id": "R10-P06",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 4,
+      "state": "open_changes_requested",
+      "head_sha": "742f3b2bf82cb4f8c1b4beb31cbe867c3d3bd574",
+      "author": "orda-aska",
+      "reviewer": "zero-aska",
+      "arm": "R10-2",
+      "audit_id": "AUDIT-085R",
+      "primary_sha256": "6b4dc5a99079cc77c693d49027b5f98ef8f7336e6af36c0690eeb9d63e9aeac1"
+    },
+    {
+      "id": "R10-P07",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 5,
+      "state": "open_draft",
+      "head_sha": "abb6d772711d133ee888c42b9ac1afe58328ddee",
+      "author": "orda-aska",
+      "arm": "R10-2",
+      "audit_id": "AUDIT-085R",
+      "primary_sha256": "7e8fa8e1b494f5099b4f99923d0442b2d2a49dc8287959595e1c568b9d723a42"
+    },
+    {
+      "id": "R10-P08",
+      "repo": "Foundation-0/aletheia",
+      "kind": "issue",
+      "number": 3,
+      "state": "open",
+      "author": "orda-aska",
+      "arm": "R10-3",
+      "audit_id": "AUDIT-086R",
+      "primary_sha256": "88b7d14041f36f25603ac27a4a1299472d457194034ec2ce7faee33fba9c05a1"
+    },
+    {
+      "id": "R10-P09",
+      "repo": "Foundation-0/aletheia",
+      "kind": "issue",
+      "number": 5,
+      "state": "open",
+      "author": "orda-aska",
+      "arm": "R10-3",
+      "audit_id": "AUDIT-086R",
+      "primary_sha256": "684e5697190b2505e10c048281e49fe307634db3af3146a2143b601c7e7da070"
+    },
+    {
+      "id": "R10-P10",
+      "repo": "Foundation-0/aletheia",
+      "kind": "pull_request",
+      "number": 1,
+      "state": "open_changes_requested",
+      "head_sha": "aa471867b21a0645c3290dea55c46b9732765ae9",
+      "author": "abu-aska",
+      "reviewers": ["ahrazzle", "zero-aska"],
+      "arm": "R10-3",
+      "audit_id": "AUDIT-086R",
+      "primary_sha256": "1a32bd825f1f38000e0cb9edf16f8a943b6c9a725ba126b350cb48ec1b638d5d"
+    },
+    {
+      "id": "R10-P11",
+      "repo": "Foundation-0/aletheia",
+      "kind": "pull_request",
+      "number": 7,
+      "state": "merged",
+      "head_sha": "362a8285d16eacdd14d549ccb55dec64c3a527af",
+      "merge_commit_sha": "aa471867b21a0645c3290dea55c46b9732765ae9",
+      "author": "orda-aska",
+      "arm": "R10-3",
+      "audit_id": "AUDIT-086R",
+      "primary_sha256": "63c2d4283ecb8673bf150f756e910dd0e86321dabb6600b27ff7bc03f5cb043c"
+    },
+    {
+      "id": "R10-P12",
+      "repo": "Foundation-0/aletheia",
+      "kind": "pull_request",
+      "number": 8,
+      "state": "open_draft",
+      "head_sha": "aa920b1a908b3131c6eb3116f2e9ba21bccd0834",
+      "author": "orda-aska",
+      "arm": "R10-3",
+      "audit_id": "AUDIT-086R",
+      "primary_sha256": "bec1e4a1f8c394f1a5087a6a13af0d6032d890109945cb26766a7d48f750cd14"
+    },
+    {
+      "id": "R10-P13",
+      "repo": "Foundation-0/cave-expedition",
+      "kind": "pull_request",
+      "number": 6,
+      "state": "open_draft",
+      "head_sha": "24d7757309b5b6b7b5179be2a65387af58fd5f9b",
+      "author": "orda-aska",
+      "arm": "R10-4",
+      "audit_id": "AUDIT-087R",
+      "primary_sha256": "8ed03fb9f3f5b712d961b04ebdc2f539c398cac6e5e1fbecb6eeacb6041b5483"
+    },
+    {
+      "id": "R10-P14",
+      "repo": "Foundation-0/aletheia",
+      "kind": "pull_request",
+      "number": 6,
+      "state": "open",
+      "head_sha": "98db54c39812546e9acb8e7f9f2b39fffd46e487",
+      "author": "orda-aska",
+      "arm": "R10-4",
+      "audit_id": "AUDIT-087R",
+      "primary_sha256": "d433ac2988fefd9fb3434dfaa5c9fa4257830b3dd71ff3258a0e1068d3dd900b"
+    },
+    {
+      "id": "R10-P15",
+      "repo": "Foundation-0/aletheia",
+      "kind": "owner_directive_protocol",
+      "number": 0,
+      "state": "owner_mandated",
+      "author": "project-owner",
+      "arm": "R10-5",
+      "audit_id": "AUDIT-088R",
+      "primary_sha256": "89a603748228a825c42f54dabe4d6da68059f31b6513122c073f564eeaa03cf0"
+    }
+  ],
+  "n0_quarantine": [
+    "R10-N0-01: Saturated state-dependent cost partitioning (Keller et al. IJCAI 2016; Seipp, Keller & Helmert JAIR 2020)",
+    "R10-N0-02: Bellman equation uniqueness & econometric restricted least squares",
+    "R10-N0-03: Simple Temporal Problem consistency (Dechter, Meiri & Pearl AIJ 1991)",
+    "R10-N0-04: Discrete convexity sandwich (Baron, Matkowski & Nikodem 1994) & Stieltjes-Hankel one-sided moment method",
+    "R10-N0-05: Relaxed Cauchy-Born / pentamode periodic truss stiffness & Borcea-Streinu 2021 sec. 7",
+    "R10-N0-06: Second-order adiabatic elimination in open quantum systems",
+    "R10-N0-07: Non-stochastic diagonal similarity vs Doob h-transform",
+    "R10-N0-08: siliconcordat/loom#9 docs/09-gate-contracts.md @ b6d96ea (R6/R7, 2-dir R3, Gate-8 latch)",
+    "R10-N0-09: Bandt-Pompe ordinal pattern irreversibility, IAAFT surrogates, Berger IUT, Holm-Bonferroni FWER",
+    "R10-N0-10: Tropical (min,+) elimination & Maslov dequantization",
+    "R10-N0-11: Charriere / Chase Knowledge Factory & Gardener-Butler pattern (21 Nov 2026)",
+    "R10-N0-12: Sabra shell model (L'vov et al. 1998) & classical N-version/metamorphic/mutation testing lineage",
+    "R10-5-N0-01: Lakatos Proofs and Refutations, Popperian falsifiability, principle of charity, statistical DoF bounds",
+    "R10-5-N0-02: Classical matrix/functional morphisms (T1..T7) & principal stratification (Frangakis-Rubin 2002)",
+    "R10-5-N0-03: Prior verified expedition audits AUDIT-001..087 & outside review portals"
+  ],
+  "arms": [
+    {
+      "arm_id": "R10-1",
+      "agent": "continuum-bridge",
+      "workspace": "symbiosis/round10/arm1-own-terms-first",
+      "audit_id": "AUDIT-084R",
+      "check_script": "check_075_audit084_own_terms_first.py",
+      "verdict": "VERIFIED",
+      "oracle_class": "exact+anchor",
+      "novelty": "N1",
+      "r5_killed": 75,
+      "r5_total": 75,
+      "defects_closed": 6,
+      "extra_probes_passed": 7,
+      "certificate_sha256": "fdf78f46f8aab78ded6be06545a6f197c2d84dcbb03e4b17720ed2893bc3cac6",
+      "portal_ids": ["R10-P01", "R10-P02", "R10-P03"]
+    },
+    {
+      "arm_id": "R10-2",
+      "agent": "spectral-prover",
+      "workspace": "symbiosis/round10/arm2-unification-and-novelty",
+      "audit_id": "AUDIT-085R",
+      "check_script": "check_076_audit085_unification_bridge.py",
+      "verdict": "VERIFIED",
+      "oracle_class": "exact+anchor",
+      "novelty": "N1",
+      "r5_killed": 38,
+      "r5_total": 38,
+      "defects_closed": 5,
+      "extra_probes_passed": 15,
+      "certificate_sha256": "c1ce29d8b38ce831828a6d53a4e9ef2a4bc7e315b33f0087baacb5b91bf83f44",
+      "portal_ids": ["R10-P04", "R10-P05", "R10-P06", "R10-P07"]
+    },
+    {
+      "arm_id": "R10-3",
+      "agent": "peer-weaver",
+      "workspace": "symbiosis/round10/arm3-gates-r6r7-cli",
+      "audit_id": "AUDIT-086R",
+      "check_script": "check_078_audit086_r6r7_r3.py",
+      "verdict": "VERIFIED",
+      "oracle_class": "exact+anchor",
+      "novelty": "N1",
+      "r5_killed": 114,
+      "r5_total": 114,
+      "defects_closed": 3,
+      "extra_probes_passed": 9,
+      "certificate_sha256": "09bb6b25c4cd4e8bf0ada4d74e4150acde1ec6eebf35ad5cfbf7414e0883eff6",
+      "portal_ids": ["R10-P08", "R10-P09", "R10-P10", "R10-P11", "R10-P12"]
+    },
+    {
+      "arm_id": "R10-4",
+      "agent": "fractals-probe",
+      "workspace": "symbiosis/round10/arm4-prereg-raw-data",
+      "audit_id": "AUDIT-087R",
+      "check_script": "check_077_audit087_prereg_raw_data.py",
+      "verdict": "VERIFIED",
+      "oracle_class": "exact+anchor",
+      "novelty": "N1",
+      "r5_killed": 108,
+      "r5_total": 108,
+      "defects_closed": 4,
+      "extra_probes_passed": 9,
+      "certificate_sha256": "8afb84e301efb95c338bed6cb6eab640211832ead320044c260d6ce71eee47a6",
+      "portal_ids": ["R10-P13", "R10-P14"]
+    },
+    {
+      "arm_id": "R10-5",
+      "agent": "gravity-probe",
+      "workspace": "symbiosis/round10/arm5-transformational-steelman",
+      "audit_id": "AUDIT-088R",
+      "check_script": "check_079_audit088_transformational_steelman.py",
+      "verdict": "VERIFIED",
+      "oracle_class": "exact+anchor",
+      "novelty": "N1",
+      "r5_killed": 55,
+      "r5_total": 55,
+      "defects_closed": 4,
+      "extra_probes_passed": 14,
+      "certificate_sha256": "89a603748228a825c42f54dabe4d6da68059f31b6513122c073f564eeaa03cf0",
+      "portal_ids": ["R10-P15"]
+    }
+  ],
+  "review_pack": {
+    "overview_doc": "symbiosis/round10/cartography/CAVE_EXPEDITION_REVIEW_PACK.md",
+    "manifest_json": "symbiosis/round10/cartography/review_pack_manifest.json",
+    "targets_count": 7,
+    "github_posts_executed": 0
+  }
+}

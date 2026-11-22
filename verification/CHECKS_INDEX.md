@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_074`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_079`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-083R`, `74` scripts total).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_074` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-088R`, `79` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_079` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -79,3 +79,8 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_072_audit082_rl_triad.py` | 296 | `9583cb4b0b6707db` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-082 (RL Triad Synthesis). |
 | `check_073_audit079_ripo.py` | 263 | `c67b90c9f71e0311` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-079 (RIPO, arXiv:2607.10169v2). |
 | `check_074_audit083_bpo.py` | 714 | `7c9111109f10be5a` | `indexed (domain PR)` | Independent zero-shared-code SymPy + LaTeX + adversarial verifier for AUDIT-083 (arXiv:2609.15987 BPO). |
+| `check_075_audit084_own_terms_first.py` | 486 | `63f6751d22211503` | `indexed (domain PR)` | Independent zero-shared-code SymPy + git/portal + adversarial verifier for AUDIT-084 (OWN_TERMS_FIRST). |
+| `check_076_audit085_unification_bridge.py` | 561 | `0f6ee36ddff780d0` | `indexed (domain PR)` | Independent zero-shared-code SymPy + portal + adversarial verifier for AUDIT-085 (Arm R10-2). |
+| `check_077_audit087_prereg_raw_data.py` | 372 | `2274f00920c9e306` | `indexed (domain PR)` | Independent zero-shared-code SymPy + portal + adversarial verifier for AUDIT-087 (Arm R10-4). |
+| `check_078_audit086_r6r7_r3.py` | 394 | `a5e3a521c18a2ac1` | `indexed (domain PR)` | Independent zero-shared-code SymPy + git-archive + adversarial verifier for AUDIT-086 (Arm R10-3). |
+| `check_079_audit088_transformational_steelman.py` | 478 | `260dbd291fcb7171` | `indexed (domain PR)` | Independent zero-shared-code SymPy + vault-anchor + adversarial verifier for AUDIT-088 (Arm R10-5). |
