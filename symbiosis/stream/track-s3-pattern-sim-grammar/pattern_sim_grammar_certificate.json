@@ -1,0 +1,300 @@
+{
+  "apl_summary": {
+    "articulation_count": 0,
+    "biconnected_zero_cuts": true,
+    "bridge_count": 0,
+    "confidence_counts": {
+      "high": 84,
+      "low": 54,
+      "medium": 115
+    },
+    "down_edges": 1200,
+    "e_uniq": 2265,
+    "giant_scc_full": 250,
+    "giant_scc_full_frac": "250/253",
+    "giant_scc_lower": 228,
+    "giant_scc_lower_frac": "228/253",
+    "lower_down": 1172,
+    "lower_down_ratio": "586/705",
+    "lower_e_count": 1410,
+    "lower_tier_matrix": [
+      [
+        324,
+        190,
+        22
+      ],
+      [
+        29,
+        527,
+        140
+      ],
+      [
+        0,
+        14,
+        164
+      ]
+    ],
+    "lower_up": 238,
+    "non_giant_sccs_full": [
+      [
+        229,
+        230
+      ],
+      [
+        253
+      ]
+    ],
+    "nulls": {
+      "lower_down_ge_obs": 0,
+      "lower_down_null_mean_dec4": "880.5100",
+      "lower_down_p": "1/201",
+      "lower_down_p_upper_dec6": "0.004976",
+      "n_shuffles": 200,
+      "recip_ge_obs": 0,
+      "recip_null_mean_dec4": "99.1300",
+      "recip_p": "1/201",
+      "recip_p_upper_dec6": "0.004976",
+      "same_tier_ge_obs": 0,
+      "same_tier_null_mean_dec4": "884.2050",
+      "same_tier_p": "1/201",
+      "same_tier_p_upper_dec6": "0.004976",
+      "seed": 20261122
+    },
+    "oneway_directed_edges": 1251,
+    "raw_wikilinks": 2370,
+    "recip_directed_edges": 1014,
+    "recip_pairs": 507,
+    "reciprocity_dec6": "0.447682",
+    "reciprocity_ratio": "338/755",
+    "same_tier_edges": 1636,
+    "same_tier_ratio": "1636/2265",
+    "scc_count_full": 3,
+    "scc_count_lower": 24,
+    "self_loops": [
+      137
+    ],
+    "tier_matrix_full": [
+      [
+        590,
+        199,
+        22
+      ],
+      [
+        140,
+        808,
+        140
+      ],
+      [
+        3,
+        125,
+        238
+      ]
+    ],
+    "undir_components": 1,
+    "undir_edges": 1758,
+    "unresolved_links": 0,
+    "up_edges": 1065,
+    "upper_down": 41,
+    "upper_e_count": 921,
+    "upper_lower_overlap": 68,
+    "upper_up": 880,
+    "v_count": 253
+  },
+  "audit_gate": {
+    "apl_conservation_ok": true,
+    "certified": true,
+    "global_tech_family_r2_honest_status": "NON_SIGNIFICANT_AT_ALPHA_005",
+    "multi_shuffle_min_b_verified": 200,
+    "simgrammar_conservation_ok": true,
+    "violations": []
+  },
+  "audit_id": "AUDIT-099",
+  "certificate_sha256": "2607cd653a54b4bcd1affe3c32b537de6b369eabe0a756e29e4ac8ed0945be6d",
+  "execution_mode": "live_corpus_recount",
+  "honest_tier": "N0",
+  "law5_comparison": {
+    "apl_biconnected_zero_cuts": true,
+    "apl_giant_scc_lower_frac": "228/253",
+    "law5_anti_smuggling_note": "Comparison restricted strictly to dimensionless graph observables computed from raw files; no shared-vocabulary unification is claimed between architectural patterns and game mechanics.",
+    "sg_dep_strict_dag": true,
+    "sg_global_tech_family_r2_status": "NON_SIGNIFICANT_AT_ALPHA_005",
+    "sg_mech_articulation_frac": "71/199",
+    "sg_mech_bridge_frac": "40/43",
+    "topological_divergence_documented": true
+  },
+  "live_corpus_recounted": true,
+  "paper_reconciliation": {
+    "all_headline_counts_matched": true,
+    "checks": {
+      "cooc_approx_28_5pct": true,
+      "families_21": true,
+      "games_179": true,
+      "gm_edges_2069": true,
+      "live_opportunities_42_of_43_yaml": true,
+      "mech_relations_16_4_102_11_iso_55": true,
+      "mechanics_199": true,
+      "post2010_old_uses_approx_84pct": true,
+      "pre2000_vocab_approx_69pct": true,
+      "spearman_em_lg_neg_approx_042": true,
+      "spearman_em_tn_pos_approx_061": true,
+      "techniques_46": true,
+      "tm_edges_225": true,
+      "unlinked_mechs_97": true,
+      "unlinked_uses_approx_49pct": true
+    },
+    "global_family_renyi2_audit_nuance": "While the top 4 families carry 96/225 technique edges and within-technique family specialization is highly significant (p=1/201), pooled global family Renyi-2 concentration is NON_SIGNIFICANT_AT_ALPHA_005 (p=10/67, <= 0.149254) once catalog family sizes are preserved by mechanic-family permutation.",
+    "opportunity_43_vs_42_resolution": "data/opportunities/ holds 43 YAML files: 42 live opportunities plus 1 deprecated file (weather-coupled-grids.yaml, superseded_by: learned-weather-layer).",
+    "paper_date": "2026-11-04",
+    "paper_version": "0.8"
+  },
+  "payload_sha256": "a72bcd4bd4dd474d836f6239b70918e178cd3d935537d031875397b292ebc0e0",
+  "provenance": {
+    "apl_md_commit": "c622b25f0b4267363d854eba3da6a82516dd5af9",
+    "pinned_inputs_verified": true,
+    "simgrammar_commit": "a1156e80714de0221fefdb037bf2732824a6d156",
+    "simgrammar_paper_bytes": 528025,
+    "simgrammar_paper_dataset_sha256": "f9ac0d88ac86202e2f48efd28caea7807f09bbde00cfb9ae99b2bea5ab38106e",
+    "simgrammar_paper_sha256": "4f75e9929e34809ff73e4ad6f89dad8fb91cdda00719e81cb588e439765de99a"
+  },
+  "schema_version": "audit-099.pattern-sim-grammar.v1",
+  "simgrammar_summary": {
+    "counts": {
+      "deprecated_opportunities": 1,
+      "deprecated_opportunity_details": [
+        {
+          "id": "weather-coupled-grids",
+          "superseded_by": "learned-weather-layer"
+        }
+      ],
+      "families": 21,
+      "games": 179,
+      "live_opportunities": 42,
+      "mechanics": 199,
+      "sources": 770,
+      "techniques": 46,
+      "total_opportunity_files": 43
+    },
+    "game_mechanic_bipartite": {
+      "cooc_dec4": "0.2845",
+      "cooc_pairs": 5605,
+      "cooc_share": "5605/19701",
+      "core_edges": 598,
+      "gm_edges": 2069,
+      "post2010_from_pre2000_uses": 1197,
+      "post2010_old_dec4": "0.8447",
+      "post2010_old_share": "1197/1417",
+      "post2010_uses": 1417,
+      "pre2000_vocab_count": 137,
+      "pre2000_vocab_dec4": "0.6884",
+      "pre2000_vocab_share": "137/199",
+      "supporting_edges": 1471,
+      "total_possible_pairs": 19701
+    },
+    "mechanic_relation_graph": {
+      "articulation_count": 71,
+      "bridge_count": 120,
+      "dep_directed_edges": 20,
+      "dep_nontrivial_sccs": [],
+      "dep_strict_dag": true,
+      "isolated_mechs": 55,
+      "overlapping_multitype_pairs": [
+        [
+          "budget-treasury",
+          "loans-debt"
+        ],
+        [
+          "comparative-histograms",
+          "design-performance-rating"
+        ],
+        [
+          "natural-selection",
+          "trait-inheritance"
+        ],
+        [
+          "rci-demand",
+          "zoning"
+        ]
+      ],
+      "typed_edge_counts": {
+        "requires": 16,
+        "specializes": 4,
+        "synergy": 102,
+        "tension": 11
+      },
+      "typed_edge_total": 133,
+      "undir_components": 73,
+      "undir_mech_edges": 129
+    },
+    "nulls": {
+      "cooc_le_obs": 0,
+      "cooc_null_mean_pairs_dec2": "7110.42",
+      "cooc_null_mean_share_dec4": "0.3609",
+      "cooc_p": "1/201",
+      "cooc_p_upper_dec6": "0.004976",
+      "global_family_r2_ge_obs": 29,
+      "global_family_r2_null_mean_dec6": "0.068352",
+      "global_family_r2_p": "10/67",
+      "global_family_r2_p_upper_dec6": "0.149254",
+      "global_family_r2_status": "NON_SIGNIFICANT_AT_ALPHA_005",
+      "n_shuffles": 200,
+      "seed": 20261122,
+      "spearman_em_lg_le_obs": 0,
+      "spearman_em_lg_p": "1/201",
+      "spearman_em_lg_p_upper_dec6": "0.004976",
+      "spearman_em_tn_ge_obs": 0,
+      "spearman_em_tn_p": "1/201",
+      "spearman_em_tn_p_upper_dec6": "0.004976",
+      "within_tech_r2_ge_obs": 0,
+      "within_tech_r2_null_mean_dec6": "0.223204",
+      "within_tech_r2_p": "1/201",
+      "within_tech_r2_p_upper_dec6": "0.004976"
+    },
+    "spearman_rubric_correlations": {
+      "emergence_vs_legibility_abs_rho_dec6": "0.417917",
+      "emergence_vs_legibility_rho_sq": "225386613001/1290470145216",
+      "emergence_vs_legibility_sign": -1,
+      "emergence_vs_tuning_abs_rho_dec6": "0.611911",
+      "emergence_vs_tuning_rho_sq": "17038976983/45505823736",
+      "emergence_vs_tuning_sign": 1
+    },
+    "technique_mechanic_bipartite": {
+      "global_family_eff_diversity_d2_dec4": "13.4892",
+      "global_family_renyi2": "139/1875",
+      "global_family_renyi2_dec6": "0.074133",
+      "tm_edges": 225,
+      "top_families": [
+        [
+          "agents-behavior",
+          27
+        ],
+        [
+          "narrative-generation",
+          24
+        ],
+        [
+          "physics-materials",
+          24
+        ],
+        [
+          "control-automation",
+          21
+        ],
+        [
+          "space-construction",
+          16
+        ],
+        [
+          "social-relations",
+          15
+        ]
+      ],
+      "touched_mechs": 102,
+      "unlinked_mechs": 97,
+      "unlinked_uses": 1008,
+      "unlinked_uses_dec4": "0.4871",
+      "unlinked_uses_share": "1008/2069",
+      "within_tech_family_renyi2": "403/1245",
+      "within_tech_family_renyi2_dec6": "0.323694"
+    }
+  }
+}

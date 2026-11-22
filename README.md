@@ -2,8 +2,9 @@
 
 Umbrella index, discovery methodology, Wave 2+ compute handoff, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`Foundation-0`](https://github.com/Foundation-0) and [`siliconcordat`](https://github.com/siliconcordat) repository ecosystem.
 
-### Start Here (Methodology, Playbook & Wave 2+ Compute Handoff)
+### Start Here (Collaboration Hub, Methodology, Playbook & Wave 2+ Compute Handoff)
 
+- **[`TEAM_COLLABORATION_HUB.md`](TEAM_COLLABORATION_HUB.md)** — **Live Done / Doing / Planned Cross-Org Dashboard** across all 7 force multipliers (`aletheia`, `siliquant`, `mcproof`, `warp-drive`, `cave-expedition`, `bayt-al-hikma`, `exo`/`weft-loom`/`siliconcordat`), with clickable PR/Issue entry points and newly committed Continuous-Flow Wave 1 packages (`track-s2`, `track-s3`, `track-s5`).
 - **[`METHODOLOGY.md`](METHODOLOGY.md)** — *Portal-Driven Scientific Discovery: How to Run an Anti-Cave Research Swarm* (empirical Pass 1 vs. Pass 2+ inflection, all 5 audited cross-worker chain reactions, the 5 Operational Laws, and anti-pattern red flags).
 - **[`templates/portal-swarm-protocol.md`](templates/portal-swarm-protocol.md)** — Drop-in reusable multi-agent swarm & single-agent playbook (coordinator checklists, copy-pasteable role briefs, exact-vs-sampled decision matrix, and pre-push hygiene gate).
 - **[`NEXT_WAVES_COMPUTE.md`](NEXT_WAVES_COMPUTE.md)** & **[`next_waves_manifest.json`](next_waves_manifest.json)** — Portable, compute-tiered Wave 2+ execution handoff for stronger workstations and clusters (Waves 2A–2D across heavy lattice search, nonlinear AeST/GWOSC PDEs, Lean 4 / higher-moment SOS, and large-scale telemetry/LLM adapter benchmarks).
