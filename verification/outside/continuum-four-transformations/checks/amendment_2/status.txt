@@ -1,0 +1,6 @@
+recompute_k2b.py exit codes: 0 0 0
+identical output in all three modes
+compute_components.py exit codes: 0 0 0
+identical output in all three modes
+derive_yprime.py exit codes: 0 0 0
+identical output in all three modes
