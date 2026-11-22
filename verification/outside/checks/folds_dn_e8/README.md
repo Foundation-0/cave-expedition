@@ -9,7 +9,13 @@ These scripts check the F_n to D_n fold family, the nilpotent C_4 fold and the F
 | check_e8_loewner.py | AUDIT-017: the step G(s) >= G(1) re-derived by invariant planes and exact root isolation, not Bernstein coefficients | `python3 -I -B check_e8_loewner.py` | about 3 s | `RESULT check_e8_loewner: PASS (0 failed checks)` |
 | recheck_folds.py | AUDIT-009 and 017, second pass: det L(1) = 4n for n = 3 to 12, Lemma 4 and 5 on 245,122 box pairs and 5,999 random pairs, Type-I census (2016, 864, 48), E_8 shells filtered to 240 and 2160, a numeric sweep at 41 values of s, Cartan determinants | `python3 -I -B recheck_folds.py` | about 2.5 min | `RESULT recheck_folds: PASS (0 failed checks)` |
 
-common.py holds helpers for check_dn.py and check_e8.py. Each script exits 0 only if every check in it held. Seeds are fixed and printed. Needs Python 3 and SymPy, plus numpy for recheck_folds.py. Tested with Python 3.14, SymPy 1.14 and numpy 2.5.
+common.py holds helpers for check_dn.py and check_e8.py. Each script exits 0 only if every check in it held.
+
+Each one also carries must-fail controls: a perturbed input that the same code must refuse. A control that does not fail counts as a failed check.
+
+The controls are a Hadamard matrix or a `C_n` matrix with one sign flipped (the endpoint determinant or Gram matrix is wrong, and a negative Bernstein coefficient appears), `s` = 11/10 just above the endpoint (an overlap appears, or the Loewner test goes negative), a wrong base point and a negated entry in the Loewner test. The result lines are unchanged.
+
+Seeds are fixed and printed. Needs Python 3 and SymPy, plus numpy for recheck_folds.py. Tested with Python 3.14, SymPy 1.14 and numpy 2.5.
 
 Each script was run under `python3 -I -B`, `python3 -I -O -B` and `python3 -I -B -W error`. The three outputs were identical for every script.
 

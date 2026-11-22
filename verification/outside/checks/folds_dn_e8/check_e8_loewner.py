@@ -138,5 +138,36 @@ for mu in sorted(set(mus)):
     print(f"  mu={mu} det at s=1/2 sign:", sp.sign(sp.N(X[0, 0] * X[1, 1] - X[0, 1] ** 2, 30).subs(s, sp.Rational(1, 2))) if False else sp.N((X[0, 0] * X[1, 1] - X[0, 1] * X[1, 0]).subs(s, sp.Rational(1, 2)), 20))
 req(allok, "Loewner inequality")
 print("LOEWNER G(s) >= G(1) on [0,1]:", "PROVED (exact root isolation)" if allok else "FAILED")
+# ---- must-fail controls: wrong inputs that the exact test nonneg01 must refuse ----
+# A test that can only pass proves nothing. nonneg01 returns the list of test points where its argument is negative.
+CONTROLS = 0
+mu0 = sorted(set(mus))[0]
+A0m = Amu(mu0); A1c = Amu(mu0, 1)
+X0 = (A0m * A0m.T - A1c * A1c.T).applyfunc(sp.cancel)
+# (a) the sign-flipped (1,1) entry of G(s) - G(1) must be refused: it is negative inside (0, 1).
+bad_a = nonneg01(-X0[0, 0])
+print("control (a), minus the (1,1) entry:", len(bad_a), "negative test points (must be > 0)")
+req(len(bad_a) > 0, "control (a): negated Loewner entry must be refused")
+CONTROLS += 1
+# (b) the wrong base point: G(s) - G(1/2) is not >= 0 on [0, 1] (it is negative for s < 1/2).
+A12 = Amu(mu0, sp.Rational(1, 2))
+Xh = (A0m * A0m.T - A12 * A12.T).applyfunc(sp.cancel)
+bad_b = nonneg01(Xh[0, 0]) + nonneg01(Xh[1, 1])
+print("control (b), base point s = 1/2:", len(bad_b), "negative test points (must be > 0)")
+req(len(bad_b) > 0, "control (b): base point 1/2 must be refused")
+CONTROLS += 1
+# (c) a flipped sign in the Hadamard matrix breaks the invariant-plane identity L B = B blockdiag(A_mu).
+Hbad = H.copy(); Hbad[1, 2] = -Hbad[1, 2]
+Lg_bad = sp.zeros(8, 8)
+for i in range(8):
+    a_, b_ = (A1, B1) if i in Ip else (A2, B2)
+    for j in range(8):
+        Lg_bad[i, j] = a_ if i == j else b_ * Hbad[i, j]
+still_ok = (B.T * Lg_bad * B - Blk).applyfunc(sp.simplify) == sp.zeros(8, 8)
+print("control (c), flipped-sign Hadamard keeps the block identity?", still_ok, "(must be False)")
+req(not still_ok, "control (c): flipped-sign Hadamard must break the block identity")
+CONTROLS += 1
+print("must-fail controls that failed as required:", CONTROLS - sum(1 for f in FAIL if f.startswith("control")), "of", CONTROLS)
+
 print("RESULT check_e8_loewner: %s (%d failed checks)" % ("PASS" if not FAIL else "FAIL", len(FAIL)))
 sys.exit(1 if FAIL else 0)

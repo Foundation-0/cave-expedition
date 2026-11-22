@@ -454,6 +454,11 @@ def part_C():
     out["numeric_min_(dist2-2)_all"] = round(min_gap_all, 9) + 0.0
     out["numeric_min_nonzero_(dist2-2)_interior"] = round(min_gap_interior, 9) + 0.0
     check(min_eig > -1e-9 and min_gap_all > -1e-9, "E8 numeric sweep")
+    # Must-fail control: the same Loewner test just above the endpoint, at s = 11/10, must go negative.
+    L_above = np.array(Lsym.subs(s, sp.Rational(11, 10)).evalf(30).tolist(), dtype=float)
+    eig_above = float(np.linalg.eigvalsh(L_above @ L_above.T - G1f).min())
+    out["control_numeric_min_eig_G(11/10)-G(1)"] = round(eig_above, 6) + 0.0
+    check(eig_above < -1e-6, "control: Loewner test at s = 11/10 must fail")
     return out
 
 
@@ -487,11 +492,42 @@ def part_D():
     return out
 
 
+# ---------------------------------------------------------------- Part E: must-fail controls
+def part_E():
+    """Perturbed inputs that the exact checks above must refuse. A control that does not fail is a failure."""
+    out = {}
+    # (1) Hadamard with one sign flipped: G(1)/2 must stop being even, integral and unimodular.
+    Hb = H8()
+    Hb[1][2] = -Hb[1][2]
+    Hbm = sp.Matrix(Hb)
+    L1b = 2 * sp.eye(8) + Hbm / 2
+    half = (L1b * L1b.T) / 2
+    good = (all(x.is_integer for x in half) and all(half[i, i] % 2 == 0 for i in range(8)) and half.det() == 1)
+    out["flipped_hadamard_gram_even_unimodular"] = bool(good)
+    check(not good, "control: flipped-sign Hadamard must not give an even unimodular Gram matrix")
+    # (2) C_4 with one sign flipped: det L(1) must not be 4n = 16, and the Bernstein scan must go negative.
+    Cb = Cn(4)
+    Cb[0][1] = 1
+    det_b, _, _, _ = endpoint_checks(4, Cb)
+    out["flipped_C4_det_L1"] = det_b
+    check(det_b != 16, "control: flipped-sign C4 must not give det 16")
+    P = motif(4)
+    V = sorted({tuple(p[k] - q[k] for k in range(4)) for p in P for q in P})
+    neg = 0
+    for m in itertools.product(range(-2, 3), repeat=4):
+        for v in V:
+            if (any(m) or any(v)) and any(x.sign() < 0 for x in quartic_bernstein(4, Cb, m, v)):
+                neg += 1
+    out["flipped_C4_pairs_with_negative_bernstein"] = neg
+    check(neg > 0, "control: flipped-sign C4 must show a negative Bernstein coefficient")
+    return out
+
+
 def main():
     seed = 20261120
     print("seed", seed)
     rng = random.Random(seed)
-    res = {"A_Dn": part_A(rng), "B_C4nilp_census": part_B(), "C_E8": part_C(), "D_thm2": part_D()}
+    res = {"A_Dn": part_A(rng), "B_C4nilp_census": part_B(), "C_E8": part_C(), "D_thm2": part_D(), "E_controls": part_E()}
     for k, v in res.items():
         print(f"== {k}")
         if isinstance(v, dict):

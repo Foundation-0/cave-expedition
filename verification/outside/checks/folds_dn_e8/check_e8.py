@@ -124,15 +124,37 @@ def Lnum(sv):
 # polynomial rows: numerator polys in s over common denominator Dp*Dm
 DpP = [Q2(1, 2), Q2(0), Q2(-1, 2)]; DmP = [Q2(-1, 2), Q2(0), Q2(1, 2)]
 apN = [Q2(6, 5), Q2(0), Q2(-6, 5)]; amN = [Q2(2, 3), Q2(0), Q2(-2, 3)]; bN = [Q2(0), Q2(0, 2)]
-rowpoly = []
-for i in range(8):
-    if i in Ip:
-        diag = poly_mul(apN, DmP); off = poly_mul(bN, DmP)
-    else:
-        diag = poly_mul(amN, DpP); off = poly_mul(bN, DpP)
-    rowpoly.append([diag if i == j else [c * H[i][j] for c in off] for j in range(8)])
+def build_rowpoly(Hm):
+    rp = []
+    for i in range(8):
+        if i in Ip:
+            diag = poly_mul(apN, DmP); off = poly_mul(bN, DmP)
+        else:
+            diag = poly_mul(amN, DpP); off = poly_mul(bN, DpP)
+        rp.append([diag if i == j else [c * Hm[i][j] for c in off] for j in range(8)])
+    return rp
+
+
+rowpoly = build_rowpoly(H)
 den = poly_mul(DpP, DmP)  # degree 4
 den2 = poly_mul(den, den)
+
+def pair_bernstein(m, v, rp):
+    """Exact Bernstein coefficients of the degree-8 polynomial for the pair (m, v), row polynomials rp."""
+    vec = []
+    for j in range(8):
+        acc = [Q2(0)] * 5
+        for i in range(8):
+            if m[i]:
+                acc = poly_add(acc, [c * m[i] for c in rp[i][j]])
+        acc = poly_add(acc, [c * v[j] for c in den])
+        vec.append(acc)
+    f = [Q2(0)] * 9
+    for comp in vec:
+        f = poly_add(f, poly_mul(comp, comp))
+    f = poly_add(f, [c * (-2) for c in den2])
+    return power_to_bernstein(f)
+
 
 Nm = {}
 for m in ms:
@@ -149,19 +171,7 @@ print("4. finite set:", len(M4), "x", len(V2), "+", len(M48), "x", len(V4), "=",
 req(len(pairs) == 32640, "pair count")
 neg = 0; zeros = 0; interior_zero_nonbar = 0; minpos = None; zero_pairs = []
 for (m, v) in pairs:
-    vec = []
-    for j in range(8):
-        acc = [Q2(0)] * 5
-        for i in range(8):
-            if m[i]:
-                acc = poly_add(acc, [c * m[i] for c in rowpoly[i][j]])
-        acc = poly_add(acc, [c * v[j] for c in den])
-        vec.append(acc)
-    f = [Q2(0)] * 9
-    for comp in vec:
-        f = poly_add(f, poly_mul(comp, comp))
-    f = poly_add(f, [c * (-2) for c in den2])
-    bs = power_to_bernstein(f)
+    bs = pair_bernstein(m, v, rowpoly)
     sg = [b.sign() for b in bs]
     neg += sum(1 for x in sg if x < 0)
     z = sum(1 for x in sg if x == 0)
@@ -177,34 +187,41 @@ bar_pairs = [z for z in zero_pairs if len(z[2]) == 9]
 print("   identically-zero pairs (bars):", len(bar_pairs), " s=1-only zero pairs:", sum(1 for z in zero_pairs if z[2] == (8,)))
 
 # ---- exact short-vector search along the path at many rational s ----
+def path_scan(svals, quiet=False):
+    """Exact search for overlaps (distance^2 < 2 between motif points) at each rational s. Returns (overlaps, rows)."""
+    over = 0; mins = []
+    for sv in svals:
+        Ls = Lnum(sv)
+        Lf = [[float(x) for x in row] for row in Ls]
+        Gs = [[sum(Lf[i][k] * Lf[j][k] for k in range(8)) for j in range(8)] for i in range(8)]
+        cand = fincke_pohst(Gs, 12.2)
+        best = None; cont = 0
+        nexact = 0
+        for m in cand:
+            xf = [sum(Lf[i][j] * m[i] for i in range(8)) for j in range(8)]
+            x = None
+            for v in Vd:
+                if not any(m) and not any(v): continue
+                gf = sum((xf[j] + v[j]) ** 2 for j in range(8)) - 2
+                if gf > 1e-6:
+                    if best is None or gf < best: best = gf
+                    continue
+                if x is None:
+                    x = [sum((Ls[i][j] * m[i] for i in range(8) if m[i]), Q2(0)) for j in range(8)]
+                nexact += 1
+                nn = sum(((x[j] + v[j]) * (x[j] + v[j]) for j in range(8)), Q2(0)) - 2
+                sg = nn.sign()
+                if sg < 0:
+                    over += 1
+                    if not quiet: print("OVERLAP", sv, m, v)
+                if sg == 0: cont += 1
+                if sg > 0 and (best is None or float(nn) < best): best = float(nn)
+        mins.append((str(sv), nexact, cont, round(best, 5) if best is not None else None))
+    return over, mins
+
+
 svals = sorted(set([Fr(k, 24) for k in range(25)] + [Fr(1, 1000), Fr(999, 1000), Fr(9999, 10000), Fr(3, 7), Fr(5, 13)]))
-over = 0; mins = []
-for sv in svals:
-    Ls = Lnum(sv)
-    Lf = [[float(x) for x in row] for row in Ls]
-    Gs = [[sum(Lf[i][k] * Lf[j][k] for k in range(8)) for j in range(8)] for i in range(8)]
-    cand = fincke_pohst(Gs, 12.2)
-    best = None; cont = 0
-    nexact = 0
-    for m in cand:
-        xf = [sum(Lf[i][j] * m[i] for i in range(8)) for j in range(8)]
-        x = None
-        for v in Vd:
-            if not any(m) and not any(v): continue
-            gf = sum((xf[j] + v[j]) ** 2 for j in range(8)) - 2
-            if gf > 1e-6:
-                if best is None or gf < best: best = gf
-                continue
-            if x is None:
-                x = [sum((Ls[i][j] * m[i] for i in range(8) if m[i]), Q2(0)) for j in range(8)]
-            nexact += 1
-            nn = sum(((x[j] + v[j]) * (x[j] + v[j]) for j in range(8)), Q2(0)) - 2
-            sg = nn.sign()
-            if sg < 0:
-                over += 1; print("OVERLAP", sv, m, v)
-            if sg == 0: cont += 1
-            if sg > 0 and (best is None or float(nn) < best): best = float(nn)
-    mins.append((str(sv), nexact, cont, round(best, 5) if best is not None else None))
+over, mins = path_scan(svals)
 print("5. path search: s values", len(svals), "overlaps", over)
 print("   (s, exact contacts (m,v), smallest positive gap) sample:", mins[:3], mins[-4:])
 req(over == 0, "path overlap")
@@ -230,6 +247,34 @@ def cartanD(n):
 dets = {k: cartan(k).det() for k in ("E6", "E7", "E8")}
 dets.update({f"D{n}": cartanD(n).det() for n in (6, 7, 8)})
 print("6. Gram dets:", dets)
+# ---- must-fail controls: perturbed inputs that the checks above must refuse ----
+# A check that can only pass proves nothing. Each control feeds a deliberately wrong input to the same code
+# as the checks above and requires the expected failure. A control that does NOT fail is itself a failure.
+CONTROLS = 0
+# 7a. A Hadamard matrix with one sign flipped (entry [1][2] only, so it is no longer symmetric or orthogonal):
+# the endpoint Gram matrix G(1)/2 must stop being even unimodular, which step 1 of the endpoint identification requires.
+Hbad = [row[:] for row in H]
+Hbad[1][2] = -Hbad[1][2]
+L1bad = [[Fr(2 * int(i == j)) + Fr(Hbad[i][j], 2) for j in range(8)] for i in range(8)]
+Gbad = sp.Matrix([[sum(L1bad[i][k] * L1bad[j][k] for k in range(8)) for j in range(8)] for i in range(8)]) / 2
+good_gram = all(Gbad[i, i] % 2 == 0 for i in range(8)) and all(x.q == 1 for x in Gbad) and Gbad.det() == 1
+print("7a. flipped-sign Hadamard: G/2 even, integral and unimodular?", good_gram, "(must be False)")
+req(not good_gram, "control 7a: flipped-sign Hadamard must not give an even unimodular Gram matrix")
+CONTROLS += 1
+# 7b. the same flipped Hadamard, put into the row polynomials, must give a negative Bernstein coefficient
+# for some pair of the finite set (same pair_bernstein as above; the scan stops at the first one, near pair 5733).
+rowpoly_bad = build_rowpoly(Hbad)
+first_neg = next((k for k, (m, v) in enumerate(pairs) if any(b.sign() < 0 for b in pair_bernstein(m, v, rowpoly_bad))), None)
+print("7b. flipped-sign Hadamard: first pair with a negative Bernstein coefficient:", first_neg, "(must exist)")
+req(first_neg is not None, "control 7b: flipped-sign Hadamard must show a negative Bernstein coefficient")
+CONTROLS += 1
+# 7c. s = 11/10, just above 1: the exact path search must find an overlap (the claim is for 0 <= s <= 1).
+over_c, _ = path_scan([Fr(11, 10)], quiet=True)
+print("7c. s = 11/10: overlaps found:", over_c, "(must be > 0)")
+req(over_c > 0, "control 7c: s = 11/10 must overlap")
+CONTROLS += 1
+print("7. must-fail controls that failed as required:", CONTROLS - sum(1 for f in FAIL if f.startswith("control")), "of", CONTROLS)
+
 print("FAILURES:", FAIL)
 print("RESULT check_e8: %s (%d failed checks)" % ("PASS" if not FAIL else "FAIL", len(FAIL)))
 sys.exit(1 if FAIL else 0)

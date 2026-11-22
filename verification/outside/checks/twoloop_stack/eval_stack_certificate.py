@@ -391,8 +391,21 @@ def part_b2_controls(seed=881002):
     res["refute_vector_on_ok_matrix"] = int_checker(Qok, (kb, x))
     # a witness with x^T Q x = 0 does not show that Q is not PSD, so it must not count as a refutation
     res["refute_zero_vector"] = int_checker(Qok, ("refute", [0] * len(x)))
+    # One control per remaining guard of int_checker. Each uses a tiny matrix and a certificate whose
+    # identity c*Q == L diag(D) L^T holds exactly, so only the named guard can refuse it.
+    # (a) guard d < 0: Q = [[1,2],[2,1]] is indefinite and has an honest L D L^T with D = [1, -3].
+    res["indefinite_matrix_with_negative_D"] = int_checker([[1, 2], [2, 1]], ("accept", (1, [[1, 0], [2, 1]], [1, -3])))
+    # (b) guard type(d) is not int: a bool 1 equals the int 1, so the identity holds.
+    res["bool_D_identity_holds"] = int_checker([[1]], ("accept", (1, [[1]], [True])))
+    # (c) guard type(v) is not int on L: the float 1.0 equals the int 1, so the identity holds.
+    res["float_L_identity_holds"] = int_checker([[1]], ("accept", (1, [[1.0]], [1])))
+    # (d) guard type(v) is not int on a refutation vector: [[-1]] is refuted by x = 1, and by x = 1.0 as well.
+    res["float_refute_vector"] = int_checker([[-1]], ("refute", [1.0]))
+    need(int_checker([[-1]], ("refute", [1])) == "reject", "honest refutation of [[-1]]")
     need(res["honest_accept"] == "accept" and res["honest_refute_smaller_s"] == "reject", "honest paths")
-    refused = ("replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
+    refused = ("indefinite_matrix_with_negative_D", "bool_D_identity_holds", "float_L_identity_holds",
+               "float_refute_vector",
+"replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
                "refute_vector_on_ok_matrix",
                "c_zero_and_D_zero_on_indefinite_matrix", "refute_zero_vector")
     for k in refused:

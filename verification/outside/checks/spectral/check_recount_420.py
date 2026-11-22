@@ -9,7 +9,9 @@ It regenerates 420 matrices with the same random call order as the sibling team'
 (exactlib_b.py). For each instance it compares R_opt with the best member of the docs/10 family, counts
 strict wins, ties and losses, checks n+(H_perp) >= R_opt, and checks the generator's ranks and b.
 Exit code 0 only if there are no chain violations, no instance where the docs/10 member exceeds R_opt,
-no rank or b mismatch. The counts are printed as the result and are not themselves asserted.
+no rank or b mismatch, and only if the counts that ruling spectral/F4 rests on come out as stated:
+strict 417, ties 3, integer gain 202, docs/10 positive 15, strict wins with the docs/10 bound negative
+402 (203 of them with R_opt = 0), and 7 integer gains over docs/10 combined with the trivial bound 1.
 
 Needs: Python 3 (standard library only). No other repository.
 Run (about 2 seconds): python3 -I -B check_recount_420.py
@@ -98,7 +100,10 @@ def main():
                 else:
                     c["regime"][2] += 1
     print(json.dumps(c, indent=1))
-    ok = (c["total"] == 420 and c["chain_viol"] == 0 and c["below"] == 0 and c["rank_mismatch"] == 0)
+    ok = (c["total"] == 420 and c["chain_viol"] == 0 and c["below"] == 0 and c["rank_mismatch"] == 0
+          and c["strict"] == 417 and c["ties"] == 3 and c["ceil_ropt_gt_ceil_ours"] == 202
+          and c["ours_pos"] == 15 and c["strict_ours_neg"] == 402 and c["strict_ours_neg_ropt0"] == 203
+          and c["ceil_ropt_gt_ceil_ours_with_trivial1"] == 7)
     common.finish("check_recount_420", ok,
                   "total=%d strict=%d ties=%d below=%d chain_violations=%d ceil_gain=%d docs10_positive=%d"
                   % (c["total"], c["strict"], c["ties"], c["below"], c["chain_viol"],

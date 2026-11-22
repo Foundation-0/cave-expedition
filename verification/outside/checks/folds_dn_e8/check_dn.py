@@ -293,6 +293,36 @@ for n in range(3, 31):
 print("5. Lemma 3: max over grid of D'(t) - bound =", round(worst_ratio, 6), "(must be <= 0)")
 req(worst_ratio <= 1e-6, "lemma 3 bound")
 
+# ---------- 6. must-fail controls: perturbed inputs that the checks above must refuse ----------
+# A check that can only pass proves nothing. Each control feeds a deliberately wrong input to the same
+# code as the checks above and requires the expected failure. A control that does NOT fail is a failure.
+CONTROLS = 0
+# 6a. C_4 with one sign flipped keeps zero diagonal and row norm sqrt 2, but the endpoint determinant
+# is 8, not 4n = 16, so the exact determinant check of step 2 must refuse it.
+C4BAD = Cn(4)
+C4BAD[0][1] = 1
+det_bad = frac_det_inv([[2 * int(i == j) + C4BAD[i][j] for j in range(4)] for i in range(4)])[0]
+req(det_bad != 16, f"control 6a: flipped-sign C4 must not give det 16, got {det_bad}")
+CONTROLS += 1
+# 6b. the same flipped C_4 must give at least one negative Bernstein coefficient in the Lemma 5 box scan
+# (the same bern_direct as step 3a, on the box [-2, 2]^4 with every motif difference).
+P4, D4 = motif_diffs(4)
+negb_bad = 0
+for m in itertools.product(range(-2, 3), repeat=4):
+    for v in D4:
+        if (any(m) or any(v)) and any(b.sign() < 0 for b in bern_direct(4, C4BAD, m, v)):
+            negb_bad += 1
+print("6b. flipped-sign C4: pairs with a negative Bernstein coefficient:", negb_bad, "(must be > 0)")
+req(negb_bad > 0, "control 6b: flipped-sign C4 must show a negative Bernstein coefficient")
+CONTROLS += 1
+# 6c. past the endpoint (s = 11/10 instead of s <= 1) the exact closest-pair search of step 4 must find an overlap.
+for n_c in (3, 4):
+    r_c = path_min(n_c, Cn(n_c), Fr(11, 10))
+    print("6c. n=%d, s=11/10:" % n_c, r_c[0])
+    req(r_c[0] == "OVERLAP", f"control 6c: s=11/10 must overlap for n={n_c}")
+    CONTROLS += 1
+print("6. must-fail controls that failed as required:", CONTROLS - sum(1 for f in FAIL if f.startswith("control")), "of", CONTROLS)
+
 print("FAILURES:", FAIL)
 print("RESULT check_dn: %s (%d failed checks)" % ("PASS" if not FAIL else "FAIL", len(FAIL)))
 sys.exit(1 if FAIL else 0)
