@@ -1,0 +1,6 @@
+Exception ignored in: <_io.FileIO name='./out/up_driver_A.txt' mode='rb' closefd=True>
+Traceback (most recent call last):
+  File "./src/anchor.py", line 62, in main
+    lines = open(os.path.join(outd, "up_driver_A.txt"), encoding="utf-8").read().splitlines()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ResourceWarning: unclosed file <_io.TextIOWrapper name='./out/up_driver_A.txt' mode='r' encoding='utf-8'>

@@ -1,0 +1,592 @@
+{
+  "universal_Cn_rank1_collapse": [
+    {
+      "n": 3,
+      "rk_M_rot": 2,
+      "symmetrizer_verified": true,
+      "points": [
+        {
+          "n": 3,
+          "a": "4/3",
+          "t": "1/3",
+          "H0": 4,
+          "H1": 1,
+          "euler_H0_minus_H1": 3,
+          "S_cell_inertia": [
+            1,
+            0,
+            5
+          ],
+          "tr_S_cell": "1724/333",
+          "S_00": "361/333",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-20/19",
+            "-20/19",
+            "-13/19",
+            "-13/19",
+            "15/19"
+          ]
+        },
+        {
+          "n": 3,
+          "a": "8/9",
+          "t": "7/9",
+          "H0": 4,
+          "H1": 1,
+          "euler_H0_minus_H1": 3,
+          "S_cell_inertia": [
+            1,
+            0,
+            5
+          ],
+          "tr_S_cell": "178468/22923",
+          "S_00": "3025/22923",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-104/55",
+            "-104/55",
+            "-189/55",
+            "-189/55",
+            "287/55"
+          ]
+        },
+        {
+          "n": 3,
+          "a": "0",
+          "t": "1",
+          "H0": 4,
+          "H1": 1,
+          "euler_H0_minus_H1": 3,
+          "S_cell_inertia": [
+            1,
+            0,
+            5
+          ],
+          "tr_S_cell": "4",
+          "S_00": "1/3",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "0",
+            "0",
+            "1",
+            "1",
+            "-3"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "rk_M_rot": 3,
+      "symmetrizer_verified": true,
+      "points": [
+        {
+          "n": 4,
+          "a": "4/3",
+          "t": "1/3",
+          "H0": 7,
+          "H1": 3,
+          "euler_H0_minus_H1": 4,
+          "S_cell_inertia": [
+            1,
+            0,
+            9
+          ],
+          "tr_S_cell": "239/30",
+          "S_00": "361/300",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-20/19",
+            "-21/19",
+            "-20/19",
+            "-14/19",
+            "2/19",
+            "-14/19",
+            "14/19",
+            "0",
+            "14/19"
+          ]
+        },
+        {
+          "n": 4,
+          "a": "8/9",
+          "t": "7/9",
+          "H0": 7,
+          "H1": 3,
+          "euler_H0_minus_H1": 4,
+          "S_cell_inertia": [
+            1,
+            0,
+            9
+          ],
+          "tr_S_cell": "142123/12690",
+          "S_00": "605/5076",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-104/55",
+            "-153/55",
+            "-104/55",
+            "-238/55",
+            "98/55",
+            "-238/55",
+            "238/55",
+            "0",
+            "238/55"
+          ]
+        },
+        {
+          "n": 4,
+          "a": "0",
+          "t": "1",
+          "H0": 7,
+          "H1": 3,
+          "euler_H0_minus_H1": 4,
+          "S_cell_inertia": [
+            1,
+            0,
+            9
+          ],
+          "tr_S_cell": "11/2",
+          "S_00": "1/4",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "0",
+            "1",
+            "0",
+            "2",
+            "-2",
+            "2",
+            "-2",
+            "0",
+            "-2"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "rk_M_rot": 4,
+      "symmetrizer_verified": true,
+      "points": [
+        {
+          "n": 5,
+          "a": "4/3",
+          "t": "1/3",
+          "H0": 11,
+          "H1": 6,
+          "euler_H0_minus_H1": 5,
+          "S_cell_inertia": [
+            1,
+            0,
+            14
+          ],
+          "tr_S_cell": "1514/159",
+          "S_00": "361/318",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-20/19",
+            "-21/19",
+            "-21/19",
+            "-20/19",
+            "-14/19",
+            "1/19",
+            "1/19",
+            "-14/19",
+            "14/19",
+            "-1/19",
+            "1/19",
+            "14/19",
+            "-1/19",
+            "14/19"
+          ]
+        },
+        {
+          "n": 5,
+          "a": "8/9",
+          "t": "7/9",
+          "H0": 11,
+          "H1": 6,
+          "euler_H0_minus_H1": 5,
+          "S_cell_inertia": [
+            1,
+            0,
+            14
+          ],
+          "tr_S_cell": "366700/29673",
+          "S_00": "3025/29673",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "-104/55",
+            "-153/55",
+            "-153/55",
+            "-104/55",
+            "-238/55",
+            "49/55",
+            "49/55",
+            "-238/55",
+            "238/55",
+            "-49/55",
+            "49/55",
+            "238/55",
+            "-49/55",
+            "238/55"
+          ]
+        },
+        {
+          "n": 5,
+          "a": "0",
+          "t": "1",
+          "H0": 11,
+          "H1": 6,
+          "euler_H0_minus_H1": 5,
+          "S_cell_inertia": [
+            1,
+            0,
+            14
+          ],
+          "tr_S_cell": "28/5",
+          "S_00": "1/5",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "0",
+            "1",
+            "1",
+            "0",
+            "2",
+            "-1",
+            "-1",
+            "2",
+            "-2",
+            "1",
+            "-1",
+            "-2",
+            "1",
+            "-2"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "rk_M_rot": 5,
+      "symmetrizer_verified": true,
+      "points": [
+        {
+          "n": 6,
+          "a": "0",
+          "t": "1",
+          "H0": 16,
+          "H1": 10,
+          "euler_H0_minus_H1": 6,
+          "S_cell_inertia": [
+            1,
+            0,
+            20
+          ],
+          "tr_S_cell": "17/3",
+          "S_00": "1/6",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "0",
+            "1",
+            "1",
+            "1",
+            "0",
+            "2",
+            "-1",
+            "0",
+            "-1",
+            "2",
+            "-2",
+            "1",
+            "0",
+            "-1",
+            "-2",
+            "1",
+            "0",
+            "-2",
+            "1",
+            "-2"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "rk_M_rot": 6,
+      "symmetrizer_verified": true,
+      "points": [
+        {
+          "n": 7,
+          "a": "0",
+          "t": "1",
+          "H0": 22,
+          "H1": 15,
+          "euler_H0_minus_H1": 7,
+          "S_cell_inertia": [
+            1,
+            0,
+            27
+          ],
+          "tr_S_cell": "40/7",
+          "S_00": "1/7",
+          "axial_block_identically_zero": false,
+          "rank1_mode_normalized": [
+            "1",
+            "0",
+            "1",
+            "1",
+            "1",
+            "1",
+            "0",
+            "2",
+            "-1",
+            "0",
+            "0",
+            "-1",
+            "2",
+            "-2",
+            "1",
+            "0",
+            "0",
+            "-1",
+            "-2",
+            "1",
+            "0",
+            "0",
+            "-2",
+            "1",
+            "0",
+            "-2",
+            "1",
+            "-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "clifford_nilpotent_C4_pure_shear_duality": {
+    "rk_M_rot": 3,
+    "symmetrizer": [
+      1,
+      1,
+      -1,
+      -1
+    ],
+    "points": [
+      {
+        "n": 4,
+        "a": "4/3",
+        "t": "1/3",
+        "H0": 7,
+        "H1": 3,
+        "euler_H0_minus_H1": 4,
+        "S_cell_inertia": [
+          1,
+          0,
+          9
+        ],
+        "tr_S_cell": "596/81",
+        "S_00": "100/81",
+        "axial_block_identically_zero": false,
+        "rank1_mode_normalized": [
+          "1",
+          "1",
+          "-1",
+          "-1",
+          "-7/10",
+          "-7/10",
+          "0",
+          "0",
+          "-7/10",
+          "-7/10"
+        ]
+      },
+      {
+        "n": 4,
+        "a": "8/9",
+        "t": "7/9",
+        "H0": 7,
+        "H1": 3,
+        "euler_H0_minus_H1": 4,
+        "S_cell_inertia": [
+          1,
+          0,
+          9
+        ],
+        "tr_S_cell": "67460/6561",
+        "S_00": "2704/6561",
+        "axial_block_identically_zero": false,
+        "rank1_mode_normalized": [
+          "1",
+          "1",
+          "-1",
+          "-1",
+          "-119/52",
+          "-119/52",
+          "0",
+          "0",
+          "-119/52",
+          "-119/52"
+        ]
+      },
+      {
+        "n": 4,
+        "a": "0",
+        "t": "1",
+        "H0": 7,
+        "H1": 3,
+        "euler_H0_minus_H1": 4,
+        "S_cell_inertia": [
+          1,
+          0,
+          9
+        ],
+        "tr_S_cell": "4",
+        "S_00": "0",
+        "axial_block_identically_zero": true,
+        "rank1_mode_normalized": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "0",
+          "1",
+          "1"
+        ]
+      }
+    ],
+    "distinguished_from_C4_at_s1": {
+      "C4_tr_S_cell": "11/2",
+      "C4_nilp_tr_S_cell": "4"
+    }
+  },
+  "jammed_Dn_transition": {
+    "D3_fcc": {
+      "n": 3,
+      "bars_per_cell": 36,
+      "expected_Dn_bars": 36,
+      "H0_translations_only": 3,
+      "C_jam_inertia": [
+        6,
+        0,
+        0
+      ],
+      "C11": "1",
+      "C12": "1/2",
+      "C44_voigt": "1/2",
+      "cauchy_relation_C12_eq_C44_voigt": true,
+      "zener_anisotropy_ratio_A": "2",
+      "elastically_isotropic": false
+    },
+    "D4_via_C4": {
+      "n": 4,
+      "bars_per_cell": 96,
+      "expected_Dn_bars": 96,
+      "H0_translations_only": 4,
+      "C_jam_inertia": [
+        10,
+        0,
+        0
+      ],
+      "C11": "3/2",
+      "C12": "1/2",
+      "C44_voigt": "1/2",
+      "cauchy_relation_C12_eq_C44_voigt": true,
+      "zener_anisotropy_ratio_A": "1",
+      "elastically_isotropic": true
+    },
+    "D4_via_C4_nilp": {
+      "n": 4,
+      "bars_per_cell": 96,
+      "expected_Dn_bars": 96,
+      "H0_translations_only": 4,
+      "C_jam_inertia": [
+        10,
+        0,
+        0
+      ],
+      "C11": "3/2",
+      "C12": "1/2",
+      "C44_voigt": "1/2",
+      "cauchy_relation_C12_eq_C44_voigt": true,
+      "zener_anisotropy_ratio_A": "1",
+      "elastically_isotropic": true
+    },
+    "D4_endpoints_elastically_identical": true
+  },
+  "negative_control_nonsymmetrizable_C3": {
+    "rk_M_rot": 3,
+    "H0": 3,
+    "H1": 0,
+    "S_cell_inertia": [
+      0,
+      0,
+      6
+    ],
+    "zero_stiffness_when_no_symmetrizer": true
+  },
+  "portal9_8D_F8_to_E8_spinor_collapse_and_isotropy": {
+    "exhaustive_symmetrizable_all_spinor_E8_in_ker_phi": 0,
+    "deterministic_C8_det": "16",
+    "rk_M_rot": 8,
+    "fold_rank0_collapse_points": [
+      {
+        "label": "interior_m_neg_1_4",
+        "a": "16/11",
+        "t": "7/11",
+        "H0": 28,
+        "H1": 20,
+        "S_cell_rank": 0
+      },
+      {
+        "label": "endpoint_s1",
+        "a": "0",
+        "t": "1",
+        "H0": 28,
+        "H1": 20,
+        "S_cell_rank": 0
+      }
+    ],
+    "sylvester_hadamard_H8_rank1_bifurcation": {
+      "rk_M_rot": 7,
+      "H0": 29,
+      "H1": 21,
+      "S_cell_rank": 1,
+      "unique_stress_equals_2I8_plus_H8_exact": true,
+      "stress_tensor_2I8_plus_H8_inertia_auxetic": [
+        4,
+        4,
+        0
+      ]
+    },
+    "jammed_E8_bravais": {
+      "undirected_roots": 120,
+      "inertia": [
+        36,
+        0,
+        0
+      ],
+      "C11": "9",
+      "C12": "3",
+      "C44_voigt": "3",
+      "zener_anisotropy_A": "1",
+      "exact_36x36_O8_isotropic": true
+    },
+    "comparison_D8_zener_anisotropy_A": "1/3"
+  }
+}

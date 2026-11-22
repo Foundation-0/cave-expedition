@@ -1,0 +1,11 @@
+PASS real Phi through the random-map pipeline: defect zero, S equals S_el
+FAMILY m1 {"S_rank_hist":{"1":200},"S_zero":0,"collapse":200,"cross_direct_equal":[true,true,true],"defect_zero":200,"defect_zero_with_S_nonzero":200,"dimSigma_hist":{"21":200},"n":200}
+PASS m1: self-stress pipeline equals the direct dense Schur on cross-checked trials
+FAMILY m2 {"S_rank_hist":{"0":200},"S_zero":200,"collapse":0,"cross_direct_equal":[true,true,true],"defect_zero":0,"defect_zero_with_S_nonzero":0,"dimSigma_hist":{"20":200},"n":200}
+PASS m2: self-stress pipeline equals the direct dense Schur on cross-checked trials
+FAMILY m3 {"S_rank_hist":{"0":200},"S_zero":200,"collapse":0,"cross_direct_equal":[true,true,true],"defect_zero":0,"defect_zero_with_S_nonzero":0,"dimSigma_hist":{"20":200},"n":200}
+PASS m3: self-stress pipeline equals the direct dense Schur on cross-checked trials
+CONTROL-DETECTED a tampered R' makes the defect nonzero on a triangular map
+CONTROL-DETECTED the first block-lower-triangular map has a nonzero defect
+OBJECT_SHA256 null_maps_e8_s1.json c88b48039e021e76fe8c3507f1f4b1eb99a4fafaa4e093e0cc37fec91e2bfe57
+FAILS 0

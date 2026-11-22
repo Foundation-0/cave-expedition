@@ -1,0 +1,22 @@
+C3 panel: modes=['pos', 'mixed', 'tie', 'annih'] n in {4,5} per (mode,n)=300 total=2400
+mode    n  inst   entries equal&lead!=0 strict&lead=0      viol
+pos     4   300      1900        1604         0         0
+pos     5   300      2854        2455         0         0
+mixed   4   300      1985        1618        14         0
+mixed   5   300      2943        2433        40         0
+tie     4   300      1880        1387       368         0
+tie     5   300      2985        2403       364         0
+annih   4   300      2010        1231       620         0
+annih   5   300      2899        1982       644         0
+TOTAL instances=2400 entries=19456
+entry classes: equal_with_nonzero_lead=15113  strict_with_zero_lead_finite=844  strict_to_exact_zero(S_ij=0,T finite)=1206  both_infinite=2293
+violations of val>=T: 0
+violations of 'equal iff lead sum != 0': 0
+truncated-series valuation vs exact-polynomial valuation disagreements: 0
+series order N=(|B|+1)*D+1, D=max entry degree; min/max N used: 7/25
+  reason: S=P/det(I-K_BB), det has constant term 1, P polynomial of degree <= (|B|+1)D, so val(S)=val(P)<N or S=0
+cancelling-mode instances with at least one entry strictly above T: 1089/1200
+CONTROL naive 'val==T always' falsified on 2050 entries (must be >0)
+CONTROL reversed 'val<=T' falsified on 2050 entries (must be >0)
+CONTROL single-hop (no Kleene star) lower bound falsified on 139 entries (must be >0)
+CONTROL sign-blind leading sum falsified on 2050 entries (must be >0)

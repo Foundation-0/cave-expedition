@@ -1,0 +1,20 @@
+C1 clean-room panel: families=9 per_family=64 total=576 sizes 2..10
+family               sys  invert  refuse inertia     det   congr
+intsym                64      59       5      59      59      59
+banded                64      60       4      60      60      60
+circulant             64      51      13      51      51      51
+hilbert               64      63       1      63      63      63
+gram_psd              64      51      13      51      51      51
+gram_indef            64      57       7      57      57      57
+herm_Qi               64      61       3      61      61      61
+herm_gram_Qi          64      52      12      52      52      52
+sparse_zero_diag      64       7      57       7       7       7
+TOTAL systems=576 invertible_pivot=461 singular_pivot=115
+PASS RATE (invertible pivot, all three identities): 461/461
+SINGULAR PIVOTS refused: 115/115
+handcrafted [[0,1],[1,0]] k=1 refused: True ; inertia(M)=(1, 1, 0)
+FAILURES: 0 (no counterexample)
+inertia routine known-answer checks: True
+Hermitian [[0,i],[-i,0]] inertia: (1, 1, 0) (expect (1,1,0))
+CONTROL wrong Schur D + C A^-1 B passes all identities on 19/461 systems (must be < total)
+CONTROL wrong Schur D - C A B passes all identities on 74/461 systems (must be < total)

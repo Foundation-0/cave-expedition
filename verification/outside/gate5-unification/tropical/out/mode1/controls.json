@@ -1,0 +1,70 @@
+{
+ "all_controls_detected": true,
+ "controls": {
+  "cancelling_leading_terms_partial": {
+   "detail": {
+    "defect_entries": 1,
+    "val_exact": 4,
+    "val_tropical": 2
+   },
+   "detected": true
+  },
+  "cancelling_leading_terms_total": {
+   "detail": {
+    "defect_entries": 1
+   },
+   "detected": true
+  },
+  "nonconvex_f_with_positive_definite_pivot": {
+   "detail": {
+    "g_coefficient": "-3"
+   },
+   "detected": true
+  },
+  "nonconvex_fiber_discrete": {
+   "detail": {
+    "convex_fiber_contrast_passes": true,
+    "g_nonconvex_detected": true
+   },
+   "detected": true
+  },
+  "nonconvex_indefinite_quadratic": {
+   "detail": {
+    "inertia": [
+     1,
+     1,
+     0
+    ]
+   },
+   "detected": true
+  },
+  "truncated_ray_set_row8": {
+   "detail": {
+    "boxes_where_two_rays_disagree_with_exact_lp": 18
+   },
+   "detected": true
+  },
+  "wrong_quotient_labels_not_onto": {
+   "detail": {
+    "validation_rejected": true
+   },
+   "detected": true
+  },
+  "wrong_quotient_moved_state": {
+   "detail": {
+    "corrupted_map_passes": false,
+    "honest_map_passes": true
+   },
+   "detected": true
+  },
+  "wrong_quotient_swapped_states": {
+   "detail": {
+    "honest_map_passes": true,
+    "swapped_map_passes": false
+   },
+   "detected": true
+  }
+ },
+ "section": "controls",
+ "undetected": []
+}

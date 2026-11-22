@@ -1,0 +1,244 @@
+[
+  {
+    "id": "G5-01",
+    "statement": "Every predicate that can be read out of README section 1, Portal 10 and SF-01 (Schur complement exists, Haynsworth inertia additivity, congruence to diag(A, S), determinant and quotient identities, Loewner monotonicity) is a theorem for any block system with an invertible pivot, so the stated criterion does not separate the listed rows from unrelated systems.",
+    "verdict": "VERIFIED",
+    "oracle_class": "sampled",
+    "scope": "Two panels of 360 systems (seeds 20261121, 11235813; sizes 2 to 12) and a third independent panel of 576 (sizes 2 to 10), over Q and Q(i). Every test passes wherever its hypothesis holds. Partition scrambling leaves the pass count of every theorem test unchanged. The pseudo-inverse form exists for every matrix, but inertia additivity with it needs the range condition A A^+ B = B (fails in 6 of 720 systems). The identities themselves are textbook theorems (exact argument); the pass counts are sampled.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/PREDICATE.md",
+      "predicate/RESULTS.md",
+      "predicate/results.json",
+      "predicate/p_check.py",
+      "predicate/null_panel.py",
+      "second/out/c1_block.txt",
+      "second/src/c1_block.py"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-02",
+    "statement": "Row 4 is a (min,+) system with no additive inverse, so no additive Schur complement exists. Row 6 is a non-Hermitian Liouvillian: inertia is undefined, its coupling is antisymmetric and its pivot is negative definite, so no minimum exists (17 of 17 points). Both lie outside the invariant as SF-01 states it.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Row 4: the (min,+) semiring; control reports that no additive Schur complement exists. Row 6: 17 sampled parameter points of the Liouvillian object; the symmetric-part inertia, antisymmetric coupling and negative-definite pivot hold at all 17. Other Liouvillian parameters were not tested.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "hermitian/objects/open_quantum_liouvillian.json",
+      "hermitian/out/compare.mode1.log",
+      "hermitian/src/compare.py",
+      "tropical/out/mode1/s4row4.json"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-03",
+    "statement": "Row 8 cites AUDIT-010, whose ledger entry contains no Kron-reduction or Schur reduction, and Portal 10 marks the row as routed to a probe, not built.",
+    "verdict": "VERIFIED",
+    "oracle_class": "anchor",
+    "scope": "Ledger text read at the pr1 and pr4 commits. The row 8 object was not built or run.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/PREDICATE.md",
+      "predicate/RESULTS.md"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-04",
+    "statement": "No equivalence exists among the three matrix rows tested (spectral inertia, the Liouvillian, AeST). Each pairing fails on size, symmetry type or inertia of the reduced block, or on a determinant class.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Equivalence over Q(i) by dimension, signature and determinant class (Landherr), partition respecting. Cross-domain pairs: 108 of 168 spectral inertia against AeST fail on reduced inertia, 59 on the pivot determinant class and 1 on the reduced determinant class. The one near-match holds only after a unit rescale chosen for that pair (1 of 168 real pairs against 12 of 1,401 random symmetric 3x3 pairs, sampled). Only one regime of R_opt is a Schur value (51 of the ledger's own 420 instances). Equivalence over Q by Hasse invariants was not tested.",
+    "novelty": "N0",
+    "evidence": [
+      "hermitian/out/compare.mode1.log",
+      "hermitian/out/anchor_check003.stdout",
+      "hermitian/src/compare.py",
+      "hermitian/objects/spectral_inertia_hermitian.json",
+      "hermitian/objects/open_quantum_liouvillian.json",
+      "hermitian/objects/aest_gravity_hamiltonian.json"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-05",
+    "statement": "For AUDIT-017 and AUDIT-019, Phi = [[I, X],[0, R_L]] gives R_el = R_lat Phi and H_el = Phi^T H_lat Phi with zero commuting defect, and a shared rank-1 stress with the same scalar on both sides. The commuting test does not single Phi out: every block-upper-triangular map also gives zero defect and dense maps never do.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Five n=8 instances (E8 s=1 and s=1/2, D8 s=1 and s=1/2, D8 at (4/3, 1/3)), exact over Q and Q(sqrt 2). Stress scalar 3/92 for E8 s=1 and 1/32 for D8 s=1. Null maps on E8 s=1 and D8 s=1: block upper triangular 200 of 200 with zero defect, dense 0 of 200, block lower triangular 0 of 200 (sampled). The identity R_el = R_lat Phi is what identifies Phi.",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/real_A.txt",
+      "lattice/out/nullmap_e8_s1_A.txt",
+      "lattice/out/nullmap_d8_s1_A.txt",
+      "lattice/out/checker2_A.txt",
+      "lattice/out/anchor_A.txt",
+      "second/out/c2_real.txt",
+      "second/out/c2_panel.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-06",
+    "statement": "If no diagonal D makes D L symmetric, S is zero. If such a D is unique up to scale and the stress is non-zero, S has rank 1. The converse fails (smallest witness diag(3,2,2)). A plain basis change of the same lattice loses the collapse in 44 of 45 small cases and 4 of 4 at n=8; a carried change leaves S_el unchanged.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Both implications are argued in lattice/SPEC.md section 5 under the proviso that the intra-cell framework has only rigid motions (checked exactly for n=3..8, not proved for all n), and are not machine-proved in general. The second checker found no violation in exact computations on 904 lattices (n=3..6 and n=8). Basis-change counts: 45 cases at n=3..5 and 4 at n=8, both with the second checker's U.",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/nulllat_e8_s1_A.txt",
+      "lattice/out/nulllat_d8_s1_A.txt",
+      "second/REPORT.md",
+      "second/out/c2_panel.txt",
+      "second/src/c2_panel.py"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-07",
+    "statement": "Conjecture: on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}.",
+    "verdict": "PARTIAL",
+    "oracle_class": "sampled",
+    "scope": "Held on 904 of 904 lattices (440 main seed, 176 and 264 fresh seeds, 24 at n=8), 11 families. Derived before running. Not proved.",
+    "novelty": "N0",
+    "evidence": [
+      "second/REPORT.md",
+      "second/out/c2_panel.txt",
+      "second/src/c2_panel.py"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-08",
+    "statement": "Rows 4 and 8 are exact partial minimizations of convex functions, and so are 300 of 300 unrelated convex problems, so partial minimization classifies the rows and does not discriminate.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Row 4 tower and LP layers and row 8 boxes with integer log2 endpoints; 300 seeded unrelated problems (100 positive-definite quadratics, 100 LP blocks, 100 shortest-path quotients). A non-convex control set has no infimum in 100 of 100 cases.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s4row4.json",
+      "tropical/out/mode1/s4row8.json",
+      "tropical/out/mode1/s4null.json",
+      "tropical/out/mode1/s4bridge.json",
+      "tropical/src/tropical_audit.py"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-09",
+    "statement": "The valuation map commutes with elimination on the ledger's own Cole-Hopf matrices.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "45 witness blocks (acc4 10, boltz5 25, rigid4 10) and 528 size-1 and size-2 eliminations of the 32-state matrix; zero entries with a defect.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s5real.json",
+      "tropical/objects/cole_hopf.json",
+      "tropical/src/tropical_audit.py"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-10",
+    "statement": "In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over minimizing walks is non-zero.",
+    "verdict": "PARTIAL",
+    "oracle_class": "sampled",
+    "scope": "Second checker: 2400 instances, 19,456 entries, no violation of either direction; first checker: seeded random matrices over Q[q]. No proof is included. Order of truncation N = (|B|+1)D + 1.",
+    "novelty": "N0",
+    "evidence": [
+      "second/out/c3_trop.txt",
+      "second/src/c3_trop.py",
+      "tropical/out/mode1/s5random.json",
+      "tropical/out/mode1/controls.json"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-11",
+    "statement": "Surviving statement (a): a taxonomy, not an invariant. Partial minimization covers the symmetric, tropical and LP rows, and Schur reduction of a linear operator covers the matrix rows. The two coincide on symmetric positive-definite pivots, where both are classical.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Classification of the listed rows by mechanism; no domain-specific theorem is transferred.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "tropical/out/mode1/s4null.json",
+      "hermitian/out/compare.mode1.log"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-12",
+    "statement": "Surviving statement (b): AUDIT-017 and AUDIT-019 are linked by one exact congruence, with the symmetrizer criterion of G5-06 deciding when the rank-1 collapse occurs.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "n=8 only, five instances; lattices BW16 and Leech not covered.",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/real_A.txt",
+      "lattice/out/checker2_A.txt",
+      "second/out/c2_real.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-13",
+    "statement": "Surviving statement (c): one running map exists between the Q[q] and (min,+) objects, with an exact no-cancellation condition (G5-10).",
+    "verdict": "PARTIAL",
+    "oracle_class": "exact",
+    "scope": "The map is exact on the ledger's Cole-Hopf matrices (G5-09); the no-cancellation condition is sampled (G5-10).",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s5real.json",
+      "tropical/out/mode1/s5random.json",
+      "second/out/c3_trop.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-14",
+    "statement": "The sentence in README section 1, read with SF-01's inertia invariant, is false for rows 4 and 6.",
+    "verdict": "FALSIFIED",
+    "oracle_class": "exact",
+    "scope": "Follows from G5-02.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "hermitian/out/compare.mode1.log",
+      "tropical/out/mode1/s4row4.json"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-15",
+    "statement": "The sentence in its weakest reading (each row uses block elimination) is true of any block system.",
+    "verdict": "VERIFIED",
+    "oracle_class": "sampled",
+    "scope": "Follows from G5-01.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "second/out/c1_block.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-16",
+    "statement": "Gate 5 is met for the eight-way claim.",
+    "verdict": "NOT_SHOWN",
+    "oracle_class": "anchor",
+    "scope": "Gate 5 requires typed objects and a running map that beats matched random maps. A map exists only for one pair (G5-05); the criterion does not discriminate (G5-01); two rows lie outside it (G5-02). Rows 2 and 8 as objects, BW16, Leech, the live percolation boxes and prior art were not covered.",
+    "novelty": "N0",
+    "evidence": [
+      "README.md",
+      "predicate/PREDICATE.md"
+    ],
+    "second_checker": false
+  }
+]

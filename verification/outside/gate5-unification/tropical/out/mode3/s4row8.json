@@ -1,0 +1,31 @@
+{
+ "all_pass": true,
+ "concave_mode_g0": {
+  "agree": 150,
+  "cases": 150
+ },
+ "feasibility_verdicts_agree": {
+  "agree": 500,
+  "cases": 500
+ },
+ "g0_equals_ray_formula": {
+  "agree": 500,
+  "cases": 500
+ },
+ "g_convex_in_d_midpoint": {
+  "cases": 120,
+  "satisfied": 120
+ },
+ "g_d_equals_ray_formula_random_d": {
+  "agree": 150,
+  "cases": 150
+ },
+ "section": "s4row8",
+ "statement": {
+  "exactness_scope": "boxes with integer log2 endpoints (multiplicative powers of 2); general rational boxes need logs",
+  "f": "f(d,h) = max_j (d_j - (D h)_j) + indicator(h in box [L,U]), h = log2 y in R^4, D = [[1,-2,1,0],[0,1,-2,1]]",
+  "fiber_y": "h in the box (4 variables); x = d in R^2",
+  "g": "g(d) = inf_h f(d,h) = min over the box of max_j (d_j - (Dh)_j)",
+  "ledger_reduced_object": "max over the 4 rays r of (r.d - sigma(r)) / (r0 + r1); feasibility is g(0) <= 0, i.e. all sigma(r) >= 0"
+ }
+}

@@ -1,0 +1,4061 @@
+{
+ "controls": [
+  {
+   "name": "singular_1x1_pivot_refused",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "singular_2x2_pivot_p0",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "singular_pivot_p2_not_pass",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "tropical_min_plus_no_additive_schur",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "nonsymmetric_refused_haynsworth",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "qi_symmetric_not_hermitian_refused",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "corrupted_S_congruence",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "corrupted_S_det",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "sign_flipped_S_inertia",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "pinv_without_range_condition_p1g",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "bareiss_zero_leading_minor",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "quotient_singular_A11",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "loewner_wrong_direction",
+   "wrongly_accepted": false
+  },
+  {
+   "name": "inertia_checkers_vs_other_matrix",
+   "wrongly_accepted": false
+  }
+ ],
+ "controls_that_wrongly_passed": [],
+ "identity_defect_total": 0,
+ "instance_class_counts": {
+  "README.md s1|QH": 6,
+  "README.md s1|QN": 1,
+  "README.md s1|T": 1,
+  "SF-01|N": 2,
+  "SF-01|QH": 23,
+  "SF-01|QN": 2,
+  "frontier_portals.md Portal 10|QH": 6,
+  "frontier_portals.md Portal 10|QN": 1,
+  "frontier_portals.md Portal 10|T": 1
+ },
+ "instances": [
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R1",
+   "label": "Spectral Inertia R_opt",
+   "note": "",
+   "ring": "Q(i) Hermitian, rational entries",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R2",
+   "label": "Higher-moment Stieltjes-Hankel",
+   "note": "",
+   "ring": "Q, Q(i) witnesses",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R3",
+   "label": "Lattice elasticity sheaf Laplacian",
+   "note": "",
+   "ring": "Q",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "T",
+   "could_satisfy_in_principle": {
+    "P0": "no_additive_inverse_in_semiring",
+    "P0g": "no_additive_inverse_in_semiring",
+    "P1": "no_additive_inverse_in_semiring",
+    "P1g": "no_additive_inverse_in_semiring",
+    "P2": "no_additive_inverse_in_semiring",
+    "P3": "no_additive_inverse_in_semiring",
+    "P4a": "no_additive_inverse_in_semiring",
+    "P4b": "no_additive_inverse_in_semiring",
+    "P5": "no_additive_inverse_in_semiring",
+    "P6": "no_additive_inverse_in_semiring",
+    "P8": "no_additive_inverse_in_semiring"
+   },
+   "evidence": "F",
+   "id": "R4",
+   "label": "Coarse-graining / Maslov",
+   "note": "Farkas peeling and Doob h-transform (a diagonal similarity); no D - C A^-1 B shown",
+   "ring": "(min,+) semiring; Q[q]",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R5",
+   "label": "AeST Hamiltonian",
+   "note": "Schur part only; Fenichel and Helmholtz parts are not Schur",
+   "ring": "Q (rational functions of k)",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QN",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "inapplicable_not_hermitian",
+    "P1g": "inapplicable_not_hermitian",
+    "P2": "inapplicable_not_hermitian",
+    "P3": "inapplicable_not_hermitian",
+    "P4a": "inapplicable_not_hermitian",
+    "P4b": "inapplicable_not_hermitian",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "inapplicable_not_hermitian"
+   },
+   "evidence": "F",
+   "id": "R6",
+   "label": "GKSL Lindblad Zeno",
+   "note": "Lindbladian is non-Hermitian (EP2 Jordan blocks); Haynsworth cannot apply",
+   "ring": "Q(i) / symbolic",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "needs_ordered_field_signs_outside_panel",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R7",
+   "label": "Sylvester-Hadamard F8 to E8",
+   "note": "2x2 block only; headline fold and kissing results are not Schur objects",
+   "ring": "Z[sqrt 2] / Q(sqrt 2)",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "R8",
+   "label": "Kigami resistance renormalization",
+   "note": "Kron reduction; full Laplacian singular, eliminated interior block invertible",
+   "ring": "Q",
+   "source": "README.md s1"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P1",
+   "label": "spectral R_opt",
+   "note": "",
+   "ring": "Q(i)",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P2",
+   "label": "Hankel hierarchy R_H4",
+   "note": "",
+   "ring": "Q",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "needs_ordered_field_signs_outside_panel",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P3",
+   "label": "F8 to E8 2x2 block M_{+-2}(s)",
+   "note": "",
+   "ring": "Z[sqrt 2]",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P4",
+   "label": "Elastic tensor C",
+   "note": "",
+   "ring": "Q",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "T",
+   "could_satisfy_in_principle": {
+    "P0": "no_additive_inverse_in_semiring",
+    "P0g": "no_additive_inverse_in_semiring",
+    "P1": "no_additive_inverse_in_semiring",
+    "P1g": "no_additive_inverse_in_semiring",
+    "P2": "no_additive_inverse_in_semiring",
+    "P3": "no_additive_inverse_in_semiring",
+    "P4a": "no_additive_inverse_in_semiring",
+    "P4b": "no_additive_inverse_in_semiring",
+    "P5": "no_additive_inverse_in_semiring",
+    "P6": "no_additive_inverse_in_semiring",
+    "P8": "no_additive_inverse_in_semiring"
+   },
+   "evidence": "F",
+   "id": "P5",
+   "label": "Tropical (min,+) Schur/Doob peeling",
+   "note": "update is c(j) = c(j-1) + d0(pi* h*): add a coboundary, no block inverse",
+   "ring": "(min,+) semiring",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P6",
+   "label": "AeST Hamiltonian S_P",
+   "note": "",
+   "ring": "Q (rational functions)",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QN",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "inapplicable_not_hermitian",
+    "P1g": "inapplicable_not_hermitian",
+    "P2": "inapplicable_not_hermitian",
+    "P3": "inapplicable_not_hermitian",
+    "P4a": "inapplicable_not_hermitian",
+    "P4b": "inapplicable_not_hermitian",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "inapplicable_not_hermitian"
+   },
+   "evidence": "F",
+   "id": "P7",
+   "label": "Lindblad Zeno Schur",
+   "note": "non-Hermitian",
+   "ring": "Q(i) / symbolic",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "P8",
+   "label": "Kigami Schur L_{n+1}/L_int",
+   "note": "status in that table: routed to a probe, not marked verified",
+   "ring": "Q",
+   "source": "frontier_portals.md Portal 10"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "SF-01#1",
+   "label": "gravity AeST dark-matter closure",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "F",
+   "id": "SF-01#2",
+   "label": "incentre-lattices elastic rigidity unjamming",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QN",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "inapplicable_not_hermitian",
+    "P1g": "inapplicable_not_hermitian",
+    "P2": "inapplicable_not_hermitian",
+    "P3": "inapplicable_not_hermitian",
+    "P4a": "inapplicable_not_hermitian",
+    "P4b": "inapplicable_not_hermitian",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "inapplicable_not_hermitian"
+   },
+   "evidence": "F",
+   "id": "SF-01#3",
+   "label": "fractals GKSL Lindblad Zeno",
+   "note": "",
+   "ring": "Q(i) / symbolic",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#4",
+   "label": "warp#17 stacked LoRA Q_stack(s)",
+   "note": "label-only classification",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "N",
+   "could_satisfy_in_principle": {
+    "P0": "unknown_no_object_visible",
+    "P0g": "unknown_no_object_visible",
+    "P1": "unknown_no_object_visible",
+    "P1g": "unknown_no_object_visible",
+    "P2": "unknown_no_object_visible",
+    "P3": "unknown_no_object_visible",
+    "P4a": "unknown_no_object_visible",
+    "P4b": "unknown_no_object_visible",
+    "P5": "unknown_no_object_visible",
+    "P6": "unknown_no_object_visible",
+    "P8": "unknown_no_object_visible"
+   },
+   "evidence": "X",
+   "id": "SF-01#5",
+   "label": "heedle blind-subspace drift Shed/hidden_move",
+   "note": "label-only classification",
+   "ring": "unknown",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#6",
+   "label": "soko grounded-Laplacian R_eff",
+   "note": "label-only classification",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "N",
+   "could_satisfy_in_principle": {
+    "P0": "unknown_no_object_visible",
+    "P0g": "unknown_no_object_visible",
+    "P1": "unknown_no_object_visible",
+    "P1g": "unknown_no_object_visible",
+    "P2": "unknown_no_object_visible",
+    "P3": "unknown_no_object_visible",
+    "P4a": "unknown_no_object_visible",
+    "P4b": "unknown_no_object_visible",
+    "P5": "unknown_no_object_visible",
+    "P6": "unknown_no_object_visible",
+    "P8": "unknown_no_object_visible"
+   },
+   "evidence": "X",
+   "id": "SF-01#7",
+   "label": "jacobian-lens verbalizable Jacobian vs dark kernel (fp16)",
+   "note": "label-only classification",
+   "ring": "dyadic Q (fp16 data)",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#8",
+   "label": "FlashProve Schatten-nuclear vs Bareiss PSD",
+   "note": "label-only classification",
+   "ring": "Z/Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#9",
+   "label": "formal-conjectures Hadamard.lean Bareiss Schur converse",
+   "note": "",
+   "ring": "Z",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#10",
+   "label": "DisTrO H_8 Schur ceiling",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#11",
+   "label": "RPC-Bench parallel-sum / 2x2 Plucker Schur commutator",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#12",
+   "label": "gravity Arm H1 Haynsworth-Schur Krein",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#13",
+   "label": "incentre-lattices Arm H2 p-adic BTZ DtN iterated Schur",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#14",
+   "label": "hawking Arm R4-4 indefinite DtN Krein flip",
+   "note": "label-only classification",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#15",
+   "label": "formal-conjectures Arm R4-2 Hankel/Stieltjes Schur",
+   "note": "",
+   "ring": "Z/Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#16",
+   "label": "openai/math Ramanujan-sum Schur projection",
+   "note": "",
+   "ring": "Z",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#17",
+   "label": "zeta-explorer Weil/Li/NB Gram/Schur PSD",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#18",
+   "label": "canculus 2x2 feedback Schur S = 1 + alpha g h",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#19",
+   "label": "Euler Leray projection as rank-1 Schur",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#20",
+   "label": "navier-stokes SignedTree multifrontal Schur",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QN",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "inapplicable_not_hermitian",
+    "P1g": "inapplicable_not_hermitian",
+    "P2": "inapplicable_not_hermitian",
+    "P3": "inapplicable_not_hermitian",
+    "P4a": "inapplicable_not_hermitian",
+    "P4b": "inapplicable_not_hermitian",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "inapplicable_not_hermitian"
+   },
+   "evidence": "L",
+   "id": "SF-01#21",
+   "label": "continuum double-slit GKSL Schur pinching",
+   "note": "",
+   "ring": "Q(i)",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#22",
+   "label": "aletheia 8-glyph operator calculus Loewner screening",
+   "note": "label-only classification",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#23",
+   "label": "camail linear-attention/SSM Schur pushforward",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#24",
+   "label": "alphaxiv Hilbert-operator Bareiss Schur conditioning",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#25",
+   "label": "quantum#1 U(1) severing / Looped-Schur",
+   "note": "",
+   "ring": "Q(i)",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "L",
+   "id": "SF-01#26",
+   "label": "warp-drive Bareiss Gram Schur Q_stack",
+   "note": "",
+   "ring": "Q",
+   "source": "SF-01"
+  },
+  {
+   "cls": "QH",
+   "could_satisfy_in_principle": {
+    "P0": "yes",
+    "P0g": "yes",
+    "P1": "yes",
+    "P1g": "yes_if_range_condition",
+    "P2": "yes",
+    "P3": "yes",
+    "P4a": "yes",
+    "P4b": "yes",
+    "P5": "yes",
+    "P6": "yes",
+    "P8": "yes_if_psd"
+   },
+   "evidence": "I",
+   "id": "SF-01#27",
+   "label": "zenodo rns-pnp coupling Gramian W = B^T B",
+   "note": "label-only classification",
+   "ring": "Z/Q",
+   "source": "SF-01"
+  }
+ ],
+ "panels": [
+  {
+   "P1g_range_condition_counts": {
+    "True": 360
+   },
+   "families": [
+    "pd_rational",
+    "indefinite_symmetric",
+    "grounded_laplacian_kron",
+    "gaussian_conditioning",
+    "normal_equations_nuisance",
+    "hermitian_qi"
+   ],
+   "identity_defects": [],
+   "master_seed": 20261121,
+   "panel_sha256": "a68af6ba822448571f45e0dbfc9b38e4da1c760380d8aa4b2bbe963c0c1c2a6a",
+   "per_cell": 30,
+   "predicates": {
+    "P0": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P0g": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P1": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P1g": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P2": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P3": {
+     "applicable": 289,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 26,
+       "pass": 26,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 29,
+       "pass": 29,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 30,
+       "total": 32
+      },
+      "11": {
+       "pass": 27,
+       "total": 34
+      },
+      "12": {
+       "pass": 25,
+       "total": 34
+      },
+      "2": {
+       "pass": 16,
+       "total": 18
+      },
+      "3": {
+       "pass": 23,
+       "total": 36
+      },
+      "4": {
+       "pass": 42,
+       "total": 52
+      },
+      "5": {
+       "pass": 26,
+       "total": 32
+      },
+      "6": {
+       "pass": 31,
+       "total": 34
+      },
+      "7": {
+       "pass": 21,
+       "total": 22
+      },
+      "8": {
+       "pass": 19,
+       "total": 24
+      },
+      "9": {
+       "pass": 29,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "143/180",
+      "scrambled": "146/180"
+     },
+     "pass_over_all": "289/360",
+     "pass_over_applicable": "289/289",
+     "pass_rate_over_all_pct": "80.27",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 71,
+      "pass": 289
+     },
+     "total": 360
+    },
+    "P4a": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P4b": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P4c": {
+     "applicable": 359,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 29,
+       "pass": 29,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 17,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 17,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 20,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 17,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 32
+      },
+      "11": {
+       "pass": 31,
+       "total": 34
+      },
+      "12": {
+       "pass": 30,
+       "total": 34
+      },
+      "2": {
+       "pass": 15,
+       "total": 18
+      },
+      "3": {
+       "pass": 33,
+       "total": 36
+      },
+      "4": {
+       "pass": 42,
+       "total": 52
+      },
+      "5": {
+       "pass": 29,
+       "total": 32
+      },
+      "6": {
+       "pass": 29,
+       "total": 34
+      },
+      "7": {
+       "pass": 18,
+       "total": 22
+      },
+      "8": {
+       "pass": 21,
+       "total": 24
+      },
+      "9": {
+       "pass": 38,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "157/180",
+      "scrambled": "153/180"
+     },
+     "pass_over_all": "310/360",
+     "pass_over_applicable": "310/359",
+     "pass_rate_over_all_pct": "86.11",
+     "pass_rate_over_applicable_pct": "86.35",
+     "status_counts": {
+      "changed": 49,
+      "preserved": 310,
+      "undefined": 1
+     },
+     "total": 360
+    },
+    "P5": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 32,
+       "total": 32
+      },
+      "11": {
+       "pass": 34,
+       "total": 34
+      },
+      "12": {
+       "pass": 34,
+       "total": 34
+      },
+      "2": {
+       "pass": 18,
+       "total": 18
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 52,
+       "total": 52
+      },
+      "5": {
+       "pass": 32,
+       "total": 32
+      },
+      "6": {
+       "pass": 34,
+       "total": 34
+      },
+      "7": {
+       "pass": 22,
+       "total": 22
+      },
+      "8": {
+       "pass": 24,
+       "total": 24
+      },
+      "9": {
+       "pass": 42,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P6": {
+     "applicable": 246,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 20,
+       "pass": 20,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 20,
+       "pass": 20,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 21,
+       "pass": 21,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 21,
+       "pass": 21,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 24,
+       "pass": 24,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 22,
+       "pass": 22,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 20,
+       "pass": 20,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 22,
+       "pass": 22,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 26,
+       "total": 32
+      },
+      "11": {
+       "pass": 30,
+       "total": 34
+      },
+      "12": {
+       "pass": 30,
+       "total": 34
+      },
+      "2": {
+       "pass": 0,
+       "total": 18
+      },
+      "3": {
+       "pass": 17,
+       "total": 36
+      },
+      "4": {
+       "pass": 22,
+       "total": 52
+      },
+      "5": {
+       "pass": 26,
+       "total": 32
+      },
+      "6": {
+       "pass": 25,
+       "total": 34
+      },
+      "7": {
+       "pass": 11,
+       "total": 22
+      },
+      "8": {
+       "pass": 19,
+       "total": 24
+      },
+      "9": {
+       "pass": 40,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "123/180",
+      "scrambled": "123/180"
+     },
+     "pass_over_all": "246/360",
+     "pass_over_applicable": "246/246",
+     "pass_rate_over_all_pct": "68.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 114,
+      "pass": 246
+     },
+     "total": 360
+    },
+    "P8": {
+     "applicable": 240,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 20,
+       "total": 32
+      },
+      "11": {
+       "pass": 22,
+       "total": 34
+      },
+      "12": {
+       "pass": 24,
+       "total": 34
+      },
+      "2": {
+       "pass": 12,
+       "total": 18
+      },
+      "3": {
+       "pass": 28,
+       "total": 36
+      },
+      "4": {
+       "pass": 36,
+       "total": 52
+      },
+      "5": {
+       "pass": 22,
+       "total": 32
+      },
+      "6": {
+       "pass": 22,
+       "total": 34
+      },
+      "7": {
+       "pass": 14,
+       "total": 22
+      },
+      "8": {
+       "pass": 14,
+       "total": 24
+      },
+      "9": {
+       "pass": 26,
+       "total": 42
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "120/180",
+      "scrambled": "120/180"
+     },
+     "pass_over_all": "240/360",
+     "pass_over_applicable": "240/240",
+     "pass_rate_over_all_pct": "66.66",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 120,
+      "pass": 240
+     },
+     "total": 360
+    }
+   },
+   "size_histogram": {
+    "10": 32,
+    "11": 34,
+    "12": 34,
+    "2": 18,
+    "3": 36,
+    "4": 52,
+    "5": 32,
+    "6": 34,
+    "7": 22,
+    "8": 24,
+    "9": 42
+   },
+   "system_count": 360
+  },
+  {
+   "P1g_range_condition_counts": {
+    "False": 6,
+    "True": 354
+   },
+   "families": [
+    "pd_rational",
+    "indefinite_symmetric",
+    "grounded_laplacian_kron",
+    "gaussian_conditioning",
+    "normal_equations_nuisance",
+    "hermitian_qi"
+   ],
+   "identity_defects": [],
+   "master_seed": 11235813,
+   "panel_sha256": "5940596fed76fcb1eead943ce74f9184b36a5efa13bc7deae6783cda07f25f10",
+   "per_cell": 30,
+   "predicates": {
+    "P0": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/360",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "98.33",
+     "status_counts": {
+      "fail": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P0g": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 46,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 30,
+       "total": 30
+      },
+      "5": {
+       "pass": 38,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 26,
+       "total": 26
+      },
+      "9": {
+       "pass": 34,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "180/180",
+      "scrambled": "180/180"
+     },
+     "pass_over_all": "360/360",
+     "pass_over_applicable": "360/360",
+     "pass_rate_over_all_pct": "100.00",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "pass": 360
+     },
+     "total": 360
+    },
+    "P1": {
+     "applicable": 354,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/354",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P1g": {
+     "applicable": 360,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 30,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 30,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/360",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "98.33",
+     "status_counts": {
+      "fail": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P2": {
+     "applicable": 354,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/354",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P3": {
+     "applicable": 279,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 24,
+       "pass": 24,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 24,
+       "pass": 24,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 24,
+       "pass": 24,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 20,
+       "total": 24
+      },
+      "11": {
+       "pass": 26,
+       "total": 30
+      },
+      "12": {
+       "pass": 15,
+       "total": 20
+      },
+      "2": {
+       "pass": 41,
+       "total": 46
+      },
+      "3": {
+       "pass": 27,
+       "total": 36
+      },
+      "4": {
+       "pass": 21,
+       "total": 30
+      },
+      "5": {
+       "pass": 31,
+       "total": 38
+      },
+      "6": {
+       "pass": 38,
+       "total": 44
+      },
+      "7": {
+       "pass": 28,
+       "total": 32
+      },
+      "8": {
+       "pass": 13,
+       "total": 26
+      },
+      "9": {
+       "pass": 19,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "141/180",
+      "scrambled": "138/180"
+     },
+     "pass_over_all": "279/360",
+     "pass_over_applicable": "279/279",
+     "pass_rate_over_all_pct": "77.50",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 81,
+      "pass": 279
+     },
+     "total": 360
+    },
+    "P4a": {
+     "applicable": 354,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/354",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P4b": {
+     "applicable": 354,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/354",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P4c": {
+     "applicable": 351,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 29,
+       "pass": 29,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 22,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 22,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 25,
+       "pass": 12,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 16,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 20,
+       "total": 24
+      },
+      "11": {
+       "pass": 25,
+       "total": 30
+      },
+      "12": {
+       "pass": 19,
+       "total": 20
+      },
+      "2": {
+       "pass": 36,
+       "total": 46
+      },
+      "3": {
+       "pass": 31,
+       "total": 36
+      },
+      "4": {
+       "pass": 27,
+       "total": 30
+      },
+      "5": {
+       "pass": 34,
+       "total": 38
+      },
+      "6": {
+       "pass": 35,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 27,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "153/180",
+      "scrambled": "158/180"
+     },
+     "pass_over_all": "311/360",
+     "pass_over_applicable": "311/351",
+     "pass_rate_over_all_pct": "86.38",
+     "pass_rate_over_applicable_pct": "88.60",
+     "status_counts": {
+      "changed": 40,
+      "na": 6,
+      "preserved": 311,
+      "undefined": 3
+     },
+     "total": 360
+    },
+    "P5": {
+     "applicable": 354,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 27,
+       "pass": 27,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 30,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 45,
+       "total": 46
+      },
+      "3": {
+       "pass": 36,
+       "total": 36
+      },
+      "4": {
+       "pass": 29,
+       "total": 30
+      },
+      "5": {
+       "pass": 36,
+       "total": 38
+      },
+      "6": {
+       "pass": 44,
+       "total": 44
+      },
+      "7": {
+       "pass": 32,
+       "total": 32
+      },
+      "8": {
+       "pass": 25,
+       "total": 26
+      },
+      "9": {
+       "pass": 33,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "177/180",
+      "scrambled": "177/180"
+     },
+     "pass_over_all": "354/360",
+     "pass_over_applicable": "354/354",
+     "pass_rate_over_all_pct": "98.33",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 6,
+      "pass": 354
+     },
+     "total": 360
+    },
+    "P6": {
+     "applicable": 250,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 23,
+       "pass": 23,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 23,
+       "pass": 23,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 23,
+       "pass": 23,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 23,
+       "pass": 23,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 24,
+       "pass": 24,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 23,
+       "pass": 23,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 20,
+       "pass": 20,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 19,
+       "pass": 19,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 17,
+       "pass": 17,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 17,
+       "pass": 17,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 24,
+       "total": 24
+      },
+      "11": {
+       "pass": 28,
+       "total": 30
+      },
+      "12": {
+       "pass": 20,
+       "total": 20
+      },
+      "2": {
+       "pass": 0,
+       "total": 46
+      },
+      "3": {
+       "pass": 21,
+       "total": 36
+      },
+      "4": {
+       "pass": 25,
+       "total": 30
+      },
+      "5": {
+       "pass": 20,
+       "total": 38
+      },
+      "6": {
+       "pass": 35,
+       "total": 44
+      },
+      "7": {
+       "pass": 28,
+       "total": 32
+      },
+      "8": {
+       "pass": 21,
+       "total": 26
+      },
+      "9": {
+       "pass": 28,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "126/180",
+      "scrambled": "124/180"
+     },
+     "pass_over_all": "250/360",
+     "pass_over_applicable": "250/250",
+     "pass_rate_over_all_pct": "69.44",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 110,
+      "pass": 250
+     },
+     "total": 360
+    },
+    "P8": {
+     "applicable": 240,
+     "by_family_mode": {
+      "gaussian_conditioning|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "gaussian_conditioning|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "grounded_laplacian_kron|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "hermitian_qi|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "hermitian_qi|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "indefinite_symmetric|native": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "indefinite_symmetric|scrambled": {
+       "applicable": 0,
+       "pass": 0,
+       "total": 30
+      },
+      "normal_equations_nuisance|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "normal_equations_nuisance|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|native": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      },
+      "pd_rational|scrambled": {
+       "applicable": 30,
+       "pass": 30,
+       "total": 30
+      }
+     },
+     "by_size_n": {
+      "10": {
+       "pass": 14,
+       "total": 24
+      },
+      "11": {
+       "pass": 16,
+       "total": 30
+      },
+      "12": {
+       "pass": 18,
+       "total": 20
+      },
+      "2": {
+       "pass": 34,
+       "total": 46
+      },
+      "3": {
+       "pass": 16,
+       "total": 36
+      },
+      "4": {
+       "pass": 24,
+       "total": 30
+      },
+      "5": {
+       "pass": 28,
+       "total": 38
+      },
+      "6": {
+       "pass": 20,
+       "total": 44
+      },
+      "7": {
+       "pass": 28,
+       "total": 32
+      },
+      "8": {
+       "pass": 22,
+       "total": 26
+      },
+      "9": {
+       "pass": 20,
+       "total": 34
+      }
+     },
+     "native_vs_scrambled_pass": {
+      "native": "120/180",
+      "scrambled": "120/180"
+     },
+     "pass_over_all": "240/360",
+     "pass_over_applicable": "240/240",
+     "pass_rate_over_all_pct": "66.66",
+     "pass_rate_over_applicable_pct": "100.00",
+     "status_counts": {
+      "na": 120,
+      "pass": 240
+     },
+     "total": 360
+    }
+   },
+   "size_histogram": {
+    "10": 24,
+    "11": 30,
+    "12": 20,
+    "2": 46,
+    "3": 36,
+    "4": 30,
+    "5": 38,
+    "6": 44,
+    "7": 32,
+    "8": 26,
+    "9": 34
+   },
+   "system_count": 360
+  }
+ ],
+ "schema": "gate5.predicate_panel.v1"
+}
