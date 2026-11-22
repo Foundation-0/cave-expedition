@@ -119,8 +119,8 @@ def main():
         par.close()
         return
     status, text = evaluate(counts, ns, nctrl, mode)
-    summary("K2", status, text, mode)
     par.close()
+    summary("K2", status, text, mode)
     if status != "PASS":
         raise SystemExit(1)
 

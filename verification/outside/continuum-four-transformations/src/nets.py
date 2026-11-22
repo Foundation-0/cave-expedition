@@ -72,7 +72,10 @@ def amp_normal_scores(x):
 def amp_exp_standardised(x):
     """Amplitude-map net 2 (scale-flow transfer only): exp of the series standardised to mean 0, unit variance."""
     x = np.asarray(x, dtype=np.float64)
-    return np.exp((x - x.mean()) / x.std())
+    sd = x.std() if x.size > 1 else 0.0
+    if not (np.isfinite(sd) and sd > 0.0):
+        raise ValueError("cannot standardise a constant or non-finite series (standard deviation is zero)")
+    return np.exp((x - x.mean()) / sd)
 
 
 def map_guard_ok(x, y):

@@ -14,6 +14,10 @@ def loo_standardise(V):
     the other P - 1 rows. The ddof choice scales every value alike and cannot change a p-value or a transfer p-value.
     Zero spread is decided exactly (all other rows equal). Returns (z, degenerate (P, L) bool); z = 0 where degenerate."""
     V = np.asarray(V, dtype=np.float64)
+    if V.ndim != 2 or V.shape[0] < 2:
+        raise ValueError("need a 2-D array with at least 2 rows (the real series and one surrogate)")
+    if not np.all(np.isfinite(V)):
+        raise ValueError("non-finite values cannot be standardised")
     P = V.shape[0]
     m = P - 1
     mean = (V.sum(axis=0)[None, :] - V) / m

@@ -37,7 +37,13 @@ def header(tid, title, mode):
 
 
 def summary(tid, status, text, mode):
+    """Print the summary line. Any status other than PASS ends the script with exit status 1 (never 0 on FAIL)."""
+    if status not in ("PASS", "FAIL"):
+        raise ValueError("status must be PASS or FAIL")
     print("SUMMARY", tid, ("SMOKE " if mode == "smoke" else "") + status, "|", text)
+    sys.stdout.flush()
+    if status != "PASS":
+        raise SystemExit(1)
 
 
 class Checker:

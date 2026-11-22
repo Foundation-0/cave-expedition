@@ -3,6 +3,21 @@ the pass rule of a run, the combination over runs, Holm's step-down method and t
 Only int and fractions.Fraction. Every threshold below is taken from the plan text."""
 from fractions import Fraction
 from math import comb
+import numpy as np
+
+
+def _int(v, name):
+    """An integer that is not a bool (numpy integers allowed)."""
+    if isinstance(v, (bool, np.bool_)) or not isinstance(v, (int, np.integer)):
+        raise TypeError("%s must be an int, got %s" % (name, type(v).__name__))
+    return int(v)
+
+
+def _exact(v, name):
+    """An exact rational: int or Fraction, never a float or a bool (a float such as 0.05 is not 1/20)."""
+    if isinstance(v, (bool, np.bool_)) or not isinstance(v, (int, Fraction, np.integer)):
+        raise TypeError("%s must be an int or a Fraction, got %s" % (name, type(v).__name__))
+    return Fraction(int(v)) if isinstance(v, np.integer) else Fraction(v)
 
 ALPHA = Fraction(1, 20)          # per-segment level 0.05
 FWER = Fraction(1, 20)
@@ -16,17 +31,17 @@ CEILING_CHECKS = 24              # three controls in each of 8 runs (section 6)
 
 def binom_tail(S, K, q=ALPHA):
     """P(Binomial(S, q) >= K), exact."""
+    S, K, q = _int(S, "S"), _int(K, "K"), _exact(q, "q")
     if S < 0:
         raise ValueError("S must be non-negative")
     if K <= 0:
         return Fraction(1)
-    q = Fraction(q)
     return sum(comb(S, k) * q ** k * (1 - q) ** (S - k) for k in range(K, S + 1))
 
 
 def smallest_k(S, level, q=ALPHA):
     """Smallest K with P(Binomial(S, q) >= K) <= level."""
-    level = Fraction(level)
+    S, level, q = _int(S, "S"), _exact(level, "level"), _exact(q, "q")
     for K in range(S + 2):
         if binom_tail(S, K, q) <= level:
             return K
@@ -40,11 +55,12 @@ def excess_point(S, level=CONTROL_LEVEL):
 
 def control_absent(Kc, Sc):
     """C2, C3, C4 rule: K below the binomial 1 percent excess point (A1)."""
-    return Kc < excess_point(Sc)
+    return _int(Kc, "Kc") < excess_point(Sc)
 
 
 def c_max(S):
     """Control ceiling (k - 1) / S with k the smallest count whose tail is at most 0.01 / 24."""
+    S = _int(S, "S")
     return Fraction(smallest_k(S, CONTROL_LEVEL / CEILING_CHECKS) - 1, S)
 
 
@@ -72,15 +88,20 @@ def transfer_runs(kind, has_second_channel):
 
 def run_level(nruns, family=FAMILY, fwer=FWER):
     """Level of one run: the test's smallest Holm level split equally across its runs (Bonferroni)."""
-    return Fraction(fwer) / family / nruns
+    return _exact(fwer, "fwer") / _int(family, "family") / _int(nruns, "nruns")
 
 
 def run_passes(K, S, level, controls):
     """A presence run passes only if (1) its binomial p is within the run's level, (2) its share K/S exceeds the share
     of each control (C2, C3, C4: list of (Kc, Sc)) by at least 1/4, and (3) each control share is at most c_max(S).
     Returns dict with the three conditions."""
+    K, S, level = _int(K, "K"), _int(S, "S"), _exact(level, "level")
     if S < 1 or K < 0 or K > S:
         raise ValueError("need 0 <= K <= S and S >= 1")
+    controls = [(_int(a, "Kc"), _int(b, "Sc")) for (a, b) in controls]
+    for (Kc, Sc) in controls:
+        if Sc < 1 or Kc < 0 or Kc > Sc:
+            raise ValueError("need 0 <= Kc <= Sc and Sc >= 1")
     p = binom_tail(S, K)
     share = Fraction(K, S)
     cm = c_max(S)
@@ -95,6 +116,8 @@ def presence_p(runs):
     run fails the margin or ceiling rule. runs: list of run_passes dicts."""
     if len(runs) == 0:
         raise ValueError("no runs to combine")
+    for r in runs:
+        _exact(r["p"], "run p")
     if any((not r["margin_ok"]) or (not r["ceiling_ok"]) for r in runs):
         return Fraction(1)
     return min(Fraction(1), max(r["p"] for r in runs) * len(runs))
@@ -106,27 +129,31 @@ def transfer_p(run_ps, control_ps):
     controls)."""
     if len(run_ps) == 0:
         raise ValueError("no runs to combine")
-    if any(Fraction(c) <= Fraction(1, 100) for c in control_ps):
+    run_ps = [_exact(p, "run p") for p in run_ps]
+    control_ps = [_exact(c, "control p") for c in control_ps]
+    if any(c <= Fraction(1, 100) for c in control_ps):
         return Fraction(1)
-    return min(Fraction(1), max(Fraction(p) for p in run_ps) * len(run_ps))
+    return min(Fraction(1), max(run_ps) * len(run_ps))
 
 
 def transfer_run_floor_ok(floor, nruns, family=FAMILY):
     """A transfer run counts as not passing unless its smallest reachable p is within its per-run level."""
-    return Fraction(floor) <= run_level(nruns, family)
+    return _exact(floor, "floor") <= run_level(nruns, family)
 
 
 def holm(tests, m=FAMILY, alpha=FWER):
     """tests: dict name -> p (Fraction or int ratio). The family has m tests; a test not in the dict counts as p = 1.
     Step-down: reject the i-th smallest while p_(i) <= alpha / (m - i). Returns dict name -> (rejected, threshold)."""
+    m, alpha = _int(m, "m"), _exact(alpha, "alpha")
     if len(tests) > m:
         raise ValueError("more tests than the family size")
-    order = sorted(tests.items(), key=lambda kv: (Fraction(kv[1]), kv[0]))
+    tests = {k: _exact(v, "p of " + str(k)) for k, v in tests.items()}
+    order = sorted(tests.items(), key=lambda kv: (kv[1], kv[0]))
     out = {}
     alive = True
     for i, (name, p) in enumerate(order):
-        thr = Fraction(alpha) / (m - i)
-        ok = alive and Fraction(p) <= thr
+        thr = alpha / (m - i)
+        ok = alive and p <= thr
         if not ok:
             alive = False
         out[name] = (ok, thr)
@@ -143,6 +170,12 @@ def instrument_status(n_valid, n_selected, primary_controls_ok, holm_pass, net_u
     underpowered). Net-dependent: the primary run alone passes at the test's per-run level but the presence test does
     not pass. Absent: otherwise. When both underpowered and invalid hold, 'underpowered' is reported (provisional, see
     AMENDMENTS_NEEDED.md)."""
+    n_valid, n_selected = _int(n_valid, "n_valid"), _int(n_selected, "n_selected")
+    for nm, v in (("primary_controls_ok", primary_controls_ok), ("holm_pass", holm_pass), ("net_underpowered", net_underpowered), ("primary_run_pass", primary_run_pass)):
+        if not isinstance(v, (bool, np.bool_)):
+            raise TypeError("%s must be a bool" % nm)
+    if n_valid < 0 or n_valid > n_selected:
+        raise ValueError("need 0 <= n_valid <= n_selected")
     invalid_blocks = n_selected - n_valid
     if n_valid < MIN_VALID or invalid_blocks * 4 > n_selected:
         return "underpowered"

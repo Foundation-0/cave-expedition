@@ -570,6 +570,88 @@ def u_law2b():
     eq("no module of src/ refers to law2b (confirmatory path does not call it)", users, [])
 
 
+def _refused(call, kinds=(ValueError, TypeError)):
+    try:
+        call()
+    except kinds:
+        return True
+    return False
+
+
+def u_review_guards():
+    section("guards found missing by an outside review of the frozen-plan code (each check fails if its guard is removed)")
+    import inspect
+    import kcommon
+    F = Fraction
+    ck("validate_series has no switch that turns a guard off", list(inspect.signature(gates.validate_series).parameters) == ["x", "N"])
+    ck("bool array refused (GATE_NUMERIC)", _refused(lambda: gates.validate_series([True, False] * 2500, 4096), (gates.GateError,)))
+    ck("complex array refused, not truncated", _refused(lambda: gates.validate_series(np.array([1 + 2j, 2 + 3j] * 2500), 4096), (gates.GateError,)))
+    ck("string array refused", _refused(lambda: gates.validate_series(np.array(["1", "2"] * 2500), 4096), (gates.GateError,)))
+    ck("integer counts accepted", gates.validate_series(np.arange(5000) % 7 + 1, 4096).dtype == np.float64)
+    for badN in (True, 0, 4096.0, "4096"):
+        ck("N = %r refused" % (badN,), _refused(lambda: gates.validate_series(np.random.default_rng(1).standard_normal(5000), badN), (TypeError,)))
+    ck("holm refuses a float p-value (0.05 is not 1/20)", _refused(lambda: levels.holm({"t": 0.05}, m=1)))
+    ck("holm refuses a bool p-value", _refused(lambda: levels.holm({"t": True}, m=1)))
+    ck("holm refuses a float alpha", _refused(lambda: levels.holm({"t": F(1, 100)}, m=1, alpha=0.05)))
+    ck("holm accepts Fraction(1, 20) at m = 1", levels.holm({"t": F(1, 20)}, m=1)["t"][0])
+    ck("binom_tail refuses bool S and K", _refused(lambda: levels.binom_tail(True, True)))
+    ck("binom_tail refuses a float q", _refused(lambda: levels.binom_tail(12, 4, 0.05)))
+    ck("binom_tail refuses a float K", _refused(lambda: levels.binom_tail(12, 4.0)))
+    ck("smallest_k refuses a float level", _refused(lambda: levels.smallest_k(12, 0.01)))
+    ck("run_passes refuses bool K, S", _refused(lambda: levels.run_passes(True, True, F(1, 800), [])))
+    ck("run_passes refuses a float level", _refused(lambda: levels.run_passes(5, 12, 0.001, [])))
+    ck("run_passes refuses a control count above its size", _refused(lambda: levels.run_passes(5, 12, F(1, 800), [(13, 12)])))
+    ck("transfer_p refuses float p-values", _refused(lambda: levels.transfer_p([0.001], [])))
+    ck("transfer_p refuses float control p-values", _refused(lambda: levels.transfer_p([F(1, 1000)], [0.5])))
+    ck("presence_p refuses a run with a float p", _refused(lambda: levels.presence_p([{"p": 0.01, "margin_ok": True, "ceiling_ok": True}])))
+    ck("run_level refuses a bool run count", _refused(lambda: levels.run_level(True)))
+    ck("instrument_status refuses a bool count", _refused(lambda: levels.instrument_status(True, 12, True, True, False, True)))
+    ck("instrument_status refuses a non-bool flag", _refused(lambda: levels.instrument_status(12, 12, 1, True, False, True)))
+    ck("instrument_status refuses n_valid above n_selected", _refused(lambda: levels.instrument_status(13, 12, True, True, False, True)))
+    ck("loo_standardise refuses one row", _refused(lambda: stats43.loo_standardise(np.ones((1, 4)))))
+    ck("loo_standardise refuses non-finite values", _refused(lambda: stats43.loo_standardise(np.array([[1.0], [np.nan], [2.0]]))))
+    ck("loo_standardise refuses a 1-D array", _refused(lambda: stats43.loo_standardise(np.ones(5))))
+    ck("tau0 refuses a constant segment", _refused(lambda: transfer.tau0_segment(np.full(4096, 5.0))))
+    ck("tau0 refuses a segment of one sample", _refused(lambda: transfer.tau0_segment(np.array([1.0]))))
+    ck("build_template refuses an empty set of segments", _refused(lambda: transfer.build_template(np.zeros((0, 4)))))
+    ck("build_template refuses non-finite features", _refused(lambda: transfer.build_template(np.array([[1.0, np.nan]]))))
+    w = np.arange(1.0, 7.0)
+    pm = np.ones(6, dtype=bool)
+    rg = lambda: np.random.default_rng(1)
+    ck("transfer_test refuses R = 0", _refused(lambda: transfer.transfer_test("arrow", w, w, pm, rg(), R=0)))
+    ck("transfer_test refuses a bool R", _refused(lambda: transfer.transfer_test("arrow", w, w, pm, rg(), R=True)))
+    ck("transfer_test refuses an unknown kind", _refused(lambda: transfer.transfer_test("nope", w, w, pm, rg(), R=100)))
+    ck("transfer_test refuses a target of another length", _refused(lambda: transfer.transfer_test("arrow", w, w[:3], pm, rg(), R=100)))
+    ck("transfer_test refuses a mask of another length", _refused(lambda: transfer.transfer_test("arrow", w, w, pm[:3], rg(), R=100)))
+    ck("transfer_test refuses an int mask", _refused(lambda: transfer.transfer_test("arrow", w, w, pm.astype(int), rg(), R=100)))
+    ck("transfer_test refuses a non-finite template", _refused(lambda: transfer.transfer_test("arrow", np.full(6, np.nan), w, pm, rg(), R=100)))
+    ck("transfer_test refuses a non-finite target", _refused(lambda: transfer.transfer_test("arrow", w, np.full(6, np.inf), pm, rg(), R=100)))
+    ck("cut_segments refuses validity flags that are too short", _refused(lambda: segments.cut_segments(np.random.default_rng(1).standard_normal(9000), valid=[True])))
+    ck("amp_exp_standardised refuses a constant series", _refused(lambda: nets.amp_exp_standardised(np.full(100, 7.0))))
+    ck("amp_exp_standardised refuses one sample", _refused(lambda: nets.amp_exp_standardised(np.array([3.0]))))
+    ck("amp_exp_standardised refuses non-finite values", _refused(lambda: nets.amp_exp_standardised(np.array([1.0, np.nan, 2.0]))))
+    ck("amp_exp_standardised on a good series has mean of log 0 and unit sd of log", abs(float(np.log(nets.amp_exp_standardised(np.arange(10.0))).std()) - 1.0) < 1e-12)
+    # exit status: summary ends the script with status 1 on FAIL and returns on PASS
+    try:
+        kcommon.summary("T", "FAIL", "x", "smoke")
+        ck("summary exits with status 1 on FAIL", False)
+    except SystemExit as e:
+        ck("summary exits with status 1 on FAIL", e.code == 1)
+    try:
+        kcommon.summary("T", "PASS", "x", "smoke")
+        ck("summary returns on PASS", True)
+    except SystemExit:
+        ck("summary returns on PASS", False)
+    ck("summary refuses a status other than PASS or FAIL", _refused(lambda: kcommon.summary("T", "MAYBE", "x", "smoke")))
+    # the tied symmetric waveform: exact time symmetry survives every map used in K1 (identity of counts and sigma_hat = 0)
+    q = np.array([0, 0, 1, 2, 2, 1, 0, 0] * 512, dtype=float)
+    base, _ = patterns.counts_one(q, 3, 1)
+    ck("tied symmetric waveform: sigma_hat is exactly 0", float(patterns.sigma_hat(base, 3)) == 0.0 and patterns.tied_windows(base, 3) == 3070)
+    for nm, f in nets.increasing_maps().items():
+        c, _ = patterns.counts_one(f(q), 3, 1)
+        ck("tied symmetric waveform under %s: counts unchanged, sigma_hat exactly 0, ties kept" % nm, bool((c == base).all()) and float(patterns.sigma_hat(c, 3)) == 0.0)
+
+
 def _raises(f):
     try:
         f()
@@ -581,7 +663,7 @@ def _raises(f):
 def main():
     print("UNIT CHECKS of the building blocks (known answers)")
     print("python", sys.version.split()[0], "numpy", np.__version__)
-    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_outcomes()
+    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_outcomes()
     ok = C.done("UNIT CHECKS")
     if not ok:
         print("FAIL")

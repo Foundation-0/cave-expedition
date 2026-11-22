@@ -189,3 +189,47 @@ F4. K2 must-fail control at smoke size. The plan's rule is the K2a flag point, t
 The code applies the same rule at the control's own number of seeds: at 200 seeds the flag point is 22 of 200 (11 percent), and at the smoke size of 10 seeds it is 5 of 10 (P(Binomial(10, 0.05) >= 4) = 0.00103 is above 0.01/14 = 0.00071, and P(>= 5) = 0.000064 is below).
 
 The smoke control rejected 4 of 10 (rate 0.40, higher than the frozen 59 of 200 = 0.295), one short of the smoke flag point. The same rate at full size (80 of 200) is far above the full-size flag point of 22 and would be flagged. The smoke flag point is coarse at 10 seeds and the control is recorded as NOT FLAGGED at that size.
+## Part G: an outside executable review of the frozen-plan code (eight findings)
+
+An outside reviewer ran eight witnesses against the frozen-plan code (CAVE8-01 to CAVE8-08). Each was run again against the code for the amended plan (`known_answer/review_witnesses.py`, output before and after the fixes in `known_answer/out_review/`). Class A means the amended code does not have the defect.
+
+Class B means a code defect that no plan text governs, fixed now with a check that fails when the guard is removed. Class C means a fix could change a statistic, a threshold, a rejection rule, what counts as a valid segment or the definition of a known-answer test.
+
+Class C items are not changed and are listed below for the plan's designer.
+
+| Finding | Class | Witness on the amended code | Action |
+|---|---|---|---|
+| 01 exit status and `disabled=` switch | A and B | Scripts exit 1 on FAIL (K2 and K3 smoke runs exit 1). The `disabled=` switch was still in `validate_series` | Switch removed. `summary` in `kcommon.py` ends the script with exit 1 on FAIL. K6 now deletes each refusal from a copy of the source (7 deletions, 6 codes) and requires the suite to fail. Exit codes are recorded in `status.txt` files |
+| 02 ties and ranks | A and B | Tied waveform: sigma_hat exactly 0.0 raw and under x^3+x, exp and the ranks, 3,070 tied windows kept, counts equal. tau0 of the tied waveform is 2. tau0 of a constant series was a ZeroDivisionError | Mid-ranks were already used. tau0 now refuses a constant segment and a segment of one sample with a ValueError. Adding the waveform to K1 is class C (C1) |
+| 03 float and bool p-values | B | `holm` with the float 0.05 gave the wrong answer, and bool was accepted | Every exact quantity in `levels.py` refuses float and bool with a TypeError |
+| 04 dtypes | B | bool and string arrays were converted, and complex arrays were truncated | Only integer and float dtypes pass, checked before conversion. N must be an int |
+| 05 cutter | A, B and C | Wrong-length `valid` raises ValueError (short and long). Offsets on the review's block are 0 under every map (mid-ranks). A constant block is cut and analysed without a crash. `tau0_segment` and `amp_exp_standardised` crashed or warned on it | The two functions now refuse a constant segment with a ValueError. The segment rule itself is unchanged. Constant segments are class C (C2) |
+| 06 ties, degenerate, tolerance | A and C | No tie-share rule exists. A segment with zero spread at every lag is "not rejecting" by the plan. Features of flagged segments enter the transfer | Nothing changed. See C3 |
+| 07 divisions and logarithms | A and B | No warning under `-W error` on all-zero counts or identical rows. One row to `loo_standardise` was an IndexError | `loo_standardise` refuses fewer than 2 rows, non-finite values and non-2-D input |
+| 08 transfer comparisons | A and B | Scores are compared with a relative tolerance, not by exact equality. R = 0, mismatched lengths, a non-finite template and an unknown kind were not refused | Explicit refusals added to `transfer_test` and `build_template` |
+
+Class C list for the plan's designer.
+
+C1. K1 and a tied symmetric waveform. K1 only used tie-free series in its increasing-map checks. The review's waveform `[0,0,1,2,2,1,0,0]` repeated 512 times is exactly time-symmetric. The amended code gives sigma_hat exactly 0 on it and keeps all 3,070 tied windows under x^3+x, exp and the ranks (unit checks, not K1).
+
+Option: add tied series to K1's map checks. This does not change a statistic. It changes what K1 tests.
+
+C2. Constant segments (also the second review's items 4 and 5). Reproducer: a stream of 4,224 samples of a ramp followed by 4,224 samples of the value 7.0. `cut_segments` cuts the second block as a segment (it checks only the whole stream).
+
+The presence test then analyses it without a crash: every lag has zero spread, so it counts as not rejecting and stays in S. `transfer.tau0_segment` and `nets.amp_exp_standardised` refuse a constant segment with a ValueError (they crashed or warned before).
+
+A pipeline run that reaches either function with a constant fit or flow segment therefore stops with an explicit error.
+
+The plan's validity rule (section 7) does not mention constancy, so what a constant segment does to the segment count is a plan question.
+
+Options: (a) refuse the stream, (b) mark the segment invalid, so it counts as not rejecting, and drop it from the usable count (more than 25 percent of such blocks makes the instrument underpowered, and the instrument still needs 12 valid segments), (c) keep it with a defined statistic (for example a fixed tau0 and fixed features).
+
+The code applies none of these rules. No smoke number changed.
+
+C3. Zero-spread lags and transfer features. The plan says a lag with zero spread is left out of the maximum for that series and the segment is flagged, and a segment with every lag at zero spread does not reject. The plan does not say what happens to such a segment in the transfer features.
+
+The code sets zero-spread feature entries to 0 and keeps the segment in the template and the score. Options: exclude flagged segments from the transfer, or keep them (as now). Related: the tie tolerance of 1e-12 relative to the larger absolute value is the plan's, and is also used for detector ties (D4).
+
+When both values are 0 it is an exact comparison. An absolute floor is a possible addition. Either choice can change a p-value in rare cases.
+
+Not done for the other modules: the plan's mutation test (section 11) is built only for the refusals in `gates.py`. Mutation of comparisons and thresholds in the other modules is not built.

@@ -1,0 +1,27 @@
+TEST K5 - scale flow
+SIZE SMOKE (one twentieth of the plan's seeds, at least 10; NOT a result)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] of 10 (the plan has 10 seeds, so the smoke size equals the full seed count)
+seed  shifts(c,s,y)  departing/units by level: expo | cascade | shuffled | y   transfers p (m, floor): c>cexp | c>y | s>c
+ 0  4/0/0  L0:4/32 L1:2/32 L2:5/31 L3:3/15 | L0:32/32 L1:30/32 L2:18/31 L3:9/15 | L0:3/32 L1:3/32 L2:0/31 L3:0/15 | L0:32/32 L1:24/32 L2:1/31 L3:0/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 1  4/0/0  L0:2/32 L1:0/32 L2:0/31 L3:0/15 | L0:32/32 L1:27/32 L2:18/31 L3:9/15 | L0:0/32 L1:6/32 L2:3/31 L3:0/15 | L0:32/32 L1:25/32 L2:4/31 L3:0/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 2  4/0/0  L0:2/32 L1:3/32 L2:3/31 L3:0/15 | L0:32/32 L1:26/32 L2:22/31 L3:5/15 | L0:2/32 L1:0/32 L2:4/31 L3:1/15 | L0:32/32 L1:18/32 L2:1/31 L3:0/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 3  4/0/0  L0:1/32 L1:2/32 L2:1/31 L3:2/15 | L0:31/32 L1:26/32 L2:21/31 L3:12/15 | L0:5/32 L1:3/32 L2:1/31 L3:0/15 | L0:32/32 L1:23/32 L2:1/31 L3:0/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 4  4/0/0  L0:0/32 L1:1/32 L2:1/31 L3:1/15 | L0:32/32 L1:26/32 L2:20/31 L3:11/15 | L0:3/32 L1:1/32 L2:2/31 L3:1/15 | L0:32/32 L1:23/32 L2:1/31 L3:0/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 5  4/0/0  L0:3/32 L1:1/32 L2:1/31 L3:0/15 | L0:32/32 L1:24/32 L2:20/31 L3:11/15 | L0:2/32 L1:1/32 L2:3/31 L3:1/15 | L0:32/32 L1:19/32 L2:0/31 L3:1/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 6  4/0/0  L0:0/32 L1:2/32 L2:1/31 L3:1/15 | L0:29/32 L1:27/32 L2:22/31 L3:7/15 | L0:4/32 L1:1/32 L2:3/31 L3:2/15 | L0:32/32 L1:17/32 L2:1/31 L3:1/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 7  4/0/0  L0:1/32 L1:3/32 L2:1/31 L3:3/15 | L0:32/32 L1:26/32 L2:23/31 L3:7/15 | L0:0/32 L1:3/32 L2:2/31 L3:1/15 | L0:32/32 L1:22/32 L2:1/31 L3:1/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 8  4/0/0  L0:0/32 L1:3/32 L2:2/31 L3:1/15 | L0:32/32 L1:27/32 L2:18/31 L3:8/15 | L0:2/32 L1:2/32 L2:1/31 L3:0/15 | L0:32/32 L1:20/32 L2:2/31 L3:2/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+ 9  4/0/0  L0:1/32 L1:1/32 L2:1/31 L3:1/15 | L0:31/32 L1:27/32 L2:21/31 L3:5/15 | L0:0/32 L1:4/32 L2:1/31 L3:1/15 | L0:32/32 L1:24/32 L2:0/31 L3:1/15   1.00e-05(m27) | 1.00e+00(m0F) | 1.00e+00(m0F)
+(F marks a transfer below the populated-feature floor: it counts as not rejecting, p = 1)
+criterion expo none           : 10 of 10 seeds (need 9)
+criterion cascade L0 and top  : 10 of 10 seeds (need 9)
+criterion shuffled none       : 9 of 10 seeds (need 9)
+criterion y L0                : 10 of 10 seeds (need 9)
+criterion T c>c_exp           : 10 of 10 seeds (need 9)
+criterion T c>y               : 10 of 10 seeds (need 9)
+criterion T s>c               : 10 of 10 seeds (need 9)
+must-fail control, ctrl shuffled shows cascade criterion: 0 of 10 seeds (allowed at most 1)
+p > 0.05 criteria that passed only through the populated-feature floor (m below 8): 20 of 20 seed-transfers
+SUMMARY K5 SMOKE PASS | criteria {'expo none': 10, 'cascade L0 and top': 10, 'shuffled none': 9, 'y L0': 10, 'T c>c_exp': 10, 'T c>y': 10, 'T s>c': 10, 'ctrl shuffled shows cascade criterion': 0}; shuffled-cascade control flagged: True

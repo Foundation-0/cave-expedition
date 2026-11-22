@@ -21,9 +21,14 @@ ADVERSE_NUM, ADVERSE_DEN = 1, 40  # 2.5 percent
 def tau0_segment(x, cap=512):
     """Smallest lag at which the (biased, about the mean) autocorrelation of the segment's mid-ranks drops below 1/2,
     capped at 512."""
+    x = np.asarray(x, dtype=np.float64)
+    if x.ndim != 1 or x.size < 2:
+        raise ValueError("tau0 needs a 1-D segment of at least 2 samples")
     r = ranks.twice_midrank(x).astype(np.float64) / 2.0
     r = r - r.mean()
     den = float(r @ r)
+    if not den > 0.0:
+        raise ValueError("tau0 is undefined for a constant segment (zero autocorrelation denominator)")
     for tau in range(1, cap + 1):
         if float(r[:-tau] @ r[tau:]) / den < 0.5:
             return tau
@@ -66,7 +71,12 @@ def segment_vectors(C3, js, shift):
 
 def build_template(F):
     """F: (S, D) features of A's fit segments. Mean over segments, scaled to unit length."""
-    w = np.asarray(F, dtype=np.float64).mean(axis=0)
+    F = np.asarray(F, dtype=np.float64)
+    if F.ndim != 2 or F.shape[0] < 1:
+        raise ValueError("template needs a 2-D array with at least one segment")
+    if not np.all(np.isfinite(F)):
+        raise ValueError("template features must be finite")
+    w = F.mean(axis=0)
     nrm = float(np.sqrt(w @ w))
     if not nrm > 0:
         raise ValueError("template has zero length")
@@ -100,9 +110,18 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
     kind 'arrow': permutation of the entries at jointly populated positions with an independent random sign for each;
     kind 'profile' or 'flow': permutations only. pop_mask: positions populated in both A and B.
     Returns a dict: m (entries permuted), D, p (Fraction), floor (smallest reachable p), n_ge, n_lt, S_A, adverse."""
+    if kind not in ("arrow", "profile", "flow"):
+        raise ValueError("unknown transfer kind " + str(kind))
+    if isinstance(R, (bool, np.bool_)) or not isinstance(R, (int, np.integer)) or R < 1:
+        raise ValueError("R must be an int of at least 1")
     w = np.asarray(w, dtype=np.float64)
     g = np.asarray(g, dtype=np.float64)
-    pos = np.flatnonzero(np.asarray(pop_mask, dtype=bool))
+    pop_mask = np.asarray(pop_mask)
+    if w.ndim != 1 or g.shape != w.shape or pop_mask.shape != w.shape or pop_mask.dtype != bool:
+        raise ValueError("template, target and population mask must be 1-D arrays of one length (mask of bool)")
+    if not (np.all(np.isfinite(w)) and np.all(np.isfinite(g))):
+        raise ValueError("template and target must be finite")
+    pos = np.flatnonzero(pop_mask)
     m = int(pos.size)
     signs = kind == "arrow"
     S_A = float(w @ g)

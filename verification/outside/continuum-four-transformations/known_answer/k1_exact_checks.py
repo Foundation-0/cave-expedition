@@ -188,6 +188,7 @@ def main():
         allflag = allflag and fl
         print("  %-62s failing checks %6d: %s" % (k, v, "FLAGGED" if fl else "NOT FLAGGED"))
     status = "PASS" if (ok_main and allflag) else "FAIL"
+    par.close()
     summary("K1", status, "%d main checks, %d failed; guard exclusions %d; must-fail controls all flagged: %s" % (C.n, len(C.failed), skipped, "yes" if allflag else "NO"), mode)
     if status != "PASS":
         raise SystemExit(1)

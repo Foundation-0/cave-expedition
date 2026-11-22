@@ -11,6 +11,9 @@ inverse normal implementation: statistics.NormalDist(0.0, 1.0).inv_cdf (AS 241),
 -- scale flow
 -- refusals and seeds
 -- Law 2b instances (statistics only; not on the confirmatory path)
+-- guards found missing by an outside review of the frozen-plan code (each check fails if its guard is removed)
+SUMMARY T SMOKE FAIL | x
+SUMMARY T SMOKE PASS | x
 -- outcome decision procedure, every state
   T3 INVALID                  5832000 states (0 also meet a lower-ranked condition)
   T3 EVIDENCE AGAINST          638528 states (11200 also meet a lower-ranked condition)
@@ -25,5 +28,5 @@ inverse normal implementation: statistics.NormalDist(0.0, 1.0).inv_cdf (AS 241),
   T1 PARTIAL                   456 states
   T1 DOES NOT DISCRIMINATE    2434 states
   T1 INCONCLUSIVE             2916 states
-UNIT CHECKS: 240 checks, 0 failed
+UNIT CHECKS: 294 checks, 0 failed
 PASS
