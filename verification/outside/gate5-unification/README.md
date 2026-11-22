@@ -6,7 +6,10 @@ The ledger's own PROTOCOL, Gate 5, says a claimed link between fields needs type
 
 The row-level mathematics of the eight rows is not in question here. This check complements PR #4. It asks only whether the shared-invariant sentence is supported.
 
-Five workers did the check separately. `predicate/` tests the ledger's criteria on unrelated systems. `hermitian/` compares three matrix domains exactly. `lattice/` tests the one cross-domain map that exists as code. `tropical/` covers the tropical and linear-programming rows. `second/` is a second checker that shares no code with the others. On 2026-11-22 two theorem checks were added to `second/` (`c4_thmA.py`, `c5_thmB.py`).
+Five workers did the check separately. `predicate/` tests the ledger's criteria on unrelated systems. `hermitian/` compares three matrix domains exactly. `lattice/` tests the one cross-domain map that exists as code. `tropical/` covers the tropical and linear-programming rows. `second/` is a second checker that shares no code with the others.
+On 2026-11-22 two theorem checks were added to `second/` (`c4_thmA.py`, `c5_thmB.py`).
+
+On 2026-11-22 a sixth part, `law2b/`, applied the owner's rule Law 2b to the rulings. It holds two checkers that share no code (`law2b/src/` and `law2b/clean_room/src/`), their recorded outputs, the specifications fed to the team's certifier and a write-up (`law2b/REPORT.md`). Six rulings changed and four were added (G5-17 to G5-20). See the section Law 2b below.
 
 Each finding carries a label. **Exact**: computed in exact arithmetic or proved, with the scope stated. **Sampled**: measured on seeded random panels. **Anchor**: a fact read from the ledger or a third-party repository at a pinned commit (`SOURCES.json`). Novelty is N0 for every item, because no prior-art reading was done.
 
@@ -26,11 +29,12 @@ The systems are random positive-definite, indefinite, graph Laplacian, covarianc
 
 Scrambling the partition (a random reordering of the indices, same pivot size) leaves the pass count of every theorem test unchanged. Two tests that are not pure theorems, the integer sign rule (P3) and a mixing congruence (P4c), vary by a few systems.
 
-The pseudo-inverse form in SF-01 gives a Schur complement for every matrix (360 of 360 in both panels). Inertia additivity with that form holds only where the range condition `A A^+ B = B` holds: 714 of 714 such systems, and it fails in the 6 where the condition fails. None of 14 must-fail controls passed, and a wrong formula such as D + C A^-1 B passes all three identities in only 19 of 461 systems.
+The pseudo-inverse form in SF-01 gives a Schur complement for every matrix (360 of 360 in both panels). Inertia additivity with that form holds only where the range condition `A A^+ B = B` holds: 714 of 714 such systems, and it fails in the 6 where the condition fails.
+None of 14 must-fail controls passed, and a wrong formula such as D + C A^-1 B passes all three identities in only 19 of 461 systems.
 
 ## Finding 2. Two listed rows are outside the stated invariant (exact), and one cites no reduction (anchor)
 
-Row 4 is a (min,+) system. It has no additive inverse, so no additive Schur complement exists. Row 6 is a non-Hermitian Liouvillian. Inertia is undefined for it, its coupling is antisymmetric, and its pivot block is negative definite, so no minimum exists. This holds at 17 of 17 parameter points tested.
+Row 4 is a (min,+) system. It has no additive inverse, so no additive Schur complement exists for that object itself. Its Q[q] lift does have an exact elimination (G5-18). Row 6 is a non-Hermitian Liouvillian. Inertia is undefined for it, its coupling is antisymmetric, and its pivot block is negative definite, so no minimum exists. This holds at 17 of 17 parameter points tested.
 
 Row 8 cites AUDIT-010. That ledger entry contains no such reduction, and Portal 10 marks the row as routed to a probe, not built. This is an anchor reading of the ledger text. The row 8 object was not built here.
 
@@ -48,9 +52,10 @@ For AUDIT-017 and AUDIT-019, the map Phi = [[I, X],[0, R_L]] gives R_el = R_lat 
 
 The zero defect does not identify Phi. On E8 s=1 and on D8 s=1, every random block-upper-triangular map gives zero defect (200 of 200 on each), and no dense random map does (0 of 200 on each). The identity R_el = R_lat Phi is what identifies Phi.
 
-## Finding 5. The rank-1 collapse belongs to the basis (exact on every instance, general argument has a proviso)
+## Finding 5. The rank-1 collapse belongs to the basis (exact on every instance, proviso removed for n >= 3 on 2026-11-22)
 
-If no diagonal D makes D L symmetric, S is zero. If such a D exists, is unique up to scale and the stress is non-zero, S has rank 1. The converse fails: the smallest witness is diag(3,2,2). Both implications are argued in `lattice/SPEC.md` section 5 under the proviso that the intra-cell framework has only rigid motions. That proviso was checked exactly for n=3 to 8 and is not proved for all n.
+If no diagonal D makes D L symmetric, S is zero. If such a D exists, is unique up to scale and the stress is non-zero, S has rank 1. The converse fails: the smallest witness is diag(3,2,2). Both implications are argued in `lattice/SPEC.md` section 5 under the proviso that the intra-cell framework has only rigid motions. That proviso was checked exactly for n=3 to 8.
+On 2026-11-22 it was removed for every n >= 3: the flex classification in Theorem B's proof shows that for n >= 3 the only flexes are rigid motions, and at n = 2 an extra flex exists. The basis is exact tests on instances plus a step-by-step reading of the proof by an independent reader. It is not machine-checked.
 
 A plain change of basis of the same lattice loses the collapse in 44 of 45 small cases and in 4 of 4 at n=8. A carried change, which keeps the same bars, leaves S_el unchanged.
 
@@ -76,7 +81,8 @@ Novelty is N0 for all three. None of them was checked against prior work.
 
 ## Theorems A and B (added 2026-11-22)
 
-The team reviewed this package (https://github.com/Foundation-0/cave-expedition/pull/5#pullrequestreview-6010617792) and offered two theorems that they say close the three rulings we had left PARTIAL. A worker of ours tested both without the team's code. The scripts are `second/src/c4_thmA.py` and `second/src/c5_thmB.py`, with outputs `second/out/c4_thmA.txt` and `second/out/c5_thmB.txt`. The theorem statements were taken from the team's review text.
+The team reviewed this package (https://github.com/Foundation-0/cave-expedition/pull/5#pullrequestreview-6010617792) and offered two theorems that they say close the three rulings we had left PARTIAL. A worker of ours tested both without the team's code. The scripts are `second/src/c4_thmA.py` and `second/src/c5_thmB.py`, with outputs `second/out/c4_thmA.txt` and `second/out/c5_thmB.txt`.
+The theorem statements were taken from the team's review text.
 
 Basis for G5-07, G5-10 and G5-13: exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked. Nothing here is a machine-checked proof, and no ruling says "proved".
 
@@ -110,19 +116,45 @@ The team's fingerprints file has 29 instances in class SF-01 at `4564fd6`, so th
 
 This package does not say 30 anywhere (searched). The figure 30 appears at `4564fd6` in the team's own material: the ledger README ("30-way"), `schur_unification_summary` in the cross-pollination graph, `PRELINGUISTIC_PORTAL.md`, `ROUND10_PORTALS.md`, an instance reference string "SF-01 #30", and the team's review text.
 
+## Law 2b (added 2026-11-22)
+
+The owner's rule Law 2b says a formula may not be closed as false until seven families of global transformations have been searched for one under which it holds, with four guards against rescues that explain nothing. The specification is on PR #1 of this repository at `80606f1` (`symbiosis/round10/arm5-transformational-steelman/TRANSFORMATIONAL_STEELMAN_REPORT.md`, lines 32 to 53 and 95 to 99).
+It is not in this repository.
+
+Two checkers applied it to the rulings that close a claim as false. They share no code. `law2b/src/law2b_check.py` is the first. `law2b/clean_room/src/` is the second, written without reading the first. Both are exact (`int` and `Fraction`), run in three Python modes with the same output, and have must-fail controls. The full account is `law2b/REPORT.md`.
+
+- G5-17. Row 6: Sylvester inertia additivity is invariant-falsified. The obstruction is the antisymmetric coupling. All seven families were searched.
+- G5-18. Row 4, elimination clause: transformed-exact by valuation (family T5) on non-negative coefficients with val(K_BB) >= 1.
+- G5-19. Row 4, inertia clause: neither certificate applies. Block-diagonal symmetrizations exist for some singleton blocks. Where they exist the matrix is positive definite and the statement is true of any such system. Decided at q = 1/10, 1/100 and 1/1000 for blocks of size 1 and 2. Not decided at symbolic q or for larger blocks.
+- G5-20. The exact repairs (spectral inertia for row 6 and for the row 4 lift, a global shift for G5-04) are true of nearly any system of the same shape, so they give no link between fields.
+
+Where the two checkers differ: the null rate for the row 6 repair depends on the panel (56 of 58 against 137 of 180, both far above 1/10). A witness was mislabelled as outside the valuation hypothesis. The shift 871 is a bound for rows 1 and 5 only. The second checker was right on the last two.
+
+Limits. Several terms of the rule are defined for statistical claims, and our analogues for exact algebra are readings (listed with line numbers in `law2b/REPORT.md`, section 8). The null panels are our choice. The team's certifier checks numbers and schema, and admits an invented witness string, so "certified" here rests on the two checkers' arithmetic.
+The team's standalone verifier passes but cannot run its live anchor check, because the anchored files are not in the repository. No prior-art search was done, so novelty is N0.
+
 ## Ruling history
 
-Rulings that were replaced stay on record in `RULINGS.json`, in the `history` list of each entry, with the old text verbatim.
+Rulings that were replaced stay on record in `RULINGS.json`, in the `history` list of each entry, with the old text verbatim. G5-17 to G5-20 are new on 2026-11-22 and replace nothing.
 
 | id | superseded ruling | superseded on | reason |
 |---|---|---|---|
 | G5-07 | PARTIAL, sampled: conjecture on the rank formula, 904 of 904 lattices, not proved, no restriction on n | 2026-11-22 | Theorem B read and tested independently. VERIFIED for n >= 3, refuted at n = 2. |
 | G5-10 | PARTIAL, sampled: val(S_ij) >= T_ij in general, 2,400 instances, no proof | 2026-11-22 | Theorem A read and tested independently. VERIFIED under val(K_BB) >= 1. The old wording had no condition. |
 | G5-13 | PARTIAL, exact: map exact on the Cole-Hopf matrices, no-cancellation condition sampled | 2026-11-22 | With G5-10 ruled under val(K_BB) >= 1, the map is ruled for that hypothesis and not extended. |
+| G5-14 | FALSIFIED: false for rows 4 and 6 | 2026-11-22 | Law 2b. Row 6 is invariant-falsified. Row 4 fails as worded but its inertia clause gets neither certificate. The verdict stays FALSIFIED on row 6 alone. |
+| G5-02 | VERIFIED: rows 4 and 6 outside the invariant | 2026-11-22 | Law 2b added that the statement for row 4 is about the (min,+) object itself, and that the quadratic form of the Liouvillian does not see the coupling. |
+| G5-04 | VERIFIED: no equivalence among the three matrix rows | 2026-11-22 | Law 2b added that no transformation rescues it non-vacuously, the scope of the shift 871, and square-class counts next to the norm-class counts. |
+| G5-05 | VERIFIED: commuting test does not single Phi out | 2026-11-22 | Law 2b added the numbers for the repaired statement, which guards G1 and G2 reject. |
+| G5-06 | VERIFIED: with the rigid-motions proviso | 2026-11-22 | The proviso is removed for n >= 3. The transformed statements are named. |
+| G5-01 | VERIFIED: range condition 'needed' for pseudo-inverse additivity | 2026-11-22 | The condition is sufficient, not necessary. Three exact witnesses. |
 
 ## Verdict on the sentence as worded
 
-With SF-01's inertia invariant, the sentence is false for rows 4 and 6. In its weakest reading, that each row uses block elimination, it is true of any block system. Gate 5 is not met for the eight-way claim.
+With SF-01's inertia invariant, the sentence is false for row 6. Under Law 2b that is invariant-falsified (G5-17). For row 4 it fails as worded. Its elimination clause has an exact transformed form (valuation, family T5, on the stated domain, G5-18).
+Its inertia clause gets neither certificate: block-diagonal symmetrizations exist for some small blocks, and where they exist the inertia statement is true of any such system (G5-19).
+
+In its weakest reading, that each row uses block elimination, the sentence is true of any block system. The two exact repairs found are true of nearly any system of the same shape, so they give no link between fields (G5-20). Gate 5 is not met for the eight-way claim.
 
 Proposed wording for README section 1:
 
@@ -132,13 +164,14 @@ Proposed wording for README section 1:
 
 Row 2 and row 8 as objects. BW16 and Leech. Equivalence over Q by Hasse invariants. The live percolation boxes. The gravity anchor used the committed JSON because numpy was missing. No prior-art audit was done.
 
-Open item: the ruling that the unification sentence fails for rows 4 and 6 as worded (G5-14) will be re-read against the owner's rule "Law 2b" when its text is public with Aletheia v2. Until then this PR stays in draft.
+Law 2b limits: several terms of the rule are defined for statistical claims and our analogues for exact algebra are readings. The null panels are our choice and the rates depend on them. The team's certifier checks numbers and schema only. No prior-art search was done. See `law2b/REPORT.md` section 8.
 
 ## Files
 
-`RULINGS.json` has one entry per finding and per surviving statement (verdict, label, scope, evidence paths, whether `second/` covers it).
+`RULINGS.json` has one entry per finding and per surviving statement (verdict, label, scope, evidence paths, whether `second/` covers it). `law2b/` holds the Law 2b part: `REPORT.md`, `src/` (checker and certifier feed), `clean_room/` (second checker, `src/` and `out/`), `out/` (recorded runs of the first checker), `specs/` (the nine specifications and the certifier's answers) and `run_law2b.sh`.
 
-G5-07, G5-10 and G5-13 also carry `ruled_on`, `basis` and a `history` list with the superseded ruling. `SOURCES.json` lists the third-party repositories with owner, PR number and pinned commit. `MANIFEST_sha256.txt` has the SHA-256 of every other file here. Each part keeps its own notes and outputs: `predicate/PREDICATE.md` and `RESULTS.md`, `lattice/SPEC.md`, `second/REPORT.md`, and the `out/` folders. The part `tropical` reads `hermitian/objects/`, so the relative layout must stay as it is.
+G5-07, G5-10 and G5-13 also carry `ruled_on`, `basis` and a `history` list with the superseded ruling. `SOURCES.json` lists the third-party repositories with owner, PR number and pinned commit. `MANIFEST_sha256.txt` has the SHA-256 of every other file here. Each part keeps its own notes and outputs:
+`predicate/PREDICATE.md` and `RESULTS.md`, `lattice/SPEC.md`, `second/REPORT.md`, and the `out/` folders. The part `tropical` reads `hermitian/objects/`, so the relative layout must stay as it is.
 
 Left out: every `upstream/` folder (third-party clones), bytecode and temporary files. No file is over 1 MB, so none was left out for size. Three byte-for-byte copies of third-party files that `hermitian/src/run_anchor.sh` makes under `hermitian/out/` were left out. Their SHA-256 values and the command that regenerates them are below.
 
@@ -163,7 +196,8 @@ run second -I -B src/c1_block.py | shasum -a 256
 
 The sandbox blocks network access and allows writes only inside this folder. The scripts that build objects write them into `objects/` (identical bytes each time).
 
-The lattice scripts take an objects folder. Mode `-I -B` uses `lattice/objects`, mode `-I -O -B` uses `lattice/out/objB` and mode `-I -B -W error` uses `lattice/out/objC`. Run the lattice scripts in this order: `build_objects.py`, then `gate5_real.py`, `gate5_null_lattices.py` and `gate5_null_maps.py`, then `checker2.py` and `anchor.py`, because the last two read what the earlier ones write. The `hermitian` objects must be built before `tropical/src/tropical_audit.py s4bridge` runs.
+The lattice scripts take an objects folder. Mode `-I -B` uses `lattice/objects`, mode `-I -O -B` uses `lattice/out/objB` and mode `-I -B -W error` uses `lattice/out/objC`. Run the lattice scripts in this order: `build_objects.py`, then `gate5_real.py`, `gate5_null_lattices.py` and `gate5_null_maps.py`, then `checker2.py` and `anchor.py`, because the last two read what the earlier ones write.
+The `hermitian` objects must be built before `tropical/src/tropical_audit.py s4bridge` runs.
 
 Expected SHA-256 of stdout (the same in all three modes). Paths are relative to the part folder. `OBJ` is the objects folder for the mode.
 
@@ -198,8 +232,18 @@ Expected SHA-256 of stdout (the same in all three modes). Paths are relative to 
 | tropical | `src/tropical_audit.py s5real` | `c7410d85ecd3e544cd00cfbb2507d9583b4da8e1e244c420c960dc25fbc1853d` |
 | tropical | `src/tropical_audit.py s5random` | `d348a28855877b839ecdc96667a909520d08695048322dc58a2ff3c38ada89bc` |
 | tropical | `src/tropical_audit.py controls` | `5f523cd7ee65ef8dae849bd46fd07cdce871bf1ad27a1d53c74b93942191a021` |
+| law2b | `src/law2b_check.py "$PKG"` | `44957f26500c70bfdf5b33986f56f7b9955ee244eddf004509e5176a0ceecb9b` |
+| law2b | `src/feed_team_certifier.py out/law2b_check.mode1.out <team certifier>` | `9ab62f93b3d018bf40777f25b4e898cf2e0881076e5f7897429edbb8d996b0bf` |
+| law2b | `clean_room/src/r6.py` | `0130f8857be29aaf12fe17f26f7ebaf56a876b33c9908c11befac08ff7915910` |
+| law2b | `clean_room/src/r4.py` | `e2b71e165186c03d380185e31ce74c9a470d49714eba4192723723899c06ca13` |
+| law2b | `clean_room/src/r4b.py` | `76016fe596e564b5a5fd6a2a3804906004446f86a216c4c5322f889bd3af956d` |
+| law2b | `clean_room/src/r156.py` | `93f9d5c67a824f597aad765e7a60c632991930ecc0333837e6306cc691685d96` |
+| law2b | `clean_room/src/lat.py` | `92895e2082f8126823eb9147273bbe2fa85f099ced7f9e634b5aa61a01482926` |
+| law2b | `clean_room/src/oth.py` | `a8d87a4eeb38bcb89750f29e543c68f5dfa0b85b6fde66170f245ae61a85fc0d` |
+| law2b | `clean_room/src/cert.py <team certifier>` | `46f6f23d5897266083fea0f6685ebc4cc855530f0242f37bde01096683a8b8d8` |
 
-The lattice scripts write their objects into the objects folder, so a full run leaves `lattice/objects/` and `hermitian/objects/` byte-identical to what is shipped. The recorded runs of each part are in `predicate/RESULTS.md`, `hermitian/out/mode_hashes.txt`, `lattice/MANIFEST_sha256.txt`, `tropical/out/hashes.txt` and `second/out/hashes.txt`. `predicate/results.json` is the stdout of `p_check.py`.
+The lattice scripts write their objects into the objects folder, so a full run leaves `lattice/objects/` and `hermitian/objects/` byte-identical to what is shipped. The recorded runs of each part are in `predicate/RESULTS.md`, `hermitian/out/mode_hashes.txt`, `lattice/MANIFEST_sha256.txt`, `tropical/out/hashes.txt` and `second/out/hashes.txt`.
+`predicate/results.json` is the stdout of `p_check.py`.
 
 `tropical/src/run_all.sh` calls plain `python3` and rewrites `out/` and `objects/`. The table above was checked with Python 3.12 and the sandbox command instead.
 
@@ -209,7 +253,27 @@ The lattice scripts write their objects into the objects folder, so a full run l
 
 Only `second/src/c4_thmA.py` and `second/src/c5_thmB.py` were rerun for this change, each under `-I -B`, `-I -O -B` and `-I -B -W error` in the sandbox. Their lines are in `second/out/hashes.txt`. `second/src/run_hashes.sh` was edited to take an optional list of scripts (`SCRIPTS="c4_thmA c5_thmB"`) and to print the seconds per run.
 
-The SHA-256 of `run_hashes.sh` listed in `second/REPORT.md` (`d8945b2b...`) is of the version before this edit. `MANIFEST_sha256.txt` has the current one. `c4_thmA.py` took 46, 51 and 51 seconds in the three modes and `c5_thmB.py` took 346, 361 and 287 seconds. Stdout was byte-identical across modes and equal to the recorded output, with empty stderr. Every other script and its recorded output is unchanged and is carried from the earlier full rerun (81 scripts, three modes, from a clean clone).
+The SHA-256 of `run_hashes.sh` listed in `second/REPORT.md` (`d8945b2b...`) is of the version before this edit. `MANIFEST_sha256.txt` has the current one. `c4_thmA.py` took 46, 51 and 51 seconds in the three modes and `c5_thmB.py` took 346, 361 and 287 seconds. Stdout was byte-identical across modes and equal to the recorded output, with empty stderr.
+Every other script and its recorded output is unchanged and is carried from the earlier full rerun (81 scripts, three modes, from a clean clone).
+
+### What was rerun for the Law 2b change (2026-11-22)
+
+Both checkers were rerun from inside a fresh clone of this branch, each under `-I -B`, `-I -O -B` and `-I -B -W error` in the sandbox, with `alarm 3600`, using `law2b/run_law2b.sh`. The three modes ran side by side on a busy machine, so the times are long. Stdout was byte-identical across modes, stderr was empty, and the second checker's outputs equal the hashes it recorded before the move.
+The team's certifier is not in this repository. The two steps that need it (`feed_team_certifier.py` and `clean_room/src/cert.py`) take its path as an argument. It is Foundation-0/cave-expedition PR #1 at `80606f1`, `symbiosis/round10/arm5-transformational-steelman/transformational_steelman_certifier.py`. Without the argument both steps are skipped.
+
+Seconds in `-I -B` (see `law2b/out/hashes.txt` and `law2b/clean_room/out/hashes.txt` for all three modes):
+
+- `law2b_check`: 675 seconds
+- `feed`: 0 seconds
+- `r6`: 26 seconds
+- `r4`: 10 seconds
+- `r4b`: 919 seconds
+- `r156`: 0 seconds
+- `lat`: 2 seconds
+- `oth`: 1 seconds
+- `cert`: 0 seconds
+
+The recorded outputs of the team's standalone verifier and of arm 5 are in `law2b/out/team_verifier/` and `law2b/out/team_arm5/`. Every other script and output in this folder is carried from the earlier rerun.
 
 ### Checks that need the third-party clones
 

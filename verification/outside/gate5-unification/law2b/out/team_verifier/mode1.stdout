@@ -1,0 +1,54 @@
+{
+  "arms_checked": 5,
+  "arms_passed": 5,
+  "passed": true,
+  "results": [
+    {
+      "arm": "arm1-own-terms-first",
+      "audit_id": "AUDIT-084R",
+      "cert_rc": 0,
+      "errors": [],
+      "passed": true,
+      "standalone_stdout_sha256": "de380f4b83c182280cbcb9a5b4d1fa7ecc44474a82eea779090662c001897c39",
+      "test_rc": 0
+    },
+    {
+      "arm": "arm2-unification-and-novelty",
+      "audit_id": "AUDIT-085R",
+      "cert_rc": 0,
+      "errors": [],
+      "passed": true,
+      "standalone_stdout_sha256": "86dc7577334bc121defbb20f7f647b3853302b760c6e9ae3d7e8021df938eaba",
+      "test_rc": 0
+    },
+    {
+      "arm": "arm3-gates-r6r7-cli",
+      "audit_id": "AUDIT-086R",
+      "cert_rc": 0,
+      "errors": [],
+      "passed": true,
+      "standalone_stdout_sha256": "e56cac167a3869eef0ad0d6292e74a9e09374428108fde76c94dbd96f3c5adb8",
+      "test_rc": 0
+    },
+    {
+      "arm": "arm4-prereg-raw-data",
+      "audit_id": "AUDIT-087R",
+      "cert_rc": 0,
+      "errors": [],
+      "passed": true,
+      "standalone_stdout_sha256": "a8331c8f44bbeab4e2154b1780f6215bb016b53cd82f247ac4aea92fc7815887",
+      "test_rc": 0
+    },
+    {
+      "arm": "arm5-transformational-steelman",
+      "audit_id": "AUDIT-088R",
+      "cert_rc": 0,
+      "errors": [],
+      "passed": true,
+      "standalone_stdout_sha256": "54d07116cf2d9ece84c4217083ce29c4c404f668d3905ded33eafc97573870ef",
+      "test_rc": 0
+    }
+  ],
+  "schema": "expedition.round10_standalone_check.v1",
+  "status": "PASS"
+}

@@ -1,0 +1,29 @@
+row1 points 12  row5 points 14  pairs 168
+rebuilt objects match the stored pivot determinants and Schur entries: 12 + 14
+C19 first failing criterion (order: dimension, inertia A, inertia S, sqclass detA, sqclass detS): {'inertia_S': 108, 'sqclass_detA': 60}
+C19 pairs failing each criterion independently: inertia_A 0, inertia_S 108, sqclass_detA 168, sqclass_detS 168 (of 168)
+OK   C19 no pair agrees on all invariants: 0 of 168 :: agree=0
+   pairs failing on inertia of the reduced block S: 108; failing first on sqclass(detA) after inertia agrees: 60
+OK   C19 108 fail on inertia of reduced block, 60 on square class of det A :: {'inertia_S': 108, 'sqclass_detA': 60}
+   inertia(A) values (row1): [(2, 0, 0)]  (row5): [(2, 0, 0)]
+   inertia(S) values (row1): Counter({(0, 1, 0): 12})  (row5): Counter({(1, 0, 0): 8, (0, 1, 0): 5, (0, 0, 1): 1})
+C19 second method: of 168 det-A square-class mismatches, 168 have an explicit witness (sign or odd p-adic valuation at a prime < 20000); the exact isqrt test decides all of them
+OK   CTRL each object agrees with itself (test can say yes): 12/12 and 14/14
+OK   CTRL rescaling det by rational squares keeps agreement
+OK   CTRL rescaling det A by 2 breaks the square class
+C20 largest absolute row sum, row1 B (3x3): 25048631653/315256050 (= 25048631653/315256050)
+C20 largest absolute row sum, row5 aest (3x3): 870 (= 870)
+C20 largest absolute row sum, row6 Liouvillian M: 250151/50 (= 250151/50)
+C20 largest absolute row sum, row6 sym(M): 250001/50 (= 250001/50)
+C20 largest absolute row sum, row1 M_full (Q(i), upper bound sum|re|+|im|): 11845499/1166886 (= 11845499/1166886)
+C20 largest absolute row sum, row1 M_full (Q(i), lower bound sum max(|re|,|im|)): 517417387/58344300 (= 517417387/58344300)
+C20 largest absolute row sum over the objects of the 168 pairs (row 1 B, row 5 aest): 870 ; the row-1 Hermitian M_full lies in [517417387/58344300, 11845499/1166886] (below it)
+C20 the row-6 Liouvillian objects have larger row sums (up to 250151/50), so 871 is NOT one more than the largest row sum if row 6 is counted
+C20 lambda = floor(max row sum) + 1 over rows 1 and 5 = 871
+OK   C20 lambda = 871 for the row 1 and row 5 objects
+OK   C20 every row-1 object (B and Hermitian M_full via real embedding) and row-5 object plus 871 I is positive definite: 38 objects :: 38/38
+C20 row-6 Liouvillian: sym(M)+871 I positive definite at 15 of 17 points (so row 6 needs a larger shift; 871 was only claimed for the 168-pair objects)
+OK   C20 after the shift all 168 pairs agree in (dim, inertia A, inertia S) :: 168/168
+OK   C20 same for 200 random symmetric 3x3 pairs (entries up to 20): they all agree after the shift too, so the shift proves nothing :: 200/200
+OK   CTRL without the shift random symmetric pairs often differ in inertia (test can say no) :: 100/200 differ
+FAILS: []

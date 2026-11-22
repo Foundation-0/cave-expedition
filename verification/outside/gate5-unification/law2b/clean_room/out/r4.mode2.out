@@ -1,0 +1,39 @@
+K_32 entries 89  peeled entries 89  diagonal entries in K: 0  in peeled: 0
+C13 one-way edges in K: [(10, 0), (12, 2), (14, 4), (18, 8), (20, 10), (22, 12), (26, 16), (28, 18), (30, 20)]
+OK   C13 exactly the 9 listed one-way edges
+OK   C13 each of the 9 blocks K_BB is nonzero and nilpotent (K_BB^2 = 0) :: 9/9
+OK   CTRL a two-way pair (0, 1) is NOT nilpotent (test can say no)
+C14 K: blocks 528 (singular I-K_BB: 0), entries compared 477152, entry mismatches 0
+   equal on 528 blocks; blocks with val(K_BB)>=1: 528, equal on 528 of them (mismatching blocks []); blocks outside hypothesis: 0, equal-fail on 0 of them
+   lower bound val(K_eff) >= T_eff on entries with finite T: 49547 of 49547
+   independent truncated-series (order 10) valuation check on blocks with val(K_BB)>=1: 528 of 528 agree with exact
+OK   C14 K: valuation = (min,+) elimination on 528 of 528 blocks
+OK   C14 K: series method agrees on all blocks
+C14 K' (peeled): blocks 528 (singular I-K_BB: 0), entries compared 477152, entry mismatches 0
+   equal on 528 blocks; blocks with val(K_BB)>=1: 479, equal on 479 of them (mismatching blocks []); blocks outside hypothesis: 49, equal-fail on 0 of them
+   lower bound val(K_eff) >= T_eff on entries with finite T: 49547 of 49547
+   independent truncated-series (order 10) valuation check on blocks with val(K_BB)>=1: 479 of 479 agree with exact
+OK   C14 K': 479 blocks satisfy val(K_BB)>=1 and valuation = (min,+) on all 479; 49 blocks outside
+   (info) among the 49 blocks outside the hypothesis, valuation != (min,+) on 0
+OK   CTRL perturbed tropical value is flagged as different from the exact valuation
+C15 witness K00=-q^2, K01=K10=q, K11=0.  Eliminating B={1}: S_00 = [] (empty list = identically 0); val(K_BB)=val(K11)=inf (>=1 holds); tropical T_00 = min(2, 1+1) = 2
+OK   C15 B={1}: Schur entry vanishes identically, tropical value 2
+C15 B={0}: S_11 = N/Dn with N = [Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)]  Dn = [Fraction(1, 1), Fraction(0, 1), Fraction(1, 1)]  val(S_11) = 2  T_11 = 2; val(K_BB)=val(K00)=2 >= 1
+C15 reading: this witness SATISFIES val(K_BB) >= 1 for both choices of B; it breaks equality through cancellation of coefficients (-q^2 + q^2), not through the valuation hypothesis. The lower bound val >= T still holds (inf >= 2).
+C15b outside hypothesis (val(K22)=0): K22=1-q, K02=K21=q, K01=0: val(S01) = 2 - 1 = 1  T_01 = 2 -> lower bound val>=T violated
+OK   C15b witness with val(K_BB)=0 violates the lower bound (val 1 < T 2)
+C16 K(q=1/10): distinct real eigenvalues 32, real with multiplicity 32, of 32
+OK   C16 q=1/10: 32 distinct real eigenvalues
+C16 K(q=1/1000): distinct real eigenvalues 32, real with multiplicity 32, of 32
+OK   C16 q=1/1000: 32 distinct real eigenvalues
+C16 K(q=1/100): distinct real eigenvalues 32, real with multiplicity 32, of 32
+C16 K(q=1/2): distinct real eigenvalues 24, real with multiplicity 24, of 32
+OK   C16 q=1/2: only 24 of 32 real :: (distinct real 24)
+OK   CTRL diag(1..32): 32 distinct real
+OK   CTRL two rotation blocks: 28 real, 4 non-real
+OK   CTRL repeated eigenvalue: 31 distinct real, 32 with multiplicity
+C17 q=1/100: I-K strictly row diag dominant: True ; I-K_BB: 528 of 528; I-K_eff: 528 of 528
+OK   C17 all three at q=1/100
+CTRL q=1/2: I-K dominant: False ; I-K_BB: 528 ; I-K_eff: 0
+OK   CTRL at q=1/2 the dominance test fails somewhere (it can say no)
+FAILS: []

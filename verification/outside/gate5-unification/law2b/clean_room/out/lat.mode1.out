@@ -1,0 +1,15 @@
+C21 L=diag(3,2,2): bars 15, rank d0 12, rank S_el 1 (projector method gives 1, S equal: True), dim Z_B = 3
+OK   C21 L=diag(3,2,2): rank S_el = 1 and dim Z_B = 3, so "rank 1 iff dim Z_B = 1" fails as worded
+   inertia S_el: (1, 0, 5)
+C21 L=2I: bars 15, rank d0 12, rank S_el 0 (projector method gives 0, S equal: True), dim Z_B = 3
+OK   C21 (extra) L=2I: S_el = 0 while dim Z_B = 3
+OK   CTRL generic non-symmetrizable L (dim Z_B = 0): S_el = 0
+C22 n=3: carried change leaves S_el exactly unchanged: 8/8; S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): 8/8; naive change keeps rank-1 collapse: 0/8 (naive ranks [0, 0, 0, 0, 0, 0, 0, 0])
+C22 n=4: carried change leaves S_el exactly unchanged: 8/8; S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): 8/8; naive change keeps rank-1 collapse: 0/8 (naive ranks [0, 0, 0, 0, 0, 0, 0, 0])
+OK   C22 carried: S_el unchanged in 16 of 16
+OK   C22 carried: S_lat transformation law in 16 of 16
+OK   C22 naive: rank-1 collapse retained in 0 of 16 (claim: 0 of 16)
+OK   CTRL wrong law (U instead of U^-1) for S_lat is flagged on all instances
+OK   CTRL naive S_el differs from the original on all instances (the "unchanged" test can say no)
+   (info) naive change with a signed permutation: rank S_el = 1
+FAILS: []

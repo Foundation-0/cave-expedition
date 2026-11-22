@@ -1,0 +1,13 @@
+INPUT 1 (internally consistent TRANSFORMED_EXACT, witness is an invented string): CERTIFIED_TRANSFORMED_EXACT True []
+OK   C25a consistent numbers + invented witness string is ADMITTED
+OK   C25a the witness text does not matter (a different invented string is also ADMITTED)
+OK   CTRL inconsistent numbers (target 1 of 2 on an exact rescue) are REFUSED :: ['G1_TRANSFORMED_TARGET_FAILED']
+OK   CTRL dof not below constraints is REFUSED
+CONTROL falsified spec with gap 1: CERTIFIED_INVARIANT_FALSIFIED True []
+OK   CTRL invariant-falsified spec with nonzero gap and invented witness/obstruction strings is ADMITTED
+INPUT 2 (invariant-falsified, residual gap zero): REJECTED_LAW2B_GATE False ['G4_FALSIFIED_HAS_ZERO_GAP']
+OK   C25b invariant-falsified spec with residual gap 0 is REFUSED with G4_FALSIFIED_HAS_ZERO_GAP
+OK   CTRL schema violation (extra key) raises ValueError
+OK   CTRL schema violation (float) raises ValueError
+OK   CTRL schema violation (null cap above 1/10) raises ValueError
+FAILS: []
