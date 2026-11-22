@@ -1,0 +1,7 @@
+CLAIM saw-ptp | peak to peak 63/64 | text=63/64 | mine=63/64 | REPRODUCED
+CLAIM saw-var | variance = 4095/12 / 64^2 | text=4095/12/64^2 | mine=1365/16384 equals 1365/16384 | REPRODUCED
+CLAIM saw-sd | sd 0.288640; half 0.144320 | text=0.1443 (and 0.144) | mine=0.1443 | REPRODUCED
+INFO sample divisor would give sd 0.290922, half 0.1455 (the plan's figure uses the population divisor, which is the sd of the waveform itself)
+INFO continuous peak-to-peak-1 ramp: half sd = 0.14434; the discrete ramp k/64 gives 0.14432; both round to 0.1443 / 0.1443
+CONTROL wrong noise 0.5 flagged | wrong input flagged = True
+DONE saw_noise

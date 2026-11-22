@@ -1,0 +1,19 @@
+seeds: series seed = 20262000 + 1000*n + 100*class_index + seed, seed 0..19; lengths (4096, 2048, 1024)
+INFO cases tested with the rescaled maps: 4860 (9 classes x 3 versions x 3 maps x 20 seeds x 3 lengths = 4860)
+INFO version series (exp(z), z^3) that overflow or lose distinct values relative to z: 0
+RESULT rescaled maps: cells (length, class, version, map) with any failure: 0; total failing cases 0
+RESULT smallest representable-seed count over all (length, class, version, map) cells: 20 of 20; the 18-of-20 rule is met: True
+RESULT old unrescaled maps (x^3 + x, exp(x) on the version series): cells with any failure: 6; total failing cases 62
+   old maps, ('g2', 'exp', 'exp(x)'): 46 failing cases over the three lengths (of 60)
+   old maps, ('g2', 'cube', 'exp(x)'): 16 failing cases over the three lengths (of 60)
+INFO squared-Gaussian class, exp version, old exp map: failing seeds per length [(1024, 9), (2048, 19), (4096, 18)]
+INFO squared-Gaussian class, cube version, old maps: failing seeds [(1024, 3), (2048, 4), (4096, 9)]
+RESCALING: share of adjacent-double pairs merged by x -> x / m
+   m in (0.3, 0.99), inputs near m: merged share 0.1233
+   m in (1.01, 10.0), inputs near m: merged share 0.0873
+   m in (10.0, 1000.0), inputs near m: merged share 0.1124
+INFO standardised class series with max|z| < 1 (where division by max|x| could merge adjacent doubles): 0
+RESULT integer-valued series round(8 z), 7 null classes x 20 seeds x 3 maps: guard failures 0
+CONTROL guard fires on exp of values spaced 1e-17 apart | wrong input flagged = True
+CONTROL guard fires on exp(800) overflow | wrong input flagged = True
+DONE k1_scope

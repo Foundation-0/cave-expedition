@@ -1,0 +1,31 @@
+== K2 control flag point
+CLAIM k2c-200 | smallest k with P(Bin(200, 0.05) >= k) <= 0.01/14 | text=22 | mine=22 | REPRODUCED
+INFO tail at 22 0.000481, at 21 0.001160, limit 0.000714
+CLAIM k2c-10 | the same rule at 10 seeds | text=5 | mine=5 | REPRODUCED
+== series counts
+CLAIM b5-13 | series per class and seed: plain, 3 maps, negation, exp and cube versions, 3 maps of each | text=13 | mine=13 | REPRODUCED
+INFO class versions: 9 classes x 3 versions = 27 (text 27); (class version, map) cells = 81; with 20 seeds = 1620 cases per length
+CLAIM b9-10 | K5 series per seed: exponential 1, cascade fit and verdict 2, shuffled 1, y_t 1, y' 1, IAAFT cascade 1, exp-mapped cascade in 3 runs 3 | text=10 | mine=10 | REPRODUCED
+== compute table
+ROW K2 | 9 x 1000 x 1.5 | mine=30,915.00 | text=30915.00 | REPRODUCED
+ROW K1 | (9 x 20 x 13 + 7 x 20 x 4) x 1/4 + 4 = 729.0 pools | mine=1,669.41 | text=1669.41 | REPRODUCED
+ROW K3 | (4 x 200 x 5.5 + 200) pools | mine=10,534.00 | text=10534.00 | REPRODUCED
+ROW K4 | 10 x 2 x 490 s (490 measured) | mine=9,800.00 | text=9800.00 | REPRODUCED
+ROW K5 | 10 series x 10 seeds x 110 units | mine=25,190.00 | text=25190.00 | REPRODUCED
+ROW Law2b new pools | 3 x 12 x 200 | mine=16,488.00 | text=16488.00 | REPRODUCED
+ROW Law2b paired K4 | 3 x K4 | mine=29,400.00 | text=29400.00 | REPRODUCED
+ROW Law2b paired K5 | 5 x K5 | mine=125,950.00 | text=125950.00 | REPRODUCED
+ROW known-answer total | sum | mine=253,546.41 | text=253546.41 | REPRODUCED
+ROW fit stage | 7 x (32 + 150) pools | mine=2,917.46 | text=2917.46 | REPRODUCED
+ROW presence | (3 x 6.5 + 5.5) x 32 x 4 | mine=7,328.00 | text=7328.00 | REPRODUCED
+ROW scale flow | 4 x 5 x 150 x 3 | mine=20,610.00 | text=20610.00 | REPRODUCED
+ROW verdict total | sum | mine=27,938.00 | text=27938.00 | REPRODUCED
+ROW one mode | sum | mine=284,401.87 | text=284401.87 | REPRODUCED
+ROW three modes (s) | 3 x | mine=853,205.61 | text=853205.61 | REPRODUCED
+INFO hours: one mode 79.00 (text 79.0), three modes 237.00 (text 237.0)
+ROW Law2b worst | (i) + (ii) + (iii) | mine=243,926.22 | text=243926.22 | REPRODUCED
+INFO worst case hours: per mode 67.76 (text 67.8), three modes 203.27 (text 203.3)
+INFO each non-plan count and its label in the draft table: K4 490 s measured (source: the builder's timing file, named once for the unit cost); 150 flow units assumption; 3,600 s allowance assumption; 64 pools per null replicate assumption; K1 and K5 counts plan; fit stage 7 channels plan, 150 assumption
+CONTROL a wrong total (K1 left at the old 641.20) is not the table's sum | wrong input flagged = True
+CONTROL the wrong channel count (8) changes the fit row | wrong input flagged = True
+DONE compute_and_points

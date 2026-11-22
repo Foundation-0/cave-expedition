@@ -1,0 +1,186 @@
+== replace: base lines 3-3, draft lines 3-3
+   replace: base words [Amendment 1.] -> draft words [Amendments 1 and 2.]
+== insert: base lines 18-17, draft lines 18-18
+   + - A11 requirements of Aletheia version 2.0.0 (a branch under review): Bonferroni split of each test's level across its net runs, IID and spe
+== insert: base lines 19-18, draft lines 20-20
+   + - A13 changes after the second clean-room check: K2 gate rule, must-fail controls for every known-answer test, window lengths below 2,048 ou
+== replace: base lines 20-21, draft lines 22-37
+   - - A13 changes after the second clean-room check: K2 gate rule, must-fail controls for every known-answer test, window lengths below 2,048 ou
+   - - A11 requirements of Aletheia version 2.0.0 (a branch under review): Bonferroni split of each test's level across its net runs, IID and spe
+   + 
+   + Amendment 2 (`AMENDMENT_2.md`, 2026-11-22) was made before any data file was opened or parsed, and before any known-answer result under the 
+   + Items B5 to B12 change the definition of known-answer tests K1, K4 and K5, add a validity rule for constant segments, fix the tie tolerance,
+   + 
+   + - B1 the false-presence figures for the reversible K2 classes, now exact maxima over a stated domain (section 10).
+   + - B2 the independent reviewer of the advocate step, now defined by properties, with three procedural conditions added (section 12b).
+   + - B3 the order of this change log (A11 before A12, A13 and A14).
+   + - B4 the compute estimate, now a component table whose total is the exact sum of its rows, each row marked as a plan count, a measured cost 
+   + - B5 K1 covers all 27 class versions, with comparison maps that are representable on every class, a representability guard and a minimum cov
+   + - B6 K1 includes tied inputs: a time-symmetric tied waveform and integer-valued series (section 10).
+   + - B7 a segment whose values are all equal is invalid (section 7).
+   + - B8 exact comparisons where the quantity is exact, one tie tolerance with an absolute floor for floats, and the rule for zero-spread transf
+   + - B9 K5's negative transfer criteria repaired so that they can fail (section 10).
+   + - B10 the code builder's provisional readings D1 to D18 adopted or replaced (new section 11a).
+   + - B11 other points from the code build: the K2 control's flag point, the K4 control, the instance tests and the mutation scope (sections 10 
+   + - B12 the compute table updated to B5, B6 and B9 (section 11).
+== replace: base lines 102-102, draft lines 118-118
+   replace: base words [Values within 1e-12 relative of each other] -> draft words [Two floating values a and b]
+   insert: base words [] -> draft words [tied when |a - b| <= 1e-12 x max(1, |a|, |b|), and]
+   insert: base words [] -> draft words [count]
+== replace: base lines 118-118, draft lines 134-135
+   - Lag levels are aligned across instruments by each instrument's own time scale: tau0 is the median, over fit segments, of the smallest lag at
+   + Lag levels are aligned across instruments by each instrument's own time scale: tau0 is the median, over fit segments, of the smallest lag at
+   + The comparison is exact: it uses n times the doubled mid-ranks minus their sum, which are integers, so the numerator and denominator of the 
+== replace: base lines 174-174, draft lines 191-191
+   replace: base words [segment] -> draft words [series]
+   replace: base words [variance)] -> draft words [variance, each applied to the whole stream before block averaging, as reading D10 states)]
+== replace: base lines 215-215, draft lines 232-236
+   - Wind/WAVES (series indexed by sweep): every value of the four channels in the block is finite and differs from the variable's fill value, ev
+   + Wind/WAVES (series indexed by sweep): every value of the four channels in the block is finite and differs from the variable's fill value, ev
+   + The median of m intervals is the order statistic of rank ceil(m/2), the lower of the two middle values when m is even.
+   + These comparisons are exact: each stored time value is a binary fraction, and intervals, medians and both bounds are computed and compared a
+   + A segment whose values, after its offset and its net are applied, are all equal is invalid too: it carries no order. Like any invalid block 
+   + Its C4 series does not depend on it and is computed as usual.
+== replace: base lines 270-270, draft lines 291-291
+   replace: base words [strictly increasing] -> draft words [the comparison]
+   replace: base words [(x^3] -> draft words [y^3]
+   insert: base words [] -> draft words [y, exp(y) and the ranks of]
+   replace: base words [exp, rank).] -> draft words [with y = x / max|x| (as below).]
+== replace: base lines 273-274, draft lines 294-301
+   -   - With the same seeds, the normal scores, the surrogate pool, every standardised feature and the segment p-value are identical for x, x^3 
+   -   This is checked exactly for every K2 class (plain, exp and cube versions, 20 seeds each), which is why the exp and cube versions need no s
+   +   - With the same seeds, the normal scores, the surrogate pool, every standardised feature and the segment p-value are identical for x and f
+   +   Class versions. All 9 K2 classes, each in three versions (plain, exp and cube of the standardised series), 27 versions in all, 20 seeds ea
+   +   Per class and seed, 13 series go through the pipeline: the plain series, its three maps, its negation, the exp and cube versions, and the 
+   +   Representability guard, stated before any run. A (class version, map, seed) case counts only if the mapped series is finite and has as man
+   +   The guard itself is tested on exp of values spaced 1e-17 apart.
+   +   This identity is why the exp and cube versions need no separate statistical run in K2.
+   +   - Tied inputs (integer sensor counts are tied). (a) The waveform [0, 0, 1, 2, 2, 1, 0, 0] repeated 512 times (4,096 samples), which is exa
+   +   (b) Each of the 7 null classes at 1,024 samples, made integer-valued as round(8 z) with z the standardised series, 20 seeds: the pipeline 
+== replace: base lines 277-277, draft lines 304-304
+   delete: base words [and] -> draft words []
+   replace: base words [exp).] -> draft words [exp), and a ranking that breaks ties in time order instead of using mid-ranks (Sigma_hat on the tied waveform must then be non-zero).]
+== replace: base lines 286-288, draft lines 313-320
+   -   A rate up to 0.10 does not stop it. A series whose segment rate is 0.10 passes one presence run with probability at most 0.0117 if every c
+   -   At the stopping line, a rate of 0.129, these are 0.046 and 0.013 (exact, `checks/check_binomial.py`).
+   -   Such a series must pass every run of its presence test. The runs of one instrument are not independent (the native run and the two quantiz
+   +   A rate up to 0.10 does not stop it. The chance that a series whose segment rate is r passes one presence run was computed exactly as a max
+   +   Figures are rounded up.
+   +   At r = 0.10 the chance is at most 0.012 if every control share in the run were 0 (attained at 5 runs, S = 26), and at most 0.0086 if every
+   +   At the stopping line, r = 0.129, the two figures are at most 0.047 (5 runs, S = 32) and at most 0.029 (5 runs, S = 19). In every case the 
+   +   A presence test judged at a later Holm step has a larger per-run level, and these chances are then larger. At the largest step, 0.05 divid
+   +   With control shares 0 these maxima fall at S = 16, K >= 4, for 5 or 7 runs. With control shares 0.05 they fall at S = 13, K >= 4, for ever
+   +   These figures bound one run only. Such a series must pass every run of its presence test. The runs of one instrument are not independent (
+   +   So a reversible class just below the stopping line could pass a whole presence test with a chance of a few percent at most at the smallest
+== replace: base lines 291-291, draft lines 323-323
+   replace: base words [must be flagged] -> draft words [run on 200 seeds and judged]
+   replace: base words [rule.] -> draft words [rule at its own seed count: flagged at 22 or more of 200 (the smallest k with P(Binomial(200, 0.05) >= k) at most 0.01/14).]
+== replace: base lines 295-295, draft lines 327-327
+   replace: base words [peak] -> draft words [rising in ramps through the values k/64, k = 0 to 63 (peak]
+   replace: base words [1, rising in ramps,] -> draft words [63/64),]
+== replace: base lines 307-308, draft lines 339-341
+   -   - Must-fail controls: A to A' where A' is A with its segments shuffled in time order and each segment replaced by an IAAFT surrogate of it
+   -   - Blind spot, reported: a sawtooth rising in ramps (period 64, peak to peak 1) with white noise of standard deviation half the sawtooth's 
+   +   - Must-fail controls: A to A' where A' is A cut into its 33 blocks, the block order shuffled and each block replaced by an IAAFT surrogate
+   +   Neither the arrow transfer nor the profile transfer may reach p at most 0.01 in more than 1 of the 10 seeds, where a seed counts as reachi
+   +   - Blind spot, reported: a sawtooth rising in ramps (period 64, values k/64, k = 0 to 63, peak to peak 63/64) with white noise of standard 
+== replace: base lines 311-311, draft lines 344-345
+   -   - Per level, the flow departure of a unit is its sum of squared standardised features. A unit "departs" if that sum exceeds the 95th perce
+   +   - Per level, the flow departure of a unit is its sum of squared standardised features. A unit "departs" if at most 4 of its 99 surrogates 
+   +   A level "shows departure" if the count of departing units is at or above the binomial 1 percent point for its number of units at rate 0.05
+== replace: base lines 313-313, draft lines 347-348
+   -   - A dyadic random cascade with log-normal weights of mean 1 and log standard deviation 0.5: departure shown at level 0 and at the highest 
+   +   - A dyadic random cascade with log-normal weights of mean 1 and log standard deviation 0.5: departure shown at level 0 and at the highest 
+   +   For each of 19 steps, step j = 0 to 18, draw 2^(j+1) standard normal values Z in order from the series' generator, form the weights W = ex
+== replace: base lines 316-316, draft lines 351-358
+   -   - Cascade to cascade after a monotone map (exp of the standardised series) must give flow transfer p at most 0.001. Cascade to the y_t ser
+   +   - Two further series for the negative transfer criteria, meant to share the cascade's time scale:
+   +   the IAAFT cascade (an IAAFT surrogate of the whole cascade series, made from its normal scores, which keeps its spectrum and so, approxima
+   +   The rule for c: the population mid-rank autocorrelation of g^2 at lag k is 12 E[(2 Phi(|X|) - 1)(2 Phi(|Y|) - 1)] - 3 for standard normal 
+   +   Lag 16 is the cascade's tau0 as the code builder reported it. Simulated with the construction above, the cascade's tau0 varies by seed (9 
+   +   The guarantee that each negative criterion can fail is the evaluability rule below, not the matching of these constants.
+   +   - Transfer criteria. Cascade (fit) to cascade after a monotone map (exp of the standardised series, verdict) must give flow transfer p at 
+   +   - Every transfer criterion must be evaluable: at least 8 features populated in both series in at least 9 of the 10 seeds. Otherwise K5 fai
+   +   - Series per seed: the independent exponential values, the cascade (fit and verdict), the shuffled cascade, y_t, y' (verdict), the IAAFT c
+== replace: base lines 335-336, draft lines 377-438
+   - Compute (estimate, `checks/check_compute.py`, at the builder's measured cost of about 2.3 processor-seconds per 4,096-sample pool): the amen
+   - The Law 2b search adds up to about 68 per mode (about 203 for three) in the worst case, where all three kinds of adverse outcome occur and e
+   + Compute (estimate, `checks/check_compute.py`, recomputed in Amendment 2 by `checks/amendment_2/compute_components.py`). The unit cost is the
+   + In the Count column, "plan" marks a count stated in this plan (with its section), "measured" a cost measured by the builder, and "assumption
+   + 
+   + | Component | Count | Processor-seconds |
+   + |---|---|---|
+   + | K2 | plan, section 10: 9 classes x 1,000 seeds x 1.5 pools (4,096 and 2,048 samples) | 30,915.00 |
+   + | K1 identity check | plan, section 10 (B5, B6): 9 classes x 20 seeds x 13 series, and 7 classes x 20 seeds x 4 integer-valued series, at 1,
+   + | K3 | plan, section 10: 4 cases x 200 seeds x 5.5 pools (7 runs), plus 200 pools for the must-fail control | 10,534.00 |
+   + | K4 | plan, section 10: 10 seeds x 2 streams (fit and verdict). Measured: 490 s per set of streams (builder commit `71142c1`, `known_answer
+   + | K5 | plan, section 10 (B9): 10 series x 10 seeds x 110 units | 25,190.00 |
+   + | Law 2b instance K2 and K3 on new pools | plan, section 12a: 12 cases (9 K2 classes and 3 gating K3 cases) x 200 seeds, for each of the 3 i
+   + | Law 2b instance K2 and K3 on saved pools | assumption: the instances that change only the statistic or the selection (Q, H, M, O4, E, B, R
+   + | Law 2b instances, paired K4 | plan, section 12a: the K4 cost above for each of W, F, D | 29,400.00 |
+   + | Law 2b instances, paired K5 | plan, section 12a: the K5 cost above for each of W, F, D, B, R | 125,950.00 |
+   + | Known-answer tests, total | | 253,546.41 |
+   + | Fit stage | 7 channels (plan, sections 5 and 8: GW H1 and L1, SEIS VBB and SP, Wind/WAVES Z and S, TESS one) x (32 segments, plan section 
+   + | Presence | plan, sections 5 to 7: (3 instruments x 6.5 + TESS x 5.5) pools x 32 segments x 4 (real, C2, C3, C4). Wind/WAVES is costed at N
+   + | Arrow and profile transfers | reuse the presence pools | 0.00 |
+   + | Scale flow | 4 instruments x 5 runs (plan, section 5) x 150 units (assumption) x 3 pools (real, C2, C3) | 20,610.00 |
+   + | Confirmatory verdict run, total | | 27,938.00 |
+   + 
+   + The 150 flow units per instrument are an assumption: by the segment rule and the 7 aligned levels kept, an instrument has at most 7 x 32 = 2
+   + Parts E and F of the code build (code commit `99533df`) give no new timings, so the measured costs above stay those of commit `71142c1`.
+   + The Law 2b search adds, in the worst case where all three kinds of adverse outcome occur and every instance passes:
+   + 17,147.52 (new presence pools for W, F, D on 3 instruments, plan counts) + 77,287.50 (new flow pools for W, F, D, B, R on 3 instruments x 5 
+   + (G1 null replicates: 102 tests x 10 replicates x 64 pools, an assumption that a replicate stops after about 2 pools for each of 32 segments)
+   + 
+   + ## 11a. Implementation readings fixed by Amendment 2
+   + 
+   + These readings were provisional choices of the code built for Amendment 1 (code commit `99533df`, items D1 to D18). Amendment 2 makes them p
+   + 
+   + - D1. Phi^-1 is the standard library `statistics.NormalDist(0.0, 1.0).inv_cdf` on the lower half of the rank table, reflected oddly for the 
+   + - D2. An IAAFT iteration stops when the array produced by the rank step equals the array that entered the iteration. The random start counts
+   + - D3. Standardisation uses the population divisor over the other 99 series. Zero spread means all other values are exactly equal. A zero-spr
+   + - D4. Replaced by B8: exact comparisons for exact quantities, and the tolerance |a - b| <= 1e-12 x max(1, |a|, |b|) for floats, in both the 
+   + - D5. A pattern is the tuple of dense ranks of the window (the rank of a value is the number of distinct window values below it), giving 13 
+   + - D6. An order-4 class frequency is the sum of the pseudocounted frequencies of its member patterns, (count + m/2) / (windows + 75/2) for a 
+   + - D7. The 13 terms of Sigma_hat are summed in sorted order, so x and -x give identical sums.
+   + - D8. A transfer is adverse if fewer than 1/40 of the random detectors score below S_B(w_A) by more than the tie tolerance. No interpolated 
+   + - D9. The flow template is the mean of the units at each aligned level, each level counting equally, the same construction as the score, and
+   + - D10. The flow amplitude maps are applied to the whole stream before block averaging.
+   + - D11. The window-length net N/2 cuts blocks of N/2 + 128 samples by the rule of section 7 with segment length N/2.
+   + - D12. Inside a net run, C2 and C3 are made from the native segment and then put through the run's net. C4 uses the pooled fit-set values an
+   + - D13. An instrument that is both underpowered and has a failed control is reported as underpowered, with both facts recorded. Both statuses
+   + - D14. The seed-rule fields are master|instrument|split|net|segment|purpose|index, with index 0 unless stated. One generator per key gives a
+   +   - K2: instrument `K2:<class>:<length>`, split `synthetic`, net `native`, segment the seed number, purpose `data` for the series and `surro
+   +   - K1: instrument `K1:<class>:<length>` with the K2 fields otherwise. The exp and cube versions and the comparison maps are maps of the pla
+   +   - K3: the data draw uses instrument `K3:<case>:<length>`, split `synthetic`, net the use, segment the seed number, purpose `data`. Four us
+   +   Each pool uses instrument `K3:<case>`, split `synthetic`, net the use, segment the seed number, purpose `surrogates`. The circular-shift c
+   +   - K4: instrument `K4:<kind>` (kinds `A`, `B`, `C`, `S`, `Sr`), split `fit` or `verdict`, net `native`, segment the seed number, purpose `d
+   +   Each segment's pool uses instrument `K4:<kind>:s<seed>`, split `fit` or `verdict`, net the run, segment the segment number, purpose `surro
+   +   - K5 (B9): instrument `K5b:<case>`, split `fit` or `verdict`, net `native`, segment the seed number, purpose `data`. Random detectors use 
+   +   The whole-series surrogate that makes the IAAFT cascade starts from the generator of instrument `K5b:cascade_iaaft`, split `fit`, net `nat
+   +   - Controls: C2, C3 and C4 use purposes `C2`, `C3` and `C4` with the key of their segment (for C4, segment the series number). Law 2b insta
+   +   - Real data: instrument the instrument and channel, split `fit` or `verdict`, net the run, segment the segment number.
+   +   - Draws not listed here follow the `data` and `surrogates` names above. The order of draws inside each generator, and the random-number ca
+   + - D15. For g and h, unit variance means a stationary AR(1) series with innovations of standard deviation sqrt(1 - c^2). The 7 null classes a
+   + - D16. In K3 each seed draws a block of N + 128 samples and cuts it by the offset rule. The window-placement and window-length nets use inde
+   + The sawtooth takes the values k/64, k = 0 to 63 (peak to peak 63/64, standard deviation sqrt(4095/12)/64), and its noise has standard deviat
+   + - D17. K4: A' as stated in section 10, with "reaches p at most 0.01" meaning in any run (replacing the builder's reading of the largest p ov
+   + A unit departs if at most 4 of its 99 surrogates have a sum of squared features at or above its own. The cascade's highest populated level i
+   + - D18. K1 runs the whole pipeline at 1,024 samples and compares the normal scores at 4,096 and 2,048 samples, as section 10 states after B5.
+== replace: base lines 398-398, draft lines 500-500
+   replace: base words [segments] -> draft words [segments. A quantile q_p is the order statistic of rank ceil(p n), with no interpolation, and the ratio, the median and "exceeds" are computed exactly as rationals]
+== replace: base lines 480-480, draft lines 582-582
+   delete: base words [with no part in the analysis] -> draft words []
+   replace: base words [selected by] -> draft words [someone who took no part in writing or checking this plan, its code or its results, and who shares no code with either. The reviewer is named in]
+   replace: base words [session coordinating this check, and] -> draft words [results pull request before being shown]
+   replace: base words [selection and its reason are recorded.] -> draft words [outcome. If a conflict of interest is recorded in the results pull request, the repository owners may name a replacement who meets the same conditions, before the outcome is shown to that person.]
+INFO lines deleted 16, inserted 118, one-line replacements 9
+INFO occurrences of 'K >= 6': base 2, draft 2
+INFO occurrences of '0.00125': base 6, draft 6
+INFO occurrences of '74 or more': base 1, draft 1
+INFO occurrences of '129 or more': base 1, draft 1
+INFO occurrences of '99,999': base 7, draft 7
+INFO occurrences of 'R = 99,999': base 7, draft 7
+INFO occurrences of '1/4 over': base 2, draft 2
+INFO occurrences of '0.30': base 4, draft 4
+DONE classify_diff

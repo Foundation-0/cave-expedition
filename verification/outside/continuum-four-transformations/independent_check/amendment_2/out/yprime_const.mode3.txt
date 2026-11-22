@@ -1,0 +1,20 @@
+INFO b_0 = 0.4999999979 (E[h] = 1/2), sum of b_m^2 = 0.33332599 (E[h^2] = 1/3)
+INFO r(rho = 1) = 0.999912 (must be 1), r(0) = -0.000000 (must be 0)
+INFO small-rho Spearman check: r(0.5) = 0.166116; Pearson-to-Spearman for a plain Gaussian pair would be 6/pi asin(rho/2) = 0.482584 (a different statistic: here the series is |g|, not g)
+RESULT route 1: c at which the mid-rank autocorrelation of g^2 equals 1/2 at lag 16: 0.985964
+RESULT rounded down to 4 decimals: 0.9859
+   c = 0.98590: lag 14: 0.5379 lag 15: 0.5178 lag 16: 0.4986 lag 17: 0.4804 lag 18: 0.4630
+   c = 0.98596: lag 14: 0.5392 lag 15: 0.5191 lag 16: 0.5000 lag 17: 0.4818 lag 18: 0.4644
+   c = 0.98520: lag 14: 0.5237 lag 15: 0.5033 lag 16: 0.4839 lag 17: 0.4655 lag 18: 0.4480
+   c = 0.97857: lag 14: 0.4101 lag 15: 0.3885 lag 16: 0.3683 lag 17: 0.3494 lag 18: 0.3316
+RESULT with c = 0.9859 the first lag below 1/2 is 16; at lag 15 it is 0.5178, at lag 16 0.4986, at lag 17 0.4804
+INFO step doubled: b_0 = 0.4999999915; relative change 1.27e-08
+RESULT route 2 (seed 20268001, c = 0.9859, 400 series of 32768): biased mid-rank autocorrelation at lags 15, 16, 17 = 0.5166 +- 0.0011, 0.4974 +- 0.0011, 0.4790 +- 0.0012
+   population values from route 1: 0.5178, 0.4986, 0.4804; finite-n biased estimate is lower by about 0.0012 (the mean is removed and the sum is over n - k terms)
+RESULT route 2 (seed 20268002, c = 0.9852, 400 series of 32768): biased mid-rank autocorrelation at lags 15, 16, 17 = 0.5031 +- 0.0011, 0.4837 +- 0.0011, 0.4653 +- 0.0011
+   population values from route 1: 0.5033, 0.4839, 0.4655; finite-n biased estimate is lower by about 0.0002 (the mean is removed and the sum is over n - k terms)
+INFO 4 series of 2^19: lags 15, 16, 17 mean [0.5156 0.4964 0.478 ] (+- [0.0022  0.0022  0.00225])
+CONTROL route 1 flags a wrong target (c = 2^(-1/32) is not the 1/2 point at lag 16) | wrong input flagged = True
+CONTROL route 1 flags that 0.9852 gives r(lag 16) away from 1/2 | wrong input flagged = True
+CONTROL check that c = 0.9859 puts lag 15 above and lag 16 below one half | wrong input flagged = True
+DONE yprime_const
