@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-2-round-10-complete",
-  "updated_at": "2026-11-22T05:40:00Z",
+  "wave": "wave-3-and-3b-complete",
+  "updated_at": "2026-11-22T07:35:00Z",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -13,12 +13,12 @@
     {
       "id": "Foundation-0/aletheia",
       "kind": "framework",
-      "role": "methodology + stdlib CLI (v1.4.0 @ 85830ca0 + merged PR #7 @ aa471867; v2.0.0 prep integrating OWN_TERMS_FIRST, Law 2b Transformational Steelman, R6/R7, Two-Direction R3, Gate-8 col(Phi) latch, Mechanism-First Gate 9, Two-Pass Advocate, CYA-GAP-01..06)"
+      "role": "methodology + stdlib CLI (v2.0.0 live on PR #1 feat/aletheia-v1-framework @ 0b60322e; PR #7 aa471867, PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; 6/6 CI green Python 3.11-3.13; OWN_TERMS_FIRST, Law 2b Transformational Steelman, R6/R7, Two-Direction R3, Gate-8 col(Phi) latch, aletheia/gates_v2.py + aletheia/safety.py CYA-GAP-01..06, 165/165 R5 killed, local plugin 2.0.0)"
     },
     {
       "id": "Foundation-0/cave-expedition",
       "kind": "evidence_hub",
-      "role": "Umbrella ledger AUDIT-001..088R (check_001..079); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + PRs #4-#7 outside-review reconciliation"
+      "role": "Umbrella ledger AUDIT-001..096R (check_001..087 + verify_round10_standalone.py); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + PRs #4-#7 review closure + Wave 3/3b fan-out across aletheia#1, bayt-al-hikma#1, mcproof#16, warp-drive#{12,13,15,24}"
     },
     {
       "id": "Foundation-0/spectral-inertia",
@@ -213,12 +213,12 @@
     {
       "id": "judegomila",
       "kind": "round4b_external_researcher_readonly",
-      "role": "Strictly read-only (12 repos, 7 original): zeta-explorer@694eb35f9144 (190+ RH routes + Lean), dbn-lambda-01787854-candidate-audit@a74738deb6d5 (C fail-closed interval certs + lean/aristotle), canculus@ef76861b4e84 (adaptive pathway calculus), OnCo@d43842087851 (245\u2605 cited KG + MCP)"
+      "role": "Strictly read-only (12 repos, 7 original): zeta-explorer@694eb35f9144 (190+ RH routes + Lean), dbn-lambda-01787854-candidate-audit@a74738deb6d5 (C fail-closed interval certs + lean/aristotle), canculus@ef76861b4e84 (adaptive pathway calculus), OnCo@d43842087851 (245★ cited KG + MCP)"
     },
     {
       "id": "tristanbuckmaster",
       "kind": "round4d_external_researcher_readonly",
-      "role": "Strictly read-only (3 repos, 2 original Lean PDE): navier-stokes@ad53419de079 (260\u2605, 2026-11-20), fluid_lean@d0124689230b (271\u2605: affinecore, boussinesq-blowup, euler-blowup), plus Alpoge-Buckmaster-Coiculescu cc.pdf (55pp, 3D Euler finite-time singularity, SHA-256 414f5af6...)"
+      "role": "Strictly read-only (3 repos, 2 original Lean PDE): navier-stokes@ad53419de079 (260★, 2026-11-20), fluid_lean@d0124689230b (271★: affinecore, boussinesq-blowup, euler-blowup), plus Alpoge-Buckmaster-Coiculescu cc.pdf (55pp, 3D Euler finite-time singularity, SHA-256 414f5af6...)"
     },
     {
       "id": "Foundation-0/ramanujan",
@@ -238,7 +238,7 @@
     {
       "id": "alphaxiv",
       "kind": "round5_external_org_readonly",
-      "role": "Strictly read-only (120 repos, 113 non-fork): OpenResearch@48f42c45 (8,385\u2605 Rust), paper-implementations@5e4893be, weight-edit-minimization@768d7340, flint-goalkeeper-neuron@6ece43a9, feige-231f2e0b@50b0b2de (Lean), sumsets/HOPE/recurrence-convergence"
+      "role": "Strictly read-only (120 repos, 113 non-fork): OpenResearch@48f42c45 (8,385★ Rust), paper-implementations@5e4893be, weight-edit-minimization@768d7340, flint-goalkeeper-neuron@6ece43a9, feige-231f2e0b@50b0b2de (Lean), sumsets/HOPE/recurrence-convergence"
     },
     {
       "id": "camail-official",
@@ -253,12 +253,12 @@
     {
       "id": "Moissanite-Labs/warp-drive",
       "kind": "moissanite_round6_ship",
-      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (baseline main @ e3899d3e; PR #1 merged @ 0cb8fbd into main @ 38a7072f; LIVE Draft PRs #15 @ e6ad0967, #13 @ 1ffda956, #12 @ 10ae3b33; Round 6 AUDIT-061R..066R VERIFIED)"
+      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (PR #1 merged @ 0cb8fbd; PR #12 MERGED @ 2300d9ba; PR #24 MERGED @ 8addbdab closing #22; PR #15 @ 5689d32b; PR #13 study-only @ 9baa4191; Wave 2 R6 AUDIT-061R..066R + Wave 3/3b AUDIT-090R & AUDIT-096R VERIFIED; 0 GHA workflows)"
     },
     {
       "id": "magnitudedev/magnitude",
       "kind": "round7_external_repo_readonly",
-      "role": "Strictly read-only (main @ d89dfff, 8,045\u2605, 6,216 files): Rust hardware-autotuning inference engine (inference/{seismic,solver,engine,ggml,conversion,evaluation,service}) + TS/Bun CLI/desktop"
+      "role": "Strictly read-only (main @ d89dfff, 8,045★, 6,216 files): Rust hardware-autotuning inference engine (inference/{seismic,solver,engine,ggml,conversion,evaluation,service}) + TS/Bun CLI/desktop"
     },
     {
       "id": "alphaxiv/openresearch-index",
@@ -283,7 +283,7 @@
     {
       "id": "sous-labs/songe",
       "kind": "round8_external_repo_readonly",
-      "role": "Strictly read-only (main @ 5b7b1376, 174\u2605, Python/MLX): Idle-compute local LoRA/distillation training engine for coding agents"
+      "role": "Strictly read-only (main @ 5b7b1376, 174★, Python/MLX): Idle-compute local LoRA/distillation training engine for coding agents"
     },
     {
       "id": "loom-fun/unsloth-Inkling-2-Mini-loom",
@@ -293,7 +293,7 @@
     {
       "id": "southpolesteve/workers-dns-tcp",
       "kind": "round8_external_repo_readonly",
-      "role": "Strictly read-only (main @ 9a5f9002, 43\u2605, TypeScript): Authoritative DNS-over-TCP server on Cloudflare Workers querying Gemma via dig"
+      "role": "Strictly read-only (main @ 9a5f9002, 43★, TypeScript): Authoritative DNS-over-TCP server on Cloudflare Workers querying Gemma via dig"
     },
     {
       "id": "langchain/company-harness-knowledge-factory",
@@ -369,6 +369,16 @@
       "id": "siliconcordat/warp",
       "kind": "own_org_repo",
       "role": "Siliconcordat warp adapter-governance & stacked-Gram verification repository (Wave 2 PR #17 & Round 6)"
+    },
+    {
+      "id": "Foundation-0/bayt-al-hikma",
+      "kind": "foundation0_wave3_ship",
+      "role": "New public repo (https://github.com/Foundation-0/bayt-al-hikma; LIVE PR #1 feat/initial-bayt-al-hikma-studies @ c22192cb): 4/4 verified pure-Q zero-float studies (334/334 R5 killed, verify_all_standalone.py PASS): arabic-continuum/ (AUDIT-091R, 68/68 R5), arabic-lexicon/ (AUDIT-094R, 81/81 R5), polymath-lineage/ (AUDIT-092R, 75/75 R5), and veins-and-branches/ (AUDIT-095, 110/110 R5)"
+    },
+    {
+      "id": "Proven-Commons/mcproof",
+      "kind": "own_org_partner_repo",
+      "role": "Formal proof-protocol & repair-loop repository audited in Wave 3 Lane 2 (AUDIT-089R, check_081): PRs #3/#7 reviewed, #6/#15 approved, Issue #12 Family-B diagnosis, LIVE Draft PR #16 feat/hardening-mcp-gaps-and-issue12 @ a93e6c05 closing MCP-GAP-01..06, PR #7 macOS portability, & Issue #12 subtier early-stop"
     }
   ],
   "edges": [
@@ -1370,7 +1380,7 @@
       "owner_arms": [
         "peer-weaver"
       ],
-      "typed_operator": "Arm R4B-2 (AUDIT-050): Strictly read-only Beyond-Language exact-operator bridge from judegomila/canculus@ef76861b4e84 (route normal form, adaptation closure, robust cuts) to Moissanite-Labs/weft#227 (WEFT-T5 Lafont normal forms) & AUDIT-029/042/043 min-cut/tropical-peeling/Schur adaptation + judegomila/OnCo@d43842087851 (245\u2605 cited KG/MCP/CLI provenance schema)",
+      "typed_operator": "Arm R4B-2 (AUDIT-050): Strictly read-only Beyond-Language exact-operator bridge from judegomila/canculus@ef76861b4e84 (route normal form, adaptation closure, robust cuts) to Moissanite-Labs/weft#227 (WEFT-T5 Lafont normal forms) & AUDIT-029/042/043 min-cut/tropical-peeling/Schur adaptation + judegomila/OnCo@d43842087851 (245★ cited KG/MCP/CLI provenance schema)",
       "target_anomaly": "Testing exact algebraic identities/counterexamples in canculus adaptation closure & robust cuts + harvesting OnCo citation-graph architecture",
       "status": "verified",
       "audit_id": "AUDIT-050 (N1 VERIFIED; check_039; 33/33 R5; live Foundation-0/math0#17 @ 273ff84d; live Node.js CANC-B1..B4 repro + #22 2x2 feedback Schur/PGL(2) + OnCo KG gates)"
@@ -1385,7 +1395,7 @@
         "session-cartographer",
         "fractals-probe"
       ],
-      "typed_operator": "Arm R4C (AUDIT-051): The Aletheia Operator Calculus \u2014 8 empirically 0/227,540-Lean-hit Unicode Sm glyphs (\u29c4 Schur, \u29c5 Shadow, \u29b7 Holonomy-Unmask, \u27e0 Observer-Equalizer, \u29c7 Cohom-Obstruction, \u29ba Krein-Inertia, \u2a69 Exact-Null-Eq, \u2ae9 R5-Refusal-Gate) with executable pure-Q parser/evaluator & commutator discovery (already yielding PSD [\u29c4,\u29b7] monotonic horizon screening theorem #274)",
+      "typed_operator": "Arm R4C (AUDIT-051): The Aletheia Operator Calculus — 8 empirically 0/227,540-Lean-hit Unicode Sm glyphs (⧄ Schur, ⧅ Shadow, ⦷ Holonomy-Unmask, ⟠ Observer-Equalizer, ⧇ Cohom-Obstruction, ⦺ Krein-Inertia, ⩩ Exact-Null-Eq, ⫩ R5-Refusal-Gate) with executable pure-Q parser/evaluator & commutator discovery (already yielding PSD [⧄,⦷] monotonic horizon screening theorem #274)",
       "target_anomaly": "Compressing multi-line expedition obstructions into 1-line compositional algebra & discovering exact operator commutator laws",
       "status": "verified",
       "audit_id": "AUDIT-051 (N1 VERIFIED; check_042; 68/68 R5; live Foundation-0/math0#17 @ 273ff84d & Foundation-0/aletheia#1 v1.3.0 @ 58207b42; 8 glyphs 0/227,540 Lean hits + C1 PSD screening + C6 rational metric on H^1)"
@@ -1428,7 +1438,7 @@
         "gravity-probe",
         "session-cartographer"
       ],
-      "typed_operator": "Arm R4E (AUDIT-054): Symbolic 4-regime Double-Slit & Triple-Slit Continuum-Observer Tomography closing Session 1 Pair 33 L795 \u2014 Regime I linear bath complementarity + 16x16 GKSL Schur rate + AUDIT-047R surgical severing & deck-splitting eraser; Regime II 16-vertex Fine-Farkas CHSH 14/5 > 2 local-classical no-go; Regime III-A linear looped-Schur Sorkin (#25, degree-0 intensity invariant) vs III-B intrinsic Kerr continuum (lambda^2 scaling, DS-N0-08 ceiling 507/32464000)",
+      "typed_operator": "Arm R4E (AUDIT-054): Symbolic 4-regime Double-Slit & Triple-Slit Continuum-Observer Tomography closing Session 1 Pair 33 L795 — Regime I linear bath complementarity + 16x16 GKSL Schur rate + AUDIT-047R surgical severing & deck-splitting eraser; Regime II 16-vertex Fine-Farkas CHSH 14/5 > 2 local-classical no-go; Regime III-A linear looped-Schur Sorkin (#25, degree-0 intensity invariant) vs III-B intrinsic Kerr continuum (lambda^2 scaling, DS-N0-08 ceiling 507/32464000)",
       "target_anomaly": "Separating linear coupled quantum backaction, local classical slit disturbance, linear looped-trajectory Schur coupling, and intrinsic nonlinear Kerr continua",
       "status": "verified",
       "audit_id": "AUDIT-054 (N1 VERIFIED; check_045; 38/38 R5; live Foundation-0/continuum#3 @ 7fe4ee22)"
@@ -1442,7 +1452,7 @@
       "owner_arms": [
         "spectral-prover"
       ],
-      "typed_operator": "Release AUDIT-055: Foundation-0/aletheia v1.3.0 shipping ALETHEIA-CLI-01 fix (--allow-project-import action=extend), stdlib aletheia/calculus.py & `aletheia calculus` 8-glyph CLI (\u29c4 \u29c5 \u29b7 \u27e0 \u29c7 \u29ba \u2a69 \u2ae9), Round-4 evidence pack, and synchronized 1.3.0 plugin/docs",
+      "typed_operator": "Release AUDIT-055: Foundation-0/aletheia v1.3.0 shipping ALETHEIA-CLI-01 fix (--allow-project-import action=extend), stdlib aletheia/calculus.py & `aletheia calculus` 8-glyph CLI (⧄ ⧅ ⦷ ⟠ ⧇ ⦺ ⩩ ⫩), Round-4 evidence pack, and synchronized 1.3.0 plugin/docs",
       "target_anomaly": "Promoting verified 8-glyph operator calculus and hardened Lean audit CLI into permanent cross-repo verification infrastructure",
       "status": "verified",
       "audit_id": "AUDIT-055 (N1 VERIFIED; check_046; 13/13 R5; live Foundation-0/aletheia#1 v1.3.0 @ 58207b42)"
@@ -1470,7 +1480,7 @@
       "owner_arms": [
         "peer-weaver"
       ],
-      "typed_operator": "Arm R5-2 (AUDIT-057): Strictly read-only bidirectional Aletheia v1.3.0 <-> alphaxiv/OpenResearch@48f42c45 (8,385\u2605 Rust) + recursive-harness / arex / meta-skill-creator / paper-implementations tomography & CS-01..CS-11 / R5 audit",
+      "typed_operator": "Arm R5-2 (AUDIT-057): Strictly read-only bidirectional Aletheia v1.3.0 <-> alphaxiv/OpenResearch@48f42c45 (8,385★ Rust) + recursive-harness / arex / meta-skill-creator / paper-implementations tomography & CS-01..CS-11 / R5 audit",
       "target_anomaly": "Harvesting Rust agent-research harness patterns for aletheia/hillclimb while auditing eval/verification gates for concrete R1-R5 findings",
       "status": "verified",
       "audit_id": "AUDIT-057R (N1 VERIFIED; check_049; 27/27 R5; 385-transition monotone reconciler lattice + 12/12 live findings incl. ORX-PG-01..04 on alphaxiv/OpenResearch@48f42c45 & 4 sibling repos)"
@@ -1484,21 +1494,21 @@
       "owner_arms": [
         "fractals-probe"
       ],
-      "typed_operator": "Arm R5-3 (AUDIT-058): Strictly read-only exact-operator symbiosis (\u29c4 \u29c5 \u29ba \u2a69) bridging camail-official/{LinearAttentionPruning,compressm,LoReS,neuro-lds,QRR,LoopedActor,discretax} to siliquant#24, spectral-inertia R_opt/R_{H4}, Bareiss PSD, & exact rational star-discrepancy",
+      "typed_operator": "Arm R5-3 (AUDIT-058): Strictly read-only exact-operator symbiosis (⧄ ⧅ ⦺ ⩩) bridging camail-official/{LinearAttentionPruning,compressm,LoReS,neuro-lds,QRR,LoopedActor,discretax} to siliquant#24, spectral-inertia R_opt/R_{H4}, Bareiss PSD, & exact rational star-discrepancy",
       "target_anomaly": "Mapping SSM/linear-attention state reduction to Schur pushforward + dark-drift shadow & recurrent quantization to E8_Had/Leech24",
       "status": "verified",
       "audit_id": "AUDIT-058R (N1 VERIFIED; check_047; 49/49 R5; live Foundation-0/math0#18 @ 5f966226; CAMAIL-B1..B5 bug proofs + #26 LTI DC Schur SPA & ICML 2026 neuro-lds RKHS Schur)"
     },
     {
       "id": "R5-E04",
-      "portal": "R5-P04 / SF-07 (\u27e0) / SF-01 (\u29c5) / SF-05 (\u29b7)",
+      "portal": "R5-P04 / SF-07 (⟠) / SF-01 (⧅) / SF-05 (⦷)",
       "direction": "bidirectional",
       "source": "qwen-neuron-map",
       "target": "Moissanite-Labs/siliquant",
       "owner_arms": [
         "continuum-bridge"
       ],
-      "typed_operator": "Arm R5-4 (AUDIT-059): Strictly read-only mining of qwen-neuron-map (30 models, 11 labs, 323 families, 18 kinds) + alphaxiv/{weight-edit-minimization,flint-goalkeeper-neuron} as empirical Observer-Net Equalizer (\u27e0) vs Dark-Neuron Shadow (\u29c5) & Z_2 sign-symmetry confounder, unlocking siliquant/weft-loom/scry/warp",
+      "typed_operator": "Arm R5-4 (AUDIT-059): Strictly read-only mining of qwen-neuron-map (30 models, 11 labs, 323 families, 18 kinds) + alphaxiv/{weight-edit-minimization,flint-goalkeeper-neuron} as empirical Observer-Net Equalizer (⟠) vs Dark-Neuron Shadow (⧅) & Z_2 sign-symmetry confounder, unlocking siliquant/weft-loom/scry/warp",
       "target_anomaly": "Separating coordinate-dependent neuron noise (9% seed match) from universal family equalizers (67% group match) & dark-neuron quantization/edit subspaces",
       "status": "verified",
       "audit_id": "AUDIT-059 (N1 VERIFIED; check_048; 24/24 R5; live Moissanite-Labs/siliquant#24 @ d4c54e43; 1,504,256 neurons across 13 models + Gemma 4 E4B L10 #1/42 fan-out mystery + Qwen3.5-0.8B 21/21 anisotropy & Adjacent-brackets 11.63x/20.36x join)"
@@ -1526,7 +1536,7 @@
       "owner_arms": [
         "spectral-prover"
       ],
-      "typed_operator": "Arm R6-1 (AUDIT-061): Non-author deep audit of warp-drive PR #1 (port/bareiss-gram-stack-cert @ 8d9f8155) + src/warp_modeld/certificate.py (SP-09 singular G_kk / blind-drift / SignedTree multifrontal Schur / 8-glyph \u29c4 \u29c5 \u29ba \u2a69 \u2ae9 invariants)",
+      "typed_operator": "Arm R6-1 (AUDIT-061): Non-author deep audit of warp-drive PR #1 (port/bareiss-gram-stack-cert @ 8d9f8155) + src/warp_modeld/certificate.py (SP-09 singular G_kk / blind-drift / SignedTree multifrontal Schur / 8-glyph ⧄ ⧅ ⦺ ⩩ ⫩ invariants)",
       "target_anomaly": "Certifying exact stacked-adapter Gram gates & Stage-2 FixedRadixCertificate soundness with 100% R5 kill",
       "status": "verified",
       "audit_id": "AUDIT-061R (N1 VERIFIED; check_055; 100/100 R5; 2/2 Gram escape bypasses + 8 attacks closed; PR #1 non-author review PR1-B1..B4 + WARP-CERT-01..05 + symbolic KKT R_H4 + singular-G_kk witness + SignedTree; live Moissanite-Labs/warp-drive#12 @ 10ae3b33 & certificate.py fixes in #15 @ e6ad0967)"
@@ -1612,7 +1622,7 @@
         "spectral-prover",
         "verifier"
       ],
-      "typed_operator": "Track P3-4 (AUDIT-067R): Reverse-extraction of Round-6 gems into aletheia v1.4.0 \u2014 AST local hard-refusal wrapper auto-detection (mutator.py: 74 mutants on untouched bareiss_gram_gate.py), loads_strict_json/load_strict_jsonl_file, canonical --strict-ancestors permission gate, Case Study V + CS-12 Trust-Boundary Shadow, & local plugin sync (1.4.0)",
+      "typed_operator": "Track P3-4 (AUDIT-067R): Reverse-extraction of Round-6 gems into aletheia v1.4.0 — AST local hard-refusal wrapper auto-detection (mutator.py: 74 mutants on untouched bareiss_gram_gate.py), loads_strict_json/load_strict_jsonl_file, canonical --strict-ancestors permission gate, Case Study V + CS-12 Trust-Boundary Shadow, & local plugin sync (1.4.0)",
       "target_anomaly": "Closing mutator wrapper blind spots, duplicate-key/NaN JSON smuggling, & ancestor-dir permission gaps across the entire Aletheia framework",
       "status": "verified",
       "audit_id": "AUDIT-067R (N1 VERIFIED; check_057; 14/14 tests; 13/13 fixture R5; 4/4 defects closed; live Foundation-0/aletheia#1 @ 85830ca0 + local plugin 1.4.0)"
@@ -1924,6 +1934,122 @@
       "target_anomaly": "Preventing premature FALSIFIED dismissal of transformable mathematical cores while blocking degenerate/post-hoc epicycles and silent goalpost-moving",
       "status": "verified",
       "audit_id": "AUDIT-088R (N1 VERIFIED; check_079; 55/55 R5; 4/4 defects closed + 14/14 extra PASS; structural twin to OWN_TERMS_FIRST)"
+    },
+    {
+      "id": "W3-E01",
+      "portal": "W3-L1",
+      "direction": "outgoing",
+      "source": "Foundation-0/aletheia",
+      "target": "Foundation-0/cave-expedition",
+      "owner_arms": [
+        "peer-weaver",
+        "session-cartographer"
+      ],
+      "typed_operator": "aletheia v2.0.0 release (PR #1 @ 0b60322e; PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; gates_v2.py + safety.py CYA-GAP-01..06; 165/165 R5 killed; 6/6 CI green; plugin 2.0.0)",
+      "target_anomaly": "Promotes Round-10 OWN_TERMS_FIRST, Law 2b, R6/R7, 2-dir R3, Gate-8 col(Phi) latch, and static safety-scan into production v2.0.0 CLI",
+      "status": "verified",
+      "audit_id": "AUDIT-093R (N1; check_083; 165/165 R5; 3 defects closed; 8/8 extra probes PASS)"
+    },
+    {
+      "id": "W3-E02",
+      "portal": "W3-L2",
+      "direction": "outgoing",
+      "source": "Foundation-0/aletheia",
+      "target": "Proven-Commons/mcproof",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Fail-closed allowlist repair_loop early-stop + portfolio transitivity + strict LP/witness/tcb_pins checks + macOS portability -> mcproof#16 @ a93e6c05",
+      "target_anomaly": "Closes MCP-GAP-01..06 bypasses, PR #7 macOS portability, and Issue #12 Family-B subtier early-stop bug while keeping PRs #6/#7/#15 non-duplicative",
+      "status": "verified",
+      "audit_id": "AUDIT-089R (N1; check_081; 126/126 R5; 3 classes closed; 33/33 live probes PASS)"
+    },
+    {
+      "id": "W3-E03",
+      "portal": "W3-L3/W3B-LD",
+      "direction": "outgoing",
+      "source": "Foundation-0/aletheia",
+      "target": "Moissanite-Labs/warp-drive",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Cerebras served_model fail-closed PR #24 (MERGED @ 8addbdab, closes #22) + PR #15 (5689d32b, 40-hop POSIX symlink & canary taint) + PR #12 (MERGED @ 2300d9ba, singleton n==1) + PR #13 (9baa4191, study-only egress/receipt/5-op manifest hardening)",
+      "target_anomaly": "Closes Issue #22, WD-RESID-01..04, @orda-aska PR #12/#13 catches, & PR13-BUG-01..03 with 0 GHA workflows & 58/72/98 upstream tests OK",
+      "status": "verified",
+      "audit_id": "AUDIT-090R (check_084; 82/82 R5) + AUDIT-096R (check_087; 259/259 R5)"
+    },
+    {
+      "id": "W3-E04",
+      "portal": "W3-L5/W3B-LB/LC",
+      "direction": "outgoing",
+      "source": "Foundation-0/bayt-al-hikma",
+      "target": "Foundation-0/continuum",
+      "owner_arms": [
+        "continuum-bridge",
+        "fractals-probe"
+      ],
+      "typed_operator": "Classical Arabic 2-layer translation projection defect (131,343 pairs, unanimous 12/12 cross-lemma amplification in Sahih & Pickthall) + Al-Biruni/Ibn Sina 2-adic/wheel continuum obstruction + Al-Farabi 11-limit acoustic continuum (45-49c 12-TET bucketization defect)",
+      "target_anomaly": "Formalizes discrete-bucket projection loss & continuum obstructions directly bridging continuum.md:3 under OWN_TERMS_FIRST & Law-5 zero numerology",
+      "status": "verified",
+      "audit_id": "AUDIT-091R (check_082; 68/68 R5) + AUDIT-094R (check_085; 81/81 R5) + AUDIT-095 (check_086; 110/110 R5)"
+    },
+    {
+      "id": "W3-E05",
+      "portal": "W3-L6/W3B-LB/LC",
+      "direction": "incoming",
+      "source": "Foundation-0/bayt-al-hikma",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "fractals-probe",
+        "continuum-bridge"
+      ],
+      "typed_operator": "Ibn Rushd Anti-Epicycle (G2), al-Ghazali <-> Ibn Rushd exact 2x2 causal witness (obs_l1=0/1 vs ATE=9/25 vs 0/1), al-Khwarizmi 6-form reducer (T2), al-Kindi frequency null (T1), & NFKC Law-5 NUMEROLOGY_FORBIDDEN guard",
+      "target_anomaly": "Grounds Aletheia v2.0.0 Laws 1-5 & Law 2b in exact pure-Q historical mathematical & causal-identifiability witnesses",
+      "status": "verified",
+      "audit_id": "AUDIT-092R (check_080; 75/75 R5) + AUDIT-094R (check_085; 81/81 R5) + AUDIT-095 (check_086; 110/110 R5)"
+    },
+    {
+      "id": "W3-E06",
+      "portal": "W3-L6/W3B-LA/LC",
+      "direction": "bidirectional",
+      "source": "Foundation-0/bayt-al-hikma",
+      "target": "Foundation-0/cave-expedition",
+      "owner_arms": [
+        "session-cartographer",
+        "fractals-probe"
+      ],
+      "typed_operator": "23-scholar 28-edge 3-tier chronological DAG (tributary->core->branch, 287 BCE-1543 CE) + al-Karaji/al-Samaw'al Q[x,x^-1] Laurent-ring bridge to AUDIT-085R Q[q] + bayt-al-hikma#1 @ c22192cb (4/4 studies, 334/334 R5)",
+      "target_anomaly": "Connects Bayt al-Hikma repository verification suite directly into the umbrella Cave Expedition epistemic web & AUDIT-085R algebraic bridge",
+      "status": "verified",
+      "audit_id": "AUDIT-091R/092R/094R/095 + bayt-al-hikma#1 @ c22192cb"
+    },
+    {
+      "id": "W3-E07",
+      "portal": "W3-L6/W3B-LC",
+      "direction": "outgoing",
+      "source": "Foundation-0/bayt-al-hikma",
+      "target": "Moissanite-Labs/warp-drive",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Banu Musa / al-Jazari float-valve contraction (0 < mu < 2) & proportional saturation headroom (linear_head_margin * 10 >= setpoint) + Jamshid al-Kashi certified Banach fixed-point contraction (L = 1/625 < 1)",
+      "target_anomaly": "Exact pure-Q discrete-time feedback contraction & saturation headroom certifiers paralleling bounded controller stability",
+      "status": "verified",
+      "audit_id": "AUDIT-092R (check_080; 75/75 R5) + AUDIT-095 (check_086; 110/110 R5)"
+    },
+    {
+      "id": "W3-E08",
+      "portal": "W3-L6/W3B-LC",
+      "direction": "outgoing",
+      "source": "Foundation-0/bayt-al-hikma",
+      "target": "Foundation-0/incentre-lattices",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Ibn al-Haytham-Khayyam-Tusi curvature trichotomy + zero-residual Tusi-couple & Ibn al-Shatir <-> Copernicus lunar/Mercury double-epicycle equivalence (0/1 residual, L1=1/9000)",
+      "target_anomaly": "Exact zero-trig pure-Q kinematic involutions & geometric rigidity obstructions",
+      "status": "verified",
+      "audit_id": "AUDIT-092R (check_080; 75/75 R5) + AUDIT-095 (check_086; 110/110 R5)"
     }
   ],
   "round1_summary": {
@@ -2042,14 +2168,14 @@
     "lean4_corpus_files_scanned": 227540,
     "lean4_collisions": 0,
     "glyphs": [
-      "\u29c4 (U+29C4 schur_pushforward)",
-      "\u29c5 (U+29C5 dark_mode_shadow)",
-      "\u29b7 (U+29B7 holonomy_unmask)",
-      "\u27e0 (U+27E0 observer_equalizer)",
-      "\u29c7 (U+29C7 cohom_obstruction)",
-      "\u29ba (U+29BA krein_inertia)",
-      "\u2a69 (U+2A69 exact_null_equiv)",
-      "\u2ae9 (U+2AE9 r5_refusal_gate)"
+      "⧄ (U+29C4 schur_pushforward)",
+      "⧅ (U+29C5 dark_mode_shadow)",
+      "⦷ (U+29B7 holonomy_unmask)",
+      "⟠ (U+27E0 observer_equalizer)",
+      "⧇ (U+29C7 cohom_obstruction)",
+      "⦺ (U+29BA krein_inertia)",
+      "⩩ (U+2A69 exact_null_equiv)",
+      "⫩ (U+2AE9 r5_refusal_gate)"
     ],
     "audits_in_flight": [],
     "audits_verified": [
@@ -2239,7 +2365,7 @@
     "total_unresolved_defects": 0
   },
   "round10_summary": {
-    "status": "100_percent_verified_pre_push_staged",
+    "status": "100_percent_verified_published",
     "portal_doc": "symbiosis/round10/cartography/ROUND10_PORTALS.md",
     "catalog_json": "symbiosis/round10/cartography/round10_catalog.json",
     "review_pack": "symbiosis/round10/cartography/CAVE_EXPEDITION_REVIEW_PACK.md",
@@ -2273,6 +2399,35 @@
     },
     "total_unresolved_defects": 0,
     "completion_doc": "symbiosis/round10/cartography/ROUND10_COMPLETE.md",
-    "portal_doc_preserved_sha256": "282b798cce408ffb2d1abd317b2e743bc385d0d45481ea1c6374a1c630b06808"
+    "portal_doc_preserved_sha256": "282b798cce408ffb2d1abd317b2e743bc385d0d45481ea1c6374a1c630b06808",
+    "live_commit_on_cave_expedition_pr1": "80606f1945a46e1d18b424fe6e84078e933cc590"
+  },
+  "wave3_and_3b_summary": {
+    "status": "100_percent_verified_published",
+    "read_only_enforced_on_external": true,
+    "zero_new_warp_drive_gha_workflows": true,
+    "audits_verified": [
+      "AUDIT-089R (N1; check_081; 126/126 R5; 3 classes closed; 33/33 probes; Proven-Commons/mcproof#16 @ a93e6c05)",
+      "AUDIT-090R (N1; check_084; 82/82 R5; 3 defects closed; 23/23 probes; warp-drive#24 MERGED @ 8addbdab & #15 @ 5689d32b)",
+      "AUDIT-091R (N1; check_082; 68/68 R5; 3 classes closed; 16/16 probes; bayt-al-hikma#1 @ c22192cb arabic-continuum/)",
+      "AUDIT-092R (N1; check_080; 75/75 R5; 3 defects closed; 15/15 probes; bayt-al-hikma#1 @ c22192cb polymath-lineage/)",
+      "AUDIT-093R (N1; check_083; 165/165 R5; 3 defects closed; 8/8 probes; Foundation-0/aletheia#1 v2.0.0 @ 0b60322e, #8/#9 MERGED, 6/6 CI green)",
+      "AUDIT-094R (N1; check_085; 81/81 R5; 5 classes / 12 bypasses closed; 10/10 probes; bayt-al-hikma#1 @ c22192cb arabic-lexicon/)",
+      "AUDIT-095 (N1; check_086; 110/110 R5; 0 bypasses; 22/22 probes; bayt-al-hikma#1 @ c22192cb veins-and-branches/)",
+      "AUDIT-096R (N1; check_087; 259/259 R5 = 104+155; 9 bypasses closed; 9/9 probes; warp-drive#12 MERGED @ 2300d9ba & #13 @ 9baa4191)"
+    ],
+    "audits_in_flight": [],
+    "total_wave3_and_3b_r5_mutants_killed": "966/966 (100.0%)",
+    "bayt_al_hikma_4_study_r5_killed": "334/334 (100.0%)",
+    "live_wave3_prs": {
+      "aletheia_v2": "https://github.com/Foundation-0/aletheia/pull/1 (feat/aletheia-v1-framework @ 0b60322e17; PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; 6/6 CI green)",
+      "bayt_al_hikma": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (feat/initial-bayt-al-hikma-studies @ c22192cb1e; 4/4 studies, 334/334 R5)",
+      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (feat/hardening-mcp-gaps-and-issue12 @ a93e6c0527; AUDIT-089R)",
+      "warp_drive_pr24": "https://github.com/Moissanite-Labs/warp-drive/pull/24 (MERGED @ 8addbdab55; closes #22; AUDIT-090R)",
+      "warp_drive_pr15": "https://github.com/Moissanite-Labs/warp-drive/pull/15 (feat/hardening-trust-boundary-and-cross-org-gates @ 5689d32b15; AUDIT-090R)",
+      "warp_drive_pr12": "https://github.com/Moissanite-Labs/warp-drive/pull/12 (MERGED @ 2300d9bad0; AUDIT-096R)",
+      "warp_drive_pr13": "https://github.com/Moissanite-Labs/warp-drive/pull/13 (feat/frozen-contract-and-bounded-controller @ 9baa4191b9; study-only; AUDIT-096R)"
+    },
+    "total_unresolved_defects": 0
   }
 }

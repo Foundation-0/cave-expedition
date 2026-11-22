@@ -35,7 +35,7 @@ Umbrella index, discovery methodology, Wave 2+ compute handoff, cross-domain car
 
 ---
 
-## 2. Complete Verified Discovery Ledger (`AUDIT-001` – `AUDIT-088R`)
+## 2. Complete Verified Discovery Ledger (`AUDIT-001` – `AUDIT-096R`)
 
 **Every central computation across all expedition tracks reproduced independently on zero-shared-code oracles** (`0` unresolved defects in verified results; note per `PR #4` that legacy Wave-1 scripts `check_007` and `check_008` pin pre-patch upstream SHAs and need re-pinning against updated heads, while the underlying verdicts reproduce). Full chronological evidence, outside-audit reconciliations (`AUDIT-084R`–`088R`), and scope notes live in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md):
 
@@ -90,8 +90,8 @@ cave-expedition/
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
 │   ├── frontier_portals.md                    # 11 steelmanned cross-domain discovery portals (Portals 1–11) & complete audit tracking
 │   ├── entry_points.json                      # Machine-readable catalog of 11 falsifiable entry points (ep-01..ep-11)
-│   └── symbiosis/                             # Wave 2 Epistemic Web Cartography (Rounds 1–10, strictly sanitized)
-│       ├── cross_pollination_graph.json       # Typed 72-node, 108-edge cross-repo operator graph (Wave 1–2, honest Gate-5 taxonomy + M1/M2/M3)
+│   └── symbiosis/                             # Wave 2–3 Epistemic Web Cartography (Rounds 1–10 + Wave 3/3b, strictly sanitized)
+│       ├── cross_pollination_graph.json       # Typed 74-node, 116-edge cross-repo operator graph (Wave 1–3b, honest Gate-5 taxonomy + M1/M2/M3)
 │       ├── structural_fingerprints.json       # Name-blind Beyond-Language fingerprint catalog (SF-01..SF-07, 109 instances; SF-01 29 = 23 QH + 4 QN + 2 L)
 │       ├── SYMBIOSIS_PORTALS.md               # Wave 2 Rounds 1–2 cross-pollination portals (Moissanite-Labs, siliconcordat, soko)
 │       ├── ten_lab_catalog.json               # Strictly read-only 10-lab index (1,565 repos, 22 Lean 4 repos)
@@ -130,8 +130,8 @@ cave-expedition/
 │       └── arm5-transformational-steelman/    # AUDIT-088R (Full Law 2b spec: T1..T7, G1..G4, 10 exact-Q vault witnesses)
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
-    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-088R)
-    ├── CHECKS_INDEX.md                        # Full provenance & SHA-256 index of all 79 checks + verify_round10_standalone.py
+    ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-096R, 145 rows)
+    ├── CHECKS_INDEX.md                        # Full provenance & SHA-256 index of all 87 checks + verify_round10_standalone.py
     └── checks/                                # Mirrored Wave 1 checks (check_001..check_014) + verify_round10_standalone.py
 ```
 
@@ -145,7 +145,9 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 
 | Artifact | Live GitHub URL | Audits Covered |
 |---|---|---|
-| **Umbrella Expedition Hub (this repo + sync Draft PR)** | [`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition) + [Draft PR `#1`](https://github.com/Foundation-0/cave-expedition/pull/1) | `AUDIT-001`–`AUDIT-088R` (`check_001`–`check_079`) |
+| **Umbrella Expedition Hub (this repo + sync Draft PR)** | [`Foundation-0/cave-expedition`](https://github.com/Foundation-0/cave-expedition) + [Draft PR `#1`](https://github.com/Foundation-0/cave-expedition/pull/1) | `AUDIT-001`–`AUDIT-096R` (`check_001`–`check_087`) |
+| **Bayt al-Ḥikma — Classical Arabic Continuum Semantics & Polymath Lineage (New Repo + Live PR `#1`)** | [`Foundation-0/bayt-al-hikma`](https://github.com/Foundation-0/bayt-al-hikma) + [PR `#1`](https://github.com/Foundation-0/bayt-al-hikma/pull/1) (`c22192cb`) | `AUDIT-091R`, `092R`, `094R`, `095` (`4/4` studies, `334/334` R5) |
+| **Proven-Commons `mcproof` Protocol & Repair-Loop Hardening (Draft PR `#16`)** | [`Proven-Commons/mcproof#16`](https://github.com/Proven-Commons/mcproof/pull/16) (`a93e6c05`) | `AUDIT-089R` (`126/126` R5, closes `MCP-GAP-01..06`, `#7` macOS & `#12`) |
 | **Outside Adversarial Reviews & Pre-Reg (Collaborator PRs)** | [`cave-expedition#4`](https://github.com/Foundation-0/cave-expedition/pull/4), [`#5`](https://github.com/Foundation-0/cave-expedition/pull/5), [`#6`](https://github.com/Foundation-0/cave-expedition/pull/6), [`#7`](https://github.com/Foundation-0/cave-expedition/pull/7) | Reconciled in `AUDIT-084R`–`088R` ([Review Pack](cartography/symbiosis/CAVE_EXPEDITION_REVIEW_PACK.md)) |
 | **Spectral Inertia & Higher-Moment Bounds (Standalone Repo)** | [`Foundation-0/spectral-inertia`](https://github.com/Foundation-0/spectral-inertia) | `AUDIT-002`, `014`, `015R`, `016R` |
 | **Loom Higher-Moment Note (Draft PR)** | [`siliconcordat/loom#10`](https://github.com/siliconcordat/loom/pull/10) | `docs/11-spectral-inertia-higher-moments.md` |
@@ -157,7 +159,7 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 | **Continuum Thesis (`PR #1`) & Expedition Synthesis Suite (`PR #3`)** | [`Foundation-0/continuum#1`](https://github.com/Foundation-0/continuum/pull/1) (`8d3e7345`), [`#3`](https://github.com/Foundation-0/continuum/pull/3) (`7fe4ee22`) | `AUDIT-004`–`008R`, `019`, `054`, `084R`, `087R` |
 | **Tropical Farkas Peeling Tower & $\mathbb{Q}[q]$ Diagonal Similarity (Draft PR)** | [`Foundation-0/quotient-lp-bounds#5`](https://github.com/Foundation-0/quotient-lp-bounds/pull/5) | `AUDIT-004`, `008R` |
 | **Project Asma $PGL(2)$ Möbius Cross-Ratio & $R_{\mathrm{opt}}$ TCB (Draft PR)** | [`Foundation-0/project-asma#101`](https://github.com/Foundation-0/project-asma/pull/101) | `AUDIT-006R` |
-| **Aletheia Verification, Gate Contracts & Trust-Boundary Framework (Live PR `#1` + `#7` merged + `#8`/`#9` Drafts)** | [`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`aa471867`), [`#8`](https://github.com/Foundation-0/aletheia/pull/8), [`#9`](https://github.com/Foundation-0/aletheia/pull/9) | `AUDIT-022`, `030R`, `040R`, `055`, `067R`, `084R`, `086R`, `088R` |
+| **Aletheia Verification, Gate Contracts & Trust-Boundary Framework (`v2.0.0`, `6/6` CI green; `#7`/`#8`/`#9` MERGED)** | [`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`0b60322e`), [`#8`](https://github.com/Foundation-0/aletheia/pull/8) (merged), [`#9`](https://github.com/Foundation-0/aletheia/pull/9) (merged) | `AUDIT-022`, `030R`, `040R`, `055`, `067R`, `084R`, `086R`, `088R`, `093R` (`165/165` R5) |
 | **Wave 2 Cross-Org Symbiosis Draft PRs (`Moissanite-Labs/*`, `siliconcordat/warp#17`, `quotient-lp-bounds#5`)** | Indexed on [`siliconcordat/.github#5`](https://github.com/siliconcordat/.github/issues/5) | `AUDIT-023`–`034R`, `035`–`043` |
 | **Hawking Horizon & Observer-Invariant Suite (`AUDIT-047R`, Draft PR)** | [`Foundation-0/hawking#1`](https://github.com/Foundation-0/hawking/pull/1) (`2cc38330`) | `AUDIT-041`, `042`, `043`, `047R` (review state open on PR `#1`) |
 | **Srinivasa Ramanujan Exact-Operator Suite (Draft PR)** | [`Foundation-0/ramanujan#1`](https://github.com/Foundation-0/ramanujan/pull/1) (`9bafe2c7`) | `AUDIT-044`, `045`, `046`, `048R` |
@@ -166,9 +168,10 @@ This umbrella repository ([`Foundation-0/cave-expedition`](https://github.com/Fo
 | **Unified Quantum Obstructions & $U(1)$ Surgical Severing (`AUDIT-056`, Draft PR)** | [`Foundation-0/quantum#1`](https://github.com/Foundation-0/quantum/pull/1) (`11b9eb7f`) | `AUDIT-018`, `041`, `054`, `056` |
 | **Wave 2 Round 5 Pure-Math Studies (`camail-official` SSM/RKHS + `alphaxiv` Sumsets/HOPE/Lean, Draft PR)** | [`Foundation-0/math0#18`](https://github.com/Foundation-0/math0/pull/18) (`5f966226`) | `AUDIT-058R`, `060` |
 | **Cross-Model Neuron Homology Unlock (`qwen-neuron-map` 1.5M Neurons & Gemma 4 E4B L10 Mystery, `siliquant#24`)** | [`Moissanite-Labs/siliquant#24`](https://github.com/Moissanite-Labs/siliquant/pull/24) (`d4c54e43`) | `AUDIT-028`, `031`, `059` |
-| **Warp-Drive Upstream Trust-Boundary Hardening & Cross-Org Gates (Draft PR-A)** | [`Moissanite-Labs/warp-drive#15`](https://github.com/Moissanite-Labs/warp-drive/pull/15) (`e6ad0967`) | `AUDIT-062R`, `065`, `066R` (`72` tests, `80/80` R5) |
-| **Warp-Drive Frozen Experiment Contract & 5-Op Bounded Controller (Draft PR-B)** | [`Moissanite-Labs/warp-drive#13`](https://github.com/Moissanite-Labs/warp-drive/pull/13) (`1ffda956`) | `AUDIT-063R2` (`126/126` R5, `18/18` controls) |
-| **Warp-Drive Governed Weight Iteration & Gram Certificate Upgrades (Draft PR-C)** | [`Moissanite-Labs/warp-drive#12`](https://github.com/Moissanite-Labs/warp-drive/pull/12) (`10ae3b33`) | `AUDIT-061R`, `064` (`200/200` R5) |
+| **Warp-Drive Cerebras `served_model` Fail-Closed Fix (MERGED PR `#24`, closes `#22`)** | [`Moissanite-Labs/warp-drive#24`](https://github.com/Moissanite-Labs/warp-drive/pull/24) (`MERGED @ 8addbdab`) | `AUDIT-090R` (`82/82` R5, `98` upstream tests OK) |
+| **Warp-Drive Upstream Trust-Boundary Hardening & Cross-Org Gates (Draft PR-A)** | [`Moissanite-Labs/warp-drive#15`](https://github.com/Moissanite-Labs/warp-drive/pull/15) (`5689d32b`) | `AUDIT-062R`, `065`, `066R`, `090R` (`72` tests, `80/80` + `82/82` R5) |
+| **Warp-Drive Frozen Experiment Contract & 5-Op Bounded Controller (Study-Only PR-B)** | [`Moissanite-Labs/warp-drive#13`](https://github.com/Moissanite-Labs/warp-drive/pull/13) (`9baa4191`) | `AUDIT-063R2`, `096R` (`155/155` R5, `58` upstream tests OK) |
+| **Warp-Drive Governed Weight Iteration & Gram Certificate Upgrades (MERGED PR-C)** | [`Moissanite-Labs/warp-drive#12`](https://github.com/Moissanite-Labs/warp-drive/pull/12) (`MERGED @ 2300d9ba`) | `AUDIT-061R`, `064`, `096R` (`104/104` R5, `58` upstream tests OK) |
 | **Wave 2 Round 7 Complexity, SAT & Index Identifiability Studies (`Zenodo 23644664`, `Frobenius` SAT, `OpenResearch` Index, Draft PR)** | [`Foundation-0/math0#19`](https://github.com/Foundation-0/math0/pull/19) (`55cd6f57`) | `AUDIT-069R`, `070R`, `071R` (`191/191` R5) |
 | **Magnitude Hardware-Autotuning & Quantization Trust-Boundary Bridge (`magnitudedev/magnitude@d89dfff`, Draft PR)** | [`Moissanite-Labs/siliquant#26`](https://github.com/Moissanite-Labs/siliquant/pull/26) (`7eb484d7`) | `AUDIT-068R` (`19/19` R5) |
 | **Wave 2 Round 8 Latent Lattice 2D Schur & `songe` Distillation Governance (`arXiv:2611.21608`, `sous-labs/songe`, Draft PR)** | [`Moissanite-Labs/warp-drive#21`](https://github.com/Moissanite-Labs/warp-drive/pull/21) (`8031effa`) | `AUDIT-072R`, `073R` (`116/116` R5) |
@@ -193,7 +196,18 @@ Wave 2 expanded the expedition across ten verified rounds (full chronological ev
   - **`AUDIT-086R`** (`check_078`, `114/114` R5): Live `git archive` execution of all `13/13` `aletheia#5` reproducers across `58207b4`/`aa471867`/`aa920b1a`, verified `6/6` PR `#7` & `11/11` PR `#8` commits, built pure-$\mathbb{Q}$ `R6`/`R7`/2-dir `R3`/Gate-8 `BLIND_AUDIT_IN_COL_PHI` certifier, and mapped `aletheia v2.0.0`.
   - **`AUDIT-087R`** (`check_077`, `108/108` R5): Pre-data pure-$\mathbb{Q}$ audit of `cave-expedition#6` (`0` telemetry fetched) exposing `PREREG-01..04` (`16.05x–52.92x` conjunction false-invalid override -> `49.84%`, $R\circ P$ `u=0` & `20/30` time-even dilution, mid-rank end-matching, `TESS`/`WAVES`/`ARM_B` power) + unified `aletheia#6` & `AUDIT-076R` (`KF-03d` + `KF-04` loophole closed).
   - **`AUDIT-088R`** (`check_079`, `55/55` R5): Formalized **Law 2b (`LAW2B_TRANSFORM_BEFORE_DISMISSAL`)** across `7` morphism families (`T1..T7`), `4` anti-epicycle guards (`G1..G4`), `7` vault rescues (surfacing `CS-08` `+1/66` paired core & `AUDIT-080R` `L112` Pythagorean cone `-1/8` vs `+1/8`), and `3` irreducible obstructions (`OBS1..OBS3`).
-  - Staged the complete verified `7`-target collaborator [`CAVE_EXPEDITION_REVIEW_PACK.md`](cartography/symbiosis/CAVE_EXPEDITION_REVIEW_PACK.md) awaiting `@verifier` pre-push clearance.
+  - Published the complete verified `7`-target collaborator [`CAVE_EXPEDITION_REVIEW_PACK.md`](cartography/symbiosis/CAVE_EXPEDITION_REVIEW_PACK.md) live across `cave-expedition#4..#7`, Issues `#2/#3`, and `continuum#1`, and closed inline review `6010682713` by committing all `5` runnable Round-10 packages and upgrading all `CHECKS_INDEX.md` rows with direct provenance.
+
+### Wave 3 Autonomous Stewardship & Bayt al-Ḥikma Fan-Out (`AUDIT-089R` – `AUDIT-096R`, `100% VERIFIED`)
+
+Wave 3 and Wave 3b verified **`8/8`** additional audits (`check_080`–`check_087`, **`966/966` (`100.0%`)** R5 mutants killed under `aletheia v2.0.0`, **`0`** unresolved defects, **`0`** new `warp-drive` GitHub Actions workflows) and shipped all deliverables cleanly across four repositories:
+
+- **[`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`v2.0.0 @ 0b60322e`, `AUDIT-093R` `check_083`, `165/165` R5):** Merged collaborator PRs [`#8`](https://github.com/Foundation-0/aletheia/pull/8) (`aa920b1a`) and [`#9`](https://github.com/Foundation-0/aletheia/pull/9) (`d43cb1c7`), integrated `OWN_TERMS_FIRST`, **Law 2b**, `R6`/`R7`, 2-direction `R3`, Gate-8 `col(Phi)` latch (`aletheia/gates_v2.py`), and static `--safety-scan` (`CYA-GAP-01..06`, `aletheia/safety.py`); `6/6` GitHub Actions CI runs green across Python `3.11`–`3.13`, Issues `#2`–`#5` updated, re-review requested from `@ahrazzle` & `@zero-aska`, and local workspace plugin synced to `2.0.0`.
+- **[`Foundation-0/bayt-al-hikma#1`](https://github.com/Foundation-0/bayt-al-hikma/pull/1) (New Public Repo, `c22192cb`, `AUDIT-091R` / `092R` / `094R` / `095`, `check_080`/`082`/`085`/`086`, **`334/334` R5**):** Launched a standalone zero-dependency pure-$\mathbb{Q}$ repository (`verify_all_standalone.py PASS`, `4/4` studies, `18` files, strict Law-5 zero numerology, honest Law-4 `N0`/`N1`) spanning:
+  - *Raw Classical Arabic Continuum Semantics (`arabic-continuum/`, `68/68` R5 & `arabic-lexicon/`, `81/81` R5):* `1,642`-root × *Wazn* (Forms I–X) agency/reciprocity matrix (`349/942` multi-*wazn* roots, within-root Rényi-2 `6190677/6678331 = 0.926980` vs Tier-4B `0.507537`), honest OpenITI Rule-5 controls (*Kalīla* `1.811516×` > Qur'an `1.689581×`), specialized `14`-field context neighborhoods, and Law-2b Two-Layer continuum projection defect across `131,343` pairs with **unanimous `12/12` cross-lemma loss amplification in BOTH `en.sahih` and `en.pickthall`**.
+  - *Bayt al-Ḥikma Polymath Core, Tributary Veins & Downstream Branches (`polymath-lineage/`, `75/75` R5 & `veins-and-branches/`, `110/110` R5):* `23`-scholar, `28`-edge 3-tier chronological DAG (`c. 287 BCE – 1543 CE`) unifying Brahmagupta (*BSS* cyclic quad, *bhāvanā* `D=92`, `14`-step exact integer Chakravala `D=61`), Heron/Archimedes/Apollonius, al-Khwārizmī/al-Kindī/Banū Mūsā/Thābit/al-Karajī/Ibn al-Haytham/al-Bīrūnī (`Taḥdīd` 3-place sexagesimal reconstruction)/Ibn Sīnā/Khayyām/al-Samawʾal/al-Jazarī/al-Ṭūsī, Ibn al-Shāṭir ↔ Copernicus (`0/1` residual lunar/Mercury equivalence, `L1 = 1/9000`), al-Ghazālī ↔ Ibn Rushd (`obs_l1 = 0/1` vs `ATE = 9/25 vs 0/1`), Jamshīd al-Kāshī (Banach `L = 1/625` $\sin 1^\circ$ & certified pure-integer $3\cdot 2^{28}$-gon $\pi$ bracket to `16` digits), and al-Fārābī `11`-limit acoustic continuum (`45–49`c 12-TET rounding defect).
+- **[`Proven-Commons/mcproof#16`](https://github.com/Proven-Commons/mcproof/pull/16) (`a93e6c05`, `AUDIT-089R` `check_081`, `126/126` R5):** Reviewed `#3`/`#7`, approved `#6`/`#15`, diagnosed Issue `#12` Family-B subtier early-stop, and opened Draft PR `#16` closing `MCP-GAP-01..06`, `PR #7` macOS portability, and Issue `#12` fail-closed allowlist hardening (`33/33` live probes PASS).
+- **[`Moissanite-Labs/warp-drive`](https://github.com/Moissanite-Labs/warp-drive) (`AUDIT-090R` `check_084`, `82/82` R5 & `AUDIT-096R` `check_087`, `259/259` R5):** Reviewed `#8`/`#10`/`#11`/`#20`; **MERGED** [`PR #24`](https://github.com/Moissanite-Labs/warp-drive/pull/24) (`8addbdab`, closing `#22`) and [`PR #12`](https://github.com/Moissanite-Labs/warp-drive/pull/12) (`2300d9ba`, closing `@orda-aska`'s singleton `n==1` forgery); updated [`PR #15`](https://github.com/Moissanite-Labs/warp-drive/pull/15) (`5689d32b`, 40-hop POSIX symlink & canary taint hardening) and re-scoped [`PR #13`](https://github.com/Moissanite-Labs/warp-drive/pull/13) (`9baa4191`, study-only with `0` `Closes #4/#5/#6` claims, closing all `@orda-aska` & `PR13-BUG-01..03` catches; `58`/`72`/`98` upstream tests OK).
 
 ---
 
