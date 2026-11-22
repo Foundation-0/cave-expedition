@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-7-complete",
-  "updated_at": "2026-11-21T17:09:00-06:00",
+  "wave": "wave-2-round-8-complete",
+  "updated_at": "2026-11-21T19:40:00-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -203,6 +203,12 @@
           "label_stripped": "Coupling Gramian W=B^T B blindness on Tseitin-K_4 (W_SAT=W_UNSAT=8I_6), Bareiss/FL G_10 spectral inversion (lambda_min^2>9>lambda_2^2), & 5-point Sidewalk/Extended-Pivot/Mycielski-M_4 exact zero-float refutations",
           "status": "verified",
           "ref": "AUDIT-070R N1 (check_062, 51/51 R5, Foundation-0/math0#19 @ 55cd6f57)"
+        },
+        {
+          "repo": "ShivamDuggal4/latent-lattice-language-models + arXiv:2611.21608 (Arm R8-1)",
+          "label_stripped": "2D vertical-depth x horizontal-time block-Schur S_J0 (det=1/1, Bareiss/FL non-normal overshoot 24.264x/29.973x), J3 companion-loop det(I-T_seq)=(1-80f)/64, 4-bank+learned-r0 rollback, & BF16 carry-scan freeze [#30 Schur unification]",
+          "status": "verified",
+          "ref": "AUDIT-072R N1 (check_065, 89/89 R5, SF-01 #30, Moissanite-Labs/warp-drive#21 @ 8031effa)"
         }
       ]
     },
@@ -254,6 +260,12 @@
           "label_stripped": "de Bruijn-Newman heat-flow zero-free barrier & transfer-operator enclosures (Lambda <= 0.1787854 vs Polymath15 0.22)",
           "status": "verified",
           "ref": "AUDIT-049 N1 (check_041, Foundation-0/math0#17 @ 273ff84d)"
+        },
+        {
+          "repo": "loom-fun/unsloth-Inkling-2-Mini-loom@277f099b (Arm R8-3)",
+          "label_stripped": "LOOM-IR-01..05 live .loom IR bugs, lossless dflash speculative acceptance/rejection (S1/S2/TV=35/64), Q8_0->Q4_0 argmax flip, MoE E[U(1..8)], exact 174,227,456 B geometry & hardened verify_loom_lockfile_bundle",
+          "status": "verified",
+          "ref": "AUDIT-074R N1 (check_066, 98/98 R5, Moissanite-Labs/siliquant#27 @ 8cf8d244)"
         }
       ]
     },
@@ -440,6 +452,24 @@
           "label_stripped": "Exact Rust lattice.rs RoundingCells::width (0/212 SymPy mismatches), RMS-only 6144 outlier erasure & 65,536x F32 Activation drift, pure-Q Ville supermartingale, & 9 fail-closed warp-drive/siliquant trust-boundary gates",
           "status": "verified",
           "ref": "AUDIT-068R N1 (check_060, 19/19 R5, Moissanite-Labs/siliquant#26 @ 7eb484d7)"
+        },
+        {
+          "repo": "sous-labs/songe@5b7b1376 (Arm R8-2)",
+          "label_stripped": "7/7 live unmodified songe repros (SNG-01..08): clipped forward-KL anti-teacher reversal +1/128 vs Bregman -31/4096, n=1 bootstrap collapse -> clustered Ville n>=9, stale pre-fusion labels & Quick/Deep Dream prompt/fence poisoning",
+          "status": "verified",
+          "ref": "AUDIT-073R N1 (check_064, 27/27 R5, Moissanite-Labs/warp-drive#21 @ 8031effa)"
+        },
+        {
+          "repo": "southpolesteve/workers-dns-tcp@9a5f9002 (Arm R8-4)",
+          "label_stripped": "RFC-1035/7766 WDT-01..08 (ARCOUNT=5437 regex bomb 1,359,000 calls, 32,767.5x alloc, DNS-0x20 -86B & SPF/DMARC QNAME smuggling), exact 99-digit N_valid(63) lambda_+=18+6*sqrt(10) [328.094,328.095] bits, & warp-drive#15 WD-RPC-R8-01",
+          "status": "verified",
+          "ref": "AUDIT-075R N1 (check_067, 150/150 R5, Foundation-0/math0#20 @ 14f5a282)"
+        },
+        {
+          "repo": "arxiv/2611.09891-cpu-arc (Arm R8-6)",
+          "label_stripped": "CPU-ARC CARC-01..05 (8/8 builder token anomaly, 4/8 N*=inf collapse & GSM8K -1/8000, 4 live paper code bugs & Fig.12 fallback break) + AST symbol-allowlist sandbox, do() SHA-256 callee_pins & canonical warp-sandbox-exec.sh gate (26/26 attacks incl. 3 RCEs blocked)",
+          "status": "verified",
+          "ref": "AUDIT-077R N1 (check_068, 67/67 R5, Foundation-0/math0#20 @ 14f5a282)"
         }
       ]
     },
@@ -677,6 +707,12 @@
           "label_stripped": "Exact Delta_2 weight-sensitivity polytope (29.1899% full-rank stability, 10/3x task leverage), K_4 CI clique, stale equal-weight og:image, bipartite model-harness dim ker(X)=3 -> 1 (2 OpenCode bridges), & formal Tao observability gates G1..G5C",
           "status": "verified",
           "ref": "AUDIT-069R N1 (check_061, 91/91 R5, Foundation-0/math0#19 @ 55cd6f57)"
+        },
+        {
+          "repo": "langchain/company-harness-knowledge-factory (Arm R8-5)",
+          "label_stripped": "Company Harness + Knowledge Factory KF-01..05: Biba x BLP lattice & E[C]=6/1 blast radius, 4-step Goodhart +105.31% inversion halted at step 1, LWW/DFS cycle blocks, normalized Ring-0, & 3-role Tao/hash-chained Curator Governor (26/26 attacks blocked)",
+          "status": "verified",
+          "ref": "AUDIT-076R N1 (check_063, 108/108 R5, Foundation-0/math0#20 @ 14f5a282)"
         }
       ]
     }

@@ -1,0 +1,233 @@
+{
+  "schema": "aletheia.round8_catalog.v1",
+  "wave": "wave-2-round-8",
+  "status": "100_percent_verified_published",
+  "updated_at": "2026-11-21T19:40:00-06:00",
+  "owner": "session-cartographer",
+  "read_only_enforced": true,
+  "zero_external_writes": true,
+  "antibot_compliance_enforced": true,
+  "zhihu_voluntary_staging_dir": "symbiosis/round8/repos/zhihu",
+  "blocked_antibot_urls": [
+    {
+      "shortlink": "https://t.co/zTP1JPGpUg",
+      "resolved_url": "https://zhuanlan.zhihu.com/p/2092277762245538186",
+      "status": "BLOCKED_ANTIBOT",
+      "http_status": 403,
+      "challenge": "zhihu_zse_ck",
+      "bypass_attempted": false
+    },
+    {
+      "shortlink": "https://t.co/tQ6lUTg1Kz",
+      "resolved_url": "https://zhuanlan.zhihu.com/p/2098101007368640039",
+      "status": "BLOCKED_ANTIBOT",
+      "http_status": 403,
+      "challenge": "zhihu_zse_ck",
+      "bypass_attempted": false
+    }
+  ],
+  "vectors": [
+    {
+      "arm": "R8-1",
+      "audit_id": "AUDIT-072R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_065_audit072_latent_lattice.py",
+      "r5_killed": "89/89",
+      "defects_closed": 4,
+      "extra_redteam_blocked": 6,
+      "owner": "spectral-prover",
+      "work_dir": "symbiosis/round8/arm1-latent-lattice",
+      "source_urls": [
+        "https://arxiv.org/pdf/2611.21608",
+        "https://github.com/ShivamDuggal4/latent-lattice-language-models"
+      ],
+      "pinned_github_commit": "23876839517155db4333fb08d26b8b118a3db2e1",
+      "bridges": [
+        "Moissanite-Labs/warp-drive#12",
+        "Moissanite-Labs/warp-drive#15",
+        "Moissanite-Labs/siliquant#24",
+        "Moissanite-Labs/siliquant#26"
+      ],
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/21",
+      "live_commit": "8031effa7ebcdbec5307dc2809212e1d55601639"
+    },
+    {
+      "arm": "R8-2",
+      "audit_id": "AUDIT-073R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_064_audit073_songe.py",
+      "r5_killed": "27/27",
+      "defects_closed": 3,
+      "extra_redteam_blocked": 6,
+      "owner": "peer-weaver",
+      "work_dir": "symbiosis/round8/arm2-songe",
+      "source_url": "https://github.com/sous-labs/songe",
+      "pinned_github_commit": "5b7b13768e1ac67e7e3284043ec51f24394a740f",
+      "stars": 174,
+      "language": "Python",
+      "bridges": [
+        "Moissanite-Labs/warp-drive#12",
+        "Moissanite-Labs/warp-drive#13",
+        "Moissanite-Labs/warp-drive#15",
+        "Moissanite-Labs/hillclimb#4",
+        "magnitudedev/magnitude"
+      ],
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/21",
+      "live_commit": "8031effa7ebcdbec5307dc2809212e1d55601639"
+    },
+    {
+      "arm": "R8-3",
+      "audit_id": "AUDIT-074R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_066_audit074_inkling_loom.py",
+      "r5_killed": "98/98",
+      "defects_closed": 4,
+      "extra_redteam_blocked": 13,
+      "owner": "fractals-probe",
+      "work_dir": "symbiosis/round8/arm3-inkling-loom",
+      "source_url": "https://huggingface.co/loom-fun/unsloth-Inkling-2-Mini-loom",
+      "pinned_hf_commit": "277f099b5003b725e099d48caa1a2c0db1f9b650",
+      "license": "apache-2.0",
+      "siblings_count": 15,
+      "lightweight_files_only": true,
+      "bridges": [
+        "siliconcordat/loom#10",
+        "Moissanite-Labs/weft-loom#42",
+        "Moissanite-Labs/siliquant#24",
+        "Moissanite-Labs/siliquant#26",
+        "Moissanite-Labs/scry#4",
+        "Moissanite-Labs/warp-drive"
+      ],
+      "live_pr": "https://github.com/Moissanite-Labs/siliquant/pull/27",
+      "live_commit": "8cf8d2447ab639b065c71c8edab898c66c0dfbeb"
+    },
+    {
+      "arm": "R8-4",
+      "audit_id": "AUDIT-075R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_067_audit075_workers_dns_tcp.py",
+      "r5_killed": "150/150",
+      "defects_closed": 6,
+      "extra_redteam_blocked": 14,
+      "owner": "gravity-probe",
+      "work_dir": "symbiosis/round8/arm4-workers-dns-tcp",
+      "source_url": "https://github.com/southpolesteve/workers-dns-tcp",
+      "pinned_github_commit": "9a5f9002079e3418eb77f9a02395ecc9d028a8a0",
+      "stars": 43,
+      "language": "TypeScript",
+      "bridges": [
+        "Moissanite-Labs/tokenpage#13",
+        "Moissanite-Labs/warp-drive#15",
+        "Foundation-0/aletheia#1"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/20",
+      "live_commit": "14f5a28274a9a9764d97791c5459d12c5d9cf390"
+    },
+    {
+      "arm": "R8-5",
+      "audit_id": "AUDIT-076R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_063_audit076_knowledge_factory.py",
+      "r5_killed": "108/108",
+      "defects_closed": 14,
+      "extra_redteam_blocked": 12,
+      "owner": "continuum-bridge",
+      "work_dir": "symbiosis/round8/arm5-langchain-knowledge-factory",
+      "source_urls": [
+        "https://www.langchain.com/blog/components-building-company-harness",
+        "https://www.langchain.com/blog/knowledge-factory"
+      ],
+      "bridges": [
+        "Foundation-0/aletheia#1",
+        "Moissanite-Labs/warp-drive#13",
+        "Moissanite-Labs/warp-drive#15",
+        "alphaxiv/openresearch-index"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/20",
+      "live_commit": "14f5a28274a9a9764d97791c5459d12c5d9cf390"
+    },
+    {
+      "arm": "R8-6",
+      "audit_id": "AUDIT-077R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_068_audit077_cpu_arc.py",
+      "r5_killed": "67/67",
+      "defects_closed": 10,
+      "extra_redteam_blocked": 16,
+      "owner": "gravity-probe",
+      "work_dir": "symbiosis/round8/arm6-cpu-arc",
+      "source_urls": [
+        "https://arxiv.org/abs/2611.09891",
+        "https://arxiv.org/pdf/2611.09891"
+      ],
+      "title": "CPU-ARC: Agentic Reasoning Caching for on-CPU Reasoning Reuse",
+      "arxiv_version": "2611.09891v1",
+      "pages": 28,
+      "pdf_bytes": 789337,
+      "pinned_digests": {
+        "pdf_sha256": "4d90b5fd3323ea36c1ace5565e1355c8346f038a849ed0fc82e9dabda43ac52d",
+        "txt_sha256": "75fe8eee87f218388018e767ce80110f602d51389483c2f92b61536dbb2dd505",
+        "layout_txt_sha256": "47b904bc22dd797ece3988a55e727e5058bb28cdfaca1f7a84f9da98e8b960ed"
+      },
+      "bridges": [
+        "Foundation-0/aletheia#1",
+        "Moissanite-Labs/warp-drive#15",
+        "sous-labs/songe",
+        "langchain/company-harness-knowledge-factory"
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/20",
+      "live_commit": "14f5a28274a9a9764d97791c5459d12c5d9cf390"
+    }
+  ],
+  "phase3_live_prs": [
+    {
+      "track": "R8-P1",
+      "repo": "Moissanite-Labs/warp-drive",
+      "pr_number": 21,
+      "url": "https://github.com/Moissanite-Labs/warp-drive/pull/21",
+      "is_draft": true,
+      "branch": "feat/round8-latent-lattice-and-songe-governance",
+      "commit_sha": "8031effa7ebcdbec5307dc2809212e1d55601639",
+      "audit_ids": ["AUDIT-072R", "AUDIT-073R"],
+      "r5_killed": "116/116"
+    },
+    {
+      "track": "R8-P2",
+      "repo": "Moissanite-Labs/siliquant",
+      "pr_number": 27,
+      "url": "https://github.com/Moissanite-Labs/siliquant/pull/27",
+      "is_draft": true,
+      "branch": "feat/round8-inkling-loom-speculative-tomography",
+      "commit_sha": "8cf8d2447ab639b065c71c8edab898c66c0dfbeb",
+      "audit_ids": ["AUDIT-074R"],
+      "r5_killed": "98/98"
+    },
+    {
+      "track": "R8-P3",
+      "repo": "Foundation-0/math0",
+      "pr_number": 20,
+      "url": "https://github.com/Foundation-0/math0/pull/20",
+      "is_draft": true,
+      "branch": "feat/round8-trace-distillation-and-dns-channel-studies",
+      "commit_sha": "14f5a28274a9a9764d97791c5459d12c5d9cf390",
+      "audit_ids": ["AUDIT-075R", "AUDIT-076R", "AUDIT-077R"],
+      "r5_killed": "325/325"
+    }
+  ],
+  "law4_n0_quarantine_count": 12,
+  "aggregate_metrics": {
+    "round8_audits_verified": 6,
+    "r5_mutants_killed": 539,
+    "r5_mutants_total": 539,
+    "live_first_pass_defects_closed": 41,
+    "extra_edge_case_attacks_blocked": 67,
+    "unresolved_defects": 0,
+    "schur_unification_verified_count": 30
+  }
+}
