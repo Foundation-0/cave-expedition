@@ -27,9 +27,17 @@ def cut_run(stream, N, run, valid=None):
 
 
 def run_series(native_segs, run):
-    """Apply the run's net to each native segment (None stays None)."""
+    """Apply the run's net to each native segment. None stays None. A segment whose values, after its offset and its net, are all
+    equal is invalid (section 7, B7) and also becomes None: it stays in S as a non-rejecting segment."""
     net = RUN_NET[run]
-    return [None if s is None else nets.apply(net, s) for s in native_segs]
+    out = []
+    for s in native_segs:
+        if s is None:
+            out.append(None)
+            continue
+        y = nets.apply(net, s)
+        out.append(None if transfer.segments_constant(y) else y)
+    return out
 
 
 def analyse_list(series, prefix, kind="iaaft", workers=None):
@@ -56,9 +64,10 @@ def presence_counts(results):
 
 def control_series(native_segs, run, instrument, split, fit_segments, N_native):
     """C2, C3 (one per native segment, None stays None) and C4 (32 series) for a run, each then put through the run's net."""
-    c2 = [None if s is None else controls.c2_surrogate_as_data(s, (instrument, split, run, q)) for q, s in enumerate(native_segs)]
-    c3 = [None if s is None else controls.c3_shuffle(s, (instrument, split, run, q)) for q, s in enumerate(native_segs)]
-    return c2, c3
+    valid = [s is not None and not transfer.segments_constant(nets.apply(RUN_NET[run], s)) for s in native_segs]
+    c2 = [controls.c2_surrogate_as_data(s, (instrument, split, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    c3 = [controls.c3_shuffle(s, (instrument, split, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    return c2, c3   # the C2 and C3 series of an invalid segment are invalid and non-rejecting (None)
 
 
 def presence_run(native_segs, run, prefix, c4_native, instrument, split, kind="iaaft", workers=None):
@@ -82,8 +91,8 @@ def features(results, shift):
     U, Pr = [], []
     pop = None
     for r in results:
-        if r is None:
-            continue
+        if r is None or r["all_zero_spread"]:
+            continue   # an invalid segment, or one with zero spread at every lag, gives no transfer feature (sections 7 and 11a, D3)
         u, p, m = transfer.level_vectors(r["zu"], r["z1"], r["z23"], r["js"], shift)
         U.append(u)
         Pr.append(p)

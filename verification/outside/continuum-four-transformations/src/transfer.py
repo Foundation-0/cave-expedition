@@ -8,10 +8,10 @@ from fractions import Fraction
 import numpy as np
 import ranks
 import stats43
+import ties
 
 LEVELS = list(range(-4, 6))  # aligned levels -4 .. +5
 R_DETECTORS = 99999
-REL_TIE = 1e-12
 ARROW_MIN_LEVELS = 6
 PROFILE_MIN_FEATURES = 8
 FLOW_MIN_FEATURES = 8
@@ -24,15 +24,25 @@ def tau0_segment(x, cap=512):
     x = np.asarray(x, dtype=np.float64)
     if x.ndim != 1 or x.size < 2:
         raise ValueError("tau0 needs a 1-D segment of at least 2 samples")
-    r = ranks.twice_midrank(x).astype(np.float64) / 2.0
-    r = r - r.mean()
-    den = float(r @ r)
-    if not den > 0.0:
-        raise ValueError("tau0 is undefined for a constant segment (zero autocorrelation denominator)")
-    for tau in range(1, cap + 1):
-        if float(r[:-tau] @ r[tau:]) / den < 0.5:
+    n = x.size
+    if n > 6000:
+        raise ValueError("tau0 uses 64-bit integers and is limited to segments of at most 6,000 samples")
+    t = ranks.twice_midrank(x)
+    u = n * t - int(t.sum())          # integers: 2 n (r - mean r), so the autocorrelation is exact in integers
+    den = int(u @ u)
+    if den == 0:
+        raise ValueError("tau0 is undefined for a constant segment (it is invalid, section 7)")
+    for tau in range(1, min(cap, n - 1) + 1):
+        num = int(u[:-tau] @ u[tau:])
+        if 2 * num < den:             # "autocorrelation below 1/2", exact
             return tau
     return cap
+
+
+def segments_constant(s):
+    """A segment whose values are all equal carries no order and is invalid (section 7, B7)."""
+    s = np.asarray(s)
+    return bool(s.size == 0 or np.all(s == s.flat[0]))
 
 
 def level_shift_from_tau0(t0):
@@ -42,6 +52,9 @@ def level_shift_from_tau0(t0):
 
 def level_shift(fit_segments):
     """tau0 = median over fit segments of tau0_segment; shift = round half up of log2 tau0."""
+    fit_segments = [s for s in fit_segments if s is not None and not segments_constant(s)]
+    if not fit_segments:
+        raise ValueError("no fit segment with order: tau0 needs at least one non-constant fit segment")
     t0 = float(np.median([tau0_segment(s) for s in fit_segments]))
     return t0, level_shift_from_tau0(t0)
 
@@ -132,7 +145,6 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
     wp, gp = w[pos], g[pos]
     S_pop = float(wp @ gp)
     rest = S_A - S_pop  # entries outside the jointly populated set stay in place; they multiply zeros
-    tol = REL_TIE * max(abs(S_A), 1e-300)
     D = distinct_detectors(wp, signs)
     n_ge = 0
     done = 0
@@ -143,7 +155,7 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
         if signs:
             ww = ww * (rng.integers(0, 2, size=(c, m)) * 2 - 1)
         sc = np.einsum("rm,m->r", ww, gp) + rest
-        n_ge += int((sc >= S_A - tol).sum())
+        n_ge += int(c - ties.below(sc, S_A).sum())   # a tie counts as at or above, never as below
         done += c
     n_lt = R - n_ge
     out.update({"D": D, "p": Fraction(1 + n_ge, R + 1), "floor": smallest_reachable_p(R, D), "n_ge": n_ge,

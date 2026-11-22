@@ -54,32 +54,59 @@ K2_CLASSES = K2A_CLASSES + K2B_CLASSES
 K2_MAPS = ("id", "exp", "cube")
 
 
-def k2_series(cls, idx, n=4096):
-    """One series of class cls (optionally 'cls|exp' or 'cls|cube' for the 7 null classes), seed index idx.
-    The seed depends on the plain class only, so the exp and cube versions are the same draw, mapped."""
-    base, _, m = cls.partition("|")
-    rng = seeds.rng_for("K2:%s:%d" % (base, n), "synthetic", "native", idx, "data", 0)
+def _plain(base, n, rng):
+    """The plain draw of a class: the 7 null classes standardised to mean 0 and sd 1, g^2 and |h| as defined."""
     if base == "white":
-        x = standardise(white(n, rng))
-    elif base.startswith("ar1_"):
-        x = standardise(ar1(float(base[4:]), n, rng))
-    elif base.startswith("pl_"):
-        x = standardise(powerlaw(float(base[3:]), n, rng))
-    elif base == "sines3":
-        x = standardise(sines(n, rng))
-    elif base == "g2":
+        return standardise(white(n, rng))
+    if base.startswith("ar1_"):
+        return standardise(ar1(float(base[4:]), n, rng))
+    if base.startswith("pl_"):
+        return standardise(powerlaw(float(base[3:]), n, rng))
+    if base == "sines3":
+        return standardise(sines(n, rng))
+    if base == "g2":
         return ar1(0.9, n, rng, True) ** 2
-    elif base == "absh":
+    if base == "absh":
         return np.abs(ar1(0.99, n, rng, True))
-    else:
-        raise ValueError("unknown class " + cls)
+    raise ValueError("unknown class " + base)
+
+
+def class_series(cls, idx, n=4096, prefix="K2"):
+    """One series of class cls, optionally 'cls|exp' or 'cls|cube', seed index idx. The seed depends on the plain class only
+    (instrument `<prefix>:<class>:<length>`), so the exp and cube versions are the same draw, mapped. For the exp and cube
+    versions, exp and cube act on the standardised series (for the 7 null classes it is the plain series already; for g^2 and |h|
+    the versions exist for K1 only, B5)."""
+    base, _, m = cls.partition("|")
+    rng = seeds.rng_for("%s:%s:%d" % (prefix, base, n), "synthetic", "native", idx, "data", 0)
+    x = _plain(base, n, rng)
+    if m in ("", "id"):
+        return x
+    xs = standardise(x)
     if m == "exp":
-        return np.exp(x)
+        return np.exp(xs)
     if m == "cube":
-        return x ** 3
-    if m not in ("", "id"):
-        raise ValueError("unknown map " + m)
-    return x
+        return xs ** 3
+    raise ValueError("unknown map " + m)
+
+
+def k2_series(cls, idx, n=4096):
+    return class_series(cls, idx, n, "K2")
+
+
+def k1_series(cls, idx, n=1024):
+    return class_series(cls, idx, n, "K1")
+
+
+def k1_int_series(cls, idx, n=1024):
+    """K1 tied input (b): a null class made integer-valued as round(8 z), z the standardised plain series; draws under `K1int`."""
+    base = cls.partition("|")[0]
+    rng = seeds.rng_for("K1int:%s:%d" % (base, n), "synthetic", "native", idx, "data", 0)
+    return np.round(8.0 * standardise(_plain(base, n, rng)))
+
+
+def tied_waveform():
+    """K1 tied input (a): [0, 0, 1, 2, 2, 1, 0, 0] repeated 512 times (4,096 samples), exactly time-symmetric."""
+    return np.array([0, 0, 1, 2, 2, 1, 0, 0] * 512, dtype=np.float64)
 
 
 SHOT_RATE = 0.01
@@ -196,11 +223,22 @@ def k4_stream(kind, seed_idx, role):
 
 
 K5_N = 2 ** 19
-K5_CASES = ("expo", "cascade", "cascade_shuffled", "y")
+K5_CASES = ("expo", "cascade", "cascade_shuffled", "y", "yprime", "cascade_iaaft")
+YPRIME_C = 0.9859   # B9: the coefficient at which the population mid-rank autocorrelation of g^2 first falls below 1/2 at lag 16
 
 
 def k5_series(case, seed_idx, role):
-    rng = seeds.rng_for("K5:" + case, role, "native", seed_idx, "data", 0)
+    """K5 draws (Amendment 2, B9) use the seed-rule instrument tag `K5b:<case>`, split `fit` or `verdict`, net `native`,
+    segment the seed number, purpose `data`. cascade_iaaft is an IAAFT surrogate of the whole cascade fit series, started from
+    the generator of `K5b:cascade_iaaft` (split fit, purpose `whole-surrogate`); it exists as a fit series only."""
+    if case == "cascade_iaaft":
+        if role != "fit":
+            raise ValueError("cascade_iaaft exists as a fit series only")
+        import iaaft
+        src = k5_series("cascade", seed_idx, "fit")
+        Y, _, _ = iaaft.iaaft_surrogates(src, 1, seeds.rng_for("K5b:cascade_iaaft", "fit", "native", seed_idx, "whole-surrogate", 0))
+        return Y[0]
+    rng = seeds.rng_for("K5b:" + case, role, "native", seed_idx, "data", 0)
     if case == "expo":
         return exponential_values(K5_N, rng)
     if case == "cascade":
@@ -209,4 +247,6 @@ def k5_series(case, seed_idx, role):
         return rng.permutation(cascade(K5_N, rng))
     if case == "y":
         return y_series(K5_N, rng)
+    if case == "yprime":
+        return ar1(YPRIME_C, K5_N, rng, True) ** 2
     raise ValueError("unknown K5 case " + case)

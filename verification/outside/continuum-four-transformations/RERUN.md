@@ -35,6 +35,12 @@ Every script ends with exit status 1 if its result is FAIL and 0 if PASS (`kcomm
 
 At most 6 worker processes are used. The worker count does not change any result.
 
+## Other scripts
+
+- `known_answer/mutation_test.py` makes the mutants of section 11 for every module of `src/` and runs the unit checks and K6 against each one.
+- `known_answer/key_count.py` counts the seed keys that K3, K4 and K5 build.
+- `known_answer/run_full.sh` runs the full known-answer tests in three modes with `sbpy.sh`. It has not been run. The full runs are on hold.
+
 ## Sandbox
 
 The recorded runs had no network access and write access only to the build folder:

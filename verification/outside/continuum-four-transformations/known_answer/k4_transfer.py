@@ -6,8 +6,9 @@ Runs: the primary grid and the shifted grid (synthetic instruments have no secon
 - A to B: arrow p and profile p at most 0.001 in every run, in at least 9 of 10 seeds.
 - A to C: the arrow score S_B(w_A) below the 2.5th percentile of its random detectors in every run, in at least 9 of 10 seeds. The profile
   transfer A to C is reported.
-- Must-fail controls: A to A' (A with its blocks shuffled in time order and each block replaced by an IAAFT surrogate of itself): neither the
-  arrow nor the profile transfer may reach p at most 0.01 (largest p over the runs) in more than 1 of 10 seeds.
+- Must-fail controls: A to A' (A cut into its 33 blocks, the block order shuffled and each block replaced by an IAAFT surrogate of itself, with its
+  own fit stream made the same way): neither the arrow nor the profile transfer may reach p at most 0.01 in more than 1 of 10 seeds, where a seed
+  reaches it if p is at most 0.01 in any run (primary grid or shifted grid).
 - Blind spot, reported: sawtooth and its time reverse, arrow transfer in both directions (primary run), expected not to reject.
 usage: k4_transfer.py smoke|full [part nparts] (parts split the seeds)"""
 import ast
@@ -109,15 +110,15 @@ def evaluate(seed_results, nseeds, mode):
     n = len(seed_results)
     ab_ok = ac_ok = 0
     ctrl_arrow = ctrl_prof = 0
-    print("seed  tau0 A/B/C/A'/S/Sr   shifts   A>B p arrow (native, placement)   A>B p profile      A>C arrow adverse S_A (native, placement)   A>C profile p   A>Ap max p arrow/profile   blind S>Sr, Sr>S arrow p")
+    print("seed  tau0 A/B/C/A'/S/Sr   shifts   A>B p arrow (native, placement)   A>B p profile      A>C arrow adverse S_A (native, placement)   A>C profile p   A>Ap min p over runs arrow/profile   blind S>Sr, Sr>S arrow p")
     for r in sorted(seed_results, key=lambda r: r["seed"]):
         ab = [r["A>B|%s" % run] for run in RUNS]
         ac = [r["A>C|%s" % run] for run in RUNS]
         ap = [r["A>Ap|%s" % run] for run in RUNS]
         ab_pass = all(frac(x["arrow"]["p"]) <= Fraction(1, 1000) and frac(x["profile"]["p"]) <= Fraction(1, 1000) for x in ab)
         ac_pass = all(x["arrow"]["adverse"] for x in ac)
-        ap_arrow = max(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100)
-        ap_prof = max(frac(x["profile"]["p"]) for x in ap) <= Fraction(1, 100)
+        ap_arrow = min(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100)     # any run (Amendment 2, D17)
+        ap_prof = min(frac(x["profile"]["p"]) for x in ap) <= Fraction(1, 100)
         ab_ok += ab_pass
         ac_ok += ac_pass
         ctrl_arrow += ap_arrow
@@ -129,7 +130,7 @@ def evaluate(seed_results, nseeds, mode):
             "%.2e" % float(frac(ab[0]["profile"]["p"])), "%.2e" % float(frac(ab[1]["profile"]["p"])),
             ac[0]["arrow"]["adverse"], ac[1]["arrow"]["adverse"],
             "%.2e" % float(frac(ac[0]["profile"]["p"])), "%.2e" % float(frac(ac[1]["profile"]["p"])),
-            "%.2e" % float(max(frac(x["arrow"]["p"]) for x in ap)), "%.2e" % float(max(frac(x["profile"]["p"]) for x in ap)),
+            "%.2e" % float(min(frac(x["arrow"]["p"]) for x in ap)), "%.2e" % float(min(frac(x["profile"]["p"]) for x in ap)),
             "%.3f" % float(frac(bl[0]["p"])), "%.3f" % float(frac(bl[1]["p"])),
             ab[0]["arrow"]["m"], ab[0]["arrow"]["below_floor"]))
     need = -(-9 * n // 10)
@@ -137,7 +138,7 @@ def evaluate(seed_results, nseeds, mode):
     print("A to C arrow adverse in every run: %d of %d seeds (need %d)" % (ac_ok, n, need))
     cap = (n + 9) // 10 if n < 20 else n // 10
     cap = 1 if n == 10 else n // 10
-    print("must-fail control A to A' reaches p <= 0.01: arrow in %d, profile in %d of %d seeds (allowed at most %d each)" % (ctrl_arrow, ctrl_prof, n, cap))
+    print("must-fail control A to A' reaches p <= 0.01 in any run: arrow in %d, profile in %d of %d seeds (allowed at most %d each)" % (ctrl_arrow, ctrl_prof, n, cap))
     blind = sum(1 for r in seed_results for k in ("S>Sr|native", "Sr>S|native") if frac(r[k]["arrow"]["p"]) <= Fraction(1, 100))
     print("blind spot (reported): arrow transfer rejects (p <= 0.01) in %d of %d seed-directions" % (blind, 2 * n))
     ok = ab_ok >= need and ac_ok >= need and ctrl_arrow <= cap and ctrl_prof <= cap

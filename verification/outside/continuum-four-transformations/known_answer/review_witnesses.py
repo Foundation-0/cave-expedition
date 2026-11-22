@@ -8,7 +8,7 @@ from fractions import Fraction
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
-import flow, gates, levels, nets, patterns, ranks, segments, stats43, transfer
+import flow, gates, levels, nets, patterns, ranks, segments, stats43, ties, transfer
 
 BAD = []
 
@@ -128,7 +128,7 @@ def main():
         r = attempt("transfer_test " + label, f)
         if not explicit(r):
             BAD.append("CAVE8-08 " + label)
-    print("  scores are compared with a relative tolerance of %g, not by exact equality (the AUC of the frozen plan is gone)" % transfer.REL_TIE)
+    print("  scores are compared with a tolerance of %g relative, with an absolute floor of 1e-12, not by exact equality (the AUC of the frozen plan is gone)" % ties.REL)
     print("UNGUARDED:", BAD if BAD else "none")
     if BAD:
         raise SystemExit(1)

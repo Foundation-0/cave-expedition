@@ -1,0 +1,18 @@
+units_check mode1: real 28.79 user 27.53 sys 0.19 
+units_check mode2: real 31.12 user 28.14 sys 0.20 
+units_check mode3: real 38.25 user 31.21 sys 0.24 
+review_witnesses mode1: real 0.43 user 0.28 sys 0.05 
+review_witnesses mode2: real 0.50 user 0.28 sys 0.05 
+review_witnesses mode3: real 0.41 user 0.27 sys 0.05 
+k6_gate_checks mode1: gates_mutant_24:26: ComplexWarning: Casting complex values to real discards the imaginary part real 0.22 user 0.09 sys 0.03 
+k6_gate_checks mode2: gates_mutant_24:26: ComplexWarning: Casting complex values to real discards the imaginary part real 0.23 user 0.09 sys 0.03 
+k6_gate_checks mode3: real 0.23 user 0.10 sys 0.03 
+k3_planted_structure mode1: real 88.87 user 287.15 sys 2.67 
+k3_planted_structure mode2: real 90.24 user 271.54 sys 2.70 
+k3_planted_structure mode3: real 76.56 user 264.96 sys 2.70 
+k1_exact_checks mode1: real 221.68 user 751.54 sys 6.70 
+k1_exact_checks mode2: real 257.44 user 756.45 sys 7.62 
+k1_exact_checks mode3: real 208.02 user 758.66 sys 6.97 
+k2_nothing_in_noise mode1: real 229.69 user 934.25 sys 7.66 
+k2_nothing_in_noise mode2: real 290.79 user 937.60 sys 9.23 
+k2_nothing_in_noise mode3: real 259.24 user 937.94 sys 7.05 

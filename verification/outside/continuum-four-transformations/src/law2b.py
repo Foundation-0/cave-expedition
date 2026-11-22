@@ -104,22 +104,38 @@ def max_plus_score(w, f):
 
 
 # T7 domain and residual: E and R -------------------------------------------------------------------------------
+def _order_stat(sorted_vals, p_num, p_den):
+    """The order statistic of rank ceil(p n), no interpolation (section 12a, instance E). p = p_num / p_den exactly."""
+    n = len(sorted_vals)
+    k = -(-p_num * n // p_den)          # ceil(p n) in integers
+    return sorted_vals[max(1, k) - 1]
+
+
 def tail_spread(x):
-    """(q99.9 - q0.1) / (q75 - q25) of the values (numpy linear quantiles; READING recorded in AMENDMENTS_NEEDED.md)."""
-    q = np.quantile(np.asarray(x, dtype=np.float64), [0.999, 0.001, 0.75, 0.25])
+    """(q99.9 - q0.1) / (q75 - q25) as an exact rational. A quantile q_p is the order statistic of rank ceil(p n), with no
+    interpolation (section 12a). Values are floats, converted exactly to rationals."""
+    from fractions import Fraction
+    v = sorted(float(t) for t in np.asarray(x, dtype=np.float64))
+    q = [Fraction(_order_stat(v, a, b)) for (a, b) in ((999, 1000), (1, 1000), (3, 4), (1, 4))]
     den = q[2] - q[3]
     if not den > 0:
         raise ValueError("interquartile range is zero")
-    return float((q[0] - q[1]) / den)
+    return (q[0] - q[1]) / den
 
 
 def event_rich_threshold(fit_segments):
-    """Median over the instrument's fit segments of the tail spread (fitted on fit data only)."""
-    return float(np.median([tail_spread(s) for s in fit_segments]))
+    """Median over the instrument's fit segments of the tail spread, as an exact rational (the mean of the two middle values when
+    their number is even). Fitted on fit data only."""
+    from fractions import Fraction
+    t = sorted(tail_spread(s) for s in fit_segments)
+    m = len(t)
+    if m == 0:
+        raise ValueError("no fit segments")
+    return t[m // 2] if m % 2 == 1 else (t[m // 2 - 1] + t[m // 2]) / 2
 
 
 def event_rich(seg, threshold):
-    """A verdict segment is event-rich if its tail spread exceeds the threshold."""
+    """A verdict segment is event-rich if its tail spread exceeds the threshold (exact comparison)."""
     return tail_spread(seg) > threshold
 
 

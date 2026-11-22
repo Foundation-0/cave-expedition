@@ -5,8 +5,7 @@ import nets
 import patterns
 import ranks
 import seeds
-
-REL_TIE = 1e-12  # values within 1e-12 relative of each other count as ties against the real series (section 4.3)
+import ties
 
 
 def loo_standardise(V):
@@ -80,9 +79,7 @@ def presence_stats(C3):
     if not np.isfinite(Tr):
         return {"pn": P, "den": P, "reject": False, "T": float("-inf"), "Z": Z, "deg": deg, "flag_zero_spread": True,
                 "all_zero_spread": True, "sigma": sig}
-    fin = np.isfinite(Ts)
-    scale = np.maximum(np.abs(np.where(fin, Ts, 0.0)), abs(Tr))
-    ge = (Ts >= Tr) | (fin & (np.abs(np.where(fin, Ts, 0.0) - Tr) <= REL_TIE * scale))
+    ge = ties.at_or_above(Ts, Tr)   # a tie counts against the real series; -inf (no lag kept) is never at or above
     pn = 1 + int(ge.sum())
     # reject iff p = pn / P <= 0.05, exactly, in integers
     return {"pn": pn, "den": P, "reject": pn * 20 <= P, "T": float(Tr), "Z": Z, "deg": deg,

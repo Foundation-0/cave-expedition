@@ -1,5 +1,26 @@
 # Smoke results of the amended known-answer tests
 
+## Amendment 2 code (outputs in `out_smoke_amendment2/`)
+
+The code now implements the plan as amended by Amendment 2 (plan commit fba51a3). These are smoke runs at one twentieth of the plan's seeds (at least 10). They are not results. The full runs are on hold. No data file has been opened.
+
+| Test | Smoke outcome |
+|---|---|
+| unit checks | 336 checks, 0 failed, identical output in the three Python modes |
+| review witnesses | no unguarded failure, identical in the three modes |
+| K1 | first run FAILED on a fault in my test code (the 18-of-20 coverage rule was applied to the single tied waveform, which has no seeds). The output is kept as `k1_exact_checks_SMOKE_first_run_coverage_rule_fault.txt`. After the fix: 7,614 checks, 0 failed, all four must-fail controls flagged, no case recorded as "map not representable". Identical in the three modes |
+| K2 | no class flagged. The must-fail control is not flagged at 10 seeds (4 of 10 against a flag point of 5). Identical in the three modes, and identical to the earlier smoke run |
+| K3 | one gating cell below 50 percent (logistic map under subsampling by 2, 3 of 10). Control flagged. Identical in the three modes |
+| K4 | passes: A to B in 9 of 10 seeds, A to C in 10 of 10, the A to A prime control reaches p at most 0.01 in no run. First mode only |
+| K5 | stopped with an error at seed 0 (a non-finite series). The second amplitude-map run takes the exp of the standardised exp-mapped cascade, which overflows (about 724 standard deviations, and exp of that is infinite). No result. The error text is kept as it came out, with the local folder name in its paths replaced by `<build folder>`. See `AMENDMENTS_NEEDED.md`, entry BLOCK-1 |
+| K6 | passes, seven deletions of a refusal all flagged. Identical in the three modes |
+
+The mutation test over `src/` (`out_mutation/`) killed 148 of 284 mutants with the unit checks and K6 as the suite. The 136 survivors are listed and have not been triaged. The seed-key counts are in `out_keys/`.
+
+Smoke processor seconds: K1 715, K2 910, K3 252, K4 4,473, unit checks 27.
+
+# Smoke results of the Amendment 1 code (first push, kept for the record)
+
 These are smoke runs: one twentieth of the plan's seeds, at least 10, the same seed rule. They exist to find faults in the code and to estimate run time. They are not results. The full runs have not been started and no data file has been opened.
 
 K4 and K5 have 10 seeds in the plan, so their smoke runs use all 10. The outputs are in `out_smoke/`, with the three-mode runs in `out_smoke/modes/`.

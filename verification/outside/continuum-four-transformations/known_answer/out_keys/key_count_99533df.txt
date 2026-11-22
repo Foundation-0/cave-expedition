@@ -1,0 +1,14 @@
+k3_planted_structure (full, 200 seeds): pools 6600, distinct pool keys 6400, distinct pool seeds 6400; the 200 circular-shift control pools share the key of the shots native4096 pools by design
+k3 example pool key: ('K3:shots', 'synthetic', 'native4096', 0)
+k4_transfer: pools 3520, distinct pool keys 3520, distinct pool seeds 3520, pools whose key contains the seed number: yes
+k4_transfer: detectors 160, distinct detector keys 160
+k4_transfer: example pool key fields (instrument, split, net, segment): ('K4:A:s0', 'fit', 'native', 0)
+k4_transfer: example detector key: ('K4:A>B', 'verdict', 'native', 0, 'detectors-arrow', 0)
+k4_transfer: pool instruments: K4:A:s0, K4:A:s1, K4:A:s2, K4:A:s3, K4:A:s4, K4:A:s5, K4:A:s6, K4:A:s7, K4:A:s8, K4:A:s9, K4:Ap:s0, K4:Ap:s1, K4:Ap:s2, K4:Ap:s3, K4:Ap:s4, K4:Ap:s5, K4:Ap:s6, K4:Ap:s7, K4:Ap:s8, K4:Ap:s9, K4:B:s0, K4:B:s1, K4:B:s2, K4:B:s3, K4:B:s4, K4:B:s5, K4:B:s6, K4:B:s7, K4:B:s8, K4:B:s9, K4:C:s0, K4:C:s1, K4:C:s2, K4:C:s3, K4:C:s4, K4:C:s5, K4:C:s6, K4:C:s7, K4:C:s8, K4:C:s9, K4:S:s0, K4:S:s1, K4:S:s2, K4:S:s3, K4:S:s4, K4:S:s5, K4:S:s6, K4:S:s7, K4:S:s8, K4:S:s9, K4:Sr:s0, K4:Sr:s1, K4:Sr:s2, K4:Sr:s3, K4:Sr:s4, K4:Sr:s5, K4:Sr:s6, K4:Sr:s7, K4:Sr:s8, K4:Sr:s9
+k4_transfer: pool nets: native, placement
+k5_scale_flow: pools 7700, distinct pool keys 7700, distinct pool seeds 7700, pools whose key contains the seed number: yes
+k5_scale_flow: detectors 30, distinct detector keys 30
+k5_scale_flow: example pool key fields (instrument, split, net, segment): ('K5:expo:s0', 'verdict', 'native', 'flow-L0-q0')
+k5_scale_flow: example detector key: ('K5:cascade>cascade_exp', 'verdict', 'native', 0, 'detectors-flow', 0)
+k5_scale_flow: pool instruments: K5:cascade:s0, K5:cascade:s1, K5:cascade:s2, K5:cascade:s3, K5:cascade:s4, K5:cascade:s5, K5:cascade:s6, K5:cascade:s7, K5:cascade:s8, K5:cascade:s9, K5:cascade_exp:s0, K5:cascade_exp:s1, K5:cascade_exp:s2, K5:cascade_exp:s3, K5:cascade_exp:s4, K5:cascade_exp:s5, K5:cascade_exp:s6, K5:cascade_exp:s7, K5:cascade_exp:s8, K5:cascade_exp:s9, K5:cascade_shuffled:s0, K5:cascade_shuffled:s1, K5:cascade_shuffled:s2, K5:cascade_shuffled:s3, K5:cascade_shuffled:s4, K5:cascade_shuffled:s5, K5:cascade_shuffled:s6, K5:cascade_shuffled:s7, K5:cascade_shuffled:s8, K5:cascade_shuffled:s9, K5:expo:s0, K5:expo:s1, K5:expo:s2, K5:expo:s3, K5:expo:s4, K5:expo:s5, K5:expo:s6, K5:expo:s7, K5:expo:s8, K5:expo:s9, K5:y:s0, K5:y:s1, K5:y:s2, K5:y:s3, K5:y:s4, K5:y:s5, K5:y:s6, K5:y:s7, K5:y:s8, K5:y:s9
+k5_scale_flow: pool nets: native

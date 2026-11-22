@@ -64,33 +64,54 @@ def _digest(a):
     return hashlib.sha256(np.ascontiguousarray(a).tobytes()).hexdigest()
 
 
-def k1_task(a):
-    """a = (cls, idx, n, variant, kind). Full pipeline of one segment under a variant of the plain class series x:
-    id, cubic (x^3 + x), exp, rank, neg (-x), classexp and classcube (the exp and cube versions of the class).
-    Digests of the surrogate rows (and their negation), of the counts and of the standardised features."""
-    cls, idx, n, variant, kind = a
-    x = synth.k2_series(cls, idx, n)
+def k1_map(v, variant):
+    """The K1 comparison maps (B5): y = v / max|v|, then y^3 + y and exp(y); the ranks of v; the negation."""
     if variant == "id":
-        y = x
-    elif variant == "cubic":
-        y = x ** 3 + x
-    elif variant == "exp":
-        y = np.exp(x)
-    elif variant == "rank":
-        y = nets.increasing_maps()["rank"](x)
-    elif variant == "neg":
-        y = -x
-    elif variant == "classexp":
-        y = synth.k2_series(cls + "|exp", idx, n)
-    elif variant == "classcube":
-        y = synth.k2_series(cls + "|cube", idx, n)
+        return v
+    if variant == "neg":
+        return -v
+    if variant == "rank":
+        return nets.increasing_maps()["rank"](v)
+    y = v / np.max(np.abs(v))
+    if variant == "cubic":
+        return y ** 3 + y
+    if variant == "exp":
+        return np.exp(y)
+    raise ValueError("unknown variant " + variant)
+
+
+def k1_task(a):
+    """a = (source, cls, idx, n, variant, kind). source 'class' (a class version of the plain draw under `K1`), 'int' (the
+    integer-valued series of B6, `K1int`) or 'wave' (the tied waveform, `K1wave`). The series is the version of the plain draw
+    mapped by `variant`. Returns the representability facts against the plain draw and digests of the surrogate rows (and their
+    negation), the counts, the standardised features and the normal scores, and the p-value."""
+    source, cls, idx, n, variant, kind = a
+    base, _, ver = cls.partition("|")
+    if source == "class":
+        plain = synth.k1_series(base, idx, n)
+        v = synth.k1_series(cls, idx, n)
+        key = ("K1:%s:%d" % (base, n), "synthetic", "native", idx)
+    elif source == "int":
+        plain = synth.k1_int_series(base, idx, n)
+        v = plain
+        key = ("K1int:%s:%d" % (base, n), "synthetic", "native", idx)
+    elif source == "wave":
+        plain = synth.tied_waveform()
+        v = plain
+        key = ("K1wave:4096", "synthetic", "native", 0)
     else:
-        raise ValueError("unknown variant " + variant)
-    key = ("K1:%s:%d" % (cls, n), "synthetic", "native", idx)
+        raise ValueError("unknown K1 source " + source)
+    with np.errstate(all="ignore"):
+        y = k1_map(v, variant)
+    finite = bool(np.all(np.isfinite(y)))
+    rep = finite and ranks.n_distinct(y) == ranks.n_distinct(plain)
+    out = {"finite": finite, "representable": bool(rep)}
+    if not rep:
+        return out
     pool, _, _ = stats43.make_pool(y, key, 99, kind)
     js = nets.lag_js(n)
     C3, _ = stats43.counts3(pool, js)
     r = stats43.presence_stats(C3)
-    return {"guard": nets.map_guard_ok(x, y), "pn": r["pn"], "pool": _digest(pool[1:]), "negpool": _digest(-pool[1:]),
-            "C3": _digest(C3), "Z": _digest(r["Z"]), "scores": _digest(ranks.normal_scores(y)),
-            "T": r["T"]}
+    out.update({"pn": r["pn"], "pool": _digest(pool[1:]), "negpool": _digest(-pool[1:]), "C3": _digest(C3),
+                "Z": _digest(r["Z"]), "scores": _digest(ranks.normal_scores(y)), "T": r["T"]})
+    return out

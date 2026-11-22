@@ -1,14 +1,12 @@
-"""K5 Scale flow (PREREG section 10). Every series has 2^19 samples, cut by the segment rule at flow levels 0 to 3 (32, 32, 31 and 15 units).
-Per level, a unit "departs" if the sum of its squared standardised features is exceeded or equalled by at most 4 of its 99 surrogates (p <= 0.05); a
-level "shows departure" if the departing units are at or above the binomial 1 percent point for its number of units at rate 0.05. 10 seeds per case
-(the plan's number), criteria required in at least 9 of 10.
-- independent exponential values: no level shows departure.
-- dyadic cascade (log-normal weights, mean 1, log sd 0.5): departure at level 0 and at the highest populated level (3).
-- the same cascade shuffled in time: no level shows departure. Must-fail control: the cascade criterion (departure at level 0 and level 3) applied to the
-  shuffled cascade must hold in at most 1 of 10 seeds.
-- y_t = e_t^2 + e_(t-1)^2: departure at level 0 (higher levels reported).
-- transfers (primary run, see AMENDMENTS_NEEDED.md): cascade to cascade after exp of the standardised series: p at most 0.001; cascade to y: p above 0.05; shuffled
-  cascade to cascade: p above 0.05. Each case has a fit series (tau0 and template) and an independent verdict series (scored).
+"""K5 Scale flow (PREREG section 10, as amended by Amendment 2, B9). Every series has 2^19 samples, cut by the segment rule at flow levels 0 to 3 (32, 32,
+31 and 15 units). A unit departs if at most 4 of its 99 surrogates have a sum of squared standardised features at or above its own (equal sums count as
+at or above); a level shows departure if the departing units are at or above the binomial 1 percent point for its units at rate 0.05. 10 seeds per case,
+criteria required in at least 9 of 10.
+- independent exponential values: no level shows departure. Cascade: departure at level 0 and level 3. Shuffled cascade: no level shows departure
+  (must-fail control: the cascade criterion on the shuffled cascade must hold in at most 1 of 10 seeds). y_t = e_t^2 + e_(t-1)^2: departure at level 0.
+- transfers: cascade (fit) to the exp-mapped cascade (verdict) must give p at most 0.001 in the primary run and in both amplitude-map runs; cascade (fit) to
+  y' = g^2 (verdict, g AR(1), c = 0.9859) and the IAAFT cascade (fit) to the cascade (verdict) must give p above 0.05 in the primary run. Every transfer must be
+  evaluable (at least 8 features populated in both series) in at least 9 of 10 seeds, else K5 fails; a seed that is not evaluable counts as failing its criterion.
 usage: k5_scale_flow.py smoke|full [part nparts] (parts split the seeds)"""
 import os
 import sys
@@ -22,32 +20,35 @@ from kcommon import header, summary, parse_mode, sizes
 N = 4096
 
 
-def stream_jobs(x, instrument, role):
-    jobs, meta = flow.stream_units(x, (instrument, role, "native"), N=N)
-    return jobs, meta
+def stream_jobs(x, case, role):
+    return flow.stream_units(x, ("K5b:" + case, role, "native"), N=N)
 
 
 def one_seed(s):
     ser = {}
     ser[("expo", "verdict")] = synth.k5_series("expo", s, "verdict")
-    for case in ("cascade", "cascade_shuffled"):
+    for case in ("cascade", "yprime"):
         ser[(case, "fit")] = synth.k5_series(case, s, "fit")
         ser[(case, "verdict")] = synth.k5_series(case, s, "verdict")
-    ser[("y", "fit")] = synth.k5_series("y", s, "fit")
+    ser[("cascade_iaaft", "fit")] = synth.k5_series("cascade_iaaft", s, "fit")
+    ser[("cascade_shuffled", "verdict")] = synth.k5_series("cascade_shuffled", s, "verdict")
     ser[("y", "verdict")] = synth.k5_series("y", s, "verdict")
-    ser[("cascade_exp", "verdict")] = nets.amp_exp_standardised(ser[("cascade", "verdict")])
-    tau = {}
-    shift = {}
-    for case in ("cascade", "cascade_shuffled", "y"):
+    # the exp-mapped cascade (verdict) in three runs: primary, and the two amplitude-map runs (the maps act on the whole stream, D10)
+    b0 = nets.amp_exp_standardised(ser[("cascade", "verdict")])
+    ser[("cascade_exp", "verdict")] = b0
+    ser[("cascade_exp:amp_scores", "verdict")] = nets.amp_normal_scores(b0)
+    ser[("cascade_exp:amp_exp", "verdict")] = nets.amp_exp_standardised(b0)
+    tau, shift = {}, {}
+    for case in ("cascade", "yprime", "cascade_iaaft"):
         segs = [c["seg"] for c in segments.cut_segments(ser[(case, "fit")], N=N)]
         tau[case], shift[case] = transfer.level_shift(segs)
-    shift["cascade_exp"] = shift["cascade"]   # the same fit ranks: the exp map does not change tau0
-    shift["expo"] = 0
-    need = [("expo", "verdict"), ("cascade", "fit"), ("cascade", "verdict"), ("cascade_exp", "verdict"), ("y", "verdict"),
-            ("cascade_shuffled", "verdict"), ("cascade_shuffled", "fit")]
+    shift["cascade_exp"] = shift["cascade"]       # the exp map leaves the ranks, so tau0 of its fit series is the cascade's
+    need = [("expo", "verdict"), ("cascade", "fit"), ("cascade", "verdict"), ("cascade_shuffled", "verdict"), ("y", "verdict"),
+            ("yprime", "verdict"), ("cascade_iaaft", "fit"), ("cascade_exp", "verdict"), ("cascade_exp:amp_scores", "verdict"),
+            ("cascade_exp:amp_exp", "verdict")]
     jobs, meta, owner = [], [], []
     for (case, role) in need:
-        j, m = stream_jobs(ser[(case, role)], "K5:%s:s%d" % (case, s), role)
+        j, m = stream_jobs(ser[(case, role)], case, role)
         jobs += j
         meta += m
         owner += [(case, role)] * len(j)
@@ -62,15 +63,16 @@ def one_seed(s):
         dep[case] = {int(l): [int(v[0]), int(v[1]), int(levels.excess_point(v[0]))] for l, v in sorted(d.items())}
     out["departure"] = dep
 
-    def tr(tag, Ac, Bc):
-        rng = seeds.rng_for("K5:" + tag, "verdict", "native", s, "detectors-flow", 0)
-        r = flow.flow_transfer(U[(Ac, "fit")], shift[Ac], U[(Bc, "verdict")], shift[Bc], rng)
+    def tr(tag, run, Ac, Arole, Bc, Brole, shA, shB):
+        rng = seeds.rng_for("K5b:" + tag, "verdict", run, s, "detectors-flow", 0)
+        r = flow.flow_transfer(U[(Ac, Arole)], shA, U[(Bc, Brole)], shB, rng)
         return {"p": "%d/%d" % (r["p"].numerator, r["p"].denominator), "m": int(r["m"]), "below_floor": bool(r["below_floor"]), "D": int(r["D"]),
                 "adverse": bool(r["adverse"]), "S_A": float(r["S_A"])}
 
-    out["T_cascade>cascade_exp"] = tr("cascade>cascade_exp", "cascade", "cascade_exp")
-    out["T_cascade>y"] = tr("cascade>y", "cascade", "y")
-    out["T_shuffled>cascade"] = tr("shuffled>cascade", "cascade_shuffled", "cascade")
+    for run, Bc in (("native", "cascade_exp"), ("amp_scores", "cascade_exp:amp_scores"), ("amp_exp", "cascade_exp:amp_exp")):
+        out["T1|" + run] = tr("cascade>cascade_exp", run, "cascade", "fit", Bc, "verdict", shift["cascade"], shift["cascade"])
+    out["T2|native"] = tr("cascade>yprime", "native", "cascade", "fit", "yprime", "verdict", shift["cascade"], shift["yprime"])
+    out["T3|native"] = tr("cascade_iaaft>cascade", "native", "cascade_iaaft", "fit", "cascade", "verdict", shift["cascade_iaaft"], shift["cascade"])
     return out
 
 
@@ -89,45 +91,45 @@ def shows(d, l):
 def evaluate(results, nseeds, mode):
     n = len(results)
     need = -(-9 * n // 10)
-    cnt = {"expo none": 0, "cascade L0 and top": 0, "shuffled none": 0, "y L0": 0, "T c>c_exp": 0, "T c>y": 0, "T s>c": 0, "ctrl shuffled shows cascade criterion": 0}
-    print("seed  shifts(c,s,y)  departing/units by level: expo | cascade | shuffled | y   transfers p (m, floor): c>cexp | c>y | s>c")
+    names = ["expo none", "cascade L0 and top", "shuffled none", "y L0", "T1 positive (3 runs)", "T2 negative", "T3 negative",
+             "T1 evaluable", "T2 evaluable", "T3 evaluable", "ctrl shuffled shows cascade criterion"]
+    cnt = {k: 0 for k in names}
+    print("seed  shifts(cascade, y', iaaft)  departing/units by level: expo | cascade | shuffled | y   transfers p (m): T1 native, amp_scores, amp_exp | T2 | T3")
     for r in sorted(results, key=lambda r: r["seed"]):
         D = r["departure"]
         top = max(D["cascade"])
-        expo_none = not any(shows(D["expo"], l) for l in D["expo"])
-        casc = shows(D["cascade"], 0) and shows(D["cascade"], top)
-        shuf_none = not any(shows(D["cascade_shuffled"], l) for l in D["cascade_shuffled"])
+        cnt["expo none"] += not any(shows(D["expo"], l) for l in D["expo"])
+        cnt["cascade L0 and top"] += shows(D["cascade"], 0) and shows(D["cascade"], top)
+        cnt["shuffled none"] += not any(shows(D["cascade_shuffled"], l) for l in D["cascade_shuffled"])
         ctop = max(D["cascade_shuffled"])
-        ctrl = shows(D["cascade_shuffled"], 0) and shows(D["cascade_shuffled"], ctop)
-        yl0 = shows(D["y"], 0)
-        t1, t2, t3 = r["T_cascade>cascade_exp"], r["T_cascade>y"], r["T_shuffled>cascade"]
-        cnt["expo none"] += expo_none
-        cnt["cascade L0 and top"] += casc
-        cnt["shuffled none"] += shuf_none
-        cnt["y L0"] += yl0
-        cnt["T c>c_exp"] += frac(t1["p"]) <= Fraction(1, 1000)
-        cnt["T c>y"] += frac(t2["p"]) > Fraction(1, 20)
-        cnt["T s>c"] += frac(t3["p"]) > Fraction(1, 20)
-        cnt["ctrl shuffled shows cascade criterion"] += ctrl
+        cnt["ctrl shuffled shows cascade criterion"] += shows(D["cascade_shuffled"], 0) and shows(D["cascade_shuffled"], ctop)
+        cnt["y L0"] += shows(D["y"], 0)
+        t1 = [r["T1|" + k] for k in ("native", "amp_scores", "amp_exp")]
+        t2, t3 = r["T2|native"], r["T3|native"]
+        ev1 = all(x["m"] >= 8 for x in t1)
+        ev2, ev3 = t2["m"] >= 8, t3["m"] >= 8
+        cnt["T1 evaluable"] += ev1
+        cnt["T2 evaluable"] += ev2
+        cnt["T3 evaluable"] += ev3
+        # a seed that is not evaluable counts as failing its criterion
+        cnt["T1 positive (3 runs)"] += ev1 and all(frac(x["p"]) <= Fraction(1, 1000) for x in t1)
+        cnt["T2 negative"] += ev2 and frac(t2["p"]) > Fraction(1, 20)
+        cnt["T3 negative"] += ev3 and frac(t3["p"]) > Fraction(1, 20)
 
         def fmt(d):
             return " ".join("L%d:%d/%d" % (l, d[l][1], d[l][0]) for l in sorted(d))
-        print("%2d  %s/%s/%s  %s | %s | %s | %s   %.2e(m%d%s) | %.2e(m%d%s) | %.2e(m%d%s)" % (
-            r["seed"], r["shift"]["cascade"], r["shift"]["cascade_shuffled"], r["shift"]["y"], fmt(D["expo"]), fmt(D["cascade"]), fmt(D["cascade_shuffled"]), fmt(D["y"]),
-            float(frac(t1["p"])), t1["m"], "F" if t1["below_floor"] else "", float(frac(t2["p"])), t2["m"], "F" if t2["below_floor"] else "",
-            float(frac(t3["p"])), t3["m"], "F" if t3["below_floor"] else ""))
-    print("(F marks a transfer below the populated-feature floor: it counts as not rejecting, p = 1)")
-    for k, v in cnt.items():
-        if k.startswith("ctrl"):
-            print("must-fail control, %s: %d of %d seeds (allowed at most %d)" % (k, v, n, 1 if n == 10 else n // 10))
-        else:
-            print("criterion %-20s: %d of %d seeds (need %d)" % (k, v, n, need))
+        print("%2d  %s/%s/%s  %s | %s | %s | %s   %s | %.2e(m%d) | %.2e(m%d)" % (
+            r["seed"], r["shift"]["cascade"], r["shift"]["yprime"], r["shift"]["cascade_iaaft"], fmt(D["expo"]), fmt(D["cascade"]), fmt(D["cascade_shuffled"]), fmt(D["y"]),
+            ", ".join("%.2e(m%d)" % (float(frac(x["p"])), x["m"]) for x in t1), float(frac(t2["p"])), t2["m"], float(frac(t3["p"])), t3["m"]))
     capc = 1 if n == 10 else n // 10
-    crit_ok = all(cnt[k] >= need for k in ("expo none", "cascade L0 and top", "shuffled none", "y L0", "T c>c_exp", "T c>y", "T s>c"))
+    for k in names:
+        if k.startswith("ctrl"):
+            print("must-fail control, %s: %d of %d seeds (allowed at most %d)" % (k, cnt[k], n, capc))
+        else:
+            print("criterion %-24s: %d of %d seeds (need %d)" % (k, cnt[k], n, need))
+    crit = [k for k in names if not k.startswith("ctrl")]
+    crit_ok = all(cnt[k] >= need for k in crit)
     ctrl_ok = cnt["ctrl shuffled shows cascade criterion"] <= capc
-    # vacuous passes: the two p > 0.05 criteria passed only because no feature was populated in both
-    vac = sum(1 for r in results for k in ("T_cascade>y", "T_shuffled>cascade") if r[k]["below_floor"])
-    print("p > 0.05 criteria that passed only through the populated-feature floor (m below 8): %d of %d seed-transfers" % (vac, 2 * n))
     return ("PASS" if crit_ok and ctrl_ok else "FAIL"), "criteria %s; shuffled-cascade control flagged: %s" % (dict(cnt), ctrl_ok)
 
 

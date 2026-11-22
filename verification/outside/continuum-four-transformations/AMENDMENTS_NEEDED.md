@@ -233,3 +233,89 @@ The code sets zero-spread feature entries to 0 and keeps the segment in the temp
 When both values are 0 it is an exact comparison. An absolute floor is a possible addition. Either choice can change a p-value in rare cases.
 
 Not done for the other modules: the plan's mutation test (section 11) is built only for the refusals in `gates.py`. Mutation of comparisons and thresholds in the other modules is not built.
+
+# Amendment 2 build
+
+This section covers the code built for the plan as amended by Amendment 2 (plan commit fba51a3, `PREREG.md` sha256 1dfc2c8c, `AMENDMENT_2.md` sha256 93e170b3). The full known-answer runs have not been started. They are on hold. One entry below is blocking (the K5 amplitude map). The rest are readings and observations. None of them was chosen by looking at an outcome.
+
+## Blocking
+
+BLOCK-1. The amplitude-map run "exp of the series standardised to unit variance" cannot be computed on the K5 mapped cascade (section 5 table and section 10, K5, B9). The mapped cascade is B = exp of the standardised cascade. The second amplitude net then takes the exp of the standardised B. B is very heavy-tailed.
+
+After standardising, its largest value is about sqrt(n) = 724 standard deviations, and exp(724) is infinite in 64-bit floats (the limit is about 709).
+
+The K5 smoke run stopped at seed 0 with a refusal (`GATE_MISSING`, non-finite series). A diagnostic on the cascade verdict series of seeds 0 to 9 (`exp(z)` of the first map is finite in every seed, the largest z of the cascade being 119 to 356):
+
+| Seeds | Largest standardised value of B | exp of it |
+|---|---|---|
+| 0, 1, 3, 4, 5, 6, 7, 8, 9 | 719.7 to 724.1 | overflows to infinity |
+| 2 | B itself has a variance too large to compute (infinite), so every standardised value is 0 | not a usable series |
+
+So the run fails or is degenerate in 10 of 10 seeds. This is the overflow that B5 removed from K1 by dividing by max|x|. Options for the designer: rescale the argument as K1 does, apply the amplitude net to the plain cascade and not to its exp map, replace the net by another increasing map that cannot overflow, or clip.
+
+The code applies none of these. The K5 smoke output is kept as it came out, with its error.
+
+## The K1 waveform and the coverage rule (asked by the plan's designer)
+
+`PREREG.md` line 297 reads: "Representability guard, stated before any run. A (class version, map, seed) case counts only if the mapped series is finite and has as many distinct values as its input. A case that fails is recorded as "map not representable", never as a pass. For each class version and map, at least 18 of the 20 seeds must be representable, or K1 fails."
+
+Line 300 reads: "Tied inputs (integer sensor counts are tied). (a) The waveform [0, 0, 1, 2, 2, 1, 0, 0] repeated 512 times (4,096 samples), which is exactly time-symmetric.
+
+At every lag used, each pattern count, tied patterns included, must equal the count of its reversed pattern, so Sigma_hat and the features a1, a2 and a3 are exactly 0, and every pattern count must be identical under the three maps."
+
+The text does not say whether the guard and the 18-of-20 rule apply to the waveform, which has no seeds. My first smoke code applied the rule to it and K1 failed on a harness fault (1 of 1 is below 9 of 10). The failed output is kept.
+
+My reading now: the 18-of-20 rule applies to seeded class versions and to the seeded integer-valued classes. For the waveform each of the three maps must be representable (1 of 1) and the exact requirements of line 300 then hold unconditionally.
+
+This reading cannot change K1's result. The waveform has 3 distinct values, so y = x / max|x| has the values 0, 0.5 and 1. The maps y^3 + y, exp(y) and the ranks keep 3 distinct finite values, so the waveform is always representable and the guard never removes it. The exact-zero requirement does not depend on the coverage rule either way. Non-blocking.
+
+The same question arises for the 7 integer-valued classes of part (b), which have 20 seeds. I apply the 18-of-20 rule to them. It cannot change the result either, because their maps cannot merge values.
+
+The values q are integers with |q| at most about 30, so y = q / max|q| has distinct values at least 1/30 apart, and y^3 + y and exp(y) are strictly increasing with slope at least 0.36 on [-1, 1]. Distinct inputs stay distinct in floating point. Non-blocking.
+
+## Seed keys (the four points raised by the independent check)
+
+Held for the next amendment. Nothing was changed. The counts come from `known_answer/key_count.py`, which runs the real seed-making code of K4 and K5 with the surrogate pools and the transfer tests replaced by stubs and counts every pool key and detector key. Outputs are in `known_answer/out_keys/`.
+
+For K5 the script also replaces the overflowing exp by a clipped exp (only to let the key code run), which makes 495 units of the amp_exp set constant and so absent. With every unit present the K5 run would build 11,000 pools (10 sets of 110 units over 10 seeds).
+
+1. K5 flow-unit pool keys, current code. Built at `src/flow.py` line 114 from `known_answer/k5_scale_flow.py` line 24: (instrument `K5b:<case>`, split, net `native`, segment `flow-L<level>-q<unit>`) plus purpose `surrogates` and index 0. The key has no seed number. Counted: 10,505 pools, 1,100 distinct keys (110 per set).
+
+Each set has 110 distinct keys over its 10 seeds, so the 10 seeds of a case share one key per unit and their surrogates start from identical random draws. The same code at 99533df put the seed in the instrument (`K5:<case>:s<seed>`): 7,700 pools, 7,700 distinct keys. The K5 smoke run of the first push used distinct keys.
+2.
+
+K5 net field. The pool key has net `native` for every set. The three runs of the exp-mapped cascade differ only in the instrument tag that I chose (`K5b:cascade_exp`, `K5b:cascade_exp:amp_scores`, `K5b:cascade_exp:amp_exp`), so they have distinct keys in the code.
+
+With the plan's wording (all `K5b:cascade_exp`) they would share keys. 99533df had no amplitude-map runs.
+3. K3 pool key. Built at `src/tasks.py` line 58: (instrument `K3:<case>`, split `synthetic`, net the use, segment the seed number) plus `surrogates` and 0. No length in the instrument, as the plan words it.
+
+Counted at 200 seeds: 6,600 pools, 6,400 distinct keys. The 200 circular-shift control pools share the key of the shots `native4096` pools by design (the plan says so). Identical at 99533df.
+4. Random-detector keys.
+
+K4, `known_answer/k4_transfer.py` lines 82 and 83 and 97 and 98: (`K4:<pair>`, `verdict`, run, seed number, `detectors-arrow` or `detectors-profile`, 0). They carry the pair, the run, the seed and the purpose. Counted: 160 detectors, 160 distinct keys.
+
+K5, line 67: (`K5b:<criterion>`, `verdict`, run, seed number, `detectors-flow`, 0), with the criterion in the instrument field. Counted: 50 detectors, 50 distinct keys (99533df: 30 and 30). K4 and K3 pools at both commits: K4 3,520 pools with 3,520 keys.
+
+## Readings made while implementing (non-blocking)
+
+R1. Section 4.3 and D8 together. D8 says a transfer is adverse if fewer than 1/40 of the detectors score below S_B(w_A) by more than the tolerance. When every detector ties with w_A (D = 1), no detector counts as below and D8 gives "adverse", although B8 says a tie never creates a verdict. The code follows D8 as written. The case needs a template whose entries are all equal.
+
+R2. K5. y' also has a fit series (instrument `K5b:yprime`, split `fit`), used only for its tau0. The amplitude-map runs apply the map to the verdict stream B only (the cascade fit template is unchanged), because the plan counts 10 sets of 110 units. The detector key tags are `cascade>cascade_exp`, `cascade>yprime` and `cascade_iaaft>cascade`.
+
+R3. K3 instrument tag `K3:<case>:<length>` for the data draw: the length is the length of the block drawn (4,224 for `native4096` and `placement`, 2,176 for `native2048` and `wlen2048`).
+
+R4. K1. A class version that is itself an exp or cube map of the plain draw is counted as one case with the map "version". The integer-valued series use `round` of numpy (halves to even). The median in instance E (not on the confirmatory path) is the mean of the two middle values when their number is even.
+
+R5. tau0 uses 64-bit integers and refuses segments of more than 6,000 samples.
+
+R6. The K2 control at smoke size runs on 10 seeds with the flag point 5, which is the plan's 200 seeds scaled down. At full size it is 200 seeds with flag point 22. At smoke size it was not flagged (4 of 10).
+
+## Mutation test (sections 11 and B11)
+
+`known_answer/mutation_test.py` makes, for every module of `src/`, the three kinds of mutant (a refusal deleted, a comparison flipped between strict and non-strict, a threshold moved by one unit up and down) and runs the suite. The suite used here is the unit checks and K6.
+
+It is not the whole known-answer suite, so K-only code paths survive. Result of one run, 284 mutants: 148 killed, 136 survived. The survivors are listed in `known_answer/out_mutation/mutation_run.txt`. None has been triaged yet (added test or recorded as equivalent with its reason).
+
+By module (killed of total): `gates.py` 16 of 16, `segments.py` 5 of 5, `outcomes.py` 48 of 57, `nets.py` 7 of 11, `transfer.py` 22 of 46, `levels.py` 24 of 57, `stats43.py` 7 of 13, `flow.py` 5 of 28, `synth.py` 1 of 7, `law2b.py` 3 of 15, `patterns.py` 4 of 10, `iaaft.py` 4 of 5, `second_impl.py` 2 of 2, `pipeline.py` 0 of 1, `tasks.py` 0 of 2, `par.py` 0 of 6, `ties.py` 0 of 3.
+
+The plan's pre-data condition (every mutant killed or recorded as equivalent) is not met.

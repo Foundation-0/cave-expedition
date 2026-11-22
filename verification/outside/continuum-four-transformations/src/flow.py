@@ -16,6 +16,7 @@ import patterns
 import segments
 import seeds
 import stats43
+import ties
 import transfer
 
 MIN_SEG = 12
@@ -95,7 +96,7 @@ def analyse_unit(seg, key, M=99, freq_map=None):
     pool, it, cv = stats43.make_pool(seg, key, M, "iaaft")
     C4, _ = patterns.counts_batch(pool, 4, 1)
     z, S2 = unit_features(C4, freq_map)
-    n_ge = int((S2[1:] >= S2[0]).sum())
+    n_ge = int(ties.at_or_above(S2[1:], S2[0]).sum())   # an equal sum counts as at or above, so a tie never makes a unit depart
     return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
 
 
@@ -108,8 +109,8 @@ def stream_units(x, prefix, N=4096, start=0, runs=None, op="mean", freq_map=None
     for (l, ser, rr) in lv:
         cut = segments.cut_segments(ser, N=N, start=start)
         for q, c in enumerate(cut):
-            if c["seg"] is None:
-                continue
+            if c["seg"] is None or transfer.segments_constant(c["seg"]):
+                continue   # an invalid or constant segment gives no flow unit (section 7)
             jobs.append((c["seg"], prefix + ("flow-L%d-q%d" % (l, q),), M, freq_map))
             meta.append((l, q))
     return jobs, meta

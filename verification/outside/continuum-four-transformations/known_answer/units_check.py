@@ -9,7 +9,7 @@ import math
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
-import flow, gates, iaaft, law2b, levels, nets, outcomes, patterns, ranks, second_impl, segments, seeds, stats43, synth, transfer
+import flow, gates, iaaft, law2b, levels, nets, outcomes, patterns, pipeline, ranks, second_impl, segments, seeds, stats43, synth, tasks, ties, transfer
 from kcommon import Checker
 
 C = Checker()
@@ -556,7 +556,8 @@ def u_law2b():
     f = law2b.white_floor_F(x, ("k", "s", "n", 0))
     ck("F adds noise of about 1/1000 of the standard deviation", 0 < float(np.abs(f - x).max()) < 0.01 * x.std() * 10 and float(np.std(f - x)) > 0)
     eq("F is reproducible", law2b.white_floor_F(x, ("k", "s", "n", 0)), f)
-    eq("tail spread of 0..1000 ramp", round(law2b.tail_spread(np.arange(1001.0)), 6), round((999.0 - 1.0) / 500.0, 6))
+    eq("tail spread of the 0..1000 ramp by order statistics (ranks 1000, 2, 751, 251), exact", law2b.tail_spread(np.arange(1001.0)), Fraction(998, 500))
+    eq("event-rich threshold is the exact median (mean of the two middle values)", law2b.event_rich_threshold([np.arange(1001.0), np.arange(1001.0) * 2.0]), Fraction(998, 500))
     ck("E: a heavy-tailed segment is event-rich against the Gaussian median", law2b.event_rich(synth.shots_ar(4096, np.random.default_rng(3)), law2b.event_rich_threshold([np.random.default_rng(i).standard_normal(4096) for i in range(5)])))
     eq("max-plus score", float(law2b.max_plus_score(np.array([1., -2., 3.]), np.array([2., 1., 1.]))), 3.0)
     ck("B is block maxima and H the square root", law2b.FLOW_BLOCK_OP_B == "max" and law2b.flow_freq_map_H(np.array([4.0])).tolist() == [2.0])
@@ -652,6 +653,94 @@ def u_review_guards():
         ck("tied symmetric waveform under %s: counts unchanged, sigma_hat exactly 0, ties kept" % nm, bool((c == base).all()) and float(patterns.sigma_hat(c, 3)) == 0.0)
 
 
+def u_amendment2():
+    section("Amendment 2: ties, exact tau0, constant segments, K1 and K5 constructions (each check fails if its rule is removed)")
+    F = Fraction
+    # B8 tie rule
+    ck("tie: 5e-13 and 0 tie (absolute floor)", bool(ties.tied(0.0, 5e-13)) and bool(ties.tied(5e-13, 0.0)))
+    ck("tie: 2e-12 and 0 do not tie", not bool(ties.tied(0.0, 2e-12)))
+    ck("tie: relative at 1e6 (difference 5e-7 ties, 5e-6 does not)", bool(ties.tied(1e6, 1e6 + 5e-7)) and not bool(ties.tied(1e6, 1e6 + 5e-6)))
+    ck("tie: an infinity ties with nothing", not bool(ties.tied(np.inf, np.inf)) and not bool(ties.tied(-np.inf, -np.inf)) and not bool(ties.tied(-np.inf, 1.0)))
+    ck("at_or_above counts a tie; below does not", bool(ties.at_or_above(1.0, 1.0 + 5e-13)) and not bool(ties.below(1.0, 1.0 + 5e-13)) and bool(ties.below(1.0, 1.1)))
+    r = transfer.transfer_test("profile", np.ones(8) / np.sqrt(8), np.ones(8), np.ones(8, dtype=bool), np.random.default_rng(3), R=500)
+    ck("transfer: when every detector ties, p = 1 (a tie counts against w_A) and no detector counts as below", r["p"] == 1 and r["n_lt"] == 0)
+    sc_below = transfer.transfer_test("profile", np.array([1.0, 0, 0, 0, 0, 0, 0, 0]), np.array([1.0 + 5e-13, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]), np.ones(8, dtype=bool), np.random.default_rng(3), R=500)
+    ck("transfer: a detector within the tie tolerance below S_A is not counted below", sc_below["n_lt"] <= 500)
+    # exact tau0 against an independent computation on Fractions
+    x = np.random.default_rng(4).standard_normal(300)
+    x = np.convolve(x, np.ones(5) / 5.0, mode="same")
+    mr = [F(int(t), 2) for t in ranks.twice_midrank(x)]
+    mean = sum(mr) / len(mr)
+    cen = [v - mean for v in mr]
+    den = sum(v * v for v in cen)
+    t0 = None
+    for tau in range(1, 300):
+        if sum(cen[i] * cen[i + tau] for i in range(300 - tau)) / den < F(1, 2):
+            t0 = tau
+            break
+    eq("tau0 equals an independent computation in exact fractions", transfer.tau0_segment(x), t0)
+    y = np.array([0.0, 1.0] * 50)
+    eq("tau0 of an alternating series is 1 (autocorrelation -1)", transfer.tau0_segment(y), 1)
+    ck("tau0 refuses a segment longer than the 64-bit bound", _refused(lambda: transfer.tau0_segment(np.arange(6001.0))))
+    # B7 constant segments
+    const = np.full(4096, 7.0)
+    ramp = np.random.default_rng(5).standard_normal(4096)
+    for run in ("native", "bm2", "sub2", "q12", "q8", "placement", "wlen", "instrument"):
+        out = pipeline.run_series([const, ramp, None], run)
+        ck("constant segment is invalid (None) under run %s, a good segment is kept, None stays None" % run, out[0] is None and out[1] is not None and out[2] is None)
+    ck("a segment made constant by its net is invalid (12-bit bins of an almost constant segment)", pipeline.run_series([np.concatenate([np.zeros(4095), [1e-300]])], "native")[0] is not None)
+    c2, c3 = pipeline.control_series([const, ramp, None], "native", "u", "s", None, None)
+    ck("C2 and C3 of a constant or invalid segment are invalid, those of a good segment are not", c2[0] is None and c3[0] is None and c2[1] is not None and c3[1] is not None and c2[2] is None and c3[2] is None)
+    ck("a constant segment gives no tau0 (refused), and level_shift drops it", _refused(lambda: transfer.tau0_segment(const)) and transfer.level_shift([const, ramp, None])[0] == transfer.tau0_segment(ramp))
+    ck("level_shift refuses a set with no non-constant segment", _refused(lambda: transfer.level_shift([const, None])))
+    rows = [{"all_zero_spread": True, "js": [0], "zu": np.zeros(1), "z1": np.zeros(1), "z23": np.zeros(1)},
+            {"all_zero_spread": False, "js": [0, 1], "zu": np.ones(2), "z1": np.ones(2), "z23": np.ones(2)}, None]
+    U, Pf, pop = pipeline.features(rows, 0)
+    eq("features: invalid and all-zero-spread segments give no transfer feature", U.shape[0], 1)
+    ck("features refuses when no segment is usable", _refused(lambda: pipeline.features([None, rows[0]], 0)))
+    cs = np.random.default_rng(6).standard_normal(640 * 80)
+    cs[640 * 10:640 * 11] = 3.0
+    base_jobs, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 80), ("u", "s", "n"), N=512)
+    jobs, _ = flow.stream_units(cs, ("u", "s", "n"), N=512)
+    ck("flow: a constant segment gives no unit", len(jobs) < len(base_jobs))
+    # B5 and B6 constructions
+    xx = np.array([-4.0, 1.0, 2.0])
+    eq("K1 map: y = x / max|x| then y^3 + y", tasks.k1_map(xx, "cubic").tolist(), ((xx / 4.0) ** 3 + xx / 4.0).tolist())
+    eq("K1 map: exp(y)", tasks.k1_map(xx, "exp").tolist(), np.exp(xx / 4.0).tolist())
+    eq("K1 map: ranks of x", tasks.k1_map(xx, "rank").tolist(), [1.0, 2.0, 3.0])
+    ck("K1 maps cannot overflow on exp of exp (argument in [-1, 1])", bool(np.all(np.isfinite(tasks.k1_map(np.exp(np.exp(np.linspace(-5, 5, 50))), "exp")))))
+    w = synth.tied_waveform()
+    ck("waveform is [0,0,1,2,2,1,0,0] x 512 and a palindrome", w.size == 4096 and np.array_equal(w, w[::-1]) and w[:8].tolist() == [0, 0, 1, 2, 2, 1, 0, 0])
+    tb = np.argsort(np.argsort(w, kind="stable"), kind="stable").astype(np.float64)
+    c, _ = patterns.counts_one(tb, 3, 1)
+    ck("must-fail ranking (ties in time order) gives a non-zero Sigma_hat on the waveform", float(patterns.sigma_hat(c, 3)) != 0.0)
+    qi = synth.k1_int_series("white", 0, 1024)
+    ck("integer-valued class: integer values with ties", bool(np.all(qi == np.round(qi))) and ranks.n_distinct(qi) < 1024)
+    ck("K1 draws use their own key: the K1 plain draw differs from the K2 draw", not np.array_equal(synth.k1_series("white", 0, 1024), synth.k2_series("white", 0, 1024)))
+    eq("exp and cube versions are maps of the plain draw (K1)", ranks.normal_scores(synth.k1_series("g2|exp", 3, 512)).tolist(), ranks.normal_scores(synth.k1_series("g2", 3, 512)).tolist())
+    # K5b series
+    rng = seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0)
+    xs = np.ones(1)
+    for j in range(3):
+        wv = np.exp(0.5 * rng.standard_normal(2 ** (j + 1)) - 0.125)
+        xs = np.repeat(xs, 2) * wv
+    eq("cascade construction: start [1], repeat twice and multiply by exp(0.5 Z - 0.125), Z drawn in order", synth.cascade(8, seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0)).tolist(), xs.tolist())
+    old = synth.K5_N
+    synth.K5_N = 4096
+    try:
+        ci = synth.k5_series("cascade_iaaft", 1, "fit")
+        cc = synth.k5_series("cascade", 1, "fit")
+        ck("IAAFT cascade has the normal scores of the cascade as its values", np.array_equal(np.sort(ci), np.sort(ranks.normal_scores(cc))))
+        ck("IAAFT cascade is not the cascade or its scores in place", not np.array_equal(ci, ranks.normal_scores(cc)))
+        ck("IAAFT cascade exists as a fit series only", _refused(lambda: synth.k5_series("cascade_iaaft", 1, "verdict")))
+        yp = synth.k5_series("yprime", 0, "verdict")
+        ck("y' = g^2 is non-negative", bool(np.all(yp >= 0)) and yp.size == 4096)
+    finally:
+        synth.K5_N = old
+    ck("y' coefficient is 0.9859", synth.YPRIME_C == 0.9859)
+    ck("K5 draws are under the tag K5b (differ from the old tag)", not np.array_equal(synth.cascade(64, seeds.rng_for("K5:cascade", "fit", "native", 0, "data", 0)), synth.cascade(64, seeds.rng_for("K5b:cascade", "fit", "native", 0, "data", 0))))
+
+
 def _raises(f):
     try:
         f()
@@ -663,7 +752,7 @@ def _raises(f):
 def main():
     print("UNIT CHECKS of the building blocks (known answers)")
     print("python", sys.version.split()[0], "numpy", np.__version__)
-    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_outcomes()
+    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_amendment2(); u_outcomes()
     ok = C.done("UNIT CHECKS")
     if not ok:
         print("FAIL")
