@@ -1,0 +1,23 @@
+TEST K5 - scale flow: decay of the mean flow feature under block averaging by 2
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+streams of 139392 samples; level l has the segments of the section 7 rule on the l-times averaged series; at least 12 segments to count as a level
+number of seeds per case is not fixed by the plan: the scored result is seed idx 0 of each case; other seeds are descriptive
+seed example, iid_exponential idx 0: 17388073590707817800
+iid_exponential   seed idx 0: levels L0:32seg L1:16seg | norm level 0 = 0.3795, top level (1) = 0.9764, ratio 2.573
+criterion: independent exponential values, top-level norm below half the level-0 norm: FAIL
+cascade           seed idx 0: levels L0:32seg L1:16seg | norm level 0 = 5.9413, top level (1) = 4.1693, ratio 0.702
+criterion: random multiplicative cascade, top-level norm at least half the level-0 norm: PASS
+criterion: cascade -> cascade after a monotone map, transfer p <= 0.001: NOT RUN (see AMENDMENTS_NEEDED.md, B1)
+criterion: cascade -> shots, transfer p > 0.05: NOT RUN (see AMENDMENTS_NEEDED.md, B1)
+--- descriptive (not scored)
+iid_exponential   seed idx 1: levels L0:32seg L1:16seg | norm level 0 = 0.4458, top level (1) = 0.8389, ratio 1.882  [not below half]
+iid_exponential   seed idx 2: levels L0:32seg L1:16seg | norm level 0 = 0.5620, top level (1) = 0.6943, ratio 1.236  [not below half]
+iid_exponential   seed idx 3: levels L0:32seg L1:16seg | norm level 0 = 0.4855, top level (1) = 0.8085, ratio 1.665  [not below half]
+iid_exponential   seed idx 4: levels L0:32seg L1:16seg | norm level 0 = 0.4160, top level (1) = 0.9582, ratio 2.303  [not below half]
+iid_exponential   seed idx 5: levels L0:32seg L1:16seg | norm level 0 = 0.4792, top level (1) = 0.5982, ratio 1.248  [not below half]
+exp_ar1_0.5       seed idx 0: levels L0:32seg L1:16seg | norm level 0 = 6.3524, top level (1) = 4.8213, ratio 0.759
+--- must-fail control: the cascade criterion applied to the shuffled cascade (structure destroyed); a useful criterion must fail here
+cascade_shuffled  seed idx 0: levels L0:32seg L1:16seg | norm level 0 = 0.5047, top level (1) = 0.9823, ratio 1.946
+shuffled cascade passes the 'stays at least half' criterion: yes -> control NOT FLAGGED (the criterion cannot tell structure from noise)
+SUMMARY K5 FAIL | decay criterion iid FAIL (ratio 2.573), cascade criterion PASS (ratio 0.702), transfer parts NOT RUN, shuffled-cascade control NOT flagged
