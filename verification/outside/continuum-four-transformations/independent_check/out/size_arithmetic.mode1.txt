@@ -1,0 +1,41 @@
+== TESS ==
+row bytes from the recalled column list: 100
+-- assume 10 non-table blocks (primary header, table header, aperture extension, padding of other HDUs)
+   sector 38: table blocks 4006; rows between 115345 and 115372; amendment 115338 inside range: False
+   sector 65: table blocks 4185; rows between 120500 and 120528; amendment 120486 inside range: False
+-- assume 11 non-table blocks (primary header, table header, aperture extension, padding of other HDUs)
+   sector 38: table blocks 4005; rows between 115316 and 115344; amendment 115338 inside range: True
+   sector 65: table blocks 4184; rows between 120471 and 120499; amendment 120486 inside range: True
+-- assume 12 non-table blocks (primary header, table header, aperture extension, padding of other HDUs)
+   sector 38: table blocks 4004; rows between 115287 and 115315; amendment 115338 inside range: False
+   sector 65: table blocks 4183; rows between 120442 and 120470; amendment 120486 inside range: False
+Result: size plus row length gives a window of 29 rows; the header-block count shifts it by 29 rows per block.
+Exact counts (115,338 and 120,486) are NOT derivable from sizes alone. The only (R,H) pair that reproduces both sizes from the stated counts is R=100, H=11 (tess_size_consistency.py).
+Do the conclusions depend on the exact count? Blocks of 4,224 samples at flow level 1 (rows/2):
+   sector 38, H=10: level-1 blocks 13..13; level-2 blocks 6..6
+   sector 38, H=11: level-1 blocks 13..13; level-2 blocks 6..6
+   sector 38, H=12: level-1 blocks 13..13; level-2 blocks 6..6
+   sector 65, H=10: level-1 blocks 14..14; level-2 blocks 7..7
+   sector 65, H=11: level-1 blocks 14..14; level-2 blocks 7..7
+   sector 65, H=12: level-1 blocks 14..14; level-2 blocks 7..7
+Level 2 needs 202,752 rows; the sector length at 20 s cannot supply that (27.4 d x 4,320 = 118,368): True
+So 'highest populated level is 1' and 'at least 5 of 7 aligned levels empty' follow from sector length and block size alone;
+'13 and 14 blocks' follows from size plus the 100-byte row to within the 29-row window (robust: boundaries are 109,824 / 118,272 / 122,496 rows).
+'At most' is not guaranteed by sizes: the size bound for sector 38 is 115,344 under H=11, not 115,338.
+Gaps and flags (QUALITY != 0, NaN) cannot be known without reading the columns.
+== Wind/WAVES RAD2 cadence ==
+fit-set daily sizes: [8049179, 8286263, 8806252, 6401232, 8192307, 8270051, 8330045, 8465653] spread 6.40 to 8.81 MB
+Cadence from size needs bytes per sweep, which depends on F, the stored variables and CDF compression; none is known from sizes.
+-- F=256, two float32 spectra + 8-byte epoch (2,056 B/sweep)
+   implied cadence per day (s): 22.1, 21.4, 20.2, 27.8, 21.7, 21.5, 21.3, 21.0 | mean 22.1
+   N chosen by the 12-block rule at the mean cadence: 2048
+-- F=256, two float32 spectra + 40 B of other per-sweep fields (2,088)
+   implied cadence per day (s): 22.4, 21.8, 20.5, 28.2, 22.0, 21.8, 21.7, 21.3 | mean 22.5
+   N chosen by the 12-block rule at the mean cadence: 2048
+-- calibrated so the mean day is 33 s (3,100 B/sweep): computed 3094 B/sweep
+   implied cadence per day (s): 33.2, 32.3, 30.4, 41.8, 32.6, 32.3, 32.1, 31.6 | mean 33.3
+   N chosen by the 12-block rule at the mean cadence: 1024
+Reading: with two spectra at F=256 the cadence is about 22 s (N=2048); the amendment's 33 s needs about 3,100 B/sweep, i.e. extra stored data or a different F.
+The ~20 percent spread in daily size also says cadence is not constant (mode changes), as the dataset notes say (a few tenths of a second to 192 s).
+No cadence is derivable from sizes alone; the plan's rule reads N from the fit files, so the validity of the plan does not depend on the 33 s figure.
+DONE size_derivations

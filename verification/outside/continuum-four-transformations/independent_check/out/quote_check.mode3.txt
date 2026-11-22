@@ -1,0 +1,22 @@
+[## A1.] block line (amendment line 53): frozen plan line(s) [150]; present in amended plan: False | K below the binomial 1 percent excess point (K < 4 when S = 12, K < 6 
+[## A1.] block line (amendment line 59): frozen plan line(s) NOT FOUND; present in amended plan: True | K below the binomial 1 percent excess point, the smallest k with P(Bin
+[## A2.] block line (amendment line 76): frozen plan line(s) [209]; present in amended plan: False | - K2 Nothing found in noise. 200 seeds per class, N = 4,096.
+[## A2.] block line (amendment line 76): frozen plan line(s) [211]; present in amended plan: False |   - The per-segment rejection rate at 0.05 must be at most 0.086 (the 
+[## A2.] block line (amendment line 83): frozen plan line(s) NOT FOUND; present in amended plan: False | - K2 Nothing found in noise. 1,000 seeds per class at each window leng
+[## A2.] block line (amendment line 83): frozen plan line(s) NOT FOUND; present in amended plan: False |   - A class is flagged if 68 or more of its 1,000 segments have p at m
+[## A3.] block line (amendment line 107): frozen plan line(s) [91]; present in amended plan: False | Levels -4 to +5 are kept, giving 30 features. A level outside a series
+[## A3.] block line (amendment line 107): frozen plan line(s) [94]; present in amended plan: False | Matched random detectors are R = 9,999 random permutations of the entr
+[## A3.] block line (amendment line 107): frozen plan line(s) [95]; present in amended plan: False | This compares the arrangement of the template, not just "irreversible 
+[## A4.] block line (amendment line 147): frozen plan line(s) [163]; present in amended plan: False | Inside each kept block, the N-sample segment starts at the offset in 0
+[## A4.] block line (amendment line 155): frozen plan line(s) [134]; present in amended plan: False | | Amplitude map | strictly increasing maps, polarity flip | exact code
+[## A5.] block line (amendment line 190): frozen plan line(s) [65]; present in amended plan: False | p(pi) = (n(pi) + 1/2) / (sum of n + 3)
+[## A5.] block line (amendment line 190): frozen plan line(s) [68]; present in amended plan: False | Windows with tied values are left out and their number is recorded.
+[## A5.] block line (amendment line 190): frozen plan line(s) [133]; present in amended plan: False | | Quantization | 12 bits and 8 bits, uniform bins over the segment's 0
+[## A5.] block line (amendment line 190): frozen plan line(s) [142]; present in amended plan: False | If more than 20 percent of a segment's windows are tied, the segment c
+[## A6.] block line (amendment line 227): frozen plan line(s) [180]; present in amended plan: False | For Wind/WAVES the four channels used are those at positions round((q 
+[## A6.] block line (amendment line 233): frozen plan line(s) [137]; present in amended plan: False | | Window length | 2,048 and 8,192 samples | where the data allow 12 or
+[## A6.] block line (amendment line 233): frozen plan line(s) [104]; present in amended plan: False | - The flow is block averaging by 2, applied to the whole valid stretch
+new text present in amended plan: True | K below the binomial 1 percent excess point, the smallest k 
+new text present in amended plan: False | A class is flagged if 68 or more of its 1,000 segments have 
+new text present in amended plan: False | K2 Nothing found in noise. 1,000 seeds per class at each win
+FAILS 4

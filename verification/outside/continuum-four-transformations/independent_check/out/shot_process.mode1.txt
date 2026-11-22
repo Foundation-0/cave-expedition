@@ -1,0 +1,11 @@
+amendment: u at lags 1,2,4,8,16 = +0.025, +0.062, +0.095, +0.072, +0.027; per-segment mean/sd at lag 4 = 1.21
+seed 20261241 marginal   bernoulli sum: u = +0.028, +0.052, +0.095, +0.077, +0.021 | lag-4 segments: mean +0.0958 sd 0.0737 mean/sd 1.30 mean/(sd/sqrt(256)) 20.8
+   reversal: u = -0.028, -0.052, -0.095, -0.077, -0.021 | polarity: u = +0.028, +0.052, +0.095, +0.077, +0.021
+seed 20261241 marginal   bernoulli max: u = +0.026, +0.046, +0.091, +0.083, +0.023 | lag-4 segments: mean +0.0914 sd 0.0733 mean/sd 1.25 mean/(sd/sqrt(256)) 20.0
+seed 20261241 unit_innov bernoulli sum: u = +0.028, +0.052, +0.095, +0.077, +0.021 | lag-4 segments: mean +0.0958 sd 0.0737 mean/sd 1.30 mean/(sd/sqrt(256)) 20.8
+seed 20261241 marginal   poisson   sum: u = +0.027, +0.049, +0.090, +0.073, +0.026 | lag-4 segments: mean +0.0903 sd 0.0763 mean/sd 1.18 mean/(sd/sqrt(256)) 18.9
+seed 20261242 marginal   bernoulli sum: u = +0.018, +0.056, +0.095, +0.076, +0.023 | lag-4 segments: mean +0.0953 sd 0.0783 mean/sd 1.22 mean/(sd/sqrt(256)) 19.5
+seed 20261242 marginal   bernoulli max: u = +0.014, +0.050, +0.093, +0.080, +0.020 | lag-4 segments: mean +0.0935 sd 0.0763 mean/sd 1.23 mean/(sd/sqrt(256)) 19.6
+seed 20261242 unit_innov bernoulli sum: u = +0.018, +0.056, +0.095, +0.076, +0.023 | lag-4 segments: mean +0.0953 sd 0.0783 mean/sd 1.22 mean/(sd/sqrt(256)) 19.5
+seed 20261242 marginal   poisson   sum: u = +0.017, +0.055, +0.097, +0.073, +0.024 | lag-4 segments: mean +0.0978 sd 0.0712 mean/sd 1.37 mean/(sd/sqrt(256)) 22.0
+DONE sim_shots

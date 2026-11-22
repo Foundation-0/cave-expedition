@@ -1,0 +1,26 @@
+seeds: series 20261401, surrogate 20261402; n=1024; lags [1, 2, 4, 8, 16, 32, 64, 128]
+base p = 0.92
+no ties, exp(x): normal scores / pool / statistics / standardised / p identical: [True, True, True, True, True]
+no ties, x^3: normal scores / pool / statistics / standardised / p identical: [True, True, True, True, True]
+no ties, x^3+x: normal scores / pool / statistics / standardised / p identical: [True, True, True, True, True]
+no ties, ranks of x: normal scores / pool / statistics / standardised / p identical: [True, True, True, True, True]
+no ties, 7x+3: normal scores / pool / statistics / standardised / p identical: [True, True, True, True, True]
+CLAIM id-noties | pool, features, p identical for x, exp(x), x^3, x^3+x, ranks (no ties, same seeds) | text=exactly equal | mine=exactly equal | REPRODUCED
+tied series: 62 distinct values in 1024
+with ties, exp: identical: [True, True, True, True, True]
+with ties, cube: identical: [True, True, True, True, True]
+with ties, ranks: identical: [True, True, True, True, True]
+CLAIM id-ties | same identity for a series with exact ties (text: tied values get the same score, mid-ranks) | text=exactly equal | mine=exactly equal | REPRODUCED
+   tied-window share at lag 1 in the real series: 0.196
+float caveat: exp of values spaced 1e-17 near 0 gives 1 distinct values from 8
+float caveat: cube of values of size 1e-120 gives 1 distinct values from 8 (underflow)
+CONTROL exp creates ties in float arithmetic (so 'strictly increasing' must hold in floats) | wrong input flagged = True
+CONTROL cube underflow creates ties | wrong input flagged = True
+polarity: normal scores of -x equal -(normal scores of x) bitwise: True; max abs difference 0.000e+00
+polarity: pool of -x equals the negated pool bitwise: True; segment p 0.92 vs 0.92
+CLAIM id-polarity-p | segment p-value equal for x and -x | text=equal | mine=0.92 vs 0.92 | REPRODUCED
+CLAIM id-polarity-pool | pool of -x is exactly the negated pool of x (K1, line 263) | text=exact | mine=bitwise equal | REPRODUCED
+normal scores of -x differ bitwise from -(normal scores of x) in 0 of 20 random series of length 1024
+CONTROL a non-monotone map is detected as different | wrong input flagged = True
+CONTROL old raw-value surrogates are NOT invariant under exp (the problem the change removes) | wrong input flagged = True
+DONE pipeline_identity

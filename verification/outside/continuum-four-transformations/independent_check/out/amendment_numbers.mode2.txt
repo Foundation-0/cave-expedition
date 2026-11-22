@@ -1,0 +1,44 @@
+# PREREG-01a: control rule
+INFO S=12: smallest k with tail<=0.01 is 4 (tail 0.002236; tail at k-1 0.019568)
+INFO S=24: smallest k with tail<=0.01 is 5 (tail 0.005975; tail at k-1 0.029782)
+INFO S=32: smallest k with tail<=0.01 is 6 (tail 0.004600; tail at k-1 0.020354)
+CLAIM 01a-k12 | 1% point at S=12 | amendment=4 | mine=4.000000 | REPRODUCED
+CLAIM 01a-k24 | 1% point at S=24 | amendment=5 | mine=5.000000 | REPRODUCED
+CLAIM 01a-k32 | 1% point at S=32 | amendment=6 | mine=6.000000 | REPRODUCED
+CLAIM 01a-S12-ctrl | old rule, one control invalid, S=12 | amendment=0.118360 | mine=0.118360 | REPRODUCED
+CLAIM 01a-S12-inst | old rule, instrument (3 controls) invalid, S=12 | amendment=0.314711 | mine=0.314711 | REPRODUCED
+CLAIM 01a-S12-any | old rule, >=1 of 3 instruments invalid, S=12 | amendment=0.678173 | mine=0.678173 | REPRODUCED
+CLAIM 01a-S12-new | binomial rule only, instrument invalid, S=12 | amendment=0.006694 | mine=0.006694 | REPRODUCED
+INFO S=12 binomial-only single control invalid = 0.002236
+CLAIM 01a-S32-ctrl | old rule, one control invalid, S=32 | amendment=0.073805 | mine=0.073805 | REPRODUCED
+CLAIM 01a-S32-inst | old rule, instrument (3 controls) invalid, S=32 | amendment=0.205477 | mine=0.205477 | REPRODUCED
+CLAIM 01a-S32-any | old rule, >=1 of 3 instruments invalid, S=32 | amendment=0.498444 | mine=0.498444 | REPRODUCED
+CLAIM 01a-S32-new | binomial rule only, instrument invalid, S=32 | amendment=0.013736 | mine=0.013736 | REPRODUCED
+INFO S=32 binomial-only single control invalid = 0.004600
+INFO S=12: old rule passes K<=1; ratio clause allows K<=1, binomial clause allows K<=3; ratio binds = True
+INFO S=24: old rule passes K<=2; ratio clause allows K<=2, binomial clause allows K<=4; ratio binds = True
+INFO S=32: old rule passes K<=3; ratio clause allows K<=3, binomial clause allows K<=5; ratio binds = True
+CONTROL 01a wrong number 0.324711 | wrong input flagged = True
+CONTROL 01a rule with K<=3 at S=12 (wrong point) differs | wrong input flagged = True
+# PREREG-01b: K2 cutoff
+CLAIM 01b-t18 | P(Bin(200,.05)>=18) | amendment=0.012089 | mine=0.012089 | REPRODUCED
+CLAIM 01b-t19 | P(Bin(200,.05)>=19) | amendment=0.005824 | mine=0.005824 | REPRODUCED
+INFO tails n=200: >=17 0.023799, >=18 0.012089, >=19 0.005824, >=20 0.002665, >=21 0.001160
+CLAIM 01b-k200 | exact 1% point n=200 | amendment=19 | mine=19.000000 | REPRODUCED
+CLAIM 01b-oldpass | 0.086 of 200 passes K up to | amendment=17 | mine=17.000000 | REPRODUCED
+INFO reviewers' cutoff (fail at >=21): per-class false-fail 0.001160, over 21 classes 0.024078
+CLAIM 01b-fam21 | reviewers' 21-class false-fail near 2.4 percent | amendment=0.024 | mine=0.024078 | REPRODUCED
+CLAIM 01b-pow200-19 | P(Bin(200,.08)>=19): 200 draws failing at 19 or more (first review cutoff) | amendment=0.2506 | mine=0.250561 | REPRODUCED
+CLAIM 01b-pow200-21 | P(Bin(200,.08)>=21): 200 draws failing at 21 or more (second review cutoff) | amendment=0.1225 | mine=0.122457 | REPRODUCED
+INFO P(Bin(200,.08)>=18) = 0.336627, >=19 = 0.250561
+CLAIM 01b-k1000 | 1% point n=1000 | amendment=68 | mine=68.000000 | REPRODUCED
+CLAIM 01b-t68 | P(Bin(1000,.05)>=68) | amendment=0.0074 | mine=0.007408 | REPRODUCED
+INFO n=1000 tails: >=67 0.010591 (above 0.01 = True), >=68 0.007408
+CLAIM 01b-pow1000-08 | P(Bin(1000,.08)>=68) | amendment=0.9302 | mine=0.930206 | REPRODUCED
+CLAIM 01b-pow1000-07 | P(Bin(1000,.07)>=68) | amendment=0.6155 | mine=0.615490 | REPRODUCED
+CLAIM 01b-falsepres | P(Bin(32,.08)>=7) false presence at rate .08, S=32 | amendment=0.0119 | mine=0.011850 | REPRODUCED
+INFO at true rate .08, S=12 P(K>=5)=0.001606, S=24 P(K>=6)=0.010007
+INFO calibrated-class false flag: old one length 0.012089; new per length 0.007408; new over 3 lengths 0.022059; over 4 lengths 0.029303
+CONTROL 01b wrong 18->19 tail claimed 0.012089 | wrong input flagged = True
+CONTROL 01b wrong power claim 0.9902 | wrong input flagged = True
+DONE amendment_numbers

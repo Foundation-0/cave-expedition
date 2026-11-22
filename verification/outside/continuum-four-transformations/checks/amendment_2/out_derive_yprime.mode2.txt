@@ -1,0 +1,9 @@
+== Part 1: population mid-rank autocorrelation of g^2 ==
+check at rho = 0: -0.000010 (should be 0); at rho = 0.999999: 0.999996 (should be near 1)
+derived c (rho_S at lag 16 = 1/2): 0.985964 (rho_S at lag 16 = 0.500000); rounded down to 4 decimals: 0.9859
+with c = 0.9859: rho_S at lags 15, 16, 17 = 0.5178, 0.4986, 0.4804; first lag below 1/2: 16
+earlier c = 2^(-1/32) = 0.978572: value correlation c^(2k) = 1/2 at k = 16, but mid-rank rho_S at lag 16 = 0.3683; first lag below 1/2: 11
+== Part 2: tau0 (median over 32 fit segments) and level shift, 10 seeds each ==
+y' at derived c: tau0 by seed [16.0, 17.0, 15.5, 16.0, 16.0, 16.5, 15.0, 15.0, 17.0, 16.0]; shifts [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+y' at c = 2^(-1/32): tau0 by seed [11.0, 10.0, 10.5, 11.0, 11.5, 10.5, 11.0, 10.0, 10.5, 10.5]; shifts [3, 3, 3, 3, 4, 3, 3, 3, 3, 3]
+cascade: tau0 by seed [9.0, 18.0, 10.0, 13.0, 10.5, 13.5, 11.5, 10.0, 15.0, 12.0]; shifts [3, 4, 3, 4, 3, 4, 4, 3, 4, 4]

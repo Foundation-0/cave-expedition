@@ -1,0 +1,17 @@
+amendment_numbers: modes IDENTICAL; rc=0 stderr_bytes=0; md5 009cdc60dea3776f31c4bc3398ed39a6
+review_figures: modes IDENTICAL; rc=0 stderr_bytes=0; md5 d802d9acb16f307e087c550164229818
+symmetry_sawtooth: modes IDENTICAL; rc=0 stderr_bytes=0; md5 c6aec652bc164af5adb9a6d3ada2df43
+offset_rule: modes IDENTICAL; rc=0 stderr_bytes=0; md5 534198b28c72811bce7e648aee548fe7
+budget_and_channels: modes IDENTICAL; rc=0 stderr_bytes=0; md5 ddf97a3e4ac7c9887c6135692518cd5d
+plan_numbers: modes IDENTICAL; rc=0 stderr_bytes=0; md5 7b86139462758d1c2c28cab145b61cbe
+manifest_check: modes IDENTICAL; rc=0 stderr_bytes=0; md5 fdba7d2685a70d7d2410690f9304ef58
+quote_check: modes IDENTICAL; rc=1 stderr_bytes=0; md5 38fa44abfdc4f35982254207a04486e7
+arrow_null: modes IDENTICAL; rc=0 stderr_bytes=0; md5 0be7d0791fc66d81d19e095aacb883ca
+size_arithmetic: modes IDENTICAL; rc=0 stderr_bytes=0; md5 f8469ae3f2989f55d43a6dae0e9bd1fa
+tess_size_consistency: modes IDENTICAL; rc=0 stderr_bytes=0; md5 4dc00101b07949b31a6fe163d375bd4e
+outcomes: modes IDENTICAL; rc=0 stderr_bytes=0; md5 e0a6397d4d94a46274c857b17815f7b9
+pipeline_identity: modes IDENTICAL; rc=0 stderr_bytes=0; md5 bf806b945abf7a930ff4f3c95b46fe37
+tie_rates: modes IDENTICAL; rc=0 stderr_bytes=0; md5 c4ac39595d682640c5dcbb60bc2a32b7
+shot_process: modes IDENTICAL; rc=0 stderr_bytes=0; md5 b462ae462e67d1e54d90e42df992a66c
+k2_flag_rates: modes IDENTICAL; rc=0 stderr_bytes=0; md5 d26a50ec0f98e997b6aa53014304d660
+k3_detection: modes IDENTICAL; rc=0 stderr_bytes=0; md5 952d19412398aa2deeecb632f5885d59
