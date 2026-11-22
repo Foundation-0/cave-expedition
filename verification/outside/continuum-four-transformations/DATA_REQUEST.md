@@ -1,6 +1,7 @@
 # Data request
 
-Status: not yet fetched. No file below has been downloaded. Sizes come from HTTP HEAD requests and archive listings made on 2026-11-21.
+Status: fetched on 2026-11-22 and hash-pinned (`FETCH_MANIFEST.tsv`). No file has been opened. Sizes below come from HTTP HEAD requests and archive listings made on 2026-11-21, and every downloaded file matched its listed size.
+The files were fetched before the analysis code and known-answer outputs were committed, which the plan had required. This deviation is recorded in `AMENDMENT_1.md`.
 
 Four independent instruments in four domains: gravitational-wave strain (LIGO, via GWOSC), Mars ground motion (InSight SEIS, NASA PDS), solar radio emission (Wind/WAVES, NASA SPDF) and stellar brightness (TESS, NASA MAST).
 Each instrument has a fit file set and a verdict file set from a different date (see `PREREG.md` section 8). Total 634,994,866 bytes (about 635 MB).
@@ -51,10 +52,11 @@ TESS: URL `https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:TESS/product/<
 
 The least processed TESS product, the target pixel file with its RAW_CNTS column, is 334,123,200 bytes for sector 38 and 348,713,280 bytes for sector 65. It is left for a later run to keep this one small.
 
-## How each file is pinned on fetch
+## How the files were fetched and pinned
 
-1. Fetching starts only after the analysis code and the outputs of known-answer tests K1 to K6 are committed.
-2. Each file goes into a new, empty directory. No code is run from that directory, and Python reads it with `-I`.
-3. SHA-256 is computed on download and written to `DATA_MANIFEST.sha256` together with URL, byte count, HTTP Last-Modified and ETag. The manifest is committed before any file is opened for analysis.
-4. Archive cross-checks: for SEIS, the MD5 line for each file in the bundle manifest `urn-nasa-pds-insight_seis.md5`. For TESS, the S3 ETag (equal to the MD5 for single-part objects, checked against a local MD5). GWOSC and SPDF publish no per-file checksum for these files, so byte count and Last-Modified are recorded.
-5. Verdict files are hashed and then left unopened until the fit stage is committed.
+1. The plan said fetching would start only after the analysis code and the outputs of known-answer tests K1 to K6 were committed. The files were fetched on 2026-11-22, before that. This deviation is recorded in `AMENDMENT_1.md`.
+2. Each file went into a new, empty directory. No code is run from that directory, and Python reads it with `-I`.
+3. SHA-256 was computed on download, reading each file as raw bytes without parsing it. `FETCH_MANIFEST.tsv` records file name, URL, byte count, SHA-256 and fetch time. HTTP Last-Modified and ETag were not recorded there.
+4. Archive cross-checks. The plan promised these at fetch time, and they were not done then: the manifest records no MD5 and no ETag. They will be done after this amendment is committed and before any file is opened: for SEIS, the MD5 line for each file in the bundle manifest `urn-nasa-pds-insight_seis.md5`.
+For TESS, the S3 ETag from a HEAD request (equal to the MD5 for single-part objects), compared with a local MD5 of the stored file. Computing a local MD5 reads a stored file as raw bytes again, without parsing it. GWOSC and SPDF publish no per-file checksum for these files. The results will be committed before any file is opened.
+5. Fit files are opened only after the analysis code and known-answer outputs are committed. Verdict files stay unopened until the fit-stage results are committed.

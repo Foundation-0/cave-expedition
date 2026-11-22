@@ -1,0 +1,24 @@
+== known-answer tests, one mode ==
+K2, 9 classes x 1,000 seeds at 4,096 and 2,048: 8.6 h
+K1 identity of plain, exp and cube pipelines, 14 classes x 20 seeds: 0.2 h
+K3, 4 cases x 200 seeds over 7 runs, plus the must-fail control at native: 2.9 h
+K4, 10 seeds, fit and verdict streams (builder: 490 s per seed for one set of streams): 2.7 h
+K5, 4 cases x 10 seeds x 2 series (fit and verdict) x 110 units (2^19 samples, levels 0 to 3): 5.6 h
+Law 2b instance tests needing new pools (W, F, D): 12 cases x 200 seeds at N: 4.6 h
+Law 2b instance tests on saved pools (Q, H, M, O4, E, B, R), allowance: 1.0 h
+total one mode 25.6 h; three modes 76.8 h
+== fit stage, one mode: 0.9 h ==
+== confirmatory verdict run, one mode ==
+presence: 3 instruments x 13/2 + TESS x 11/2 relative, 32 segments, 4 pools (real, C2, C3, C4): 2.0 h
+arrow and profile transfer: reuse presence pools: 0.0 h
+scale flow: 4 instruments x 5 runs x about 150 units x 3 pools (real, C2, C3): 5.7 h
+total one mode 7.8 h; three modes 23.3 h
+== Law 2b search, one mode, worst case (all three adverse types occur) ==
+(a) and (b): new pools for W, F, D on 3 counting instruments, presence runs, 4 pools: 4.8 h
+(c): new flow pools for W, F, D, B, R on 3 instruments x 5 runs x 150 units x 3 pools: 21.5 h
+G1 null replicates: 102 tests x 10 (only instances that pass), stop at first failing run, about 2 pools x 32 segments: 41.5 h
+total one mode 67.8 h; three modes 203.3 h
+== totals, processor-hours ==
+without any adverse outcome: 102.8 h
+worst case: 306.1 h
+frozen plan, K2 alone, three modes as the builder ran it: 8.0 h

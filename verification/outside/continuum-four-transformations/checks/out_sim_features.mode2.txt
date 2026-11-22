@@ -1,0 +1,23 @@
+== Part 1. K3 shot process (rate 0.01, decay 10 samples, height 3, AR(1) 0.9 background) ==
+one series of 2^20 samples, seed 20261122:
+  A: tau=1 a1=-0.1696 s=-0.0524 u=+0.0248; tau=2 a1=-0.2024 s=+0.0094 u=+0.0616; tau=4 a1=-0.2077 s=+0.1059 u=+0.0951; tau=8 a1=-0.1571 s=+0.1412 u=+0.0720; tau=16 a1=-0.0634 s=+0.0577 u=+0.0273
+  C = A reversed: tau=1 a1=+0.1696 s=+0.0524 u=-0.0248; tau=2 a1=+0.2024 s=-0.0094 u=-0.0616; tau=4 a1=+0.2077 s=-0.1059 u=-0.0951; tau=8 a1=+0.1571 s=-0.1412 u=-0.0720; tau=16 a1=+0.0634 s=-0.0577 u=-0.0273
+  -A: tau=1 a1=+0.1696 s=+0.0524 u=+0.0248; tau=2 a1=+0.2024 s=-0.0094 u=+0.0616; tau=4 a1=+0.2077 s=-0.1059 u=+0.0951; tau=8 a1=+0.1571 s=-0.1412 u=+0.0720; tau=16 a1=+0.0634 s=-0.0577 u=+0.0273
+  -C: tau=1 a1=-0.1696 s=-0.0524 u=-0.0248; tau=2 a1=-0.2024 s=+0.0094 u=-0.0616; tau=4 a1=-0.2077 s=+0.1059 u=-0.0951; tau=8 a1=-0.1571 s=+0.1412 u=-0.0720; tau=16 a1=-0.0634 s=+0.0577 u=-0.0273
+u over 200 independent segments of 4096 samples, segment i uses seed 20261122 + 1 + i:
+  tau=1: mean +0.0144, per-segment SD 0.0689, mean/SD +0.21, standard error 0.0049, mean/SE +3.0
+  tau=2: mean +0.0625, per-segment SD 0.0747, mean/SD +0.84, standard error 0.0053, mean/SE +11.8
+  tau=4: mean +0.0869, per-segment SD 0.0721, mean/SD +1.21, standard error 0.0051, mean/SE +17.1
+  tau=8: mean +0.0654, per-segment SD 0.0837, mean/SD +0.78, standard error 0.0059, mean/SE +11.1
+  tau=16: mean +0.0085, per-segment SD 0.0860, mean/SD +0.10, standard error 0.0061, mean/SE +1.4
+
+== Part 2. Tied order-3 windows at lag 1 after 8-bit quantization ==
+200 series per case, length 4096. AR(1) start state from its stationary law, innovations N(0, 1).
+Uniform bins: 256 equal-width bins over the series' own 0.1 to 99.9 percent quantile range, floor, then clipped to 0..255.
+Equal-count bins: floor(256 * (r - 1/2) / n) with r the 1-based rank (no ties in the unquantized series).
+Case k, series i uses seed 20261124 + 1000 k + i.
+  AR(1) 0.9: uniform bins mean 0.058 (SD 0.006); equal-count bins mean 0.049 (SD 0.005)
+  AR(1) 0.99: uniform bins mean 0.151 (SD 0.020); equal-count bins mean 0.129 (SD 0.015)
+  AR(1) 0.999: uniform bins mean 0.292 (SD 0.059); equal-count bins mean 0.252 (SD 0.049)
+  AR(1) 0.9999: uniform bins mean 0.346 (SD 0.085); equal-count bins mean 0.294 (SD 0.065)
+  exp(3 z), z = AR(1) 0.9 scaled to unit SD: uniform bins mean 0.914 (SD 0.033); equal-count bins mean 0.049 (SD 0.005)
