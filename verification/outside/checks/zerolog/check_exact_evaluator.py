@@ -8,8 +8,8 @@ Checks: with oracles written here (not taken from the sibling team), that
   B: the four-ray test for four dyadic points agrees with exact Fourier-Motzkin elimination, that the complete set
      for m points is the C(m,3) chord triples (m = 4, 5, 6, extreme rays enumerated exactly), that each of the four
      rays is needed, and that the two witness inequalities in the study README reject a feasible convex point;
-  C: the seasonal-differencing identity for p = 1..5 symbolically (SymPy).
-Backs: VERDICTS.md section 1 ("No-log theorems A, B, C (010)"), section 2 (label N0 with the named prior art) and
+  C: the lag-p cross-ratio identity for p = 1..5 symbolically (SymPy).
+Backs: VERDICTS.md section 1 ("No-log theorems A, B, C (010)"), section 2 (the N0 labels for A and B; C carries no prior-art label) and
 the section 3 row "fractals 60 README" (mistranscribed witness inequalities).
 The team's functions are loaded only as the system under test and compared with the oracles here.
 Needs: Python 3 with SymPy, and a clone of Foundation-0/fractals at draft PR 60 (study folder

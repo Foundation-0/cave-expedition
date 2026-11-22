@@ -405,7 +405,7 @@ def part_b2_controls(seed=881002):
     need(res["honest_accept"] == "accept" and res["honest_refute_smaller_s"] == "reject", "honest paths")
     refused = ("indefinite_matrix_with_negative_D", "bool_D_identity_holds", "float_L_identity_holds",
                "float_refute_vector",
-"replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
+               "replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
                "refute_vector_on_ok_matrix",
                "c_zero_and_D_zero_on_indefinite_matrix", "refute_zero_vector")
     for k in refused:

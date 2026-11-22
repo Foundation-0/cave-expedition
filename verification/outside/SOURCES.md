@@ -44,8 +44,8 @@ Each identifier was fetched on 2026-11-22 from its public page or from Crossref 
 The earlier text of our audit and one ruling pointed to "Greene, Econometric Analysis". Nobody on our side read that book. That citation is withdrawn. What was read is below.
 
 - **Greene's lecture slides.** W. Greene, "Econometrics I, Part 5: Regression Algebra and Fit, Restricted Least Squares", lecture slides, Stern School of Business, New York University, 36 slides, PDF dated 25 July 2017.
-  - Slide 5-33 gives the restricted solution `b* = b - (X'X)^-1 R' [R (X'X)^-1 R']^-1 (Rb - q)`.
-  - Slide 5-34 names `Rb - q` the discrepancy vector.
+  - Slide 5-34 gives the restricted solution `b* = b - (X'X)^-1 R' [R (X'X)^-1 R']^-1 (Rb - q)`.
+  - Slide 5-35 names `Rb - q` the discrepancy vector.
   - We hold the PDF but did not record the address it came from, so we cannot give an identifier that resolves. Anyone who wants to check it should search for the title.
 - **The notes that carry the residual-sum formula.** "Restricted LS", two pages of lecture notes dated 27 November 2018, at https://ruc-econ.github.io/Lecture_Notes/PG_econometrics/Restricted_LS.pdf. The file names no author. The address resolves and returns the PDF.
   - Page 2 displays `RSS_r = RSS_ur + (R b - r)' [R (X'X)^-1 R']^-1 (R b - r)`, which is the formula the ruling twoloop-stack F1 matches symbol by symbol. The formula has no equation number.
