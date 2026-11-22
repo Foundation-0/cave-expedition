@@ -1,0 +1,15 @@
+INFO manifest header: ['file', 'url', 'bytes', 'sha256', 'fetch_time_utc']
+CLAIM waves-fit-sum | WAVES fit per-file bytes sum to stated total | amendment=64,800,982 | mine=64800982 | REPRODUCED
+CLAIM waves-verdict-sum | WAVES verdict per-file bytes sum to stated total | amendment=69,121,441 | mine=69121441 | REPRODUCED
+INFO files with a byte count parsed from DATA_REQUEST.md: 26
+CLAIM bytes-per-file | every manifest byte count equals DATA_REQUEST | amendment=every byte count matches | mine=0 mismatches of 26 | REPRODUCED
+CLAIM total | total bytes | amendment=634,994,866 | mine=634,994,866 | REPRODUCED
+CLAIM less-would-do | dropping L1 fit saves 126 MB: 509,128,939 | amendment=509,128,939 | mine=509,128,939 | REPRODUCED
+CLAIM rows | 26 files | amendment=26 | mine=26 | REPRODUCED
+CLAIM times | fetch window 04:25:04 to 04:28:56 UTC on 2026-11-22 | amendment=04:25:04 to 04:28:56 | mine=04:25:04 to 04:28:56 | REPRODUCED
+CLAIM sha-format | 26 distinct 64-hex SHA-256 values | amendment=(implied) | mine=yes | REPRODUCED
+CLAIM no-local-path | FETCH_MANIFEST.tsv holds no local path | amendment=sanitised | mine=0 rows with a local path | REPRODUCED
+CLAIM url-names | each URL ends in its file name | amendment=(implied) | mine=yes | REPRODUCED
+CONTROL doctored byte count flagged | wrong input flagged = True
+CONTROL doctored local path flagged | wrong input flagged = True
+DONE manifest_check

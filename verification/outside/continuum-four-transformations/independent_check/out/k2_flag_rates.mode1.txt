@@ -1,0 +1,12 @@
+ar1_0.9  n=1024 segments=150 seeds 20261501..20261650: p<=0.05 in 5 (0.033), Wilson 95% [0.014, 0.076]; mean p 0.509
+g2       n=1024 segments=150 seeds 20261601..20261750: p<=0.05 in 11 (0.073), Wilson 95% [0.041, 0.127]; mean p 0.495
+   published K2b flag line is 129 of 1,000 (0.129): the observed rate is below it, and the interval's upper end 0.127 is below it
+absh     n=1024 segments=150 seeds 20261701..20261850: p<=0.05 in 13 (0.087), Wilson 95% [0.051, 0.143]; mean p 0.467
+   published K2b flag line is 129 of 1,000 (0.129): the observed rate is below it, and the interval's upper end 0.143 is above it
+shots    n=1024 segments= 60 seeds 20261801..20261860: p<=0.05 in 18 (0.300), Wilson 95% [0.199, 0.425]; mean p 0.188
+shots    n=2048 segments= 40 seeds 20262001..20262040: p<=0.05 in 24 (0.600), Wilson 95% [0.446, 0.737]; mean p 0.093
+shots    n=4096 segments= 40 seeds 20262101..20262140: p<=0.05 in 37 (0.925), Wilson 95% [0.801, 0.974]; mean p 0.022
+g2       n=4096 segments= 60 seeds 20261901..20261960: p<=0.05 in 3 (0.050), Wilson 95% [0.017, 0.137]; mean p 0.550
+CONTROL structureless-null rate (AR(1) 0.9) is near 0.05, not near 1: flagged = True
+CONTROL planted irreversible shots at n=4096 are detected (rate above 0.7): flagged = True
+DONE k2_flag_rates

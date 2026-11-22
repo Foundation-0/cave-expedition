@@ -1,0 +1,43 @@
+INFO Wind/WAVES series length assumed 8 days = 691200 s (section 8 lists 8 daily files per set)
+CLAIM b4224 | 12 blocks of 4,224 samples need | amendment=50688 | mine=50688 | REPRODUCED
+CLAIM tess38-L1 | TESS sector 38: blocks at flow level 1 (115338 cadences, input as stated) | amendment=13 | mine=13 | REPRODUCED
+CLAIM tess65-L1 | TESS sector 65: blocks at flow level 1 (120486 cadences, input as stated) | amendment=14 | mine=14 | REPRODUCED
+INFO TESS flow level 0: blocks (sector 38, sector 65) = [27, 28]; needs >=12: [True, True]
+INFO TESS flow level 1: blocks (sector 38, sector 65) = [13, 14]; needs >=12: [True, True]
+INFO TESS flow level 2: blocks (sector 38, sector 65) = [6, 7]; needs >=12: [False, False]
+INFO TESS flow level 3: blocks (sector 38, sector 65) = [3, 3]; needs >=12: [False, False]
+CLAIM tess-maxlvl | highest populated flow level | amendment=1 | mine=1 | REPRODUCED
+CLAIM tess-empty | aligned flow levels (of 7) empty at least | amendment=5 | mine=5 | REPRODUCED
+COULD-NOT-CHECK the cadence counts 115,338 and 120,486 (they come from the TESS files, which the clean-room rules forbid opening)
+CLAIM ww-old-cad | old rule, cadence for 12 blocks (seconds) | amendment=600/11 = 54.5 | mine=600/11 = 54.5455 | REPRODUCED
+INFO cadence 60 s: per-channel samples 11520; joined end to end 10 blocks; within channel 8 blocks
+CLAIM ww-60s-joined | review's count at 60 s (channels joined) | amendment=10 | mine=10 | REPRODUCED
+INFO cadence 192 s: per-channel samples 3600; joined end to end 3 blocks; within channel 0 blocks
+CLAIM ww-192s-joined | review's count at 192 s (channels joined) | amendment=3 | mine=3 | REPRODUCED
+CLAIM ww-60s-within | 60 s cadence, blocks within channels (plan rule) | amendment=8 | mine=8 | REPRODUCED
+CLAIM ww-192s-within | 192 s cadence, blocks within channels | amendment=0 | mine=0 | REPRODUCED
+INFO if blocks were numbered within each DAILY file: 60 s gives 1440 samples per day-channel -> 0 blocks; 20 s cadence gives 4320 -> 32 blocks
+CLAIM ww-new-4096 | cadence limit for 12 blocks at N=4096 | amendment=13.6 | mine=150/11 = 13.6364 | REPRODUCED
+CLAIM ww-new-2048 | cadence limit for 12 blocks at N=2048 | amendment=26.5 | mine=450/17 = 26.4706 | REPRODUCED
+CLAIM ww-new-1024 | cadence limit for 12 blocks at N=1024 | amendment=50 | mine=50 = 50.0000 | REPRODUCED
+CLAIM ww-new-512 | cadence limit for 12 blocks at N=512 | amendment=90 | mine=90 = 90.0000 | REPRODUCED
+INFO 33 s cadence (20945 sweeps): N=4096 gives 4 time-disjoint blocks
+INFO 33 s cadence (20945 sweeps): N=2048 gives 9 time-disjoint blocks
+INFO 33 s cadence (20945 sweeps): N=1024 gives 18 time-disjoint blocks
+INFO 33 s cadence (20945 sweeps): N=512 gives 32 time-disjoint blocks
+CLAIM ww-33s | at 33 s, largest N with >=12 blocks is 1024, with 18 blocks | amendment=1024, 18 | mine=N=1024, 18 blocks | REPRODUCED
+COULD-NOT-CHECK that the cadence is about 33 s (amendment says it is an estimate from file sizes only)
+CLAIM ch-new | revised rule: all four channels, counts differ by at most one, every J from 12 to 719 | amendment=all four, at most one apart | mine=0 violations | REPRODUCED
+CLAIM ch-old-1 | earlier draft (block b from channel b mod 4): one channel only, J from 32 to 719 | amendment=160 of 688 | mine=160 of 688 | REPRODUCED
+CLAIM ch-old-23 | earlier draft: two or three channels | amendment=176 more | mine=176 more | REPRODUCED
+CONTROL old rule flagged as single-channel at J=128 | wrong input flagged = True
+CONTROL revised rule not single-channel at J=128 | wrong input flagged = True
+INFO order 4: 1200 windows needed vs 4093 available at lag 1 (4096-3); order 5: 6000
+CLAIM armb-o5 | order 5 needs 6,000 windows (untied patterns) | amendment=6000 | mine=6000 | REPRODUCED
+CLAIM armb-o6 | order-6 transitions need 216,000 windows | amendment=216000 | mine=216000 | REPRODUCED
+CLAIM armb-pool | 32 pooled 4,096-sample segments | amendment=131072 | mine=131072 | REPRODUCED
+INFO with ties kept: order 4 has 75 patterns -> 3750; order 5 has 541 patterns -> 27050
+CLAIM n26 | files: 4 GW + 4 SEIS + 16 WAVES + 2 TESS | amendment=26 | mine=26 | REPRODUCED
+CONTROL wrong 60 s count of 10 within-channel flagged | wrong input flagged = True
+CONTROL wrong cadence limit 54.0 s flagged | wrong input flagged = True
+DONE budget_and_channels

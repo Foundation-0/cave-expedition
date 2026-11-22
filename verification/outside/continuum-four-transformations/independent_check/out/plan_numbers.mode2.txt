@@ -1,0 +1,109 @@
+# counts
+CLAIM count40 | confirmatory family, section 9 table | text=40 | mine=40 | REPRODUCED
+INFO instances per column from the 12a table: {'a': 8, 'b': 7, 'c': 6}
+CLAIM count102 | 24 + 42 + 36 from the 12a table | text=102 | mine=102 | REPRODUCED
+CLAIM thr102 | 0.05/102 | text=0.000490 | mine=0.000490 | REPRODUCED
+CONTROL wrong family size 93 flagged | wrong input flagged = True
+# per-run levels
+INFO confirmatory presence 8 runs: per-run level 1.563e-04; S=12: K>=6; S=16: K>=6; S=24: K>=7; S=32: K>=8
+INFO confirmatory TESS 7 runs: per-run level 1.786e-04; S=12: K>=6; S=16: K>=6; S=24: K>=7; S=32: K>=8
+INFO confirmatory Wind at N=2048, 5 runs (native, 2 quantizations, placement, instrument): per-run level 2.500e-04; S=12: K>=5; S=16: K>=6; S=24: K>=7; S=32: K>=8
+INFO 12a presence 8 runs: per-run level 6.127e-05; S=12: K>=6; S=16: K>=7; S=24: K>=8; S=32: K>=9
+CLAIM K8-12 | K needed at 0.00125/8, S=12 | text=6 | mine=6 | REPRODUCED
+CLAIM K8-24 | K needed at 0.00125/8, S=24 | text=7 | mine=7 | REPRODUCED
+CLAIM K8-32 | K needed at 0.00125/8, S=32 | text=8 | mine=8 | REPRODUCED
+CLAIM K102-12 | K needed at 0.05/102/8, S=12 | text=6 | mine=6 | REPRODUCED
+CLAIM K102-16 | K needed at 0.05/102/8, S=16 | text=7 | mine=7 | REPRODUCED
+CLAIM K102-24 | K needed at 0.05/102/8, S=24 | text=8 | mine=8 | REPRODUCED
+CLAIM K102-32 | K needed at 0.05/102/8, S=32 | text=9 | mine=9 | REPRODUCED
+CLAIM lvl-arrow 12a | per-run level arrow 12a | text=1.6e-4 | mine=1.63e-04 | REPRODUCED
+CLAIM lvl-scale flow 12a | per-run level scale flow 12a | text=9.8e-5 | mine=9.80e-05 | REPRODUCED
+CLAIM lvl-presence 12a | per-run level presence 12a | text=6.1e-5 | mine=6.13e-05 | REPRODUCED
+# floors
+INFO arrow 5 levels with signs: smallest p 2.70e-04; confirmatory per-run 4.17e-4 reaches: True; 12a per-run 1.63e-04 reaches: False
+INFO arrow 6 levels with signs: smallest p 3.17e-05; confirmatory per-run 4.17e-4 reaches: True; 12a per-run 1.63e-04 reaches: True
+INFO 7 features permutations: smallest p 2.08e-04; scale flow confirmatory reaches: True; 12a scale flow reaches: False
+INFO 8 features permutations: smallest p 3.48e-05; scale flow confirmatory reaches: True; 12a scale flow reaches: True
+CLAIM floor-6lev | 5 levels too large for 12a, 6 reach | text=2.7e-4 too large; 3.2e-5 | mine=2.7e-04; 3.2e-05 | REPRODUCED
+CLAIM floor-8feat | 7 features too large for 12a scale flow, 8 reach | text=2.1e-4 too large; 3.5e-5 | mine=2.1e-04; 3.5e-05 | REPRODUCED
+CONTROL floor 7 claimed reaching 12a scale flow flagged | wrong input flagged = True
+INFO arrow: smallest p 3.17e-05 <= per-run level 4.17e-04: True; adjusted (x runs) fits Holm: True
+INFO profile: smallest p 3.48e-05 <= per-run level 4.17e-04: True; adjusted (x runs) fits Holm: True
+INFO scale flow: smallest p 3.48e-05 <= per-run level 2.50e-04: True; adjusted (x runs) fits Holm: True
+INFO 12a arrow: smallest p 3.17e-05 <= per-run level 1.63e-04: True; adjusted (x runs) fits Holm: True
+INFO 12a scale flow: smallest p 3.48e-05 <= per-run level 9.80e-05: True; adjusted (x runs) fits Holm: True
+# control ceiling, 24 checks
+INFO S=12: c_max=4/12; breach bound 24 x tail = 0.00441
+INFO S=16: c_max=5/16; breach bound 24 x tail = 0.00194
+INFO S=24: c_max=6/24; breach bound 24 x tail = 0.00305
+INFO S=32: c_max=7/32; breach bound 24 x tail = 0.00334
+CLAIM ceil24 | bound over 24 checks | text=0.0045 (0.00441 at S=12) | mine=0.00441 | REPRODUCED
+# K2 gate
+CLAIM k2a-k | smallest k with tail <= 0.01/14 | text=74 | mine=74 | REPRODUCED
+CLAIM k2a-any | calibrated set flagged anywhere (14 checks), at most | text=0.0090 | mine=0.00903 (union bound 0.00907) | REPRODUCED
+CLAIM k2a-old68 | same 14 checks with the old point 68 | text=0.099 | mine=0.0989 | REPRODUCED
+CLAIM k2a-fs-50 | false-stop chance, all 7 classes at true rate 5.0% | text=0.009 | mine=0.0090 | REPRODUCED
+CLAIM k2a-fs-52 | false-stop chance, all 7 classes at true rate 5.2% | text=0.025 | mine=0.0249 | REPRODUCED
+CLAIM k2a-fs-55 | false-stop chance, all 7 classes at true rate 5.5% | text=0.091 | mine=0.0914 | REPRODUCED
+CLAIM k2a-fs-60 | false-stop chance, all 7 classes at true rate 6.0% | text=0.43 | mine=0.4297 | REPRODUCED
+CLAIM k2a-fs-70 | false-stop chance, all 7 classes at true rate 7.0% | text=>0.99 | mine=0.9961 | REPRODUCED
+CLAIM k2a-catch | class at true rate 0.07 caught per check: new point 74 vs old 68 | text=0.33 vs 0.62 | mine=0.327 vs 0.615 | REPRODUCED
+CLAIM k2b-k | smallest k with P(Bin(1000,0.10) >= k) <= 0.01/4 | text=129 | mine=129 | REPRODUCED
+INFO K2b: tail at 129 under a true rate of 0.10 = 0.00184; flag probability at true 0.11 = 0.0329, 0.12 = 0.2030, 0.129 = 0.5142
+INFO K2b: the plan's measured rates for the two classes in the clean-room check were 0.05 to 0.09; flag probability at 0.09 = 2.72e-05
+# false presence of one presence run when every segment rejects at rate r (A14 item 1; plan section 10, K2b)
+INFO rate 0.100, control shares 0: largest one-run chance over S = 12..32: 8 or 7 runs 0.01169 at (S, runs, K) = (32, 8, 8); Wind/WAVES at N = 2,048 (5 runs) 0.01187 at (26, 5, 7)
+INFO rate 0.100, control shares near 0.05 (margin share 0.30): largest one-run chance over S = 12..32: 8 or 7 runs 0.00642 at (S, runs, K) = (18, 7, 6); Wind/WAVES at N = 2,048 (5 runs) 0.00859 at (19, 5, 6)
+INFO rate 0.129, control shares 0: largest one-run chance over S = 12..32: 8 or 7 runs 0.04639 at (S, runs, K) = (32, 8, 8); Wind/WAVES at N = 2,048 (5 runs) 0.04639 at (32, 5, 8)
+INFO rate 0.129, control shares near 0.05 (margin share 0.30): largest one-run chance over S = 12..32: 8 or 7 runs 0.02219 at (S, runs, K) = (23, 8, 7); Wind/WAVES at N = 2,048 (5 runs) 0.02801 at (19, 5, 6)
+CLAIM fp-0117 | rate 0.10, control shares 0: largest one-run chance (text: 0.0117 at S = 32) | text=0.0117 | mine=0.01169 at S=32 (8 runs); 0.01187 for Wind/WAVES with 5 runs at (26, 5, 7) | DIFFERS
+CLAIM fp-0043 | rate 0.10, control shares near 0.05: 'at most 0.0043' | text=0.0043 | mine=largest 0.00859 | DIFFERS
+CLAIM fp-0008 | rate 0.10, control near 0.05, S = 32 | text=0.0008 | mine=0.00081 | REPRODUCED
+CLAIM fp-046 | rate 0.129, control shares 0: largest one-run chance | text=0.046 | mine=0.04639 | REPRODUCED
+CLAIM fp-013 | rate 0.129, control shares near 0.05: 'at most 0.013' | text=0.013 | mine=largest 0.02801 | DIFFERS
+INFO the published 0.0043 and 0.013 equal the S = 12, 5-run values (0.00433, 0.01288), not the maxima over S
+INFO across runs: with 8 independent runs at S = 32 the chance would be 3.5e-16 (rate 0.10); the runs are not independent
+CONTROL wrong bound 0.0033 flagged | wrong input flagged = True
+CONTROL wrong bound 0.0003 for S=32 flagged | wrong input flagged = True
+CONTROL wrong K2b point 120 flagged | wrong input flagged = True
+# Law 2b instance tests (P:407-409)
+CLAIM g1-k24 | null class flagged at k with tail <= 0.01/56 | text=24 | mine=24 | REPRODUCED
+CLAIM g1-t24 | P(Bin(200,.05) >= 24) | text=7.2e-5 | mine=7.20e-05 | REPRODUCED
+CLAIM g1-any | calibrated set flagged anywhere, at most | text=0.004 | mine=0.0040 | REPRODUCED
+CLAIM g1-k36 | reversible class point, tail <= 0.01/16 | text=36 | mine=36 | REPRODUCED
+CLAIM g1-t36 | P(Bin(200,.10) >= 36) | text=3.9e-4 | mine=3.88e-04 | REPRODUCED
+CLAIM g1-catch | a null rate of 0.10 is caught per check at 24 of 200 | text=0.20 | mine=0.202 | REPRODUCED
+# K3
+INFO circular-shift control passes if at most 20 of 200 segments are detected; a correct pipeline fails it if >= 21 are:
+   true detection rate 0.050: P(>= 21 of 200) = 0.0012
+   true detection rate 0.060: P(>= 21 of 200) = 0.0093
+   true detection rate 0.075: P(>= 21 of 200) = 0.0749
+   true detection rate 0.100: P(>= 21 of 200) = 0.4408
+INFO builder's circular-shift detections were 12, 27 and 11 of 200 (0.060, 0.135, 0.055); at 0.135 the control would fail with probability 0.915
+INFO with 32 segments and true detection 0.5: P(K >= 10) = 0.9900 (text: about 0.99)
+CLAIM k3-099 | 32 segments at rate 0.5 give K >= 10 with probability about 0.99 | text=about 0.99 | mine=0.9900 | REPRODUCED
+INFO K3 50-percent line: true rate 0.545 fails with probability 0.0889
+INFO K3 50-percent line: true rate 0.520 fails with probability 0.2620
+INFO K3 50-percent line: true rate 0.500 fails with probability 0.4718
+INFO K3 at 2,048 samples (published rule: 50 percent): true rate 0.700 fails with probability 0.00000; an 80 percent rule would pass with probability 0.0009
+INFO K3 at 2,048 samples (published rule: 50 percent): true rate 0.600 fails with probability 0.00168; an 80 percent rule would pass with probability 0.0000
+# K5
+INFO units=32: 1% point k=6, false departure 0.0046
+INFO units=32: 1% point k=6, false departure 0.0046
+INFO units=31: 1% point k=6, false departure 0.0039
+INFO units=15: 1% point k=4, false departure 0.0055
+INFO null case, four levels: per-seed false departure 0.0184; case fails if >= 2 of 10 seeds: 0.0139
+INFO K5 level 0: 524288 samples, J=124, k=3, units=32
+INFO K5 level 1: 262144 samples, J=62, k=1, units=32
+INFO K5 level 2: 131072 samples, J=31, k=1, units=31
+INFO K5 level 3: 65536 samples, J=15, k=1, units=15
+INFO K5 level 4: 32768 samples, J=7, k=1, units=7
+CLAIM k5-units | units at levels 0 to 3 are 32, 32, 31, 15 (level 4: 7) | text=32, 32, 31, 15 | mine=32, 32, 31, 15 | REPRODUCED
+# Wind/WAVES
+CLAIM wind-26.5 | cadence limit for 12 blocks of 2,048 + 128 in 8 days | text=26.5 s | mine=26.471 | REPRODUCED
+# compute
+INFO amended K2 at two lengths: 8.62 h (before: 10.06)
+INFO K3 per seed-case with the six nets: 5.50 length-units; 3 cases 2.11 h; with the noisy sawtooth 2.81 h
+INFO published compute: known-answer 26 per mode, fit 1, verdict 8 (23 for three): 26 x 3 + 3 + 23 = 104, or 105 with 8 h per mode; text says about 103. The K4 and K5 stream doubling cannot be recomputed from the text (no component list)
+INFO the Law 2b search adds 68 x 3 = 204 h (text 203)
+DONE plan_numbers

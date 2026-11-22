@@ -1,0 +1,21 @@
+seed 20261211
+  AR(1) phi=0.99: 8-bit uniform bins tie share mean 0.155 (sd 0.020); equal-count bins 0.132 (sd 0.015)
+  AR(1) phi=0.999: 8-bit uniform bins tie share mean 0.292 (sd 0.056); equal-count bins 0.254 (sd 0.049)
+  AR(1) phi=0.9999: 8-bit uniform bins tie share mean 0.351 (sd 0.085); equal-count bins 0.297 (sd 0.065)
+  exp(1*AR(1)) phi=0.5: uniform 0.126, equal-count 0.019
+  exp(2*AR(1)) phi=0.5: uniform 0.706, equal-count 0.019
+  exp(1*AR(1)) phi=0.9: uniform 0.254, equal-count 0.049
+  exp(2*AR(1)) phi=0.9: uniform 0.736, equal-count 0.049
+  exp(1*AR(1)) phi=0.99: uniform 0.418, equal-count 0.129
+  exp(2*AR(1)) phi=0.99: uniform 0.766, equal-count 0.130
+seed 20261212
+  AR(1) phi=0.99: 8-bit uniform bins tie share mean 0.152 (sd 0.019); equal-count bins 0.130 (sd 0.015)
+  AR(1) phi=0.999: 8-bit uniform bins tie share mean 0.292 (sd 0.056); equal-count bins 0.251 (sd 0.047)
+  AR(1) phi=0.9999: 8-bit uniform bins tie share mean 0.347 (sd 0.082); equal-count bins 0.295 (sd 0.065)
+  exp(1*AR(1)) phi=0.5: uniform 0.128, equal-count 0.019
+  exp(2*AR(1)) phi=0.5: uniform 0.706, equal-count 0.019
+  exp(1*AR(1)) phi=0.9: uniform 0.247, equal-count 0.049
+  exp(2*AR(1)) phi=0.9: uniform 0.739, equal-count 0.050
+  exp(1*AR(1)) phi=0.99: uniform 0.440, equal-count 0.132
+  exp(2*AR(1)) phi=0.99: uniform 0.758, equal-count 0.130
+DONE sim_ties

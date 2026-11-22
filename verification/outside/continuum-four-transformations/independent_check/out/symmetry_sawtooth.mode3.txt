@@ -1,0 +1,40 @@
+CLAIM pat13 | number of order-3 patterns with ties | amendment=13 | mine=13 | REPRODUCED
+CLAIM pat75 | number of order-4 patterns with ties | amendment=75 | mine=75 | REPRODUCED
+INFO order-3 reversal classes: [('000', '000'), ('001', '100'), ('010', '010'), ('011', '110'), ('012', '210'), ('021', '120'), ('101', '101'), ('102', '201')]
+INFO self-reverse order-3 patterns: ['000', '010', '101']
+CLAIM pairs13 | 001-100, 011-110 paired; 010,101,000 self-reverse | amendment=as stated | mine=as stated | REPRODUCED
+CLAIM rev6 | strict pairs 012-210, 021-120, 102-201 | amendment=as stated | mine=as stated | REPRODUCED
+CLAIM commute | polarity flip is a bijection commuting with reversal (13 patterns) | amendment=yes | mine=yes | REPRODUCED
+CLAIM commute4 | same for the 75 order-4 patterns | amendment=(implied) | mine=yes | REPRODUCED
+INFO random-sequence trials: u nonzero in 872 of 900 (series, lag) cases
+CLAIM maps | polarity (a1,a2,a3)->(-a1,-a3,-a2); reversal -> (-a1,-a2,-a3); both -> (+a1,+a3,+a2) | amendment=as stated | mine=as stated | REPRODUCED
+CLAIM u-signs | u unchanged by polarity, negated by reversal, negated by both (s unchanged by both) | amendment=as stated | mine=as stated | REPRODUCED
+CLAIM s-signs | s=a2+a3 -> -s under polarity and under reversal, +s under both | amendment=as stated | mine=as stated | REPRODUCED
+CLAIM m-rev | m1, m23 unchanged by time reversal | amendment=as stated | mine=as stated | REPRODUCED
+CONTROL wrong polarity map (-a1,-a2,-a3) refuted on an example | wrong input flagged = True
+CONTROL wrong claim 'u unchanged by reversal' refuted | wrong input flagged = True
+# sawtooth, period 64, 4096 samples, x_t = t mod 64 (rising ramp). Falling ramp also given.
+lag    1: untied counts {'012': 3968, '021': 0, '102': 0, '120': 63, '201': 63, '210': 0} tied=0 total=4094 u==0 rising: True, falling: True; reversed==negated counts: True
+lag    2: untied counts {'012': 3840, '021': 0, '102': 0, '120': 126, '201': 126, '210': 0} tied=0 total=4092 u==0 rising: True, falling: True; reversed==negated counts: True
+lag    4: untied counts {'012': 3584, '021': 0, '102': 0, '120': 252, '201': 252, '210': 0} tied=0 total=4088 u==0 rising: True, falling: True; reversed==negated counts: True
+lag    8: untied counts {'012': 3072, '021': 0, '102': 0, '120': 504, '201': 504, '210': 0} tied=0 total=4080 u==0 rising: True, falling: True; reversed==negated counts: True
+lag   16: untied counts {'012': 2048, '021': 0, '102': 0, '120': 1008, '201': 1008, '210': 0} tied=0 total=4064 u==0 rising: True, falling: True; reversed==negated counts: True
+lag   32: untied counts {'012': 0, '021': 0, '102': 0, '120': 0, '201': 0, '210': 0} tied=4032 total=4032 u==0 rising: True, falling: True; reversed==negated counts: True
+lag   64: untied counts {'012': 0, '021': 0, '102': 0, '120': 0, '201': 0, '210': 0} tied=3968 total=3968 u==0 rising: True, falling: True; reversed==negated counts: True
+lag  128: untied counts {'012': 0, '021': 0, '102': 0, '120': 0, '201': 0, '210': 0} tied=3840 total=3840 u==0 rising: True, falling: True; reversed==negated counts: True
+lag  256: untied counts {'012': 0, '021': 0, '102': 0, '120': 0, '201': 0, '210': 0} tied=3584 total=3584 u==0 rising: True, falling: True; reversed==negated counts: True
+lag  512: untied counts {'012': 0, '021': 0, '102': 0, '120': 0, '201': 0, '210': 0} tied=3072 total=3072 u==0 rising: True, falling: True; reversed==negated counts: True
+CLAIM saw-u0 | u exactly 0 on the sawtooth at lags 1,2,4,8,16 (integer comparison) | amendment=yes | mine=yes | REPRODUCED
+CLAIM saw-n120 | n(120) at lag 1 | amendment=63 | mine=63 | REPRODUCED
+CLAIM saw-n201 | n(201) at lag 1 | amendment=63 | mine=63 | REPRODUCED
+CLAIM saw-n021 | n(021) at lag 1 | amendment=0 | mine=0 | REPRODUCED
+CLAIM saw-n102 | n(102) at lag 1 | amendment=0 | mine=0 | REPRODUCED
+INFO falling ramp lag 1: n021=63 n102=63 n120=0 n201=0 (the amendment's 'n(120)=n(201)=63, n(021)=n(102)=0' holds for the rising ramp only; direction is not stated in the text)
+CLAIM saw-fall-eq | fall = 63 - (t mod 64) and -(t mod 64) give identical counts | amendment=(implied) | mine=identical | REPRODUCED
+CLAIM saw-rev-neg | reversed sawtooth and negated sawtooth give identical counts (all ten lags) | amendment=yes | mine=yes | REPRODUCED
+INFO reviewers' claim n(120)=n(201)=0 contradicted: mine 63, 63
+CONTROL a sawtooth with one planted dip is not flagged u==0 (checker detects nonzero) | wrong input flagged = True
+CONTROL a random-walk-like series has u != 0 detected | wrong input flagged = True
+CONTROL wrong claim n(120)=0 refuted | wrong input flagged = True
+INFO lag 1 products: (2n021+1)(2n201+1) = 127, (2n120+1)(2n102+1) = 127
+DONE exact_symmetry

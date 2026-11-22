@@ -1,0 +1,20 @@
+CLAIM raw | raw costs, block [10,10,0,1,11,11,2,2], N=6 | amendment=[1, 65, 5] | mine=[1, 65, 5] | REPRODUCED
+CLAIM raw-off | raw offset chosen | amendment=0 | mine=0 | REPRODUCED
+CLAIM cube | costs after x -> x^3 + x | amendment=[110224, 1103684, 104] | mine=[110224, 1103684, 104] | REPRODUCED
+CLAIM cube-off | offset after x^3+x | amendment=2 | mine=2 | REPRODUCED
+CLAIM pow2 | costs after x -> 2^x | amendment=[1048576, 2082841, 10] | mine=[1048576, 2082841, 10] | REPRODUCED
+CLAIM pow2-off | offset after 2^x | amendment=2 | mine=2 | REPRODUCED
+CLAIM polarity-raw | raw costs unchanged by polarity flip | amendment=unchanged | mine=unchanged | REPRODUCED
+CLAIM rank-identity | mid-rank costs under identity | amendment=[4, 17/4, 29/4], offset 0 | mine=['4', '17/4', '29/4'], offset 0 | REPRODUCED
+CLAIM rank-x^3+x | mid-rank costs under x^3+x | amendment=[4, 17/4, 29/4], offset 0 | mine=['4', '17/4', '29/4'], offset 0 | REPRODUCED
+CLAIM rank-2^x | mid-rank costs under 2^x | amendment=[4, 17/4, 29/4], offset 0 | mine=['4', '17/4', '29/4'], offset 0 | REPRODUCED
+CLAIM rank-polarity | mid-rank costs under polarity | amendment=[4, 17/4, 29/4], offset 0 | mine=['4', '17/4', '29/4'], offset 0 | REPRODUCED
+INFO mid-ranks of the block: ['11/2', '11/2', '1', '2', '15/2', '15/2', '7/2', '7/2']
+CLAIM rank-inv | mid-rank offset invariant under 3 increasing maps and polarity (2000 random blocks with ties) | amendment=invariant | mine=0 changes | REPRODUCED
+INFO raw-value offset changed in 1965 of 6000 (block, map) cases
+CONTROL raw rule is not invariant (must change somewhere) | wrong input flagged = True
+CONTROL claimed costs [1,65,6] flagged | wrong input flagged = True
+CONTROL claimed offset 1 after cube flagged | wrong input flagged = True
+CLAIM tiebreak | smallest offset among equal costs (helper) | amendment=1 | mine=1 | REPRODUCED
+CONTROL last-offset tie-break would give 2 (wrong) flagged | wrong input flagged = True
+DONE exact_endmatch

@@ -1,0 +1,6 @@
+Both file sizes are multiples of 2880: True
+(row bytes R, header blocks H) pairs that reproduce BOTH file sizes exactly from the stated row counts: [(100, 11)]
+  R=100, H=11, sector 38: file size alone allows 115316 to 115344 rows; amendment says 115338 (upper bound from size: 115344)
+  R=100, H=11, sector 65: file size alone allows 120471 to 120499 rows; amendment says 120486 (upper bound from size: 120499)
+Reading: the stated counts fit a fixed-row-length layout, so they could have come from sizes, but a size alone gives a range, not the exact count.
+DONE tess_size_consistency
