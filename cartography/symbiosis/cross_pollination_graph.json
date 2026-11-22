@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-3-review-sweep-and-stream-wave1",
-  "updated_at": "2026-11-22T11:00:00Z",
+  "wave": "wave-3-review-sweep-and-stream-waves-1-2",
+  "updated_at": "2026-11-22T15:00:00Z",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -9,18 +9,26 @@
     "Moissanite-Labs/nullmodem (main + PR #3)",
     "Moissanite-Labs/siliconcordat (main + Discussion #5 + Issues #15, #16, #18)",
     "Moissanite-Labs/exo (Discussion #934 + PRs #950-#1219)",
-    "Moissanite-Labs/siliquant (main + Issues #4/#10/#12/#16/#23/#25 + PRs #24/#26/#27)"
+    "Moissanite-Labs/siliquant (main + Issues #4/#10/#12/#16/#23/#25 + PRs #24/#26/#27)",
+    "wsp-self-rewriting (Exp 8 edit.npz + arXiv:2611.21885; AUDIT-097R)",
+    "nature-extended (8 DOI-verified biology/control sources NATX-N0-01..08; AUDIT-102R)",
+    "Moissanite-Labs/siliquant (PRs #12/#24/#26/#27/#28/#30/#31; AUDIT-103R2 + AUDIT-106R)",
+    "Moissanite-Labs/weft-loom (PR #44 Falcon-H1 Tiny weight-lean + PR #46 Inkling 2 Mini; AUDIT-106R + AUDIT-REVIEW-WEFT-LOOM-PR46)",
+    "Moissanite-Labs/heedle @ d5e42392 + chuanqisun/spaceship + NandhaKishorM/laya+vegaml (read-only; AUDIT-107R + AUDIT-108R)",
+    "erlang/otp supervisor.erl semantics + Moissanite-Labs/exo#1200 (AUDIT-110R)",
+    "8-portal Law-1b unmerged-PR snapshot (1,437 PRs, 387 unmerged; AUDIT-111R)",
+    "MiniMax-AI/Research @ 57842cef (read-only; AUDIT-109 PARTIAL/FRAGILE pending AUDIT-109R)"
   ],
   "nodes": [
     {
       "id": "Foundation-0/aletheia",
       "kind": "framework",
-      "role": "methodology + stdlib CLI (v2.0.0 live on PR #1 feat/aletheia-v1-framework @ 1513e0f3, AUDIT-093R2 VERIFIED, 9/9 @zero-aska Review 6010931420 closed, 6/6 CI green Python 3.11-3.13; PR #7 aa471867, PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; PR #10 EMPIRICAL_CLAIMS.md @ 5028b26a v2.1.0 blueprint in progress; OWN_TERMS_FIRST, Law 2b Transformational Steelman, R6/R7, Two-Direction R3, Gate-8 col(Phi) latch, aletheia/gates_v2.py + aletheia/safety.py CYA-GAP-01..06, 226/226 R5 + 105/105 AST conjuncts killed)"
+      "role": "methodology + stdlib CLI (v2.0.0 live on PR #1 feat/aletheia-v1-framework @ 7227bcc5, APPROVED by @zero-aska, 6/6 CI green Python 3.11-3.13, AUDIT-ALETHEIA-PR1-R3 VERIFIED, 227/227 R5 + 105/105 AST conjuncts + 9/9 Review 6012061680 kills; PR #7/#8/#9 MERGED; PR #10 EMPIRICAL_CLAIMS.md @ bf37ea73 reviewed; v2.1 primitives Law 1b + Two-Zone Airlock + OTP Supervision multi-family VERIFIED in AUDIT-104R4/105R/110R/111R)"
     },
     {
       "id": "Foundation-0/cave-expedition",
       "kind": "evidence_hub",
-      "role": "Umbrella ledger AUDIT-001..AUDIT-100R (162 rows, check_001..097 + verify_round10_standalone.py + TEAM_COLLABORATION_HUB.md); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + 5/5 in-tree Round-10 packages + 3/3 in-tree Wave-1 Continuous-Flow packages (track-s2, track-s3, track-s5) + AUDIT-100R (track-s4) verified & queued for Wave-2 sync + PR #8 executable review live"
+      "role": "Umbrella ledger AUDIT-001..AUDIT-107R (200 rows, check_001..103 + verify_round10_standalone.py + TEAM_COLLABORATION_HUB.md); honest Gate-5 taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified morphisms (M1, M2, M3) + 5/5 in-tree Round-10 + 3/3 in-tree Wave-1 packages (track-s2/s3/s5) + 10 newly multi-family VERIFIED Wave-2 tracks + AUDIT-100R synced (85 nodes, 135 edges)"
     },
     {
       "id": "Foundation-0/spectral-inertia",
@@ -55,12 +63,12 @@
     {
       "id": "Moissanite-Labs/weft-loom",
       "kind": "experiment_store",
-      "role": "E13 geodesic shunting plasmid, razi-cells colony laws, calibration probe, repair-signal"
+      "role": "Experiment store (E13 geodesic shunting plasmid, razi-cells colony laws, calibration probe, PR #44 Falcon-H1 Tiny weight-lean analyzed by AUDIT-106R Z2 conservation theorem, and PR #46 @ 3b05df94 Inkling 2 Mini exact-feedback review LIVE under AUDIT-REVIEW-WEFT-LOOM-PR46 check_102 484 unit tests OK 8/8 findings)"
     },
     {
       "id": "Moissanite-Labs/siliquant",
       "kind": "force_multiplier_hub",
-      "role": "First-class quantization & hardware-roofline force-multiplier hub (ZBG128 #12, claim_ledger.py, PR #24 d4c54e43 Leech/Hadamard, PR #26 7eb484d7 Magnitude, PR #27 8cf8d244 Inkling Loom, LIVE PR #28 5b680534 AUDIT-101R2 sparse circulant weighing-matrix zero-mult outlier rotations CW(120,36) 10/3x / CW(180,36) 5x / CW(98,16) 49/8x, Issues #4/#10/#16/#23/#25 roadmap comment #issuecomment-7078216857; AUDIT-103 branchless E8 + TPU v5e roofline submitted to verifier; in-flight AUDIT-097 rank-1 down_proj survival)"
+      "role": "First-class quantization & hardware-roofline force-multiplier hub (PR #12 @ 20d13d5f APPROVED 175/175 unit tests; PR #24 @ d4c54e43 AUDIT-059 1-by-1 rulings + Falcon-H1 Tiny Z2 no-go note LIVE #issuecomment-7079992926; PR #26 Magnitude; PR #27 Inkling Loom; PR #28 @ 5b680534 AUDIT-101R2/101R3 sparse weighing rotations; LIVE PR #30 @ 603512f0 AUDIT-103R2 triple-family VERIFIED branchless E8 + TPU v5e Part-E roofline; LIVE PR #31 @ 2881c166 AUDIT-106R dual-continent VERIFIED Falcon-H1 Tiny Z2 conservation; AUDIT-097R & AUDIT-107R dual-family VERIFIED)"
     },
     {
       "id": "ahrazzle/soko",
@@ -90,12 +98,12 @@
     {
       "id": "Moissanite-Labs/siliconcordat",
       "kind": "constitution_repo",
-      "role": "manifesto, ideas/{mlx,statos,n30}, Discussion #5 (32 entries: Law-2b Anti-Homogenization, Ratchet, Splicer; AUDIT-104R in progress), Issues #15/#16 evaluation, Issue #18 SPLICER v0.1.0; paired with siliconcordat/.github#5 coordination hub"
+      "role": "Constitution repo (manifesto, ideas/{mlx,statos,n30}, Discussion #5 32 entries, Issues #15/#16/#18): AUDIT-104R4 3-family VERIFIED (check_101, 197/197 R5, Reply 9.1 -98001/2000, Law-2b feasible-cohort Anti-Homogenization, Ratchet + #16 calibration gap, #18 Splicer LOCK & Two-Zone Airlock); paired with siliconcordat/.github#5"
     },
     {
       "id": "Moissanite-Labs/heedle",
       "kind": "verification_repo",
-      "role": "Shed Jacobian nullspace, hidden_move outside-drift, strict float-free canonical JSON"
+      "role": "Verification repo (Shed Jacobian nullspace, hidden_move outside-drift, float-free canonical JSON; clean-room audited @ d5e42392 in dual-family VERIFIED AUDIT-108R catching live upstream HEEDLE-AUDIT-01..03 and bridged with chuanqisun/spaceship & NandhaKishorM/laya)"
     },
     {
       "id": "Moissanite-Labs/ml-os",
@@ -230,7 +238,7 @@
     {
       "id": "Foundation-0/math0",
       "kind": "foundation0_round4_ship",
-      "role": "LIVE Draft PR #17 (Round 4: AUDIT-049..053R @ 273ff84d) + PR #18 (Round 5 @ 5f966226) + PR #19 (Round 7 @ 55cd6f57) + PR #20 (Round 8 @ 14f5a282) + PR #21 (Round 9 @ 346ccb9a) + LIVE PR #22 (feat/stream-alpoge-deligne-and-generalised-si @ d616b040: AUDIT-098R + AUDIT-101R2, check_097)"
+      "role": "LIVE Draft PRs #17 (Round 4 @ 273ff84d), #18 (Round 5 @ 5f966226), #19 (Round 7 @ 55cd6f57), #20 (Round 8 @ 14f5a282), #21 (Round 9 @ 346ccb9a), #22 (Wave 1 @ d616b040: AUDIT-098R + 101R2), AND LIVE PR #23 (studies/wave2-audit102r-110r-111r @ 007ab83c: AUDIT-102R + AUDIT-110R + AUDIT-111R, AUDIT-PR-MATH0-WAVE2 VERIFIED)"
     },
     {
       "id": "Foundation-0/quantum",
@@ -255,7 +263,7 @@
     {
       "id": "Moissanite-Labs/warp-drive",
       "kind": "moissanite_round6_ship",
-      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (PR #1 merged @ 0cb8fbd; PR #12 MERGED @ 2300d9ba; PR #13 MERGED @ 9baa4191; PR #15 MERGED @ 1117bbdc AUDIT-090R2 VERIFIED 3/3 @orda-aska reviews closed; PR #24 MERGED @ 8addbdab closing #22; PR #28 MERGED @ e8ae746; PR #30 @ ba18c2bc initial 2eacc43c AUDIT-063-ISSUE29 + Review 6011915046 closed Closes #29; 0 GHA workflows)"
+      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (PR #1, #12 @ 2300d9ba, #13 @ 9baa4191, #15 @ 1117bbdc AUDIT-090R2, #24 @ 8addbdab closing #22, #28 @ e8ae746, AND PR #30 @ ba18c2bc Closes #29 AUDIT-063-PR30 VERIFIED 165/165 R5 105 tests OK ALL MERGED; 0 GHA workflows)"
     },
     {
       "id": "magnitudedev/magnitude",
@@ -375,17 +383,17 @@
     {
       "id": "Foundation-0/bayt-al-hikma",
       "kind": "foundation0_wave3_ship",
-      "role": "New public repo (https://github.com/Foundation-0/bayt-al-hikma; PR #1 MERGED to main @ 15d48261, AUDIT-091R2 VERIFIED, approved by @orda-aska, 9/9 Review 6011346623 closed): 4/4 honest N0 pure-Q zero-float studies (392/392 R5 killed across 7 modules, 9/9 primary corpora pinned & byte-identical --live == committed JSON, B=250 PREREGISTERED_HYPOTHESES.md, verify_all_standalone.py PASS)"
+      "role": "New public repo (https://github.com/Foundation-0/bayt-al-hikma; PR #1 MERGED to main @ 15d48261, AUDIT-091R2 VERIFIED, approved by @orda-aska, 9/9 Review 6011346623 closed): 4/4 honest N0 pure-Q zero-float studies (392/392 R5 killed across 7 modules, 9/9 primary corpora pinned & byte-identical, B=250 PREREGISTERED_HYPOTHESES.md, verify_all_standalone.py PASS)"
     },
     {
       "id": "Proven-Commons/mcproof",
       "kind": "own_org_partner_repo",
-      "role": "Formal proof-protocol & repair-loop repository (AUDIT-089R2 VERIFIED, check_088): PRs #3/#7 reviewed, #6/#15 approved, Issue #12 Family-B diagnosis, LIVE PR #16 feat/hardening-mcp-gaps-and-issue12 @ d8e92d84 closing 7/7 @orda-aska Review 6011158111 items + Mn variation-selector & checkpoint-shrink guards (99 passed, 31 skipped, 47/47 rules, 74/74 R5 killed); Lean 4 mechanization targets queued from AUDIT-098R & AUDIT-101R2"
+      "role": "Formal proof-protocol & repair-loop repository (AUDIT-089R2 + AUDIT-MCPROOF-PR16-R3 VERIFIED, check_088): PRs #6/#15 approved, LIVE PR #16 feat/hardening-mcp-gaps-and-issue12 @ 8695c9e9 APPROVED by @orda-aska, 9/9 CI green (119 passed / 31 skipped offline, 47/47 rules, 20/20 Review 6012069978 + 74/74 AST guard kills); Lean 4 mechanization targets queued from AUDIT-098R2 & AUDIT-101R3; AUDIT-109 BentSum/lean/ audit pending AUDIT-109R"
     },
     {
       "id": "Moissanite-Labs/exo",
       "kind": "own_org_partner_repo",
-      "role": "Distributed multi-agent swarm & deliberation runtime (Discussion #934 Socratic S01-S04 / Conductor C01-C05 / I1-I4 concurrency + Comment 2 M03/M05 airlock + PRs #950-#1219; paired with siliconcordat#5 for Two-Zone Hybrid Swarm Airlock; AUDIT-105 in progress)"
+      "role": "Distributed multi-agent swarm & deliberation runtime (Discussion #934 Socratic S01-S04 / Conductor C01-C05 / I1-I4 concurrency + PRs #950-#1219): AUDIT-105R dual-continent VERIFIED (check_103, 176/176 R5, Two-Zone Airlock), AUDIT-110R dual-family VERIFIED (Erlang/OTP supervision extending exo#1200 SupervisionPolicy), & AUDIT-111R Law-1b unmerged-PR catches (exo#490/#911/#1136/#402/#428/#1192)"
     },
     {
       "id": "hexagonmath.org/2611.00789v1",
@@ -401,6 +409,41 @@
       "id": "generalised.si",
       "kind": "stream_wave1_external_portal_readonly",
       "role": "Strictly read-only (31-domain catalog, 15/18 public notes vs. 0/13 public Nov-16 white papers, Hadamard@d8850221, Quantum@0e2456e5): audited in AUDIT-101R2 (N0, check_096, 133/133 R5 + 119/119 conjuncts killed); 227/227 circulant weighing matrices, 34/34 T-matrices, 3D Ising exact moments, pure Lean 4 CW120_180/Good5355, & 11/31 strict Law-5 siliquant domain map"
+    },
+    {
+      "id": "wsp-self-rewriting-llm",
+      "kind": "stream_wave2_external_portal_readonly",
+      "role": "Strictly read-only weight-edit minimization & self-rewriting governance intake (Exp 8 edit.npz 130,188 non-zeros + arXiv:2611.21885): dual-family VERIFIED in AUDIT-097R (N1, Muse Code + @verifier, 185/185 R5 killed, 19/19 Zone-B probes blocked)"
+    },
+    {
+      "id": "nature-extended-biology-mechanics",
+      "kind": "stream_wave2_external_portal_readonly",
+      "role": "Strictly read-only classical biology & deterministic control corpora (NAT-N0-01..10 in AUDIT-100R check_094 92/92 R5; NATX-N0-01..08 Hopfield-Ninio, Forrest, Turing C6, Starling k-NN, Turrigiano in dual-family VERIFIED AUDIT-102R 167/167 R5, live on Foundation-0/math0#23 @ 007ab83c)"
+    },
+    {
+      "id": "chuanqisun/spaceship",
+      "kind": "stream_wave2_external_portal_readonly",
+      "role": "Strictly read-only external portal (Spaceship realization-escalation & TIDE-1 contrast floor): audited & bridged with Moissanite-Labs/heedle (HEEDLE-AUDIT-01..03) and NandhaKishorM/laya in dual-family VERIFIED AUDIT-108R (N1, 96/96 R5 killed)"
+    },
+    {
+      "id": "NandhaKishorM/laya+vegaml",
+      "kind": "stream_wave2_external_portal_readonly",
+      "role": "Strictly read-only external portals (laya split-conformal/escalation & vegaml calibration/ridge recovery): dual-family VERIFIED in AUDIT-107R (N1, Muse Code + @verifier, 118/118 R5 + 146/146 AST BoolOp, 0/9,310 IEEE-754 RNE mismatches, siliquant x vega-U ridge port recovery 3949/100 -> 0/1) & bridged in AUDIT-108R (96/96 R5)"
+    },
+    {
+      "id": "erlang/otp-supervision",
+      "kind": "stream_wave2_classical_semantics",
+      "role": "Classical Armstrong/Erlang/OTP supervisor.erl semantics (one_for_one/one_for_all/rest_for_one, permanent/transient/temporary non-resurrection, pure-Q restart intensity, monitor vs link fault isolation): audited & bridged to exo#1200 + aletheia v2.1 in dual-family VERIFIED AUDIT-110R (N1, 107/107 R5, live on Foundation-0/math0#23 @ 007ab83c)"
+    },
+    {
+      "id": "law1b-unmerged-pr-corpus",
+      "kind": "stream_wave2_readonly_intake",
+      "role": "Strictly read-only 8-portal unmerged-PR snapshot (1,437 PRs = 296 open + 91 closed_unmerged + 1,050 merged; 387/1437 = 129/479 unmerged): audited in dual-continent VERIFIED AUDIT-111R (N0, 130/130 R5, Law 1b + CS-15, external_writes=0, live on Foundation-0/math0#23 @ 007ab83c)"
+    },
+    {
+      "id": "MiniMax-AI/Research",
+      "kind": "stream_wave2_external_portal_readonly",
+      "role": "Strictly read-only external research benchmark @ 57842cef (BentSum/lean/ 0-sorry purity + ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK + Blender-256 Issues #1/#2 errata): AUDIT-109 PARTIAL/FRAGILE (Muse Code PASS; 4 @verifier catches MM109-BUG-01..04 queued for AUDIT-109R; NOT yet VERIFIED)"
     }
   ],
   "edges": [
@@ -2141,8 +2184,8 @@
       ],
       "typed_operator": "Two-Zone Hybrid Swarm Airlock (Zone A Socratic Discovery S01-S04/G08 -> Airlock stripping transcripts, identities, & M03/M05 agreement counts -> Zone B Blinded Clean-Room Verifier) paired with siliconcordat#5 Anti-Homogenization & #18 Splicer LOCK",
       "target_anomaly": "Preserves creative swarm diversity without turning agent agreement into acceptance evidence (exo#934 Comment 2 + aletheia R3 & v2.1 blueprint)",
-      "status": "in_progress",
-      "audit_id": "AUDIT-104R + AUDIT-105 (in verification)"
+      "status": "verified",
+      "audit_id": "AUDIT-104R4 (3-family VERIFIED; check_101; 197/197 R5) + AUDIT-105R (dual-continent VERIFIED; check_103; 176/176 R5)"
     },
     {
       "id": "W3R2-E01",
@@ -2158,6 +2201,188 @@
       "target_anomaly": "Collaborator review & Issue #29 closures across warp-drive PR #15 (MERGED @ 1117bbdc) & PR #30 (ba18c2bc, Closes #29)",
       "status": "verified",
       "audit_id": "AUDIT-090R2 (check_090; 67/67 R5) + AUDIT-063-ISSUE29 (check_095; 159/159 R5)"
+    },
+    {
+      "id": "S1-E01",
+      "portal": "STREAM-S1",
+      "direction": "outgoing",
+      "source": "wsp-self-rewriting-llm",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Pure-Q weight-edit minimization, bf16 RNE overflow (0x7F7FFFFF), exact D4k cut_at_32k McNemar (75141910203168229/9223372036854775808), arXiv:2611.21885 self-rewriting governance, & rank-1 ffn_down quantization-survival bridge (130,188 Exp 8 non-zeros)",
+      "target_anomaly": "Certifies when sparse weight-space edits survive post-training quantization under siliquant",
+      "status": "verified",
+      "audit_id": "AUDIT-097R (N1; dual-family VERIFIED with Muse Code; 185/185 R5; 19/19 Zone-B cert probes)"
+    },
+    {
+      "id": "S4-E01",
+      "portal": "STREAM-S4",
+      "direction": "outgoing",
+      "source": "nature-extended-biology-mechanics",
+      "target": "Foundation-0/cave-expedition",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Pure-Q Tero-Kirchhoff-Schur Physarum routing on live cross_pollination_graph.json (74 nodes, 5-terminal Schur exact 0/1, R_eff conservation), Seeley quorum (1/8), Barkai-Leibler integral feedback vs proportional droop, & Hurwitz-Markov phyllotaxis spectrum",
+      "target_anomaly": "Deterministic collective-mechanics baseline & structural resilience audit on the live expedition operator graph",
+      "status": "verified",
+      "audit_id": "AUDIT-100R (N0/N1; check_094; 92/92 R5; 27/27 PASS)"
+    },
+    {
+      "id": "S4B-E01",
+      "portal": "STREAM-S4B",
+      "direction": "outgoing",
+      "source": "nature-extended-biology-mechanics",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Pure-Q Hopfield-Ninio kinetic proofreading (1720267/17051017), Forrest negative selection, Turing C6 diffusion instability (-2/5), Starling topological k-NN, & Turrigiano homeostatic scaling bridged to D8 absmax inward tie-break quantization",
+      "target_anomaly": "Exact zero-float quantization tie-break & multi-stage filtering invariants for siliquant (live on Foundation-0/math0#23 @ 007ab83c)",
+      "status": "verified",
+      "audit_id": "AUDIT-102R (N1; dual-family VERIFIED with Muse Code; 167/167 R5; 27/27 Zone-B probes)"
+    },
+    {
+      "id": "S6-E01",
+      "portal": "STREAM-S6",
+      "direction": "bidirectional",
+      "source": "Moissanite-Labs/siliquant",
+      "target": "Foundation-0/bayt-al-hikma",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Branchless integer/bitmask Conway-Sloane E8 lattice decoder (0/900 fuzz mismatches) + siliquant#16 Code.centre + honest Part-E TPU v5e roofline + component-restricted Kirchhoff R_eff-vs-MST + al-Biruni/al-Kashi rational error bounds + live PR #12 (20d13d5f) diagnostics",
+      "target_anomaly": "Branchless SIMD/TPU lattice quantization & honest Part-E roofline receipts for siliquant (live Draft PR Moissanite-Labs/siliquant#30 @ 603512f0)",
+      "status": "verified",
+      "audit_id": "AUDIT-103R2 (N1; triple-family VERIFIED; check_100; 68/68 R5; 14/14 cross-family catches closed)"
+    },
+    {
+      "id": "S7-E02",
+      "portal": "STREAM-S7",
+      "direction": "outgoing",
+      "source": "Moissanite-Labs/siliconcordat",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Reply 9.1 exact rational decay refutation (-98001/2000), Law-2b feasible-cohort Anti-Homogenization, Resource-Bounded Monotone Ratchet + Issue #16 weight-vs-behavior calibration gap (44/1 vs 8/1; 1/1 vs -19/5), & Issue #18 Splicer LOCK one-way visibility + Two-Zone Airlock",
+      "target_anomaly": "Fail-closed anti-echo-chamber diversity, calibration, and graft-confinement primitives for aletheia v2.1",
+      "status": "verified",
+      "audit_id": "AUDIT-104R4 (N1; 3-family VERIFIED with Claude Code; check_101; 197/197 R5; 0 residual bypasses)"
+    },
+    {
+      "id": "S9-E01",
+      "portal": "STREAM-S9",
+      "direction": "outgoing",
+      "source": "Moissanite-Labs/weft-loom",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Exact pure-Q Z2 gauge conservation theorem for separate & fused gate_up Muon + shared-row LRM + RMSNorm explaining Falcon-H1 Tiny (weft-loom#44) up/down sign neutrality (50.05%/50.40%) + symmetry-breaking controls (B1-B3) + AUDIT-059 exact hypergeom/stratified tail proofs",
+      "target_anomaly": "Resolves Falcon-H1 Tiny weight-lean anomaly as exact gauge invariance rather than artifact & publishes 1-by-1 AUDIT-059 rulings (live Draft PR siliquant#31 @ 2881c166 + siliquant#24 #issuecomment-7079992926)",
+      "status": "verified",
+      "audit_id": "AUDIT-106R (N1; dual-continent VERIFIED with DeepSeek v4.1 Flash; 48/48 R5 + 88/88 AST BoolOp)"
+    },
+    {
+      "id": "S9-E02",
+      "portal": "STREAM-REVIEW",
+      "direction": "outgoing",
+      "source": "Moissanite-Labs/weft-loom",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "session-cartographer"
+      ],
+      "typed_operator": "Clean-room verification of weft-loom#46 (3b05df94 Inkling 2 Mini exact-feedback pilot): pure-Q binomial/spend/hours audit, 10/10 SHA256SUMS, 484 unit tests OK, & 8 live receipt/aliasing/NaN findings",
+      "target_anomaly": "Receipt-integrity & ClaimLedger boundary audit between weft-loom experiment pilots and aletheia v2.1 empirical gates",
+      "status": "verified",
+      "audit_id": "AUDIT-REVIEW-WEFT-LOOM-PR46 (N0; check_102; 16/16 PASS; review LIVE on weft-loom#46)"
+    },
+    {
+      "id": "S10-E01",
+      "portal": "STREAM-S10",
+      "direction": "outgoing",
+      "source": "NandhaKishorM/laya+vegaml",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Pure-Q split-conformal binary64 RNE overshoot certification (0/9,310 grid mismatches, 19 true overshoots), sqrt-free Wilson (12/12), 5-state epistemic meet-semilattice, & siliquant x vega-U ridge/Wiener port recovery (3949/100 -> 0/1; 2437/50 -> 93140/10697, 5.60x)",
+      "target_anomaly": "Exact integer conformal/Wilson calibration & low-rank port-recovery certification for siliquant + vega-U",
+      "status": "verified",
+      "audit_id": "AUDIT-107R (N1; dual-family VERIFIED with Muse Code; 118/118 R5 + 146/146 AST BoolOp; 0/9,310 IEEE-754 mismatches)"
+    },
+    {
+      "id": "S13-E01",
+      "portal": "STREAM-S13",
+      "direction": "bidirectional",
+      "source": "chuanqisun/spaceship",
+      "target": "Moissanite-Labs/heedle",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Clean-room heedle @ d5e42392 draft-replay audit (catching live upstream HEEDLE-AUDIT-01..03 incl. bool seq/remaining_budget coercion) bridged with Spaceship realization-escalation & TIDE-1 contrast floor",
+      "target_anomaly": "Fail-closed realization receipts & type-strict sequence/budget replay across heedle and Spaceship",
+      "status": "verified",
+      "audit_id": "AUDIT-108R (N1; dual-family VERIFIED with Muse Code; 96/96 R5; 29/29 closure probes)"
+    },
+    {
+      "id": "S13-E02",
+      "portal": "STREAM-S13",
+      "direction": "outgoing",
+      "source": "NandhaKishorM/laya+vegaml",
+      "target": "chuanqisun/spaceship",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Singleton split-conformal escalation predicate (conformal_set_size == 1 required for VERIFIED, else ESCALATE_ZONE_B) uniting Laya conformal uncertainty gating with Spaceship realization receipts",
+      "target_anomaly": "Prevents empty (size=0) or ambiguous (size>=2) conformal sets from auto-verifying in realization pipelines",
+      "status": "verified",
+      "audit_id": "AUDIT-108R (N1; dual-family VERIFIED with Muse Code; 96/96 R5; paired with AUDIT-107R VERIFIED)"
+    },
+    {
+      "id": "S11-E01",
+      "portal": "STREAM-S11",
+      "direction": "outgoing",
+      "source": "erlang/otp-supervision",
+      "target": "Moissanite-Labs/exo",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Exact Erlang/OTP one_for_one/one_for_all/rest_for_one restart strategies, permanent/transient/temporary non-resurrection, pure-Q restart-intensity window, monitor-vs-link fault isolation, & Frozen-Snapshot rest_for_one Non-Churn",
+      "target_anomaly": "Extends exo#1200 SupervisionPolicy & aletheia v2.1 Zone-B isolation without restarting dropped temporary workers or leaking Zone-B crashes (live on Foundation-0/math0#23 @ 007ab83c)",
+      "status": "verified",
+      "audit_id": "AUDIT-110R (N1; dual-family VERIFIED with Muse Code; 107/107 R5; 0 OTP bypasses)"
+    },
+    {
+      "id": "S12-E01",
+      "portal": "STREAM-S12",
+      "direction": "outgoing",
+      "source": "law1b-unmerged-pr-corpus",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "peer-weaver"
+      ],
+      "typed_operator": "Law 1b (Unmerged-PR Serendipity Mining) & CS-15 fail-closed protocol over 8 read-only portals (1,437 PRs = 296 open + 91 closed_unmerged + 1,050 merged; 387/1437 = 129/479) with per-repo cap enforcement & exact rational verification",
+      "target_anomaly": "Recovers high-signal unmerged collaborator catches (exo#490/#911/#1136/#402/#428/#1192 et al.) without survivorship bias (live on Foundation-0/math0#23 @ 007ab83c)",
+      "status": "verified",
+      "audit_id": "AUDIT-111R (N0; dual-continent VERIFIED with DeepSeek v4.1 Flash; 130/130 R5; 44/44 probes)"
+    },
+    {
+      "id": "S14-E01",
+      "portal": "STREAM-S14",
+      "direction": "outgoing",
+      "source": "MiniMax-AI/Research",
+      "target": "Proven-Commons/mcproof",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Clean-room BentSum/lean/ 0-sorry purity audit + pure-Z/F2/Q verification of ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK & Blender-256 Issues #1/#2 errata (59/59 mutate + 70/70 AST BoolOp; Muse Code PASS; 4 @verifier catches MM109-BUG-01..04 queued for AUDIT-109R)",
+      "target_anomaly": "Independent Lean 4 purity & exact finite-field cryptanalysis verification (PARTIAL/FRAGILE pending AUDIT-109R)",
+      "status": "in_progress",
+      "audit_id": "AUDIT-109 (PARTIAL/FRAGILE; Muse Code PASS; queued for AUDIT-109R)"
     }
   ],
   "round1_summary": {
@@ -2528,15 +2753,15 @@
     "total_wave3_and_3b_r5_mutants_killed": "966/966 (100.0%)",
     "bayt_al_hikma_4_study_r5_killed": "334/334 (100.0%)",
     "live_wave3_prs": {
-      "aletheia_v2": "https://github.com/Foundation-0/aletheia/pull/1 (feat/aletheia-v1-framework @ 1513e0f332; PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; 6/6 CI green; AUDIT-093R2)",
+      "aletheia_v2": "https://github.com/Foundation-0/aletheia/pull/1 (feat/aletheia-v1-framework @ 7227bcc5da; APPROVED by @zero-aska; PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; 6/6 CI green; AUDIT-ALETHEIA-PR1-R3)",
       "bayt_al_hikma": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (MERGED to main @ 15d48261df; 4/4 honest N0 studies, 392/392 R5; AUDIT-091R2)",
-      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (feat/hardening-mcp-gaps-and-issue12 @ d8e92d8420; AUDIT-089R2)",
+      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (feat/hardening-mcp-gaps-and-issue12 @ 8695c9e9f6; APPROVED by @orda-aska; 9/9 CI green; AUDIT-MCPROOF-PR16-R3)",
       "warp_drive_pr24": "https://github.com/Moissanite-Labs/warp-drive/pull/24 (MERGED @ 8addbdab55; closes #22; AUDIT-090R)",
       "warp_drive_pr15": "https://github.com/Moissanite-Labs/warp-drive/pull/15 (MERGED @ 1117bbdcd0; AUDIT-090R2)",
       "warp_drive_pr12": "https://github.com/Moissanite-Labs/warp-drive/pull/12 (MERGED @ 2300d9bad0; AUDIT-096R)",
       "warp_drive_pr13": "https://github.com/Moissanite-Labs/warp-drive/pull/13 (MERGED @ 9baa4191b9; study-only; AUDIT-096R)",
       "warp_drive_pr28": "https://github.com/Moissanite-Labs/warp-drive/pull/28 (MERGED @ e8ae746; cerebras model check test gaps)",
-      "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (fix/issue29-bounded-controller-hardening @ ba18c2bc; initial 2eacc43cd4; Review 6011915046 closed; Closes #29; AUDIT-063-ISSUE29)"
+      "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (MERGED @ ba18c2bc42; initial 2eacc43cd4; Review 6011915046 closed; Closes #29; AUDIT-063-PR30)"
     },
     "total_unresolved_defects": 0
   },
@@ -2552,7 +2777,7 @@
     "total_unresolved_defects": 0
   },
   "continuous_flow_wave1_summary": {
-    "status": "wave1_verified_in_tree_wave2_in_flight",
+    "status": "wave1_verified_in_tree_wave2_multi_family_verified",
     "collaboration_hub_doc": "TEAM_COLLABORATION_HUB.md",
     "force_multiplier_hubs": [
       "Foundation-0/aletheia",
@@ -2579,12 +2804,49 @@
     "wave1_r5_mutants_killed": "326/326 (100.0%)",
     "wave1_ast_conjuncts_killed": "261/261 (100.0%)",
     "audits_in_flight": [
-      "AUDIT-097 (self-rewriting LLMs & rank-1 down_proj quantization survival)",
-      "AUDIT-102 (biology mechanics: kinetic proofreading, immune selection, Turing, homeostatic scaling)",
-      "AUDIT-103 (branchless Conway-Sloane E8 + TPU v5e roofline for siliquant)",
-      "AUDIT-104R2 (Moissanite-Labs/siliconcordat Discussion #5 + #15/#16/#18 + Two-Zone Airlock)",
-      "AUDIT-105R (Moissanite-Labs/exo Discussion #934 + PRs #950-#1219 Two-Zone Airlock state machine)"
+      "AUDIT-109 (MiniMax-AI/Research @ 57842cef BentSum/lean/ + cryptanalysis errata — PARTIAL/FRAGILE; Muse Code PASS; queued for AUDIT-109R)"
     ],
     "total_wave1_unresolved_defects": 0
+  },
+  "continuous_flow_wave2_summary": {
+    "status": "10_tracks_multi_family_verified_plus_live_prs",
+    "collaboration_hub_doc": "TEAM_COLLABORATION_HUB.md",
+    "audits_verified": [
+      "AUDIT-097R (N1; dual-family VERIFIED with Muse Code; 185/185 R5; track-s1-wsp-self-rewriting)",
+      "AUDIT-100R (N0/N1; check_094; 92/92 R5; track-s4-nature-mechanics: Seeley/Physarum/Barkai-Leibler/phyllotaxis)",
+      "AUDIT-102R (N1; dual-family VERIFIED with Muse Code; 167/167 R5; track-s4b-nature-extended; LIVE Foundation-0/math0#23 @ 007ab83c)",
+      "AUDIT-103R2 (N1; triple-family VERIFIED; check_100; 68/68 R5; track-s6-siliquant; LIVE Moissanite-Labs/siliquant#30 @ 603512f0)",
+      "AUDIT-104R4 (N1; 3-family VERIFIED with Claude Code; check_101; 197/197 R5; track-s7-siliconcordat-d5)",
+      "AUDIT-105R (N0; dual-continent VERIFIED with OpenCode GLM 5.3; check_103; 176/176 R5; track-s8-exo-swarm)",
+      "AUDIT-106R (N1; dual-continent VERIFIED with DeepSeek v4.1 Flash; 48/48 R5 + 88/88 AST BoolOp; track-s9-gated-mlp-lean; LIVE Moissanite-Labs/siliquant#31 @ 2881c166)",
+      "AUDIT-107R (N1; dual-family VERIFIED with Muse Code; 118/118 R5 + 146/146 AST BoolOp; 0/9,310 IEEE-754 RNE mismatches; track-s10-laya-vegaml)",
+      "AUDIT-108R (N1; dual-family VERIFIED with Muse Code; 96/96 R5; track-s13-heedle-spaceship-laya + HEEDLE-AUDIT-01..03)",
+      "AUDIT-110R (N1; dual-family VERIFIED with Muse Code; 107/107 R5; track-s11-erlang-otp-supervision; LIVE Foundation-0/math0#23 @ 007ab83c)",
+      "AUDIT-111R (N0; dual-continent VERIFIED with DeepSeek v4.1 Flash; 130/130 R5; track-s12-serendipity-pr-mining Law 1b; LIVE Foundation-0/math0#23 @ 007ab83c)"
+    ],
+    "wave2_10_track_r5_mutants_killed": "1292/1292 (100.0%)",
+    "wave2_plus_audit100r_r5_mutants_killed": "1384/1384 (100.0%)",
+    "live_github_milestones": {
+      "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (MERGED @ ba18c2bc; Closes #29; AUDIT-063-PR30)",
+      "bayt_al_hikma_pr1": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (MERGED @ 15d48261; AUDIT-091R2)",
+      "aletheia_pr1": "https://github.com/Foundation-0/aletheia/pull/1 (OPEN @ 7227bcc5; APPROVED by @zero-aska; 6/6 CI green; AUDIT-ALETHEIA-PR1-R3)",
+      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (OPEN @ 8695c9e9; APPROVED by @orda-aska; 9/9 CI green; AUDIT-MCPROOF-PR16-R3)",
+      "siliquant_pr12": "https://github.com/Moissanite-Labs/siliquant/pull/12 (OPEN @ 20d13d5f; APPROVED; AUDIT-REVIEW-SILIQUANT-PR12)",
+      "siliquant_pr24_rulings": "https://github.com/Moissanite-Labs/siliquant/pull/24#issuecomment-7079992926 (AUDIT-059 1-by-1 rulings + Falcon-H1 Tiny Z2 no-go note LIVE)",
+      "siliquant_pr30": "https://github.com/Moissanite-Labs/siliquant/pull/30 (OPEN DRAFT @ 603512f0; AUDIT-103R2)",
+      "siliquant_pr31": "https://github.com/Moissanite-Labs/siliquant/pull/31 (OPEN DRAFT @ 2881c166; AUDIT-106R)",
+      "math0_pr23": "https://github.com/Foundation-0/math0/pull/23 (OPEN DRAFT @ 007ab83c; AUDIT-102R + 110R + 111R)",
+      "weft_loom_pr46_review": "https://github.com/Moissanite-Labs/weft-loom/pull/46 (OPEN DRAFT @ 3b05df94; review LIVE; AUDIT-REVIEW-WEFT-LOOM-PR46 check_102)"
+    },
+    "audits_in_verification": [
+      "AUDIT-109 (track-s14-minimax-cryptanalysis — PARTIAL/FRAGILE; Muse Code PASS; 4 @verifier catches queued for AUDIT-109R)"
+    ],
+    "graph_counts": {
+      "nodes": 85,
+      "edges": 135,
+      "audit_log_rows": 200,
+      "checks_indexed": 103
+    },
+    "total_verified_unresolved_defects": 0
   }
 }
