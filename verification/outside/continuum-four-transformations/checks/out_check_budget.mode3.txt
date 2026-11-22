@@ -1,0 +1,32 @@
+block length 4224; 12 blocks need 50688 samples; at coarse-graining level l: 50688 * 2^l
+TESS sector 38: span 26.699 d, at most 115338 cadences before gaps and flags
+   level 0: at most 27 blocks (>= 12)
+   level 1: at most 13 blocks (>= 12)
+   level 2: at most 6 blocks (< 12)
+   level 3: at most 3 blocks (< 12)
+TESS sector 65: span 27.890 d, at most 120486 cadences before gaps and flags
+   level 0: at most 28 blocks (>= 12)
+   level 1: at most 14 blocks (>= 12)
+   level 2: at most 7 blocks (< 12)
+   level 3: at most 3 blocks (< 12)
+TESS at most level 1 -> of 7 aligned T1 levels at most 2 populated: 5/7 = 0.7143 of features zero
+Wind/WAVES, 8 days, cadence c seconds per channel:
+   c=16: 43200 samples per channel; original rule (4 channels, blocks per channel) 40 blocks; concatenated channels 40; time-disjoint blocks of N=4096: 10, N=2048: 19, N=1024: 37, N=512: 67
+   c=30: 23040 samples per channel; original rule (4 channels, blocks per channel) 20 blocks; concatenated channels 21; time-disjoint blocks of N=4096: 5, N=2048: 10, N=1024: 20, N=512: 36
+   c=33: 20945 samples per channel; original rule (4 channels, blocks per channel) 16 blocks; concatenated channels 19; time-disjoint blocks of N=4096: 4, N=2048: 9, N=1024: 18, N=512: 32
+   c=45: 15360 samples per channel; original rule (4 channels, blocks per channel) 12 blocks; concatenated channels 14; time-disjoint blocks of N=4096: 3, N=2048: 7, N=1024: 13, N=512: 24
+   c=54: 12800 samples per channel; original rule (4 channels, blocks per channel) 12 blocks; concatenated channels 12; time-disjoint blocks of N=4096: 3, N=2048: 5, N=1024: 11, N=512: 20
+   c=55: 12567 samples per channel; original rule (4 channels, blocks per channel) 8 blocks; concatenated channels 11; time-disjoint blocks of N=4096: 2, N=2048: 5, N=1024: 10, N=512: 19
+   c=60: 11520 samples per channel; original rule (4 channels, blocks per channel) 8 blocks; concatenated channels 10; time-disjoint blocks of N=4096: 2, N=2048: 5, N=1024: 10, N=512: 18
+   c=120: 5760 samples per channel; original rule (4 channels, blocks per channel) 4 blocks; concatenated channels 5; time-disjoint blocks of N=4096: 1, N=2048: 2, N=1024: 5, N=512: 9
+   c=192: 3600 samples per channel; original rule (4 channels, blocks per channel) 0 blocks; concatenated channels 3; time-disjoint blocks of N=4096: 0, N=2048: 1, N=1024: 3, N=512: 5
+original rule reaches 12 blocks iff floor(691200/(c*4224)) >= 3 iff c <= 600/11 = 54.5455 s
+time-disjoint rule reaches 12 blocks of N=4096 iff c <= 150/11 = 13.636 s
+time-disjoint rule reaches 12 blocks of N=2048 iff c <= 450/17 = 26.471 s
+time-disjoint rule reaches 12 blocks of N=1024 iff c <= 50 = 50.000 s
+time-disjoint rule reaches 12 blocks of N=512 iff c <= 90 = 90.000 s
+GW 4096 s at 4096 Hz: blocks of 8192+128: 2016; of 4096+128: 3971; of 1024+128: 14563
+SEIS one day at 20 Hz: blocks of 8192+128: 207; of 4096+128: 409; of 1024+128: 1500
+Arm B: d=4: 24 patterns, 50 per pattern needs 1200 windows (one segment has 4093); Markov transitions 96 need 4800; 32 pooled segments give 131072
+Arm B: d=5: 120 patterns, 50 per pattern needs 6000 windows (one segment has 4092); Markov transitions 600 need 30000; 32 pooled segments give 131072
+Arm B: d=6: 720 patterns, 50 per pattern needs 36000 windows (one segment has 4091); Markov transitions 4320 need 216000; 32 pooled segments give 131072

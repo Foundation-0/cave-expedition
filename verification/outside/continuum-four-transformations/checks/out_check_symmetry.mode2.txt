@@ -1,0 +1,27 @@
+== action on patterns (d = 3) ==
+012: P -> 210, R -> 210, RP -> 012
+021: P -> 201, R -> 120, RP -> 102
+102: P -> 120, R -> 201, RP -> 021
+120: P -> 102, R -> 021, RP -> 201
+201: P -> 021, R -> 102, RP -> 120
+210: P -> 012, R -> 012, RP -> 210
+P: a1 -> -a1, a2 -> -a3, a3 -> -a2
+R: a1 -> -a1, a2 -> -a2, a3 -> -a3
+RP: a1 -> +a1, a2 -> +a3, a3 -> +a2
+so with s = a2 + a3 and u = a2 - a3:
+  P : (a1, s, u) -> (-a1, -s, +u)
+  R : (a1, s, u) -> (-a1, -s, -u)
+  RP: (a1, s, u) -> (+a1, +s, -u)
+On (a1, s), P and R act the same way. Any polarity-invariant function of (a1, s) is therefore also
+time-reversal invariant: it cannot carry a time arrow. The only polarity-free arrow is u, and u is odd
+under RP, so its expectation is 0 for any process whose law is unchanged by RP.
+If law(x) = law(-x reversed), then law(x reversed) = law(-x): reversing time and flipping polarity are
+the same operation, so no polarity-invariant statistic can tell a series from its time reverse.
+== noiseless sawtooth, period 64, 4096 samples ==
+tau=1: counts {'012': 3968, '021': 0, '102': 0, '120': 63, '201': 63, '210': 0}, tied windows 0; n021==n102: True, n120==n201: True; u == 0 exactly: True
+tau=2: counts {'012': 3840, '021': 0, '102': 0, '120': 126, '201': 126, '210': 0}, tied windows 0; n021==n102: True, n120==n201: True; u == 0 exactly: True
+tau=4: counts {'012': 3584, '021': 0, '102': 0, '120': 252, '201': 252, '210': 0}, tied windows 0; n021==n102: True, n120==n201: True; u == 0 exactly: True
+tau=8: counts {'012': 3072, '021': 0, '102': 0, '120': 504, '201': 504, '210': 0}, tied windows 0; n021==n102: True, n120==n201: True; u == 0 exactly: True
+tau=16: counts {'012': 2048, '021': 0, '102': 0, '120': 1008, '201': 1008, '210': 0}, tied windows 0; n021==n102: True, n120==n201: True; u == 0 exactly: True
+reversed sawtooth, tau=1: {'012': 0, '021': 63, '102': 63, '120': 0, '201': 0, '210': 3968}
+negated sawtooth, tau=1: {'012': 0, '021': 63, '102': 63, '120': 0, '201': 0, '210': 3968}
