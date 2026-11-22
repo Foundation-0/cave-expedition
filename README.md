@@ -121,11 +121,18 @@ cave-expedition/
 ├── peer-web/
 │   ├── PEER_WEB.md                            # Live multi-repo frontier map across Foundation-0, siliconcordat, Proven-Commons & peers
 │   └── frontier_seams.json                    # Structured catalog of high-leverage cross-repo seams (SEAM-01..SEAM-09)
+├── symbiosis/
+│   └── round10/                               # Committed runnable Round-10 pure-Q certifiers, R5 tests, certs & reports (21 files)
+│       ├── arm1-own-terms-first/              # AUDIT-084R (OWN_TERMS_FIRST OTF-TIGHT-01..05, 7/8 glyphs, continuum#1)
+│       ├── arm2-unification-and-novelty/      # AUDIT-085R (Theorems A & B closing PR #5 G5-07/G5-10/G5-13, SF-01 taxonomy)
+│       ├── arm3-gates-r6r7-cli/               # AUDIT-086R (R6/R7, Two-Direction R3, Gate-8 col(Phi) latch, aletheia#5/#7/#8)
+│       ├── arm4-prereg-raw-data/              # AUDIT-087R (PREREG-01..04 pre-data fixes for PR #6, aletheia#6 vs AUDIT-076R)
+│       └── arm5-transformational-steelman/    # AUDIT-088R (Full Law 2b spec: T1..T7, G1..G4, 10 exact-Q vault witnesses)
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-088R)
-    ├── CHECKS_INDEX.md                        # SHA-256 index of all 79 clean-room adversarial checks (check_001..check_079)
-    └── checks/                                # Mirrored Wave 1 adversarial verification scripts (check_001..check_014)
+    ├── CHECKS_INDEX.md                        # Full provenance & SHA-256 index of all 79 checks + verify_round10_standalone.py
+    └── checks/                                # Mirrored Wave 1 checks (check_001..check_014) + verify_round10_standalone.py
 ```
 
 **Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
@@ -192,17 +199,25 @@ Wave 2 expanded the expedition across ten verified rounds (full chronological ev
 
 ## 5. Exact Reproduction
 
-### Standalone Zero-Dependency Verification (`AUDIT-002`, pure Python 3 stdlib)
+### Standalone Zero-Dependency Verification (`AUDIT-002` & All `5/5` Round-10 Packages `AUDIT-084R`–`088R`, pure Python 3 stdlib)
 
-Run under all three Gate 7 (R4) optimizer/warning parity modes directly from a fresh clone of this repository:
+Run under all three Gate 7 (R4) optimizer/warning parity modes directly from a fresh clone of this repository (zero external packages, zero network calls):
 
 ```bash
 git clone https://github.com/Foundation-0/cave-expedition.git
 cd cave-expedition
+# Wave 1 standalone check (AUDIT-002):
 python3 -I -B verification/checks/check_003_seam01_ropt.py
 python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
+
+# Wave 2 Round 10 standalone verifier (runs all 5 committed packages under symbiosis/round10/arm1..arm5/):
+python3 -I -B verification/checks/verify_round10_standalone.py
+python3 -I -O -B verification/checks/verify_round10_standalone.py
+python3 -I -B -W error verification/checks/verify_round10_standalone.py
 ```
+
+The complete formal statement of **Law 2b (`LAW2B_TRANSFORM_BEFORE_DISMISSAL`: `T1..T7`, `G1..G4`)** is committed in [`symbiosis/round10/arm5-transformational-steelman/TRANSFORMATIONAL_STEELMAN_REPORT.md`](symbiosis/round10/arm5-transformational-steelman/TRANSFORMATIONAL_STEELMAN_REPORT.md) and its runnable certifier in [`symbiosis/round10/arm5-transformational-steelman/transformational_steelman_certifier.py`](symbiosis/round10/arm5-transformational-steelman/transformational_steelman_certifier.py); canonical spec integration alongside `OWN_TERMS_FIRST` and `R6`/`R7` is landing in [`Foundation-0/aletheia#1`](https://github.com/Foundation-0/aletheia/pull/1) (`v2.0.0`).
 
 ### Cross-Repository Audit Suite (`check_001` – `check_014`)
 

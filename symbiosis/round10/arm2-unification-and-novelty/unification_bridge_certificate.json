@@ -1,0 +1,625 @@
+{
+  "all_pillars_verified": true,
+  "audit_id": "AUDIT-085",
+  "canonical_sha256": "c1ce29d8b38ce831828a6d53a4e9ef2a4bc7e315b33f0087baacb5b91bf83f44",
+  "law4_quarantine_honored": true,
+  "live_staged_digest_verification": {
+    "all_digests_verified": true,
+    "disk_io_performed": true,
+    "mode": "live",
+    "pinned_count": 12
+  },
+  "novelty_grade": "N1",
+  "pillar_1_external_reconciliation": {
+    "AUDIT_004_peeling": {
+      "fair_2layer_gain": "28/1",
+      "greedy_lt_lp_lt_opt": true,
+      "hardin_deficit": "-9/2",
+      "overstated_gain": "48/1",
+      "strict_dominance_refuted": true
+    },
+    "AUDIT_005_rls_boundaries": {
+      "exact_ties_at_0_and_2_verified": true
+    },
+    "AUDIT_008R_maslov_doob": {
+      "bad_row0_max_times": "1/2",
+      "opt_row0_max_times": "1/1",
+      "opt_row0_ordinary_sum": "5/4",
+      "ordinary_doob_fails": true,
+      "tropical_doob_breaks_off_dstar": true,
+      "tropical_doob_exact_at_dstar": true
+    },
+    "AUDIT_010_zerolog_rays": {
+      "code_first_moments": [
+        0,
+        0
+      ],
+      "readme_first_moments": [
+        -1,
+        -1
+      ],
+      "verified": true
+    },
+    "AUDIT_018_lindblad_o2_gap": {
+      "det_product_value": "41/1",
+      "exact_o2_gap": "1/180",
+      "gamma_schur": "41/20",
+      "gamma_slow_o2": "37/18",
+      "verified": true
+    },
+    "CS_08_non_reversal": {
+      "no_tool_diff": "-16/2881",
+      "overall_diff": "-2/25",
+      "simpson_reversal_absent": true,
+      "tool_diff": "-1/14"
+    },
+    "external_tallies": {
+      "aletheia_issue_2_mechanisms": 8,
+      "aletheia_issue_4_cs08_addendum": 1,
+      "aletheia_issue_4_rows": 17,
+      "aletheia_issue_4_v1_right_items": 7,
+      "cave_pr_4": {
+        "falls": 1,
+        "stands": 13,
+        "stands_narrowed": 22,
+        "total": 36
+      },
+      "cave_pr_4_zero_aska_review_items": 8,
+      "cave_pr_5": {
+        "FALSIFIED": 1,
+        "NOT_SHOWN": 1,
+        "PARTIAL": 3,
+        "VERIFIED": 11,
+        "total": 16
+      },
+      "cave_pr_5_partial_ids_closed_here": [
+        "G5-07",
+        "G5-10",
+        "G5-13"
+      ],
+      "tallies_consistent": true
+    },
+    "verified": true
+  },
+  "pillar_2_algebraic_tropical_bridge": {
+    "R1_positive_gibbs_cyclic_B2": {
+      "all_deg_bounds_hold": true,
+      "all_iff_hold": true,
+      "all_lead_coeff_match": true,
+      "all_lower_bound_hold": true,
+      "annihilated_pairs": [],
+      "degree_upper_bound": 15,
+      "entries": [
+        {
+          "T_trop": 4,
+          "cancellation_gap": 0,
+          "lead_walk_sum": "1/1",
+          "pair": [
+            0,
+            0
+          ],
+          "val_S": 4
+        },
+        {
+          "T_trop": 3,
+          "cancellation_gap": 0,
+          "lead_walk_sum": "1/1",
+          "pair": [
+            0,
+            1
+          ],
+          "val_S": 3
+        },
+        {
+          "T_trop": 4,
+          "cancellation_gap": 0,
+          "lead_walk_sum": "1/1",
+          "pair": [
+            1,
+            0
+          ],
+          "val_S": 4
+        },
+        {
+          "T_trop": 3,
+          "cancellation_gap": 0,
+          "lead_walk_sum": "1/1",
+          "pair": [
+            1,
+            1
+          ],
+          "val_S": 3
+        }
+      ],
+      "has_cancellation_defect": false,
+      "has_negative_gap": false,
+      "is_regular_pivot": true,
+      "max_finite_gap": 0,
+      "val_det_I_minus_KBB": 0
+    },
+    "R2_signed_noncancelling": {
+      "all_deg_bounds_hold": true,
+      "all_iff_hold": true,
+      "all_lead_coeff_match": true,
+      "all_lower_bound_hold": true,
+      "annihilated_pairs": [],
+      "degree_upper_bound": 4,
+      "entries": [
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            0,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": 2,
+          "cancellation_gap": 0,
+          "lead_walk_sum": "-1/1",
+          "pair": [
+            0,
+            1
+          ],
+          "val_S": 2
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            1
+          ],
+          "val_S": "INF"
+        }
+      ],
+      "has_cancellation_defect": false,
+      "has_negative_gap": false,
+      "is_regular_pivot": true,
+      "max_finite_gap": 0,
+      "val_det_I_minus_KBB": 0
+    },
+    "R3_finite_cancellation_gap": {
+      "all_deg_bounds_hold": true,
+      "all_iff_hold": true,
+      "all_lead_coeff_match": true,
+      "all_lower_bound_hold": true,
+      "annihilated_pairs": [],
+      "degree_upper_bound": 4,
+      "entries": [
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            0,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": 2,
+          "cancellation_gap": 1,
+          "lead_walk_sum": "0/1",
+          "pair": [
+            0,
+            1
+          ],
+          "val_S": 3
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            1
+          ],
+          "val_S": "INF"
+        }
+      ],
+      "has_cancellation_defect": true,
+      "has_negative_gap": false,
+      "is_regular_pivot": true,
+      "max_finite_gap": 1,
+      "val_det_I_minus_KBB": 0
+    },
+    "R4_exact_total_annihilation": {
+      "all_deg_bounds_hold": true,
+      "all_iff_hold": true,
+      "all_lead_coeff_match": true,
+      "all_lower_bound_hold": true,
+      "annihilated_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "degree_upper_bound": 4,
+      "entries": [
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            0,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": 2,
+          "cancellation_gap": "INF",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            0,
+            1
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": "0/1",
+          "pair": [
+            1,
+            1
+          ],
+          "val_S": "INF"
+        }
+      ],
+      "has_cancellation_defect": true,
+      "has_negative_gap": false,
+      "is_regular_pivot": true,
+      "max_finite_gap": 0,
+      "val_det_I_minus_KBB": 0
+    },
+    "R5_nonregular_pivot_negative_gap": {
+      "all_deg_bounds_hold": true,
+      "all_iff_hold": true,
+      "all_lead_coeff_match": true,
+      "all_lower_bound_hold": false,
+      "annihilated_pairs": [],
+      "degree_upper_bound": 2,
+      "entries": [
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": null,
+          "pair": [
+            0,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": 2,
+          "cancellation_gap": -1,
+          "lead_walk_sum": null,
+          "pair": [
+            0,
+            1
+          ],
+          "val_S": 1
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": null,
+          "pair": [
+            1,
+            0
+          ],
+          "val_S": "INF"
+        },
+        {
+          "T_trop": "INF",
+          "cancellation_gap": "UNREACHABLE",
+          "lead_walk_sum": null,
+          "pair": [
+            1,
+            1
+          ],
+          "val_S": "INF"
+        }
+      ],
+      "has_cancellation_defect": false,
+      "has_negative_gap": true,
+      "is_regular_pivot": false,
+      "max_finite_gap": 0,
+      "val_det_I_minus_KBB": 1
+    },
+    "theorem_statement": "For K in Q[q]^{n x n} with regular pivot val(K_BB) >= 1, val(S_ij) >= T_ij universally, [q^{T_ij}] S_ij = L_ij (sum of leading coefficients over minimizing walks), val(S_ij) = T_ij iff L_ij != 0, finite cancellation gap satisfies 1 <= Delta_cancel <= (|B|+1)*deg(K) - T_ij, positive leading coefficients force Delta_cancel = 0 identically, and regularity val(K_BB) >= 1 is necessary (negative gap -1 witness when violated).",
+    "verified": true
+  },
+  "pillar_3_lattice_symmetrizer_rank": {
+    "all_n_ge_3_pass": true,
+    "n2_sharpness_verified": true,
+    "sharpness_n_eq_2_counterexamples": {
+      "n2_sharpness_diag_3_2": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 2,
+        "dim_ker_sigma_on_Z_B": 1,
+        "formula_matches": false,
+        "g5_07_predicted_rank": 1,
+        "intra_motion_dim": 4,
+        "intra_rigid": false,
+        "intra_virial_zero": true,
+        "n": 2,
+        "nonzero_rows_of_L_Lminus2I": [
+          0
+        ],
+        "rank_S_el_actual": 0,
+        "rigid_motion_dim": 3
+      },
+      "n2_sharpness_diag_3_3": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 2,
+        "dim_ker_sigma_on_Z_B": 0,
+        "formula_matches": false,
+        "g5_07_predicted_rank": 2,
+        "intra_motion_dim": 4,
+        "intra_rigid": false,
+        "intra_virial_zero": true,
+        "n": 2,
+        "nonzero_rows_of_L_Lminus2I": [
+          0,
+          1
+        ],
+        "rank_S_el_actual": 1,
+        "rigid_motion_dim": 3
+      }
+    },
+    "theorem_statement": "For every n >= 3 and every L in Q^{n x n}: (1) the cross-polytope intra-cell framework is infinitesimally rigid (4-character {+-1}^2 decomposition); (2) admissible inter-cell stresses equal Z_B = {z : diag(z) L symmetric}; (3) every pure intra-cell self-stress has zero virial tensor; (4) sigma(z) = L^T diag(z) (L - 2I) = diag(z) L(L - 2I) is identically symmetric on Z_B; (5) rank(S_el) = dim(Z_B) - dim{z in Z_B : z_i = 0 whenever row_i(L(L-2I)) != 0}. Sharpness: fails at n = 2 due to the 1D square-flex imposing z_1(L_11-2) = z_2(L_22-2).",
+    "universal_n_ge_3_cases": {
+      "n3_diag_3_2_2": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 3,
+        "dim_ker_sigma_on_Z_B": 2,
+        "formula_matches": true,
+        "g5_07_predicted_rank": 1,
+        "intra_motion_dim": 6,
+        "intra_rigid": true,
+        "intra_virial_zero": true,
+        "n": 3,
+        "nonzero_rows_of_L_Lminus2I": [
+          0
+        ],
+        "rank_S_el_actual": 1,
+        "rigid_motion_dim": 6
+      },
+      "n3_low_tri_2": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 1,
+        "dim_ker_sigma_on_Z_B": 1,
+        "formula_matches": true,
+        "g5_07_predicted_rank": 0,
+        "intra_motion_dim": 6,
+        "intra_rigid": true,
+        "intra_virial_zero": true,
+        "n": 3,
+        "nonzero_rows_of_L_Lminus2I": [
+          1,
+          2
+        ],
+        "rank_S_el_actual": 0,
+        "rigid_motion_dim": 6
+      },
+      "n3_nonsym_symmetrizable": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 1,
+        "dim_ker_sigma_on_Z_B": 0,
+        "formula_matches": true,
+        "g5_07_predicted_rank": 1,
+        "intra_motion_dim": 6,
+        "intra_rigid": true,
+        "intra_virial_zero": true,
+        "n": 3,
+        "nonzero_rows_of_L_Lminus2I": [
+          0,
+          1,
+          2
+        ],
+        "rank_S_el_actual": 1,
+        "rigid_motion_dim": 6
+      },
+      "n3_two_I": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 3,
+        "dim_ker_sigma_on_Z_B": 3,
+        "formula_matches": true,
+        "g5_07_predicted_rank": 0,
+        "intra_motion_dim": 6,
+        "intra_rigid": true,
+        "intra_virial_zero": true,
+        "n": 3,
+        "nonzero_rows_of_L_Lminus2I": [],
+        "rank_S_el_actual": 0,
+        "rigid_motion_dim": 6
+      },
+      "n4_D4_upper": {
+        "auto_sym_diag_z_L_Lminus2I": true,
+        "dim_Z_B": 1,
+        "dim_ker_sigma_on_Z_B": 0,
+        "formula_matches": true,
+        "g5_07_predicted_rank": 1,
+        "intra_motion_dim": 10,
+        "intra_rigid": true,
+        "intra_virial_zero": true,
+        "n": 4,
+        "nonzero_rows_of_L_Lminus2I": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "rank_S_el_actual": 1,
+        "rigid_motion_dim": 10
+      }
+    },
+    "verified": true
+  },
+  "pillar_4_sf01_honest_taxonomy": {
+    "count_drift_detected": true,
+    "gate5_verdict_on_headline_unification": "Shared mechanism taxonomy (NOT a single discriminating invariant across all 29 entries); contains 3 genuinely verified cross-domain morphisms (M1, M2, M3).",
+    "m2_pullback_exact": true,
+    "readme_8_table_class_counts": {
+      "L": 0,
+      "QH": 6,
+      "QN": 1,
+      "T": 1
+    },
+    "sf01_actual_entry_count": 29,
+    "sf01_class_counts": {
+      "L": 2,
+      "QH": 23,
+      "QN": 4,
+      "T": 0
+    },
+    "sf01_label_only_entries": [
+      "5:Moissanite-Labs/heedle (AUDIT-025/027)",
+      "7:anthropics/jacobian-lens (AUDIT-039)"
+    ],
+    "sf01_prose_label_claim": 30,
+    "sf01_qn_entries": [
+      "3:Foundation-0/fractals (AUDIT-018)",
+      "18:judegomila/canculus (AUDIT-050)",
+      "21:Foundation-0/continuum#3 (AUDIT-054)",
+      "28:ShivamDuggal4/latent-lattice-language-models (AUDIT-072R)"
+    ],
+    "verified": true,
+    "verified_cross_domain_morphisms": [
+      {
+        "domains": [
+          "AUDIT-017 (folds/lattices)",
+          "AUDIT-019 (Cauchy-Born elasticity)"
+        ],
+        "gate5_discriminating": true,
+        "id": "M1",
+        "morphism": "Exact block-upper-triangular congruence H_el = Phi^T H_lat Phi => S_el = R_L^T S_lat R_L + exact G5-07 rank theorem (Pillar 3)"
+      },
+      {
+        "domains": [
+          "AUDIT-064 (warp-drive WI-4)",
+          "AUDIT-079R (RIPO-FS-04)"
+        ],
+        "exact_matrix_verified": true,
+        "gate5_discriminating": true,
+        "id": "M2",
+        "morphism": "Exact Fisher-Schur simplex pullback F_p = (J_p U)^T diag(1/p) (J_p U) = diag(9/4, 49/2, 0)"
+      },
+      {
+        "domains": [
+          "Q[q] algebraic Schur complement",
+          "(min,+) tropical Kleene-star elimination"
+        ],
+        "gate5_discriminating": true,
+        "id": "M3",
+        "morphism": "Exact valuation-cancellation-gap bridge val(S_ij) >= T_ij, equality iff L_ij != 0 (Pillar 2, closing G5-10 & G5-13)"
+      }
+    ]
+  },
+  "pillar_5_hardened_certifier_smoke": {
+    "qh_certified": {
+      "bridge_summary": {
+        "annihilated_pairs": [],
+        "has_cancellation_defect": false,
+        "max_finite_gap": 0
+      },
+      "certified_invariants": [
+        "additive_schur",
+        "haynsworth_inertia",
+        "schur_exists",
+        "tropical_bridge_exact"
+      ],
+      "cross_domain_unification_certified": true,
+      "mechanism_class": "QH",
+      "verdict": "CERTIFIED"
+    },
+    "qn_certified": {
+      "bridge_summary": null,
+      "certified_invariants": [
+        "additive_schur",
+        "schur_exists"
+      ],
+      "cross_domain_unification_certified": false,
+      "mechanism_class": "QN",
+      "verdict": "CERTIFIED"
+    },
+    "t_bound_certified": {
+      "bridge_summary": {
+        "annihilated_pairs": [],
+        "has_cancellation_defect": true,
+        "max_finite_gap": 1
+      },
+      "certified_invariants": [
+        "tropical_bridge_bound"
+      ],
+      "cross_domain_unification_certified": true,
+      "mechanism_class": "T",
+      "verdict": "CERTIFIED"
+    },
+    "t_exact_certified": {
+      "bridge_summary": {
+        "annihilated_pairs": [],
+        "has_cancellation_defect": false,
+        "max_finite_gap": 0
+      },
+      "certified_invariants": [
+        "tropical_bridge_exact"
+      ],
+      "cross_domain_unification_certified": true,
+      "mechanism_class": "T",
+      "verdict": "CERTIFIED"
+    },
+    "verified": true
+  },
+  "pinned_staged_digests": {
+    "aletheia_issue_2": "c3166387362f8d8bca181eebbfffdae6f7af9bf838317f8e1cf86cbda2e82d15",
+    "aletheia_issue_4": "e3da52efc1e8f44fac4e237f1d08dd8f9b41a48c348a18b89686e65ccbac7fad",
+    "cave_pr_4": "a76e7833b6b6f4e8296e493d9a62a7ec65b20917eb7c296383e321ebc8e57fd0",
+    "cave_pr_5": "8af951dd263db9d86793c00f28a127ffe34eeb3489e3b060196f252b4e5652b7",
+    "pr4_outside_audit": "6b4dc5a99079cc77c693d49027b5f98ef8f7336e6af36c0690eeb9d63e9aeac1",
+    "pr4_rulings": "2587dc6251bda1277a98715b7c763883688aaf8eddc04ad5bf793f888447bdaa",
+    "pr5_lattice_spec": "9b63fa0e62a96dfb5e2fc5de69831279d9883baec6081a743f86a8ecec8a4400",
+    "pr5_predicate": "f7b4452ba6ba2f40b51ebcb965da878b002800a8f4e2daeb9c102392089929e7",
+    "pr5_rulings": "a60ba173c597af88e6789e0bbf79affb01f1ba1b5dc45f95f6a769168e0e87a5",
+    "pr5_second_report": "ce8a2849e657c38c718f562e10a57af73a23ff059e83640861b14367bef1f59b",
+    "round10_portals": "282b798cce408ffb2d1abd317b2e743bc385d0d45481ea1c6374a1c630b06808",
+    "sf_json": "641785cfaf046d3296611ebf70f371e6548c02862eb667e93c1f297bb753d534"
+  },
+  "schema": "round10.arm2.unification_bridge.v1"
+}
