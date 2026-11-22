@@ -574,6 +574,15 @@ class TestCertifierConservationR5(unittest.TestCase):
         self.assertFalse(gate4["certified"])
         self.assertIn("LAW5_TOPOLOGICAL_DIVERGENCE_NOT_DOCUMENTED", gate4["violations"])
 
+        # Tight bipartite upper-bound equality (gm_edges == n_g * n_m and tm_edges == n_t * n_m) passes!
+        apl5, sg5, cmp5 = _valid_fixture_triplet()
+        n_g5 = sg5["counts"]["games"]
+        n_m5 = sg5["counts"]["mechanics"]
+        n_t5 = sg5["counts"]["techniques"]
+        sg5["game_mechanic_bipartite"].update({"gm_edges": n_g5 * n_m5, "core_edges": n_g5 * n_m5, "supporting_edges": 0})
+        sg5["technique_mechanic_bipartite"]["tm_edges"] = n_t5 * n_m5
+        self.assertTrue(oracle.certify_pattern_sim_grammar_audit(apl5, sg5, cmp5)["certified"])
+
     def test_every_conservation_and_law5_refusal(self) -> None:
         # Non-dict arguments (all 3 conjuncts)
         apl0, sg0, cmp0 = _valid_fixture_triplet()
@@ -815,12 +824,19 @@ class TestCertifierConservationR5(unittest.TestCase):
             lambda a, s, c: s["game_mechanic_bipartite"].update({"gm_edges": 0, "core_edges": 0, "supporting_edges": 0, "post2010_uses": 0, "post2010_from_pre2000_uses": 0}) or s["technique_mechanic_bipartite"].__setitem__("unlinked_uses", 0),
             "sg-gm-role-sum",
         )
+        # Bipartite upper bound gm_edges <= n_g * n_m (179 * 199 = 35621; 35622 MUST be refused!)
+        assert_mutated_refused(
+            lambda a, s, c: s["game_mechanic_bipartite"].update({"gm_edges": 35622, "core_edges": 35622, "supporting_edges": 0}),
+            "sg-gm-role-sum",
+        )
         assert_mutated_refused(lambda a, s, c: s["game_mechanic_bipartite"].__setitem__("pre2000_vocab_count", 200), "sg-temporal-bounds")
         assert_mutated_refused(lambda a, s, c: s["game_mechanic_bipartite"].__setitem__("post2010_from_pre2000_uses", 1418), "sg-temporal-bounds")
         assert_mutated_refused(lambda a, s, c: s["game_mechanic_bipartite"].__setitem__("total_possible_pairs", 19700), "sg-cooc-bounds")
         assert_mutated_refused(lambda a, s, c: s["game_mechanic_bipartite"].__setitem__("cooc_pairs", 20000), "sg-cooc-bounds")
 
         assert_mutated_refused(lambda a, s, c: s["technique_mechanic_bipartite"].__setitem__("tm_edges", 0), "sg-tm-mech-partition")
+        # Bipartite upper bound tm_edges <= n_t * n_m (46 * 199 = 9154; 9155 MUST be refused!)
+        assert_mutated_refused(lambda a, s, c: s["technique_mechanic_bipartite"].__setitem__("tm_edges", 9155), "sg-tm-mech-partition")
         assert_mutated_refused(lambda a, s, c: s["technique_mechanic_bipartite"].update({"touched_mechs": 0, "unlinked_mechs": 199}), "sg-tm-mech-partition")
         assert_mutated_refused(lambda a, s, c: s["technique_mechanic_bipartite"].update({"touched_mechs": 200, "unlinked_mechs": -1}), "sg-tm-mech-partition")
         assert_mutated_refused(lambda a, s, c: s["technique_mechanic_bipartite"].__setitem__("unlinked_mechs", 96), "sg-tm-mech-partition")

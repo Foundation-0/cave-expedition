@@ -1123,7 +1123,7 @@ def certify_pattern_sim_grammar_audit(
     p2010_o = _require_exact_int(gm["post2010_from_pre2000_uses"], "sg.post2010_old")
     cooc = _require_exact_int(gm["cooc_pairs"], "sg.cooc_pairs")
     tot_p = _require_exact_int(gm["total_possible_pairs"], "sg.total_possible_pairs")
-    _require(c_e >= 0 and s_e >= 0 and c_e + s_e == gm_e and gm_e >= 1, "sg-gm-role-sum")
+    _require(c_e >= 0 and s_e >= 0 and c_e + s_e == gm_e and gm_e >= 1 and gm_e <= n_g * n_m, "sg-gm-role-sum")
     _require(0 <= pre2k <= n_m and 0 <= p2010_o <= p2010 <= gm_e, "sg-temporal-bounds")
     _require(tot_p == n_m * (n_m - 1) // 2 and 0 <= cooc <= tot_p, "sg-cooc-bounds")
 
@@ -1132,7 +1132,7 @@ def certify_pattern_sim_grammar_audit(
     tch = _require_exact_int(tm["touched_mechs"], "sg.touched_mechs")
     unl = _require_exact_int(tm["unlinked_mechs"], "sg.unlinked_mechs")
     unl_u = _require_exact_int(tm["unlinked_uses"], "sg.unlinked_uses")
-    _require(tm_e >= 1 and tch >= 1 and unl >= 0 and tch + unl == n_m, "sg-tm-mech-partition")
+    _require(tm_e >= 1 and tm_e <= n_t * n_m and tch >= 1 and unl >= 0 and tch + unl == n_m, "sg-tm-mech-partition")
     _require(0 <= unl_u <= gm_e, "sg-unlinked-uses-bounds")
     if unl == 0:
         _require(unl_u == 0, "sg-unlinked-zero-pigeonhole")

@@ -141,16 +141,16 @@ This divergence aligns directly with `simgrammar_paper.md` §1's own candid admi
   - `pattern_sim_grammar_oracle.py`: **`119/119` (`100.0%`) KILLED**, `0` survivors, `truncated: false`
   - `pattern_sim_grammar_audit.py`: **`27/27` (`100.0%`) KILLED**, `0` survivors, `truncated: false`
   - Combined `aletheia mutate`: **`146/146` (`100.0%`) KILLED** (`0` survivors)
-  - Independent AST single-conjunct deletion sweep across all `_require(A and B ...)` guards: **`98/98` (`oracle`) + `19/19` (`audit`) = `117/117` (`100.0%`) KILLED**, `0` survivors
-  - All `4/4` red-team certifier bypasses (`PSG99-BYPASS-01..04`: empty APL edge/component & biconnected edge-min conservation, SimGrammar edge/component/handshaking conservation, Spearman sign/zero-magnitude consistency, strict `type(...) is bool` enforcement + derived comparison-flag consistency) closed with single-fault R5 witnesses.
+  - Independent AST single-conjunct deletion sweep across all `_require(A and B ...)` guards: **`100/100` (`oracle`) + `19/19` (`audit`) = `119/119` (`100.0%`) KILLED**, `0` survivors
+  - All `4/4` red-team certifier bypasses (`PSG99-BYPASS-01..04`: empty APL edge/component & biconnected edge-min conservation, SimGrammar edge/component/handshaking conservation + bipartite upper bounds `gm_edges <= n_g * n_m` & `tm_edges <= n_t * n_m`, Spearman sign/zero-magnitude consistency, strict `type(...) is bool` enforcement + derived comparison-flag consistency) closed with single-fault R5 witnesses.
 - **R1–R4 & Safety Gate (`aletheia v2.0.0 audit-check . --strict-ancestors --safety-scan`):** `PASS` (`5` files scanned, `0` CRLF, `0` `__pycache__`, `0` home-path leaks, `0` bare `assert`s, `0` unseeded RNG warnings, `0` JSON errors, `0` ancestor permission findings, `0` safety findings, `2/2` scripts bit-identical across 3 isolated `-I` R4 modes: `-I -B`, `-I -O -B`, `-I -B -W error`).
 
 ### Artifact SHA-256 Inventory (Code & Live Certificate)
 
 | File | SHA-256 | Role |
 |---|---|---|
-| [`pattern_sim_grammar_oracle.py`](pattern_sim_grammar_oracle.py) | `e037243abb06453f5a9cf2ba5f34ad323f9f5e9255f3decdc092271d87afbcf5` | Pure-$\mathbb{Q}$ parsers, bitmask $B=200$ nulls, Tarjan SCC / cut / bridge & Spearman engines, fail-closed certifier |
+| [`pattern_sim_grammar_oracle.py`](pattern_sim_grammar_oracle.py) | `2b4308858a0f5a5bfa3d29d045a2d5feb89a5017705f6c9932366c281812711f` | Pure-$\mathbb{Q}$ parsers, bitmask $B=200$ nulls, Tarjan SCC / cut / bridge & Spearman engines, fail-closed certifier |
 | [`pattern_sim_grammar_audit.py`](pattern_sim_grammar_audit.py) | `f39c709ee1a362d5f851253ee474b86fe15a9ed457ccf040d07678242406e072` | Dual-mode CLI (`--live` pin-verified vs. `--standalone` explicit fixture replay) |
-| [`test_pattern_sim_grammar_r5.py`](test_pattern_sim_grammar_r5.py) | `b5e5808d8a53e21cc2175653a75f121b9c368d07ca85365852fba9b73605ffe4` | Hand-computed known-answer live-path mini-corpus + `100.0%` R5 & conjunct-kill suite (`10` test methods) |
+| [`test_pattern_sim_grammar_r5.py`](test_pattern_sim_grammar_r5.py) | `e725d6adbfe5894a770358082e9bad33a4afa8ee25b498ec71e8456ef17a494f` | Hand-computed known-answer live-path mini-corpus + `100.0%` R5 & conjunct-kill suite (`10` test methods) |
 | [`pattern_sim_grammar_certificate.json`](pattern_sim_grammar_certificate.json) | `a6034b737fbf2c9229c512d061fd36af26951b1967de5c1fda479e61dd1bc1be` | Live-recounted canonical certificate (`payload_sha256: a72bcd4b...`, `certificate_sha256: 2607cd65...`) |
 

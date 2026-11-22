@@ -20,7 +20,7 @@
     {
       "id": "Foundation-0/cave-expedition",
       "kind": "evidence_hub",
-      "role": "Umbrella ledger AUDIT-001..AUDIT-SYNC-MATH0-SILIQUANT (check_001..097 + verify_round10_standalone.py + TEAM_COLLABORATION_HUB.md); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + 5/5 in-tree Round-10 packages + 3/3 in-tree Wave-1 Continuous-Flow packages (track-s2, track-s3, track-s5) + PR #8 executable review in progress"
+      "role": "Umbrella ledger AUDIT-001..AUDIT-100R (162 rows, check_001..097 + verify_round10_standalone.py + TEAM_COLLABORATION_HUB.md); honest Gate-5 block-elimination taxonomy (SF-01 29 = 23 QH + 4 QN + 2 L) + 3 verified cross-domain morphisms (M1, M2, M3) + 5/5 in-tree Round-10 packages + 3/3 in-tree Wave-1 Continuous-Flow packages (track-s2, track-s3, track-s5) + AUDIT-100R (track-s4) verified & queued for Wave-2 sync + PR #8 executable review live"
     },
     {
       "id": "Foundation-0/spectral-inertia",
@@ -255,7 +255,7 @@
     {
       "id": "Moissanite-Labs/warp-drive",
       "kind": "moissanite_round6_ship",
-      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (PR #1 merged @ 0cb8fbd; PR #12 MERGED @ 2300d9ba; PR #13 MERGED @ 9baa4191; PR #24 MERGED @ 8addbdab closing #22; PR #28 MERGED @ e8ae746; PR #15 @ 1117bbdc AUDIT-090R2 VERIFIED 3/3 @orda-aska reviews closed; PR #30 @ 2eacc43c AUDIT-063-ISSUE29 VERIFIED Closes #29; 0 GHA workflows)"
+      "role": "Own-org L3 warp-modeld verifier & rapid governed weight iteration hub on Cerebras (PR #1 merged @ 0cb8fbd; PR #12 MERGED @ 2300d9ba; PR #13 MERGED @ 9baa4191; PR #15 MERGED @ 1117bbdc AUDIT-090R2 VERIFIED 3/3 @orda-aska reviews closed; PR #24 MERGED @ 8addbdab closing #22; PR #28 MERGED @ e8ae746; PR #30 @ ba18c2bc initial 2eacc43c AUDIT-063-ISSUE29 + Review 6011915046 closed Closes #29; 0 GHA workflows)"
     },
     {
       "id": "magnitudedev/magnitude",
@@ -375,7 +375,7 @@
     {
       "id": "Foundation-0/bayt-al-hikma",
       "kind": "foundation0_wave3_ship",
-      "role": "New public repo (https://github.com/Foundation-0/bayt-al-hikma; LIVE PR #1 feat/initial-bayt-al-hikma-studies @ 15d48261, AUDIT-096R VERIFIED, 9/9 @orda-aska Review 6011346623 closed): 4/4 honest N0 pure-Q zero-float studies (392/392 R5 killed across 7 modules, 9/9 primary corpora pinned & byte-identical --live == committed JSON, B=250 PREREGISTERED_HYPOTHESES.md, verify_all_standalone.py PASS)"
+      "role": "New public repo (https://github.com/Foundation-0/bayt-al-hikma; PR #1 MERGED to main @ 15d48261, AUDIT-091R2 VERIFIED, approved by @orda-aska, 9/9 Review 6011346623 closed): 4/4 honest N0 pure-Q zero-float studies (392/392 R5 killed across 7 modules, 9/9 primary corpora pinned & byte-identical --live == committed JSON, B=250 PREREGISTERED_HYPOTHESES.md, verify_all_standalone.py PASS)"
     },
     {
       "id": "Proven-Commons/mcproof",
@@ -395,7 +395,7 @@
     {
       "id": "apl-md+simgrammar",
       "kind": "stream_wave1_external_repos_readonly",
-      "role": "Strictly read-only (apl-md @ c622b25f 253 Alexander patterns vs. simgrammar @ a1156e80 179 games, 199 mechanics, 46 techniques, 42 live / 43 YAML opps): audited in AUDIT-099R (N0, check_093, 146/146 R5 + 117/117 conjuncts killed); sharp Law-5 topological divergence (biconnected cyclic mesh vs. fragile DAG forest) & honest non-significant global family Renyi-2 (p=10/67)"
+      "role": "Strictly read-only (apl-md @ c622b25f 253 Alexander patterns vs. simgrammar @ a1156e80 179 games, 199 mechanics, 46 techniques, 42 live / 43 YAML opps): audited in AUDIT-099R (N0, check_093, 146/146 R5 + 119/119 conjuncts killed); sharp Law-5 topological divergence (biconnected cyclic mesh vs. fragile DAG forest) & honest non-significant global family Renyi-2 (p=10/67)"
     },
     {
       "id": "generalised.si",
@@ -2099,7 +2099,7 @@
       "typed_operator": "Pure-Q graph topology & compositional separator (Tarjan articulation/bridge + Kosaraju SCC + exact Renyi-2 D2 & permutation p-values) proving apl-md biconnected cyclic mesh (228/253 SCC, 0 arts, 0 bridges) vs. simgrammar fragile DAG forest (71/199 arts, 120/129 bridges, 43-vs-42 YAML deprecation)",
       "target_anomaly": "Law-5 anti-metaphor discipline against conflating 'pattern languages' and 'simulation grammars' without checking exact topological invariants",
       "status": "verified",
-      "audit_id": "AUDIT-099R (N0; check_093; 146/146 R5 + 117/117 AST conjuncts; in-tree symbiosis/stream/track-s3-pattern-sim-grammar/)"
+      "audit_id": "AUDIT-099R (N0; check_093; 146/146 R5 + 119/119 AST conjuncts; in-tree symbiosis/stream/track-s3-pattern-sim-grammar/)"
     },
     {
       "id": "S5-E01",
@@ -2155,7 +2155,7 @@
         "spectral-prover"
       ],
       "typed_operator": "Closed-enum egress allowlists, ledger-derived timings, RolledBack terminal state, fail-closed Ring-0 contract_sha256, & division-free seminorm triangle/singleton bounds verified under aletheia v2.0.0",
-      "target_anomaly": "Collaborator review & Issue #29 closures across warp-drive PR #15 (1117bbdc) & PR #30 (2eacc43c, Closes #29)",
+      "target_anomaly": "Collaborator review & Issue #29 closures across warp-drive PR #15 (MERGED @ 1117bbdc) & PR #30 (ba18c2bc, Closes #29)",
       "status": "verified",
       "audit_id": "AUDIT-090R2 (check_090; 67/67 R5) + AUDIT-063-ISSUE29 (check_095; 159/159 R5)"
     }
@@ -2529,25 +2529,25 @@
     "bayt_al_hikma_4_study_r5_killed": "334/334 (100.0%)",
     "live_wave3_prs": {
       "aletheia_v2": "https://github.com/Foundation-0/aletheia/pull/1 (feat/aletheia-v1-framework @ 1513e0f332; PR #8 aa920b1a & PR #9 d43cb1c7 MERGED; 6/6 CI green; AUDIT-093R2)",
-      "bayt_al_hikma": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (feat/initial-bayt-al-hikma-studies @ 15d48261df; 4/4 honest N0 studies, 392/392 R5; AUDIT-096R)",
+      "bayt_al_hikma": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (MERGED to main @ 15d48261df; 4/4 honest N0 studies, 392/392 R5; AUDIT-091R2)",
       "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (feat/hardening-mcp-gaps-and-issue12 @ d8e92d8420; AUDIT-089R2)",
       "warp_drive_pr24": "https://github.com/Moissanite-Labs/warp-drive/pull/24 (MERGED @ 8addbdab55; closes #22; AUDIT-090R)",
-      "warp_drive_pr15": "https://github.com/Moissanite-Labs/warp-drive/pull/15 (feat/hardening-trust-boundary-and-cross-org-gates @ 1117bbdcd0; AUDIT-090R2)",
+      "warp_drive_pr15": "https://github.com/Moissanite-Labs/warp-drive/pull/15 (MERGED @ 1117bbdcd0; AUDIT-090R2)",
       "warp_drive_pr12": "https://github.com/Moissanite-Labs/warp-drive/pull/12 (MERGED @ 2300d9bad0; AUDIT-096R)",
       "warp_drive_pr13": "https://github.com/Moissanite-Labs/warp-drive/pull/13 (MERGED @ 9baa4191b9; study-only; AUDIT-096R)",
       "warp_drive_pr28": "https://github.com/Moissanite-Labs/warp-drive/pull/28 (MERGED @ e8ae746; cerebras model check test gaps)",
-      "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (fix/issue29-bounded-controller-hardening @ 2eacc43cd4; Closes #29; AUDIT-063-ISSUE29)"
+      "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (fix/issue29-bounded-controller-hardening @ ba18c2bc; initial 2eacc43cd4; Review 6011915046 closed; Closes #29; AUDIT-063-ISSUE29)"
     },
     "total_unresolved_defects": 0
   },
   "collaborator_review_sweep_summary": {
     "status": "100_percent_verified_pushed",
     "audits_verified": [
-      "AUDIT-089R2 (N1; check_088; 74/74 R5; Proven-Commons/mcproof#16 @ d8e92d84; 7/7 @orda-aska Review 6011158111 closed)",
+      "AUDIT-089R2 (N1; check_088; 74/74 AST guard deletions; Proven-Commons/mcproof#16 @ d8e92d84; 7/7 @orda-aska Review 6011158111 closed)",
       "AUDIT-093R2 (N1; check_089; 226/226 R5 + 105/105 AST conjuncts; Foundation-0/aletheia#1 @ 1513e0f3; 9/9 @zero-aska Review 6010931420 closed; 6/6 CI green)",
-      "AUDIT-090R2 (N1; check_090; 67/67 R5 + 27/27 guard ablations; Moissanite-Labs/warp-drive#15 @ 1117bbdc; 3/3 @orda-aska reviews closed; 0 GHA diffs)",
-      "AUDIT-096R (N0; check_091; 392/392 R5 + 16/16 threshold ablations; Foundation-0/bayt-al-hikma#1 @ 15d48261; 9/9 @orda-aska Review 6011346623 closed)",
-      "AUDIT-063-ISSUE29 (N1; check_095; 159/159 R5; Moissanite-Labs/warp-drive#30 @ 2eacc43c; Closes #29; 0 GHA diffs)"
+      "AUDIT-090R2 (N1; check_090; 67/67 R5 + 27/27 guard ablations; Moissanite-Labs/warp-drive#15 MERGED @ 1117bbdc; 3/3 @orda-aska reviews closed; 0 GHA diffs)",
+      "AUDIT-091R2 (N0; check_091; 392/392 R5 + 16/16 threshold ablations; Foundation-0/bayt-al-hikma#1 MERGED @ 15d48261; 9/9 @orda-aska Review 6011346623 closed)",
+      "AUDIT-063-ISSUE29 (N1; check_095; 159/159 R5; Moissanite-Labs/warp-drive#30 @ ba18c2bc initial 2eacc43c; Closes #29; 0 GHA diffs)"
     ],
     "total_unresolved_defects": 0
   },
@@ -2565,8 +2565,11 @@
     ],
     "in_tree_verified_packages": [
       "symbiosis/stream/track-s2-alpoge-deligne/ (AUDIT-098R, N0, check_092, 47/47 R5 + 23/23 AST conjuncts; also live on Foundation-0/math0#22 @ d616b040)",
-      "symbiosis/stream/track-s3-pattern-sim-grammar/ (AUDIT-099R, N0, check_093, 146/146 R5 + 117/117 AST conjuncts)",
+      "symbiosis/stream/track-s3-pattern-sim-grammar/ (AUDIT-099R, N0, check_093, 146/146 R5 + 119/119 AST conjuncts)",
       "symbiosis/stream/track-s5-generalised-si/ (AUDIT-101R2, N0, check_096, 133/133 R5 + 119/119 AST conjuncts; also live on Foundation-0/math0#22 @ d616b040 & Moissanite-Labs/siliquant#28 @ 5b680534)"
+    ],
+    "verified_queued_for_wave2_sync": [
+      "AUDIT-100R (N0; check_094; 92/92 R5; track-s4-nature-mechanics: Seeley/Physarum/Barkai-Leibler/phyllotaxis; verified & queued for Wave-2 in-tree sync)"
     ],
     "live_stream_wave1_prs": {
       "math0_pr22": "https://github.com/Foundation-0/math0/pull/22 (feat/stream-alpoge-deligne-and-generalised-si @ d616b04027; AUDIT-098R + AUDIT-101R2; AUDIT-SYNC-MATH0-SILIQUANT check_097)",
@@ -2574,14 +2577,13 @@
       "siliquant_issue25_comment": "https://github.com/Moissanite-Labs/siliquant/issues/25#issuecomment-7078216857"
     },
     "wave1_r5_mutants_killed": "326/326 (100.0%)",
-    "wave1_ast_conjuncts_killed": "259/259 (100.0%)",
+    "wave1_ast_conjuncts_killed": "261/261 (100.0%)",
     "audits_in_flight": [
       "AUDIT-097 (self-rewriting LLMs & rank-1 down_proj quantization survival)",
-      "AUDIT-100R (nature-inspired mechanics: Seeley/Physarum/Barkai-Leibler/phyllotaxis)",
       "AUDIT-102 (biology mechanics: kinetic proofreading, immune selection, Turing, homeostatic scaling)",
       "AUDIT-103 (branchless Conway-Sloane E8 + TPU v5e roofline for siliquant)",
-      "AUDIT-104R (Moissanite-Labs/siliconcordat Discussion #5 + #15/#16/#18 + Two-Zone Airlock)",
-      "AUDIT-105 (Moissanite-Labs/exo Discussion #934 + PRs #950-#1219 Two-Zone Airlock state machine)"
+      "AUDIT-104R2 (Moissanite-Labs/siliconcordat Discussion #5 + #15/#16/#18 + Two-Zone Airlock)",
+      "AUDIT-105R (Moissanite-Labs/exo Discussion #934 + PRs #950-#1219 Two-Zone Airlock state machine)"
     ],
     "total_wave1_unresolved_defects": 0
   }
