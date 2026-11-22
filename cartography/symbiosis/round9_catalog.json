@@ -1,0 +1,251 @@
+{
+  "schema": "aletheia.round9_catalog.v1",
+  "wave": "wave-2-round-9",
+  "status": "100_percent_verified_published",
+  "updated_at": "2026-11-21T21:15:00-06:00",
+  "owner": "session-cartographer",
+  "read_only_enforced": true,
+  "zero_external_writes": true,
+  "zhihu_extraction_method": "sanctioned_browser_subagent_open_user_tabs",
+  "zhihu_transcripts": [
+    {
+      "tab": 1,
+      "url": "https://zhuanlan.zhihu.com/p/2092277762245538186",
+      "author": "Aiolus",
+      "file": "symbiosis/round9/repos/zhihu/zhihu_2092277762245538186_score_centering.md",
+      "bytes": 9437,
+      "sha256": "74443b91fa1668f3aa15e170de2520a02f356f64be549a60de2bcc84484f6d3d",
+      "cited_papers": [
+        "https://arxiv.org/abs/2609.20807",
+        "https://www.alphaxiv.org/abs/2611.reinforce-zero-kernel-alignment-asynchronous-rl"
+      ]
+    },
+    {
+      "tab": 2,
+      "url": "https://zhuanlan.zhihu.com/p/2098101007368640039",
+      "author": "Aiolus",
+      "file": "symbiosis/round9/repos/zhihu/zhihu_2098101007368640039_ripo.md",
+      "bytes": 4102,
+      "sha256": "d5a529c9e0c1a43294dce6e3b793affd476d4df9f243f37926c0accf08c23792",
+      "cited_papers": [
+        "https://arxiv.org/abs/2607.10169"
+      ]
+    }
+  ],
+  "blocked_antibot_resolved_via_public_search": [
+    {
+      "url": "https://zhuanlan.zhihu.com/p/2084586770000261374",
+      "status": "BLOCKED_ANTIBOT",
+      "http_status": 403,
+      "mechanism": "chromium_cdp_403_zero_bypass",
+      "resolved_primary_source": "https://arxiv.org/abs/2609.15987"
+    }
+  ],
+  "vectors": [
+    {
+      "arm": "R9-1",
+      "audit_id": "AUDIT-078R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_069_audit078_jdpru.py",
+      "r5_killed": "79/79",
+      "defects_closed": 8,
+      "extra_probes_passed": 10,
+      "owner": "continuum-bridge",
+      "work_dir": "symbiosis/round9/arm1-jdpru",
+      "github_user": "jdpru",
+      "public_repos_count": 7,
+      "original_repos": [
+        {
+          "repo": "jdpru/cover-your-ais",
+          "url": "https://github.com/jdpru/cover-your-ais",
+          "default_branch": "main",
+          "pinned_commit": "aafd6217a61071beca2faa191e692bfc44651991",
+          "stars": 6,
+          "pushed_at": "2026-11-21T23:24:56Z",
+          "role": "primary_pillar_1"
+        },
+        {
+          "repo": "jdpru/CES-Accuracy-Analysis",
+          "url": "https://github.com/jdpru/CES-Accuracy-Analysis",
+          "default_branch": "main",
+          "pinned_commit": "9375b1bbd5a239c23cf7d442c4e7dd4094c9400c",
+          "stars": 0,
+          "language": "TeX",
+          "pushed_at": "2026-11-16T07:45:27Z",
+          "role": "primary_pillar_2"
+        },
+        {
+          "repo": "jdpru/CS-230-DynaRT",
+          "url": "https://github.com/jdpru/CS-230-DynaRT",
+          "default_branch": "main",
+          "pinned_commit": "c024875d595c6529c3e82a43e7e10dafd173fb5b",
+          "stars": 0,
+          "language": "Jupyter Notebook",
+          "pushed_at": "2024-12-04T08:48:47Z",
+          "role": "background_original"
+        }
+      ],
+      "fork_repos": [
+        {
+          "repo": "jdpru/fmriprepviz",
+          "pinned_commit": "d684fcba661c382d0d6c4cc0906bc36fbaab38dd"
+        },
+        {
+          "repo": "jdpru/fmri-aim4-outlier-detector",
+          "pinned_commit": "0ea7193cbc7814acb4e704af894cc2ffad9147a8"
+        },
+        {
+          "repo": "jdpru/fmchisel-modal",
+          "pinned_commit": "626648ad08f913391e1ff21c3a4a5e201ce7dfa9"
+        },
+        {
+          "repo": "jdpru/iSPOT-Autoencoder",
+          "pinned_commit": "3a3d3c20e1309cee10926f6ded24dbee143cf292"
+        }
+      ],
+      "live_pr": "https://github.com/Foundation-0/math0/pull/21",
+      "live_commit": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "status": "verified"
+    },
+    {
+      "arm": "R9-2",
+      "audit_id": "AUDIT-079R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_073_audit079_ripo.py",
+      "r5_killed": "62/62",
+      "defects_closed": 3,
+      "extra_probes_passed": 6,
+      "owner": "spectral-prover",
+      "work_dir": "symbiosis/round9/arm2-ripo-riemannian-rl",
+      "source_urls": [
+        "https://arxiv.org/pdf/2607.10169",
+        "https://zhuanlan.zhihu.com/p/2098101007368640039"
+      ],
+      "title": "Beyond Euclidean Clipping: Overcoming Exploration Collapse in LLM RL via Riemannian Isometric Policy Optimization (RIPO, ICML 2026)",
+      "zhihu_sha256": "d5a529c9e0c1a43294dce6e3b793affd476d4df9f243f37926c0accf08c23792",
+      "live_pr": "https://github.com/Foundation-0/math0/pull/21",
+      "live_commit": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "status": "verified"
+    },
+    {
+      "arm": "R9-3",
+      "audit_id": "AUDIT-080R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_071_audit080_score_centering.py",
+      "r5_killed": "81/81",
+      "defects_closed": 5,
+      "extra_probes_passed": 7,
+      "owner": "fractals-probe",
+      "work_dir": "symbiosis/round9/arm3-score-centering",
+      "source_urls": [
+        "https://arxiv.org/pdf/2609.20807",
+        "https://github.com/martin-marek/score-centering",
+        "https://zhuanlan.zhihu.com/p/2092277762245538186"
+      ],
+      "pinned_github_commit": "fdca22b1",
+      "title": "Score Centering Stabilizes Off-policy Reinforcement Learning (Marek & Ryabinin)",
+      "zhihu_sha256": "74443b91fa1668f3aa15e170de2520a02f356f64be549a60de2bcc84484f6d3d",
+      "live_pr": "https://github.com/Foundation-0/math0/pull/21",
+      "live_commit": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "status": "verified"
+    },
+    {
+      "arm": "R9-4",
+      "audit_id": "AUDIT-081R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_070_audit081_reinforce_zero.py",
+      "r5_killed": "26/26",
+      "defects_closed": 11,
+      "extra_probes_passed": 43,
+      "owner": "peer-weaver",
+      "work_dir": "symbiosis/round9/arm4-reinforce-zero-tii",
+      "source_urls": [
+        "https://www.alphaxiv.org/abs/2611.reinforce-zero-kernel-alignment-asynchronous-rl",
+        "https://github.com/hijkzzz/REINFORCE-Zero",
+        "https://github.com/Inferact/zero-mismatch-rl"
+      ],
+      "pinned_github_commits": {
+        "hijkzzz/REINFORCE-Zero": "a22153de4b8c4b47faf5bf88a598d6d54801bfc7",
+        "Inferact/zero-mismatch-rl": "136aca87d8158adae94b5a272fa4a8a6d5cd6939"
+      },
+      "title": "REINFORCE Zero: Kernel Alignment Unlocks Stable Asynchronous RL With Importance Sampling (NVIDIA / Inferact, Nov 4, 2026)",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/23",
+      "live_commit": "e13a13f01edcc89f63a5f3d3f027e96bbd9719d1",
+      "status": "verified"
+    },
+    {
+      "arm": "R9-5",
+      "audit_id": "AUDIT-082R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_072_audit082_rl_triad.py",
+      "r5_killed": "56/56",
+      "defects_closed": 4,
+      "extra_probes_passed": 4,
+      "owner": "gravity-probe",
+      "work_dir": "symbiosis/round9/arm5-rl-triad-synthesis",
+      "title": "Unified Off-Policy RL Geometry & Kernel-Invariance Composition (TII x Score Centering x RIPO x songe x warp-drive)",
+      "live_pr": "https://github.com/Foundation-0/math0/pull/21",
+      "live_commit": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "status": "verified"
+    },
+    {
+      "arm": "R9-6",
+      "audit_id": "AUDIT-083R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_074_audit083_bpo.py",
+      "r5_killed": "83/83",
+      "defects_closed": 7,
+      "extra_probes_passed": 10,
+      "owner": "continuum-bridge",
+      "work_dir": "symbiosis/round9/arm6-bellman-bpo",
+      "source_urls": [
+        "https://arxiv.org/abs/2609.15987",
+        "https://arxiv.org/pdf/2609.15987"
+      ],
+      "origin_zhihu_blocked_cdp_403": "https://zhuanlan.zhihu.com/p/2084586770000261374",
+      "title": "Bellman Policy Optimization (Zhuoqing Song, Haotian Xu, Xikun Zhang, Lidong Bing, Sep 14, 2026)",
+      "live_pr": "https://github.com/Foundation-0/math0/pull/21",
+      "live_commit": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "status": "verified"
+    }
+  ],
+  "phase3_live_prs": [
+    {
+      "track": "R9-P1",
+      "repo": "Moissanite-Labs/warp-drive",
+      "pr_number": 23,
+      "url": "https://github.com/Moissanite-Labs/warp-drive/pull/23",
+      "is_draft": true,
+      "branch": "feat/round9-reinforce-zero-tii-governance",
+      "commit_sha": "e13a13f01edcc89f63a5f3d3f027e96bbd9719d1",
+      "audit_ids": ["AUDIT-081R"],
+      "r5_killed": "26/26"
+    },
+    {
+      "track": "R9-P2",
+      "repo": "Foundation-0/math0",
+      "pr_number": 21,
+      "url": "https://github.com/Foundation-0/math0/pull/21",
+      "is_draft": true,
+      "branch": "feat/round9-offpolicy-rl-quartet-and-jdpru",
+      "commit_sha": "346ccb9a87a9777385a1c489e817f3ed38ee4955",
+      "audit_ids": ["AUDIT-078R", "AUDIT-079R", "AUDIT-080R", "AUDIT-082R", "AUDIT-083R"],
+      "r5_killed": "361/361"
+    }
+  ],
+  "law4_n0_quarantine_count": 12,
+  "aggregate_metrics": {
+    "round9_audits_verified": 6,
+    "r5_mutants_killed": 387,
+    "r5_mutants_total": 387,
+    "live_redteam_defects_closed": 38,
+    "extra_edge_case_probes_passed": 80,
+    "unresolved_defects": 0
+  }
+}

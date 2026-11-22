@@ -1,0 +1,252 @@
+{
+  "schema": "aletheia.round6_catalog.v1",
+  "wave": "wave-2-round-6",
+  "status": "100_percent_verified_published",
+  "updated_at": "2026-11-21T16:23:00-06:00",
+  "owner": "session-cartographer",
+  "target_repo": {
+    "repo": "Moissanite-Labs/warp-drive",
+    "url": "https://github.com/Moissanite-Labs/warp-drive",
+    "protect_main": true,
+    "zero_github_writes_phases_1_2": true,
+    "zero_new_github_actions_workflows": true,
+    "baseline_main_sha": "e3899d3e0ef7697052e74e7a4f99f510d2b63ad5",
+    "phase3_base_main_sha": "38a7072f",
+    "main_files": 45,
+    "pr1_branch": "port/bareiss-gram-stack-cert",
+    "pr1_sha": "8d9f81557059631dfbb71eebf61988dfde5ef70a",
+    "pr1_upstream_merge_commit": "0cb8fbd",
+    "pr1_files": 48,
+    "pr1_source_commit": "e3bd8ed1eeb8b56f2a534cb31d0b2b3509de7843",
+    "pr1_study_sha256": "0ff8ae9b124a6c911f8b763764a3bfa08de5c6e48b23c4012e6b54dde3b9847c"
+  },
+  "baseline_verification": {
+    "python_requires": ">=3.11",
+    "external_runtime_deps": [],
+    "main_unittest": {
+      "ran": 58,
+      "ok": true,
+      "skipped": 1,
+      "rc": 0
+    },
+    "pr1_unittest": {
+      "ran": 58,
+      "ok": true,
+      "skipped": 1,
+      "rc": 0
+    },
+    "hardened_pra_unittest": {
+      "ran": 72,
+      "ok": true,
+      "skipped": 1,
+      "rc": 0,
+      "r4_modes_passed": 3
+    },
+    "upstream_r5_mutate_jump": {
+      "certificate_py": "14/32 (43.75%) -> 46/46 (100.0%)",
+      "ledger_py": "3/15 (20.0%) -> 21/21 (100.0%)",
+      "server_py": "1/3 (33.33%) -> 13/13 (100.0%)",
+      "total": "18/50 (36.0%) -> 80/80 (100.0%)"
+    },
+    "aletheia_v130_baseline_audit_check": {
+      "main_status": "FAIL",
+      "pr1_status": "FAIL",
+      "crlf_count": 0,
+      "pycache_count": 0,
+      "leak_count": 0,
+      "json_error_count": 0,
+      "src_bare_assert_count": 0,
+      "test_bare_asserts_baseline": [
+        {
+          "file": "tests/test_live_llama_smoke.py",
+          "line": 140
+        },
+        {
+          "file": "tests/test_stage4_rollback_ledger.py",
+          "line": 112
+        },
+        {
+          "file": "tests/test_stage4_rollback_ledger.py",
+          "line": 122
+        }
+      ],
+      "pra_v140_audit_check_strict_ancestors": "PASS (58 files, 0 bare asserts, 0 defects)"
+    }
+  },
+  "open_issues": [
+    {
+      "number": 2,
+      "title": "Preliminary Investigation",
+      "state": "OPEN"
+    },
+    {
+      "number": 3,
+      "title": "Execution: rapid governed weight iteration",
+      "state": "OPEN",
+      "deadline": "2026-11-22 10:00 AM PT"
+    },
+    {
+      "number": 4,
+      "title": "Freeze the experiment contract and evaluation suites",
+      "state": "OPEN",
+      "parent": 3
+    },
+    {
+      "number": 5,
+      "title": "Implement the bounded experiment controller",
+      "state": "OPEN",
+      "parent": 3
+    },
+    {
+      "number": 6,
+      "title": "Connect Kimi on Cerebras to the bounded experiment loop",
+      "state": "OPEN",
+      "parent": 3
+    },
+    {
+      "number": 7,
+      "title": "Independently verify deployment, rejection, and rollback",
+      "state": "OPEN",
+      "parent": 3
+    }
+  ],
+  "arms": [
+    {
+      "arm": "R6-1",
+      "owner": "spectral-prover",
+      "audit_id": "AUDIT-061R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_055_audit061_gram_cert.py",
+      "r5_killed": "100/100",
+      "bypasses_closed": 2,
+      "dir": "symbiosis/round6/arm1-gram-cert",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/12",
+      "scope": "PR #1 bareiss_gram_gate.py + certificate.py + test_stage2_certificate.py"
+    },
+    {
+      "arm": "R6-2",
+      "owner": "peer-weaver",
+      "audit_id": "AUDIT-062R",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_052_audit062_warp_drive_runtime.py",
+      "r5_killed": "34/34",
+      "bypasses_closed": 5,
+      "dir": "symbiosis/round6/arm2-runtime-sandbox",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/15",
+      "scope": "Stage 1/3/4 runtime + blueprints/sandbox/* + schemas/* + Issue #7"
+    },
+    {
+      "arm": "R6-3",
+      "owner": "continuum-bridge",
+      "audit_id": "AUDIT-063R2",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_056_audit063_bounded_controller.py",
+      "r5_killed": "126/126",
+      "bypasses_closed": 6,
+      "dir": "symbiosis/round6/arm3-bounded-controller",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/13",
+      "scope": "Issues #4, #5, #6 frozen contract + 5-op bounded controller + Cerebras/Kimi loop"
+    },
+    {
+      "arm": "R6-4",
+      "owner": "fractals-probe",
+      "audit_id": "AUDIT-064",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_054_audit064_warp_weight_iteration.py",
+      "r5_killed": "100/100",
+      "bypasses_closed": 0,
+      "dir": "symbiosis/round6/arm4-weight-iteration",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/12",
+      "scope": "Issue #3 governed weight iteration + state_banks.py + test_lattice_state_isolation.py"
+    },
+    {
+      "arm": "R6-5",
+      "owner": "gravity-probe",
+      "audit_id": "AUDIT-065",
+      "verdict": "VERIFIED",
+      "novelty": "N1",
+      "check_script": "check_053_audit065_weft_cross_audit.py",
+      "r5_killed": "88/88",
+      "bypasses_closed": 0,
+      "dir": "symbiosis/round6/arm5-weft-cross-audit",
+      "live_pr": "https://github.com/Moissanite-Labs/warp-drive/pull/15",
+      "scope": "test_weft_zone_alignment.py + blueprints/{mkosi,recovery,systemd} cross-org audit & PR blueprint"
+    }
+  ],
+  "phase3_live_prs": [
+    {
+      "track": "P3-1",
+      "label": "Draft PR-A (Upstream Hardening & Cross-Org Trust-Boundary Gates)",
+      "repo": "Moissanite-Labs/warp-drive",
+      "pr_number": 15,
+      "url": "https://github.com/Moissanite-Labs/warp-drive/pull/15",
+      "is_draft": true,
+      "branch": "feat/hardening-trust-boundary-and-cross-org-gates",
+      "commit_sha": "e6ad0967c2386eb3e3bdc7d81ff3a47808d53a1e",
+      "issues_referenced": [3, 7],
+      "audit_id": "AUDIT-066R",
+      "check_script": "check_058_audit066_warp_drive_pra.py",
+      "bypasses_closed": 5
+    },
+    {
+      "track": "P3-2",
+      "label": "Draft PR-B (Frozen Experiment Contract & 5-Op Bounded Controller)",
+      "repo": "Moissanite-Labs/warp-drive",
+      "pr_number": 13,
+      "url": "https://github.com/Moissanite-Labs/warp-drive/pull/13",
+      "is_draft": true,
+      "branch": "feat/frozen-contract-and-bounded-controller",
+      "commit_sha": "1ffda956d76745e61c53aff0e727036069fb13ec",
+      "issues_referenced": [3, 4, 5, 6],
+      "audit_id": "AUDIT-063R2",
+      "check_script": "check_056_audit063_bounded_controller.py",
+      "bypasses_closed": 6
+    },
+    {
+      "track": "P3-3",
+      "label": "Draft PR-C (Governed Weight-Iteration Bridge & Gram Certificate Upgrades)",
+      "repo": "Moissanite-Labs/warp-drive",
+      "pr_number": 12,
+      "url": "https://github.com/Moissanite-Labs/warp-drive/pull/12",
+      "is_draft": true,
+      "branch": "feat/governed-weight-iteration-and-gram-upgrades",
+      "commit_sha": "10ae3b33402d9e5ef6f74cf9d8bf5d4c462cd931",
+      "issues_referenced": [2, 3],
+      "audit_ids": ["AUDIT-061R", "AUDIT-064"],
+      "check_scripts": [
+        "check_055_audit061_gram_cert.py",
+        "check_054_audit064_warp_weight_iteration.py"
+      ],
+      "bypasses_closed": 2
+    },
+    {
+      "track": "P3-4",
+      "label": "Foundation-0/aletheia v1.4.0 Reverse-Extraction & Autonomous Plugin Sync",
+      "repo": "Foundation-0/aletheia",
+      "pr_number": 1,
+      "url": "https://github.com/Foundation-0/aletheia/pull/1",
+      "is_draft": true,
+      "branch": "feat/aletheia-v1-framework",
+      "commit_sha": "85830ca0b786f9c9cef753f7fe11f6839f2e5481",
+      "version": "1.4.0",
+      "local_plugin_synced": true,
+      "audit_id": "AUDIT-067R",
+      "check_script": "check_057_audit067_aletheia_v140.py",
+      "bypasses_closed": 4
+    }
+  ],
+  "aggregate_metrics": {
+    "round6_audits_verified": 7,
+    "phase2_r5_mutants_killed": 448,
+    "phase2_r5_mutants_total": 448,
+    "phase3_upstream_r5_mutants_killed": 80,
+    "phase3_upstream_r5_mutants_total": 80,
+    "red_team_bypasses_caught_and_closed": 22,
+    "unresolved_defects": 0,
+    "schur_unification_verified_count": 29
+  }
+}
