@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.structural_fingerprints.v1",
-  "wave": "wave-2-round-8-complete",
-  "updated_at": "2026-11-21T19:40:00-06:00",
+  "wave": "wave-2-round-9-complete",
+  "updated_at": "2026-11-21T21:15:00-06:00",
   "owner": "session-cartographer",
   "epistemic_origin": {
     "session_1": {
@@ -209,6 +209,12 @@
           "label_stripped": "2D vertical-depth x horizontal-time block-Schur S_J0 (det=1/1, Bareiss/FL non-normal overshoot 24.264x/29.973x), J3 companion-loop det(I-T_seq)=(1-80f)/64, 4-bank+learned-r0 rollback, & BF16 carry-scan freeze [#30 Schur unification]",
           "status": "verified",
           "ref": "AUDIT-072R N1 (check_065, 89/89 R5, SF-01 #30, Moissanite-Labs/warp-drive#21 @ 8031effa)"
+        },
+        {
+          "repo": "arxiv/2607.10169-ripo (Arm R9-2)",
+          "label_stripped": "RIPO lower dead zone p<1/20 & upper overflow p*=4/5, 51x chi^2-vs-KL breakdown, 625/36 heteroscedasticity, RIPO-FS-04 exact pullback diag(9/4,49/2,0) matching AUDIT-064 WI-4 & symmetric Bernoulli-chi^2 guard",
+          "status": "verified",
+          "ref": "AUDIT-079R N1 (check_073, 62/62 R5, Foundation-0/math0#21 @ 346ccb9a)"
         }
       ]
     },
@@ -266,6 +272,18 @@
           "label_stripped": "LOOM-IR-01..05 live .loom IR bugs, lossless dflash speculative acceptance/rejection (S1/S2/TV=35/64), Q8_0->Q4_0 argmax flip, MoE E[U(1..8)], exact 174,227,456 B geometry & hardened verify_loom_lockfile_bundle",
           "status": "verified",
           "ref": "AUDIT-074R N1 (check_066, 98/98 R5, Moissanite-Labs/siliquant#27 @ 8cf8d244)"
+        },
+        {
+          "repo": "arxiv/2609.20807-score-centering (Arm R9-3)",
+          "label_stripped": "Forward-KL M-projection disproof of Zhihu L42 reverse-KL (det 1/64 != 0), both-sign bias witnesses -1/2 & +1/2, SC-SING-01 100,000x Top-K tail_mass_ratio blowup & 91/100 simplex defect, & score-centering@fdca22b1 SC-CODE-01..05",
+          "status": "verified",
+          "ref": "AUDIT-080R N1 (check_071, 81/81 R5, Foundation-0/math0#21 @ 346ccb9a)"
+        },
+        {
+          "repo": "arxiv/2609.15987-bpo (Arm R9-6)",
+          "label_stripped": "Exact algebraic identities BPO Eq.(16) == Full Score Centering & BPO binary-KL == Top-1 Score Centering (H={y_t}), |V|=2 vs |V|>=3 drift dichotomy (0/1 vs 5/24 & 203/816), & cap-active triangle 8/75=10.667%",
+          "status": "verified",
+          "ref": "AUDIT-083R N1 (check_074, 83/83 R5, Foundation-0/math0#21 @ 346ccb9a)"
         }
       ]
     },
@@ -470,6 +488,12 @@
           "label_stripped": "CPU-ARC CARC-01..05 (8/8 builder token anomaly, 4/8 N*=inf collapse & GSM8K -1/8000, 4 live paper code bugs & Fig.12 fallback break) + AST symbol-allowlist sandbox, do() SHA-256 callee_pins & canonical warp-sandbox-exec.sh gate (26/26 attacks incl. 3 RCEs blocked)",
           "status": "verified",
           "ref": "AUDIT-077R N1 (check_068, 67/67 R5, Foundation-0/math0#20 @ 14f5a282)"
+        },
+        {
+          "repo": "alphaxiv/2611.reinforce-zero (Arm R9-4)",
+          "label_stripped": "Pure-Q Taylor proof of NVIDIA Gaussian TIM Thm 1 (V_200=68.2693) + persistent bias (+8.02%) & variance mismatch (gamma^2<=1/2 -> eta_max=0) + TII & coding-agent skill governance gate (REINFORCE-Zero@a22153de & zero-mismatch-rl@136aca87)",
+          "status": "verified",
+          "ref": "AUDIT-081R N1 (check_070, 26/26 R5, Moissanite-Labs/warp-drive#23 @ e13a13f0)"
         }
       ]
     },
@@ -713,6 +737,18 @@
           "label_stripped": "Company Harness + Knowledge Factory KF-01..05: Biba x BLP lattice & E[C]=6/1 blast radius, 4-step Goodhart +105.31% inversion halted at step 1, LWW/DFS cycle blocks, normalized Ring-0, & 3-role Tao/hash-chained Curator Governor (26/26 attacks blocked)",
           "status": "verified",
           "ref": "AUDIT-076R N1 (check_063, 108/108 R5, Foundation-0/math0#20 @ 14f5a282)"
+        },
+        {
+          "repo": "jdpru/{cover-your-ais@aafd6217, CES-Accuracy-Analysis@9375b1bb} (Arm R9-1)",
+          "label_stripped": "Prompt-vs-Oracle gap (CYA-GAP-01..06 for aletheia v1.5 + PROMPT-BLIND-01..05) & exact CES Kish DEFF=2.735959 / n_eff=19,932.68, 7/7 Bhatia-Davis caps, +49/3 orthogonal-raking MSE, 2.5x Simpson worsening, & 7/7 README-vs-CSV drifts",
+          "status": "verified",
+          "ref": "AUDIT-078R N1 (check_069, 79/79 R5, Foundation-0/math0#21 @ 346ccb9a)"
+        },
+        {
+          "repo": "Unified Off-Policy RL Triad Synthesis (Arm R9-5)",
+          "label_stripped": "3-Axis Composition (TII x Score Centering/Bregman KL x RIPO/Fisher-Schur) proving compositional clipping/Top-K/TIM interference traps + fail-closed square-free Unified RL Stability & Trust-Region Certifier",
+          "status": "verified",
+          "ref": "AUDIT-082R N1 (check_072, 56/56 R5, Foundation-0/math0#21 @ 346ccb9a)"
         }
       ]
     }

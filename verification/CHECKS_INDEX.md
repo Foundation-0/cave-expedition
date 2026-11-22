@@ -1,7 +1,7 @@
-# Independent Adversarial Verification Checks Index (`check_001` – `check_068`)
+# Independent Adversarial Verification Checks Index (`check_001` – `check_074`)
 
-Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-077R`, `68` scripts total).
-Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_068` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
+Clean-room, zero-shared-code adversarial verification scripts executed by `@verifier` across Wave 1 and Wave 2 (`AUDIT-001` through `AUDIT-083R`, `74` scripts total).
+Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](checks/); Wave 2 checks `check_015`–`check_074` are indexed below by SHA-256 and exact coverage (corresponding standalone domain code lives in its respective `Foundation-0/*` / `siliconcordat/*` / `Moissanite-Labs/*` Draft PRs).
 
 | Check Script | Lines | SHA-256 (first 16 hex) | Mirrored Here | Summary / Docstring |
 |---|---:|---|---|---|
@@ -73,3 +73,9 @@ Wave 1 checks `check_001`–`check_014` are mirrored verbatim under [`checks/`](
 | `check_066_audit074_inkling_loom.py` | 335 | `f49c204cd70b7209` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live-mirror IR + adversarial red-team check for AUDIT-074. |
 | `check_067_audit075_workers_dns_tcp.py` | 239 | `79c5cd4b4461f92c` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live-repo + adversarial red-team check for AUDIT-075. |
 | `check_068_audit077_cpu_arc.py` | 257 | `531bd3af8e33a69d` | `indexed (domain PR)` | Independent zero-shared-code SymPy + staged-PDF + adversarial red-team check for AUDIT-077. |
+| `check_069_audit078_jdpru.py` | 292 | `8a92d48a3f784368` | `indexed (domain PR)` | Independent zero-shared-code SymPy + live-repo + adversarial red-team check for AUDIT-078. |
+| `check_070_audit081_reinforce_zero.py` | 398 | `d2c9ad2432ef9a07` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-081 (REINFORCE Zero / TII). |
+| `check_071_audit080_score_centering.py` | 324 | `f0e57069928a4825` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-080 (Score Centering). |
+| `check_072_audit082_rl_triad.py` | 296 | `9583cb4b0b6707db` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-082 (RL Triad Synthesis). |
+| `check_073_audit079_ripo.py` | 263 | `c67b90c9f71e0311` | `indexed (domain PR)` | Independent zero-shared-code verifier & red-team suite for AUDIT-079 (RIPO, arXiv:2607.10169v2). |
+| `check_074_audit083_bpo.py` | 714 | `7c9111109f10be5a` | `indexed (domain PR)` | Independent zero-shared-code SymPy + LaTeX + adversarial verifier for AUDIT-083 (arXiv:2609.15987 BPO). |

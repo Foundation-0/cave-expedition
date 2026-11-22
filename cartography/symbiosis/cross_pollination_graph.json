@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-2-round-8-complete",
-  "updated_at": "2026-11-21T19:40:00-06:00",
+  "wave": "wave-2-round-9-complete",
+  "updated_at": "2026-11-21T21:15:00-06:00",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -304,6 +304,31 @@
       "id": "arxiv/2611.09891-cpu-arc",
       "kind": "round8_external_paper_readonly",
       "role": "Strictly read-only (arXiv:2611.09891v1, 28pp, pdf sha256:4d90b5fd...): CPU-ARC Agentic Reasoning Caching for on-CPU Reasoning Reuse (16-291x claimed cost reduction, completing 3-Axis Trace-Distillation Triangle)"
+    },
+    {
+      "id": "jdpru",
+      "kind": "round9_external_researcher_readonly",
+      "role": "Strictly read-only (7 public repos, 3 original non-forks): cover-your-ais@aafd6217 (AI verification prompts), CES-Accuracy-Analysis@9375b1bb (TeX survey weighting), CS-230-DynaRT@c024875d + 4 forks"
+    },
+    {
+      "id": "arxiv/2607.10169-ripo",
+      "kind": "round9_external_paper_readonly",
+      "role": "Strictly read-only (ICML 2026 + Zhihu Tab 2 d5a529c9...): RIPO Riemannian Isometric Policy Optimization |r-1|<=sqrt(delta/pi_old)"
+    },
+    {
+      "id": "arxiv/2609.20807-score-centering",
+      "kind": "round9_external_paper_readonly",
+      "role": "Strictly read-only (Marek & Ryabinin + Zhihu Tab 1 74443b91...): Score Centering Stabilizes Off-policy RL & Top-K JAX loss"
+    },
+    {
+      "id": "alphaxiv/2611.reinforce-zero",
+      "kind": "round9_external_paper_readonly",
+      "role": "Strictly read-only (NVIDIA Nov 4, 2026, surfaced in Zhihu Tab 1): REINFORCE Zero Kernel Alignment / Trainer-Inference Invariance (TII) + coding-agent alignment skill"
+    },
+    {
+      "id": "arxiv/2609.15987-bpo",
+      "kind": "round9_external_paper_readonly",
+      "role": "Strictly read-only (Song, Xu, Zhang & Bing, Sep 14, 2026; primary preprint behind Zhihu 2084586770000261374 CDP 403): Bellman Policy Optimization (PMD -> trajectory Bellman RLVR -> smoothed complementary-probability mismatch-correction weight)"
     }
   ],
   "edges": [
@@ -1691,6 +1716,90 @@
       "target_anomaly": "Separating genuine deterministic CPU-cache wins from branch overfitting, stale-cache drift, update poisoning & arbitrary-code-execution risk",
       "status": "verified",
       "audit_id": "AUDIT-077R (N1 VERIFIED; check_068; 67/67 R5; 10 bypasses incl. 3 Python RCEs + 16 extra blocked; CARC-01..05 incl. 8/8 builder token accounting anomaly, 4/8 N*=inf break-even collapse & GSM8K -1/8000, 4 live paper code bugs & Fig.12 fallback break, AST symbol-allowlist + do() SHA-256 callee_pins + warp-sandbox-exec.sh gate; live Foundation-0/math0#20 @ 14f5a282)"
+    },
+    {
+      "id": "R9-E01",
+      "portal": "R9-P01 / SF-04 / SF-07",
+      "direction": "bidirectional",
+      "source": "jdpru",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Arm R9-1 (AUDIT-078): 1-to-1 mapping of cover-your-ais@aafd6217 vs aletheia v1.4.0 CS-01..CS-12 (reverse-extracting v1.5 gaps & proving prompt-only blind spots) + pure-Q Horvitz-Thompson/Kish n_eff/Simpson audit of CES-Accuracy-Analysis@9375b1bb",
+      "target_anomaly": "Separating natural-language verification prompts from deterministic R4/R5/exact-oracle enforcement & quantifying survey weighting variance",
+      "status": "verified",
+      "audit_id": "AUDIT-078R (N1 VERIFIED; check_069; 79/79 R5; 8/8 bypasses closed + 10 extra PASS; CYA-GAP-01..06 for aletheia v1.5 + CES Kish DEFF=2.735959 / n_eff=19,932.68 & 7/7 README-vs-CSV drifts; live Foundation-0/math0#21 @ 346ccb9a)"
+    },
+    {
+      "id": "R9-E02",
+      "portal": "R9-P02 / SF-01 / SF-02",
+      "direction": "bidirectional",
+      "source": "arxiv/2607.10169-ripo",
+      "target": "Moissanite-Labs/warp-drive",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Arm R9-2 (AUDIT-079): Pure-Q differential-geometric tomography of RIPO (lower-clip dead zone pi_old<delta, chi^2 vs Fisher-Rao/KL breakdown, variance v(x')=pi_old+2*sqrt(delta*pi_old)+delta) bridging to AUDIT-064 WI-4 Fisher-Schur",
+      "target_anomaly": "Exposing boundary dead zones & exact Fisher-Rao divergence gap in Riemannian-isometric RL clipping",
+      "status": "verified",
+      "audit_id": "AUDIT-079R (N1 VERIFIED; check_073; 62/62 R5; 3/3 defects closed + 6 extra PASS; RIPO-DOC-01..05, lower dead zone p<1/20 & upper overflow p*=4/5, 51x chi^2-vs-KL breakdown, 625/36 heteroscedasticity, RIPO-FS-04 exact pullback diag(9/4,49/2,0) matching AUDIT-064 WI-4 & symmetric Bernoulli-chi^2 guard; live Foundation-0/math0#21 @ 346ccb9a)"
+    },
+    {
+      "id": "R9-E03",
+      "portal": "R9-P03 / SF-02 / SF-07",
+      "direction": "bidirectional",
+      "source": "arxiv/2609.20807-score-centering",
+      "target": "Moissanite-Labs/warp-drive",
+      "owner_arms": [
+        "fractals-probe"
+      ],
+      "typed_operator": "Arm R9-3 (AUDIT-080): Exact drift-signal & forward-KL M-projection audit of Score Centering (catching Zhihu Tab 1 reverse-KL slip), both-sign bias witnesses, & Top-K tail_mass_ratio 0/0 singularity bridging to songe SNG-01 & Inkling LOOM-IR-03",
+      "target_anomaly": "Hardening Top-K truncated Score Centering against peaked-policy tail singularities & advantage/distribution bias inversions",
+      "status": "verified",
+      "audit_id": "AUDIT-080R (N1 VERIFIED; check_071; 81/81 R5; 5/5 defects closed + 7 extra PASS; disproved Zhihu L42 reverse-KL det 1/64 != 0 vs forward -grad D_KL(mu||pi), both-sign bias witnesses -1/2 & +1/2, SC-SING-01 100,000x blowup & 91/100 simplex defect, martin-marek/score-centering@fdca22b1 SC-CODE-01..05; live Foundation-0/math0#21 @ 346ccb9a)"
+    },
+    {
+      "id": "R9-E04",
+      "portal": "R9-P04 / SF-04 / SF-07",
+      "direction": "bidirectional",
+      "source": "alphaxiv/2611.reinforce-zero",
+      "target": "Moissanite-Labs/siliquant",
+      "owner_arms": [
+        "peer-weaver"
+      ],
+      "typed_operator": "Arm R9-4 (AUDIT-081): Pure-Q Gaussian TIM instability proof, TII + unclipped token-level IS under lag tau=2..8 vs Score Centering, & governance audit of NVIDIA kernel-alignment coding-agent skill bridging to Magnitude, warp-drive#15, Inkling & aletheia",
+      "target_anomaly": "Proving kernel-mismatch variance explosion under unbiased IS and certifying TII runtime/skill alignment",
+      "status": "verified",
+      "audit_id": "AUDIT-081R (N1 VERIFIED; check_070; 26/26 R5; 11/11 defects closed + 43 extra PASS; pure-Q Taylor proof of NVIDIA Thm 1 V_200=68.2693 + persistent one-sided bias +8.02% & variance mismatch gamma^2<=1/2 -> eta_max=0, TII & coding-agent skill governance on REINFORCE-Zero@a22153de & zero-mismatch-rl@136aca87; live Moissanite-Labs/warp-drive#23 @ e13a13f0)"
+    },
+    {
+      "id": "R9-E05",
+      "portal": "R9-P05 / SF-01 / SF-04 / SF-07",
+      "direction": "bidirectional",
+      "source": "arxiv/2609.20807-score-centering",
+      "target": "Foundation-0/aletheia",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Arm R9-5 (AUDIT-082): Unified 3-Axis Off-Policy RL Composition (TII x Score Centering/Bregman KL x RIPO/Fisher-Schur) proving compositional clipping/Top-K/TIM interference traps + fail-closed RL Stability & Trust-Region Certifier",
+      "target_anomaly": "Closing compositional failures where combining Score Centering, RIPO clipping, Top-K truncation & kernel mismatch breaks each method's guarantees",
+      "status": "verified",
+      "audit_id": "AUDIT-082R (N1 VERIFIED; check_072; 56/56 R5; 4/4 defects closed + 4 extra PASS; 3-axis TII x Score-Centering x RIPO compositional interference traps + fail-closed Unified RL Stability & Trust-Region Certifier; live Foundation-0/math0#21 @ 346ccb9a)"
+    },
+    {
+      "id": "R9-E06",
+      "portal": "R9-P06 / SF-02 / SF-07",
+      "direction": "bidirectional",
+      "source": "arxiv/2609.15987-bpo",
+      "target": "arxiv/2609.20807-score-centering",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Arm R9-6 (AUDIT-083): Pure-Q PMD -> Bellman RLVR trajectory optimum & complementary-probability ratio (1-pi_theta)/(1-mu) duality with Score Centering tail_mass_ratio = (1-sum(mu_H))/(1-sum(pi_H))",
+      "target_anomaly": "Exposing saturation/divergence boundaries of smoothed complementary-probability mismatch correction vs Score Centering, RIPO & TII",
+      "status": "verified",
+      "audit_id": "AUDIT-083R (N1 VERIFIED; check_074; 83/83 R5; 7/7 defects closed + 10 extra PASS; exact algebraic identities BPO Eq.(16) == full Score Centering & BPO binary-KL == Top-1 Score Centering, |V|=2 vs |V|>=3 drift dichotomy 0/1 vs 5/24 & 203/816, BPO-SPEC-01 & cap-active triangle 8/75=10.667%; live Foundation-0/math0#21 @ 346ccb9a)"
     }
   ],
   "round1_summary": {
@@ -1971,6 +2080,37 @@
       "warp_drive_r8": "https://github.com/Moissanite-Labs/warp-drive/pull/21 (feat/round8-latent-lattice-and-songe-governance @ 8031effa7ebcdbec5307dc2809212e1d55601639; AUDIT-072R + AUDIT-073R)",
       "siliquant_r8": "https://github.com/Moissanite-Labs/siliquant/pull/27 (feat/round8-inkling-loom-speculative-tomography @ 8cf8d2447ab639b065c71c8edab898c66c0dfbeb; AUDIT-074R)",
       "math0_r8": "https://github.com/Foundation-0/math0/pull/20 (feat/round8-trace-distillation-and-dns-channel-studies @ 14f5a28274a9a9764d97791c5459d12c5d9cf390; AUDIT-075R + AUDIT-076R + AUDIT-077R)"
+    },
+    "total_unresolved_defects": 0
+  },
+  "round9_summary": {
+    "status": "100_percent_verified_published",
+    "portal_doc": "symbiosis/round9/cartography/ROUND9_PORTALS.md",
+    "catalog_json": "symbiosis/round9/cartography/round9_catalog.json",
+    "read_only_enforced": true,
+    "zero_external_writes": true,
+    "zhihu_extraction_method": "sanctioned_browser_subagent_open_user_tabs",
+    "blocked_antibot_resolved_via_public_search": [
+      "https://zhuanlan.zhihu.com/p/2084586770000261374 (CDP 403, zero bypass) -> https://arxiv.org/abs/2609.15987"
+    ],
+    "arms_total": 6,
+    "arms_verified": 6,
+    "audits_verified": [
+      "AUDIT-078R (N1; check_069; 79/79 R5; jdpru; math0#21 @ 346ccb9a)",
+      "AUDIT-079R (N1; check_073; 62/62 R5; RIPO; math0#21 @ 346ccb9a)",
+      "AUDIT-080R (N1; check_071; 81/81 R5; Score Centering; math0#21 @ 346ccb9a)",
+      "AUDIT-081R (N1; check_070; 26/26 R5; REINFORCE Zero TII; warp-drive#23 @ e13a13f0)",
+      "AUDIT-082R (N1; check_072; 56/56 R5; Unified RL Triad; math0#21 @ 346ccb9a)",
+      "AUDIT-083R (N1; check_074; 83/83 R5; Bellman BPO == Top-1 SC; math0#21 @ 346ccb9a)"
+    ],
+    "audits_in_flight": [],
+    "r5_mutants_killed": "387/387 (100.0%)",
+    "live_redteam_defects_closed": 38,
+    "extra_edge_case_probes_passed": 80,
+    "law4_n0_quarantine_count": 12,
+    "live_round9_prs": {
+      "warp_drive_r9": "https://github.com/Moissanite-Labs/warp-drive/pull/23 (feat/round9-reinforce-zero-tii-governance @ e13a13f01edcc89f63a5f3d3f027e96bbd9719d1; AUDIT-081R)",
+      "math0_r9": "https://github.com/Foundation-0/math0/pull/21 (feat/round9-offpolicy-rl-quartet-and-jdpru @ 346ccb9a87a9777385a1c489e817f3ed38ee4955; AUDIT-078R/079R/080R/082R/083R)"
     },
     "total_unresolved_defects": 0
   }
