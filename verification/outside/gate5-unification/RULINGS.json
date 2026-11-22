@@ -101,17 +101,39 @@
   },
   {
     "id": "G5-07",
-    "statement": "Conjecture: on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}.",
-    "verdict": "PARTIAL",
-    "oracle_class": "sampled",
-    "scope": "Held on 904 of 904 lattices (440 main seed, 176 and 264 fresh seeds, 24 at n=8), 11 families. Derived before running. Not proved.",
+    "statement": "For n >= 3 and rational L (n is the size of L): on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}. The formula is refuted at n = 2, with witnesses L = diag(3,2) (actual rank 0, formula 1) and L = 3I (actual rank 1, formula 2).",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "n >= 3, rational L. Instances: 1,725 (900 at n = 3, 600 at n = 4, 180 at n = 5 and 45 at n = 6, across 15 families), 0 mismatches. Two constructions of S_el agree on 40 of 40. Must-fail controls caught: dropping the second term (677 of 1,725), formula + 1 (1,725), L - 2I in place of L (L - 2I) (486), min(dim Z_B, 1) (737). Step checks: dim ker of the intra-cell map is n + n(n-1)/2 for n = 3 to 6. 128 of 128 basis vectors of Z_B lift to self-stresses with virial diag(z) L (L - 2I). The statement 'lift exists iff z in Z_B' held on 60 of 60 random z. n = 2: the formula is wrong on 237 of 400 random instances, and the intra-cell map has one extra flex (dim ker 4, rigid motions 3). Instances were tested for n = 3 to 6. The proof reading covers all n >= 3. Singular L is allowed.",
     "novelty": "N0",
     "evidence": [
+      "second/out/c5_thmB.txt",
+      "second/src/c5_thmB.py",
+      "second/out/hashes.txt",
       "second/REPORT.md",
       "second/out/c2_panel.txt",
       "second/src/c2_panel.py"
     ],
-    "second_checker": true
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "Conjecture: on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}.",
+        "verdict": "PARTIAL",
+        "oracle_class": "sampled",
+        "scope": "Held on 904 of 904 lattices (440 main seed, 176 and 264 fresh seeds, 24 at n=8), 11 families. Derived before running. Not proved.",
+        "novelty": "N0",
+        "evidence": [
+          "second/REPORT.md",
+          "second/out/c2_panel.txt",
+          "second/src/c2_panel.py"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "The team offered Theorem B (rank formula for all n >= 3, failing at n = 2). An independent exact check of 1,725 instances with must-fail controls, and a step-by-step reading of the proof, support it for n >= 3. The earlier ruling carried no restriction on n, which was a defect in our wording: the formula is false at n = 2."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
   },
   {
     "id": "G5-08",
@@ -145,18 +167,41 @@
   },
   {
     "id": "G5-10",
-    "statement": "In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over minimizing walks is non-zero.",
-    "verdict": "PARTIAL",
-    "oracle_class": "sampled",
-    "scope": "Second checker: 2400 instances, 19,456 entries, no violation of either direction; first checker: seeded random matrices over Q[q]. No proof is included. Order of truncation N = (|B|+1)D + 1.",
+    "statement": "Over Q[q] with val(K_BB) >= 1: val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over the minimizing walks is non-zero. Where that sum is zero and S_ij is non-zero, 1 <= val(S_ij) - T_ij <= (|B|+1)D - T_ij, with D the largest degree of an entry.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "val(K_BB) >= 1 over Q[q]. Instances: 7,600 (n = 3 to 6, |B| = 1 to n-1, D = 1 to 4), 27,502 entries with T finite. Violations of the lower bound, of [q^T]S = L, and of the equality condition: 0 of 27,502. L = 0 and S non-zero on 1,416 entries: gap bound held on 1,416 of 1,416, attained on 21. Exhaustive family |A| = 2, |B| = 1 (177,147 systems): val(S) <= 2D attained in 520. Must-fail controls caught: val >= T+1 (25,632 entries), val <= T (1,870), sign-blind rule (1,870), gap bound one lower (268), lead = L+1 (27,502), single hop with no Kleene star (853). The team's sentence that the regularity condition is necessary is not adopted. Observed, not proved (sampled-exact evidence): in a random panel that allowed val(K_BB) = 0, the lower bound failed only where det(I - K_BB)(0) = 0 (1,377 violations in 3,733 entries) and never where it was non-zero (0 violations in 41,702 entries, with 260 systems skipped because det is identically 0). The output does not count how many of the 41,702 entries have val(K_BB) = 0. One hand-built system with val(K_BB) = 0 and det(I - K_BB) = -1 satisfies the bound, but there the set of minimizing walks is infinite.",
     "novelty": "N0",
     "evidence": [
+      "second/out/c4_thmA.txt",
+      "second/src/c4_thmA.py",
+      "second/out/hashes.txt",
       "second/out/c3_trop.txt",
       "second/src/c3_trop.py",
       "tropical/out/mode1/s5random.json",
       "tropical/out/mode1/controls.json"
     ],
-    "second_checker": true
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over minimizing walks is non-zero.",
+        "verdict": "PARTIAL",
+        "oracle_class": "sampled",
+        "scope": "Second checker: 2400 instances, 19,456 entries, no violation of either direction; first checker: seeded random matrices over Q[q]. No proof is included. Order of truncation N = (|B|+1)D + 1.",
+        "novelty": "N0",
+        "evidence": [
+          "second/out/c3_trop.txt",
+          "second/src/c3_trop.py",
+          "tropical/out/mode1/s5random.json",
+          "tropical/out/mode1/controls.json"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "The team offered Theorem A (valuation bound under a regularity condition). An independent exact check of 7,600 instances with must-fail controls, and a step-by-step reading of the proof, support the lower bound and the equality condition under val(K_BB) >= 1. The earlier ruling carried no condition on K_BB, and the bound fails without one."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
   },
   {
     "id": "G5-11",
@@ -189,17 +234,38 @@
   },
   {
     "id": "G5-13",
-    "statement": "Surviving statement (c): one running map exists between the Q[q] and (min,+) objects, with an exact no-cancellation condition (G5-10).",
-    "verdict": "PARTIAL",
+    "statement": "Surviving statement (c), with changed scope: the map from Q[q] to (min,+) by valuation, with its lower bound and its exact no-cancellation condition (G5-10), holds under val(K_BB) >= 1. It is not extended to general matrices.",
+    "verdict": "VERIFIED",
     "oracle_class": "exact",
-    "scope": "The map is exact on the ledger's Cole-Hopf matrices (G5-09); the no-cancellation condition is sampled (G5-10).",
+    "scope": "Under val(K_BB) >= 1 over Q[q], as G5-10. Exact on the ledger's Cole-Hopf matrices (G5-09). Outside that hypothesis the ruling is NOT_SHOWN: the lower bound is refuted by the hand-built witness K_22 = 1 - q, K_02 = K_21 = q (val(S_01) = 1, T_01 = 2) and fails on 1,377 of 3,733 sampled entries where det(I - K_BB)(0) = 0. Where det(I - K_BB)(0) is non-zero the bound held on 41,702 sampled entries (sampled-exact evidence, no proof), and the equality condition is not available as a statement about a finite sum, because the minimizing walks can be infinite in number.",
     "novelty": "N0",
     "evidence": [
       "tropical/out/mode1/s5real.json",
       "tropical/out/mode1/s5random.json",
-      "second/out/c3_trop.txt"
+      "second/out/c3_trop.txt",
+      "second/out/c4_thmA.txt",
+      "second/src/c4_thmA.py"
     ],
-    "second_checker": true
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "Surviving statement (c): one running map exists between the Q[q] and (min,+) objects, with an exact no-cancellation condition (G5-10).",
+        "verdict": "PARTIAL",
+        "oracle_class": "exact",
+        "scope": "The map is exact on the ledger's Cole-Hopf matrices (G5-09); the no-cancellation condition is sampled (G5-10).",
+        "novelty": "N0",
+        "evidence": [
+          "tropical/out/mode1/s5real.json",
+          "tropical/out/mode1/s5random.json",
+          "second/out/c3_trop.txt"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "With G5-10 ruled VERIFIED under val(K_BB) >= 1, the valuation map is ruled for that hypothesis and no further. It is not extended to general matrices."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
   },
   {
     "id": "G5-14",

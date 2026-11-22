@@ -1,0 +1,34 @@
+== Theorem A: exact checks (integers only) ==
+A1 random mixed-sign regular instances: 3000  (n in 3..6, |B| in 1..n-1, D in 1..4)
+A2 forced-cancellation instances: 2500
+A2b exact annihilation (K_BB=0, K_ij = -K_iB K_Bj): 600
+A3 positive-leading-coefficient instances: 1500, entries 9563, entries with L=0 (must be 0): 0
+TOTAL instances (A1+A2+A2b+A3): 7600
+  rand:entries 18913
+  forced:entries 15689
+  annih:entries 2850
+  pos:entries 0
+entry checks passed: lower 27502, lead-identity 27502, iff 27502 (violations are listed under FAILURES)
+entry classes: S has val=T with L!=0: 25632;  L=0 and S!=0: 1416;  L=0 and S=0: 454;  T=inf: 9950
+gap bound 1 <= gap <= (|B|+1)D - T held on 1416 of 1416 L=0,S!=0 entries; tight (gap==bound) on 21
+val(S)<=(|B|+1)D held on 27048 entries with S!=0; val==(|B|+1)D exactly on 268
+gap histogram (1..8, 9+): 605 358 182 123 79 43 20 6 0
+== must-fail controls: number of entries falsifying each deliberately wrong statement (all must be > 0) ==
+  W1 val>=T+1                          falsified on 25632 entries
+  W2 val<=T                            falsified on 1870 entries
+  W3 sign-blind iff                    falsified on 1870 entries
+  W4 gap<=(|B|+1)D-T-1                 falsified on 268 entries
+  W4b gap<=|B|D-T                      falsified on 856 entries
+  W5 lead = L+1                        falsified on 27502 entries
+  W6 single-hop T (no Kleene star)     falsified on 853 entries
+A4 tightness search D=1 (20000 instances): entries with val(S) == (|B|+1)D: 1568
+A5 exhaustive |A|=2,|B|=1, entries in span{1,q,q^2} with coefficients in {-1,0,1}: 177147 systems; L=0&S!=0 cases 32008; of these val(S)==2D (bound attained): 472; any case with val(S)==2D: 520
+== without pivot regularity ==
+witness K_22=1-q, K_02=K_21=q: Q=[0, 1], P_01=[0, 0, 1], val(S_01)=val(P)-val(Q)=1, T_01=2, gap=-1
+random K, val(K_BB) allowed 0: entries with Q(0)!=0 (unit): 41702, lower-bound violations: 0
+   entries with Q(0)=0 (non-unit): 3733, lower-bound violations: 1377; systems with Q==0 skipped: 260
+   example violation (seed,n,A,B,i,j,val(S),T,val(Q)): (33, 5, [0, 3], [1, 2, 4], 3, 0, -1, 0, 1)
+   example violation (seed,n,A,B,i,j,val(S),T,val(Q)): (37, 5, [0, 1, 2, 4], [3], 0, 0, 0, 1, 1)
+   example violation (seed,n,A,B,i,j,val(S),T,val(Q)): (37, 5, [0, 1, 2, 4], [3], 0, 2, 0, 1, 1)
+val(K_BB)=0 but det(I-K_BB)=[-1] unit: S_01 has val 2, T_01=2 (bound holds; 'val(K_BB)>=1' is sufficient, not necessary; the L-walk set is infinite here)
+ALL CHECKS PASSED, ALL CONTROLS CAUGHT

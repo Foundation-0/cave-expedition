@@ -81,6 +81,15 @@
       "used_by": ["lattice"],
       "use": "fold_sheaf_collapse.py (AUDIT-019), called by path from a sandboxed driver",
       "source_note": "lattice/SPEC.md section 6"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "cave-expedition",
+      "pr": 1,
+      "commit": "4564fd6e7131d63778b34106a34c5735a2972dff",
+      "used_by": [],
+      "use": "head of the team ledger on 2026-11-22. The SF-01 instance count and the absence of the team's check files for Theorems A and B were read at this commit. No script reads it",
+      "source_note": "README, section on the SF-01 instance count"
     }
   ]
 }

@@ -6,7 +6,7 @@ The ledger's own PROTOCOL, Gate 5, says a claimed link between fields needs type
 
 The row-level mathematics of the eight rows is not in question here. This check complements PR #4. It asks only whether the shared-invariant sentence is supported.
 
-Five workers did the check separately. `predicate/` tests the ledger's criteria on unrelated systems. `hermitian/` compares three matrix domains exactly. `lattice/` tests the one cross-domain map that exists as code. `tropical/` covers the tropical and linear-programming rows. `second/` is a second checker that shares no code with the others.
+Five workers did the check separately. `predicate/` tests the ledger's criteria on unrelated systems. `hermitian/` compares three matrix domains exactly. `lattice/` tests the one cross-domain map that exists as code. `tropical/` covers the tropical and linear-programming rows. `second/` is a second checker that shares no code with the others. On 2026-11-22 two theorem checks were added to `second/` (`c4_thmA.py`, `c5_thmB.py`).
 
 Each finding carries a label. **Exact**: computed in exact arithmetic or proved, with the scope stated. **Sampled**: measured on seeded random panels. **Anchor**: a fact read from the ledger or a third-party repository at a pinned commit (`SOURCES.json`). Novelty is N0 for every item, because no prior-art reading was done.
 
@@ -54,13 +54,15 @@ If no diagonal D makes D L symmetric, S is zero. If such a D exists, is unique u
 
 A plain change of basis of the same lattice loses the collapse in 44 of 45 small cases and in 4 of 4 at n=8. A carried change, which keeps the same bars, leaves S_el unchanged.
 
-A conjectured exact rule for rank S held on 904 of 904 lattices. As stated in `second/REPORT.md`: on Z_B, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}. It was derived before running. It is a conjecture, not a proof.
+A conjectured exact rule for rank S held on 904 of 904 lattices. As stated in `second/REPORT.md`: on Z_B, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}. It was derived before running. It was a conjecture when first written. On 2026-11-22 it was ruled VERIFIED for n >= 3 and refuted at n = 2 (G5-07, section Theorems A and B).
 
 ## Finding 6. The tropical and linear-programming rows (exact, general rule sampled)
 
 Rows 4 and 8 are exact partial minimizations of convex functions. So are 300 of 300 unrelated convex problems. Partial minimization therefore classifies these rows and does not discriminate.
 
-The valuation map commutes with elimination on the ledger's own Cole-Hopf matrices: in 45 witness blocks, and in 528 eliminations of the 32-state matrix. In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over the minimizing walks is non-zero. The second checker confirmed this on 19,456 entries in 2,400 instances with no violation. No proof is included here.
+The valuation map commutes with elimination on the ledger's own Cole-Hopf matrices: in 45 witness blocks, and in 528 eliminations of the 32-state matrix. In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over the minimizing walks is non-zero.
+
+The second checker confirmed this on 19,456 entries in 2,400 instances with no violation. No proof was included at first. On 2026-11-22 the statement was ruled VERIFIED only under val(K_BB) >= 1 (G5-10, section Theorems A and B).
 
 ## What survives
 
@@ -68,9 +70,55 @@ The valuation map commutes with elimination on the ledger's own Cole-Hopf matric
 
 (b) One exact cross-domain congruence, AUDIT-017 with AUDIT-019, with the symmetrizer criterion of Finding 5. (exact, n=8)
 
-(c) One running map between the Q[q] and (min,+) objects, with an exact no-cancellation condition. (exact on the ledger's matrices, the condition sampled)
+(c) One running map between the Q[q] and (min,+) objects, with an exact no-cancellation condition. (exact on the ledger's matrices, the condition sampled). Since 2026-11-22 this is ruled VERIFIED only under val(K_BB) >= 1 (G5-13).
 
 Novelty is N0 for all three. None of them was checked against prior work.
+
+## Theorems A and B (added 2026-11-22)
+
+The team reviewed this package (https://github.com/Foundation-0/cave-expedition/pull/5#pullrequestreview-6010617792) and offered two theorems that they say close the three rulings we had left PARTIAL. A worker of ours tested both without the team's code. The scripts are `second/src/c4_thmA.py` and `second/src/c5_thmB.py`, with outputs `second/out/c4_thmA.txt` and `second/out/c5_thmB.txt`. The theorem statements were taken from the team's review text.
+
+Basis for G5-07, G5-10 and G5-13: exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked. Nothing here is a machine-checked proof, and no ruling says "proved".
+
+**G5-07, Theorem B: VERIFIED, scope n >= 3, rational L.** Here n is the size of L. The rank formula of the old G5-07 holds on 1,725 instances (900 at n = 3, 600 at n = 4, 180 at n = 5 and 45 at n = 6, across 15 families) with 0 mismatches. Two constructions of S_el agree on 40 of 40.
+
+Four must-fail controls were caught (677, 1,725, 486 and 737 of 1,725 instances disagree). The proof was read step by step for all n >= 3. Instances were tested for n = 3 to 6.
+
+The formula is refuted at n = 2. L = diag(3,2) has rank 0 and the formula says 1. L = 3I has rank 1 and the formula says 2. On 400 random 2x2 instances the formula is wrong in 237. The earlier G5-07 carried no restriction on n. That was a defect in our wording.
+
+**G5-10, Theorem A: VERIFIED, scope val(K_BB) >= 1 over Q[q].** Under that condition val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over the minimizing walks is non-zero. When that sum is zero and S_ij is non-zero, 1 <= val(S_ij) - T_ij <= (|B|+1)D - T_ij, where D is the largest degree of an entry.
+
+The check covered 7,600 instances (n = 3 to 6) and 27,502 entries with T finite, with 0 violations of the lower bound, the leading-term identity or the equality condition.
+
+The gap bound held on 1,416 of 1,416 entries where it applies and was attained on 21. An exhaustive family of 177,147 small systems attains the bound val(S) <= 2D in 520. Six must-fail controls were caught.
+
+The team's sentence that the regularity condition is necessary is not adopted.
+
+What was observed: in a random panel that allowed val(K_BB) = 0, the lower bound failed only where det(I - K_BB)(0) = 0 (1,377 violations in 3,733 entries) and never where it was non-zero (0 violations in 41,702 entries). This is sampled-exact evidence, not a proof.
+
+The output does not count how many of the 41,702 entries have val(K_BB) = 0. One hand-built system with val(K_BB) = 0 and det(I - K_BB) = -1 satisfies the bound.
+
+**G5-13: VERIFIED only under val(K_BB) >= 1.** The map from Q[q] to (min,+) by valuation is ruled for that hypothesis and is not extended to general matrices. Outside it the ruling is NOT_SHOWN.
+
+The lower bound is refuted by the witness K_22 = 1 - q, K_02 = K_21 = q (val(S_01) = 1, T_01 = 2). Where det(I - K_BB)(0) is non-zero the bound held on the sampled entries above, with no proof, and the minimizing walks can be infinite in number there.
+
+The team's own check script for these theorems and its proof files are not in the repository at the team ledger's head `4564fd6`. Our check is the only one a reader can run from the repository. No prior-art search was done for either theorem, so novelty stays N0.
+
+## The SF-01 instance count (added 2026-11-22)
+
+The team's fingerprints file has 29 instances in class SF-01 at `4564fd6`, so the team's figure is right. Our predicate panel read 27 rows from the older snapshot at `a7f8370` (`SOURCES.json`, PR 1). The file has no field for the kind of each instance, so a reader cannot check the team's split of those 29 into kinds from the file.
+
+This package does not say 30 anywhere (searched). The figure 30 appears at `4564fd6` in the team's own material: the ledger README ("30-way"), `schur_unification_summary` in the cross-pollination graph, `PRELINGUISTIC_PORTAL.md`, `ROUND10_PORTALS.md`, an instance reference string "SF-01 #30", and the team's review text.
+
+## Ruling history
+
+Rulings that were replaced stay on record in `RULINGS.json`, in the `history` list of each entry, with the old text verbatim.
+
+| id | superseded ruling | superseded on | reason |
+|---|---|---|---|
+| G5-07 | PARTIAL, sampled: conjecture on the rank formula, 904 of 904 lattices, not proved, no restriction on n | 2026-11-22 | Theorem B read and tested independently. VERIFIED for n >= 3, refuted at n = 2. |
+| G5-10 | PARTIAL, sampled: val(S_ij) >= T_ij in general, 2,400 instances, no proof | 2026-11-22 | Theorem A read and tested independently. VERIFIED under val(K_BB) >= 1. The old wording had no condition. |
+| G5-13 | PARTIAL, exact: map exact on the Cole-Hopf matrices, no-cancellation condition sampled | 2026-11-22 | With G5-10 ruled under val(K_BB) >= 1, the map is ruled for that hypothesis and not extended. |
 
 ## Verdict on the sentence as worded
 
@@ -84,9 +132,13 @@ Proposed wording for README section 1:
 
 Row 2 and row 8 as objects. BW16 and Leech. Equivalence over Q by Hasse invariants. The live percolation boxes. The gravity anchor used the committed JSON because numpy was missing. No prior-art audit was done.
 
+Open item: the ruling that the unification sentence fails for rows 4 and 6 as worded (G5-14) will be re-read against the owner's rule "Law 2b" when its text is public with Aletheia v2. Until then this PR stays in draft.
+
 ## Files
 
-`RULINGS.json` has one entry per finding and per surviving statement (verdict, label, scope, evidence paths, whether `second/` covers it). `SOURCES.json` lists the third-party repositories with owner, PR number and pinned commit. `MANIFEST_sha256.txt` has the SHA-256 of every other file here. Each part keeps its own notes and outputs: `predicate/PREDICATE.md` and `RESULTS.md`, `lattice/SPEC.md`, `second/REPORT.md`, and the `out/` folders. The part `tropical` reads `hermitian/objects/`, so the relative layout must stay as it is.
+`RULINGS.json` has one entry per finding and per surviving statement (verdict, label, scope, evidence paths, whether `second/` covers it).
+
+G5-07, G5-10 and G5-13 also carry `ruled_on`, `basis` and a `history` list with the superseded ruling. `SOURCES.json` lists the third-party repositories with owner, PR number and pinned commit. `MANIFEST_sha256.txt` has the SHA-256 of every other file here. Each part keeps its own notes and outputs: `predicate/PREDICATE.md` and `RESULTS.md`, `lattice/SPEC.md`, `second/REPORT.md`, and the `out/` folders. The part `tropical` reads `hermitian/objects/`, so the relative layout must stay as it is.
 
 Left out: every `upstream/` folder (third-party clones), bytecode and temporary files. No file is over 1 MB, so none was left out for size. Three byte-for-byte copies of third-party files that `hermitian/src/run_anchor.sh` makes under `hermitian/out/` were left out. Their SHA-256 values and the command that regenerates them are below.
 
@@ -133,6 +185,8 @@ Expected SHA-256 of stdout (the same in all three modes). Paths are relative to 
 | lattice | `src/checker2.py OBJ` | `6369daddde75d19e453dd460779565a14448668b25d0025964497130dce23198` |
 | lattice | `src/anchor.py OBJ "$PKG/lattice/out"` | `cf9e523af0bf9279ca25eabb394e3f5c78d28fc90aff4ab13ebd544d26bf1113` |
 | second | `src/c3_trop.py` | `a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765` |
+| second | `src/c4_thmA.py` | `44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0` |
+| second | `src/c5_thmB.py` | `760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce` |
 | tropical | `src/make_objects.py tower` | `852e5dbee0fa7430619b1e19f14eeb153776dc6d05f277597eec02513121b1fa` |
 | tropical | `src/make_objects.py cole_hopf` | `cd7b0cbc544eadab655c62655d2dec11dff5602ed1ad85ad470f2c5eef86a714` |
 | tropical | `src/make_objects.py lp` | `1dd7cedd29fd3ae3dfc63f5503f991891e60a6f0ab6b7a57dd94e96c3bcdf880` |
@@ -150,6 +204,12 @@ The lattice scripts write their objects into the objects folder, so a full run l
 `tropical/src/run_all.sh` calls plain `python3` and rewrites `out/` and `objects/`. The table above was checked with Python 3.12 and the sandbox command instead.
 
 `lattice/src/anchor.py` leaves one file open. Under `-I -B -W error` it prints a ResourceWarning to stderr and still exits 0 with the same stdout (recorded in `lattice/out/anchor_C.err`).
+
+### What was rerun for the 2026-11-22 change
+
+Only `second/src/c4_thmA.py` and `second/src/c5_thmB.py` were rerun for this change, each under `-I -B`, `-I -O -B` and `-I -B -W error` in the sandbox. Their lines are in `second/out/hashes.txt`. `second/src/run_hashes.sh` was edited to take an optional list of scripts (`SCRIPTS="c4_thmA c5_thmB"`) and to print the seconds per run.
+
+The SHA-256 of `run_hashes.sh` listed in `second/REPORT.md` (`d8945b2b...`) is of the version before this edit. `MANIFEST_sha256.txt` has the current one. `c4_thmA.py` took 46, 51 and 51 seconds in the three modes and `c5_thmB.py` took 346, 361 and 287 seconds. Stdout was byte-identical across modes and equal to the recorded output, with empty stderr. Every other script and its recorded output is unchanged and is carried from the earlier full rerun (81 scripts, three modes, from a clean clone).
 
 ### Checks that need the third-party clones
 

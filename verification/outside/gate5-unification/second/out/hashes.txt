@@ -13,4 +13,10 @@ c2_anchor [-I -B -W error] exit=0 stdout=df34a49f376f94ddca7d63079dec00b10b52e5d
 c3_trop [-I -B] exit=0 stdout=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 outfile=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 stderr_bytes=0
 c3_trop [-I -O -B] exit=0 stdout=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 outfile=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 stderr_bytes=0
 c3_trop [-I -B -W error] exit=0 stdout=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 outfile=a3db319d0ed6b88ea452842b49f40efd7284d94aca06e850087faf965f464765 stderr_bytes=0
+c4_thmA [-I -B] exit=0 stdout=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 outfile=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 stderr_bytes=0
+c4_thmA [-I -O -B] exit=0 stdout=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 outfile=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 stderr_bytes=0
+c4_thmA [-I -B -W error] exit=0 stdout=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 outfile=44bd591fa1eb917cc197d25646931ba63af282c66541bcf069ec2c41c87a95b0 stderr_bytes=0
+c5_thmB [-I -B] exit=0 stdout=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce outfile=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce stderr_bytes=0
+c5_thmB [-I -O -B] exit=0 stdout=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce outfile=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce stderr_bytes=0
+c5_thmB [-I -B -W error] exit=0 stdout=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce outfile=760a9bb926dcffc2a027ef8300b602077d93aff7e8c1c40bdbc13de31d7f3cce stderr_bytes=0
 FINISHED
