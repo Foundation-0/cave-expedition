@@ -3,13 +3,13 @@ import multiprocessing as mp
 import os
 
 _POOL = None
+MAX_WORKERS = 6  # at most 6 worker processes at once (shared machine)
 
 
 def pmap(fn, items, workers=None):
     global _POOL
     items = list(items)
-    if workers is None:
-        workers = min(12, (os.cpu_count() or 1) + 2)
+    workers = MAX_WORKERS if workers is None else min(int(workers), MAX_WORKERS)
     if workers <= 1 or len(items) < 3:
         return [fn(i) for i in items]
     if _POOL is None:

@@ -1,11 +1,21 @@
-"""IAAFT surrogates (Schreiber and Schmitz, PRL 77, 635, 1996) and the broken must-fail variants.
-PROVISIONAL CHOICES (the plan names IAAFT but fixes none of these; see AMENDMENTS_NEEDED.md, item A1):
-start from a random permutation of the series; alternate spectrum step and rank-remap step;
-stop when the rank order no longer changes or after MAX_ITER rounds; end on the rank-remap step,
-so the surrogate has exactly the values of the series."""
-import numpy as np
+"""IAAFT surrogates (Schreiber and Schmitz, PRL 77, 635, 1996) made from normal scores (PREREG section 4).
 
-MAX_ITER = 100
+Rule of the plan: every series is replaced by its normal scores Phi^-1((r - 1/2)/n) (mid-ranks, see ranks.py);
+each surrogate starts from a seeded random permutation of the scores and alternates two steps: impose the Fourier
+amplitudes of the scores, then replace values by the sorted scores in the current rank order. It stops when the
+rank order is unchanged between two successive iterations, or after MAX_ITER = 1,000 iterations, and ends on the
+rank step, so a surrogate has exactly the scores as its values.
+
+Reading used for 'the rank order is unchanged between two successive iterations': the array produced by the rank
+step equals the array that entered the iteration (the values are the sorted scores, so equal arrays mean an
+unchanged assignment of scores to positions). The start (the random permutation) counts as the first iterate.
+
+Also here: the MUST-FAIL variants used by the known-answer controls (raw-value surrogates, circular shifts)."""
+import numpy as np
+import ranks
+
+MAX_ITER = 1000
+RAW_MAX_ITER = 100  # only for the frozen plan's raw-value variant (must-fail control of K2)
 
 
 def iaaft_core(sorted_vals, amp, init, max_iter=MAX_ITER):
@@ -35,13 +45,21 @@ def iaaft_core(sorted_vals, amp, init, max_iter=MAX_ITER):
 
 
 def iaaft_surrogates(x, M, rng, max_iter=MAX_ITER):
+    """M surrogates made from the normal scores of x. Returns (Y (M, n), iterations (M,), converged (M,))."""
+    z = ranks.normal_scores(x)
+    init = rng.permuted(np.tile(z, (M, 1)), axis=1)
+    return iaaft_core(np.sort(z), np.abs(np.fft.rfft(z)), init, max_iter)
+
+
+def raw_surrogates(x, M, rng, max_iter=RAW_MAX_ITER):
+    """MUST-FAIL variant (K1, K2): surrogates made from the raw values, as in the frozen plan."""
     x = np.asarray(x, dtype=np.float64)
     init = rng.permuted(np.tile(x, (M, 1)), axis=1)
     return iaaft_core(np.sort(x), np.abs(np.fft.rfft(x)), init, max_iter)
 
 
 def leaky_surrogates(x, M, rng):
-    """MUST-FAIL variant. Circular shifts of the series keep the spectrum, the values and the whole time arrow."""
+    """MUST-FAIL variant (K3): circular shifts keep the spectrum, the values and the whole time arrow."""
     x = np.asarray(x, dtype=np.float64)
     shifts = rng.integers(1, len(x), size=M)
     Y = np.stack([np.roll(x, int(s)) for s in shifts])
@@ -58,8 +76,9 @@ def periodogram(x):
 
 def generated_noise(med_periodogram, values, n, rng, max_iter=MAX_ITER):
     """C4: one series with the given median periodogram and the value distribution of `values`
-    (quantiles at (k + 1/2)/n), made by the same IAAFT loop."""
+    (quantiles at (k + 1/2)/n), made by the same IAAFT loop (spectrum step on the median amplitude,
+    rank step onto the quantiles)."""
     q = np.quantile(np.asarray(values, dtype=np.float64), (np.arange(n) + 0.5) / n)
     init = rng.permutation(q)[None, :]
-    Y, _, _ = iaaft_core(q, np.sqrt(np.asarray(med_periodogram)), init, max_iter)
+    Y, _, _ = iaaft_core(q, np.sqrt(np.asarray(med_periodogram, dtype=np.float64)), init, max_iter)
     return Y[0]

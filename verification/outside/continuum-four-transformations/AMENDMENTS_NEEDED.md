@@ -83,3 +83,109 @@ The cascade criterion passes (ratio 0.70), but the shuffled cascade, which has n
 C7. Run time. K2 needs about 2.7 hours of processor time. The first unsplit K2 run finished in 24 minutes on a ten-core machine shared with other jobs. A second unsplit run was stopped by the 30 minute limit while the machine load average was about 150. K2 was then run in seven parts and K3 in three, with the same seeds and the same work. `known_answer/out/timing.txt` has the times.
 
 C8. X1 passes every check except one: the K2 bound of C3. The plan's own arithmetic in sections 6 and 9 holds (excess points 4 and 6, and 5 and 7 hits to reach 0.00179).
+
+# Amendment 1 build (code for the amended plan)
+
+The sections above belong to the frozen plan and stay as recorded. This section covers the code rebuilt for the plan as amended by Amendment 1 (plan commit 5cc2b2d). The plan files are unchanged. Where the plan is silent or unclear, the code uses the reading named here, provisionally.
+
+Each reading needs a dated amendment before real data are opened, or a confirmation that the reading is acceptable. Nothing was tuned: no seed, threshold or generator was changed after a result was seen.
+
+## Part D: readings the plan leaves open (provisional choices)
+
+D1. Inverse normal (section 4: "one implementation, recorded with the code commit"). The code uses the standard library `statistics.NormalDist(0.0, 1.0).inv_cdf` (algorithm AS 241) on the lower half of the rank table and reflects it oddly for the upper half. This makes the scores of a polarity-flipped series exactly the negated scores, bit for bit. Recorded in `src/ranks.py`.
+
+D2. IAAFT stop rule (section 4: "the rank order is unchanged between two successive iterations"). Read as: the array produced by the rank step equals the array that entered the iteration. The random start counts as the first iterate. The cap is 1,000 iterations.
+
+D3. Standardisation (section 4.3). The standard deviation of the other 99 series uses the population divisor. No p-value or transfer p-value depends on this choice, because it scales every value alike. Zero spread is decided exactly (all other values equal). In the transfer features a zero-spread entry is set to 0.
+
+Only the segment statistic T leaves such a lag out, as the plan says.
+
+D4. Ties. The tolerance of 1e-12 relative to the larger absolute value is used for the segment p-value, as the plan states. The plan gives no tolerance for the transfer test, where a random detector identical to w_A must tie with it. The code uses the same relative tolerance there.
+
+D5. Tied patterns (section 4.3). A pattern is the tuple of dense ranks of the window (the rank of a value is the number of distinct window values below it). This gives the 13 patterns at order 3 and 75 at order 4 that the plan counts.
+
+D6. Order-4 class frequency (section 4.1). A class frequency is the sum of the pseudocounted pattern frequencies of its members, so for a class with m patterns it is (count + m/2) / (windows + 75/2). The ninth class holds the 51 tied patterns.
+
+D7. Sigma_hat summation. The 13 terms are summed in sorted order so that x and -x give bit-identical sums (the plan says Sigma_hat is equal for x and -x).
+
+D8. "Below the 2.5th percentile" (sections 4.3 and 12). Defined by counting: S_B(w_A) is adverse if fewer than 1/40 of the random detectors score below it (strictly, beyond the tie tolerance). No interpolated percentile is used.
+
+D9. Flow template (section 4.1). The plan says the template is the mean feature vector over A's fit segments, and gives the score as an equal-weight mean over levels. The code builds the template the same way as the score: the mean of the units at each aligned level, each level counting equally.
+
+D10. Flow amplitude maps (section 5, "exp of the segment standardised to unit variance"). The flow averages amplitudes over whole streams, so the maps are applied to the whole stream before block averaging, not to a segment. The maps exist in `src/nets.py`.
+
+K5 judges its transfer criteria on the primary run only (see D17), so the two amplitude-map runs are built but not exercised by a known-answer test.
+
+D11. Window length net N/2 (section 5). Read as blocks of N/2 + 128 samples cut by the same rule of section 7 with segment length N/2.
+
+D12. Controls inside a net run (section 5). C2 and C3 are made from the native segment and then put through the run's net. C4 uses the pooled fit-set values and the median fit-set periodogram at the native length, then the run's net.
+
+D13. Status order (section 12). If an instrument is both underpowered and has a failed control, the code reports "underpowered".
+
+D14. Reading of "two independent streams per seed" and the seed rule. The seed rule has fields master|instrument|split|net|segment|purpose|index. For synthetic data the code fills them as follows.
+
+K1 and K2: instrument `K2:<class>:<length>` (K1 uses `K1:<class>:<length>`), split `synthetic`, net `native`, segment the seed index, purpose `data` for the series and `surrogates` for the pool.
+
+K3: instrument `K3:<case>:<length>`, net is the use (native4096, native2048, bm2, sub2, q12, q8, placement, wlen2048), segment the seed index. K4: instrument `K4:<kind>` (or `K4:<kind>:s<seed>` for segments), split `fit` or `verdict`, segment the seed or segment number. K5: instrument `K5:<case>` (and `:s<seed>` for units).
+
+Detectors use purposes `detectors-arrow`, `detectors-profile` and `detectors-flow`. The exp and cube versions of a K2 class share the seed of the plain class, so they are the same draw mapped.
+
+D15. K2 series. Unit variance for g and h means a stationary AR(1) series whose innovations have standard deviation sqrt(1 - c^2) for coefficient c. The 7 null classes are standardised by their sample mean and standard deviation. For the must-fail control, the flag point is the K2a rule (smallest k with tail at most 0.01/14) evaluated at the control's own number of seeds.
+
+D16. K3 on synthetic data. Each seed draws a block of N + 128 samples and cuts it by the offset rule.
+
+The window placement net and the window length net are independent draws of the same process (the processes are stationary, with a random phase for the sawtooth), cut by the same rule. "Native at 2,048 samples" is its own independent draw. The sawtooth noise at half its standard deviation is 0.1443 (the ramp k/64, k = 0 to 63).
+
+The circular-shift control bound of 20 of 200 is scaled to the same fraction (10 percent) at smoke size.
+
+D17. K4 and K5 constructions. K4: A' is built from blocks (the stream cut into its 33 blocks, block order shuffled, each block replaced by an IAAFT surrogate of itself) so that both grids exist. Its tau0 comes from its own fit stream built the same way. "Reaches p at most 0.01" means the largest p over the two runs.
+
+The runs are the primary grid and the shifted grid (no second channel). The sawtooth blind-spot streams are fresh draws, primary run only. K5: the transfer criteria are judged on the primary run only, because every extra run needs a further 110 pools per series and the plan does not say which runs K5 uses.
+
+A unit departs if at most 4 of its 99 surrogates have a sum of squared features at or above its own (p at most 0.05). The cascade's highest populated level is level 3.
+
+D18. K1 sizes. The full pipeline identity (pool, features, p-value) runs on segments of 1,024 samples for every seed, for the plain class, the exp and cube versions, the three maps and the polarity flip, for the 7 null classes.
+
+At the K2 lengths (4,096 and 2,048) the code checks the normal scores of every exp and cube version exactly. The pool is a deterministic function of those scores and the seed. The plan asks for 20 seeds per class, and the full size uses 20.
+
+## Part E: points where the plan cannot be implemented as written, or may not do what it intends
+
+E1. Flow alignment and the populated-feature floor (sections 4.1 and 10 K5). The level shift is round(log2 tau0) and only aligned levels -3 to +3 are kept. A series with a long memory has a large tau0.
+
+In the K5 smoke run the cascade's tau0 is 16 (shift 4) in every seed, so its flow levels 0 to 3 land at aligned levels -4 to -1 and only 3 levels (27 features) are kept. The shuffled cascade and the y series have tau0 = 1 (shift 0), so their levels land at 0 to 3.
+
+These share no level with the cascade, so every transfer between them has no jointly populated feature.
+
+Where fewer than 8 features are populated in both A and B, the transfer "counts as not rejecting". Two K5 criteria ask for p above 0.05 (cascade to y, shuffled cascade to cascade). In the smoke run all 20 of these 20 seed-transfers passed only through that floor, so those two criteria do not test anything as the plan is written. The K5 output reports the count.
+
+E2. Seeds for K1 under the plan's own count. K1 asks for 20 seeds per class for all 21 class versions with full pipeline equality. At 4,096 samples that is 1,680 pools per mode, more than K1's description suggests. The code keeps the identity exact and moves its pipeline part to 1,024 samples (D18).
+
+E3. Smoke size for K4 and K5. The smoke rule (one twentieth of the plan's seeds, at least 10) gives 10 seeds for K4 and K5, which is the plan's own number. Their smoke runs are therefore full-size in seeds. They are still labelled SMOKE and are not results.
+
+E4. Instance tests of section 12a. The section asks that each Law 2b instance passes K2 (200 seeds per class), K3 native and its paired K4 or K5 test before data are opened. The instances exist as functions (`src/law2b.py`) and have unit checks, but these instance tests are not built.
+
+E5. Second checker, mutation test (section 11) and the real-data readers are not built. The second implementation of the pattern count exists (`src/second_impl.py`).
+
+## Part F: answers to the designer's questions on K1 (asked after the first smoke run)
+
+F1. Reading of "for every K2 class (plain, exp and cube versions, 20 seeds each)" (section 10, K1). The code implements 21 class versions: the 7 null classes, each in three versions (plain, exp, cube). The 2 reversible classes (g^2 and |h|) have no exp or cube version in K2 and are not in the K1 identity.
+
+Not implemented: the 23-version reading (adding the two reversible classes plain) and the 27-version reading (all 9 classes in three versions).
+
+F2. Series compared per seed. For each of the 7 null classes and each seed the full pipeline runs on 7 series: x, x^3 + x, exp(x), the ranks of x, -x, and the exp and cube versions of the class. Six are compared with x. The plan names the first four.
+
+The last three are added: -x for the polarity identity of the pool, and the exp and cube versions because K2 relies on them. That is 49 pipeline runs per seed over the 7 classes. At the K2 lengths (4,096 and 2,048) only the normal scores of the exp and cube versions are compared (exactly), not the whole pipeline.
+
+F3. Would the 27-version reading run cleanly? A quick run on 5 seeds at 4,096 and at 2,048 samples applied x^3 + x, exp(x) and the ranks to all 27 versions. All 21 versions of the 7 null classes were clean: no non-finite value and no tie created. The reversible class |h| was also clean in all three versions.
+
+The versions of g^2 were not. Here the exp and cube versions of g^2 were taken as exp and cube of the standardised series. exp(exp(z)) overflowed to infinity in all 5 seeds for g^2 exp at both lengths, and in 2 of 5 seeds for g^2 cube at 4,096 samples.
+
+Where it overflowed, the infinite values are tied, which creates ties that were not in the input, in 4 of 5 seeds at 4,096 and 5 of 5 at 2,048 for g^2 exp. The distinct-value guard flags these cases, and the plan says such cases are reported and excluded.
+
+So the 27-version reading runs, but it would exclude most seeds of g^2 exp and some of g^2 cube. It never creates ties or non-finite values for the 7 null classes or for |h|.
+
+F4. K2 must-fail control at smoke size. The plan's rule is the K2a flag point, the smallest k with P(Binomial(n, 0.05) >= k) at most 0.01/14. At the plan's full size of 1,000 seeds it is 74 (7.4 percent). The control itself is specified at 200 seeds (the frozen plan measured 59 of 200).
+
+The code applies the same rule at the control's own number of seeds: at 200 seeds the flag point is 22 of 200 (11 percent), and at the smoke size of 10 seeds it is 5 of 10 (P(Binomial(10, 0.05) >= 4) = 0.00103 is above 0.01/14 = 0.00071, and P(>= 5) = 0.000064 is below).
+
+The smoke control rejected 4 of 10 (rate 0.40, higher than the frozen 59 of 200 = 0.295), one short of the smoke flag point. The same rate at full size (80 of 200) is far above the full-size flag point of 22 and would be flagged. The smoke flag point is coarse at 10 seeds and the control is recorded as NOT FLAGGED at that size.

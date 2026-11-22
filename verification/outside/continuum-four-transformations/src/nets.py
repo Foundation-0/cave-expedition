@@ -1,7 +1,10 @@
-"""The nets of PREREG section 5 as transformations of one series (or one grid rule)."""
+"""The nets of PREREG section 5 as transformations of one series, and the lag rule of section 4.3."""
 import numpy as np
+import ranks
 
-RATIO = {"native": 1, "bm2": 2, "bm4": 4, "sub2": 2, "q12": 1, "q8": 1, "whiten": 1}
+MIN_CONFIRMATORY = 2048  # no confirmatory run uses a segment shorter than this (section 5)
+
+STATISTICAL_NETS = ("native", "bm2", "sub2", "q12", "q8")  # applied to the segment; placement and length change the segment itself
 
 
 def block_mean(x, b):
@@ -15,36 +18,8 @@ def subsample(x, b):
 
 
 def quantize(x, bits):
-    """Uniform bins over the 0.1 to 99.9 percent range of the segment; values outside go to the end bins."""
-    x = np.asarray(x, dtype=np.float64)
-    lo, hi = np.percentile(x, [0.1, 99.9])
-    if not hi > lo:
-        raise ValueError("quantization range is empty")
-    nb = 2 ** bits
-    q = np.floor((np.clip(x, lo, hi) - lo) / (hi - lo) * nb)
-    return np.minimum(q, nb - 1).astype(np.float64)
-
-
-def running_median(v, width=33):
-    h = width // 2
-    padded = np.pad(v, h, mode="reflect")  # PROVISIONAL edge rule (AMENDMENTS_NEEDED.md, item A4)
-    win = np.lib.stride_tricks.sliding_window_view(padded, width)
-    return np.median(win, axis=1)
-
-
-def whiten(x):
-    """Zero-phase whitening: divide the Fourier transform by the square root of a 33-bin
-    running median of the periodogram."""
-    x = np.asarray(x, dtype=np.float64)
-    X = np.fft.rfft(x)
-    med = running_median(np.abs(X) ** 2, 33)
-    if not np.all(med > 0):
-        raise ValueError("whitening needs a positive running median at every bin")
-    return np.fft.irfft(X / np.sqrt(med), n=len(x))
-
-
-def increasing_maps():
-    return {"cubic": lambda v: v ** 3 + v, "exp": np.exp, "rank": lambda v: np.argsort(np.argsort(v, kind="stable"), kind="stable").astype(np.float64)}
+    """Equal-count bins floor(2^b (r - 1/2) / n) on mid-ranks (ranks.equal_count_bins). Tied values stay tied."""
+    return ranks.equal_count_bins(x, bits)
 
 
 def polarity_flip(x):
@@ -56,22 +31,50 @@ def apply(net, x):
         return np.asarray(x, dtype=np.float64)
     if net == "bm2":
         return block_mean(x, 2)
-    if net == "bm4":
-        return block_mean(x, 4)
     if net == "sub2":
         return subsample(x, 2)
     if net == "q12":
         return quantize(x, 12)
     if net == "q8":
         return quantize(x, 8)
-    if net == "whiten":
-        return whiten(x)
     raise ValueError("unknown net " + str(net))
 
 
-def lag_js(net):
-    """Lags 2^j with 2^j <= 512 / rate ratio: the same physical lag range, limited to fit the
-    shorter series. PROVISIONAL reading of 'lags limited to fit the shorter segment' (item A3)."""
-    r = RATIO[net]
-    top = 9 - (r.bit_length() - 1)
-    return list(range(top + 1))
+def applicable(net, N):
+    """Sampling-rate nets apply only where the result has at least 2,048 samples. Quantization and the native run
+    always apply."""
+    if net in ("bm2", "sub2"):
+        return N // 2 >= MIN_CONFIRMATORY
+    return True
+
+
+def window_length_applicable(N):
+    """Window length net N/2 applies only where N/2 is at least 2,048."""
+    return N // 2 >= MIN_CONFIRMATORY
+
+
+def lag_js(n):
+    """Lags tau = 2^j for j = 0 .. 9, keeping lags with 2 tau at most n/4 (exact integer test 8 tau <= n)."""
+    return [j for j in range(10) if 8 * (1 << j) <= n]
+
+
+# amplitude maps ---------------------------------------------------------------------------------------------
+def increasing_maps():
+    """The three maps of K1: x^3 + x, exp, and the (mid-)ranks."""
+    return {"cubic": lambda v: v ** 3 + v, "exp": np.exp, "rank": lambda v: ranks.twice_midrank(v).astype(np.float64) / 2.0}
+
+
+def amp_normal_scores(x):
+    """Amplitude-map net 1 (scale-flow transfer only): normal scores of the ranks."""
+    return ranks.normal_scores(x)
+
+
+def amp_exp_standardised(x):
+    """Amplitude-map net 2 (scale-flow transfer only): exp of the series standardised to mean 0, unit variance."""
+    x = np.asarray(x, dtype=np.float64)
+    return np.exp((x - x.mean()) / x.std())
+
+
+def map_guard_ok(x, y):
+    """A map is usable in the exact identity only if it leaves the number of distinct values unchanged."""
+    return ranks.n_distinct(x) == ranks.n_distinct(y)

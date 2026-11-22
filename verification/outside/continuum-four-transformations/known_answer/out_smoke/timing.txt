@@ -1,0 +1,7 @@
+wall (real) and processor (user + sys) seconds per smoke run, mode python -I -B, machine shared and heavily loaded
+k6_gate_checks: real 0.12 user 0.08 sys 0.02 
+k1_exact_checks: real 91.45 user 321.78 sys 3.39 
+k3_planted_structure: real 77.59 user 260.53 sys 2.75 
+k2_nothing_in_noise: real 247.67 user 934.43 sys 8.76 
+k4_transfer: real 1161.29 user 4647.77 sys 30.58 
+k5_scale_flow: real 1561.74 user 8764.97 sys 29.10 

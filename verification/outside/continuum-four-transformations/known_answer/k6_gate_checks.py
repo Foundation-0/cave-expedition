@@ -1,9 +1,12 @@
+"""K6 Gate checks (PREREG section 10): empty input, missing values, a constant series and a series shorter than N are rejected with
+explicit errors, plus the numeric and shape refusals. Each refusal has a must-fail input that trips it. Removing any refusal branch
+must make the test suite fail. usage: k6_gate_checks.py smoke|full (no size effect)"""
 import os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
 import gates, segments
-from kcommon import header, summary
+from kcommon import header, summary, parse_mode
 
 N = 4096
 BAD = {
@@ -36,7 +39,6 @@ def suite(disabled):
     good = np.random.default_rng(1).standard_normal(5000)
     if code_of(lambda: gates.validate_series(good, N, disabled)) != "NO_ERROR":
         fails.append("good input refused")
-    # the same gate guards the segment cutter
     got = code_of(lambda: segments.cut_segments(np.arange(100.0)))
     if got != "GATE_SHORT":
         fails.append("segment cutter does not refuse a short series (got %s)" % got)
@@ -44,7 +46,8 @@ def suite(disabled):
 
 
 def main():
-    header("K6", "gate checks: explicit refusals and must-fail inputs")
+    mode = parse_mode(sys.argv)
+    header("K6", "gate checks: explicit refusals and must-fail inputs", mode)
     f = suite(frozenset())
     print("all refusals active: %d failures" % len(f))
     for x in f:
@@ -57,7 +60,9 @@ def main():
         allflag = allflag and flagged
         print("  without %-13s suite failures %d: %s" % (b, len(fb), "FLAGGED" if flagged else "NOT FLAGGED"))
     ok = (len(f) == 0) and allflag
-    summary("K6", "PASS" if ok else "FAIL", "%d refusal branches, each refused its must-fail input; removal of each flagged: %s" % (len(gates.BRANCHES), "yes" if allflag else "NO"))
+    summary("K6", "PASS" if ok else "FAIL", "%d refusal branches, each refused its must-fail input; removal of each flagged: %s" % (len(gates.BRANCHES), "yes" if allflag else "NO"), mode)
+    if not ok:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

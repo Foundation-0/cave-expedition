@@ -1,75 +1,109 @@
-"""Per-segment irreversibility test of PREREG 4.3."""
+"""Per-segment irreversibility test of PREREG 4.3 and the standardised features that the transfer tests use."""
 import numpy as np
 import iaaft
+import nets
 import patterns
+import ranks
 import seeds
+
+REL_TIE = 1e-12  # values within 1e-12 relative of each other count as ties against the real series (section 4.3)
 
 
 def loo_standardise(V):
-    """Row i is standardised by the mean and the (population) standard deviation of the other rows.
-    The ddof choice scales every value alike and cannot change a p-value or an AUC.
-    Returns (z, degenerate flags)."""
+    """V: (P, L). Row i is standardised, column by column, by the mean and the (population) standard deviation of
+    the other P - 1 rows. The ddof choice scales every value alike and cannot change a p-value or a transfer p-value.
+    Zero spread is decided exactly (all other rows equal). Returns (z, degenerate (P, L) bool); z = 0 where degenerate."""
     V = np.asarray(V, dtype=np.float64)
-    m = V.shape[0] - 1
-    Vc = V - V.mean(axis=0)
-    S = Vc.sum(axis=0)
-    Q = (Vc ** 2).sum(axis=0)
-    mean = (S - Vc) / m
-    var = (Q - Vc ** 2) / m - mean ** 2
-    scale = Q / V.shape[0]
-    deg = ~(var > 1e-12 * scale)
+    P = V.shape[0]
+    m = P - 1
+    mean = (V.sum(axis=0)[None, :] - V) / m
+    diff = V[None, :, :] - mean[:, None, :]  # (i, k, l)
+    sq = diff * diff
+    idx = np.arange(P)
+    sq[idx, idx, :] = 0.0
+    var = sq.sum(axis=1) / m
+    s = np.sort(V, axis=0)
+    vmin, vmax = s[0], s[-1]
+    cmin = (V == vmin[None, :]).sum(axis=0)
+    cmax = (V == vmax[None, :]).sum(axis=0)
+    omin = np.where((V == vmin[None, :]) & (cmin[None, :] == 1), s[1][None, :], vmin[None, :])
+    omax = np.where((V == vmax[None, :]) & (cmax[None, :] == 1), s[-2][None, :], vmax[None, :])
+    deg = omin == omax
     sd = np.sqrt(np.where(deg, 1.0, var))
-    z = np.where(deg, 0.0, (Vc - mean) / sd)
+    z = np.where(deg, 0.0, (V - mean) / np.where(deg, 1.0, sd))
     return z, deg
 
 
-def make_pool(x, M, rng, kind="iaaft", max_iter=iaaft.MAX_ITER):
+def make_pool(x, key, M=99, kind="iaaft"):
+    """Pool = real series (row 0, raw values; patterns depend only on order) + M surrogates made from the normal
+    scores of x. key = (instrument, split, net, segment). kinds: iaaft (confirmatory), raw and leaky (must-fail)."""
+    x = np.asarray(x, dtype=np.float64)
+    rng = seeds.rng_for(*key, "surrogates", 0)
     if kind == "iaaft":
-        Y, it, cv = iaaft.iaaft_surrogates(x, M, rng, max_iter)
+        Y, it, cv = iaaft.iaaft_surrogates(x, M, rng)
+    elif kind == "raw":
+        Y, it, cv = iaaft.raw_surrogates(x, M, rng)
     elif kind == "leaky":
         Y, it, cv = iaaft.leaky_surrogates(x, M, rng)
     else:
         raise ValueError("unknown surrogate kind " + str(kind))
-    return np.vstack([np.asarray(x, dtype=np.float64)[None, :], Y]), it, cv
+    return np.vstack([x[None, :], Y]), it, cv
 
 
-def analyse(x, key, js, M=99, kind="iaaft", d4=False, tie_limit=0.20, max_iter=iaaft.MAX_ITER):
-    """key = (instrument, split, net, segment). Pool = real series (row 0) + M surrogates.
-    Returns a dict with the counts, standardised Sigma, T, p and flags."""
-    x = np.asarray(x, dtype=np.float64)
-    rng = seeds.rng_for(*key, "surrogates", 0)
-    pool, it, cv = make_pool(x, M, rng, kind, max_iter)
-    L = len(js)
-    C3 = np.zeros((M + 1, L, 6), dtype=np.int64)
-    ties = np.zeros((M + 1, L), dtype=np.int64)
-    nwin = np.zeros(L, dtype=np.int64)
-    sig = np.zeros((M + 1, L))
+def counts3(pool, js):
+    """(P, L, 13) order-3 counts of every pool member at lags 2^j, j in js, and the window counts (L,)."""
+    P = pool.shape[0]
+    C = np.zeros((P, len(js), 13), dtype=np.int64)
+    nw = np.zeros(len(js), dtype=np.int64)
     for li, j in enumerate(js):
-        c, t, nw = patterns.counts_batch(pool, 3, 2 ** j)
-        C3[:, li, :] = c
-        ties[:, li] = t
-        nwin[li] = nw
-        for i in range(M + 1):
-            sig[i, li] = patterns.sigma_hat(c[i], 3)
+        c, w = patterns.counts_batch(pool, 3, 1 << j)
+        C[:, li, :] = c
+        nw[li] = w
+    return C, nw
+
+
+def presence_stats(C3):
+    """T and the segment p-value from order-3 counts (P, L, 13), row 0 real. T is the largest standardised
+    Sigma_hat over the lags kept (non-degenerate lags), -inf if none. p = (1 + #surrogates with T >= real T) / P
+    where P = 100, with 1e-12 relative ties counted against the real series. If every lag of the real series has zero
+    spread the segment counts as not rejecting."""
+    P = C3.shape[0]
+    sig = patterns.sigma_hat(C3, 3)  # (P, L)
     Z, deg = loo_standardise(sig)
-    T = Z.max(axis=1)
+    Zm = np.where(deg, -np.inf, Z)
+    T = Zm.max(axis=1)
     Tr, Ts = T[0], T[1:]
-    ge = (Ts >= Tr) | (np.abs(Ts - Tr) <= 1e-12 * np.maximum(np.abs(Ts), np.abs(Tr)))
-    n_ge = int(ge.sum())
-    tie_frac = float(np.max(ties[0] / nwin))
-    tie_excluded = tie_frac > tie_limit
-    pn = 1 + n_ge  # p = pn / (M + 1)
-    # per-lag counts, only used by the must-fail 'uncorrected best lag' control
-    lag_ge = (Z[1:] >= Z[0][None, :]).sum(axis=0)
-    res = {"pn": pn, "den": M + 1, "reject": (not tie_excluded) and pn * 20 <= (M + 1),
-           "T": float(Tr), "Z": Z, "sigma": sig, "C3": C3, "ties": ties, "nwin": nwin,
-           "tie_frac": tie_frac, "tie_excluded": bool(tie_excluded), "degenerate": bool(deg.any()),
-           "iters": int(it.sum()), "nconv": int(cv.sum()), "lag_min_pn": int(1 + lag_ge.min()), "js": list(js)}
-    if d4:
-        C4 = np.zeros((M + 1, L, 24), dtype=np.int64)
-        for li, j in enumerate(js):
-            C4[:, li, :] = patterns.counts_batch(pool, 4, 2 ** j)[0]
-        sig4 = np.array([[patterns.sigma_hat(C4[i, li], 4) for li in range(L)] for i in range(M + 1)])
-        Z4, _ = loo_standardise(sig4)
-        res["T4"] = float(Z4.max(axis=1)[0])
-    return res
+    if not np.isfinite(Tr):
+        return {"pn": P, "den": P, "reject": False, "T": float("-inf"), "Z": Z, "deg": deg, "flag_zero_spread": True,
+                "all_zero_spread": True, "sigma": sig}
+    fin = np.isfinite(Ts)
+    scale = np.maximum(np.abs(np.where(fin, Ts, 0.0)), abs(Tr))
+    ge = (Ts >= Tr) | (fin & (np.abs(np.where(fin, Ts, 0.0) - Tr) <= REL_TIE * scale))
+    pn = 1 + int(ge.sum())
+    # reject iff p = pn / P <= 0.05, exactly, in integers
+    return {"pn": pn, "den": P, "reject": pn * 20 <= P, "T": float(Tr), "Z": Z, "deg": deg,
+            "flag_zero_spread": bool(deg[0].any()), "all_zero_spread": False, "sigma": sig}
+
+
+def segment_test(x, key, M=99, kind="iaaft"):
+    """Presence test of one segment (series after its net): returns presence_stats plus the counts and pool facts."""
+    x = np.asarray(x, dtype=np.float64)
+    js = nets.lag_js(len(x))
+    pool, it, cv = make_pool(x, key, M, kind)
+    C3, nw = counts3(pool, js)
+    r = presence_stats(C3)
+    r.update({"C3": C3, "js": js, "iters": int(it.sum()), "nconv": int(cv.sum())})
+    return r
+
+
+def arrow_profile_features(C3):
+    """From order-3 counts (P, L, 13): standardised u, m1 and m23 (each (P, L)) against the pool. Degenerate
+    entries are 0."""
+    a1, a2, a3 = patterns.a_features(C3)
+    u = a2 - a3
+    m1 = np.abs(a1)
+    m23 = np.abs(a2 + a3)
+    zu, _ = loo_standardise(u)
+    z1, _ = loo_standardise(m1)
+    z23, _ = loo_standardise(m23)
+    return zu, z1, z23

@@ -1,0 +1,16 @@
+wall (real) and processor (user+sys) seconds; machine load low at this time
+units_check mode1: real 34.68 user 29.87 sys 0.17 
+units_check mode2: real 30.51 user 28.17 sys 0.11 
+units_check mode3: real 27.82 user 27.43 sys 0.07 
+k6_gate_checks mode1: real 0.11 user 0.08 sys 0.02 
+k6_gate_checks mode2: real 0.11 user 0.08 sys 0.02 
+k6_gate_checks mode3: real 0.11 user 0.08 sys 0.02 
+k3_planted_structure mode1: real 48.86 user 262.48 sys 1.37 
+k3_planted_structure mode2: real 60.50 user 272.07 sys 1.44 
+k3_planted_structure mode3: real 73.44 user 280.96 sys 1.62 
+k1_exact_checks mode1: real 92.22 user 332.06 sys 2.10 
+k1_exact_checks mode2: real 82.91 user 321.69 sys 2.85 
+k1_exact_checks mode3: real 98.17 user 322.51 sys 3.25 
+k2_nothing_in_noise mode1: real 263.87 user 933.46 sys 7.14 
+k2_nothing_in_noise mode2: real 299.00 user 926.38 sys 6.91 
+k2_nothing_in_noise mode3: real 278.20 user 930.96 sys 6.92 
