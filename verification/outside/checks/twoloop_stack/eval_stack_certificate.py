@@ -401,13 +401,28 @@ def part_b2_controls(seed=881002):
     res["float_L_identity_holds"] = int_checker([[1]], ("accept", (1, [[1.0]], [1])))
     # (d) guard type(v) is not int on a refutation vector: [[-1]] is refuted by x = 1, and by x = 1.0 as well.
     res["float_refute_vector"] = int_checker([[-1]], ("refute", [1.0]))
+    # (e) the sign test on D at its boundary: the indefinite matrix [[1,0],[0,-1]] has an honest
+    # L D L^T with D = [1, -1], so a test that only refuses values below -1 would accept it.
+    res["indefinite_matrix_with_D_minus_one"] = int_checker([[1, 0], [0, -1]], ("accept", (1, [[1, 0], [0, 1]], [1, -1])))
+    # (f) the sign test on c below zero: with c = -1 the identity holds on the negative matrix [[-1]],
+    # so a test that only refuses the value zero would accept it.
+    res["negative_c_on_negative_matrix"] = int_checker([[-1]], ("accept", (-1, [[1]], [1])))
+    # (g) the type test on c against a bool: True equals the int 1, so the identity holds, and a test
+    # based on isinstance would let it through because bool is a subclass of int.
+    res["bool_c_identity_holds"] = int_checker([[1]], ("accept", (True, [[1]], [1])))
+    # (h) the type test on L against a bool, for the same reason as (g).
+    res["bool_L_identity_holds"] = int_checker([[1]], ("accept", (1, [[True]], [1])))
+    # (i) the type test on a refutation vector against a bool, for the same reason as (g).
+    res["bool_refute_vector"] = int_checker([[-1]], ("refute", [True]))
     need(int_checker([[-1]], ("refute", [1])) == "reject", "honest refutation of [[-1]]")
     need(res["honest_accept"] == "accept" and res["honest_refute_smaller_s"] == "reject", "honest paths")
     refused = ("indefinite_matrix_with_negative_D", "bool_D_identity_holds", "float_L_identity_holds",
                "float_refute_vector",
                "replay_on_smaller_s", "negative_D_entry", "tampered_L", "c_zero", "bool_in_D", "fraction_c",
                "refute_vector_on_ok_matrix",
-               "c_zero_and_D_zero_on_indefinite_matrix", "refute_zero_vector")
+               "c_zero_and_D_zero_on_indefinite_matrix", "refute_zero_vector",
+               "indefinite_matrix_with_D_minus_one", "negative_c_on_negative_matrix",
+               "bool_c_identity_holds", "bool_L_identity_holds", "bool_refute_vector")
     for k in refused:
         need(res[k] == "malformed", f"control {k} not refused")
     res["controls_refused"] = len(refused)

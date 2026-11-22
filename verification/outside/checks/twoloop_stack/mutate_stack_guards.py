@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Mutation check for the guards of int_checker in eval_stack_certificate.py (review item 1).
 
-Backs: REVIEW-RESPONSE.md item 1. Each guard of the integer checker is disabled in turn on a scratch
-copy of eval_stack_certificate.py, and the copy must then FAIL, naming the control that guard isolates.
+Backs: REVIEW-RESPONSE.md item 1. Each guard of the integer checker is disabled or weakened in turn on a
+scratch copy of eval_stack_certificate.py, and the copy must then FAIL, naming the control that guard isolates.
+The weakened forms pin each sign guard at its boundary value and each type guard against a bool.
 Needs: python3 (3.10 or newer) and SymPy. No network, no input files. The original file is not changed.
 Run: python3 -I -B mutate_stack_guards.py
-Time: about 11 seconds.
+Time: about 24 seconds.
 """
 import os
 import subprocess
@@ -25,6 +26,16 @@ MUTANTS = [
     ("guard c <= 0", "or c <= 0 or", "or c < -10**100 or", "c_zero_and_D_zero_on_indefinite_matrix"),
     ("guard q < 0", 'return "reject" if q < 0 else', 'return "reject" if q <= 0 else', "refute_zero_vector"),
     ("guard type(c) is not int", "type(c) is not int or c <= 0", "c <= 0", "fraction_c"),
+    ("guard d < 0 at -1", "d < 0 for d in D", "d < -1 for d in D", "indefinite_matrix_with_D_minus_one"),
+    ("guard c <= 0 below zero", "or c <= 0 or", "or c == 0 or", "negative_c_on_negative_matrix"),
+    ("guard type(c) against bool", "type(c) is not int or c <= 0", "not isinstance(c, int) or c <= 0",
+     "bool_c_identity_holds"),
+    ("guard type(d) against bool", "type(d) is not int or d < 0", "not isinstance(d, int) or d < 0",
+     "bool_D_identity_holds"),
+    ("guard type(v) on L against bool", "type(v) is not int for v in r", "not isinstance(v, int) for v in r",
+     "bool_L_identity_holds"),
+    ("guard type(v) on x against bool", "type(v) is not int for v in x", "not isinstance(v, int) for v in x",
+     "bool_refute_vector"),
 ]
 
 
@@ -50,7 +61,7 @@ def main():
     if failures:
         print("RESULT: FAIL mutate_stack_guards: " + "; ".join(failures))
         return 1
-    print("RESULT: PASS mutate_stack_guards: %d guards disabled one at a time, each turned its own control red" % len(MUTANTS))
+    print("RESULT: PASS mutate_stack_guards: %d guard mutants applied one at a time, each turned its own control red" % len(MUTANTS))
     return 0
 
 
