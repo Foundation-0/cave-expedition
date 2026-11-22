@@ -1,7 +1,7 @@
 {
   "schema": "aletheia.symbiosis_graph.v1",
-  "wave": "wave-3-review-sweep-and-stream-waves-1-2",
-  "updated_at": "2026-11-22T15:00:00Z",
+  "wave": "wave1+wave2+wave3+wave3b+stream_wave1+stream_wave2_sync",
+  "updated_at": "2026-11-22",
   "owner": "session-cartographer",
   "corpora_mined": [
     "Moissanite-Labs/weft-corpus",
@@ -443,7 +443,27 @@
     {
       "id": "MiniMax-AI/Research",
       "kind": "stream_wave2_external_portal_readonly",
-      "role": "Strictly read-only external research benchmark @ 57842cef (BentSum/lean/ 0-sorry purity + ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK + Blender-256 Issues #1/#2 errata): AUDIT-109 PARTIAL/FRAGILE (Muse Code PASS; 4 @verifier catches MM109-BUG-01..04 queued for AUDIT-109R; NOT yet VERIFIED)"
+      "role": "Strictly read-only external research benchmark @ 57842cef (BentSum/lean/ 0-sorry purity + ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK + Blender-256 Issues #1/#2 errata): dual-family VERIFIED in AUDIT-109R (N1, 69/69 R5 mutate, 4/4 MM109-BUG-01..04 closed, LIVE on Foundation-0/math0#24 @ 4960e257)"
+    },
+    {
+      "id": "Foundation-0/gfq-codes",
+      "kind": "stream_wave2_target_repo",
+      "role": "Linear error-correcting codes over GF(q): hosts LIVE Draft PR #20 @ 53db43f3 (AUDIT-113R dual-family VERIFIED, 157/157 100.0% mutate + 84/84 AST BoolOp, Conway-canonical lazy incremental Brouwer-Zimmermann relative-rank certifier certifying 15/15 math0#4 codes in 14,526 enums) plus verified clean-room reviews on PRs #9/#10/#11/#13/#14/#19"
+    },
+    {
+      "id": "aska-physical/cfrp-masts",
+      "kind": "stream_wave2_hardware_repo",
+      "role": "Public aska-physical Timoshenko CFRP mast & tubular Euler buckling verifier: hosts LIVE PR #4 @ ba3221cf (AUDIT-PR-CFRP-MASTS-ISSUE3 VERIFIED, replacing bare asserts with -O-safe CheckFailure guards closing Issue #3)"
+    },
+    {
+      "id": "Foundation-0/rigid-realizations",
+      "kind": "stream_wave2_peer_review_repo",
+      "role": "Exact Krawczyk interval & Laman rigidity realization repository: PR #21 @ 4d5089fa independently verified & APPROVED (AUDIT-REV-RIGID-REALIZATIONS-21, zero-shared-code pure-Z proof of all 5,488/5,488 boxes across L880/L2288/L12)"
+    },
+    {
+      "id": "Foundation-0/point-charges",
+      "kind": "stream_wave2_peer_review_repo",
+      "role": "Exact equilibrium & certified Arb verification repository: PR #22 @ da0aaa4f independently audited (AUDIT-REV-POINT-CHARGES-22, four-charge 11-equilibrium certificate & python3 -O verify_arb.py hardening)"
     }
   ],
   "edges": [
@@ -2379,10 +2399,94 @@
       "owner_arms": [
         "continuum-bridge"
       ],
-      "typed_operator": "Clean-room BentSum/lean/ 0-sorry purity audit + pure-Z/F2/Q verification of ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK & Blender-256 Issues #1/#2 errata (59/59 mutate + 70/70 AST BoolOp; Muse Code PASS; 4 @verifier catches MM109-BUG-01..04 queued for AUDIT-109R)",
-      "target_anomaly": "Independent Lean 4 purity & exact finite-field cryptanalysis verification (PARTIAL/FRAGILE pending AUDIT-109R)",
-      "status": "in_progress",
-      "audit_id": "AUDIT-109 (PARTIAL/FRAGILE; Muse Code PASS; queued for AUDIT-109R)"
+      "typed_operator": "Clean-room BentSum/lean/ 0-sorry purity audit + pure-Z/F2/Q verification of ARADI/COLM/SBC-VOLE/TII-McEliece/HAWK & Blender-256 Issues #1/#2 errata (69/69 mutate KILLED; MM109-BUG-01..04 closed; dual-family VERIFIED)",
+      "target_anomaly": "Independent Lean 4 purity & exact finite-field cryptanalysis verification (LIVE on Foundation-0/math0#24 @ 4960e257)",
+      "status": "verified",
+      "audit_id": "AUDIT-109R (N1; dual-family VERIFIED; 69/69 R5; LIVE Foundation-0/math0#24 @ 4960e257)"
+    },
+    {
+      "id": "S14-E02",
+      "portal": "STREAM-S14",
+      "direction": "outgoing",
+      "source": "MiniMax-AI/Research",
+      "target": "Foundation-0/math0",
+      "owner_arms": [
+        "continuum-bridge"
+      ],
+      "typed_operator": "Pure-Z/F2/Q cryptanalysis & coding-lattice operator bridge published via AUDIT-109R (69/69 R5)",
+      "target_anomaly": "Standalone zero-float study branch live on Foundation-0/math0#24 @ 4960e257",
+      "status": "verified",
+      "audit_id": "AUDIT-PR-MATH0-AUDIT109R (N1; VERIFIED; LIVE Foundation-0/math0#24 @ 4960e257)"
+    },
+    {
+      "id": "S15-E01",
+      "portal": "STREAM-S15",
+      "direction": "outgoing",
+      "source": "Moissanite-Labs/siliquant",
+      "target": "Foundation-0/incentre-lattices",
+      "owner_arms": [
+        "gravity-probe"
+      ],
+      "typed_operator": "Zero-division binary-tree shell-convolution unranking & C11 packed E_8^4 codec (GCC/Clang -O3 -Wall -Wextra -Werror 0-div; 80/80 R5)",
+      "target_anomaly": "Eliminates runtime division in high-throughput lattice codebook unranking (siliquant#23/#25; LIVE Moissanite-Labs/siliquant#35 @ 48756aaf)",
+      "status": "verified",
+      "audit_id": "AUDIT-112R + AUDIT-112B-CBENCH + AUDIT-PR-SILIQUANT-AUDIT112R (N1; VERIFIED; LIVE Moissanite-Labs/siliquant#35 @ 48756aaf)"
+    },
+    {
+      "id": "S16-E01",
+      "portal": "STREAM-S16",
+      "direction": "outgoing",
+      "source": "Foundation-0/gfq-codes",
+      "target": "Foundation-0/math0",
+      "owner_arms": [
+        "spectral-prover"
+      ],
+      "typed_operator": "Conway-canonical lazy incremental Brouwer-Zimmermann relative-rank minimum-distance certifier over GF(q) (157/157 100.0% mutate + 84/84 AST BoolOp)",
+      "target_anomaly": "Certifies all 15/15 math0#4 linear codes in 14,526 enumerations with zero floats (LIVE Foundation-0/gfq-codes#20 @ 53db43f3)",
+      "status": "verified",
+      "audit_id": "AUDIT-113R (N1; dual-family VERIFIED with Muse Code; 157/157 R5; LIVE Foundation-0/gfq-codes#20 @ 53db43f3)"
+    },
+    {
+      "id": "W2-E01",
+      "portal": "WAVE2-HARDENING",
+      "direction": "outgoing",
+      "source": "Foundation-0/aletheia",
+      "target": "aska-physical/cfrp-masts",
+      "owner_arms": [
+        "session-cartographer"
+      ],
+      "typed_operator": "Replace bare asserts with -O-safe CheckFailure guards preventing python3 -O certificate forgery",
+      "target_anomaly": "Closes Issue #3 on aska-physical/cfrp-masts (LIVE PR #4 @ ba3221cf)",
+      "status": "verified",
+      "audit_id": "AUDIT-PR-CFRP-MASTS-ISSUE3 (N0; VERIFIED; LIVE aska-physical/cfrp-masts#4 @ ba3221cf)"
+    },
+    {
+      "id": "W2-E02",
+      "portal": "WAVE2-PEER-REVIEW",
+      "direction": "outgoing",
+      "source": "Foundation-0/rigid-realizations",
+      "target": "Foundation-0/incentre-lattices",
+      "owner_arms": [
+        "verifier-2"
+      ],
+      "typed_operator": "Independent zero-shared-code pure-Z Krawczyk interval proof across 5,488/5,488 boxes (L880/L2288/L12) & Laman counts",
+      "target_anomaly": "Clears live APPROVE on Foundation-0/rigid-realizations#21 @ 4d5089fa",
+      "status": "verified",
+      "audit_id": "AUDIT-REV-RIGID-REALIZATIONS-21 (N0; VERIFIED; APPROVE Foundation-0/rigid-realizations#21 @ 4d5089fa)"
+    },
+    {
+      "id": "W2-E03",
+      "portal": "WAVE2-PEER-REVIEW",
+      "direction": "outgoing",
+      "source": "Foundation-0/point-charges",
+      "target": "Foundation-0/spectral-inertia",
+      "owner_arms": [
+        "verifier-2"
+      ],
+      "typed_operator": "Independent review of 4-charge 11-equilibrium certificate & python3 -O verify_arb.py hardening",
+      "target_anomaly": "Clean-room verification of Foundation-0/point-charges#22 @ da0aaa4f",
+      "status": "verified",
+      "audit_id": "AUDIT-REV-POINT-CHARGES-22 (N0; VERIFIED; Foundation-0/point-charges#22 @ da0aaa4f)"
     }
   ],
   "round1_summary": {
@@ -2809,44 +2913,67 @@
     "total_wave1_unresolved_defects": 0
   },
   "continuous_flow_wave2_summary": {
-    "status": "10_tracks_multi_family_verified_plus_live_prs",
+    "status": "13_tracks_multi_family_verified_plus_wave2_live_prs_and_merges",
     "collaboration_hub_doc": "TEAM_COLLABORATION_HUB.md",
     "audits_verified": [
-      "AUDIT-097R (N1; dual-family VERIFIED with Muse Code; 185/185 R5; track-s1-wsp-self-rewriting)",
+      "AUDIT-097R (N1; dual-family VERIFIED with Muse Code; 185/185 R5; track-s1-wsp-self-rewriting; LIVE Moissanite-Labs/siliquant#33 @ f3c99357)",
       "AUDIT-100R (N0/N1; check_094; 92/92 R5; track-s4-nature-mechanics: Seeley/Physarum/Barkai-Leibler/phyllotaxis)",
       "AUDIT-102R (N1; dual-family VERIFIED with Muse Code; 167/167 R5; track-s4b-nature-extended; LIVE Foundation-0/math0#23 @ 007ab83c)",
       "AUDIT-103R2 (N1; triple-family VERIFIED; check_100; 68/68 R5; track-s6-siliquant; LIVE Moissanite-Labs/siliquant#30 @ 603512f0)",
-      "AUDIT-104R4 (N1; 3-family VERIFIED with Claude Code; check_101; 197/197 R5; track-s7-siliconcordat-d5)",
+      "AUDIT-104R4 (N1; 3-family VERIFIED with Claude Code; check_101; 197/197 R5; track-s7-siliconcordat-d5; LIVE Moissanite-Labs/warp-drive#35 @ e7a52868)",
       "AUDIT-105R (N0; dual-continent VERIFIED with OpenCode GLM 5.3; check_103; 176/176 R5; track-s8-exo-swarm)",
       "AUDIT-106R (N1; dual-continent VERIFIED with DeepSeek v4.1 Flash; 48/48 R5 + 88/88 AST BoolOp; track-s9-gated-mlp-lean; LIVE Moissanite-Labs/siliquant#31 @ 2881c166)",
-      "AUDIT-107R (N1; dual-family VERIFIED with Muse Code; 118/118 R5 + 146/146 AST BoolOp; 0/9,310 IEEE-754 RNE mismatches; track-s10-laya-vegaml)",
-      "AUDIT-108R (N1; dual-family VERIFIED with Muse Code; 96/96 R5; track-s13-heedle-spaceship-laya + HEEDLE-AUDIT-01..03)",
+      "AUDIT-107R (N1; dual-family VERIFIED with Muse Code; 118/118 R5 + 146/146 AST BoolOp; 0/9,310 IEEE-754 RNE mismatches; track-s10-laya-vegaml; LIVE Moissanite-Labs/siliquant#34 @ cbcac771)",
+      "AUDIT-108R (N1; dual-family VERIFIED with Muse Code; 96/96 R5; track-s13-heedle-spaceship-laya; LIVE Moissanite-Labs/siliquant#32 @ 25f6aca0 & Moissanite-Labs/heedle#9 @ 80806fea)",
+      "AUDIT-109R (N1; dual-family VERIFIED with Muse Code; 69/69 R5; track-s14-minimax-cryptanalysis; LIVE Foundation-0/math0#24 @ 4960e257)",
       "AUDIT-110R (N1; dual-family VERIFIED with Muse Code; 107/107 R5; track-s11-erlang-otp-supervision; LIVE Foundation-0/math0#23 @ 007ab83c)",
-      "AUDIT-111R (N0; dual-continent VERIFIED with DeepSeek v4.1 Flash; 130/130 R5; track-s12-serendipity-pr-mining Law 1b; LIVE Foundation-0/math0#23 @ 007ab83c)"
+      "AUDIT-111R (N0; dual-continent VERIFIED with DeepSeek v4.1 Flash; 130/130 R5; track-s12-serendipity-pr-mining Law 1b; LIVE Foundation-0/math0#23 @ 007ab83c)",
+      "AUDIT-112R + AUDIT-112B-CBENCH (N1; VERIFIED; 80/80 R5; Track S15a/S15b zero-div binary-tree shell-convolution unranking & C11 packed E_8^4 codec; LIVE Moissanite-Labs/siliquant#35 @ 48756aaf)",
+      "AUDIT-113R (N1; dual-family VERIFIED with Muse Code; 157/157 R5 + 84/84 AST BoolOp; track-s16-gfq-distance-certifier; LIVE Foundation-0/gfq-codes#20 @ 53db43f3)"
     ],
-    "wave2_10_track_r5_mutants_killed": "1292/1292 (100.0%)",
-    "wave2_plus_audit100r_r5_mutants_killed": "1384/1384 (100.0%)",
+    "wave2_plus_audit100r_r5_mutants_killed": "1690/1690 (100.0%)",
     "live_github_milestones": {
+      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (MERGED @ 8695c9e9; 2026-11-22T17:14:26Z; AUDIT-MCPROOF-PR16-R3)",
+      "bayt_al_hikma_pr3": "https://github.com/Foundation-0/bayt-al-hikma/pull/3 (MERGED @ 079f451a; 2026-11-22T17:15:08Z; AUDIT-PR-BAYT-N5-FIX-R2)",
+      "quotient_lp_bounds_pr6": "https://github.com/Foundation-0/quotient-lp-bounds/pull/6 (MERGED @ 8307a0aa; 2026-11-22T16:59:12Z; Closes #2; AUDIT-PR-QUOTIENT-LP-ISSUE2)",
       "warp_drive_pr30": "https://github.com/Moissanite-Labs/warp-drive/pull/30 (MERGED @ ba18c2bc; Closes #29; AUDIT-063-PR30)",
       "bayt_al_hikma_pr1": "https://github.com/Foundation-0/bayt-al-hikma/pull/1 (MERGED @ 15d48261; AUDIT-091R2)",
       "aletheia_pr1": "https://github.com/Foundation-0/aletheia/pull/1 (OPEN @ 7227bcc5; APPROVED by @zero-aska; 6/6 CI green; AUDIT-ALETHEIA-PR1-R3)",
-      "mcproof_pr16": "https://github.com/Proven-Commons/mcproof/pull/16 (OPEN @ 8695c9e9; APPROVED by @orda-aska; 9/9 CI green; AUDIT-MCPROOF-PR16-R3)",
       "siliquant_pr12": "https://github.com/Moissanite-Labs/siliquant/pull/12 (OPEN @ 20d13d5f; APPROVED; AUDIT-REVIEW-SILIQUANT-PR12)",
-      "siliquant_pr24_rulings": "https://github.com/Moissanite-Labs/siliquant/pull/24#issuecomment-7079992926 (AUDIT-059 1-by-1 rulings + Falcon-H1 Tiny Z2 no-go note LIVE)",
+      "siliquant_pr24": "https://github.com/Moissanite-Labs/siliquant/pull/24 (OPEN DRAFT @ 28ca241a; AUDIT-PR-SILIQUANT-24-FIX + AUDIT-059 rulings LIVE)",
       "siliquant_pr30": "https://github.com/Moissanite-Labs/siliquant/pull/30 (OPEN DRAFT @ 603512f0; AUDIT-103R2)",
       "siliquant_pr31": "https://github.com/Moissanite-Labs/siliquant/pull/31 (OPEN DRAFT @ 2881c166; AUDIT-106R)",
+      "siliquant_pr32": "https://github.com/Moissanite-Labs/siliquant/pull/32 (OPEN DRAFT @ 25f6aca0; AUDIT-108R; AUDIT-PR-SILIQUANT-AUDIT108R)",
+      "siliquant_pr33": "https://github.com/Moissanite-Labs/siliquant/pull/33 (OPEN DRAFT @ f3c99357; AUDIT-097R; AUDIT-PR-SILIQUANT-AUDIT097R)",
+      "siliquant_pr34": "https://github.com/Moissanite-Labs/siliquant/pull/34 (OPEN DRAFT @ cbcac771; AUDIT-107R; AUDIT-PR-SILIQUANT-AUDIT107R)",
+      "siliquant_pr35": "https://github.com/Moissanite-Labs/siliquant/pull/35 (OPEN DRAFT @ 48756aaf; AUDIT-112R + Track S15b; AUDIT-PR-SILIQUANT-AUDIT112R)",
+      "warp_drive_pr35": "https://github.com/Moissanite-Labs/warp-drive/pull/35 (OPEN DRAFT @ e7a52868; AUDIT-104R4; AUDIT-PR-WARP-DRIVE-AUDIT104R4)",
       "math0_pr23": "https://github.com/Foundation-0/math0/pull/23 (OPEN DRAFT @ 007ab83c; AUDIT-102R + 110R + 111R)",
-      "weft_loom_pr46_review": "https://github.com/Moissanite-Labs/weft-loom/pull/46 (OPEN DRAFT @ 3b05df94; review LIVE; AUDIT-REVIEW-WEFT-LOOM-PR46 check_102)"
+      "math0_pr24": "https://github.com/Foundation-0/math0/pull/24 (OPEN DRAFT @ 4960e257; AUDIT-109R; AUDIT-PR-MATH0-AUDIT109R)",
+      "gfq_codes_pr20": "https://github.com/Foundation-0/gfq-codes/pull/20 (OPEN DRAFT @ 53db43f3; AUDIT-113R; 157/157 100.0% mutate)",
+      "bayt_al_hikma_pr5": "https://github.com/Foundation-0/bayt-al-hikma/pull/5 (OPEN @ 93eecae6; Closes #4; 170/170 100.0% mutate; AUDIT-PR-BAYT-ISSUE4)",
+      "quotient_lp_bounds_pr8": "https://github.com/Foundation-0/quotient-lp-bounds/pull/8 (OPEN @ 4c002456; Closes #7; AUDIT-PR-QUOTIENT-LP-ISSUE7)",
+      "heedle_pr9": "https://github.com/Moissanite-Labs/heedle/pull/9 (OPEN @ 80806fea; AUDIT-PR-HEEDLE-FIX)",
+      "cfrp_masts_pr4": "https://github.com/aska-physical/cfrp-masts/pull/4 (OPEN @ ba3221cf; Closes #3; AUDIT-PR-CFRP-MASTS-ISSUE3)",
+      "ramanujan_pr6": "https://github.com/Foundation-0/ramanujan/pull/6 (OPEN @ 65281cca; Fixes #2-#5; AUDIT-PR-RAMANUJAN-FIX-2-5)",
+      "weft_pr219": "https://github.com/Moissanite-Labs/weft/pull/219 (OPEN DRAFT @ cd0ca146; AUDIT-PR-WEFT-219-FIX)",
+      "weft_pr224": "https://github.com/Moissanite-Labs/weft/pull/224 (OPEN DRAFT @ a26361f0; AUDIT-PR-WEFT-224-FIX-R2)",
+      "weft_pr225": "https://github.com/Moissanite-Labs/weft/pull/225 (OPEN DRAFT @ 235bcc92; AUDIT-PR-WEFT-225-FIX)",
+      "weft_loom_pr42": "https://github.com/Moissanite-Labs/weft-loom/pull/42 (OPEN DRAFT @ d5f2b078; AUDIT-PR-WEFT-LOOM-42-FIX)",
+      "weft_loom_pr46_review": "https://github.com/Moissanite-Labs/weft-loom/pull/46 (OPEN DRAFT @ 3b05df94; review LIVE; AUDIT-REVIEW-WEFT-LOOM-PR46 check_102)",
+      "rigid_realizations_pr21": "https://github.com/Foundation-0/rigid-realizations/pull/21 (OPEN @ 4d5089fa; APPROVE cleared; 5,488/5,488 Krawczyk boxes; AUDIT-REV-RIGID-REALIZATIONS-21)",
+      "point_charges_pr22": "https://github.com/Foundation-0/point-charges/pull/22 (OPEN DRAFT @ da0aaa4f; review verified; AUDIT-REV-POINT-CHARGES-22)"
     },
     "audits_in_verification": [
-      "AUDIT-109 (track-s14-minimax-cryptanalysis — PARTIAL/FRAGILE; Muse Code PASS; 4 @verifier catches queued for AUDIT-109R)"
+      "AUDIT-115 (track-s15c-e8had-simd-ballpack — PARTIAL/FRAGILE pending AUDIT-115R for D1-D3 API bounds; all core math, 4-mode parity & 0-div GCC/Clang SIMD kernels PASS)"
     ],
     "graph_counts": {
-      "nodes": 85,
-      "edges": 135,
-      "audit_log_rows": 200,
+      "nodes": 89,
+      "edges": 141,
+      "audit_log_rows": 270,
       "checks_indexed": 103
     },
-    "total_verified_unresolved_defects": 0
+    "total_verified_unresolved_defects": 0,
+    "wave2_13_track_r5_mutants_killed": "1598/1598 (100.0%)"
   }
 }
