@@ -1,6 +1,6 @@
 # Searches behind each "not found"
 
-Date: 2026-11-21. All searches ran on shallow clones at the heads below. "Clones" means the 15 repos listed in `README.md`. Code search means `gh search code --owner Foundation-0 "<string>"`, which covers the default branch of each repo the posting account can see, and does not cover open PR branches, closed PRs or issue text. A count of 0 limits the claim to this scope.
+Date: 2026-11-21. All searches ran on shallow clones at the heads below. "Clones" means the 15 repos listed in `README.md` section "What was read". The org-wide sweep (30 further repos) is at the end of this file. Code search means `gh search code --owner Foundation-0 "<string>"`, which covers the default branch of each repo the posting account can see, and does not cover open PR branches, closed PRs or issue text. A count of 0 limits the claim to this scope.
 
 Heads: aletheia PR #1 `aa47186`, cave-expedition PR #1 `1c589cf`, continuum PR #1 `8d3e734`, continuum PR #3 `7fe4ee2`, gravity PR #30 `00d8b1b`. Main branches: astr0 `67cafe2`, cosmic-denoising `a00e2b5`, exoplanets-frontier `3bc0163`, gaia-dr4 `0110e1c`, hawking `9c02f4f`, lost-eclipses `f9989df`, physics0 `913468f`, plate-eclipses `c0b7b0b`, plate-novae `9183100`, quantum `ad7a81f`, wwssn-microseisms `2bb4f58`.
 
@@ -26,3 +26,18 @@ Heads: aletheia PR #1 `aa47186`, cave-expedition PR #1 `1c589cf`, continuum PR #
 Instruction-like text: aletheia `AGENTS.md`, `adapters/`, `prompts/` and plugin files are written as instructions to agents. They were read as data and not followed.
 
 Biomedical material: aletheia `domains/biology-and-life-sciences.md` exists, and the organization has repos on that subject. None was opened.
+
+## Org-wide sweep
+
+Scope: 51 repos in the organization. 15 read first, 30 swept, 6 not public and not opened. Of the 30, 25 are non-biomedical and 5 are of a biomedical kind, checked only for fetch code. Run from the folder that holds the sweep clones, with `S` set to the 30 repo names.
+
+| Check | Command | Result |
+|---|---|---|
+| Repo count and visibility | `gh repo list Foundation-0 --limit 100 --json name,visibility --jq 'length, ([.[]\|select(.visibility!="PUBLIC")]\|length)'` | 51 and 6 |
+| Data-file extensions | `for d in $S; do (cd $d; git ls-files \| grep -iE "\.(fits?\|fits\.gz\|h5\|hdf5\|mseed\|sac\|cdf\|nc\|edf\|wav\|parquet\|gwf)$"); done \| wc -l` | 0 |
+| CSV over 1 MB | `for d in $S; do (cd $d; git ls-files \| grep -i "\.csv$" \| while read f; do [ $(wc -c < "$f") -gt 1048576 ] && echo "$d $f"; done); done` | none |
+| NumPy files | `for d in $S; do (cd $d; git ls-files \| grep -iE "\.np[yz]$"); done` | 7 files, all in `incentre-lattices` (`autoresearch-fold/`, `results/fold-*/`) |
+| Fetch code and archive names | `grep -rIlE "urlopen\|requests\.get\|astroquery\|curl \|wget" $S` and `grep -rIliE "DASCH\|TESS\|Gaia\|MAST\|GWOSC"` | Rows in the `README.md` hit table. Run by the sweep worker, not re-run for this file |
+| Open PR titles | `gh pr list --repo Foundation-0/<repo> --state open --json number,title` for each repo | Five heads fetched: fractals PRs #26, #37, #56, #60 and math0 PR #20. Titles were listed by the sweep worker, not re-run for this file |
+| Open PR head state | `gh pr view <n> --repo Foundation-0/<repo> --json headRefOid,state,isDraft` | Heads as cited. #60 and math0 #20 are drafts |
+| Not covered | closed and merged PRs, issues, discussions, other PR heads, private repos | not searched |
