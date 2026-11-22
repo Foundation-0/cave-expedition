@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reproduce · Cave Expedition</title>
+<meta name="description" content="Run the Cave Expedition checks yourself. One check needs no extra files. The rest need sibling repos laid out under one root folder.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reproduce · Cave Expedition">
+<meta property="og:description" content="Exact commands, layout and verdict guide for all twelve check scripts.">
+<meta property="og:url" content="https://foundation-0.github.io/cave-expedition/reproduce/">
+<link rel="canonical" href="https://foundation-0.github.io/cave-expedition/reproduce/">
+<meta name="theme-color" content="#070b0e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f0e6" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script>(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search),t=q.get("theme")||localStorage.getItem("joint-theme"),m=q.get("motion")||localStorage.getItem("joint-motion");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var r=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;d.setAttribute("data-motion",(m==="on"||m==="off")?m:(r?"off":"on"));}catch(e){d.setAttribute("data-motion","on");}})();</script>
+<script defer src="../assets/site.js"></script>
+<script defer src="../assets/figures.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="zero" viewBox="-50 -50 100 100"><path d="M-40-40L40 40M40-40L-40 40" fill="none" stroke-width="2" style="stroke:var(--ink-3)"/><g fill="none" stroke-width="4"><circle cy="-23.431" r="16.569" style="stroke:var(--bio)"/><circle cy="23.431" r="16.569" style="stroke:var(--bio)"/><circle cx="-23.431" r="16.569" style="stroke:var(--dig)"/><circle cx="23.431" r="16.569" style="stroke:var(--dig)"/></g><rect x="-40" y="-40" width="80" height="80" fill="none" stroke-width="4.4" style="stroke:var(--ink)"/></symbol></defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../" aria-label="Cave Expedition home"><svg aria-hidden="true"><use href="#zero"/></svg>Cave Expedition</a>
+  <span class="twin"><span class="pair" aria-hidden="true"><i></i><i></i></span>Twin site <a href="https://foundation-0.github.io/aletheia/">Aletheia</a></span>
+  <nav class="nav" aria-label="Main">
+    <a href="../">Home</a><a href="../ledger/">Ledger</a><a href="../joint-map/">Joint map</a><a href="./" aria-current="page">Reproduce</a><a href="https://github.com/Foundation-0/cave-expedition">Source</a>
+  </nav>
+  <div class="tools">
+    <button class="tbtn" type="button" data-motion-toggle aria-pressed="true"><span class="t-txt">Motion</span></button>
+    <button class="tbtn" type="button" data-theme-toggle><span class="t-txt">Theme</span></button>
+  </div>
+</div></header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <p class="kicker"><span class="pair" aria-hidden="true"><i></i><i></i></span>Cave Expedition · Run it</p>
+    <h1>Reproduce</h1>
+    <p class="promise">Start with one file and no setup. That check covers the sharp rank bound and needs only Python 3. The other eleven checks read sibling repos and need one shared root folder. This page gives the exact commands and says plainly what will not run from a bare clone.</p>
+    <div class="toc">
+      <a href="#standalone">Standalone check</a>
+      <a href="#suite">Full suite</a>
+      <a href="#env">Folder layout</a>
+      <a href="#honesty">Honesty notes</a>
+      <a href="#verdicts">Read a verdict</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="standalone">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>00</b><i>//</i>Standalone check</p><span class="chip">No extra files</span></div>
+    <h2 class="h2" data-reveal>One clone. Three commands.</h2>
+    <p class="lede" data-reveal>Clone this repo and run the AUDIT-002 checker. It uses the Python standard library only. Run it in all three modes. The three runs must agree. Mode two strips bare asserts, so a checker that leans on them fails there. Mode three turns warnings into errors.</p>
+    <pre data-reveal><code>git clone https://github.com/Foundation-0/cave-expedition
+cd cave-expedition
+python3 -I -B verification/checks/check_003_seam01_ropt.py
+python3 -I -O -B verification/checks/check_003_seam01_ropt.py
+python3 -I -B -W error verification/checks/check_003_seam01_ropt.py</code></pre>
+    <div class="prose" data-reveal style="margin-top:20px">
+      <p>What it proves: the rank chain and its sharpness in <a href="../ledger/#audit-002">AUDIT-002</a>, decided in exact Gaussian rational arithmetic and cross-checked by a second route with no shared code. What it does not prove: newness. Newness needs the prior-art read in the log and the outside ruling beside it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="suite">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>01</b><i>//</i>Cross-repo suite</p><span class="chip">check_001 to check_012</span></div>
+    <h2 class="h2" data-reveal>Twelve scripts, three kinds of input.</h2>
+    <p class="lede" data-reveal>Two scripts read private raw transcripts and will not run from this repo alone. One script runs anywhere. Nine scripts import sibling instruments through the root folder in the next section. The table lists each script with its audits, its oracle class and what it needs to run.</p>
+    <div class="table-wrap" data-reveal>
+      <table class="data">
+        <thead><tr><th scope="col">Script</th><th scope="col">Audits</th><th scope="col">Oracle</th><th scope="col">Needs</th><th scope="col">Reads under root</th></tr></thead>
+        <tbody>
+          <tr><td>check_001_lemma32_and_tcb.py</td><td>001, 002</td><td>exact</td><td>Python 3 stdlib</td><td>Raw transcripts via GEMINI_SESSIONS_DIR</td></tr>
+          <tr><td>check_002_session1_instruments.py</td><td>003</td><td>sampled + exact</td><td>numpy, scipy</td><td>Raw transcripts via GEMINI_SESSIONS_DIR</td></tr>
+          <tr><td>check_003_seam01_ropt.py</td><td>002</td><td>exact</td><td>Python 3 stdlib only</td><td>Standalone. No external files.</td></tr>
+          <tr><td>check_004_continuum_bridge_suite.py</td><td>004, 005, 006, 007</td><td>exact + sampled</td><td>numpy</td><td>synthesis/</td></tr>
+          <tr><td>check_005_portal78.py</td><td>008</td><td>exact</td><td>Python 3 stdlib</td><td>synthesis/</td></tr>
+          <tr><td>check_006_fractals_deliverables.py</td><td>009, 010</td><td>exact + sampled</td><td>numpy, node</td><td>probes/fractals/, repos/fractals/</td></tr>
+          <tr><td>check_007_gravity_probes.py</td><td>011, 012, 013</td><td>exact + sampled</td><td>sympy, numpy, scipy</td><td>probes/gravity/, repos/gravity/, repos/point-charges/</td></tr>
+          <tr><td>check_008_spectral_inertia.py</td><td>014, 015, 016</td><td>exact</td><td>sympy</td><td>branches/spectral-inertia/</td></tr>
+          <tr><td>check_009_e8_spinor_fold.py</td><td>017</td><td>exact</td><td>sympy</td><td>probes/fractals/</td></tr>
+          <tr><td>check_010_spectral_inertia_reaudit.py</td><td>015R, 016R</td><td>exact</td><td>Python 3 stdlib</td><td>branches/spectral-inertia/</td></tr>
+          <tr><td>check_011_gravity_reaudit_and_probe4.py</td><td>011R, 013R, 018</td><td>exact + anchor</td><td>sympy, node</td><td>probes/gravity/, repos/fractals/witness-map/</td></tr>
+          <tr><td>check_012_continuum_bridge_reaudit_and_fold_sheaf.py</td><td>006R, 007R, 008R, 019</td><td>exact + sampled</td><td>sympy, numpy</td><td>synthesis/, repos/project-asma/</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p data-reveal style="margin-top:16px"><a class="more" href="https://github.com/Foundation-0/cave-expedition/tree/main/verification/checks">Open the scripts on GitHub</a> <a class="more" href="https://github.com/Foundation-0/cave-expedition/blob/main/verification/AUDIT_LOG.md">Read the audit log</a></p>
+  </div>
+</section>
+
+<section class="sec alt" id="env">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>02</b><i>//</i>Folder layout</p><span class="chip">Two settings</span></div>
+    <h2 class="h2" data-reveal>Point the suite at one root.</h2>
+    <div class="prose" data-reveal style="margin-top:20px">
+      <p><code>EXPEDITION_ROOT</code> names the folder that holds the sibling work. If you leave it unset, scripts fall back to this repo root and cross-repo checks will miss their inputs. <code>GEMINI_SESSIONS_DIR</code> names the private transcript folder for check_001 and check_002 only. That folder is not in this repo and not public. Expect those two scripts to stop with a missing-path error on a bare clone. That stop is the honest outcome, not a failure of the ledger.</p>
+    </div>
+    <pre data-reveal><code>export EXPEDITION_ROOT=/path/to/expedition
+python3 -I -B verification/checks/check_010_spectral_inertia_reaudit.py
+python3 -I -O -B verification/checks/check_010_spectral_inertia_reaudit.py
+python3 -I -B -W error verification/checks/check_010_spectral_inertia_reaudit.py</code></pre>
+    <p class="quiet" data-reveal style="margin-top:12px">Swap in any script name from the table. Keep the three modes for every run. Record the exact command, the commit you ran at and the full output. A pass with no recorded command does not count as a replay.</p>
+  </div>
+</section>
+
+<section class="sec" id="honesty">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>03</b><i>//</i>Honesty notes</p><span class="chip">Read before you compare runs</span></div>
+    <h2 class="h2" data-reveal>Three traps for a careful reader.</h2>
+    <ol class="steps" data-reveal>
+      <li><b>Early checks pin early code.</b> check_007 covers AUDIT-011, 012 and 013 as first audited. check_008 covers AUDIT-014, 015 and 016 as first audited. The patched verdicts live in the re-audit scripts: check_011 for gravity, check_010 for spectral, check_012 for continuum. Run the re-audit script for the current standing of any R row. Running only the early script replays the first pass, defects included.</li>
+      <li><b>Upstream files move.</b> Cross-repo checks import live sibling code. If a sibling draft changed after the audit date, a fresh run tests new bytes against old expectations. Pin each sibling to the commit named in the log row before you compare outputs. A drift failure tells you the pin slipped. It does not by itself refute the audit.</li>
+      <li><b>Two scripts need private inputs.</b> check_001 and check_002 read raw session transcripts through <code>GEMINI_SESSIONS_DIR</code>. Those transcripts stay out of this repo by design. Their findings still stand in the log with script names and hashes, but a public reader cannot replay them end to end today.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec alt" id="verdicts">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>04</b><i>//</i>Read a verdict</p><span class="chip">Four words, three oracles</span></div>
+    <h2 class="h2" data-reveal>What each word lets you conclude.</h2>
+    <div class="table-wrap" data-reveal>
+      <table class="data">
+        <thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Safe next step</th></tr></thead>
+        <tbody>
+          <tr><td>VERIFIED</td><td>Passed each gate that applies, with clean replay and no counterexample found. True inside the stated scope only.</td><td>Build on it inside that scope. Cite scope with the result.</td></tr>
+          <tr><td>PARTIAL / FRAGILE</td><td>Core effect runs, but a robustness, scope or gate test fails.</td><td>Patch or narrow the claim, then seek a re-audit. Do not build on the wide form.</td></tr>
+          <tr><td>FALSIFIED</td><td>A concrete counterexample, a null hit, or a fatal gate failure refutes the claim as stated.</td><td>Retract or rebuild. The row stays as the record of why.</td></tr>
+          <tr><td>NOT_SHOWN</td><td>Tested inputs passed with no counterexample, but coverage stops short of the full claim.</td><td>Report how much ran, in plain counts. Never report it as a pass.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose" data-reveal style="margin-top:20px">
+      <p>Pair every verdict with its oracle. Exact means the checker decides the claim for all inputs in scope. Sampled means the checker saw finite inputs only, even when each sum ran in exact arithmetic. Anchor means held-out data tests the spec itself, so no tuning against it is allowed. Pair both with the novelty tag: N0 known, N1 local advance, N2 new ground. Truth and newness are separate calls. A row can be true and still be N0.</p>
+    </div>
+    <p data-reveal style="margin-top:16px"><a class="more" href="../ledger/">Back to the ledger</a> <a class="more" href="https://github.com/Foundation-0/cave-expedition/blob/main/verification/PROTOCOL.md">Read the protocol</a></p>
+  </div>
+</section>
+</main>
+<footer class="coda"><div class="wrap">
+  <span>Cave Expedition is a <a href="https://foundation-0.github.io/f0/">Foundation0</a> project. Twin site: <a href="https://foundation-0.github.io/aletheia/">Aletheia</a>.</span>
+  <span>Code Apache-2.0 · <a href="https://github.com/Foundation-0/cave-expedition">Source</a> · Design after <a href="https://foundation-0.github.io/f0/">F0</a> and <a href="https://moissanite-labs.github.io/weft-eido/">Eido</a></span>
+</div></footer>
+</body>
+</html>

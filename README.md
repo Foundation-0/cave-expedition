@@ -1,5 +1,9 @@
 # Cave Expedition — First-Principles Discovery, Cartography & Adversarial Verification Ledger
 
+**Start here:** [foundation-0.github.io/cave-expedition](https://foundation-0.github.io/cave-expedition/) · [Ledger](https://foundation-0.github.io/cave-expedition/ledger/) · [Joint map](https://foundation-0.github.io/cave-expedition/joint-map/) · [Reproduce](https://foundation-0.github.io/cave-expedition/reproduce/) · Twin site: [Aletheia](https://foundation-0.github.io/aletheia/)
+
+This repo is the field record of one expedition. It holds the maps, the open questions between repos, and the independent check ledger. The method that grew out of the run lives in [Foundation-0/aletheia](https://github.com/Foundation-0/aletheia). The two sites link claim to proof in both directions. Start with the joint map on either site if you want the pair in one view.
+
 Umbrella index, cross-domain cartography, peer-web frontier seam catalog, and independent adversarial verification ledger for the **Cave Expedition** (November 2026): an autonomous multi-agent first-principles mathematical, physical, and formal-verification expedition across the [`siliconcordat`](https://github.com/siliconcordat) and [`Foundation-0`](https://github.com/Foundation-0) repository ecosystem.
 
 > **Provenance & Verification Discipline:** Every claim marked `VERIFIED` below was independently re-executed and adversarially audited against the 9-gate, R1–R5 anti-shadow protocol in [`verification/PROTOCOL.md`](verification/PROTOCOL.md) (extending `siliconcordat/loom#8` / `#9`). Exact algebraic claims are certified in zero-float rational (`Fraction`), Gaussian rational ($\mathbb{Q}(i)$), $\mathbb{Z}[\sqrt{2}]$, or exact symbolic (`SymPy`) arithmetic and independently cross-checked by clean-room Faddeev–LeVerrier/Descartes/Sturm oracles under all Python optimizer/warning parity modes (`-B`, `-O -B`, `-B -W error`). Failed prototypes and intermediate `PARTIAL/FRAGILE` / `FALSIFIED` audits are logged permanently in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md) per Gate 8.
@@ -73,6 +77,7 @@ cave-expedition/
 ├── peer-web/
 │   ├── PEER_WEB.md                            # Live multi-repo frontier map across siliconcordat, Foundation-0, Proven-Commons & peers
 │   └── frontier_seams.json                    # Structured catalog of high-leverage cross-repo seams (SEAM-01..SEAM-09)
+├── docs/                                      # GitHub Pages site (foundation-0.github.io/cave-expedition), twin of aletheia site
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
