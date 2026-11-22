@@ -1,0 +1,30 @@
+{
+ "all_pass": true,
+ "lp_block_projected_out": {
+  "S4_holds": 100,
+  "of_which_infeasible_at_some_x": 25,
+  "problems": 100
+ },
+ "non_convex_set": {
+  "pivot_not_positive_definite_so_inf_does_not_exist": 100,
+  "problems": 100
+ },
+ "positive_definite_quadratics": {
+  "S4_holds": 100,
+  "problems": 100
+ },
+ "section": "s4null",
+ "seeds": {
+  "indefinite": 4001,
+  "lp": 2001,
+  "quadratic": 3001,
+  "shortest_path": 1001
+ },
+ "shortest_path_quotients": {
+  "S4_holds": 100,
+  "problems": 100
+ },
+ "total_S4_holds": 300,
+ "total_problems": 300,
+ "verdict": "S4 holds for every unrelated convex elimination problem tried: it classifies, it does not discriminate"
+}

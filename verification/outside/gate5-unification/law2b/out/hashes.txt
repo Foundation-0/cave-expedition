@@ -1,0 +1,9 @@
+out/law2b_check [-I -B] exit=0 stdout=44957f26500c70bfdf5b33986f56f7b9955ee244eddf004509e5176a0ceecb9b stderr_bytes=0 seconds=675
+out/law2b_check [-I -O -B] exit=0 stdout=44957f26500c70bfdf5b33986f56f7b9955ee244eddf004509e5176a0ceecb9b stderr_bytes=0 seconds=680
+out/law2b_check [-I -B -W error] exit=0 stdout=44957f26500c70bfdf5b33986f56f7b9955ee244eddf004509e5176a0ceecb9b stderr_bytes=0 seconds=673
+out/law2b_check IDENTICAL_ACROSS_MODES
+out/feed [-I -B] exit=0 stdout=9ab62f93b3d018bf40777f25b4e898cf2e0881076e5f7897429edbb8d996b0bf stderr_bytes=0 seconds=0
+out/feed [-I -O -B] exit=0 stdout=9ab62f93b3d018bf40777f25b4e898cf2e0881076e5f7897429edbb8d996b0bf stderr_bytes=0 seconds=0
+out/feed [-I -B -W error] exit=0 stdout=9ab62f93b3d018bf40777f25b4e898cf2e0881076e5f7897429edbb8d996b0bf stderr_bytes=0 seconds=0
+out/feed IDENTICAL_ACROSS_MODES
+FINISHED

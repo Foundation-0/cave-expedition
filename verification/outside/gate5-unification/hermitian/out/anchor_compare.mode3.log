@@ -1,0 +1,30 @@
+ok   A0 upstream rerun output is byte-identical to its committed results file
+ok   A1 N=1: Gamma_eff, IZ, ZI, ZX decays and regime 'underdamped' reproduce the upstream sweep row exactly
+ok   A1 N=2: Gamma_eff, IZ, ZI, ZX decays and regime 'underdamped' reproduce the upstream sweep row exactly
+ok   A1 N=3: Gamma_eff, IZ, ZI, ZX decays and regime 'underdamped' reproduce the upstream sweep row exactly
+ok   A1 N=5: Gamma_eff, IZ, ZI, ZX decays and regime 'overdamped_zeno' reproduce the upstream sweep row exactly
+ok   A1 N=10: Gamma_eff, IZ, ZI, ZX decays and regime 'overdamped_zeno' reproduce the upstream sweep row exactly
+ok   A1 N=20: Gamma_eff, IZ, ZI, ZX decays and regime 'overdamped_zeno' reproduce the upstream sweep row exactly
+ok   A1 N=50: Gamma_eff, IZ, ZI, ZX decays and regime 'overdamped_zeno' reproduce the upstream sweep row exactly
+ok   A1 N=100: Gamma_eff, IZ, ZI, ZX decays and regime 'overdamped_zeno' reproduce the upstream sweep row exactly
+ok   A2 eight sweep rows compared
+ok   B1 UV_stable_k2_9_above_mu2_8: pivots ['54', '35/216', '1/1260'], inertia (pos,zero,neg)=(3, 0, 0) and G_AA reproduce the committed exact values
+ok   B1 CRITICAL_pole_zero_k2_8_eq_mu2_8: pivots ['48', '1/6', '0'], inertia (pos,zero,neg)=(2, 1, 0) and G_AA reproduce the committed exact values
+ok   B1 IR_clustering_k2_7_below_mu2_8: pivots ['42', '29/168', '-1/812'], inertia (pos,zero,neg)=(2, 0, 1) and G_AA reproduce the committed exact values
+ok   B1 Cosmological_lam0_k2_4: pivots ['16', '3/16', '-1/48'], inertia (pos,zero,neg)=(2, 0, 1) and G_AA reproduce the committed exact values
+ok   B2 committed S_P text equals the transcription used below
+ok   B3 committed closed form S_P equals my exact Schur complement at all 14 sampled points
+ok   B4 committed lam=0 closed form text read
+ok   B5 lam=0 closed form reproduced at 1 sampled lam=0 point(s)
+ok   C1 raw else-branch value at (u,t,S,b)=(1,1,10,5) is -23/5
+ok   C2 upstream run reports 0 chain violations (its own count, 420 instances)
+ok   C3 R_opt('6', '5', '43', '1') = 2 (script asserts 2) [regime1 (derived: u^2 (G^-1)_11)]
+ok   C4 same value as u^2 (G^-1)_11 for G=[[S,t],[t,b]] built from the tuple
+ok   C3 R_opt('10', '1', '121/10', '1') = 9 (script asserts 9) [regime2 (transcribed: outside the Schur form)]
+ok   C3 R_opt('10', '-4', '12', '1') = 2 (script asserts 2) [regime2 (transcribed: outside the Schur form)]
+ok   C3 R_opt('6', '-3', '3', '0') = 3 (script asserts 3) [regime2 (transcribed: outside the Schur form)]
+ok   K1 control: perturbed Gamma_eff is rejected
+ok   K2 control: sign-flipped S_P text is rejected
+ok   K3 control: wrong R_opt witness value 3 is rejected
+ok   K4 control: negated S_P is rejected
+RESULT anchor_compare: PASS failures=0

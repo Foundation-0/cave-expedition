@@ -1,0 +1,374 @@
+{
+ "bound_sequence_concrete_sum": [
+  64,
+  112,
+  124
+ ],
+ "layers": [
+  {
+   "dual_flow_mu_fiber": [
+    0,
+    0,
+    4,
+    24,
+    0,
+    0,
+    4,
+    16,
+    0,
+    0,
+    4,
+    8,
+    0,
+    4
+   ],
+   "dual_flow_mu_one": [
+    0,
+    0,
+    1,
+    6,
+    0,
+    0,
+    1,
+    4,
+    0,
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "h": [
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4
+   ],
+   "mu_fiber_value_dual": 64,
+   "mu_fiber_value_primal": 64,
+   "mu_one_value_dual": 16,
+   "mu_one_value_primal": 16,
+   "name": "pi_x",
+   "quotient_edges": [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     5,
+     1
+    ],
+    [
+     4,
+     6,
+     1
+    ],
+    [
+     5,
+     4,
+     1
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     7,
+     1
+    ],
+    [
+     7,
+     6,
+     1
+    ]
+   ],
+   "sum_H_after_layer": 64
+  },
+  {
+   "dual_flow_mu_fiber": [
+    0,
+    16,
+    0,
+    12,
+    0,
+    12,
+    0,
+    0,
+    8,
+    0,
+    8,
+    0,
+    0,
+    4,
+    0,
+    4,
+    0
+   ],
+   "dual_flow_mu_one": [
+    0,
+    4,
+    0,
+    3,
+    0,
+    3,
+    0,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ],
+   "h": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3
+   ],
+   "mu_fiber_value_dual": 48,
+   "mu_fiber_value_primal": 48,
+   "mu_one_value_dual": 12,
+   "mu_one_value_primal": 12,
+   "name": "pi_y",
+   "quotient_edges": [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     0
+    ],
+    [
+     3,
+     5,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     0
+    ],
+    [
+     5,
+     7,
+     1
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     7,
+     2
+    ],
+    [
+     7,
+     5,
+     1
+    ],
+    [
+     7,
+     6,
+     0
+    ]
+   ],
+   "sum_H_after_layer": 112
+  },
+  {
+   "dual_flow_mu_fiber": [
+    0,
+    0,
+    16,
+    0,
+    6,
+    0,
+    6,
+    0
+   ],
+   "dual_flow_mu_one": [
+    0,
+    0,
+    2,
+    0,
+    1,
+    0,
+    1,
+    0
+   ],
+   "h": [
+    0,
+    0,
+    2,
+    0
+   ],
+   "mu_fiber_value_dual": 12,
+   "mu_fiber_value_primal": 12,
+   "mu_one_value_dual": 2,
+   "mu_one_value_primal": 2,
+   "name": "pi_imbalance",
+   "quotient_edges": [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     1,
+     0
+    ],
+    [
+     3,
+     2,
+     0
+    ]
+   ],
+   "sum_H_after_layer": 124
+  }
+ ],
+ "lp_dual": "min sum_e w_e y_e s.t. out(A) - in(A) >= mu_A on non-goal A, y >= 0",
+ "lp_primal": "max sum_A mu_A h_A  s.t.  h_a - h_b <= w_ab on quotient edges, h = 0 on goals",
+ "object": "quotient_LP_behind_64_to_124",
+ "single_quotient_bounds_on_original_costs": [
+  {
+   "lp_value_mu_fiber": 64,
+   "lp_value_mu_one": 16,
+   "quotient": "pi_x",
+   "sum_H_concrete": 64
+  },
+  {
+   "lp_value_mu_fiber": 84,
+   "lp_value_mu_one": 21,
+   "quotient": "pi_y",
+   "sum_H_concrete": 84
+  },
+  {
+   "lp_value_mu_fiber": 28,
+   "lp_value_mu_one": 4,
+   "quotient": "pi_imbalance",
+   "sum_H_concrete": 28
+  }
+ ],
+ "true_sum_d_star": 124
+}

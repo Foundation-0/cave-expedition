@@ -1,0 +1,235 @@
+{
+  "part_a_tropical_quotient": {
+    "coupled_2agent_symmetric": {
+      "num_states": 32,
+      "sum_exact_d_star": "124",
+      "sum_single_quotient_pi_x": "64",
+      "sum_single_quotient_pi_y": "84",
+      "sum_pi_x_plus_best_zeroSelfLoop_deficit": "64",
+      "sum_2layer_tower_xy": "112",
+      "strict_gain_2layer_over_zeroSelfLoop": "48",
+      "sum_3layer_tower_xy_roundtrip": "124",
+      "3layer_exact_micro_optimal": true,
+      "layers_3": [
+        {
+          "quotient": "pi_x",
+          "q_vertices": 8,
+          "q_edges": 14,
+          "primal_eq_dual_obj": "16",
+          "sum_H_after_layer": "64",
+          "max_tropical_defect": "2",
+          "nonzero_defect_states": 3
+        },
+        {
+          "quotient": "pi_y",
+          "q_vertices": 8,
+          "q_edges": 17,
+          "primal_eq_dual_obj": "12",
+          "sum_H_after_layer": "112",
+          "max_tropical_defect": "2",
+          "nonzero_defect_states": 3
+        },
+        {
+          "quotient": "pi_imbalance",
+          "q_vertices": 4,
+          "q_edges": 8,
+          "primal_eq_dual_obj": "2",
+          "sum_H_after_layer": "124",
+          "max_tropical_defect": "0",
+          "nonzero_defect_states": 0
+        }
+      ]
+    },
+    "order_non_commutativity_asymmetric": {
+      "sum_exact_d_star": "217/2",
+      "sum_order_xy": "88",
+      "sum_order_yx": "76",
+      "sum_pointwise_max_both_orders": "203/2",
+      "orders_non_commutative": true,
+      "max_beats_both_orders": true
+    },
+    "vertex_relabeling_invariance": true,
+    "linear_vs_tropical_separation": {
+      "direction_1_trop_zero_lin_pos": {
+        "delta_trop_max": "0",
+        "exact_micro_optimal": true,
+        "delta_lin_hs2": "1/4"
+      },
+      "direction_2_lin_zero_trop_pos": {
+        "delta_lin_hs2": "0",
+        "delta_trop_max": "2",
+        "exact_micro_optimal": false
+      },
+      "semiring_separation_proven": true
+    }
+  },
+  "part_b_sheaf_rigidity": {
+    "bloch_sheaf_cohomology_n2_to_n5": [
+      {
+        "n": 2,
+        "euler_char_H0_minus_H1": 2,
+        "generic_z_3_4_5": [
+          2,
+          0
+        ],
+        "hyperplane_k1": [
+          2,
+          0
+        ],
+        "trivial_gauge_q0": [
+          3,
+          1
+        ]
+      },
+      {
+        "n": 3,
+        "euler_char_H0_minus_H1": 3,
+        "generic_z_3_4_5": [
+          3,
+          0
+        ],
+        "hyperplane_k1": [
+          4,
+          1
+        ],
+        "trivial_gauge_q0": [
+          6,
+          3
+        ]
+      },
+      {
+        "n": 4,
+        "euler_char_H0_minus_H1": 4,
+        "generic_z_3_4_5": [
+          6,
+          2
+        ],
+        "hyperplane_k1": [
+          7,
+          3
+        ],
+        "trivial_gauge_q0": [
+          10,
+          6
+        ]
+      },
+      {
+        "n": 5,
+        "euler_char_H0_minus_H1": 5,
+        "generic_z_3_4_5": [
+          10,
+          5
+        ],
+        "hyperplane_k1": [
+          11,
+          6
+        ],
+        "trivial_gauge_q0": [
+          15,
+          10
+        ]
+      }
+    ],
+    "exact_rational_elastic_schur_n3_to_n5": [
+      {
+        "n": 3,
+        "C11_exact": "2/9",
+        "C12_exact": "1/18",
+        "C11_over_C12": "4",
+        "nu_100_exact": "1/5",
+        "t_invariance_verified_for": [
+          "1/3",
+          "1/2",
+          "3/4"
+        ],
+        "C_tensor_exact_inertia_pos_neg_zero": [
+          3,
+          0,
+          3
+        ],
+        "Delta_F_q0_exact_inertia_n3": [
+          12,
+          0,
+          6
+        ]
+      },
+      {
+        "n": 4,
+        "C11_exact": "9/64",
+        "C12_exact": "1/64",
+        "C11_over_C12": "9",
+        "nu_100_exact": "1/11",
+        "t_invariance_verified_for": [
+          "1/3",
+          "1/2",
+          "3/4"
+        ],
+        "C_tensor_exact_inertia_pos_neg_zero": [
+          4,
+          0,
+          6
+        ],
+        "Delta_F_q0_exact_inertia_n3": null
+      },
+      {
+        "n": 5,
+        "C11_exact": "2/25",
+        "C12_exact": "1/200",
+        "C11_over_C12": "16",
+        "nu_100_exact": "1/19",
+        "t_invariance_verified_for": [
+          "1/3",
+          "1/2",
+          "3/4"
+        ],
+        "C_tensor_exact_inertia_pos_neg_zero": [
+          5,
+          0,
+          10
+        ],
+        "Delta_F_q0_exact_inertia_n3": null
+      }
+    ],
+    "negative_control_crossbar_deletion_n3": {
+      "h0_full": 3,
+      "h0_after_deleting_1_crossbar": 4,
+      "delta_h0": 1
+    }
+  },
+  "part_c_contextual_compute_sheaf": {
+    "flat_compatible_open_inertia_pos_neg_zero": [
+      4,
+      0,
+      2
+    ],
+    "conflicting_holonomy_both_open_inertia": [
+      6,
+      0,
+      0
+    ],
+    "certified_obstruction_lambda_min_bracket": [
+      "97/1024",
+      "389/4096"
+    ],
+    "certified_obstruction_lambda_min_float_bracket": [
+      0.094727,
+      0.094971
+    ],
+    "lower_bracket_inertia": [
+      6,
+      0,
+      0
+    ],
+    "upper_bracket_inertia": [
+      4,
+      2,
+      0
+    ],
+    "astro_gated_closed_open_star_inertia": [
+      2,
+      0,
+      2
+    ],
+    "gluing_obstruction_eliminated_by_contextual_gate": true
+  }
+}

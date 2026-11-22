@@ -1,0 +1,14 @@
+=== fold_sheaf_collapse.py: ALL CHECKS PASSED (ZERO FLOAT) ===
+1. Universal Rank-1 Elastic Collapse along F_n -> D_n (s=1 closed form: 4 at n=3, (6n-2)/n for n>=4):
+   C_3: rk(M_rot)=2/3, H0=4, H1=1, C_inertia=[1, 0, 5], tr(S_cell)=4, S_00=1/3
+   C_4: rk(M_rot)=3/4, H0=7, H1=3, C_inertia=[1, 0, 9], tr(S_cell)=11/2, S_00=1/4
+   C_5: rk(M_rot)=4/5, H0=11, H1=6, C_inertia=[1, 0, 14], tr(S_cell)=28/5, S_00=1/5
+   C_6: rk(M_rot)=5/6, H0=16, H1=10, C_inertia=[1, 0, 20], tr(S_cell)=17/3, S_00=1/6
+   C_7: rk(M_rot)=6/7, H0=22, H1=15, C_inertia=[1, 0, 27], tr(S_cell)=40/7, S_00=1/7
+2. 4D C4_nilp pure-shear / zero-axial duality at s=1: axial_zero=True, C_inertia=[1, 0, 9], tr(S_cell)=4 (vs C_4=11/2), mode=['0', '0', '0', '0', '1', '1', '0', '0', '1', '1']
+3. Full Jamming Transition at s=1: D_3 inertia=[6, 0, 0] (C11=1, C12=C44v=1/2, A=2); D_4 inertia=[10, 0, 0] (C11=3/2, C12=C44v=1/2, A=1 ISOTROPIC!)
+4. Negative control (non-symmetrizable 3-cycle): rk(M_rot)=3/3, H0=3, H1=0, C_inertia=[0, 0, 6] (rank 0!)
+5. Portal 9 8D F_8 -> E_8 bifurcation:
+   (a) Cyclic Z/16Z ker(phi): exhaustive symmetrizable=0, rk(M_rot)=8/8, interior (16/11,7/11) & s=1 H0=28,H1=20, S_cell_rank=0 (FLOPPY LIQUID!)
+   (b) Sylvester-Hadamard C8=(1/2)H_8: rk(M_rot)=7/8, H0=29,H1=21, S_cell_rank=1, sigma* == 2I_8+H_8 (True), inertia=[4, 4, 0] (AUXETIC RANK-1!)
+   (c) Jammed E_8 (240 roots): inertia=[36, 0, 0] (C11=9, C12=C44v=3, A=1 EXACT O(8)-ISOTROPIC vs D_8 A=1/3)

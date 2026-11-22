@@ -1,0 +1,5 @@
+OBJECT e8_s1 ring Q det_L 16 S_inertia [1, 0, 35] S_trace 114/23 S_lat_inertia [1, 0, 63] sha256 f2b10873bf62691ba10fb5ae7d14a8020dd49909e8d860bf2b7371cc27f6ccff
+OBJECT d8_s1 ring Q det_L 32 S_inertia [1, 0, 35] S_trace 23/4 S_lat_inertia [1, 0, 63] sha256 719c998d6677a2857af8e88ea651a234eec5f6fc25c0616227720586c9641272
+OBJECT d8_k1 ring Q det_L 96000800/6561 S_inertia [1, 0, 35] S_trace 17297/1488 S_lat_inertia [1, 0, 63] sha256 3dc0089ed9f035934f81bc0772812bdf15d959e5afdffadf0199df59263bd9e3
+OBJECT e8_half ring Q(sqrt2) det_L 1107845553168/1330863361+783428582016/1330863361*sqrt2 S_inertia [1, 0, 35] S_trace 898895823/130091246+1618029/340553*sqrt2 S_lat_inertia [1, 0, 63] sha256 21896f8c6d0734adaf09a69011b00135ef1f2e401420278ad8352404cc392bb6
+OBJECT d8_half ring Q(sqrt2) det_L 582823952/390625+82429056/78125*sqrt2 S_inertia [1, 0, 35] S_trace 1736/241+27216/6025*sqrt2 S_lat_inertia [1, 0, 63] sha256 1ec1a9e76cff0527a2428f9a1b03a7fb4860e9488cd009598479167631596457

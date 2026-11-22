@@ -1,0 +1,31 @@
+PASS e8_s1: S recomputed mod P equals exact S mod P (36x36)
+PASS e8_s1: rank of S mod P is 1
+PASS e8_s1: rank d0 = 99 so H0=29, H1=21 (mod P)
+PASS e8_s1: K, B, Delta sparse entries equal the independent Gram blocks mod P
+PASS e8_s1: R_lat Phi = R_el row by row mod P (Phi read from the object file)
+CONTROL-DETECTED a tampered S entry is detected
+CONTROL-DETECTED a perturbed lattice gives a different S
+CONTROL-DETECTED a perturbed lattice loses rank 1
+PASS d8_s1: S recomputed mod P equals exact S mod P (36x36)
+PASS d8_s1: rank of S mod P is 1
+PASS d8_s1: rank d0 = 99 so H0=29, H1=21 (mod P)
+PASS d8_s1: K, B, Delta sparse entries equal the independent Gram blocks mod P
+PASS d8_s1: R_lat Phi = R_el row by row mod P (Phi read from the object file)
+PASS d8_k1: S recomputed mod P equals exact S mod P (36x36)
+PASS d8_k1: rank of S mod P is 1
+PASS d8_k1: rank d0 = 99 so H0=29, H1=21 (mod P)
+PASS d8_k1: K, B, Delta sparse entries equal the independent Gram blocks mod P
+PASS d8_k1: R_lat Phi = R_el row by row mod P (Phi read from the object file)
+PASS e8_half: S recomputed mod P equals exact S mod P (36x36)
+PASS e8_half: rank of S mod P is 1
+PASS e8_half: rank d0 = 99 so H0=29, H1=21 (mod P)
+PASS e8_half: K, B, Delta sparse entries equal the independent Gram blocks mod P
+PASS e8_half: R_lat Phi = R_el row by row mod P (Phi read from the object file)
+PASS d8_half: S recomputed mod P equals exact S mod P (36x36)
+PASS d8_half: rank of S mod P is 1
+PASS d8_half: rank d0 = 99 so H0=29, H1=21 (mod P)
+PASS d8_half: K, B, Delta sparse entries equal the independent Gram blocks mod P
+PASS d8_half: R_lat Phi = R_el row by row mod P (Phi read from the object file)
+PASS null lattices e8_s1: independent mod-P rank of S matches the recorded rank on 200 of 800 lattices (stride 4)
+PASS null lattices d8_s1: independent mod-P rank of S matches the recorded rank on 200 of 800 lattices (stride 4)
+FAILS 0

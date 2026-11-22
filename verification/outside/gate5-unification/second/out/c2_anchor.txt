@@ -1,0 +1,10 @@
+upstream make_twisted_cycle_Cn(8) == my C_8 from SPEC: True
+C_8 (a,t)=(0,1): mine S_00=1/8 tr=23/4 H0=29 H1=21 rank=1 | upstream S_00=1/8 tr=23/4 H0=29 H1=21 inertia=[1, 0, 35] | spec S_00=1/8 tr=23/4 | mode row equal=True | ALL MATCH: True 
+C_8 (a,t)=(4/3,1/3): mine S_00=2527/2976 tr=17297/1488 H0=29 H1=21 rank=1 | upstream S_00=2527/2976 tr=17297/1488 H0=29 H1=21 inertia=[1, 0, 35] | spec S_00=2527/2976 tr=17297/1488 | mode row equal=True | ALL MATCH: True 
+C_8 (a,t)=(8/9,7/9): mine S_00=1925/28296 tr=2149217/155628 H0=29 H1=21 rank=1 | upstream S_00=1925/28296 tr=2149217/155628 H0=29 H1=21 inertia=[1, 0, 35] | spec S_00=1925/28296 tr=2149217/155628 | mode row equal=True | ALL MATCH: True 
+H/2 as C_mat (a,t)=(0,1): mine S_00=27/92 tr=114/23 H0=29 H1=21 rank=1 | upstream S_00=27/92 tr=114/23 H0=29 H1=21 inertia=[1, 0, 35] | spec S_00=27/92 tr=114/23 | mode row equal=True | ALL MATCH: True 
+rotational_locking_rank(C_8) upstream=7 ; mine n - dim Z_B = 7
+rotational_locking_rank(H/2) upstream=7 ; mine n - dim Z_B = 7
+CONTROL upstream rejects a^2+2t^2 != 2: True
+CONTROL wrong expected S_00 (1/7) must not match: True
+pr106 build_sylvester_H8 == my Sylvester H: skipped importing pr106 (its main writes a certificate; functions not needed for S values)

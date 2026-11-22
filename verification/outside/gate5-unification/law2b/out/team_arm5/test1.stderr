@@ -1,0 +1,17 @@
+test_cli_modes (__main__.TestAnchorsCertificateAndCLI.test_cli_modes) ... ok
+test_live_vault_if_present (__main__.TestAnchorsCertificateAndCLI.test_live_vault_if_present) ... ok
+test_standalone_certificate_zero_float_and_hash (__main__.TestAnchorsCertificateAndCLI.test_standalone_certificate_zero_float_and_hash) ... ok
+test_verify_live_anchors_missing_and_tampered (__main__.TestAnchorsCertificateAndCLI.test_verify_live_anchors_missing_and_tampered) ... ok
+test_admitted_exact_boundaries_for_rescues_and_obstructions (__main__.TestCertifierSchemaBoundariesAndRedTeam.test_admitted_exact_boundaries_for_rescues_and_obstructions) ... ok
+test_every_individual_guard_refusal_and_boundary (__main__.TestCertifierSchemaBoundariesAndRedTeam.test_every_individual_guard_refusal_and_boundary) ... ok
+test_schema_and_domain_rejections (__main__.TestCertifierSchemaBoundariesAndRedTeam.test_schema_and_domain_rejections) ... ok
+test_clean_ascii_strings_and_families (__main__.TestPrimitivesAndHelpers.test_clean_ascii_strings_and_families) ... ok
+test_exact_primitives (__main__.TestPrimitivesAndHelpers.test_exact_primitives) ... ok
+test_symmetric_inertia_pivots (__main__.TestPrimitivesAndHelpers.test_symmetric_inertia_pivots) ... ok
+test_all_seven_rescue_proofs_and_three_obstructions (__main__.TestVaultProofsAndCertifierCases.test_all_seven_rescue_proofs_and_three_obstructions) ... ok
+test_certified_vault_cases_matrix (__main__.TestVaultProofsAndCertifierCases.test_certified_vault_cases_matrix) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.018s
+
+OK

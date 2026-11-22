@@ -1,0 +1,109 @@
+fold-curve checks over Q(sqrt2):
+  L8(0) == (2+sqrt2) I: True
+  L8(1) == 2I + H/2: True
+  s=1/2: |b_i|^2 all == 2: True
+  s=1/3: |b_i|^2 all == 2: True
+  D8 s=1/2: a^2+2t^2 == 2: True
+== instance E8 s=1 ==
+det L = 16 ; |b_i|^2 = ['2']
+bars=120 rank d0=99 H0=29 H1=21
+C1 R_el == R_lat Phi: True ; H_el == Phi^T H_lat Phi: True
+C2 defect zero: True ; Schur(Phi^T H_lat Phi) == S_el direct: True ; Schur(H_lat) == S_lat direct: True
+S_el == (1/2) ae^T Pi ae (Pi = N G^-1 N^T): True ; self-stress dim=21 (expected nb-rank = 21)
+C3 rank S_el=1 inertia=(1, 0, 35) ; rank S_lat=1 inertia=(1, 0, 63) ; sym S_el=True S_lat=True
+   trace S_el=114/23 ; S_00=27/92 ; det L=16
+C5 dim Z_B = 1 ; rank of z->sigma_c map = 1 ; virial-route rank(ae^T N) = 1
+C4 z = ['1', '1', '1', '1', '1', '1', '1', '1'] diag(z)L symmetric: True
+C4 S_el = c sigma sigma^T: True (c=3/92) ; S_lat = c w w^T: True (c=3/92) ; c_el==c_lat: True
+   sigma == 2I+H (coordinates): True ; c == 3/92: True
+   z scaled by 2: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by -3: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by 1/5: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+CONTROLS (each must be flagged as failing): wrong Schur sign differs from S_el: True ; wrong Phi (L[0][1] shifted by 1) breaks R_el=R_lat Phi: True ; perturbed Phi breaks congruence: True
+== instance E8 s=1/2 ==
+det L = 1107845553168/1330863361+783428582016/1330863361*r2 ; |b_i|^2 = ['2']
+bars=120 rank d0=99 H0=29 H1=21
+C1 R_el == R_lat Phi: True ; H_el == Phi^T H_lat Phi: True
+C2 defect zero: True ; Schur(Phi^T H_lat Phi) == S_el direct: True ; Schur(H_lat) == S_lat direct: True
+S_el == (1/2) ae^T Pi ae (Pi = N G^-1 N^T): True ; self-stress dim=21 (expected nb-rank = 21)
+C3 rank S_el=1 inertia=(1, 0, 35) ; rank S_lat=1 inertia=(1, 0, 63) ; sym S_el=True S_lat=True
+   trace S_el=898895823/130091246+1618029/340553*r2 ; S_00=566421471/1040729968+1023435/2724424*r2 ; det L=1107845553168/1330863361+783428582016/1330863361*r2
+C5 dim Z_B = 1 ; rank of z->sigma_c map = 1 ; virial-route rank(ae^T N) = 1
+C4 z = ['209/191+60/191*r2', '1', '1', '209/191+60/191*r2', '1', '209/191+60/191*r2', '209/191+60/191*r2', '1'] diag(z)L symmetric: True
+C4 S_el = c sigma sigma^T: True (c=4389/114112-315/28528*r2) ; S_lat = c w w^T: True (c=4389/114112-315/28528*r2) ; c_el==c_lat: True
+   z scaled by 2: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by -3: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by 1/5: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+CONTROLS (each must be flagged as failing): wrong Schur sign differs from S_el: True ; wrong Phi (L[0][1] shifted by 1) breaks R_el=R_lat Phi: True ; perturbed Phi breaks congruence: True
+== instance D8 s=1 ==
+det L = 32 ; |b_i|^2 = ['2']
+bars=120 rank d0=99 H0=29 H1=21
+C1 R_el == R_lat Phi: True ; H_el == Phi^T H_lat Phi: True
+C2 defect zero: True ; Schur(Phi^T H_lat Phi) == S_el direct: True ; Schur(H_lat) == S_lat direct: True
+S_el == (1/2) ae^T Pi ae (Pi = N G^-1 N^T): True ; self-stress dim=21 (expected nb-rank = 21)
+C3 rank S_el=1 inertia=(1, 0, 35) ; rank S_lat=1 inertia=(1, 0, 63) ; sym S_el=True S_lat=True
+   trace S_el=23/4 ; S_00=1/8 ; det L=32
+C5 dim Z_B = 1 ; rank of z->sigma_c map = 1 ; virial-route rank(ae^T N) = 1
+C4 z = ['-1', '1', '1', '1', '1', '1', '1', '1'] diag(z)L symmetric: True
+C4 S_el = c sigma sigma^T: True (c=1/32) ; S_lat = c w w^T: True (c=1/32) ; c_el==c_lat: True
+   z == (-1,1,..,1): True ; c == 1/32: True
+   z scaled by 2: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by -3: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by 1/5: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+CONTROLS (each must be flagged as failing): wrong Schur sign differs from S_el: True ; wrong Phi (L[0][1] shifted by 1) breaks R_el=R_lat Phi: True ; perturbed Phi breaks congruence: True
+== instance D8 s=1/2 ==
+det L = 582823952/390625+82429056/78125*r2 ; |b_i|^2 = ['2']
+bars=120 rank d0=99 H0=29 H1=21
+C1 R_el == R_lat Phi: True ; H_el == Phi^T H_lat Phi: True
+C2 defect zero: True ; Schur(Phi^T H_lat Phi) == S_el direct: True ; Schur(H_lat) == S_lat direct: True
+S_el == (1/2) ae^T Pi ae (Pi = N G^-1 N^T): True ; self-stress dim=21 (expected nb-rank = 21)
+C3 rank S_el=1 inertia=(1, 0, 35) ; rank S_lat=1 inertia=(1, 0, 63) ; sym S_el=True S_lat=True
+   trace S_el=1736/241+27216/6025*r2 ; S_00=3493/30125-294/6025*r2 ; det L=582823952/390625+82429056/78125*r2
+C5 dim Z_B = 1 ; rank of z->sigma_c map = 1 ; virial-route rank(ae^T N) = 1
+C4 z = ['-1', '1', '1', '1', '1', '1', '1', '1'] diag(z)L symmetric: True
+C4 S_el = c sigma sigma^T: True (c=35/964) ; S_lat = c w w^T: True (c=35/964) ; c_el==c_lat: True
+   z scaled by 2: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by -3: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by 1/5: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+CONTROLS (each must be flagged as failing): wrong Schur sign differs from S_el: True ; wrong Phi (L[0][1] shifted by 1) breaks R_el=R_lat Phi: True ; perturbed Phi breaks congruence: True
+== instance D8 (a,t)=(4/3,1/3) ==
+det L = 96000800/6561 ; |b_i|^2 = ['2']
+bars=120 rank d0=99 H0=29 H1=21
+C1 R_el == R_lat Phi: True ; H_el == Phi^T H_lat Phi: True
+C2 defect zero: True ; Schur(Phi^T H_lat Phi) == S_el direct: True ; Schur(H_lat) == S_lat direct: True
+S_el == (1/2) ae^T Pi ae (Pi = N G^-1 N^T): True ; self-stress dim=21 (expected nb-rank = 21)
+C3 rank S_el=1 inertia=(1, 0, 35) ; rank S_lat=1 inertia=(1, 0, 63) ; sym S_el=True S_lat=True
+   trace S_el=17297/1488 ; S_00=2527/2976 ; det L=96000800/6561
+C5 dim Z_B = 1 ; rank of z->sigma_c map = 1 ; virial-route rank(ae^T N) = 1
+C4 z = ['-1', '1', '1', '1', '1', '1', '1', '1'] diag(z)L symmetric: True
+C4 S_el = c sigma sigma^T: True (c=189/3968) ; S_lat = c w w^T: True (c=189/3968) ; c_el==c_lat: True
+   z scaled by 2: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by -3: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+   z scaled by 1/5: c' = c/lam^2: True (S_el still = c' sigma' sigma'^T: True)
+CONTROLS (each must be flagged as failing): wrong Schur sign differs from S_el: True ; wrong Phi (L[0][1] shifted by 1) breaks R_el=R_lat Phi: True ; perturbed Phi breaks congruence: True
+== expected-value comparison ==
+  trace E8 s=1: 114/23 expected 114/23 -> True
+  trace D8 s=1: 23/4 expected 23/4 -> True
+  trace D8 (a,t)=(4/3,1/3): 17297/1488 expected 17297/1488 -> True
+  S_00 E8 s=1 == 27/92: True ; S_00 D8 s=1 == 1/8: True
+  inertia(2I+H) = (4, 4, 0) (upstream says (4,4,0))
+-- C6 basis change on E8 s=1 --
+  U seed 1101: naive rank S_el=0 (collapse kept: False) ; carried: S_el unchanged=True, S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): True
+     carried: defect zero=True ; carried H_el == Phi'^T H_lat' Phi'=True
+  U seed 1102: naive rank S_el=0 (collapse kept: False) ; carried: S_el unchanged=True, S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): True
+     carried: defect zero=True ; carried H_el == Phi'^T H_lat' Phi'=True
+-- C6 basis change on D8 s=1 --
+  U seed 1201: naive rank S_el=0 (collapse kept: False) ; carried: S_el unchanged=True, S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): True
+     carried: defect zero=True ; carried H_el == Phi'^T H_lat' Phi'=True
+  U seed 1202: naive rank S_el=0 (collapse kept: False) ; carried: S_el unchanged=True, S_lat' = (U^-1 x I)^T S_lat (U^-1 x I): True
+     carried: defect zero=True ; carried H_el == Phi'^T H_lat' Phi'=True
+-- C7 scaling on E8 s=1 --
+  lam=2: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=1/3: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=5/2: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=-1: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+-- C7 scaling on D8 s=1 --
+  lam=2: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=1/3: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=5/2: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)
+  lam=-1: global scale S -> lam^4 S exactly: True ; L-only scale: rank S=1 inertia=(1, 0, 35)

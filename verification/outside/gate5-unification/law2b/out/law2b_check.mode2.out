@@ -1,0 +1,2044 @@
+{
+ "checks": [
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N1",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N2",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N3",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N5",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N10",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N20",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N50",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.anchor_N100",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_0",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_1",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_2",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_3",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_4",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_5",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_6",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_omega_0",
+   "ok": true
+  },
+  {
+   "detail": "gcd method 2 vs invariant-subspace method 2",
+   "id": "row6.m0_two_methods.seeded_omega_1",
+   "ok": true
+  },
+  {
+   "detail": "nonzero |coupling entries| == {2g} at 15/15 points with omega=0, so the coupling is exactly linear in g and vanishes only at g=0",
+   "id": "row6.coupling_is_2g_at_omega0",
+   "ok": true
+  },
+  {
+   "detail": "non-symmetric 17/17, antisymmetric coupling 17/17",
+   "id": "row6.literal_fails_all",
+   "ok": true
+  },
+  {
+   "detail": "min product -36",
+   "id": "row6.all_two_cycle_products_negative_for_coupled_pairs",
+   "ok": true
+  },
+  {
+   "detail": "S(sym M) == sym(D) (no elimination effect) at 17/17 points",
+   "id": "row6.T6_sym_projection_decouples",
+   "ok": true
+  },
+  {
+   "detail": "dissipative 17/17, additive 17/17",
+   "id": "row6.spectral_additivity_all_points",
+   "ok": true
+  },
+  {
+   "detail": "65025 partition-respecting coordinate subsets: compression symmetric iff the coupling inside it is zero; 20225 of them symmetric (all decoupled)",
+   "id": "row6.T6_all_coordinate_compressions",
+   "ok": true
+  },
+  {
+   "detail": "agree 12/12",
+   "id": "row6.lyapunov_vs_invariant_subspace",
+   "ok": true
+  },
+  {
+   "detail": "K_peeled == D^-1 K D, D=diag(q^d*) on all 89 entries",
+   "id": "row4.T1_doob_gauge_exact",
+   "ok": true
+  },
+  {
+   "detail": "one-way edges: [(10, 0), (12, 2), (14, 4), (18, 8), (20, 10), (22, 12), (26, 16), (28, 18), (30, 20)]",
+   "id": "row4.support_asymmetric",
+   "ok": true
+  },
+  {
+   "detail": "K(1/2): 32 distinct eigenvalues, 24 real",
+   "id": "row4.spectrum_q_half_has_nonreal",
+   "ok": true
+  },
+  {
+   "detail": "at q=1/10 and q=1/1000 all 32 eigenvalues are real and distinct, so K(q) is similar to a real symmetric matrix by a NON-block-diagonal P",
+   "id": "row4.spectrum_small_q_real_diagonalizable",
+   "ok": true
+  },
+  {
+   "detail": "val(S_ij)==T_ij on 528/528 in-hypothesis blocks (of 528)",
+   "id": "row4.T5_bridge_K32",
+   "ok": true
+  },
+  {
+   "detail": "peeled matrix: 479/479 in-hypothesis blocks exact; 49 blocks outside val(K_BB)>=1",
+   "id": "row4.T5_bridge_peeled",
+   "ok": true
+  },
+  {
+   "detail": "val(S)=[[None]] vs T=[[2]]: bridge only an inequality when signs cancel",
+   "id": "row4.T5_cancellation_witness",
+   "ok": true
+  },
+  {
+   "detail": "K_eff,01 = q exactly at q = 1/3, 1/10, 1/100, so val = 1 < T01 = 2 with val(K_BB) = 0",
+   "id": "row4.outside_hypothesis_witness",
+   "ok": true
+  },
+  {
+   "detail": "f(e)=c*e, c=1,2,3 commute with elimination on 10 blocks",
+   "id": "row4.T5_scalings_commute",
+   "ok": true
+  },
+  {
+   "detail": "I-K, I-K_BB, I-K_eff strictly row-diagonally dominant at q=1/100 for 528/528 blocks => In_spec = (size,0,0) everywhere",
+   "id": "row4.spectral_inertia_vacuous_on_lift",
+   "ok": true
+  },
+  {
+   "detail": "sum d* = 124",
+   "id": "row4.tower_sum",
+   "ok": true
+  },
+  {
+   "detail": "{'pivot_inertia': 0, 'reduced_inertia': 108, 'pivot_det_square_class': 60, 'reduced_det_square_class': 0, 'equivalent': 0}",
+   "id": "equiv.literal_fails_all_pairs",
+   "ok": true
+  },
+  {
+   "detail": "pairs failing on the inertia of the reduced block: 108 (package: 108)",
+   "id": "equiv.reproduces_package_108",
+   "ok": true
+  },
+  {
+   "detail": "real embedding of the 4x4 Hermitian objects has even inertia at 12/12 points",
+   "id": "equiv.hermitian_embedding_even",
+   "ok": true
+  },
+  {
+   "detail": "156/156",
+   "id": "equiv.congruence_preserves_inertia_pair",
+   "ok": true
+  },
+  {
+   "detail": "after M+871*I: 168/168 real-equivalent, null 10/10",
+   "id": "equiv.T4_global_shift_makes_everything_equal",
+   "ok": true
+  },
+  {
+   "detail": "lambda=871 is a bound for rows 1 and 5 only: row 6 max row sum 250151/50, sym(M)+lambda I positive definite at 15 of 17 points",
+   "id": "equiv.lambda_scope_row6",
+   "ok": true
+  },
+  {
+   "detail": "16x16 non-symmetric vs 3x3 symmetric",
+   "id": "equiv.row6_dimension_and_type",
+   "ok": true
+  },
+  {
+   "detail": "{'R_el_eq_R_lat_Phi': True, 'H_el_eq_PhiT_H_lat_Phi': True, 'S_el_eq_RLT_S_lat_RL': True, 'rank_S_el': 1, 'inertia_S_el': (1, 0, 5), 'ZB_dim': 1}",
+   "id": "lattice.M1.n3",
+   "ok": true
+  },
+  {
+   "detail": "{'R_el_eq_R_lat_Phi': True, 'H_el_eq_PhiT_H_lat_Phi': True, 'S_el_eq_RLT_S_lat_RL': True, 'rank_S_el': 1, 'inertia_S_el': (1, 0, 9), 'ZB_dim': 1}",
+   "id": "lattice.M1.n4",
+   "ok": true
+  },
+  {
+   "detail": "rank S_el == rank of z -> sigma_c(z) on Z_B for 26/26 lattices (n=3,4)",
+   "id": "lattice.C5_rank_formula_panel",
+   "ok": true
+  },
+  {
+   "detail": "dim Z_B = 0 implies S_el = 0 on the panel",
+   "id": "lattice.forward_dimZB0",
+   "ok": true
+  },
+  {
+   "detail": "rank-1 S with dim Z_B != 1: 4 lattices, first ('diag(3,2..)', 3)",
+   "id": "lattice.converse_counterexample_exists",
+   "ok": true
+  },
+  {
+   "detail": "{'rank_S_el': 1, 'dim_ZB': 3, 'inertia': (1, 0, 5), 'rank_sigma': 1}",
+   "id": "lattice.diag322_witness",
+   "ok": true
+  },
+  {
+   "detail": "{'naive_changes': 16, 'naive_keeps_rank': 0, 'carried_changes': 16, 'carried_S_el_unchanged': 16, 'carried_S_lat_covariant': 16}",
+   "id": "lattice.carried_S_el_unchanged",
+   "ok": true
+  },
+  {
+   "detail": "pseudo-inverse Schur conventions agree",
+   "id": "lattice.S_lat_matches_builder",
+   "ok": true
+  },
+  {
+   "detail": "{'random_block_upper_maps': 12, 'zero_defect': 12, 'satisfy_R_el_eq_R_lat_Phi': 0, 'dense_maps_zero_defect': 0, 'true_Phi_defect_zero': True, 'free_entries_block_upper_class': 162, 'independent_defect_constraints': 21}",
+   "id": "lattice.commuting_test_nondiscriminating",
+   "ok": true
+  },
+  {
+   "detail": "W^T diag(1/p) W = diag(9/4,49/2,0) at p=(1/2,1/4,1/4)",
+   "id": "M2.fisher_pullback_exact",
+   "ok": true
+  },
+  {
+   "detail": "{'R_el_eq_R_lat_Phi': True, 'H_el_eq_PhiT_H_lat_Phi': True, 'S_el_eq_RLT_S_lat_RL': True, 'rank_S_el': 1, 'inertia_S_el': (1, 0, 35), 'trace_S_el': Fraction(114, 23), 'SPEC_trace': Fraction(114, 23), 'dim_ZB': 1}",
+   "id": "lattice.M1.n8.E8_s1",
+   "ok": true
+  },
+  {
+   "detail": "{'R_el_eq_R_lat_Phi': True, 'H_el_eq_PhiT_H_lat_Phi': True, 'S_el_eq_RLT_S_lat_RL': True, 'rank_S_el': 1, 'inertia_S_el': (1, 0, 35), 'trace_S_el': Fraction(23, 4), 'SPEC_trace': Fraction(23, 4), 'dim_ZB': 1}",
+   "id": "lattice.M1.n8.D8_s1",
+   "ok": true
+  },
+  {
+   "detail": "{'samples': 300, 'range_condition_holds': 158, 'additive_given_range_condition': 158, 'range_condition_fails': 142, 'additive_given_range_fails': 3}",
+   "id": "g501.range_condition_is_sufficient",
+   "ok": true
+  },
+  {
+   "detail": "{'range_holds_additive': {'range_condition': True, 'additive': True, 'In_M': (0, 1, 2), 'In_A': (0, 1, 1), 'In_S': (0, 0, 1)}, 'range_fails_not_additive': {'range_condition': False, 'additive': False, 'In_M': (1, 1, 0), 'In_A': (0, 0, 1), 'In_S': (0, 0, 1)}, 'range_fails_but_additive': {'range_condition': False, 'additive': True, 'In_M': (1, 1, 1), 'In_A': (0, 0, 1), 'In_S': (1, 1, 0)}}",
+   "id": "g501.three_witnesses",
+   "ok": true
+  },
+  {
+   "detail": "dim 32",
+   "id": "claim18.W_basis.q=1/10",
+   "ok": true
+  },
+  {
+   "detail": "9 of 9",
+   "id": "claim18.one_way_pairs.q=1/10",
+   "ok": true
+  },
+  {
+   "detail": "",
+   "id": "claim18.verified_block_diagonal.q=1/10",
+   "ok": true
+  },
+  {
+   "detail": "dim 32",
+   "id": "claim18.W_basis.q=1/100",
+   "ok": true
+  },
+  {
+   "detail": "9 of 9",
+   "id": "claim18.one_way_pairs.q=1/100",
+   "ok": true
+  },
+  {
+   "detail": "",
+   "id": "claim18.verified_block_diagonal.q=1/100",
+   "ok": true
+  },
+  {
+   "detail": "dim 32",
+   "id": "claim18.W_basis.q=1/1000",
+   "ok": true
+  },
+  {
+   "detail": "9 of 9",
+   "id": "claim18.one_way_pairs.q=1/1000",
+   "ok": true
+  },
+  {
+   "detail": "",
+   "id": "claim18.verified_block_diagonal.q=1/1000",
+   "ok": true
+  },
+  {
+   "detail": "rank(M - M^T) > 0 fired on 0/60 symmetric systems",
+   "id": "obstruction.no_false_positive_on_hermitian_nulls",
+   "ok": true
+  },
+  {
+   "detail": "inertia, charpoly, Sturm",
+   "id": "toolkit.known_answers",
+   "ok": true
+  },
+  {
+   "detail": "diag(-1,2) -> (#Re>0,#Re<0)=(1,1); rotation has imaginary eigenvalues -> None",
+   "id": "toolkit.lyapunov_known",
+   "ok": true
+  },
+  {
+   "detail": "[]",
+   "id": "guards.good_spec_admitted",
+   "ok": true
+  }
+ ],
+ "controls": [
+  {
+   "detail": "S(sym M) != S(M) at 17/17 points",
+   "id": "c1.S_of_symmetric_part_is_not_S",
+   "rejected": true
+  },
+  {
+   "detail": "In(sym M) != In(A_sym)+In(sym S(M)) at 17/17 points (the package's own mismatch, recomputed)",
+   "id": "c2.sylvester_sum_with_ledger_schur_fails",
+   "rejected": true
+  },
+  {
+   "detail": "2/40 random monotone maps commute",
+   "id": "c3.random_nonlinear_exponent_maps_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "naive changes keeping rank 1: 0/16",
+   "id": "c4.naive_basis_change_loses_collapse",
+   "rejected": true
+  },
+  {
+   "detail": "indefinite symmetric part rejected",
+   "id": "c5.dissipative_routine_refuses_nondissipative",
+   "rejected": true
+  },
+  {
+   "detail": "['G2_DOF']",
+   "id": "c7a.dof_equals_constraints_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G1_VACUOUS']",
+   "id": "c7b.vacuous_null_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G1_ZERO_RANK']",
+   "id": "c7c.zero_rank_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G3_SILENT']",
+   "id": "c7d.silent_relabel_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G4_SEARCH']",
+   "id": "c7e.falsified_with_one_family_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G4_RAW']",
+   "id": "c7f.raw_falsification_rejected",
+   "rejected": true
+  },
+  {
+   "detail": "['G2_POST_HOC']",
+   "id": "c7g.post_hoc_rejected",
+   "rejected": true
+  }
+ ],
+ "fails": [],
+ "numbers": {
+  "M2": {
+   "exact": true,
+   "free_parameters": 6,
+   "null_pullback_diagonal": 0,
+   "null_random_tangent_triples": 200,
+   "property_constraints": 3
+  },
+  "claim18": {
+   "q=1/10": {
+    "W_basis_verified": true,
+    "all_one_dim_solutions_verified_block_diagonal_and_KG_symmetric": true,
+    "diagonal_G_solution_dim": 0,
+    "dim_W": 32,
+    "more_than_one_dim": 0,
+    "one_dim_pairs": 16,
+    "one_dim_pairs_all_indefinite": true,
+    "one_dimensional": 48,
+    "one_way_pairs_with_no_PD_possible": 9,
+    "pairs_with_PD_solution": [],
+    "partitions_with_solution_space_zero": 480,
+    "singletons_with_PD_solution": [
+     0,
+     7,
+     13,
+     14,
+     16,
+     19,
+     25,
+     30
+    ]
+   },
+   "q=1/100": {
+    "W_basis_verified": true,
+    "all_one_dim_solutions_verified_block_diagonal_and_KG_symmetric": true,
+    "diagonal_G_solution_dim": 0,
+    "dim_W": 32,
+    "more_than_one_dim": 0,
+    "one_dim_pairs": 16,
+    "one_dim_pairs_all_indefinite": true,
+    "one_dimensional": 48,
+    "one_way_pairs_with_no_PD_possible": 9,
+    "pairs_with_PD_solution": [],
+    "partitions_with_solution_space_zero": 480,
+    "singletons_with_PD_solution": [
+     0,
+     2,
+     3,
+     7,
+     9,
+     10,
+     13,
+     14,
+     15,
+     16,
+     17,
+     19,
+     20,
+     23,
+     25,
+     28,
+     29,
+     30
+    ]
+   },
+   "q=1/1000": {
+    "W_basis_verified": true,
+    "all_one_dim_solutions_verified_block_diagonal_and_KG_symmetric": true,
+    "diagonal_G_solution_dim": 0,
+    "dim_W": 32,
+    "more_than_one_dim": 0,
+    "one_dim_pairs": 16,
+    "one_dim_pairs_all_indefinite": true,
+    "one_dimensional": 48,
+    "one_way_pairs_with_no_PD_possible": 9,
+    "pairs_with_PD_solution": [],
+    "partitions_with_solution_space_zero": 480,
+    "singletons_with_PD_solution": [
+     0,
+     2,
+     3,
+     7,
+     9,
+     10,
+     13,
+     14,
+     15,
+     16,
+     17,
+     19,
+     20,
+     23,
+     25,
+     28,
+     29,
+     30
+    ]
+   }
+  },
+  "equiv": {
+   "T4_global_shift": {
+    "all_positive_definite": true,
+    "lambda": "871",
+    "null_pairs": 10,
+    "null_real_equivalent": 10,
+    "of": 168,
+    "real_equivalent_pairs_after_shift": 168
+   },
+   "T6_pivot_only": {
+    "null_equivalent": 60,
+    "null_pd_pairs": 60,
+    "of": 168,
+    "pairs_real_equivalent": 168
+   },
+   "T7_domain_split": {
+    "of": 168,
+    "omega_valid_pairs": 60
+   },
+   "cascade": {
+    "equivalent": 0,
+    "pivot_det_square_class": 60,
+    "pivot_inertia": 0,
+    "reduced_det_square_class": 0,
+    "reduced_inertia": 108
+   },
+   "congruence_invariance": {
+    "inertia_pair_preserved": 156,
+    "tested": 156
+   },
+   "lambda_scope": {
+    "lambda": "871",
+    "row1_row5_max_row_sum": "870",
+    "row6_max_row_sum": "250151/50",
+    "row6_points": 17,
+    "row6_points_with_sym_M_plus_lambda_I_positive_definite": 15
+   },
+   "pairs": 168,
+   "per_pair_unit_rescale_matches": 0,
+   "real_equivalent_pairs": 60,
+   "row6_vs_others": {
+    "rank_antisym_part": 8,
+    "row6_size": 16,
+    "row6_symmetric": false,
+    "rows_1_5_size": 3
+   },
+   "square_class_failures_all_pairs": {
+    "detA": 168,
+    "detS": 168,
+    "pairs": 168
+   }
+  },
+  "g501": {
+   "additive_given_range_condition": 158,
+   "additive_given_range_fails": 3,
+   "range_condition_fails": 142,
+   "range_condition_holds": 158,
+   "samples": 300
+  },
+  "g501_witnesses": {
+   "range_fails_but_additive": {
+    "In_A": [
+     0,
+     0,
+     1
+    ],
+    "In_M": [
+     1,
+     1,
+     1
+    ],
+    "In_S": [
+     1,
+     1,
+     0
+    ],
+    "additive": true,
+    "range_condition": false
+   },
+   "range_fails_not_additive": {
+    "In_A": [
+     0,
+     0,
+     1
+    ],
+    "In_M": [
+     1,
+     1,
+     0
+    ],
+    "In_S": [
+     0,
+     0,
+     1
+    ],
+    "additive": false,
+    "range_condition": false
+   },
+   "range_holds_additive": {
+    "In_A": [
+     0,
+     1,
+     1
+    ],
+    "In_M": [
+     0,
+     1,
+     2
+    ],
+    "In_S": [
+     0,
+     0,
+     1
+    ],
+    "additive": true,
+    "range_condition": true
+   }
+  },
+  "lattice": {
+   "M1_n3": {
+    "H_el_eq_PhiT_H_lat_Phi": true,
+    "R_el_eq_R_lat_Phi": true,
+    "S_el_eq_RLT_S_lat_RL": true,
+    "ZB_dim": 1,
+    "inertia_S_el": [
+     1,
+     0,
+     5
+    ],
+    "rank_S_el": 1
+   },
+   "M1_n4": {
+    "H_el_eq_PhiT_H_lat_Phi": true,
+    "R_el_eq_R_lat_Phi": true,
+    "S_el_eq_RLT_S_lat_RL": true,
+    "ZB_dim": 1,
+    "inertia_S_el": [
+     1,
+     0,
+     9
+    ],
+    "rank_S_el": 1
+   },
+   "basis_change": {
+    "carried_S_el_unchanged": 16,
+    "carried_S_lat_covariant": 16,
+    "carried_changes": 16,
+    "naive_changes": 16,
+    "naive_keeps_rank": 0
+   },
+   "commuting_test": {
+    "dense_maps_zero_defect": 0,
+    "free_entries_block_upper_class": 162,
+    "independent_defect_constraints": 21,
+    "random_block_upper_maps": 12,
+    "satisfy_R_el_eq_R_lat_Phi": 0,
+    "true_Phi_defect_zero": true,
+    "zero_defect": 12
+   },
+   "converse": {
+    "converse_counterexamples_rank1_but_dimZB_ne_1": 4,
+    "dimZB0_implies_S0_failures": 0,
+    "first_counterexample": [
+     "diag(3,2..)",
+     3
+    ],
+    "panel": 26,
+    "rank_S_equals_rank_sigma_on_ZB": 26,
+    "rows": [
+     {
+      "dim_ZB": 3,
+      "n": 3,
+      "name": "diag(3,2..)",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 3,
+      "n": 3,
+      "name": "2I",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 2,
+      "n": 3,
+      "name": "2I+sym2x2",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym0",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym1",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym2",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym3",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym4",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 3,
+      "name": "rand_sym5",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 0,
+      "n": 3,
+      "name": "rand_nonsym0",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 0,
+      "n": 3,
+      "name": "rand_nonsym1",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 0,
+      "n": 3,
+      "name": "rand_nonsym2",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 0,
+      "n": 3,
+      "name": "rand_nonsym3",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 4,
+      "n": 4,
+      "name": "diag(3,2..)",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 4,
+      "n": 4,
+      "name": "2I",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 3,
+      "n": 4,
+      "name": "2I+sym2x2",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym0",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym1",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym2",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym3",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym4",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_sym5",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 1,
+      "n": 4,
+      "name": "rand_nonsym0",
+      "rank_S": 1,
+      "rank_sigma_on_ZB": 1
+     },
+     {
+      "dim_ZB": 0,
+      "n": 4,
+      "name": "rand_nonsym1",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 0,
+      "n": 4,
+      "name": "rand_nonsym2",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     },
+     {
+      "dim_ZB": 0,
+      "n": 4,
+      "name": "rand_nonsym3",
+      "rank_S": 0,
+      "rank_sigma_on_ZB": 0
+     }
+    ]
+   },
+   "diag322": {
+    "dim_ZB": 3,
+    "inertia": [
+     1,
+     0,
+     5
+    ],
+    "rank_S_el": 1,
+    "rank_sigma": 1
+   }
+  },
+  "lattice_n8": {
+   "D8_s1": {
+    "H_el_eq_PhiT_H_lat_Phi": true,
+    "R_el_eq_R_lat_Phi": true,
+    "SPEC_trace": "23/4",
+    "S_el_eq_RLT_S_lat_RL": true,
+    "dim_ZB": 1,
+    "inertia_S_el": [
+     1,
+     0,
+     35
+    ],
+    "rank_S_el": 1,
+    "trace_S_el": "23/4"
+   },
+   "E8_s1": {
+    "H_el_eq_PhiT_H_lat_Phi": true,
+    "R_el_eq_R_lat_Phi": true,
+    "SPEC_trace": "114/23",
+    "S_el_eq_RLT_S_lat_RL": true,
+    "dim_ZB": 1,
+    "inertia_S_el": [
+     1,
+     0,
+     35
+    ],
+    "rank_S_el": 1,
+    "trace_S_el": "114/23"
+   }
+  },
+  "obstruction_false_positives_on_hermitian_nulls": {
+   "fired": 0,
+   "samples": 60
+  },
+  "row4": {
+   "K32_bridge_exact": 528,
+   "K32_in_hypothesis": 528,
+   "blocks": 528,
+   "cancellation_witness": {
+    "tropical": [
+     [
+      2
+     ]
+    ],
+    "val_series": [
+     [
+      null
+     ]
+    ]
+   },
+   "entries": 89,
+   "null_maps": {
+    "commuting": 2,
+    "samples": 40
+   },
+   "one_way_edges": [
+    [
+     10,
+     0
+    ],
+    [
+     12,
+     2
+    ],
+    [
+     14,
+     4
+    ],
+    [
+     18,
+     8
+    ],
+    [
+     20,
+     10
+    ],
+    [
+     22,
+     12
+    ],
+    [
+     26,
+     16
+    ],
+    [
+     28,
+     18
+    ],
+    [
+     30,
+     20
+    ]
+   ],
+   "one_way_pairs_with_nonzero_nilpotent_K_BB": 9,
+   "outside_hypothesis_witness": {
+    "K02": "q",
+    "K21": "q",
+    "K22": "1-q",
+    "T01": 2,
+    "val_K_BB": 0,
+    "val_Keff01": 1
+   },
+   "peeled_bridge_exact": 479,
+   "peeled_in_hypothesis": 479,
+   "signed_null": {
+    "bridge_exact_on_all_entries": 79,
+    "entries": 540,
+    "entries_with_cancellation_gap": 1,
+    "samples": 80
+   },
+   "spectral_null_all_positive": {
+    "all_positive_spectrum": 40,
+    "samples": 40
+   },
+   "spectral_vacuous_dominant_blocks": 528,
+   "spectrum_by_q": {
+    "1/10": {
+     "diagonalizable": true,
+     "distinct_eigs": 32,
+     "distinct_real_eigs": 32
+    },
+    "1/1000": {
+     "diagonalizable": true,
+     "distinct_eigs": 32,
+     "distinct_real_eigs": 32
+    },
+    "1/2": {
+     "diagonalizable": true,
+     "distinct_eigs": 32,
+     "distinct_real_eigs": 24
+    }
+   },
+   "tower_H_equals_d_star": true,
+   "tower_sum_d_star": 124,
+   "true_homs_commute": [
+    true,
+    true,
+    true
+   ]
+  },
+  "row6": {
+   "M_not_symmetric": 17,
+   "S_ne_S_of_symmetric_part": 17,
+   "S_of_symmetric_part_equals_D": 17,
+   "coordinate_subsets_checked": 65025,
+   "coordinate_subsets_symmetric_decoupled": 20225,
+   "coupling_antisymmetric": 17,
+   "coupling_entries_equal_2g_at_omega0": [
+    15,
+    15
+   ],
+   "diagonalizable": 17,
+   "dissipative": 17,
+   "has_nonreal_eigenvalue_pair": 7,
+   "null_dense_independent_coupling": {
+    "additive": 48,
+    "skipped_singular": 0,
+    "tested": 60
+   },
+   "null_in_class_antisymmetric_coupling": {
+    "additive": 60,
+    "skipped_singular": 0,
+    "tested": 60
+   },
+   "null_out_of_class_independent_coupling": {
+    "additive": 56,
+    "skipped_singular": 2,
+    "tested": 58
+   },
+   "points": 17,
+   "rows": [
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "anchor_N1",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "anchor_N2",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "anchor_N3",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "anchor_N5",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "anchor_N10",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "anchor_N20",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "anchor_N50",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "anchor_N100",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "10/3"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "seeded_0",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-100/9",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "2"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "seeded_1",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-4",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "2"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "seeded_2",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-4",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "6"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "seeded_3",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-36",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "6"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "seeded_4",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-36",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "4"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "seeded_5",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-16",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "4"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 8,
+     "distinct_real_eigs": 8,
+     "kernel_dim": 2,
+     "label": "seeded_6",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-16",
+     "rank_antisym_part": 8,
+     "similar_to_real_symmetric": true
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "4"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 12,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "seeded_omega_0",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-25",
+     "rank_antisym_part": 12,
+     "similar_to_real_symmetric": false
+    },
+    {
+     "In(A_H)+In(S(H))": [
+      0,
+      12,
+      4
+     ],
+     "In(H)": [
+      0,
+      12,
+      4
+     ],
+     "In(sym A)+In(sym S(M))": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(A)+In_spec(S)": [
+      0,
+      14,
+      2
+     ],
+     "In_spec(M)": [
+      0,
+      14,
+      2
+     ],
+     "coupling_abs_values": [
+      "6"
+     ],
+     "diagonalizable": true,
+     "dissipative_M_A_S": true,
+     "distinct_eigs": 12,
+     "distinct_real_eigs": 4,
+     "kernel_dim": 2,
+     "label": "seeded_omega_1",
+     "m0_gcd_method": 2,
+     "min_two_cycle_product": "-36",
+     "rank_antisym_part": 12,
+     "similar_to_real_symmetric": false
+    }
+   ],
+   "similar_to_real_symmetric": 10,
+   "spectral_inertia_additive": 17,
+   "sym_part_nonscalar": 17
+  }
+ },
+ "specs": {
+  "R1a_row4_elimination_T5": {
+   "_my_guard_reasons": [],
+   "applied_family": "T5_SEMIRING_TROPICAL",
+   "claim_id": "G5-02:row4:elimination-clause",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 528,
+   "literal_failed": true,
+   "literal_failure_witness": "no additive inverse in (min,+): D - C A^-1 B does not exist for the (min,+) object as worded",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "object is the Q[q] lift K of the (min,+) matrix with nonnegative coefficients and val(K_BB)>=1; inverse becomes Kleene star; inertia statement not included",
+   "null_false_pass_count": 2,
+   "null_total_count": 40,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "block elimination exists with quotient and determinant structure; valuation of the Schur complement of I-K equals the (min,+) Kleene-star elimination",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 528,
+   "target_total_count": 528,
+   "transform_dof": 0,
+   "transform_rank": 89
+  },
+  "R1b_row4_inertia_incomplete": {
+   "_my_guard_reasons": [
+    "G4_OBSTRUCTION"
+   ],
+   "applied_family": null,
+   "claim_id": "G5-02:row4:inertia-clause",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 528,
+   "literal_failed": true,
+   "literal_failure_witness": "K is not symmetric (9 one-way edges); (min,+) has no negation, so Sylvester inertia of the object as worded is undefined",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "9",
+   "modified_hypotheses": null,
+   "null_false_pass_count": 0,
+   "null_total_count": 40,
+   "obstruction_invariant": "support asymmetry survives diagonal gauge, symmetric additive shifts and tropicalisation; block-diagonal conjugacy is decided only at q=1/10, 1/100, 1/1000 for blocks of size 1 and 2 (impossible for 480 of 528 blocks and every one-way pair, possible for some singletons where the form is positive definite and so vacuous); symbolic q and larger blocks undecided",
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": null,
+   "proposed_verdict": "INVARIANT_FALSIFIED",
+   "relabelled_as_literal": false,
+   "residual_gap": "9",
+   "target_pass_count": 0,
+   "target_total_count": 528,
+   "transform_dof": 0,
+   "transform_rank": 0
+  },
+  "R2_row6_inertia_IF": {
+   "_my_guard_reasons": [],
+   "applied_family": null,
+   "claim_id": "G5-14:row6:hermitian-inertia",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 17,
+   "literal_failed": true,
+   "literal_failure_witness": "M=Liouvillian is not Hermitian (antisymmetric coupling, rank(M-M^T)=8); In(M) undefined",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "8",
+   "modified_hypotheses": null,
+   "null_false_pass_count": 0,
+   "null_total_count": 60,
+   "obstruction_invariant": "antisymmetric coupling B!=0 with C=-B^T: no block-diagonal similarity, congruence, complex affine map or partition-respecting compression makes M Hermitian; spectral-inertia rescue is vacuous (G1)",
+   "obstruction_survives_all_searched": true,
+   "preserved_invariant_core": null,
+   "proposed_verdict": "INVARIANT_FALSIFIED",
+   "relabelled_as_literal": false,
+   "residual_gap": "8",
+   "target_pass_count": 0,
+   "target_total_count": 17,
+   "transform_dof": 0,
+   "transform_rank": 0
+  },
+  "R2x_row6_spectral_rescue_rejected": {
+   "_my_guard_reasons": [
+    "G1_VACUOUS"
+   ],
+   "applied_family": "T1_GAUGE_SIMILARITY",
+   "claim_id": "G5-14:row6:spectral-inertia",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 17,
+   "literal_failed": true,
+   "literal_failure_witness": "Sylvester inertia of M undefined",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "inertia of the Hermitian form replaced by spectral inertia of the operator; needs sym(M)<=0 and A invertible",
+   "null_false_pass_count": 56,
+   "null_total_count": 58,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "number of eigenvalues by sign of real part is additive over the Schur split",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 17,
+   "target_total_count": 17,
+   "transform_dof": 0,
+   "transform_rank": 16
+  },
+  "R3_equiv_IF": {
+   "_my_guard_reasons": [],
+   "applied_family": null,
+   "claim_id": "G5-04:rows1-5:equivalence",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 168,
+   "literal_failed": true,
+   "literal_failure_witness": "no partition-respecting congruence class agrees on any of the 168 (spectral inertia, AeST) pairs",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "1",
+   "modified_hypotheses": null,
+   "null_false_pass_count": 0,
+   "null_total_count": 156,
+   "obstruction_invariant": "(In A, In S) and the dimensions are invariants of congruence, linear charts, additive linear terms; global shift and compressions are vacuous (G1)",
+   "obstruction_survives_all_searched": true,
+   "preserved_invariant_core": null,
+   "proposed_verdict": "INVARIANT_FALSIFIED",
+   "relabelled_as_literal": false,
+   "residual_gap": "1",
+   "target_pass_count": 0,
+   "target_total_count": 168,
+   "transform_dof": 0,
+   "transform_rank": 0
+  },
+  "R3x_equiv_T4_shift_rejected": {
+   "_my_guard_reasons": [
+    "G1_VACUOUS"
+   ],
+   "applied_family": "T4_SPECTRAL_PSD_SHIFT",
+   "claim_id": "G5-04:T4-global-shift",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 168,
+   "literal_failed": true,
+   "literal_failure_witness": "inertia pairs differ",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "all objects replaced by M + lambda I with lambda above a row-sum bound",
+   "null_false_pass_count": 10,
+   "null_total_count": 10,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "pivot and Schur block signs",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 168,
+   "target_total_count": 168,
+   "transform_dof": 1,
+   "transform_rank": 3
+  },
+  "R3y_equiv_T6_pivot_only_rejected": {
+   "_my_guard_reasons": [
+    "G1_VACUOUS"
+   ],
+   "applied_family": "T6_SUBSPACE_PROJECTION",
+   "claim_id": "G5-04:T6-pivot-only",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 168,
+   "literal_failed": true,
+   "literal_failure_witness": "inertia pairs differ",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "Schur block and coupling dropped; claim is about the 2x2 pivot blocks only",
+   "null_false_pass_count": 60,
+   "null_total_count": 60,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "pivot block inertia",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 168,
+   "target_total_count": 168,
+   "transform_dof": 0,
+   "transform_rank": 4
+  },
+  "R4_lattice_basis_change_T1": {
+   "_my_guard_reasons": [],
+   "applied_family": "T1_GAUGE_SIMILARITY",
+   "claim_id": "G5-06:basis-change",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 16,
+   "literal_failed": true,
+   "literal_failure_witness": "naive basis change U L loses the rank-1 collapse",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "basis change carries the bridge translations m' = m U^-1 so that every bar vector is unchanged",
+   "null_false_pass_count": 0,
+   "null_total_count": 16,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "S_el unchanged and S_lat covariant: S_lat' = (U^-1 x I)^T S_lat (U^-1 x I)",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 16,
+   "target_total_count": 16,
+   "transform_dof": 0,
+   "transform_rank": 9
+  },
+  "R5_commuting_test_rejected": {
+   "_my_guard_reasons": [
+    "G1_VACUOUS",
+    "G2_DOF"
+   ],
+   "applied_family": "T6_SUBSPACE_PROJECTION",
+   "claim_id": "G5-05:commuting-defect",
+   "families_searched": [
+    "T1_GAUGE_SIMILARITY",
+    "T2_AFFINE_BREGMAN",
+    "T3_METRIC_CHART",
+    "T4_SPECTRAL_PSD_SHIFT",
+    "T5_SEMIRING_TROPICAL",
+    "T6_SUBSPACE_PROJECTION",
+    "T7_ORDER_DOMAIN_RESIDUAL"
+   ],
+   "fixed_globally_before_holdout": true,
+   "held_out_constraints": 21,
+   "literal_failed": true,
+   "literal_failure_witness": "zero commuting defect does not single out Phi",
+   "max_null_false_pass_rate": "1/10",
+   "max_residual_gap": "0",
+   "modified_hypotheses": "claim restricted to the block-upper-triangular class",
+   "null_false_pass_count": 12,
+   "null_total_count": 12,
+   "obstruction_invariant": null,
+   "obstruction_survives_all_searched": false,
+   "preserved_invariant_core": "naturality of the Schur complement under block-upper-triangular maps with identity leading block",
+   "proposed_verdict": "TRANSFORMED_EXACT",
+   "relabelled_as_literal": false,
+   "residual_gap": "0",
+   "target_pass_count": 12,
+   "target_total_count": 12,
+   "transform_dof": 162,
+   "transform_rank": 54
+  }
+ },
+ "status": "ALL_CHECKS_PASSED",
+ "tables": {}
+}

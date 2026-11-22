@@ -1,0 +1,28 @@
+clean_room/out/r6 [-I -B] exit=0 stdout=0130f8857be29aaf12fe17f26f7ebaf56a876b33c9908c11befac08ff7915910 stderr_bytes=0 seconds=26
+clean_room/out/r6 [-I -O -B] exit=0 stdout=0130f8857be29aaf12fe17f26f7ebaf56a876b33c9908c11befac08ff7915910 stderr_bytes=0 seconds=26
+clean_room/out/r6 [-I -B -W error] exit=0 stdout=0130f8857be29aaf12fe17f26f7ebaf56a876b33c9908c11befac08ff7915910 stderr_bytes=0 seconds=25
+clean_room/out/r6 IDENTICAL_ACROSS_MODES
+clean_room/out/r4 [-I -B] exit=0 stdout=e2b71e165186c03d380185e31ce74c9a470d49714eba4192723723899c06ca13 stderr_bytes=0 seconds=10
+clean_room/out/r4 [-I -O -B] exit=0 stdout=e2b71e165186c03d380185e31ce74c9a470d49714eba4192723723899c06ca13 stderr_bytes=0 seconds=10
+clean_room/out/r4 [-I -B -W error] exit=0 stdout=e2b71e165186c03d380185e31ce74c9a470d49714eba4192723723899c06ca13 stderr_bytes=0 seconds=10
+clean_room/out/r4 IDENTICAL_ACROSS_MODES
+clean_room/out/r4b [-I -B] exit=0 stdout=76016fe596e564b5a5fd6a2a3804906004446f86a216c4c5322f889bd3af956d stderr_bytes=0 seconds=919
+clean_room/out/r4b [-I -O -B] exit=0 stdout=76016fe596e564b5a5fd6a2a3804906004446f86a216c4c5322f889bd3af956d stderr_bytes=0 seconds=922
+clean_room/out/r4b [-I -B -W error] exit=0 stdout=76016fe596e564b5a5fd6a2a3804906004446f86a216c4c5322f889bd3af956d stderr_bytes=0 seconds=920
+clean_room/out/r4b IDENTICAL_ACROSS_MODES
+clean_room/out/r156 [-I -B] exit=0 stdout=93f9d5c67a824f597aad765e7a60c632991930ecc0333837e6306cc691685d96 stderr_bytes=0 seconds=0
+clean_room/out/r156 [-I -O -B] exit=0 stdout=93f9d5c67a824f597aad765e7a60c632991930ecc0333837e6306cc691685d96 stderr_bytes=0 seconds=0
+clean_room/out/r156 [-I -B -W error] exit=0 stdout=93f9d5c67a824f597aad765e7a60c632991930ecc0333837e6306cc691685d96 stderr_bytes=0 seconds=0
+clean_room/out/r156 IDENTICAL_ACROSS_MODES
+clean_room/out/lat [-I -B] exit=0 stdout=92895e2082f8126823eb9147273bbe2fa85f099ced7f9e634b5aa61a01482926 stderr_bytes=0 seconds=2
+clean_room/out/lat [-I -O -B] exit=0 stdout=92895e2082f8126823eb9147273bbe2fa85f099ced7f9e634b5aa61a01482926 stderr_bytes=0 seconds=2
+clean_room/out/lat [-I -B -W error] exit=0 stdout=92895e2082f8126823eb9147273bbe2fa85f099ced7f9e634b5aa61a01482926 stderr_bytes=0 seconds=2
+clean_room/out/lat IDENTICAL_ACROSS_MODES
+clean_room/out/oth [-I -B] exit=0 stdout=a8d87a4eeb38bcb89750f29e543c68f5dfa0b85b6fde66170f245ae61a85fc0d stderr_bytes=0 seconds=1
+clean_room/out/oth [-I -O -B] exit=0 stdout=a8d87a4eeb38bcb89750f29e543c68f5dfa0b85b6fde66170f245ae61a85fc0d stderr_bytes=0 seconds=1
+clean_room/out/oth [-I -B -W error] exit=0 stdout=a8d87a4eeb38bcb89750f29e543c68f5dfa0b85b6fde66170f245ae61a85fc0d stderr_bytes=0 seconds=1
+clean_room/out/oth IDENTICAL_ACROSS_MODES
+clean_room/out/cert [-I -B] exit=0 stdout=46f6f23d5897266083fea0f6685ebc4cc855530f0242f37bde01096683a8b8d8 stderr_bytes=0 seconds=0
+clean_room/out/cert [-I -O -B] exit=0 stdout=46f6f23d5897266083fea0f6685ebc4cc855530f0242f37bde01096683a8b8d8 stderr_bytes=0 seconds=0
+clean_room/out/cert [-I -B -W error] exit=0 stdout=46f6f23d5897266083fea0f6685ebc4cc855530f0242f37bde01096683a8b8d8 stderr_bytes=0 seconds=0
+clean_room/out/cert IDENTICAL_ACROSS_MODES

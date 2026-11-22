@@ -1,0 +1,30 @@
+C23 search 1: singular 2x2 symmetric A in {-1,0,1}, B 2x1, D 1x1: 243 systems; counts {'cond_true_add_true': 75, 'cond_false_add_false': 168, 'cond_false_add_true': 0, 'cond_true_add_false': 0}
+C23 search 2: A=[0], B 1x2, D 2x2 symmetric, entries in {-1,0,1}: 243 systems; counts {'cond_true_add_true': 27, 'cond_false_add_false': 184, 'cond_false_add_true': 32, 'cond_true_add_false': 0}
+OK   C23 whenever A A^+ B = B holds, additivity holds (no counterexample in either search)
+OK   C23 witness: condition fails and additivity fails exists
+OK   C23 witness: condition fails and additivity holds exists
+C23 witness [cond_true_add_true]: A=[[Fraction(-1, 1), Fraction(-1, 1)], [Fraction(-1, 1), Fraction(-1, 1)]] B=[[Fraction(-1, 1)], [Fraction(-1, 1)]] D=[[Fraction(-1, 1)]]
+   A^+ = [[Fraction(-1, 4), Fraction(-1, 4)], [Fraction(-1, 4), Fraction(-1, 4)]] (Penrose equations verified exactly)
+   S = D - B^T A^+ B = [[Fraction(0, 1)]] ; In(M)=(0, 1, 2) In(A)=(0, 1, 1) In(S)=(0, 0, 1) ; range condition A A^+ B = B: True ; additivity In(M)=In(A)+In(S): True
+C23 witness [cond_false_add_false]: A=[[Fraction(-1, 1), Fraction(-1, 1)], [Fraction(-1, 1), Fraction(-1, 1)]] B=[[Fraction(-1, 1)], [Fraction(0, 1)]] D=[[Fraction(-1, 1)]]
+   A^+ = [[Fraction(-1, 4), Fraction(-1, 4)], [Fraction(-1, 4), Fraction(-1, 4)]] (Penrose equations verified exactly)
+   S = D - B^T A^+ B = [[Fraction(-3, 4)]] ; In(M)=(1, 2, 0) In(A)=(0, 1, 1) In(S)=(0, 1, 0) ; range condition A A^+ B = B: False ; additivity In(M)=In(A)+In(S): False
+C23 witness [cond_false_add_true]: A=[[Fraction(0, 1)]] B=[[Fraction(-1, 1), Fraction(-1, 1)]] D=[[Fraction(-1, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(1, 1)]]
+   A^+ = [[Fraction(0, 1)]] (Penrose equations verified exactly)
+   S = D - B^T A^+ B = [[Fraction(-1, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(1, 1)]] ; In(M)=(1, 1, 1) In(A)=(0, 0, 1) In(S)=(1, 1, 0) ; range condition A A^+ B = B: False ; additivity In(M)=In(A)+In(S): True
+C23 readable (condition fails, additivity fails): A=[[Fraction(0, 1)]] B=[[Fraction(1, 1)]] D=[[Fraction(0, 1)]]
+   A^+ = [[Fraction(0, 1)]] (Penrose equations verified exactly)
+   S = D - B^T A^+ B = [[Fraction(0, 1)]] ; In(M)=(1, 1, 0) In(A)=(0, 0, 1) In(S)=(0, 0, 1) ; range condition A A^+ B = B: False ; additivity In(M)=In(A)+In(S): False
+OK   C23 readable fail witness: A=[0], B=[1], D=[0]
+OK   CTRL a wrong "pseudo-inverse" (zero matrix) is rejected by the Penrose test
+OK   CTRL a correct pseudo-inverse of diag(1,0) passes
+OK   CTRL A=[[2,2],[2,2]]: A^+ = (1/8) [[1,1],[1,1]]
+C24 W^T diag(1/p) W = [[Fraction(9, 4), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(49, 2), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)]]
+OK   C24 equals diag(9/4, 49/2, 0)
+OK   CTRL with p = (1/3,1/3,1/3) the matrix differs
+OK   C23 congruence M = E^T diag(A,S) E with E=[[I,A^+B],[0,I]] verified exactly on the witness with the range condition
+C23 readable (condition fails, additivity holds): A=[[Fraction(0, 1)]] B=[[Fraction(1, 1), Fraction(0, 1)]] D=[[Fraction(0, 1), Fraction(1, 1)], [Fraction(1, 1), Fraction(0, 1)]]
+   A^+ = [[Fraction(0, 1)]] (Penrose equations verified exactly)
+   S = D - B^T A^+ B = [[Fraction(0, 1), Fraction(1, 1)], [Fraction(1, 1), Fraction(0, 1)]] ; In(M)=(1, 1, 1) In(A)=(0, 0, 1) In(S)=(1, 1, 0) ; range condition A A^+ B = B: False ; additivity In(M)=In(A)+In(S): True
+OK   C23 readable witness: A=[0], B=[[1,0]], D=[[0,1],[1,0]]: M is the path graph P3 (eigenvalues +-sqrt2, 0); In(M)=(1,1,1)=(0,0,1)+(1,1,0)
+FAILS: []
