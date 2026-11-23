@@ -4,15 +4,27 @@ name: verify
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   check003:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 -I -B verification/checks/check_003_seam01_ropt.py
-      - run: python3 -I -O -B verification/checks/check_003_seam01_ropt.py
-      - run: python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
+      - name: Run check_003 in three parity modes
+        run: |
+          set -euo pipefail
+          python3 -I -B verification/checks/check_003_seam01_ropt.py > "${RUNNER_TEMP}/mode1.txt"
+          python3 -I -O -B verification/checks/check_003_seam01_ropt.py > "${RUNNER_TEMP}/mode2.txt"
+          python3 -I -B -W error verification/checks/check_003_seam01_ropt.py > "${RUNNER_TEMP}/mode3.txt"
+          sha256sum "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode2.txt" "${RUNNER_TEMP}/mode3.txt"
+          cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode2.txt"
+          cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode3.txt"
+          cat "${RUNNER_TEMP}/mode1.txt"
