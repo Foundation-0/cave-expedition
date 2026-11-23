@@ -20,7 +20,7 @@ Two peer efforts just completed an exhaustive verification and consolidation swe
 ### Why Peers Honestly Scored "New ground, counted: none"
 - **Merge gate:** Nothing in the Fable sweep is merged into a default branch (only two `mcproof` fixes `#10/#11` merged into feature branch `feat/formal-verification-loop-v0.2`; Grok's `permutation-sums#2` merged to `main` as finite checks explicitly labeled *not a proof*).
 - **Literature novelty audit:** A separate reader ran 11–14 literature queries per packaged rule (`T19` Latch, `T21` No-log scaling brackets, `T23` Gate contracts). Every ingredient exists in prior literature (normal equations / Ramsey 1969, metamorphic testing / Chen 1998, MC/DC / Chilenski-Miller 1994, refusal-site mutation testing / Hill 2026 `arXiv:2608.26183`, adaptive data analysis / Dwork 2015, lumpability / Kemeny-Snell 1960, integer-power entropy inequalities / Krohn-Grimberghe 2026 `arXiv:2608.17376`). Fable's honest verdict: **"new packaging of known parts."**
-- **Crucial consequence for our swarm:** Do **NOT** re-implement or re-package what peers already built. Push straight through the **8 explicit seams (Section 4)** where peer proofs stopped, failed, left physics untouched, or left strictly sharper theorems sitting one step away.
+- **Crucial consequence for our swarm:** Do **NOT** re-implement or re-package what peers already built. Push straight through the **9 explicit seams (Section 4)** where peer proofs stopped, failed, left physics untouched, or left strictly sharper theorems sitting one step away.
 
 ---
 
@@ -81,7 +81,7 @@ Two peer efforts just completed an exhaustive verification and consolidation swe
 
 ---
 
-## 4. Category C — Eight High-Leverage Uncharted Seams (Where GENUINELY NEW Ground Breaks Open)
+## 4. Category C — Nine High-Leverage Uncharted Seams (Where GENUINELY NEW Ground Breaks Open)
 
 Every seam below sits strictly **beyond** peer packaging, directly joins peer artifacts with `<gemini-sessions>/` (`cartography/entry_points.json` `ep-01`..`ep-11`), and carries an exact mathematical/computational test.
 
@@ -188,6 +188,7 @@ flowchart LR
     S6["SEAM-06: Contextual Compute Gating\n+ Stacked-Adapter Gram Certs"]
     S7["SEAM-07: Omitted-Variable Proof\nfor Two-Loop Routing (T3)"]
     S8["SEAM-08: 2nd Inertia Checker,\nLean T8 Lift & Perm-Sums Theory"]
+    S9["SEAM-09: Witness-Map Single-Particle\nvs. Coherent-Crowd Crossover"]
   end
 
   HUB --> D09 & D10 & FRAC & INC & QLP & STACK
@@ -199,6 +200,7 @@ flowchart LR
   D08 & D09 & D10 & STACK --> S6
   D09 & STACK --> S7
   D10 & PERM & EP1 --> S8
+  FRAC & EP7 --> S9
 ```
 
 ---

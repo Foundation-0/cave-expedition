@@ -29,7 +29,7 @@ A central empirical and mathematical finding of the expedition is that **eight d
 
 ## 2. Verified Discovery Ledger (`AUDIT-001` – `AUDIT-019`)
 
-Every active expedition track has reached `VERIFIED` status (see full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
+Every active expedition track reached `VERIFIED` status, except two early audits that did not survive their own check and have no closing row: `AUDIT-001` is `FALSIFIED` and `AUDIT-003` is `PARTIAL/FRAGILE` (see full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
 
 ### Confirmed `N2` Breakthroughs (Genuine New Ground)
 
