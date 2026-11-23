@@ -751,6 +751,12 @@ def u_audit_three():
     ck("ties: below(-inf, 1) is False", not bool(ties.below(-np.inf, 1.0)))
     ck("ties: at_or_above on finite values is unchanged", bool(ties.at_or_above(2.0, 1.0)) and bool(ties.at_or_above(1.0, 1.0)) and not bool(ties.at_or_above(1.0, 2.0)))
     ck("ties: at_or_above(-inf, 1) stays False (a surrogate with no lag kept never counts against the real series)", not bool(ties.at_or_above(-np.inf, 1.0)))
+    r = transfer.transfer_test("profile", np.ones(10) / np.sqrt(10), np.ones(10), np.ones(10, dtype=bool), np.random.default_rng(3), R=100)
+    ck("transfer: a template whose every detector ties with it gives no adverse verdict (B8: a tie never creates a verdict)", r["D"] == 1 and r["p"] == 1 and not r["adverse"])
+    g = np.ones(10)
+    w = np.arange(1.0, 11.0)
+    r2 = transfer.transfer_test("profile", w / np.sqrt(w @ w), g, np.ones(10, dtype=bool), np.random.default_rng(3), R=100)
+    ck("transfer: a target on which every permuted detector scores the same gives no adverse verdict either", r2["n_lt"] == 0 and not r2["adverse"])
     low = transfer.transfer_test("arrow", np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), -np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), np.ones(6, dtype=bool), np.random.default_rng(3), R=500)
     ck("transfer: a template strictly below every detector is still adverse (D8 unchanged where scores differ)", low["adverse"] and low["n_lt"] == 0)
 

@@ -144,13 +144,14 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
     S_A = float(w @ g)
     out = {"m": m, "kind": kind, "S_A": S_A}
     if m == 0:
-        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "adverse": False})
+        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "n_tied": R, "adverse": False})
         return out
     wp, gp = w[pos], g[pos]
     S_pop = float(wp @ gp)
     rest = S_A - S_pop  # entries outside the jointly populated set stay in place; they multiply zeros
     D = distinct_detectors(wp, signs)
     n_ge = 0
+    n_tied = 0
     done = 0
     while done < R:
         c = min(chunk, R - done)
@@ -160,10 +161,13 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
             ww = ww * (rng.integers(0, 2, size=(c, m)) * 2 - 1)
         sc = np.einsum("rm,m->r", ww, gp) + rest
         n_ge += int(c - ties.below(sc, S_A).sum())   # a tie counts as at or above, never as below
+        n_tied += int(ties.tied(sc, S_A).sum())
         done += c
     n_lt = R - n_ge
     out.update({"D": D, "p": Fraction(1 + n_ge, R + 1), "floor": smallest_reachable_p(R, D), "n_ge": n_ge,
-                "n_lt": n_lt, "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R})
+                "n_lt": n_lt, "n_tied": n_tied,
+                # D8, and no verdict when every detector ties with w_A (B8: a tie never creates a verdict)
+                "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R and n_tied < R})
     return out
 
 
