@@ -319,21 +319,3 @@ It is not the whole known-answer suite, so K-only code paths survive. Result of 
 By module (killed of total): `gates.py` 16 of 16, `segments.py` 5 of 5, `outcomes.py` 48 of 57, `nets.py` 7 of 11, `transfer.py` 22 of 46, `levels.py` 24 of 57, `stats43.py` 7 of 13, `flow.py` 5 of 28, `synth.py` 1 of 7, `law2b.py` 3 of 15, `patterns.py` 4 of 10, `iaaft.py` 4 of 5, `second_impl.py` 2 of 2, `pipeline.py` 0 of 1, `tasks.py` 0 of 2, `par.py` 0 of 6, `ties.py` 0 of 3.
 
 The plan's pre-data condition (every mutant killed or recorded as equivalent) is not met.
-
-# Amendment 3 build
-
-This section covers the code built for the plan as amended by Amendment 3 (plan commit 4c6ecd1, merged into the code branch). The full known-answer runs have not been started.
-
-## Open question for the plan's author: D8 against B8, and the all-tied guard
-
-Two sentences of the plan can give different answers on one input. Reading D8 (section 11a) says: "A transfer is adverse if fewer than 1/40 of the random detectors score below S_B(w_A) by more than the tie tolerance." Item B8 says that a tie never creates a verdict in either direction.
-
-The input that shows it: `transfer_test("profile", w, g, mask, rng, R=100)` with `w = ones(10) / sqrt(10)`, `g = ones(10)` and every entry populated. Every random detector is a permutation of equal entries, so every detector scores exactly what w_A scores. The call returns D = 1, p = 1, n_ge = 100 and n_lt = 0. By the letter of D8, n_lt = 0 is fewer than R/40, so the transfer is adverse. By B8, a transfer in which every detector ties with w_A has no verdict.
-
-A second input has the same property with D greater than 1: `w = arange(1, 11) / norm`, `g = ones(10)`. Every permutation of w gives the same score on a flat g.
-
-What the code does now: the transfer is adverse only if D8 holds and at least one detector does not tie with w_A (`n_tied < R`). This is the narrow guard proposed by the team's audit of the code.
-
-The guard is in its own commit so that it can be reverted alone. Where only some detectors tie with w_A, the code follows D8 as written, with ties not counted as below. The code does not extend the guard to partial ties and does not remove it. The plan's author is asked whether the guard is inside the plan.
-
-The earlier entry R1 below (Amendment 2 build section) describes the same input before the guard.
