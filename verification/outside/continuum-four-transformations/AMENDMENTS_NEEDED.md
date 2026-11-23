@@ -62,9 +62,13 @@ B3. C6, the file readers and the validity flags of section 7 need real files and
 
 C1. K2 fails. 11 of 21 classes are above the 0.086 bound, all of them exp or cube classes. The rates are ar1_0.5 exp 0.100 and cube 0.090, ar1_0.9 exp 0.295 and cube 0.155, ar1_0.99 exp 0.250 and cube 0.240, pl_1 exp 0.220 and cube 0.095, pl_2 exp 0.090 and cube 0.135, and sines3 exp 0.100.
 
-White noise after exp is at 0.085, inside the bound. Every plain class is inside the bound (0.040 to 0.065). An increasing map leaves the order patterns of the series unchanged but changes what IAAFT surrogates look like. That is a likely cause and was not tested further. Raising the iteration cap does not remove the excess (A1, X3). By the plan's own rule, an instrument matched to such a class is not calibrated.
+White noise after exp is at 0.085, inside the bound. Every plain class is inside the bound (0.040 to 0.065). An increasing map leaves the order patterns of the series unchanged but changes what IAAFT surrogates look like. That is a likely cause and was not tested further.
 
-C2. K2 matching. Classes with and without a map have almost the same slope, for example ar1_0.9 at -0.81 and ar1_0.9 after exp at -0.65. A match by slope alone cannot tell them apart. In the joined K2 output, the nearest other class to plain white noise is white after cube, and to plain pl_1 it is pl_1 after exp. The plan needs a rule for this, for example matching on slope and on the skewness of the values.
+Raising the iteration cap does not remove the excess (A1, X3). By the plan's own rule, an instrument matched to such a class is not calibrated.
+
+C2. K2 matching. Classes with and without a map have almost the same slope, for example ar1_0.9 at -0.81 and ar1_0.9 after exp at -0.65. A match by slope alone cannot tell them apart. In the joined K2 output, the nearest other class to plain white noise is white after cube, and to plain pl_1 it is pl_1 after exp.
+
+The plan needs a rule for this, for example matching on slope and on the skewness of the values.
 
 C3. K2 bound. The value 0.086 is the normal approximation (0.05 plus 2.326 standard errors). The exact 99 percent binomial point is 18 of 200 (0.090). At 0.086 a perfectly calibrated class is flagged with probability 0.012. Over 21 classes the chance that at least one calibrated class is flagged is 0.225 (X1).
 
@@ -319,3 +323,50 @@ It is not the whole known-answer suite, so K-only code paths survive. Result of 
 By module (killed of total): `gates.py` 16 of 16, `segments.py` 5 of 5, `outcomes.py` 48 of 57, `nets.py` 7 of 11, `transfer.py` 22 of 46, `levels.py` 24 of 57, `stats43.py` 7 of 13, `flow.py` 5 of 28, `synth.py` 1 of 7, `law2b.py` 3 of 15, `patterns.py` 4 of 10, `iaaft.py` 4 of 5, `second_impl.py` 2 of 2, `pipeline.py` 0 of 1, `tasks.py` 0 of 2, `par.py` 0 of 6, `ties.py` 0 of 3.
 
 The plan's pre-data condition (every mutant killed or recorded as equivalent) is not met.
+
+# Amendment 3 build
+
+This section covers the code built for the plan as amended by Amendment 3. The branch contains the plan branch tip 2d24771, and every plan file is byte-identical to it (`known_answer/hygiene.sh` checks this before each push). The full known-answer runs have not been started. They wait for the next amendment.
+
+BLOCK-1 of the Amendment 2 build section is resolved by item SK8 of the plan: the amplitude net is now `amp_lognormal` and K5's mapped cascade the mid-ranks of the cascade, and the K5 smoke run computes all its runs.
+
+## Tie rule for the adverse verdict: reading D8 against item B8 (Amendment 4 pending)
+
+Reading D8 (`PREREG.md` line 440) says: "A transfer is adverse if fewer than 1/40 of the random detectors score below S_B(w_A) by more than the tie tolerance. No interpolated percentile is used."
+
+Item B8 (`AMENDMENT_2.md` line 179) says: "A tie never creates a verdict in either direction: it counts against the real series in the segment p-value, against w_A in the transfer p-value, against departure for a K5 unit, and not as "below" when deciding an adverse transfer."
+
+Read literally, both give "adverse" for a template whose every detector ties with it. B8's first clause says that a tie never creates a verdict. The plan's author has ruled that the frozen plan does not settle the tie case and that a short Amendment 4 will fix the rule for all ties. The code on this branch follows D8 as written.
+
+Two inputs, with what the pushed code returns (`known_answer/tie_inputs.py`, output in `out_amendment3/tie_inputs_on_pushed_code.txt`), both with R = 100 detectors and every entry populated:
+
+- All tied: w = ones(10) / sqrt(10), g = ones(10). Result: D = 1, p = 1, n_ge = 100, n_lt = 0, adverse = True.
+- Partly tied: w = (1, 3, 3, 3, 3, 3, 3, 3) / norm, g = (1, 0, 0, 0, 0, 0, 0, 0). A detector scores the value that its permutation puts in position 0, which is 1 (a tie with S_A) for one permutation in eight and 3 for the rest. Result: D = 8, p = 1, n_ge = 100, n_lt = 0, adverse = True, although about one detector in eight ties with S_A.
+
+The known-answer family it can touch is K4 only (the A to C criterion needs "adverse"). K5 computes `adverse` and stores it in its output record, and no K5 criterion reads it. K5 uses p-values only. The real-data outcome rules of section 12 use "adverse", and no real-data code exists yet.
+
+A narrow guard (adverse only if at least one detector does not tie with w_A) was written and committed, and then reverted. It is kept as `known_answer/archived_patches/all_tied_guard.patch`, which no check imports. It matches neither reading for partly tied inputs.
+
+The K4 smoke run with the guard in and the rerun with the guard out gave byte-identical output.
+
+## What was implemented from Amendment 3
+
+- Seed keys SK1 to SK7: every draw takes its key from `src/keys.py`. `known_answer/key_check.py` builds every key at the plan's counts. K4 gives 6,180 draws on 6,100 keys and all families together give 417,545 distinct keys, with no key shared outside the plan's shared-by-design list.
+
+A run of the real K4 and K5 seed-making code (`known_answer/key_count.py`) builds exactly the plan's 6,100 and 11,130 keys.
+- SK8 and D19: `amp_scores` and `amp_lognormal` nets, K5's rank-mapped cascade, and a representability guard. A seed in which a map is not representable counts as failing the K5 positive criterion.
+- D20 and its second reading: K4 passes only if it passes under both. The control's "any run" rule is judged within each reading, and both detectors are reported on the blind spot.
+- D21: K1 compares 20 seeds at 4,096 and 2,048 samples (10 at smoke size).
+- The audit's non-finite and infinity fixes: `tau0_segment` and `segments_constant` refuse non-finite input, and `ties.py` gives no verdict on a non-finite value.
+
+## Readings and notes
+
+- K5 report code named a run `amp_exp`. Amendment 3 renamed it `amp_lognormal`. The first K5 run stopped at the report step. The name was changed in two places, no computed value changed, and K5 was run again.
+- The worker limit is 4 for this work (`src/par.py`).
+- The seed keys of this code are going to be replaced by a coming amendment. The K4 and K5 runs on them are diagnostics only.
+
+## Mutation test
+
+One sweep over every module of `src/`, with the unit checks, the key check and K6 as the suite: 289 mutants, 154 killed, 135 survived. None of the 135 survivors has been triaged. The list is in `known_answer/out_mutation/mutation_run_amendment3.txt`.
+
+On the lines changed since the Amendment 2 push (14 mutants) 9 were killed and 5 survived. Why they survive has not been analysed. The plan's pre-data condition (every mutant killed or recorded as equivalent) is not met.

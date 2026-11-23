@@ -1,4 +1,21 @@
-# Smoke results of the amended known-answer tests
+# Smoke results of the Amendment 3 code (outputs in `out_smoke_amendment3/`)
+
+The code now implements the plan as amended by Amendment 3 (plan commit 2d24771). K1 to K3 ran at one twentieth of the plan's seeds (at least 10). K4 and K5 have 10 seeds in the plan, so their runs are at the full count.
+
+Smoke runs are not results, and the K4 and K5 runs are diagnostics only because the seed keys are going to change. The full runs are on hold. No data file has been opened. `OUTCOME_LOG.md` lists every run with its time, the state of the code and who has read it.
+
+- K1: PASS. 7,614 checks, 0 failed, 132 (class version, map) combinations all representable, four must-fail controls flagged. Rule: every identity exact, at least 9 of 10 representable seeds per combination at this size.
+- K2: FAIL. No class is flagged (null classes need 10 or more of 50, reversible classes 13 or more of 50). The must-fail control is judged by the K2a rule at its own seed count: 10 seeds, flag point 5, and it shows 4. It is not flagged. At the plan's 200 seeds the flag point is 22.
+- K3: FAIL. Rule: native at 4,096 needs at least 8 of 10 and every other use at least 5 of 10, and the circular-shift control at most 1 of 10. Shots at `wlen2048` shows 4 of 10 and logistic subsampling 1 of 10, both below. The control shows 2 of 10 and is not flagged.
+- K4: FAIL. Reading 1 PASS (A to B 9 of 10, A to C 10 of 10, control 0 and 0). Reading 2 FAIL (A to B 7 of 10 against 9 needed). K4 passes only if both readings pass. The blind spot is reported for both detectors: the arrow transfer rejects in 0 runs and the profile transfer in 20 of 20 (reading 1) and 40 of 40 (reading 2) seed-direction-runs.
+- K5: PASS. Every criterion in at least 9 of 10 seeds, and the shuffled-cascade control in 0 of 10. The first run stopped on a naming fault in the report code and is kept.
+- K6: PASS. Six refusal codes, every deletion flagged.
+
+Processor time, first mode, this code: K1 710 s, K2 955 s, K3 257 s, K4 6,605 s (rerun, 6,917 s first run), K5 12,294 s.
+
+Unit checks, key check, review witnesses and K6 give identical output in the three Python modes. K1, K2 and K3 were also run in all three modes with identical output.
+
+# Earlier smoke results
 
 ## Amendment 2 code (outputs in `out_smoke_amendment2/`)
 

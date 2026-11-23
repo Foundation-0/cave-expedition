@@ -107,7 +107,7 @@ def evaluate(results, nseeds, mode):
     names = ["expo none", "cascade L0 and top", "shuffled none", "y L0", "T1 positive (3 runs)", "T2 negative", "T3 negative",
              "T1 evaluable", "T2 evaluable", "T3 evaluable", "ctrl shuffled shows cascade criterion"]
     cnt = {k: 0 for k in names}
-    print("seed  shifts(cascade, y', iaaft)  departing/units by level: expo | cascade | shuffled | y   transfers p (m): T1 native, amp_scores, amp_exp | T2 | T3")
+    print("seed  shifts(cascade, y', iaaft)  departing/units by level: expo | cascade | shuffled | y   transfers p (m): T1 native, amp_scores, amp_lognormal | T2 | T3")
     for r in sorted(results, key=lambda r: r["seed"]):
         D = r["departure"]
         top = max(D["cascade"])
@@ -117,7 +117,7 @@ def evaluate(results, nseeds, mode):
         ctop = max(D["cascade_shuffled"])
         cnt["ctrl shuffled shows cascade criterion"] += shows(D["cascade_shuffled"], 0) and shows(D["cascade_shuffled"], ctop)
         cnt["y L0"] += shows(D["y"], 0)
-        t1 = [r["T1|" + k] for k in ("native", "amp_scores", "amp_exp")]
+        t1 = [r["T1|" + k] for k in ("native", "amp_scores", "amp_lognormal")]
         t2, t3 = r["T2|native"], r["T3|native"]
         ev1 = all(x["m"] >= 8 for x in t1)
         ev2, ev3 = t2["m"] >= 8, t3["m"] >= 8

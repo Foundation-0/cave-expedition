@@ -1,0 +1,155 @@
+mutants to run: 289
+flow.py        killed/total: refusal 0/1  flip 1/9  threshold 4/18
+gates.py       killed/total: refusal 8/8  flip 2/2  threshold 6/6
+iaaft.py       killed/total: refusal 0/0  flip 1/1  threshold 3/4
+keys.py        killed/total: refusal 1/1  flip 0/0  threshold 0/0
+law2b.py       killed/total: refusal 1/4  flip 1/4  threshold 3/10
+levels.py      killed/total: refusal 7/11  flip 9/24  threshold 8/22
+nets.py        killed/total: refusal 3/3  flip 3/3  threshold 0/0
+outcomes.py    killed/total: refusal 7/8  flip 12/15  threshold 29/34
+par.py         killed/total: refusal 0/0  flip 0/2  threshold 0/4
+patterns.py    killed/total: refusal 0/3  flip 3/5  threshold 1/2
+pipeline.py    killed/total: refusal 0/1  flip 0/0  threshold 0/0
+second_impl.py killed/total: refusal 0/0  flip 2/2  threshold 0/0
+segments.py    killed/total: refusal 1/1  flip 2/2  threshold 2/2
+stats43.py     killed/total: refusal 2/4  flip 1/2  threshold 6/10
+synth.py       killed/total: refusal 1/7  flip 0/1  threshold 0/0
+tasks.py       killed/total: refusal 0/2  flip 0/0  threshold 0/0
+ties.py        killed/total: refusal 0/0  flip 0/3  threshold 0/0
+transfer.py    killed/total: refusal 9/13  flip 3/9  threshold 12/26
+TOTAL killed 154 of 289, survived 135
+SURVIVOR flow.py:40 refusal | raise RuntimeError("expected 8 classes of order-4 patterns, got %d" % len(cls))
+SURVIVOR flow.py:151 threshold +1 on 0 | if nl == 0:
+SURVIVOR flow.py:151 threshold -1 on 0 | if nl == 0:
+SURVIVOR flow.py:73 flip | if len(st) < MIN_SEG:
+SURVIVOR flow.py:100 flip | return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
+SURVIVOR flow.py:100 threshold +1 on 4 | return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
+SURVIVOR flow.py:100 threshold -1 on 4 | return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
+SURVIVOR flow.py:130 flip | if -3 <= a <= 3:
+SURVIVOR flow.py:130 flip | if -3 <= a <= 3:
+SURVIVOR flow.py:130 threshold +1 on 3 | if -3 <= a <= 3:
+SURVIVOR flow.py:130 threshold -1 on 3 | if -3 <= a <= 3:
+SURVIVOR flow.py:134 flip | if cnt[k] > 0:
+SURVIVOR flow.py:134 threshold +1 on 0 | if cnt[k] > 0:
+SURVIVOR flow.py:134 threshold -1 on 0 | if cnt[k] > 0:
+SURVIVOR flow.py:143 flip | return transfer.build_template(V.reshape(1, -1)), (cnt > 0)
+SURVIVOR flow.py:143 threshold +1 on 0 | return transfer.build_template(V.reshape(1, -1)), (cnt > 0)
+SURVIVOR flow.py:143 threshold -1 on 0 | return transfer.build_template(V.reshape(1, -1)), (cnt > 0)
+SURVIVOR flow.py:153 flip | return (V / nl).reshape(-1), cnt > 0
+SURVIVOR flow.py:153 threshold +1 on 0 | return (V / nl).reshape(-1), cnt > 0
+SURVIVOR flow.py:153 threshold -1 on 0 | return (V / nl).reshape(-1), cnt > 0
+SURVIVOR flow.py:152 flip | return np.zeros(7 * NF), cnt > 0
+SURVIVOR flow.py:152 threshold +1 on 0 | return np.zeros(7 * NF), cnt > 0
+SURVIVOR flow.py:152 threshold -1 on 0 | return np.zeros(7 * NF), cnt > 0
+SURVIVOR iaaft.py:42 threshold -1 on 0 | if active.size == 0:
+SURVIVOR law2b.py:43 refusal | raise ValueError("a noise key has six fields")
+SURVIVOR law2b.py:125 refusal | raise ValueError("interquartile range is zero")
+SURVIVOR law2b.py:135 threshold +1 on 0 | if m == 0:
+SURVIVOR law2b.py:135 threshold -1 on 0 | if m == 0:
+SURVIVOR law2b.py:136 refusal | raise ValueError("no fit segments")
+SURVIVOR law2b.py:142 flip | return tail_spread(seg) > threshold
+SURVIVOR law2b.py:124 flip | if not den > 0:
+SURVIVOR law2b.py:124 threshold +1 on 0 | if not den > 0:
+SURVIVOR law2b.py:124 threshold -1 on 0 | if not den > 0:
+SURVIVOR law2b.py:137 threshold +1 on 1 | return t[m // 2] if m % 2 == 1 else (t[m // 2 - 1] + t[m // 2]) / 2
+SURVIVOR law2b.py:137 threshold -1 on 1 | return t[m // 2] if m % 2 == 1 else (t[m // 2 - 1] + t[m // 2]) / 2
+SURVIVOR law2b.py:30 threshold +1 on 0 | if not np.all(med > 0):
+SURVIVOR law2b.py:57 flip | return [j for j in range(10) if 12 * (1 << j) <= n]
+SURVIVOR levels.py:48 refusal | raise RuntimeError("no such K")
+SURVIVOR levels.py:35 flip | if S < 0:
+SURVIVOR levels.py:35 threshold +1 on 0 | if S < 0:
+SURVIVOR levels.py:35 threshold -1 on 0 | if S < 0:
+SURVIVOR levels.py:36 refusal | raise ValueError("S must be non-negative")
+SURVIVOR levels.py:37 flip | if K <= 0:
+SURVIVOR levels.py:37 threshold -1 on 0 | if K <= 0:
+SURVIVOR levels.py:58 flip | return _int(Kc, "Kc") < excess_point(Sc)
+SURVIVOR levels.py:71 threshold -1 on 2048 | if N // 2 >= 2048:
+SURVIVOR levels.py:74 threshold -1 on 2048 | if N // 2 >= 2048:
+SURVIVOR levels.py:117 threshold -1 on 0 | if len(runs) == 0:
+SURVIVOR levels.py:118 refusal | raise ValueError("no runs to combine")
+SURVIVOR levels.py:130 threshold -1 on 0 | if len(run_ps) == 0:
+SURVIVOR levels.py:131 refusal | raise ValueError("no runs to combine")
+SURVIVOR levels.py:141 flip | return _exact(floor, "floor") <= run_level(nruns, family)
+SURVIVOR levels.py:46 flip | if binom_tail(S, K, q) <= level:
+SURVIVOR levels.py:99 flip | if S < 1 or K < 0 or K > S:
+SURVIVOR levels.py:99 threshold +1 on 1 | if S < 1 or K < 0 or K > S:
+SURVIVOR levels.py:99 flip | if S < 1 or K < 0 or K > S:
+SURVIVOR levels.py:99 threshold +1 on 0 | if S < 1 or K < 0 or K > S:
+SURVIVOR levels.py:110 flip | ok = p <= level and margin_ok and ceil_ok
+SURVIVOR levels.py:111 flip | return {"p": p, "p_ok": p <= level, "margin_ok": margin_ok, "ceiling_ok": ceil_ok, "pass": ok}
+SURVIVOR levels.py:177 flip | if n_valid < 0 or n_valid > n_selected:
+SURVIVOR levels.py:177 threshold +1 on 0 | if n_valid < 0 or n_valid > n_selected:
+SURVIVOR levels.py:177 threshold -1 on 0 | if n_valid < 0 or n_valid > n_selected:
+SURVIVOR levels.py:180 flip | if n_valid < MIN_VALID or invalid_blocks * 4 > n_selected:
+SURVIVOR levels.py:180 flip | if n_valid < MIN_VALID or invalid_blocks * 4 > n_selected:
+SURVIVOR levels.py:103 flip | if Sc < 1 or Kc < 0 or Kc > Sc:
+SURVIVOR levels.py:103 threshold +1 on 1 | if Sc < 1 or Kc < 0 or Kc > Sc:
+SURVIVOR levels.py:103 threshold -1 on 1 | if Sc < 1 or Kc < 0 or Kc > Sc:
+SURVIVOR levels.py:103 threshold -1 on 0 | if Sc < 1 or Kc < 0 or Kc > Sc:
+SURVIVOR levels.py:103 flip | if Sc < 1 or Kc < 0 or Kc > Sc:
+SURVIVOR levels.py:109 flip | ceil_ok = all(Fraction(Kc, Sc) <= cm for (Kc, Sc) in controls)
+SURVIVOR outcomes.py:62 refusal | raise RuntimeError("no rule applies to this state (the procedure must cover every state)")
+SURVIVOR outcomes.py:54 flip | if len(Q) == 3 and len(P) < 3 and all_arrow_pass:
+SURVIVOR outcomes.py:54 threshold +1 on 3 | if len(Q) == 3 and len(P) < 3 and all_arrow_pass:
+SURVIVOR outcomes.py:56 threshold -1 on 2 | if len(P) >= 2 and some_pair:
+SURVIVOR outcomes.py:60 threshold +1 on 1 | if len(P) <= 1 and n_absent <= 1 and n_adverse_pairs <= 1:
+SURVIVOR outcomes.py:60 threshold +1 on 1 | if len(P) <= 1 and n_absent <= 1 and n_adverse_pairs <= 1:
+SURVIVOR outcomes.py:60 threshold +1 on 1 | if len(P) <= 1 and n_absent <= 1 and n_adverse_pairs <= 1:
+SURVIVOR outcomes.py:44 flip | n_adverse_pairs = sum(1 for p in PAIRS if set(p) <= V and both(arrow, "adverse", p))
+SURVIVOR outcomes.py:80 flip | n_adv = sum(1 for p in PAIRS if set(p) <= V and both("adverse", p))
+SURVIVOR par.py:13 flip | if workers <= 1 or len(items) < 3:
+SURVIVOR par.py:13 threshold +1 on 1 | if workers <= 1 or len(items) < 3:
+SURVIVOR par.py:13 threshold -1 on 1 | if workers <= 1 or len(items) < 3:
+SURVIVOR par.py:13 flip | if workers <= 1 or len(items) < 3:
+SURVIVOR par.py:13 threshold +1 on 3 | if workers <= 1 or len(items) < 3:
+SURVIVOR par.py:13 threshold -1 on 3 | if workers <= 1 or len(items) < 3:
+SURVIVOR patterns.py:52 flip | if n <= span:
+SURVIVOR patterns.py:53 refusal | raise ValueError("series of %d samples is too short for order %d at lag %d" % (n, d, tau))
+SURVIVOR patterns.py:64 refusal | raise RuntimeError("a window matched no pattern")
+SURVIVOR patterns.py:72 refusal | raise RuntimeError("pattern counts do not add up to the number of windows")
+SURVIVOR patterns.py:63 threshold -1 on 0 | if np.any(pid < 0):
+SURVIVOR patterns.py:25 flip | key=lambda p: (len(set(p)) < d, p))
+SURVIVOR pipeline.py:105 refusal | raise ValueError("no valid segments")
+SURVIVOR stats43.py:47 refusal | raise ValueError("a pool key has six fields: instrument, split, net, segment, purpose, index")
+SURVIVOR stats43.py:89 flip | return {"pn": pn, "den": P, "reject": pn * 20 <= P, "T": float(Tr), "Z": Z, "deg": deg,
+SURVIVOR stats43.py:33 threshold +1 on 1 | omin = np.where((V == vmin[None, :]) & (cmin[None, :] == 1), s[1][None, :], vmin[None, :])
+SURVIVOR stats43.py:33 threshold -1 on 1 | omin = np.where((V == vmin[None, :]) & (cmin[None, :] == 1), s[1][None, :], vmin[None, :])
+SURVIVOR stats43.py:34 threshold +1 on 1 | omax = np.where((V == vmax[None, :]) & (cmax[None, :] == 1), s[-2][None, :], vmax[None, :])
+SURVIVOR stats43.py:34 threshold -1 on 1 | omax = np.where((V == vmax[None, :]) & (cmax[None, :] == 1), s[-2][None, :], vmax[None, :])
+SURVIVOR stats43.py:56 refusal | raise ValueError("unknown surrogate kind " + str(kind))
+SURVIVOR synth.py:72 refusal | raise ValueError("unknown class " + base)
+SURVIVOR synth.py:90 refusal | raise ValueError("unknown map " + m)
+SURVIVOR synth.py:180 refusal | raise ValueError("unknown case " + case)
+SURVIVOR synth.py:225 refusal | raise ValueError("unknown K4 kind " + kind)
+SURVIVOR synth.py:255 refusal | raise ValueError("unknown K5 case " + case)
+SURVIVOR synth.py:170 refusal | raise ValueError("K3 use %s draws blocks of %d samples" % (tag, keys.K3_BLOCK[tag]))
+SURVIVOR synth.py:123 flip | ev = (rng.random(n + pre) < rate).astype(np.float64)
+SURVIVOR tasks.py:82 refusal | raise ValueError("unknown variant " + variant)
+SURVIVOR tasks.py:105 refusal | raise ValueError("unknown K1 source " + source)
+SURVIVOR ties.py:20 flip | return ok & (np.abs(aa - bb) <= REL * scale)
+SURVIVOR ties.py:30 flip | return ok & ((a >= b) | tied(a, b))
+SURVIVOR ties.py:38 flip | return ok & (a < b) & ~tied(a, b)
+SURVIVOR transfer.py:26 refusal | raise ValueError("tau0 needs a 1-D segment of at least 2 samples")
+SURVIVOR transfer.py:30 flip | if n > 6000:
+SURVIVOR transfer.py:30 threshold -1 on 6000 | if n > 6000:
+SURVIVOR transfer.py:61 refusal | raise ValueError("no fit segment with order: tau0 needs at least one non-constant fit segment")
+SURVIVOR transfer.py:93 refusal | raise ValueError("template needs a 2-D array with at least one segment")
+SURVIVOR transfer.py:95 refusal | raise ValueError("template features must be finite")
+SURVIVOR transfer.py:146 threshold +1 on 0 | if m == 0:
+SURVIVOR transfer.py:146 threshold -1 on 0 | if m == 0:
+SURVIVOR transfer.py:188 threshold -1 on 1 | if per_level == 1:
+SURVIVOR transfer.py:25 flip | if x.ndim != 1 or x.size < 2:
+SURVIVOR transfer.py:25 threshold +1 on 2 | if x.ndim != 1 or x.size < 2:
+SURVIVOR transfer.py:25 threshold -1 on 2 | if x.ndim != 1 or x.size < 2:
+SURVIVOR transfer.py:39 flip | if 2 * num < den:             # "autocorrelation below 1/2", exact
+SURVIVOR transfer.py:92 threshold +1 on 2 | if F.ndim != 2 or F.shape[0] < 1:
+SURVIVOR transfer.py:92 threshold -1 on 2 | if F.ndim != 2 or F.shape[0] < 1:
+SURVIVOR transfer.py:92 flip | if F.ndim != 2 or F.shape[0] < 1:
+SURVIVOR transfer.py:92 threshold +1 on 1 | if F.ndim != 2 or F.shape[0] < 1:
+SURVIVOR transfer.py:92 threshold -1 on 1 | if F.ndim != 2 or F.shape[0] < 1:
+SURVIVOR transfer.py:98 threshold +1 on 0 | if not nrm > 0:
+SURVIVOR transfer.py:132 flip | if isinstance(R, (bool, np.bool_)) or not isinstance(R, (int, np.integer)) or R < 1:
+SURVIVOR transfer.py:132 threshold +1 on 1 | if isinstance(R, (bool, np.bool_)) or not isinstance(R, (int, np.integer)) or R < 1:
+SURVIVOR transfer.py:49 threshold +1 on 0 | return bool(s.size == 0 or np.all(s == s.flat[0]))
+SURVIVOR transfer.py:49 threshold -1 on 0 | return bool(s.size == 0 or np.all(s == s.flat[0]))
+SURVIVOR transfer.py:166 flip | "n_lt": n_lt, "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R})
