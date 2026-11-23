@@ -1,0 +1,11 @@
+Seventh record, written at 2026-11-23T07:09:31Z (date -u on this machine when this file was written). Earlier records are kept as they were. Snapshot of the files before this round: snapshots/r5/.
+Still no outcome of the code built for Amendment 3 seen by the plan's author.
+
+Change in this round, after the fifth independent check: the first sentence of the round-1 block replaced by the checker's text, keeping the words on the code built for Amendment 3, and the sentence on outcomes that come to exist after publication added. Nothing else changed.
+
+Hashes now:
+229461b0d84f178f8cafe94ee9eb60f00c2bad026dabe065e69ed68cd190d910  AMENDMENT_4.md
+941d1014965dbae7be25d4110b99991acfe91dc89298c668e3f57e2c0901c420  PREREG.md
+c9cf06deb04c0abe4a93fca7fc94b251dca02e2696e0861f8de6f0ecdac953aa  README.md
+f64915fdff03d5b3a4e292764a486a314c28751feba9840848357e580d566738  CHECK_BRIEF.md
+a6eaefc43c05ee91d05e0ff862a4a0139b71df5ad763ae7a1ef595c99ecb4483  FOR_THE_OTHER_HAND.md

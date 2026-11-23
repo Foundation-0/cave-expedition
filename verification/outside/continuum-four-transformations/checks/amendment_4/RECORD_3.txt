@@ -1,0 +1,15 @@
+Third record, written at 2026-11-23T06:46:58Z (date -u on this machine when this file was written). RECORD.txt and RECORD_2.txt are kept as they were. Snapshot of the files before this round: snapshots/r1/.
+Still no outcome of the code built for Amendment 3 seen by the plan's author.
+
+Changes since the Part A snapshot (06:27:08Z, b43141e3...):
+Round 1, ruled by the coordinator, recorded in RECORD_2 (06:29:16Z): opening reworded (published on its own, later repairs under C3), Part B removed, C2 reporting sentence added, C3 limit stated as a choice with its reason sentence, Also updated and What was not changed sections added, heading levels of C1 to C3 raised, C2 and C3 new text set as text blocks.
+Round 2, after the independent check (R1 to R6, O1 to O9) and the coordinator's message: disclosure rewritten (who shaped each item, one delimited outcome paragraph), conflict located inside B8 (R1), publication wording limited to the code built for Amendment 3 (R2), D8 if and only if in each run with integer form, exact equality, non-finite scores and mutation cases (R3,
+  O2 to O6), full direction of effect including Partial (R4), C2 Law 2b state, data timing and rounds (R5), C3 definition of repair and round, count from Amendment 4, epoch rule, not-validated wording (R6), C2 text moved after line 586 (O7), this record (O8), coordinator's rulings named (O9), key epoch added to D14 (suggested by the coordinator), change-log paragraph rewritten,
+  CHECK_BRIEF rewritten.
+C1's rule is unchanged in substance from the snapshot: adverse when fewer than R/40 detectors score at or below, ties counted as below.
+
+Hashes now:
+8b57e44c9a2ac46ceb6e22751ff328691bef5d4e1d32418069f655797048271a  AMENDMENT_4.md
+2ae9f224f3a5238ef28ec202408ed3d7ba9759eb726b80034374e92cba70ef55  PREREG.md
+da87ca5f1200d13bb2159f160d876213e6c21f7719487468620c67eca4ebd9c3  README.md
+339d8494b0809ace736d9083509f2378340ff2070312d6b2721a9fff4899a89a  CHECK_BRIEF.md

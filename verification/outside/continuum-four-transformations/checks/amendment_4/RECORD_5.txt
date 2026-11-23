@@ -1,0 +1,15 @@
+Fifth record, written at 2026-11-23T07:05:02Z (date -u on this machine when this file was written). Earlier records are kept as they were. Snapshot of the files before this round: snapshots/r3/.
+Still no outcome of the code built for Amendment 3 seen by the plan's author.
+
+Changes in this round, after the third independent check (Q1 to Q3 and O1 to O6):
+Q1 epoch 0 and smoke runs are diagnostics, smoke runs use epoch 0, a full-count run uses the lowest unused epoch from 1, a repair after an epoch 0 full-count outcome is round 1.
+Q2 an outcome of an epoch includes runs on the same data draws under other keys. Q3 every rerun after a full-count outcome uses a new epoch, and a code-only change after a full-count outcome is a repair and counts as a round (decided blind).
+O1 epoch of a repaired instance check. O2 change-log C2 bullet. O3 readings that name each test, in the table. O4 frozen-plan full-count runs in the seen column. O5 the epoch field is no definition change. O6 window in FOR_THE_OTHER_HAND.md item 6.
+Disclosure bullet for this round added. CHECK_BRIEF.md updated. C1's rule is unchanged.
+
+Hashes now:
+5c3b9bb40ca0b17459cb0229949d35e08d18340cd95c983ab2ddf7aa8f4e9407  AMENDMENT_4.md
+e4bef6ba1ee11924dd48fae4eb273c38f5d94887d5a34617ebc78b4aa7167129  PREREG.md
+ea5660b12c3b2fca9c36d5138d829f03d1f07f01d2caf450dfdca1ba4ed38a4c  README.md
+f64915fdff03d5b3a4e292764a486a314c28751feba9840848357e580d566738  CHECK_BRIEF.md
+c38111234b25e7120e0092410861bae4bae1b730b4e1bb4f637a5050b63b5ea7  FOR_THE_OTHER_HAND.md

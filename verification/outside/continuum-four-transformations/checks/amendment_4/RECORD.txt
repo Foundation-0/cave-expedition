@@ -1,0 +1,3 @@
+Part A of AMENDMENT_4.md drafted and fixed at 2026-11-23T06:27:08Z, before the plan's author saw any outcome of the code built for Amendment 3.
+SHA-256 AMENDMENT_4.md b43141e3e84a6f75cb09d49bd74f8c38136508e46a43959c39e0941b98868332
+Base commit 4c6ecd1. check-prose exit 0.

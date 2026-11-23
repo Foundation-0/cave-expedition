@@ -1,0 +1,8 @@
+Second record, written at 2026-11-23T06:29:16Z (taken with date -u on this machine when this file was written).
+The first record, RECORD.txt, is kept as it was. Its time 2026-11-23T06:27:08Z was also taken with date -u on this machine, in the same command that hashed the file, and copied from that output. Its hash b43141e3e84a6f75cb09d49bd74f8c38136508e46a43959c39e0941b98868332 is the Part A snapshot (copy in snapshots/AMENDMENT_4.partA.b43141e3.md).
+After the coordinator's rulings (C2 reporting sentence, C3 limit stated as a choice, Part B removed), the files are:
+11fe64697ac71359f8a7b0bd551471872e7f86af783348a042b1641b72aa2262  AMENDMENT_4.md
+1cf443441010228c04197fdc2d07b5fa547aa565c65a7633489bf44e9dc47302  PREREG.md
+4b10f7a829c7a55f59c3973d28f2da2cc1eeeb58da909d8d5104cf88f02ff0c3  README.md
+0b10cdc352ff74ccc5daf3e322aa17a91981c2a447f2846f1ac8e0e63af92b4d  CHECK_BRIEF.md
+Still no outcome of the code built for Amendment 3 seen by the plan's author.

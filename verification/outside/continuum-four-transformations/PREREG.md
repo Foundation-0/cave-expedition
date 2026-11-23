@@ -1,6 +1,6 @@
 # Pre-registration: a raw-data test of the four-transformations claim
 
-Status: plan as amended by Amendments 1, 2 and 3. Files fetched and hash-pinned (`FETCH_MANIFEST.tsv`), none opened, no statistic computed on real data.
+Status: plan as amended by Amendments 1 to 4. Files fetched and hash-pinned (`FETCH_MANIFEST.tsv`), none opened, no statistic computed on real data.
 The known-answer tests have been run only as smoke runs of the code. Their outcomes were known to the code's author and to the party who routed the questions. The plan's author has read none of their outputs.
 What reached the plan's author is disclosed in the amendments: the observed behaviour stated in the builder's questions behind B5, B6, B7 and B9, one smoke figure used in B11, a K5 smoke run that stopped on an overflow at seed 0, the code's author's count that the old map overflows in 9 of 10 seeds, and a K1 smoke run that failed on a fault of the test harness.
 No full-count run of K1 to K3 has been made (Amendment 3 paragraph of the change log).
@@ -58,6 +58,13 @@ Item SK8 replaces one amplitude map, which could overflow and lose distinct valu
 - SK8 amplitude maps made representable by rule: the scale flow's second amplitude-map net becomes `amp_lognormal`, exp of the normal scores of the mid-ranks, and K5's mapped cascade becomes the mid-ranks of the cascade, with the guard of K1, a stated consequence when a map is not representable, and a rule for every other exp or power (sections 5 and 10, new reading D19).
 - SK9 the K3 row of the compute estimate priced at the eight uses of section 10, and the totals recomputed (section 11).
 - Erratum to Amendment 2: the account of when its items were written, and one item range (`AMENDMENT_3.md`, erratum section).
+
+Amendment 4 (`AMENDMENT_4.md`, 2026-11-23) was made before any data file was opened and before the plan's author saw any outcome of the code built for Amendment 3. Its disclosure section says who had seen what and who shaped each item. It changes no threshold, level, existing seed key, test count or compute figure.
+
+- C1 ties in the adverse decision: in each run a transfer is adverse if and only if fewer than R/40 of the random detectors score at or below S_B(w_A), ties counted as at or below (reading D8, sections 4.3, 10 and 12).
+  It only removes "adverse", so it moves outcomes towards Partial or weaker negative outcomes, never towards Supported or Net-dependent.
+- C2 a Law 2b instance that fails its pre-data check is not tested: it cannot rescue, and an adverse outcome it leaves unsearched stays unresolved unless another instance rescues it (section 12a).
+- C3 a round of repair to a known-answer test defined, with at most two rounds per test counted from Amendment 4, each rerun on a new key epoch (section 10, reading D14).
 
 The original text stays in git history.
 
@@ -163,7 +170,7 @@ Two transfer tests are built from these features:
 - Profile transfer: the m1 and m23 features, 20 per series, which do not change under time reversal. Matched random detectors are R = 99,999 random permutations of the entries of w_A. This test compares the shape of the irreversibility profile across scales, not its direction.
 
 For each test, the template w_A is the mean feature vector over instrument A's fit segments, scaled to unit length, and the score of a series is w_A dotted with its features.
-On instrument B's verdict segments, the score S_B(w) is the mean over segments of w dotted with the segment's standardised features. The transfer p-value is (1 + number of random detectors with S_B at least S_B(w_A)) / 100,000. A transfer is "adverse" when S_B(w_A) is below the 2.5th percentile of the random detectors' S_B.
+On instrument B's verdict segments, the score S_B(w) is the mean over segments of w dotted with the segment's standardised features. The transfer p-value is (1 + number of random detectors with S_B at least S_B(w_A)) / 100,000. A transfer is "adverse" when S_B(w_A) is below the 2.5th percentile of the random detectors' S_B, as reading D8 defines it.
 An earlier version compared each real series with its own surrogates by an AUC. The known-answer tests showed that this saturates at 1 for any strongly irreversible series and leaves the null without power, so the mean standardised score, which does not saturate, replaces it.
 Random detectors permute only the entries at levels populated in both A and B. Entries elsewhere are left in place (they multiply zeros). If fewer than 6 levels are populated in both, the arrow transfer counts as not rejecting. If fewer than 8 features are populated in both, the profile transfer counts as not rejecting.
 Random detectors identical to w_A tie with it, so a sampled test cannot go below (1 + R/D)/(R + 1), where D is the number of distinct random detectors that w_A's entries allow (computed exactly from them). A transfer run counts as not passing unless that value is within its per-run level (section 5).
@@ -309,6 +316,33 @@ K1 passed (228 exact checks), K2 failed (11 of 21 classes above the bound, all e
 The tests below are the amended ones. They have not yet been run.
 Gate. No data file is opened until the code has been updated to this amended plan and every test below passes in all three Python modes with its must-fail control flagged. Every test has one: K1 has three broken variants, K2 one, K3 one, K4 two, K5 one (the shuffled cascade) and K6 six. K4 passes only if it passes under both readings of reading D20 (section 11a).
 If any test fails, or any must-fail control is not flagged, the plan is amended again, with the date logged, before any data file is opened.
+A repair to a known-answer test is a change to its definition, or to the code that computes it, made after a full-count outcome of that test on the code built for Amendment 3, or a later build, exists. A test's definition is its text in section 10, the readings of section 11a that fix what it computes, its seed keys and its thresholds.
+A change to the code made before any such full-count outcome of the test exists is not a repair, and it is recorded with the outcomes that had been seen when it was made.
+A code-only change made after such a full-count outcome exists is a repair and counts as a round, because a rerun after an outcome is a retry whatever was changed, and a limit that code-only retries could bypass would not limit tuning.
+A repair is made only by a dated amendment, which records the outcomes that prompted it, who had seen them, and what changes.
+An outcome is seen when anyone who works on the plan, the code, the checks or the routing of questions has read it or a summary of it, at any seed count, in a smoke run or a full run. The disclosures of the amendments and the record files fix when.
+A run on epoch 0, and a smoke run on any epoch, is a diagnostic and cannot pass a test. Smoke runs use epoch 0. A full-count run uses the lowest epoch from 1 that the test has not used, and every rerun after a full-count outcome uses a new epoch, whatever was changed.
+A round of repair starts when a repair is published and ends when every test it touches has been rerun at its full count, with its must-fail control, on a new key epoch for that test (reading D14), and the outcomes are recorded.
+A repair made after a full-count outcome on epoch 0 is round 1, and its rerun on epoch 1 ends that round. The outcomes of every round stay in the record.
+A key epoch belongs to one test: every draw of that test, its must-fail controls and the Law 2b pre-data checks that reuse its draws use the same epoch. Real-data draws keep epoch 0. K6 has no random draws and is exempt from the epoch rule only.
+A test passes only on a key epoch whose outcomes for that test nobody had seen when its definition was last changed. An outcome of an epoch includes any run that used the same data draws as that epoch, even under other surrogate or detector keys.
+Rounds are counted per test from the publication of Amendment 4. The changes of Amendments 1 to 3, and code changes made before Amendment 4 was published other than carrying out Amendment 4 itself, are not counted as rounds.
+Amendment 4 is the dated amendment for carrying it out in the code. For each of K4 and K5 whose full-count outcome on epoch 0 on the code built for Amendment 3 exists at any time before the code carries out Amendment 4, whether before or after Amendment 4 is published, carrying it out changes the code that computes the test (the epoch field in the keys, and for K4 the transfer rule of reading D8).
+For an outcome that comes to exist after publication, the dated record of the code change states the outcomes seen when it was made, in place of a further amendment.
+That is a repair and is round 1 for that test, and the test's first run on epoch 1 ends the round. It is not a repair for a test with no full-count outcome on the code built for Amendment 3, or a later build, as K1, K2 and K3 so far. K6 depends on no key or transfer code, so carrying it out does not change K6 and is not a round for K6.
+K6 is exempt from the epoch rule only: a repair to K6 after a K6 run is a round that ends when K6 is rerun with its must-fail control, and K6 has the same two rounds. The disclosure states for which tests Amendment 4 is round 1.
+Applied today, the rule gives this table. Each "seen" entry is taken from the public record, not from any outcome. Readings D1 to D13 apply to every test that uses them, and the table lists the readings that name a test.
+
+| Test | Readings that name it | Last change to its definition | Epoch 0 outcomes seen before that change | Epoch it passes on |
+|---|---|---|---|---|
+| K1 | D14, D18, D19, D21 | Amendment 3 (reading D21) | yes: the frozen-plan full-count run (code commit `71142c1`), the smoke run of the code built for Amendment 1, and the K1 smoke run of the ported code disclosed in Amendment 3 | 1 or later |
+| K2 | D14, D15, D19 | Amendment 2 (item B11, the control's seed count). Reading D19 (a) of Amendment 3 states a bound only | yes: the frozen-plan full-count run, and the smoke run of the code built for Amendment 1, whose control figure B11 used | 1 or later |
+| K3 | D14, D16 | Amendment 3 (item SK3, its pool keys) | yes: the frozen-plan full-count run, and the smoke run of the code built for Amendment 1, on the same data draws | 1 or later |
+| K4 | D8, D14, D17, D20 | Amendment 4 (item C1, reading D8) | yes: the frozen-plan full-count run, and the smoke run of the code built for Amendment 1, at the full 10 seeds | 1 or later |
+| K5 | D14, D17, D19 | Amendment 3 (items SK1, SK2, SK4 and SK8) | yes: the frozen-plan full-count run, and the smoke run of the code built for Amendment 1, at the full 10 seeds, on the same data draws where the keys were kept | 1 or later |
+| K6 | D14 | no random draws | not applicable | exempt |
+
+A known-answer test that still fails after two rounds is not validated: no further repair is made in this run of the plan, no data file is opened, and the plan is reported as not validated, with the outcomes of every round.
 
 - K1 Exact checks. Integer counts are compared exactly.
   - Pattern counts are equal under the comparison maps y^3 + y, exp(y) and the ranks of x, with y = x / max|x| (as below).
@@ -358,7 +392,7 @@ If any test fails, or any must-fail control is not flagged, the plan is amended 
   - Synthetic A: the shots of K3. Synthetic B: shots made at twice the rate (decay over 10 fine samples) on power-law noise of slope 1, then every second sample kept and the sign flipped. Synthetic C: the time reverse of a fresh series of kind A. Each stream has 33 blocks, so the primary grid and the grid shifted by half a block both give 32 segments.
   Every synthetic instrument has two independent streams per seed, made with different seed purposes: a fit stream, whose segments give tau0 and the template, and a verdict stream, whose segments are scored. Templates come only from fit streams and scores only from verdict streams. 10 seeds.
   - A to B must give arrow transfer p and profile transfer p at most 0.001 in every run, in at least 9 of the 10 seeds.
-  - A to C must give an arrow transfer score S_B(w_A) below the 2.5th percentile of its random detectors in every run, in at least 9 of the 10 seeds. The profile transfer A to C is expected to pass, because the profile does not change under reversal, and its result is reported.
+  - A to C must give an arrow transfer score S_B(w_A) below the 2.5th percentile of its random detectors, as reading D8 defines it, in every run, in at least 9 of the 10 seeds. The profile transfer A to C is expected to pass, because the profile does not change under reversal, and its result is reported.
   - Must-fail controls: A to A' where A' is A cut into its 33 blocks, the block order shuffled and each block replaced by an IAAFT surrogate of itself, with its own fit stream made the same way.
   Neither the arrow transfer nor the profile transfer may reach p at most 0.01 in more than 1 of the 10 seeds, where a seed counts as reaching it if p is at most 0.01 in any run (primary grid or shifted grid).
   - Blind spot, reported: a sawtooth rising in ramps (period 64, values k/64, k = 0 to 63, peak to peak 63/64) with white noise of standard deviation half the sawtooth's standard deviation (0.144), and its time reverse. The arrow transfer between them is expected not to reject in either direction (section 4.3, limit).
@@ -426,7 +460,7 @@ The Law 2b search adds, in the worst case where all three kinds of adverse outco
 17,147.52 (new presence pools for W, F, D on 3 instruments, plan counts) + 77,287.50 (new flow pools for W, F, D, B, R on 3 instruments x 5 runs x 150 units, the last an assumption, x 3 pools) + 149,491.20
 (G1 null replicates: 102 tests x 10 replicates x 64 pools, an assumption that a replicate stops after about 2 pools for each of 32 segments) = 243,926.22 processor-seconds per mode, about 67.8 processor-hours, and about 203.3 over three modes, and nothing when no adverse outcome occurs.
 
-## 11a. Implementation readings fixed by Amendments 2 and 3
+## 11a. Implementation readings fixed by Amendments 2 to 4
 
 These readings were provisional choices of the code built for Amendment 1 (code commit `99533df`, items D1 to D18). Amendment 2 makes them plan text, with the changes stated.
 
@@ -437,7 +471,9 @@ These readings were provisional choices of the code built for Amendment 1 (code 
 - D5. A pattern is the tuple of dense ranks of the window (the rank of a value is the number of distinct window values below it), giving 13 patterns at order 3 and 75 at order 4.
 - D6. An order-4 class frequency is the sum of the pseudocounted frequencies of its member patterns, (count + m/2) / (windows + 75/2) for a class of m patterns. The ninth class holds the 51 tied patterns.
 - D7. The 13 terms of Sigma_hat are summed in sorted order, so x and -x give identical sums.
-- D8. A transfer is adverse if fewer than 1/40 of the random detectors score below S_B(w_A) by more than the tie tolerance. No interpolated percentile is used.
+- D8 (as amended by Amendment 4). In each run, a transfer is adverse if and only if fewer than R/40 of the random detectors score at or below S_B(w_A), that is, if 40 times that count is less than R. A detector counts as at or below if its score is below S_B(w_A), equal to it, or tied with it under the tolerance of section 4.3.
+  A run in which S_B(w_A) or any detector score is not finite is neither adverse nor passing. No interpolated percentile is used. This is the reading of item B8's reason and effect, that a tie never creates a verdict, and it replaces B8's clause "and not as 'below' when deciding an adverse transfer".
+  The code's test suite holds an all-tied case and the boundary counts 2,499 and 2,500 at R = 99,999, so that the mutants of this rule (section 11) are killed.
 - D9. The flow template is the mean of the units at each aligned level, each level counting equally, the same construction as the score, and is then scaled to unit length as in section 4.3. The scaling changes no p-value, since every random detector has the same entries as the template and so scales alike, except through the absolute floor of the tie rule (section 4.3) for scores below 1e-12.
 - D10. The flow amplitude maps are applied to the whole stream before block averaging.
 - D11. The window-length net N/2 cuts blocks of N/2 + 128 samples by the rule of section 7 with segment length N/2.
@@ -473,6 +509,8 @@ These readings were provisional choices of the code built for Amendment 1 (code 
   (6) Real data: the arrow and profile transfers use the presence pools of the same segments (no new draw). The same transfer with B's C2 or C3 series in place of B (section 5, C5) uses the random detectors of the transfer it checks, so that only B changes.
   (7) Law 2b: an instance runs on the data and control series of its paired test (no new draw), and Q, H, M, O4 and E use its pools, since they change only the statistic or the selection. A series under one instance has one pool and one set of null replicates, used by every test that uses that series under that instance, as the confirmatory tests share one pool per segment.
   The pre-data checks use the known-answer data draws (K2 seeds 0 to 199 at 4,096, K3 `native4096`, K4, K5), so that only the instance differs from the known-answer test.
+  - Key epoch: in epoch 0 the master field is `20261121`. A known-answer test run on epoch k, for k from 1, uses master field `20261121e<k>` with every other field unchanged, so the keys of different epochs never coincide. Epochs are counted per test (section 10, repair rule). Real-data draws keep epoch 0, and K6 has no random draws.
+  Adding the epoch is not a change to any test's definition, because epoch 0 keeps every key. Carrying it out changes the code that computes each seeded test, and section 10 says when that is a round.
   - Draws not listed here follow the names above. The order of draws inside each generator, and the random-number calls used, are fixed by the generator source at the code commit recorded with the known-answer results. That commit's hash is recorded with every result, and any later change to a generator is a plan amendment.
 - D15. For g and h, unit variance means a stationary AR(1) series with innovations of standard deviation sqrt(1 - c^2). The 7 null classes are standardised by their sample mean and standard deviation. The K2 control's flag point is evaluated at its own seed count (B11).
 - D16. In K3 each seed draws a block of N + 128 samples and cuts it by the offset rule. The window-placement and window-length nets use independent draws of the same process, and native at 2,048 samples is its own draw. The nets block mean by 2, subsampling by 2 and the two quantizations are applied to the native 4,096-sample draw (D14).
@@ -513,7 +551,7 @@ Inputs for T3:
 - Known-answer tests: all of K1 to K6 pass, or not.
 - Status of each counting instrument, one of five. Invalid: C2, C3 or C4 fails in the primary run. Underpowered: the primary run has fewer than 12 valid segments, or more than 25 percent of its selected blocks are invalid.
 Present: the presence test passes at its Holm step, which requires the primary run and every applicable net run to pass under section 5, with no net underpowered. Net-dependent: the primary run alone passes under section 5 at the test's per-run level, but the presence test does not pass. Absent: otherwise.
-- For each ordered pair of counting instruments, the arrow transfer is "pass" (passes at its Holm step), "adverse" (S_B(w_A) below the 2.5th percentile of its random detectors in every run) or "neither". The profile transfer is "pass" or "neither". A pair whose C5 control fails, or which is below the populated-feature floor of 4.3, is "neither".
+- For each ordered pair of counting instruments, the arrow transfer is "pass" (passes at its Holm step), "adverse" (S_B(w_A) below the 2.5th percentile of its random detectors, as reading D8 defines it, in every run) or "neither". The profile transfer is "pass" or "neither". A pair whose C5 control fails, or which is below the populated-feature floor of 4.3, is "neither".
 
 Let P be the present instruments, Q the present or net-dependent ones, and V the instruments that are present, net-dependent or absent. A pair "passes both ways" if its result is "pass" in both directions, and likewise for "adverse both ways". The first rule that applies sets the outcome:
 
@@ -584,6 +622,11 @@ That is a null false-pass rate of at most 1/10, and the resolution condition hol
 A replicate's evaluation stops at its first failing run. Before data are opened, each instance passes, with the instance applied and at window length 4,096 only, K2 with 200 seeds per class, K3 on the native net, and the paired K4 or K5 test. For the 8 presence instances K2 has 56 null checks (7 classes) and 16 checks of the reversible classes.
 A null class is flagged at 24 or more of 200 (P(Binomial(200, 0.05) >= 24) = 7.2e-5, at most 0.01/56), so a calibrated set is flagged anywhere with probability at most 0.004. A reversible class is flagged at 36 or more (P(Binomial(200, 0.10) >= 36) = 3.9e-4, at most 0.01/16).
 With 200 seeds these checks find only large miscalibration (a null rate of 0.10 is caught with probability 0.20 per check). They are an extra guard on top of G1.
+An instance that fails any of these checks is not tested. It cannot rescue, and each of its tests enters the Holm procedure with p = 1, as an instance that is not computed does. A failed check does not delay the opening of data, and the list of untested instances is fixed before any data file is opened.
+A check may be repaired before then only by a dated amendment under the repair rule of section 10, and each such repair counts as a round for that instance. A repaired instance check is rerun on the lowest epoch from 1 that it has not used, with the data draws of that epoch of the known-answer test whose draws it reuses.
+For an instance check, two failed rounds leave the instance untested and do not close the data. A failed check is not repaired after a data file has been opened.
+An untested instance leaves the Law 2b search incomplete for every kind of adverse outcome that lists it, so such an outcome cannot be recorded as final. It is recorded as "transformed core" if another instance passes for every triggering item, and otherwise as "evidence against at the confirmatory level, Law 2b search unresolved".
+In the report an untested instance is described as "not tested", never as evidence against the claim, and the final wording on the claim names each rescue route that could not be tested.
 As the reference requires, a rescue also needs every transformed target to hold: one instance must pass for every item that triggered the adverse outcome (every absent counting instrument for (a), every adverse pair for (b) or (c)).
 
 G2, global scope and degrees of freedom (reference line 51). Every instance is fixed by this text before any verdict file is opened.

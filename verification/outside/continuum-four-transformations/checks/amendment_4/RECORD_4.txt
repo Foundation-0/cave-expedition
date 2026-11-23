@@ -1,0 +1,16 @@
+Fourth record, written at 2026-11-23T06:57:33Z (date -u on this machine when this file was written). Earlier records are kept as they were. Snapshot of the files before this round: snapshots/r2/.
+Still no outcome of the code built for Amendment 3 seen by the plan's author.
+
+Changes in this round, after the second independent check (N1 to N6 and its optional items) and the coordinator's message:
+N1 K6 named apart (no seeds) in the opening and the disclosure. N2 epoch scope per test, real data on epoch 0, K6 exempt, the K4 round sentence in the rule. N3 definitions of a test's definition and of seen, with the per-test epoch table in the rule.
+N4 transformed core kept under C2. N5 an instance check does not close the data, with its reason. N6 two rounds stated as two corrections. Optional: B8's clause quoted, code-only changes covered, table printed. Disclosure bullet for this round added.
+The outcome placeholder is shortened to one line, and the facts it needs are listed in FOR_THE_OTHER_HAND.md, which is not for publication. CHECK_BRIEF.md updated.
+C1's rule is unchanged from RECORD_3.
+
+Hashes now:
+52499fcefe5ed5c8181b6e0df8fb3dab3fe9cb9a036e0e545e678b1338f38217  AMENDMENT_4.md
+07e93b5ad76978efa93a20a560582b95719eebdea97c76d2bcd50316ab7b0a82  PREREG.md
+ab2a92638f6082e17d9db16421787e7083d377e47369c6e49045d730e0e7455f  README.md
+b6b4c4e6f1ec3a1e8cd25b9dd804c7f3dfeadd0429f4946247914a5c946875bf  CHECK_BRIEF.md
+d4d3fd7f1c27502cdb5cf460e419e5cc7730cb2a5745585654095a72f339ba4f  FOR_THE_OTHER_HAND.md
+Added at 2026-11-23T06:57:40Z: CHECK_BRIEF.md line 10 rewrapped for check-prose, content unchanged. New hash: 277ace5806b83970cc1e1df81df484747409fb6b288af4fd8e8e85c8c1eba84e
