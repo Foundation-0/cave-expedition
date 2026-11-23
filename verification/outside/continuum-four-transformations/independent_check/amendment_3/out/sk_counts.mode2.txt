@@ -1,0 +1,27 @@
+K1 distinct keys: mine 1,001, author 1,001 -> match
+K1 draws, every series counted alike: mine 6,884, author 6,884 -> match
+K1 shared draws: 5,883 (5,163 + 720)
+K2 draws: mine 36,400, author 36,400 -> match
+K2 keys: mine 36,000, author 36,000 -> match
+K3 keys: mine 9,600, author 9,600 -> match
+K3 draws: mine 13,000, author 13,000 -> match
+K4 superset keys: mine 8,660, author 8,660 -> match
+K4 superset draws: mine 8,680, author 8,680 -> match
+K5 10 sets keys: mine 11,130, author 11,130 -> match
+K5 10 sets draws: mine 11,150, author 11,150 -> match
+K5 units per set 110; keys = 10 seeds x (8 data or whole-surrogate + 10 sets x 110 + 5 detectors)
+K5 superset keys: mine 46,400, author 46,400 -> match
+Real pools+detectors keys: mine 7,172, author 7,172 -> match
+Real draws (C5 adds 2 per detector key): mine 7,436, author 7,436 -> match
+Controls with segment pools: mine 28,224, author 28,224 -> match
+Law 2b pre-data keys: mine 99,520, author 99,520 -> match
+Law 2b pre-data draws (4,800 data reuses): mine 104,320, author 104,320 -> match
+  reuses: K2 2 x 1,800 + K3 2 x 600 = 4,800
+Law 2b real instance keys: mine 89,376, author 89,376 -> match
+Law 2b null replicate keys: mine 99,240, author 99,240 -> match
+K4 D20 keys: mine 4,460, author 4,460 -> match
+K4 D20 and second reading keys: mine 6,100, author 6,100 -> match
+K4 D20 and second reading draws (20 A' + 60 shared): mine 6,180, author 6,180 -> match
+All families together (no key in two families): mine 417,545, author 417,545 -> match
+RESULT all table rows reproduced from the plan counts
+must-fail: a K1 count off by one is flagged: yes

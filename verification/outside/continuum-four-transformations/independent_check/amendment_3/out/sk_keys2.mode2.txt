@@ -1,0 +1,11 @@
+K1: events 6,884, distinct keys 1,001, owners 1,001, collisions 0, owner-two-keys 0
+K2: events 36,400, distinct keys 36,000, owners 36,000, collisions 0, owner-two-keys 0
+K3: events 13,000, distinct keys 9,600, owners 9,600, collisions 0, owner-two-keys 0
+K4 every kind, split, run: events 8,680, distinct keys 8,660, owners 8,660, collisions 0, owner-two-keys 0
+K5 the 10 series sets of B9: events 11,150, distinct keys 11,130, owners 11,130, collisions 0, owner-two-keys 0
+Real data pools and detectors: events 10,252, distinct keys 9,988, owners 9,988, collisions 0, owner-two-keys 0
+Controls C2 to C4 with their pools: events 22,976, distinct keys 22,976, owners 22,976, collisions 0, owner-two-keys 0
+Law 2b pre-data checks: events 105,210, distinct keys 70,420, owners 70,420, collisions 0, owner-two-keys 0
+Law 2b instance tests, real data: events 52,176, distinct keys 45,936, owners 45,936, collisions 0, owner-two-keys 0
+Law 2b null replicates, reduced grid: events 26,400, distinct keys 26,400, owners 26,400, collisions 0, owner-two-keys 0
+across these families: 219,455 distinct keys, 219,455 distinct 64-bit seeds, keys with two different owners 0
