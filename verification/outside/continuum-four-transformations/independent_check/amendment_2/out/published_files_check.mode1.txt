@@ -1,0 +1,14 @@
+HASH PREREG.md: 1dfc2c8cc191a09418938193c06bf2feda367f6162251df0e422474c02441b3f
+HASH AMENDMENT_2.md: 93e170b3f3d01405d1a92ed8131095dca85844f7eae8c5843da38019bf088d90
+HASH README.md: 47c3220af742f181488defe31c12383c2bdeb2cb6429a2e80f32e425b5a13870
+HASH AMENDMENT_1.md (published): 771c5d4c44a233ef14837d3d91a0349413ccca080cfc1214649592d838e3157a
+INFO README table rows: ['AMENDMENT_1.md', 'AMENDMENT_2.md', 'PREREG.md']
+README table PREREG.md: MATCH
+README table AMENDMENT_1.md: MATCH
+README table AMENDMENT_2.md: MATCH
+SCAN PREREG.md: CR bytes 0; findings none; ends with newline True
+SCAN AMENDMENT_2.md: CR bytes 0; findings none; ends with newline True
+SCAN README.md: CR bytes 0; findings none; ends with newline True
+CONTROL a doctored README hash is flagged | wrong input flagged = True
+CONTROL a CR byte would be counted | wrong input flagged = True
+DONE published_files_check

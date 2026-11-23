@@ -1,0 +1,4 @@
+seeds: 20267000 + 1000*n + 100*class_index + seed (seed 0..9); lengths 4096, 2048; 540 version comparisons, 9 classes
+CLAIM b5-ns | normal scores of exp and cube versions equal those of the plain version exactly (and -z gives the negated scores) | text=exact | mine=exact in all cases | REPRODUCED
+CONTROL the check detects a version that merges values | wrong input flagged = True
+DONE k1_normal_scores

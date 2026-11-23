@@ -1,0 +1,31 @@
+Part 1, exact bounds
+ln(largest double) = 709.782713
+n = 1024: |z| < 32.0, exp(z) < 7.896e+13, |z|^3 < 3.277e+04: finite (K1 versions, K2 control)
+n = 2048: |z| < 45.3, exp(z) < 4.507e+19, |z|^3 < 9.268e+04: finite (K1 versions, K2 control)
+n = 4096: |z| < 64.0, exp(z) < 6.235e+27, |z|^3 < 2.621e+05: finite (K1 versions, K2 control)
+n = 2^19: |z| < 724.08, above ln(largest double): exp(z) can overflow (old K5 map)
+n = 5.243e+05: |normal score| <= 4.7630, exp(score) <= 117.0968, distinct scores differ by >= 4.78e-06
+n = 1e+08: |normal score| <= 5.7307, exp(score) <= 308.1938, distinct scores differ by >= 2.51e-08
+n = 1e+12: |normal score| <= 7.1305, exp(score) <= 1249.5101, distinct scores differ by >= 2.51e-12
+
+Part 2 (a), the old map on the K5 cascade, 10 seeds (tag A3-amp:cascade)
+exp(z) of the cascade overflows in 0 of 10 seeds. Computed directly it loses distinct values in 0 of 10, in the centred form exp(z - (max z + min z)/2) in 2 of 10
+exp(z) of the exp-mapped cascade overflows in 10 of 10 seeds; after standardising, the exp-mapped cascade keeps 2 to 16 distinct values of 524,288
+
+Part 2 (b), candidate maps: guard, top1 (share of squared deviations in the largest 1 percent), r (Pearson with the stream)
+stream | native top1 | cube: guard, top1, r | lognormal: guard, top1, r | scores: guard, top1, r | ranks: guard, top1, r
+AR(1) 0.9 | 0.0701 | True 0.1020 0.9928 | True 0.4841 0.7602 | True 0.0720 0.9999 | True 0.0294 0.9766
+AR(1) 0.9 with 5 spikes | 0.9878 | True 0.9969 0.9984 | True 0.4841 0.3048 | True 0.0720 0.1484 | True 0.0294 0.1261
+integer-valued AR(1) | 0.0700 | True 0.1017 0.9930 | True 0.4813 0.7615 | True 0.0719 0.9999 | True 0.0294 0.9767
+K5 cascade | 0.9562 | True 0.9684 0.9741 | True 0.4862 0.7239 | True 0.0720 0.2904 | True 0.0294 0.2054
+
+Part 2 (c), one extreme value: r over the other values, without and with the middle value replaced by 10^6 standard deviations
+cube: r = 0.992822 without, 1.000000 with (1 - r: 7.18e-03 and 0.00e+00)
+lognormal: r = 0.760250 without, 0.765385 with (1 - r: 2.40e-01 and 2.35e-01)
+lognormal: the other values move by at most one rank. Largest relative change of a mapped value 0.22 (in the top tail, where one rank moves the score most), share of values changed by more than 0.1 percent 0.0053
+
+Part 2 (d), K5: rank-based nets see the same series for every increasing map of the cascade
+scores of the cascade equal scores of its cube map: True, of its mid-ranks: True
+mapped cascade candidates, top1 against the cascade's 0.9562 and r with the cascade: cube 0.9684 0.9741, lognormal 0.4862 0.7239, ranks 0.0294 0.2054
+control: guard flags exp of values 1e-17 apart: True; flags an overflow: True; r = 1 and top1 unchanged under a linear rescaling: True
+DONE amp_maps: all checks hold

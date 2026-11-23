@@ -1,0 +1,6 @@
+seed_keys.py exit codes: 0 0 0
+identical output in all three modes
+amp_maps.py exit codes: 0 0 0
+identical output in all three modes
+compute_k3.py exit codes: 0 0 0
+identical output in all three modes
