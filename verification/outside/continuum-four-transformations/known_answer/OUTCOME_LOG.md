@@ -22,3 +22,18 @@ K5 report code change: in `k5_scale_flow.py` the report step looked up the run n
 Error files kept with their paths show the local folder as `<build folder>`.
 
 The plan's author has been told of the K5 crash and the K1 harness fault of earlier builds, and has been told no outcome of the runs above.
+
+## Diagnostic runs on epoch 0 (extra runs, after the log above)
+
+These runs use the present keys (epoch 0). They cannot pass a test, and they were made to find why three smoke results fell short. Details and conclusions are in `DIAGNOSIS_EPOCH0.md`. Times are local time of the machine on 2026-11-23, six hours behind UTC. The routing party has seen only the summary of the controls run (in an earlier report). The plan's author has seen none of them.
+
+| Run | Seeds | Finished (local) | Outcome | Read by |
+|---|---|---|---|---|
+| Controls (K2 control and K3 circular-shift control, real and alternative pool key, plan's method on the same series) | 200 | 05:51 | K2 control 46 of 200 (flag point 22). K3 control 11 of 200 (bound 20) | me, routing party (summary) |
+| K4 A to B, both readings, with alternative detector and pool keys | 0 to 9 | 06:05 | reading 1 9 of 10, reading 2 7 of 10 (6 to 7 under the alternative keys) | me |
+| K4 A to B, both readings | 10 to 49 | 06:37 | reading 1 28 of 40, reading 2 21 of 40 | me |
+| K3 at the plan's full count, run four times by mistake (the part option was ignored) with identical outputs | 200 per case | 07:09 to 08:50 | FAIL: logistic sub2 74 of 200 below 100. Control 11 of 200 | me |
+| K2 at the plan's full count (the part option was ignored, so part 0 ran everything) | 1,000 per class, control 200 | 10:17 | FAIL: AR(1) 0.99 at 2,048 samples flagged (75 of 1,000 against 74). Control flagged (46 of 200) | me |
+| K2 duplicate (part 1, which also ran everything) | | stopped | cut off, no result. Its partial files are kept | |
+
+The guard column does not apply: the all-tied guard was out of the code for all of these. Processor time of the diagnostic runs: about 51,500 s (14 hours).

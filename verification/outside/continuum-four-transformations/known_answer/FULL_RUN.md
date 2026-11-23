@@ -1,5 +1,7 @@
 # Running one known-answer family at full count
 
+Known fault: the part option of the K2, K3, K4 and K5 scripts is read from the wrong argument positions and is ignored, so a run given a part number runs the whole test. Do not use the part commands below until this is fixed (see `DIAGNOSIS_EPOCH0.md`).
+
 Full-count runs wait for the next amendment, which changes the seed keys. This note says how a worker runs them once that amendment is implemented and the commit to run is named.
 
 This note says how to run K1, K2, K3 or K6 at the plan's full seed count, in one Python mode, from a clean checkout of the pushed commit. K4 and K5 full runs wait for the next amendment. Do not run them from this note.

@@ -1,0 +1,14 @@
+TEST K3 - planted structure found
+SIZE FULL
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+segments in this run: 6600 of 6600
+seeds per case 200; need at least 160 detections native at 4096 and at least 100 elsewhere; control must stay at most 20
+case              native4096 native2048 bm2        sub2       q12        q8         placement  wlen2048  
+shots             190/200    143/200    119/200    144/200    192/200    183/200    185/200    117/200   
+logistic          200/200    200/200    199/200     74/200*   200/200    200/200    200/200    200/200   
+sawtooth          200/200    200/200    200/200    200/200    200/200    200/200    200/200    200/200   
+sawtooth_noisy     64/200*    22/200*    78/200*    40/200*    62/200*    62/200*    57/200*    35/200*     (reported, does not gate)
+must-fail control (circular-shift surrogates, shots, native 4096): 11 of 200 detected, bound 20: FLAGGED (control behaves)
+cells below the criterion on gating cases (marked *): [('logistic', 'sub2', 74)]
+SUMMARY K3 FAIL | 1 gating cells below criterion; control flagged: True

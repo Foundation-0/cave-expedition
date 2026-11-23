@@ -1,0 +1,28 @@
+TEST K2 - nothing found in noise
+SIZE FULL
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+segments in this run: 18200 of 18200
+segments with a zero-spread lag: 0
+seeds per class 1000 (plan 1000); K2a flag point 74 of 1000 (plan 74 of 1000); K2b flag point 129 of 1000 (plan 129 of 1000)
+class                 n      rejections  rate    flagged   99 percent CP interval
+white                 4096      56/1000  0.0560  no        [0.0389, 0.0774]  K2a
+ar1_0.5               4096      44/1000  0.0440  no        [0.0290, 0.0635]  K2a
+ar1_0.9               4096      47/1000  0.0470  no        [0.0315, 0.0670]  K2a
+ar1_0.99              4096      50/1000  0.0500  no        [0.0339, 0.0705]  K2a
+pl_1                  4096      49/1000  0.0490  no        [0.0331, 0.0693]  K2a
+pl_2                  4096      48/1000  0.0480  no        [0.0323, 0.0682]  K2a
+sines3                4096      54/1000  0.0540  no        [0.0373, 0.0751]  K2a
+g2                    4096      49/1000  0.0490  no        [0.0331, 0.0693]  K2b (reported; flag stops the run)
+absh                  4096      68/1000  0.0680  no        [0.0491, 0.0911]  K2b (reported; flag stops the run)
+white                 2048      51/1000  0.0510  no        [0.0348, 0.0717]  K2a
+ar1_0.5               2048      58/1000  0.0580  no        [0.0406, 0.0797]  K2a
+ar1_0.9               2048      59/1000  0.0590  no        [0.0414, 0.0809]  K2a
+ar1_0.99              2048      75/1000  0.0750  FLAG      [0.0551, 0.0990]  K2a
+pl_1                  2048      43/1000  0.0430  no        [0.0282, 0.0623]  K2a
+pl_2                  2048      49/1000  0.0490  no        [0.0331, 0.0693]  K2a
+sines3                2048      47/1000  0.0470  no        [0.0315, 0.0670]  K2a
+g2                    2048      42/1000  0.0420  no        [0.0274, 0.0611]  K2b (reported; flag stops the run)
+absh                  2048      82/1000  0.0820  no        [0.0612, 0.1069]  K2b (reported; flag stops the run)
+must-fail control (raw-value surrogates, ar1_0.9|exp, 4096): 46 of 200 reject; flag point 22 of 200 (K2a rule at this n): FLAGGED
+SUMMARY K2 FAIL | K2a flagged: True; K2b flagged: False; control flagged: True
