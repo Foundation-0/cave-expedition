@@ -1,0 +1,483 @@
+{
+  "audit_id": "AUDIT-087",
+  "certificate_sha256": "8afb84e301efb95c338bed6cb6eab640211832ead320044c260d6ce71eee47a6",
+  "live_portal_verification": {
+    "anchors": [
+      {
+        "anchor_id": "PREREG-LAPLACE",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 65,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-U-FEATURE",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 85,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-S4-ORBITS",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 105,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-AMPLITUDE-SKIP",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 134,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-C2-RULE",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 150,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-END-MATCH",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 163,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-HOLM-28",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 184,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-PRESENCE-K",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 188,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-K2-BOUND",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 211,
+        "verified": true
+      },
+      {
+        "anchor_id": "PREREG-TESS-EXCLUDED",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md",
+        "line": 238,
+        "verified": true
+      },
+      {
+        "anchor_id": "DATA-REQ-TOTAL",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/DATA_REQUEST.md",
+        "line": 6,
+        "verified": true
+      },
+      {
+        "anchor_id": "ARMB-50-WINDOWS",
+        "file": "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/ARM_B_OUTLINE.md",
+        "line": 14,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-POST-GARDENER",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/post.md",
+        "line": 46,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-POST-LENTON",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/post.md",
+        "line": 242,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-POST-AUTOMERGE",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/post.md",
+        "line": 314,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-ANALYSIS-SPLIT",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/analysis.md",
+        "line": 33,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-ANALYSIS-RETIRE",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/analysis.md",
+        "line": 61,
+        "verified": true
+      },
+      {
+        "anchor_id": "KF-ANALYSIS-COPYRIGHT",
+        "file": "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/analysis.md",
+        "line": 87,
+        "verified": true
+      }
+    ],
+    "file_digests": {
+      "round10/portals/aletheia/pr_6.md": {
+        "bytes": 2048,
+        "sha256": "088f40fd8e8e5b0e404dff43295b2b38542edb2ef8651088b287e0358f74269b",
+        "verified": true
+      },
+      "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/analysis.md": {
+        "bytes": 13707,
+        "sha256": "53edaf8612a959a16d0d86401f2fe55f65680c484e8de648ee86759cbee0473c",
+        "verified": true
+      },
+      "round10/portals/aletheia/pr_6_files/captures/2026-11-21-nichochar-knowledge-factories/post.md": {
+        "bytes": 22609,
+        "sha256": "d433ac2988fefd9fb3434dfaa5c9fa4257830b3dd71ff3258a0e1068d3dd900b",
+        "verified": true
+      },
+      "round10/portals/cave-expedition/pr_6.md": {
+        "bytes": 2245,
+        "sha256": "76b2266f81b15a479324a0fa240d73e9866fa842e90a31df9c6c4c7ef5592b5b",
+        "verified": true
+      },
+      "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/ARM_B_OUTLINE.md": {
+        "bytes": 2476,
+        "sha256": "893b7744d6503e2857ac1d9eca97c1a63cb2bab6386d2e90b73071eac4896de1",
+        "verified": true
+      },
+      "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/DATA_REQUEST.md": {
+        "bytes": 5814,
+        "sha256": "0ebf6b137ce13d644b06a4f947d10bdc59947ca369393b471369d0569064a314",
+        "verified": true
+      },
+      "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/PREREG.md": {
+        "bytes": 25192,
+        "sha256": "8ed03fb9f3f5b712d961b04ebdc2f539c398cac6e5e1fbecb6eeacb6041b5483",
+        "verified": true
+      },
+      "round10/portals/cave-expedition/pr_6_files/verification/outside/continuum-four-transformations/README.md": {
+        "bytes": 844,
+        "sha256": "c7918d85041e4d6c1ceac552cc2f64839971cd1e28608f1b3abd276ce6cb1644",
+        "verified": true
+      },
+      "round10/portals/continuum/pr_1_files/continuum.md": {
+        "bytes": 10121,
+        "sha256": "516f6080563f223a4d8da437d37aaff479988f08f9079bfa48116cbb4fdc3150",
+        "verified": true
+      },
+      "round8/arm5-langchain-knowledge-factory/knowledge_factory_certificate.json": {
+        "bytes": 11975,
+        "sha256": "7f84e852283d072902207ba106f70b3384d00b2fd4041ff12cc21be25e08974b",
+        "verified": true
+      }
+    },
+    "mode": "live_read_only",
+    "pinned_aletheia_pr6_commit": "98db54c39812546e9acb8e7f9f2b39fffd46e487",
+    "pinned_cave_pr6_commit": "24d7757309b5b6b7b5179be2a65387af58fd5f9b",
+    "verified_anchors": 18,
+    "verified_files": 10
+  },
+  "pillar1_control_power_and_holm": {
+    "holm_min_dec6": "0.001785",
+    "holm_min_threshold": "1/560",
+    "prereg01a_control_conjunction_trap": {
+      "S12": {
+        "binom_1pct_fail_k": 4,
+        "binom_1pct_fail_prob_dec6": "0.002236",
+        "four_instruments_any_false_invalid_dec6": "0.779455",
+        "inflation_ratio_dec6": "52.924202",
+        "per_instrument_3controls_false_invalid_dec6": "0.314710",
+        "rate_cap_fail_k": 2,
+        "rate_cap_fail_prob_dec6": "0.118359",
+        "three_instruments_any_false_invalid_dec6": "0.678173"
+      },
+      "S32": {
+        "binom_1pct_fail_k": 6,
+        "binom_1pct_fail_prob_dec6": "0.004599",
+        "four_instruments_any_false_invalid_dec6": "0.601501",
+        "inflation_ratio_dec6": "16.045559",
+        "per_instrument_3controls_false_invalid_dec6": "0.205476",
+        "rate_cap_fail_k": 4,
+        "rate_cap_fail_prob_dec6": "0.073805",
+        "three_instruments_any_false_invalid_dec6": "0.498443"
+      }
+    },
+    "prereg01b_k2_quantile_and_multiplicity": {
+      "fwer_21_classes_at_k18_dec6": "0.225413",
+      "fwer_21_classes_at_k19_dec6": "0.115428",
+      "n_seeds": 200,
+      "num_noise_classes": 21,
+      "p_ge18_dec6": "0.012089",
+      "p_ge18_le_1pct": false,
+      "p_ge19_dec6": "0.005823",
+      "p_ge19_le_1pct": true,
+      "prereg_fail_k": 18,
+      "prereg_rate_threshold": "43/500",
+      "true_1pct_fail_k": 19
+    },
+    "presence_thresholds_verified": {
+      "S12_K4_reaches_holm": false,
+      "S12_K4_tail_dec6": "0.002236",
+      "S12_K5_reaches_holm": true,
+      "S12_K5_tail_dec6": "0.000183",
+      "S32_K6_reaches_holm": false,
+      "S32_K6_tail_dec6": "0.004599",
+      "S32_K7_reaches_holm": true,
+      "S32_K7_tail_dec6": "0.000868"
+    }
+  },
+  "pillar2_ordinal_symmetry_and_offset_leakage": {
+    "burnside_s4_v4_orbits": {
+      "matches_prereg_l105_eight_classes": true,
+      "num_orbits": 8,
+      "orbit_sizes": [
+        2,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      "simplex_dof_per_level": 7
+    },
+    "prereg02_rp_symmetry_obstruction": {
+      "all_lags_u_zero": true,
+      "rp_rotation_preserves_all_six_counts_exact": true,
+      "sawtooth_by_tau": [
+        {
+          "n_012": 0,
+          "n_021": 15,
+          "n_102": 15,
+          "n_120": 0,
+          "n_201": 0,
+          "n_210": 224,
+          "tau": 1,
+          "ties": 0,
+          "u_equals_zero_identically": true
+        },
+        {
+          "n_012": 0,
+          "n_021": 30,
+          "n_102": 30,
+          "n_120": 0,
+          "n_201": 0,
+          "n_210": 192,
+          "tau": 2,
+          "ties": 0,
+          "u_equals_zero_identically": true
+        },
+        {
+          "n_012": 0,
+          "n_021": 60,
+          "n_102": 60,
+          "n_120": 0,
+          "n_201": 0,
+          "n_210": 128,
+          "tau": 4,
+          "ties": 0,
+          "u_equals_zero_identically": true
+        },
+        {
+          "n_012": 0,
+          "n_021": 0,
+          "n_102": 0,
+          "n_120": 0,
+          "n_201": 0,
+          "n_210": 0,
+          "tau": 8,
+          "ties": 240,
+          "u_equals_zero_identically": true
+        }
+      ],
+      "sawtooth_period": 16,
+      "time_even_feature_fraction": "2/3",
+      "time_reversal_swaps_counts_exact": true
+    },
+    "prereg03_end_match_offset_leakage": {
+      "block": [
+        10,
+        10,
+        0,
+        1,
+        11,
+        11,
+        2,
+        2
+      ],
+      "mapped_best_offset": 2,
+      "mapped_block_x3_plus_x": [
+        1010,
+        1010,
+        0,
+        2,
+        1342,
+        1342,
+        10,
+        10
+      ],
+      "mapped_costs": [
+        "110224/1",
+        "1103684/1",
+        "104/1"
+      ],
+      "monotone_map_changes_selected_offset": true,
+      "rank_best_offset_mapped": 0,
+      "rank_best_offset_raw": 0,
+      "rank_costs_mapped": [
+        "4/1",
+        "17/4",
+        "29/4"
+      ],
+      "rank_costs_raw": [
+        "4/1",
+        "17/4",
+        "29/4"
+      ],
+      "rank_fix_restores_exact_invariance": true,
+      "raw_best_offset": 0,
+      "raw_costs": [
+        "1/1",
+        "65/1",
+        "5/1"
+      ]
+    }
+  },
+  "pillar3_data_budgets_and_scale_flow": {
+    "arm_b_finite_sample_rungs": [
+      {
+        "fits_32_pooled_fit_segments_131072": true,
+        "fits_single_4096_segment": true,
+        "min_windows_50_per_pattern": 300,
+        "min_windows_50_per_transition_edge": 900,
+        "num_patterns": 6,
+        "order_d": 3
+      },
+      {
+        "fits_32_pooled_fit_segments_131072": true,
+        "fits_single_4096_segment": true,
+        "min_windows_50_per_pattern": 1200,
+        "min_windows_50_per_transition_edge": 4800,
+        "num_patterns": 24,
+        "order_d": 4
+      },
+      {
+        "fits_32_pooled_fit_segments_131072": true,
+        "fits_single_4096_segment": false,
+        "min_windows_50_per_pattern": 6000,
+        "min_windows_50_per_transition_edge": 30000,
+        "num_patterns": 120,
+        "order_d": 5
+      },
+      {
+        "fits_32_pooled_fit_segments_131072": false,
+        "fits_single_4096_segment": false,
+        "min_windows_50_per_pattern": 36000,
+        "min_windows_50_per_transition_edge": 216000,
+        "num_patterns": 720,
+        "order_d": 6
+      }
+    ],
+    "data_request_byte_sums": {
+      "drop_l1_fit_bytes": 509128939,
+      "drop_l1_fit_matches_claimed": true,
+      "total_bytes": 634994866,
+      "total_matches_claimed": true,
+      "waves_fit_bytes": 64800982,
+      "waves_fit_matches_claimed": true,
+      "waves_verdict_bytes": 69121441,
+      "waves_verdict_matches_claimed": true
+    },
+    "scale_flow_sample_budgets": [
+      {
+        "blocks_level0": 3971,
+        "instrument_case": "GW_4096s_4096Hz",
+        "max_scale_flow_level": 8,
+        "min_zero_padded_t1_features_of_56": 0,
+        "populated_aligned_levels_max": 7,
+        "samples": 16777216
+      },
+      {
+        "blocks_level0": 409,
+        "instrument_case": "SEIS_VBB_1day_20Hz",
+        "max_scale_flow_level": 5,
+        "min_zero_padded_t1_features_of_56": 8,
+        "populated_aligned_levels_max": 6,
+        "samples": 1728003
+      },
+      {
+        "blocks_level0": 27,
+        "instrument_case": "TESS_27d_20s_nogap_upper_bound",
+        "max_scale_flow_level": 1,
+        "min_zero_padded_t1_features_of_56": 40,
+        "populated_aligned_levels_max": 2,
+        "samples": 116640
+      },
+      {
+        "blocks_level0": 10,
+        "instrument_case": "WAVES_8d_4ch_60s_cadence",
+        "max_scale_flow_level": -1,
+        "min_zero_padded_t1_features_of_56": 56,
+        "populated_aligned_levels_max": 0,
+        "samples": 46080
+      },
+      {
+        "blocks_level0": 3,
+        "instrument_case": "WAVES_8d_4ch_192s_cadence",
+        "max_scale_flow_level": -1,
+        "min_zero_padded_t1_features_of_56": 56,
+        "populated_aligned_levels_max": 0,
+        "samples": 14400
+      }
+    ],
+    "waves_max_avg_cadence_dec6": "54.545454",
+    "waves_max_avg_cadence_for_12_blocks_sec": "600/11"
+  },
+  "pillar4_certifiers_and_kf_cross_audit": {
+    "audit_076r_blast_radius_ge1_dec6": "0.997877",
+    "kf_cross_audit_automerge_loophole_and_lenton": {
+      "actor_role": "gardener",
+      "admitted": false,
+      "reviewer_role": "independent_reviewer",
+      "target_layer": "data_access_guidance",
+      "violations": [
+        "KF03D_INFLIGHT_STALE_READ_UNNOTIFIED",
+        "KF04_HIGH_IMPACT_LAYER_REQUIRES_SIGNOFF"
+      ]
+    },
+    "kf_cross_audit_hardened_admitted": {
+      "actor_role": "gardener",
+      "admitted": true,
+      "reviewer_role": "independent_reviewer",
+      "target_layer": "data_access_guidance",
+      "violations": []
+    },
+    "prereg_certifier_as_written": {
+      "certified": false,
+      "effective_control_fail_k": 4,
+      "experiment_any_false_invalid_dec6": "0.498443",
+      "k2_fwer_dec6": "0.225413",
+      "k2_per_class_fail_dec6": "0.012089",
+      "min_reachable_presence_p_reaches_holm": true,
+      "per_instrument_false_invalid_dec6": "0.205476",
+      "single_control_false_fail_dec6": "0.073805",
+      "violations": [
+        "PREREG01_EXCESS_CONTROL_FALSE_INVALIDATION",
+        "PREREG01_EXPERIMENT_FALSE_INVALID_EXCEEDED",
+        "PREREG01B_K2_PER_CLASS_ALPHA_EXCEEDED",
+        "PREREG01B_K2_FWER_EXCEEDED",
+        "PREREG02_TIME_EVEN_TRANSFER_DILUTION",
+        "PREREG03_RAW_END_MATCH_MONOTONE_LEAKAGE",
+        "PREREG04_ZERO_PADDED_PERM_DILUTION"
+      ]
+    },
+    "prereg_certifier_hardened": {
+      "certified": true,
+      "effective_control_fail_k": 6,
+      "experiment_any_false_invalid_dec6": "0.053821",
+      "k2_fwer_dec6": "0.024077",
+      "k2_per_class_fail_dec6": "0.001159",
+      "min_reachable_presence_p_reaches_holm": true,
+      "per_instrument_false_invalid_dec6": "0.013735",
+      "single_control_false_fail_dec6": "0.004599",
+      "violations": []
+    }
+  },
+  "pinned_aletheia_pr6_commit": "98db54c39812546e9acb8e7f9f2b39fffd46e487",
+  "pinned_cave_pr6_commit": "24d7757309b5b6b7b5179be2a65387af58fd5f9b",
+  "schema_version": "prereg-raw-data-audit-v1"
+}
