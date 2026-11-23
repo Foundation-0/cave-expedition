@@ -1,0 +1,30 @@
+AMENDMENT_4.md line 64: block equals PREREG.md line 440: EXACT
+AMENDMENT_4.md line 70: block equals AMENDMENT_2.md line 179: EXACT
+quotation in AMENDMENT_4.md: yes; found in AMENDMENT_2.md at line [231]: adopted, with ties not counted as below (B8)
+quotation in AMENDMENT_4.md: yes; found in AMENDMENT_2.md at line [183]: no tie can produce a finding in either direction
+quotation in AMENDMENT_4.md: yes; found in AMENDMENT_2.md at line [186]: only away from a verdict
+quotation in AMENDMENT_4.md: yes; found in AMENDMENT_2.md at line [179]: not as "below" when deciding an adverse transfer
+quotation in AMENDMENT_4.md: yes; found in PREREG.md at line [166, 361, 516]: the 2.5th percentile
+quotation in AMENDMENT_4.md: yes; found in PREREG.md at line [584]: Before data are opened, each instance passes, with the instance applied and
+quotation in AMENDMENT_4.md: yes; found in PREREG.md at line [620]: evidence against at the confirmatory level, Law 2b search unresolved
+short phrases:
+   'not as "below"': lines [179] in AMENDMENT_2.md
+   'the 2.5th percentile': lines [166, 361, 516] in PREREG.md
+   PREREG 166 carries the transfer p-value and the 2.5th percentile: yes
+   PREREG 361 is the K4 A to C criterion: yes
+   PREREG 379 is the K5 transfer criterion with p: yes
+   PREREG 516 is the pair result rule: yes
+   PREREG 613 is the G4 obstruction: yes
+   PREREG 310 is the gate: yes
+   PREREG 311 allows amendment before data: yes
+   PREREG 400 allows a dated amendment before the verdict files: yes
+   PREREG 584 holds the instance pre-data checks: yes
+   PREREG 440 is D8: yes
+   PREREG 520 to 526 are rules 1 to 7: yes
+   PREREG 530 to 535 are the flow rules: yes
+   PREREG 611 is G4: yes
+   PREREG 585 flags a check: yes
+   AMENDMENT_2 183 holds the reason: yes
+   AMENDMENT_2 186 holds the effect: yes
+control: a corrupted quotation is not found: True
+RESULT all quotations and cited lines match

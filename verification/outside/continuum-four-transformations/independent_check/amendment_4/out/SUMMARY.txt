@@ -1,0 +1,7 @@
+quotes_a4d: modes IDENTICAL; rc=0 stderr_bytes=0; md5 f6d154542c82682a3d1835413791d37f
+tie_enum2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 386d7690a2d1744c05715a3cc257da72
+d8_new2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 127ca45eceb6835393731c0fc780e30e
+outcome_flip: modes IDENTICAL; rc=0 stderr_bytes=0; md5 fdc33585e6f6e13675e26b2590cfa517
+holm_c2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 62104e0ae5f4c9b8711e3bec5a0297fd
+epoch_keys: modes IDENTICAL; rc=0 stderr_bytes=0; md5 1285b6e1b9b8e454a883099cb5a28c30
+epoch_mixed: modes IDENTICAL; rc=0 stderr_bytes=0; md5 abd9137d530a86967a523ac69faa8627

@@ -1,0 +1,25 @@
+== T3 (kfail = 0): outcome counts per state, and the outcomes reachable by turning adverse entries into neither
+   states with the known-answer tests passing: 5,832,000 (2 x 5^3 x 3^6 x 2^6 = 11,664,000 in all, half with a known-answer pass = 5,832,000)
+[ok] every state meets exactly one first rule (no state without an outcome)
+   outcome counts: EvidenceAgainst 638,528, Supported 64, NetDependent 448, Partial 129,867, DoesNotDiscriminate 465,205, Inconclusive 4,597,888
+   (my earlier encoding gave Partial 129,867 over all 11,664,000 states, which includes only kfail = 0 states)
+[ok] Partial count matches the earlier independent encoding (129,867): 129,867
+   transitions (old outcome -> outcome after turning some adverse entries to neither; counted over state-and-subset pairs):
+     EvidenceAgainst -> Partial: 38,530
+     EvidenceAgainst -> DoesNotDiscriminate: 227,582
+     EvidenceAgainst -> Inconclusive: 494,208
+     DoesNotDiscriminate -> Partial: 266,215
+   unchanged: 31,741,465
+[ok] FINDING: turning adverse into neither can create Partial (a favourable outcome) from other outcomes: EvidenceAgainst -> Partial 38,530, DoesNotDiscriminate -> Partial 266,215
+[ok] no change can create Supported or Net-dependent
+[ok] only Evidence against, Does not discriminate and Inconclusive can be the old outcome of a changed state: ['DoesNotDiscriminate', 'EvidenceAgainst']
+
+== T1 (scale-flow transfer): same exhaustive grouping
+     EvidenceAgainst -> Partial: 2,880
+     EvidenceAgainst -> DoesNotDiscriminate: 35,136
+[ok] T1: every state has an outcome
+[ok] T1 FINDING: a change from adverse can create Partial (a pair that passes both ways) or Does not discriminate from Evidence against
+[ok] T1: no change creates Supported
+[ok] control: the profile branch without the 'adverse in neither direction' condition gives a different Partial count
+
+RESULT all outcome checks hold

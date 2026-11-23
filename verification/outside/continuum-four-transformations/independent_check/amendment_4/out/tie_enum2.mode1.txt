@@ -1,0 +1,40 @@
+== Part 1: class level, every (R, b, t, u) with b + t + u = R, R = 1 to 160
+   cases 708,560; literal adverse and amended not adverse 39,400; amended adverse and literal not 0; identical verdicts 669,160
+[ok] 'adverse under both readings' equals the amended rule in every class case
+[ok] the amended rule never gives an adverse verdict that literal D8 does not
+[ok] the amended rule differs from literal D8 in some cases
+[ok] all detectors tied (b = 0, t = R): literal D8 says adverse at every R from 1 to 160, the amended rule never does: literal 160, amended 0
+   R = 99,999: adverse needs fewer than R/40 = 2499.975 detectors at or below, so at most 2,499: count 2498: True, count 2499: True, count 2500: False
+[ok] boundary at R = 99,999 is 2,499
+
+== Part 2: value level, template and detector scores from a grid of 17 finite values and 3 non-finite values
+   finite grid, exact tie: cases 406,912; verdicts differ 61,863; same 345,049
+[ok] finite grid, exact tie: 'adverse under both readings' equals the amended rule
+[ok] finite grid, exact tie: amended adverse implies literal adverse
+   finite grid, float tie: cases 406,912; verdicts differ 61,863; same 345,049
+[ok] finite grid, float tie: 'adverse under both readings' equals the amended rule
+[ok] finite grid, float tie: amended adverse implies literal adverse
+   grid with inf, -inf, nan, exact tie: cases 25,704; verdicts differ 5,851; same 19,853
+[ok] non-finite grid, exact tie: both-readings identity and direction
+   grid with inf, -inf, nan, float tie: cases 25,704; verdicts differ 13,814; same 11,890
+[ok] non-finite grid, float tie: both-readings identity and direction
+
+== Specific cases the plan text must settle
+   all tied (6 detectors equal to the template): b = 0, t = 6; literal adverse iff 6 b < 6/40... at theta 1/40: literal True, amended False
+[ok] all tied: literal adverse, amended not adverse
+   tolerance edge around 1 with representable offsets: 2^-40 = 9.095e-13 (inside 1e-12), 2^-39 = 1.819e-12 (outside): ties = 2, below = 2
+[ok] tolerance edge: an offset of 9.1e-13 relative is a tie, 1.8e-12 is not
+   the double nearest 1 + 1e-12 is 563/562949953421312 above 1 (= 1.000089e-12), more than 1e-12, so it is not a tie: exact False, float False
+   scan of 24,004 doubles within 3,000 ulps of the edge for four templates: exact and float tie differ on 0
+   grid pairs on which the exact and the float tie differ: 0 of 289
+   inf: tie_float(inf, inf) = False, exact equality tie = True
+   a template and 3 detectors all +inf with the float formula: b = 0, t = 0: none counted as at or below, so the amended rule says adverse (equal infinities are not ties by the formula, though equal)
+[ok] equal infinities are exactly equal but the float formula does not call them tied
+   a nan template score against finite detectors: b = 0, t = 0, so 'fewer than R/40 at or below' holds: adverse under both readings
+[ok] nan template gives adverse under both readings (neither rule defines non-finite scores)
+
+== Must-fail controls
+[ok] a wrong rule (ties counted as above, not at or below) is caught as different from the amended rule on the all-tied case
+[ok] a wrong collapse claim (adverse iff b < R/40 and t = 0) differs from 'both readings' when t > 0
+
+RESULT all tie checks hold
