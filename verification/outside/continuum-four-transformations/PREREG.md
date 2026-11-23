@@ -1,6 +1,9 @@
 # Pre-registration: a raw-data test of the four-transformations claim
 
-Status: plan as amended by Amendments 1 and 2. Files fetched and hash-pinned (`FETCH_MANIFEST.tsv`), none opened, no statistic computed on real data.
+Status: plan as amended by Amendments 1, 2 and 3. Files fetched and hash-pinned (`FETCH_MANIFEST.tsv`), none opened, no statistic computed on real data.
+The known-answer tests have been run only as smoke runs of the code. Their outcomes were known to the code's author and to the party who routed the questions. The plan's author has read none of their outputs.
+What reached the plan's author is disclosed in the amendments: the observed behaviour stated in the builder's questions behind B5, B6, B7 and B9, one smoke figure used in B11, a K5 smoke run that stopped on an overflow at seed 0, the code's author's count that the old map overflows in 9 of 10 seeds, and a K1 smoke run that failed on a fault of the test harness.
+No full-count run of K1 to K3 has been made (Amendment 3 paragraph of the change log).
 Claim type: sampled. Novelty: N0 (the statistics used here are known methods).
 
 Change log. The plan was fixed at commit `24d7757309b5b6b7b5179be2a65387af58fd5f9b`. Amendment 1 (`AMENDMENT_1.md`) was made after the files were downloaded and before any file was opened. It changes:
@@ -20,7 +23,10 @@ Change log. The plan was fixed at commit `24d7757309b5b6b7b5179be2a65387af58fd5f
 - A13 changes after the second clean-room check: K2 gate rule, must-fail controls for every known-answer test, window lengths below 2,048 out of the confirmatory nets, a Bregman instance for Law 2b, instance W defined, the advocate, mutation testing and prior-art requirements defined, and the outcome procedure tightened (sections 4, 5, 6, 8, 9, 10, 11, 12, 12a, 12b, 13).
 - A14 corrections after the third clean-room check: the false-presence bound, the per-run level in "net-dependent", K3 at 2,048 samples, the template and verdict streams of K4 and K5, the advocate's details and the mutation-test units (sections 10, 11, 12, 12a, 12b).
 
-Amendment 2 (`AMENDMENT_2.md`, 2026-11-22) was made before any data file was opened or parsed, and before any known-answer result under the amended plan had been seen. Items B1 to B4 change no threshold, test, net, control, decision rule or seed, and nothing the detector code implements, and B2 adds three procedural conditions on the independent reviewer.
+Amendment 2 (`AMENDMENT_2.md`, 2026-11-22) was made before any data file was opened or parsed. Items B1 to B4 were written before the plan's author had seen any known-answer result under the amended plan.
+Items B5 to B12 were written after the code built for Amendment 1 had run a smoke version of the known-answer tests (one twentieth of the plan's seeds, and the full 10 seeds for K4 and K5).
+Its outcomes were known to the code's author and to the party who routed the questions.
+The plan's author read none of its outputs, but the builder's written questions state some observed behaviour, and B11 uses one smoke figure (`AMENDMENT_2.md` lines 9 to 15, which govern). Items B1 to B4 change no threshold, test, net, control, decision rule or seed, and nothing the detector code implements, and B2 adds three procedural conditions on the independent reviewer.
 Items B5 to B12 change the definition of known-answer tests K1, K4 and K5, add a validity rule for constant segments, fix the tie tolerance, and turn the code builder's provisional readings into plan text. B7, B8 and B10 can change what is computed on real data. Changes:
 
 - B1 the false-presence figures for the reversible K2 classes, now exact maxima over a stated domain (section 10).
@@ -35,6 +41,23 @@ Items B5 to B12 change the definition of known-answer tests K1, K4 and K5, add a
 - B10 the code builder's provisional readings D1 to D18 adopted or replaced (new section 11a).
 - B11 other points from the code build: the K2 control's flag point, the K4 control, the instance tests and the mutation scope (sections 10 and 11).
 - B12 the compute table updated to B5, B6 and B9 (section 11).
+
+Amendment 3 (`AMENDMENT_3.md`, 2026-11-22) was made before any data file was opened or parsed. Before it, the code had run smoke versions of the known-answer tests: under Amendment 1, one twentieth of the plan's seeds and the full 10 seeds for K4 and K5, and, after Amendment 2, smoke runs of the ported code.
+Their outcomes were known to the code's author and to the party who routed the questions. The plan's author read no outcome of these runs.
+Two failures were reported to the plan's author: a K5 smoke run that crashed on an overflow at seed 0 (which led to SK8) and a K1 smoke run that failed on a fault of the test harness. No full-count run of K1 to K3 has been made.
+Items SK1 to SK7 correct and complete the seed keys of reading D14. Apart from reading D20, they change no threshold, test definition, net, control or decision rule, only which random numbers each draw receives. D20 makes K4 pass only if it passes under two readings of its stream set.
+Item SK8 replaces one amplitude map, which could overflow and lose distinct values: the scale flow's second amplitude-map net and K5's mapped cascade. It changes no threshold or decision rule, but it changes one real-data net, the second amplitude-map run of the scale-flow transfer. Item SK9 corrects one row of the compute estimate.
+
+- SK1 the seed number in the key of each K5 flow-unit pool (section 11a, D14).
+- SK2 the run in the key of each K5 flow-unit pool, so the three runs of the mapped cascade no longer share pools (D14).
+- SK3 the K3 pool instrument written with the length of its block (D14).
+- SK4 random detectors keyed by their ordered pair or criterion, in K4, K5 and on real data (D14).
+- SK5 pools and F noise of control series keyed apart from those of their segment (D14).
+- SK6 keys for the Law 2b instance tests, their pre-data checks and the G1 null replicates (D14).
+- SK7 fields the old text left open (seed numbering, the waveform pool, A', the K5 cases, real-data runs and flow units, C4), the list of keys shared by design (D14), the K4 streams with a second reading that K4 must also pass, and the K1 seed count (new readings D20 and D21).
+- SK8 amplitude maps made representable by rule: the scale flow's second amplitude-map net becomes `amp_lognormal`, exp of the normal scores of the mid-ranks, and K5's mapped cascade becomes the mid-ranks of the cascade, with the guard of K1, a stated consequence when a map is not representable, and a rule for every other exp or power (sections 5 and 10, new reading D19).
+- SK9 the K3 row of the compute estimate priced at the eight uses of section 10, and the totals recomputed (section 11).
+- Erratum to Amendment 2: the account of when its items were written, and one item range (`AMENDMENT_3.md`, erratum section).
 
 The original text stays in git history.
 
@@ -188,7 +211,7 @@ Each net is applied to the real segment first. Fresh surrogates are then made fr
 | Native | as recorded | primary |
 | Sampling rate | block mean by 2, plain subsampling by 2 | applies only where the result has at least 2,048 samples. Lags follow the rule in 4.3 |
 | Quantization | 12 bits and 8 bits, as equal-count bins floor(2^b (r - 1/2) / n) on mid-ranks, b = 12 and 8 | tied patterns kept (section 4.3). Values tied before binning stay tied |
-| Amplitude map | strictly increasing maps | exact for presence and for the arrow and profile transfers, because surrogates are made from normal scores (K1). Run as two statistical nets (normal scores of the ranks, and exp of the series standardised to unit variance, each applied to the whole stream before block averaging, as reading D10 states) for the scale-flow transfer only |
+| Amplitude map | strictly increasing maps | exact for presence and for the arrow and profile transfers, because surrogates are made from normal scores (K1). Run as two statistical nets for the scale-flow transfer only: `amp_scores`, normal scores of the ranks, and `amp_lognormal`, exp of those normal scores, each applied to the whole stream before block averaging, as reading D10 states. Both depend on the stream only through its mid-ranks, so they are finite, keep tied values tied and create no new ties (reading D19). A map is representable on a stream if the mapped stream is finite and has as many distinct values as the stream (the guard of K1). If a map is not representable on a stream that a run uses, that run counts as not passing and never as adverse, so the pair is "neither" for that transfer, recorded as "map not representable" (Amendment 3, SK8) |
 | Polarity | x to -x | exact code check (K1), including the surrogate pool |
 | Zero-phase whitening | not a confirmatory net | used as Law 2b instance W (section 12a). The known-answer tests showed the order-3 estimate losing power after whitening on planted shots, which the true path divergence does not. The essay's own list of nets includes "bases", and a Fourier-domain whitening can reasonably be called a change of basis, so dropping it from the confirmatory nets makes "supported" easier and puts that net among the rescue routes, which makes a final "evidence against" harder |
 | Window placement | block grid shifted by half a block | new segments |
@@ -284,7 +307,7 @@ Record.
 On the frozen plan (commit `24d7757`), the code at builder commit `71142c1` failed four of the six known-answer tests before any data file was opened.
 K1 passed (228 exact checks), K2 failed (11 of 21 classes above the bound, all exp or cube versions, highest 0.295), K3 failed (4 of 9 cells), K4 failed (A to B p = 0.2025, A to C saturated at AUC 1.000), K5 failed (its cascade criterion was also passed by a shuffled cascade), K6 passed.
 The tests below are the amended ones. They have not yet been run.
-Gate. No data file is opened until the code has been updated to this amended plan and every test below passes in all three Python modes with its must-fail control flagged. Every test has one: K1 has three broken variants, K2 one, K3 one, K4 two, K5 one (the shuffled cascade) and K6 six.
+Gate. No data file is opened until the code has been updated to this amended plan and every test below passes in all three Python modes with its must-fail control flagged. Every test has one: K1 has three broken variants, K2 one, K3 one, K4 two, K5 one (the shuffled cascade) and K6 six. K4 passes only if it passes under both readings of reading D20 (section 11a).
 If any test fails, or any must-fail control is not flagged, the plan is amended again, with the date logged, before any data file is opened.
 
 - K1 Exact checks. Integer counts are compared exactly.
@@ -331,7 +354,7 @@ If any test fails, or any must-fail control is not flagged, the plan is amended 
   50 percent at every confirmatory length is the detection a net needs for a pass of its run to be likely when an arrow is present (with 32 segments, a rate of 0.5 gives K >= 10 with probability about 0.99).
   - Must-fail control, to be flagged: surrogates made by circular shifts (which keep the time arrow) on the shots must give native detection of at most 20 of 200 segments.
   - If any net fails this, the run stops before any verdict file is opened, and the net is changed only by a dated amendment that the report lists.
-- K4 Transfer.
+- K4 Transfer. K4 passes only if its criteria hold and its controls are flagged under both readings of its stream set in reading D20 (section 11a).
   - Synthetic A: the shots of K3. Synthetic B: shots made at twice the rate (decay over 10 fine samples) on power-law noise of slope 1, then every second sample kept and the sign flipped. Synthetic C: the time reverse of a fresh series of kind A. Each stream has 33 blocks, so the primary grid and the grid shifted by half a block both give 32 segments.
   Every synthetic instrument has two independent streams per seed, made with different seed purposes: a fit stream, whose segments give tau0 and the template, and a verdict stream, whose segments are scored. Templates come only from fit streams and scores only from verdict streams. 10 seeds.
   - A to B must give arrow transfer p and profile transfer p at most 0.001 in every run, in at least 9 of the 10 seeds.
@@ -353,9 +376,10 @@ If any test fails, or any must-fail control is not flagged, the plan is amended 
   The rule for c: the population mid-rank autocorrelation of g^2 at lag k is 12 E[(2 Phi(|X|) - 1)(2 Phi(|Y|) - 1)] - 3 for standard normal X and Y of correlation c^k, and c is the value at which it equals 1/2 at lag 16, rounded down to 4 decimals, so that it is first below 1/2 at lag 16 (`checks/amendment_2/derive_yprime.py`).
   Lag 16 is the cascade's tau0 as the code builder reported it. Simulated with the construction above, the cascade's tau0 varies by seed (9 to 18 in 10 seeds of a check, level shifts 3 and 4), while y' gives shift 4 in every seed. Either way the two share at least 2 aligned levels.
   The guarantee that each negative criterion can fail is the evaluability rule below, not the matching of these constants.
-  - Transfer criteria. Cascade (fit) to cascade after a monotone map (exp of the standardised series, verdict) must give flow transfer p at most 0.001 in the primary run and in both amplitude-map runs. Cascade (fit) to y' (verdict) must give p above 0.05. IAAFT cascade (fit) to cascade (verdict) must give p above 0.05. The negative criteria are judged on the primary run.
+  - Transfer criteria. Cascade (fit) to cascade after a monotone map (the rank-mapped cascade, the mid-ranks of the cascade, verdict) must give flow transfer p at most 0.001 in the primary run and in both amplitude-map runs. A seed in which this map or a run's amplitude map fails the representability guard counts as failing the criterion.
+  Cascade (fit) to y' (verdict) must give p above 0.05. IAAFT cascade (fit) to cascade (verdict) must give p above 0.05. The negative criteria are judged on the primary run.
   - Every transfer criterion must be evaluable: at least 8 features populated in both series in at least 9 of the 10 seeds. Otherwise K5 fails. A seed with fewer counts as failing its criterion. This rule, not the choice of y' or the IAAFT cascade, is what guarantees that a negative criterion can fail.
-  - Series per seed: the independent exponential values, the cascade (fit and verdict), the shuffled cascade, y_t, y' (verdict), the IAAFT cascade (fit), and the exp-mapped cascade (verdict) in three runs, 10 sets of 110 units. These draws use the seed-rule instrument tag `K5b:<case>`, so they do not reuse the draws of the earlier K5 definition.
+  - Series per seed: the independent exponential values, the cascade (fit and verdict), the shuffled cascade, y_t, y' (verdict), the IAAFT cascade (fit), and the rank-mapped cascade (verdict) in three runs, 10 sets of 110 units. These draws use the seed-rule instrument tag `K5b:<case>`, so they do not reuse the draws of the earlier K5 definition.
 - K6 Gate checks.
   - Empty input, missing values, a constant series and a series shorter than N are rejected with explicit errors.
   - Each refusal has a must-fail input that trips it. Removing any refusal branch must make the test suite fail.
@@ -374,34 +398,35 @@ Effects that were not pre-registered are reported separately as leads, and every
 A second checker with no shared code recounts all patterns on the saved surrogate files (exact integer match required) and repeats the verdict with its own surrogates and seeds. If the two disagree on any outcome category, that outcome is recorded as unresolved.
 Commit order: this plan (`24d7757`), then Amendment 1 with the data manifest (files fetched and hash-pinned, none opened), then the analysis code updated to the amended plan with the outputs of the amended K1 to K6, which must all pass (section 10, gate), then the fit-stage results (tau0, level shifts, templates, the Wind/WAVES N, the threshold of instance E), then the verdict.
 Any change to this plan before the verdict files are opened is added as a dated amendment with its reason. Changes after that are not allowed, and a test changed after that is reported as exploratory.
-Compute (estimate, `checks/check_compute.py`, recomputed in Amendment 2 by `checks/amendment_2/compute_components.py`). The unit cost is the builder's measured 2.29 processor-seconds per 4,096-sample pool (builder commit `71142c1`, `known_answer/out/timing.txt`), and a pool on fewer samples is costed in proportion (a 2,048-sample pool counts as 1/2).
+Compute (estimate, `checks/check_compute.py`, recomputed in Amendment 2 by `checks/amendment_2/compute_components.py`, with the K3 row corrected and a row added for D20's second reading in Amendment 3 by `checks/amendment_3/compute_k3.py`). The unit cost is the builder's measured 2.29 processor-seconds per 4,096-sample pool (builder commit `71142c1`, `known_answer/out/timing.txt`), and a pool on fewer samples is costed in proportion (a 2,048-sample pool counts as 1/2).
 In the Count column, "plan" marks a count stated in this plan (with its section), "measured" a cost measured by the builder, and "assumption" a figure this estimate assumes. Components per Python mode:
 
 | Component | Count | Processor-seconds |
 |---|---|---|
 | K2 | plan, section 10: 9 classes x 1,000 seeds x 1.5 pools (4,096 and 2,048 samples) | 30,915.00 |
 | K1 identity check | plan, section 10 (B5, B6): 9 classes x 20 seeds x 13 series, and 7 classes x 20 seeds x 4 integer-valued series, at 1,024 samples (1/4 pool each), plus 4 pools for the tied waveform | 1,669.41 |
-| K3 | plan, section 10: 4 cases x 200 seeds x 5.5 pools (7 runs), plus 200 pools for the must-fail control | 10,534.00 |
+| K3 | plan, section 10: 4 cases x 200 seeds x 6 pools (8 uses), plus 200 pools for the must-fail control | 11,450.00 |
 | K4 | plan, section 10: 10 seeds x 2 streams (fit and verdict). Measured: 490 s per set of streams (builder commit `71142c1`, `known_answer/out/timing.txt`, K4 at 488.6 to 489.9 processor-seconds per mode, rounded up) | 9,800.00 |
+| K4, second reading of D20 | plan, section 11a (D20): 10 seeds x 160 pools (the fit streams of A, S and Sr and the verdict streams of S and Sr, 32 segments each, in the placement grid) | 3,664.00 |
 | K5 | plan, section 10 (B9): 10 series x 10 seeds x 110 units | 25,190.00 |
 | Law 2b instance K2 and K3 on new pools | plan, section 12a: 12 cases (9 K2 classes and 3 gating K3 cases) x 200 seeds, for each of the 3 instances that change the series (W, F, D) | 16,488.00 |
 | Law 2b instance K2 and K3 on saved pools | assumption: the instances that change only the statistic or the selection (Q, H, M, O4, E, B, R) reuse saved pools, with a 1-hour allowance | 3,600.00 |
-| Law 2b instances, paired K4 | plan, section 12a: the K4 cost above for each of W, F, D | 29,400.00 |
+| Law 2b instances, paired K4 | plan, section 12a: the K4 row (D20 alone) for each of W, F, D | 29,400.00 |
 | Law 2b instances, paired K5 | plan, section 12a: the K5 cost above for each of W, F, D, B, R | 125,950.00 |
-| Known-answer tests, total | | 253,546.41 |
+| Known-answer tests, total | | 258,126.41 |
 | Fit stage | 7 channels (plan, sections 5 and 8: GW H1 and L1, SEIS VBB and SP, Wind/WAVES Z and S, TESS one) x (32 segments, plan section 7, + 150 flow units, assumption) | 2,917.46 |
 | Presence | plan, sections 5 to 7: (3 instruments x 6.5 + TESS x 5.5) pools x 32 segments x 4 (real, C2, C3, C4). Wind/WAVES is costed at N = 4,096, an upper bound | 7,328.00 |
 | Arrow and profile transfers | reuse the presence pools | 0.00 |
 | Scale flow | 4 instruments x 5 runs (plan, section 5) x 150 units (assumption) x 3 pools (real, C2, C3) | 20,610.00 |
 | Confirmatory verdict run, total | | 27,938.00 |
 
-The 150 flow units per instrument are an assumption: by the segment rule and the 7 aligned levels kept, an instrument has at most 7 x 32 = 224 units, and fewer where its record is short. One mode without an adverse outcome: 253,546.41 + 2,917.46 + 27,938.00 = 284,401.87 processor-seconds, about 79.0 processor-hours. Three modes: 853,205.61 processor-seconds, about 237.0 processor-hours.
+The 150 flow units per instrument are an assumption: by the segment rule and the 7 aligned levels kept, an instrument has at most 7 x 32 = 224 units, and fewer where its record is short. One mode without an adverse outcome: 258,126.41 + 2,917.46 + 27,938.00 = 288,981.87 processor-seconds, about 80.3 processor-hours. Three modes: 866,945.61 processor-seconds, about 240.8 processor-hours.
 Parts E and F of the code build (code commit `99533df`) give no new timings, so the measured costs above stay those of commit `71142c1`.
 The Law 2b search adds, in the worst case where all three kinds of adverse outcome occur and every instance passes:
 17,147.52 (new presence pools for W, F, D on 3 instruments, plan counts) + 77,287.50 (new flow pools for W, F, D, B, R on 3 instruments x 5 runs x 150 units, the last an assumption, x 3 pools) + 149,491.20
 (G1 null replicates: 102 tests x 10 replicates x 64 pools, an assumption that a replicate stops after about 2 pools for each of 32 segments) = 243,926.22 processor-seconds per mode, about 67.8 processor-hours, and about 203.3 over three modes, and nothing when no adverse outcome occurs.
 
-## 11a. Implementation readings fixed by Amendment 2
+## 11a. Implementation readings fixed by Amendments 2 and 3
 
 These readings were provisional choices of the code built for Amendment 1 (code commit `99533df`, items D1 to D18). Amendment 2 makes them plan text, with the changes stated.
 
@@ -418,24 +443,66 @@ These readings were provisional choices of the code built for Amendment 1 (code 
 - D11. The window-length net N/2 cuts blocks of N/2 + 128 samples by the rule of section 7 with segment length N/2.
 - D12. Inside a net run, C2 and C3 are made from the native segment and then put through the run's net. C4 uses the pooled fit-set values and the median fit-set periodogram at the native length, then the run's net.
 - D13. An instrument that is both underpowered and has a failed control is reported as underpowered, with both facts recorded. Both statuses keep it out of V, so the outcome is the same.
-- D14. The seed-rule fields are master|instrument|split|net|segment|purpose|index, with index 0 unless stated. One generator per key gives a whole series or a whole pool in order. A pool's key is that of its segment with purpose `surrogates`. Fields for each use:
-  - K2: instrument `K2:<class>:<length>`, split `synthetic`, net `native`, segment the seed number, purpose `data` for the series and `surrogates` for its pool. The must-fail control (raw-value surrogates) uses the key of its class and length with purpose `surrogates`, and draws its raw-value surrogates from that generator.
-  - K1: instrument `K1:<class>:<length>` with the K2 fields otherwise. The exp and cube versions and the comparison maps are maps of the plain draw and use its seed. The integer-valued series of B6 use `K1int:<class>:1024`. The tied waveform is fixed, and its pool uses `K1wave:4096`.
-  - K3: the data draw uses instrument `K3:<case>:<length>`, split `synthetic`, net the use, segment the seed number, purpose `data`. Four uses have their own data draw: `native4096`, `native2048`, `placement` and `wlen2048`. The nets `bm2`, `sub2`, `q12` and `q8` are applied to the `native4096` draw.
-  Each pool uses instrument `K3:<case>`, split `synthetic`, net the use, segment the seed number, purpose `surrogates`. The circular-shift control draws its shifts from the pool key of `native4096`.
-  - K4: instrument `K4:<kind>` (kinds `A`, `B`, `C`, `S`, `Sr`), split `fit` or `verdict`, net `native`, segment the seed number, purpose `data`. A' uses `K4:Aprime:<tag>` with purposes `shuffle` and `block-surrogate` (index the block number). Random detectors use purposes `detectors-arrow` and `detectors-profile`, with net the run.
-  Each segment's pool uses instrument `K4:<kind>:s<seed>`, split `fit` or `verdict`, net the run, segment the segment number, purpose `surrogates`.
-  - K5 (B9): instrument `K5b:<case>`, split `fit` or `verdict`, net `native`, segment the seed number, purpose `data`. Random detectors use `detectors-flow`. Each flow unit's pool uses instrument `K5b:<case>`, split `fit` or `verdict`, net `native`, segment `flow-L<level>-q<unit>`, purpose `surrogates`.
-  The whole-series surrogate that makes the IAAFT cascade starts from the generator of instrument `K5b:cascade_iaaft`, split `fit`, net `native`, segment the seed number, purpose `whole-surrogate`.
-  - Controls: C2, C3 and C4 use purposes `C2`, `C3` and `C4` with the key of their segment (for C4, segment the series number). Law 2b instance F uses `law2b-F` and the G1 null replicates `law2b-null`.
-  - Real data: instrument the instrument and channel, split `fit` or `verdict`, net the run, segment the segment number.
-  - Draws not listed here follow the `data` and `surrogates` names above. The order of draws inside each generator, and the random-number calls used, are fixed by the generator source at the code commit recorded with the known-answer results. That commit's hash is recorded with every result, and any later change to a generator is a plan amendment.
+- D14 (as amended by Amendment 3). The seed-rule fields are master|instrument|split|net|segment|purpose|index. Index is 0 unless stated, and seeds are numbered from 0. One generator per key gives a whole series, a whole pool or a whole set of random detectors, in order.
+  Two draws that the plan treats as independent never share a key. Keys used by more than one draw are listed under "Shared by design" below, each with its reason. `checks/amendment_3/seed_keys.py` builds every key and checks both statements.
+  A pool's key is that of the series it is made from, with purpose `surrogates`. A draw made from a control series (its pool, or instance F's noise) puts the control's name and a hyphen before the purpose it would have on a segment: `C2-surrogates`, `C3-law2b-F`, `C4-surrogates`.
+  - K2: instrument `K2:<class>:<length>`, split `synthetic`, net `native`, segment the seed number, purpose `data` for the series and `surrogates` for its pool. The must-fail control (raw-value surrogates) runs on the exp version of the AR(1) 0.9 draw at 4,096 samples, seeds 0 to 199, and draws its raw-value surrogates from that draw's pool key.
+  - K1: instrument `K1:<class>:<length>` with the K2 fields otherwise. The exp and cube versions, the negation and the comparison maps are maps of the plain draw and use its data and pool keys. The integer-valued series of B6 use `K1int:<class>:1024` with the K2 fields otherwise, and their maps use the same keys.
+  The tied waveform is fixed. Its pool, used by the waveform and its three maps, has instrument `K1wave:4096`, split `synthetic`, net `native`, segment `0`, purpose `surrogates`. The must-fail variants run on the same series with the same keys.
+  - K3: the data draw uses instrument `K3:<case>:<length>`, split `synthetic`, net the use, segment the seed number, purpose `data`. `<length>` is the length of the drawn block, N + 128 samples (D16): 4224 for `native4096` and `placement`, 2176 for `native2048` and `wlen2048`, the four uses with their own data draw.
+  The nets `bm2`, `sub2`, `q12` and `q8` are applied to the `native4096` draw. Each pool uses the instrument of the data draw its segment comes from (`K3:<case>:<length>`), split `synthetic`, net the use, segment the seed number, purpose `surrogates`. The circular-shift control draws its shifts from the pool key of the shots at `native4096`.
+  - K4: instrument `K4:<kind>` (kinds `A`, `B`, `C`, `S`, `Sr`), split `fit` or `verdict`, net `native`, segment the seed number, purpose `data`. A' is made from the A stream of the same split. Its draws use instrument `K4:Aprime:<split>`, split `<split>`, net `native`, segment the seed number, purposes `shuffle` and `block-surrogate`.
+  For `block-surrogate` the index is the block's position in the shuffled order, 0 to 32. Each segment's pool uses instrument `K4:<kind>:s<seed>` (kind `Aprime` for A'), split `fit` or `verdict`, net the run (`native` for the primary grid, `placement` for the grid shifted by half a block), segment the segment number, purpose `surrogates`.
+  Random detectors use instrument `K4:<A>><B>` for the ordered pair (`A>B`, `A>C`, `A>Aprime`, `S>Sr`, `Sr>S`), split `verdict`, net the run, segment the seed number, purposes `detectors-arrow` and `detectors-profile`.
+  - K5 (B9): data draws use instrument `K5b:<case>`, split `fit` or `verdict`, net `native`, segment the seed number, purpose `data`. The cases with their own draw are `expo`, `cascade`, `cascade_shuffled` (a cascade drawn from its own generator, then shuffled with the same generator), `y` and `yprime` (fit and verdict, the fit series giving its level shift).
+  The IAAFT cascade is made from the cascade (fit) series, starting from the generator of instrument `K5b:cascade_iaaft`, split `fit`, net `native`, segment the seed number, purpose `whole-surrogate`. The rank-mapped cascade (`cascade_rank`, SK8) is a map of the cascade (verdict) draw.
+  Each flow unit's pool uses instrument `K5b:<case>` named by the series it is cut from, not by the draw that series is made from (`K5b:cascade_rank` for the rank-mapped cascade, `K5b:cascade_iaaft` for the IAAFT cascade), split `fit` or `verdict`, net the run (`native`, `amp_scores` or `amp_lognormal`), segment `s<seed>-flow-L<level>-q<unit>`, purpose `surrogates`.
+  Random detectors use instrument `K5b:<A>><B>` for the criterion (`cascade>cascade_rank`, `cascade>yprime`, `cascade_iaaft>cascade`), split `verdict`, net the run, segment the seed number, purpose `detectors-flow`.
+  - Real data: instrument the instrument and channel (in the instrument net, the second channel), split `fit` or `verdict`, net the run, segment the segment number, or `flow-L<level>-q<unit>` for a flow unit. The runs are named `native`, `bm2`, `sub2`, `q12`, `q8`, `placement`, `wlen`, `instrument`, `amp_scores` and `amp_lognormal`.
+  Random detectors use instrument `<A>><B>` for the ordered pair of instruments, split `verdict`, net the run, segment `0`, purposes `detectors-arrow`, `detectors-profile` and `detectors-flow`.
+  - Controls: C2 and C3 use the key of their verdict segment or flow unit with purposes `C2` and `C3`. C4 series i, for i from 0 to 31, uses the instrument and channel, split `verdict`, net the run, segment i, purpose `C4`. Their pools follow the rule for control series above.
+  - Law 2b (section 12a): an instance is applied to the data and control series of its paired test, which keep their keys. Every random draw made after an instance is applied (instance F's noise, purpose `law2b-F`, the pools of a series the instance changes, random detectors) uses the key the same draw has without the instance, with net `law2b-<instance>:<run>`.
+  The instances that change the series are W, F and D, and in the scale flow also B and R. Where F is added to a whole stream before block averaging, its segment field is the seed number in K5 and `stream` on real data. The pre-data checks of each instance follow the same rule on the known-answer draws.
+  G1 null replicate r of an instance, for r from 1 to 10, draws its C2 series with net `law2b-<instance>:<run>`, purpose `law2b-null` and index r, so replicates of different instances never share random starts. Every draw made in the replicate (its controls, pools, F noise and random detectors) also uses index r.
+  - Shared by design (the only keys used by more than one draw):
+  (1) K1: the 13 series of a class and seed share the plain draw's data and pool keys, the 4 series of an integer-valued class and seed share theirs, and the waveform and its 3 maps share one pool key. The identities of K1 need the same random start. The versions compared at 4,096 and 2,048 samples share the plain draw.
+  (2) K2: the must-fail control uses the AR(1) 0.9 data and pool keys at 4,096 for seeds 0 to 199. Only the surrogate method differs, so a flag can only come from the method.
+  (3) K3: the nets `bm2`, `sub2`, `q12` and `q8` use the `native4096` data draw, because a net is a change of observation of the same series. The circular-shift control uses the shots' `native4096` pool key, so that only the surrogate method differs.
+  (4) K4: A' is made from the A stream of the same split and seed, because the control removes structure from that stream. Under D20's second reading, the placement-run detectors of A>B, A>C and A>Aprime use the keys of D20's own, so that only the template differs between the two readings.
+  (5) K5: the rank-mapped cascade is a map of the cascade (verdict) draw, and the IAAFT cascade is made from the cascade (fit) draw, as their criteria require.
+  (6) Real data: the arrow and profile transfers use the presence pools of the same segments (no new draw). The same transfer with B's C2 or C3 series in place of B (section 5, C5) uses the random detectors of the transfer it checks, so that only B changes.
+  (7) Law 2b: an instance runs on the data and control series of its paired test (no new draw), and Q, H, M, O4 and E use its pools, since they change only the statistic or the selection. A series under one instance has one pool and one set of null replicates, used by every test that uses that series under that instance, as the confirmatory tests share one pool per segment.
+  The pre-data checks use the known-answer data draws (K2 seeds 0 to 199 at 4,096, K3 `native4096`, K4, K5), so that only the instance differs from the known-answer test.
+  - Draws not listed here follow the names above. The order of draws inside each generator, and the random-number calls used, are fixed by the generator source at the code commit recorded with the known-answer results. That commit's hash is recorded with every result, and any later change to a generator is a plan amendment.
 - D15. For g and h, unit variance means a stationary AR(1) series with innovations of standard deviation sqrt(1 - c^2). The 7 null classes are standardised by their sample mean and standard deviation. The K2 control's flag point is evaluated at its own seed count (B11).
 - D16. In K3 each seed draws a block of N + 128 samples and cuts it by the offset rule. The window-placement and window-length nets use independent draws of the same process, and native at 2,048 samples is its own draw. The nets block mean by 2, subsampling by 2 and the two quantizations are applied to the native 4,096-sample draw (D14).
 The sawtooth takes the values k/64, k = 0 to 63 (peak to peak 63/64, standard deviation sqrt(4095/12)/64), and its noise has standard deviation half of that, 0.1443.
 - D17. K4: A' as stated in section 10, with "reaches p at most 0.01" meaning in any run (replacing the builder's reading of the largest p over the runs, which made the control harder to trip). The K4 runs are the primary grid and the shifted grid. The sawtooth blind-spot streams are fresh draws, primary run only. K5: as in section 10 (B9).
 A unit departs if at most 4 of its 99 surrogates have a sum of squared features at or above its own. The cascade's highest populated level is level 3.
 - D18. K1 runs the whole pipeline at 1,024 samples and compares the normal scores at 4,096 and 2,048 samples, as section 10 states after B5.
+- D19 (Amendment 3, SK8). Every exp or power that this plan applies to a series is overflow-safe by rule, and every amplitude map is judged by the representability guard of K1 (the mapped series is finite and has as many distinct values as its input).
+  (a) On a series of n samples standardised to unit variance, every |z| is below sqrt(n). For the exp and cube versions of K1 and the K2 control, n is at most 4,096, so exp(z) < 6.3e27 and |z|^3 < 2.7e5.
+  (b) The scale flow's amplitude maps depend on a stream only through its mid-ranks r: `amp_scores` is the normal scores Phi^-1((r - 1/2) / n), and `amp_lognormal` is exp of those scores. The scores lie within Phi^-1(1 - 1/(2n)) of 0, which is below 7.131 for n up to 10^12, so exp of them is below 1,251.
+  Tied values share a mid-rank and so a score. Distinct mid-ranks differ by at least 1, so their scores differ by at least sqrt(2 pi) / n, which for streams shorter than 10^12 samples is more than a thousand times the rounding of the scores. These maps therefore keep ties as ties, create none, and pass the guard.
+  K5's rank-mapped cascade is the mid-ranks themselves. K1's comparison maps act on y = x / max|x|, with |y| at most 1, so y^3 + y and exp(y) are finite.
+  (c) The synthetic generators apply exp and powers only to Gaussian draws or to bounded quantities: the cascade weights exp(0.5 Z - 0.125), g^2, |h|, y_t and y', the decay kernel of the shots (exp of minus the lag over 10, for lags up to 100), the frequency powers of the power-law spectra, and x(1 - x) in the logistic map, with x in [0, 1].
+  A cascade value overflows only if one of its 19 standard normal draws exceeds 74.9.
+  No other exp or power is applied to data or to a standardised series. A map that fails the guard is handled as section 5 states for the scale-flow nets, and as section 10 states for K1 and K5.
+- D20 (Amendment 3). The streams each K4 criterion uses. Templates come from the fit streams of A, S and Sr in the primary grid, so those segments have pools, and the placement run reuses those templates. Level shifts come from the fit streams of every kind, A' included, and need no pools.
+  Pools are drawn for the verdict streams of B, C and A' in both runs (`native` and `placement`), and for the verdict streams of Sr and S in the primary run. Random detectors, arrow and profile, are drawn for A>B, A>C and A>Aprime in both runs, and for S>Sr and Sr>S in the primary run, where the blind spot is reported.
+  Basis: the plan text before Amendment 3 did not fix this stream set. D20 adopts the set in the code's K4 script. The plan's author read that source and chose D20 on 2026-11-22 while writing Amendment 3, knowing no K4 outcome.
+  The code's author reports, from its git history and run outputs, the following, which the plan's author and the independent check could not verify. The set first appears in code commit `a894e31` (the commit before it had an older, smaller set).
+  The code's author had seen the K4 results of the frozen-plan code before writing this set, and no output of this set. The set was in the working tree when the first K4 smoke run was made and was committed about 1 hour 45 minutes after that run finished. A rerun on the committed script reproduced that run's output byte for byte, so the set scored in the smoke run is the committed set.
+  No later commit changed which streams are scored (`a714ef7` changed only the A' control rule of D17). End of the code's author's report. Those smoke outcomes were known to the code's author and to the party who routed the questions. So an earlier K4 outcome, under the frozen plan, could have shaped this scoring choice.
+  Bound: K4 passes only if it passes under D20 and also under a second reading, fixed now, in which each run takes its templates and level shifts from the fit streams cut in that run's own grid. The second reading draws pools for the fit streams of A, S and Sr in the placement grid and, to score the blind spot in both runs, for the verdict streams of S and Sr in that grid.
+  It also draws random detectors, arrow and profile, for S>Sr and Sr>S in the placement run.
+  The control's rule that a seed counts if p is at most 0.01 in any run is judged within each reading, never across the two readings pooled.
+  Both readings are reported. A failure under either is a failure of K4, and agreement of the two cannot rescue a failed criterion or control.
+  The Law 2b instances' paired K4 tests (section 12a) use D20 alone, because those checks are an extra guard on top of G1, and a second reading there would add 3 x 3,664 processor-seconds per mode. The code is checked against D20 and its second reading and changed where it differs: it now prints only the arrow p of the blind spot, and D20 asks for both detectors.
+  Real data: the plan does not settle which template the window-placement run of a transfer uses. This is a new choice, made on the same basis and at the same time: that run uses instrument A's fit-stage template from the primary grid, as K4 does under D20. The second reading is not used on real data.
+  Reason: templates are fit-stage results, committed before any verdict file is opened (section 11, commit order), and the placement net changes only how B's verdict segments are cut.
+- D21 (Amendment 3). At 4,096 and 2,048 samples K1 compares normal scores on 20 seeds per class (seeds 0 to 19 of `K1:<class>:<length>`), the same count as at 1,024 samples.
+  Basis: chosen on 2026-11-22 while writing Amendment 3, from the count at 1,024 samples. It adds identity checks only and changes no criterion.
 
 ## 12. Outcomes and what each would mean
 
