@@ -24,6 +24,8 @@ def tau0_segment(x, cap=512):
     x = np.asarray(x, dtype=np.float64)
     if x.ndim != 1 or x.size < 2:
         raise ValueError("tau0 needs a 1-D segment of at least 2 samples")
+    if not np.all(np.isfinite(x)):
+        raise ValueError("tau0 needs finite values")
     n = x.size
     if n > 6000:
         raise ValueError("tau0 uses 64-bit integers and is limited to segments of at most 6,000 samples")
@@ -42,6 +44,8 @@ def tau0_segment(x, cap=512):
 def segments_constant(s):
     """A segment whose values are all equal carries no order and is invalid (section 7, B7)."""
     s = np.asarray(s)
+    if s.size and s.dtype.kind == "f" and not np.all(np.isfinite(s)):
+        raise ValueError("a non-finite segment is neither constant nor valid")
     return bool(s.size == 0 or np.all(s == s.flat[0]))
 
 

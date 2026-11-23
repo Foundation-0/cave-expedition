@@ -21,14 +21,18 @@ def tied(a, b):
 
 
 def at_or_above(a, b):
-    """a >= b, or a ties with b. Used wherever a tie must count against a finding."""
+    """a >= b, or a ties with b. Used wherever a tie must count against a finding. False if either value is not finite: a non-finite
+    value never gives a verdict, so an infinity does not count against anything (and -inf, a surrogate with no lag kept, is never at
+    or above)."""
     a = np.asarray(a, dtype=np.float64)
     b = np.asarray(b, dtype=np.float64)
-    return (a >= b) | tied(a, b)
+    ok = np.isfinite(a) & np.isfinite(b)
+    return ok & ((a >= b) | tied(a, b))
 
 
 def below(a, b):
-    """a < b and not tied with b."""
+    """a < b and not tied with b. False if either value is not finite."""
     a = np.asarray(a, dtype=np.float64)
     b = np.asarray(b, dtype=np.float64)
-    return (a < b) & ~tied(a, b)
+    ok = np.isfinite(a) & np.isfinite(b)
+    return ok & (a < b) & ~tied(a, b)

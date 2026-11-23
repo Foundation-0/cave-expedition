@@ -4,6 +4,7 @@ from fractions import Fraction
 import numpy as np
 import controls
 import flow
+import keys
 import levels
 import nets
 import par
@@ -40,13 +41,13 @@ def run_series(native_segs, run):
     return out
 
 
-def analyse_list(series, prefix, kind="iaaft", workers=None):
-    """series: list of series or None (invalid). prefix = (instrument, split, net). Returns list of result dicts or None.
-    Invalid blocks stay in the list (they count as non-rejecting segments)."""
+def analyse_list(series, key_of, kind="iaaft", workers=None):
+    """series: list of series or None (invalid). key_of(q) gives the full pool key of entry q (keys.py, D14). Returns a list of result
+    dicts or None. Invalid blocks stay in the list (they count as non-rejecting segments)."""
     jobs, where = [], []
     for q, s in enumerate(series):
         if s is not None:
-            jobs.append((s, prefix + (q,), kind))
+            jobs.append((s, key_of(q), kind))
             where.append(q)
     res = par.pmap(tasks.seg_task, jobs, workers)
     full = [None] * len(series)
@@ -62,24 +63,27 @@ def presence_counts(results):
     return K, S
 
 
-def control_series(native_segs, run, instrument, split, fit_segments, N_native):
-    """C2, C3 (one per native segment, None stays None) and C4 (32 series) for a run, each then put through the run's net."""
+def control_series(native_segs, run, channel):
+    """C2 and C3 (one each per native segment, None stays None) for a run. They are made from the native segment, with the draws of
+    keys.control_series, and are put through the run's net by the caller. The C2 and C3 series of an invalid segment are invalid and
+    non-rejecting (None), section 7. C4 does not depend on any segment (controls.c4_generated_noise)."""
     valid = [s is not None and not transfer.segments_constant(nets.apply(RUN_NET[run], s)) for s in native_segs]
-    c2 = [controls.c2_surrogate_as_data(s, (instrument, split, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
-    c3 = [controls.c3_shuffle(s, (instrument, split, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
-    return c2, c3   # the C2 and C3 series of an invalid segment are invalid and non-rejecting (None)
+    c2 = [controls.c2_surrogate_as_data(s, keys.control_series("C2", channel, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    c3 = [controls.c3_shuffle(s, keys.control_series("C3", channel, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    return c2, c3
 
 
-def presence_run(native_segs, run, prefix, c4_native, instrument, split, kind="iaaft", workers=None):
-    """One presence run: the real segments and the three controls through the same net. Returns dict with K, S and the
+def presence_run(native_segs, run, channel, c4_native, kind="iaaft", workers=None):
+    """One presence run: the real segments and the three controls through the same net. The pools use keys.real_pool for the real
+    segments and the control pools of D14 (purposes C2-surrogates, C3-surrogates, C4-surrogates). Returns dict with K, S and the
     control counts, and run_passes needs the per-run level (levels.run_level)."""
     net_series = run_series(native_segs, run)
-    res = analyse_list(net_series, prefix, kind, workers)
+    res = analyse_list(net_series, lambda q: keys.real_pool(channel, "verdict", run, q), kind, workers)
     K, S = presence_counts(res)
-    c2, c3 = control_series(native_segs, run, instrument, split, None, None)
-    r2 = analyse_list(run_series(c2, run), prefix + ("C2",), kind, workers)
-    r3 = analyse_list(run_series(c3, run), prefix + ("C3",), kind, workers)
-    r4 = analyse_list(run_series(c4_native, run), prefix + ("C4",), kind, workers)
+    c2, c3 = control_series(native_segs, run, channel)
+    r2 = analyse_list(run_series(c2, run), lambda q: keys.control_pool("C2", channel, run, q), kind, workers)
+    r3 = analyse_list(run_series(c3, run), lambda q: keys.control_pool("C3", channel, run, q), kind, workers)
+    r4 = analyse_list(run_series(c4_native, run), lambda q: keys.c4_pool(channel, run, q), kind, workers)
     K2, S2 = presence_counts(r2)
     K3, S3 = presence_counts(r3)
     K4, S4 = presence_counts(r4)

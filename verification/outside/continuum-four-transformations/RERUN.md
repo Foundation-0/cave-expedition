@@ -33,7 +33,7 @@ K2 and K3 can be split into parts with the same seeds: add the part number and t
 
 Every script ends with exit status 1 if its result is FAIL and 0 if PASS (`kcommon.summary`). The smoke driver records each exit status in `known_answer/out_smoke/status.txt`, and the three-mode runs in `known_answer/out_smoke/modes/status_modes.txt`.
 
-At most 6 worker processes are used. The worker count does not change any result.
+At most 4 worker processes are used. The worker count does not change any result.
 
 ## Other scripts
 

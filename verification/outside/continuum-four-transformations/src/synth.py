@@ -2,6 +2,7 @@
 (seeds.rng_for). Readings that the plan leaves open are marked READING and listed in AMENDMENTS_NEEDED.md."""
 import math
 import numpy as np
+import keys
 import seeds
 
 
@@ -77,7 +78,7 @@ def class_series(cls, idx, n=4096, prefix="K2"):
     versions, exp and cube act on the standardised series (for the 7 null classes it is the plain series already; for g^2 and |h|
     the versions exist for K1 only, B5)."""
     base, _, m = cls.partition("|")
-    rng = seeds.rng_for("%s:%s:%d" % (prefix, base, n), "synthetic", "native", idx, "data", 0)
+    rng = keys.rng(keys.k2_data(base, n, idx) if prefix == "K2" else keys.k1_data(base, n, idx))
     x = _plain(base, n, rng)
     if m in ("", "id"):
         return x
@@ -100,7 +101,7 @@ def k1_series(cls, idx, n=1024):
 def k1_int_series(cls, idx, n=1024):
     """K1 tied input (b): a null class made integer-valued as round(8 z), z the standardised plain series; draws under `K1int`."""
     base = cls.partition("|")[0]
-    rng = seeds.rng_for("K1int:%s:%d" % (base, n), "synthetic", "native", idx, "data", 0)
+    rng = keys.rng(keys.k1int_data(base, idx, n))
     return np.round(8.0 * standardise(_plain(base, n, rng)))
 
 
@@ -165,7 +166,9 @@ K3_CASES = ("shots", "logistic", "sawtooth", "sawtooth_noisy")
 
 def k3_series(case, tag, idx, n):
     """One K3 series of length n. tag names the use (native, placement, ...) so that each use is an independent draw."""
-    rng = seeds.rng_for("K3:%s:%d" % (case, n), "synthetic", tag, idx, "data", 0)
+    if keys.K3_BLOCK[tag] != n:
+        raise ValueError("K3 use %s draws blocks of %d samples" % (tag, keys.K3_BLOCK[tag]))
+    rng = keys.rng(keys.k3_data(case, tag, idx))
     if case == "shots":
         return shots_ar(n, rng)
     if case == "logistic":
@@ -208,7 +211,7 @@ def k4_stream(kind, seed_idx, role):
     A, 'S' and 'Sr' the sawtooth and its time reverse (blind spot). role 'fit' or 'verdict': independent streams made
     with different seed purposes."""
     n = K4_LEN
-    rng = seeds.rng_for("K4:" + kind, role, "native", seed_idx, "data", 0)
+    rng = keys.rng(keys.k4_data(kind, role, seed_idx))
     if kind == "A":
         return shots_ar(n, rng)
     if kind == "B":
@@ -236,9 +239,9 @@ def k5_series(case, seed_idx, role):
             raise ValueError("cascade_iaaft exists as a fit series only")
         import iaaft
         src = k5_series("cascade", seed_idx, "fit")
-        Y, _, _ = iaaft.iaaft_surrogates(src, 1, seeds.rng_for("K5b:cascade_iaaft", "fit", "native", seed_idx, "whole-surrogate", 0))
+        Y, _, _ = iaaft.iaaft_surrogates(src, 1, keys.rng(keys.k5_whole(seed_idx)))
         return Y[0]
-    rng = seeds.rng_for("K5b:" + case, role, "native", seed_idx, "data", 0)
+    rng = keys.rng(keys.k5_data(case, role, seed_idx))
     if case == "expo":
         return exponential_values(K5_N, rng)
     if case == "cascade":

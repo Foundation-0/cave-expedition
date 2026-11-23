@@ -3,7 +3,7 @@ import multiprocessing as mp
 import os
 
 _POOL = None
-MAX_WORKERS = 6  # at most 6 worker processes at once (shared machine)
+MAX_WORKERS = 4  # at most 4 worker processes at once for the Amendment 3 work (shared machine)
 
 
 def pmap(fn, items, workers=None):

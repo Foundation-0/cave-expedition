@@ -107,7 +107,7 @@ def u_surrogates_identity():
     for n in (256, 1000):
         x = synth.standardise(synth.ar1(0.9, n, rng))
         maps = {"cubic": x ** 3 + x, "exp": np.exp(x), "rank": nets.increasing_maps()["rank"](x)}
-        key = ("U", "s", "native", n)
+        key = ("U", "s", "native", n, "surrogates", 0)
         base = stats43.segment_test(x, key)
         for nm, y in maps.items():
             ck("map %s leaves distinct values unchanged (n=%d)" % (nm, n), nets.map_guard_ok(x, y))
@@ -553,9 +553,9 @@ def u_law2b():
     wx = law2b.whiten_W(x)
     ck("W: the zero frequency is 0 and the length is kept", abs(float(wx.mean())) < 1e-12 and wx.size == 1024)
     ck("W refuses a series with a zero median periodogram", _raises(lambda: law2b.whiten_W(np.zeros(64))))
-    f = law2b.white_floor_F(x, ("k", "s", "n", 0))
+    f = law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0))
     ck("F adds noise of about 1/1000 of the standard deviation", 0 < float(np.abs(f - x).max()) < 0.01 * x.std() * 10 and float(np.std(f - x)) > 0)
-    eq("F is reproducible", law2b.white_floor_F(x, ("k", "s", "n", 0)), f)
+    eq("F is reproducible", law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0)), f)
     eq("tail spread of the 0..1000 ramp by order statistics (ranks 1000, 2, 751, 251), exact", law2b.tail_spread(np.arange(1001.0)), Fraction(998, 500))
     eq("event-rich threshold is the exact median (mean of the two middle values)", law2b.event_rich_threshold([np.arange(1001.0), np.arange(1001.0) * 2.0]), Fraction(998, 500))
     ck("E: a heavy-tailed segment is event-rich against the Gaussian median", law2b.event_rich(synth.shots_ar(4096, np.random.default_rng(3)), law2b.event_rich_threshold([np.random.default_rng(i).standard_normal(4096) for i in range(5)])))
@@ -566,7 +566,8 @@ def u_law2b():
     for fn in sorted(os.listdir(src)):
         if fn.endswith(".py") and fn != "law2b.py":
             with open(os.path.join(src, fn), "r", encoding="utf-8") as fh:
-                if "law2b" in fh.read():
+                txt = fh.read()
+                if "import law2b" in txt or "from law2b" in txt:
                     users.append(fn)
     eq("no module of src/ refers to law2b (confirmatory path does not call it)", users, [])
 
@@ -628,10 +629,9 @@ def u_review_guards():
     ck("transfer_test refuses a non-finite template", _refused(lambda: transfer.transfer_test("arrow", np.full(6, np.nan), w, pm, rg(), R=100)))
     ck("transfer_test refuses a non-finite target", _refused(lambda: transfer.transfer_test("arrow", w, np.full(6, np.inf), pm, rg(), R=100)))
     ck("cut_segments refuses validity flags that are too short", _refused(lambda: segments.cut_segments(np.random.default_rng(1).standard_normal(9000), valid=[True])))
-    ck("amp_exp_standardised refuses a constant series", _refused(lambda: nets.amp_exp_standardised(np.full(100, 7.0))))
-    ck("amp_exp_standardised refuses one sample", _refused(lambda: nets.amp_exp_standardised(np.array([3.0]))))
-    ck("amp_exp_standardised refuses non-finite values", _refused(lambda: nets.amp_exp_standardised(np.array([1.0, np.nan, 2.0]))))
-    ck("amp_exp_standardised on a good series has mean of log 0 and unit sd of log", abs(float(np.log(nets.amp_exp_standardised(np.arange(10.0))).std()) - 1.0) < 1e-12)
+    ck("amp_lognormal refuses non-finite values", _refused(lambda: nets.amp_lognormal(np.array([1.0, np.nan, 2.0]))))
+    ck("amp_scores refuses non-finite values", _refused(lambda: nets.amp_scores(np.array([1.0, np.inf, 2.0]))))
+    ck("midranks refuses non-finite values", _refused(lambda: nets.midranks(np.array([1.0, np.nan]))))
     # exit status: summary ends the script with status 1 on FAIL and returns on PASS
     try:
         kcommon.summary("T", "FAIL", "x", "smoke")
@@ -689,7 +689,7 @@ def u_amendment2():
         out = pipeline.run_series([const, ramp, None], run)
         ck("constant segment is invalid (None) under run %s, a good segment is kept, None stays None" % run, out[0] is None and out[1] is not None and out[2] is None)
     ck("a segment made constant by its net is invalid (12-bit bins of an almost constant segment)", pipeline.run_series([np.concatenate([np.zeros(4095), [1e-300]])], "native")[0] is not None)
-    c2, c3 = pipeline.control_series([const, ramp, None], "native", "u", "s", None, None)
+    c2, c3 = pipeline.control_series([const, ramp, None], "native", "u")
     ck("C2 and C3 of a constant or invalid segment are invalid, those of a good segment are not", c2[0] is None and c3[0] is None and c2[1] is not None and c3[1] is not None and c2[2] is None and c3[2] is None)
     ck("a constant segment gives no tau0 (refused), and level_shift drops it", _refused(lambda: transfer.tau0_segment(const)) and transfer.level_shift([const, ramp, None])[0] == transfer.tau0_segment(ramp))
     ck("level_shift refuses a set with no non-constant segment", _refused(lambda: transfer.level_shift([const, None])))
@@ -700,8 +700,8 @@ def u_amendment2():
     ck("features refuses when no segment is usable", _refused(lambda: pipeline.features([None, rows[0]], 0)))
     cs = np.random.default_rng(6).standard_normal(640 * 80)
     cs[640 * 10:640 * 11] = 3.0
-    base_jobs, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 80), ("u", "s", "n"), N=512)
-    jobs, _ = flow.stream_units(cs, ("u", "s", "n"), N=512)
+    base_jobs, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 80), lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512)
+    jobs, _ = flow.stream_units(cs, lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512)
     ck("flow: a constant segment gives no unit", len(jobs) < len(base_jobs))
     # B5 and B6 constructions
     xx = np.array([-4.0, 1.0, 2.0])
@@ -741,6 +741,67 @@ def u_amendment2():
     ck("K5 draws are under the tag K5b (differ from the old tag)", not np.array_equal(synth.cascade(64, seeds.rng_for("K5:cascade", "fit", "native", 0, "data", 0)), synth.cascade(64, seeds.rng_for("K5b:cascade", "fit", "native", 0, "data", 0))))
 
 
+def u_audit_three():
+    section("three edge cases raised by the team's audit of the code (written first, shown failing before the fix)")
+    ck("tau0_segment refuses a NaN (fails closed)", _refused(lambda: transfer.tau0_segment(np.array([1.0, np.nan, 3.0, 4.0]))))
+    ck("tau0_segment refuses an infinity (fails closed)", _refused(lambda: transfer.tau0_segment(np.array([1.0, np.inf, 3.0, 4.0]))))
+    ck("segments_constant refuses a non-finite series (nan == nan is False, so it was not 'constant')", _refused(lambda: transfer.segments_constant(np.full(10, np.nan))))
+    ck("ties: at_or_above(inf, inf) is False (an infinity ties with nothing and gives no verdict)", not bool(ties.at_or_above(np.inf, np.inf)))
+    ck("ties: at_or_above(inf, 1) is False (a non-finite value gives no verdict)", not bool(ties.at_or_above(np.inf, 1.0)))
+    ck("ties: below(-inf, 1) is False", not bool(ties.below(-np.inf, 1.0)))
+    ck("ties: at_or_above on finite values is unchanged", bool(ties.at_or_above(2.0, 1.0)) and bool(ties.at_or_above(1.0, 1.0)) and not bool(ties.at_or_above(1.0, 2.0)))
+    ck("ties: at_or_above(-inf, 1) stays False (a surrogate with no lag kept never counts against the real series)", not bool(ties.at_or_above(-np.inf, 1.0)))
+    low = transfer.transfer_test("arrow", np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), -np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), np.ones(6, dtype=bool), np.random.default_rng(3), R=500)
+    ck("transfer: a template strictly below every detector is still adverse (D8 unchanged where scores differ)", low["adverse"] and low["n_lt"] == 0)
+
+
+def u_code_keys():
+    section("the keys the K1, K2 and K3 code builds are the keys of keys.py (D14)")
+    import keys
+    seen = []
+    orig_seg, orig_pool = stats43.segment_test, stats43.make_pool
+
+    class Stop(Exception):
+        pass
+
+    def fake_segment_test(x, key, M=99, kind="iaaft"):
+        seen.append(key)
+        return {"pn": 50, "den": 100, "reject": False, "iters": 0, "nconv": 0, "flag_zero_spread": False, "T": 0.0, "js": [0], "C3": np.zeros((100, 1, 13), dtype=np.int64),
+                "all_zero_spread": True}
+
+    def fake_make_pool(x, key, M=99, kind="iaaft"):
+        seen.append(key)
+        raise Stop()
+    try:
+        stats43.segment_test, stats43.make_pool = fake_segment_test, fake_make_pool
+        tasks.k2_task(("ar1_0.9|exp", 4096, 7, "raw"))
+        tasks.k2_task(("white", 2048, 3, "iaaft"))
+        for use in ("native4096", "native2048", "bm2", "sub2", "q12", "q8", "placement", "wlen2048"):
+            tasks.k3_task(("shots", use, 5, "iaaft"))
+        tasks.k3_task(("shots", "native4096", 6, "leaky"))
+        for src_, cls_, n_ in (("class", "g2|exp", 1024), ("int", "white", 1024), ("wave", "waveform", 4096)):
+            try:
+                tasks.k1_task((src_, cls_, 4, n_, "cubic", "iaaft"))
+            except Stop:
+                pass
+    finally:
+        stats43.segment_test, stats43.make_pool = orig_seg, orig_pool
+    want = [keys.k2_pool("ar1_0.9", 4096, 7), keys.k2_pool("white", 2048, 3)]
+    want += [keys.k3_pool("shots", u, 5) for u in ("native4096", "native2048", "bm2", "sub2", "q12", "q8", "placement", "wlen2048")]
+    want += [keys.k3_pool("shots", "native4096", 6), keys.k1_pool("g2", 1024, 4), keys.k1int_pool("white", 4), keys.k1wave_pool()]
+    eq("K2 (control on the exp version included), K3 (every use and the circular-shift control) and K1 pools use the keys of keys.py", seen, want)
+    eq("the K2 control draws from the pool key of the plain AR(1) 0.9 draw at 4,096", seen[0], ("K2:ar1_0.9:4096", "synthetic", "native", 7, "surrogates", 0))
+    eq("a K3 pool uses the instrument of its data draw (length of the block)", (seen[2][0], seen[6][0], seen[7][0]), ("K3:shots:4224", "K3:shots:4224", "K3:shots:4224"))
+    eq("K3 native2048 and wlen2048 pools use the 2176-sample block", (seen[3][0], seen[9][0]), ("K3:shots:2176", "K3:shots:2176"))
+    ck("the circular-shift control shares the key of the shots native4096 pool, by design", seen[10] == keys.k3_pool("shots", "native4096", 6) and keys.k3_pool("shots", "native4096", 6)[2] == "native4096")
+    ck("a pool key with fewer than six fields is refused", _refused(lambda: stats43.make_pool(np.arange(10.0), ("a", "b", "c", "d"))))
+    eq("keys: K4 detector key names the pair, run and seed", keys.k4_detectors("A>Aprime", "placement", 3, "detectors-arrow"), ("K4:A>Aprime", "verdict", "placement", 3, "detectors-arrow", 0))
+    eq("keys: K5 pool key names the series, run and seed", keys.k5_pool("cascade_rank", "verdict", "amp_lognormal", 3, 2, 5), ("K5b:cascade_rank", "verdict", "amp_lognormal", "s3-flow-L2-q5", "surrogates", 0))
+    eq("keys: control pool", keys.control_pool("C2", "GW:H1", "native", 3), ("GW:H1", "verdict", "native", 3, "C2-surrogates", 0))
+    ck("keys: control must be C2 or C3", _refused(lambda: keys.control_series("C4", "x", "native", 0)))
+    eq("keys: a Law 2b net", keys.l2b_net("W", "native"), "law2b-W:native")
+
+
 def _raises(f):
     try:
         f()
@@ -752,7 +813,7 @@ def _raises(f):
 def main():
     print("UNIT CHECKS of the building blocks (known answers)")
     print("python", sys.version.split()[0], "numpy", np.__version__)
-    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_amendment2(); u_outcomes()
+    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_amendment2(); u_audit_three(); u_code_keys(); u_outcomes()
     ok = C.done("UNIT CHECKS")
     if not ok:
         print("FAIL")

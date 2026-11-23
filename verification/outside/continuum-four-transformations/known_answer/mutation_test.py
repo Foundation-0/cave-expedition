@@ -8,7 +8,8 @@ For every refusal, comparison and threshold in src/*.py three kinds of mutant ar
 Each mutant is run against the suite given by --suite (default: the unit checks and K6). A mutant is killed if the suite exits
 non-zero or runs out of time. Survivors are listed; each is to be killed by an added test or recorded as equivalent with its reason.
 usage: mutation_test.py count
-       mutation_test.py run <work dir> [module ...]      (at most 6 worker processes)"""
+       mutation_test.py run <work dir> [module ...]      (at most 4 worker processes)
+       mutation_test.py run <work dir> --lines <file>    (only mutants on the lines listed as "module.py:lineno", one per line)"""
 import ast
 import copy
 import math
@@ -22,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "src")
 KA = HERE
 FLIP = {ast.Lt: ast.LtE, ast.LtE: ast.Lt, ast.Gt: ast.GtE, ast.GtE: ast.Gt}
-WORKERS = 6
+WORKERS = 4
 TIMEOUT = 400
 
 
@@ -114,7 +115,7 @@ def run_one(args):
     killed = False
     why = ""
     try:
-        for script in (("known_answer/k6_gate_checks.py", "smoke"), ("known_answer/units_check.py",)):
+        for script in (("known_answer/k6_gate_checks.py", "smoke"), ("known_answer/key_check.py",), ("known_answer/units_check.py",)):
             r = subprocess.run([sys.executable, "-I", "-B", *script], cwd=work, capture_output=True, text=True, timeout=TIMEOUT)
             if r.returncode != 0:
                 killed = True
@@ -144,13 +145,26 @@ def main():
         print("total mutants", tot)
         return
     work_root = sys.argv[2]
-    only = sys.argv[3:]
+    rest = sys.argv[3:]
+    only_lines = None
+    if rest[:1] == ["--lines"]:
+        only_lines = set()
+        with open(rest[1], "r", encoding="utf-8") as fh:
+            for ln in fh:
+                ln = ln.strip()
+                if ln:
+                    mod, no = ln.split(":")
+                    only_lines.add((mod, int(no)))
+        rest = []
+    only = rest
     jobs = []
     for m in mods:
         if only and m not in only:
             continue
         src, tree, ss = sites(os.path.join(SRC, m))
         for s in ss:
+            if only_lines is not None and (m, s["lineno"]) not in only_lines:
+                continue
             jobs.append((m, src, apply(src, tree, s), s))
     print("mutants to run: %d" % len(jobs))
     # one work copy per worker slot

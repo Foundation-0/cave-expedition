@@ -100,10 +100,10 @@ def analyse_unit(seg, key, M=99, freq_map=None):
     return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
 
 
-def stream_units(x, prefix, N=4096, start=0, runs=None, op="mean", freq_map=None, jobs_map=None, M=99):
-    """All units of a stream: for each level, cut segments (section 7) and analyse each. prefix = (instrument, split,
-    net). jobs_map: a map function (callable like par.pmap) to run unit analyses in parallel.
-    Returns list of dicts with l, seg index and the unit result."""
+def stream_units(x, pool_key, N=4096, start=0, runs=None, op="mean", freq_map=None, M=99):
+    """The jobs of all units of a stream: for each level, cut segments (section 7). pool_key(level, unit) gives the full key of a
+    unit's pool (keys.k5_pool or the real-data flow-unit key, D14). Returns (jobs, meta): jobs are (segment, key, M, freq_map) for
+    tasks.unit_task, meta the (level, unit) of each."""
     lv = level_streams(x, N, segments.PAD, start, runs, op)
     jobs, meta = [], []
     for (l, ser, rr) in lv:
@@ -111,7 +111,7 @@ def stream_units(x, prefix, N=4096, start=0, runs=None, op="mean", freq_map=None
         for q, c in enumerate(cut):
             if c["seg"] is None or transfer.segments_constant(c["seg"]):
                 continue   # an invalid or constant segment gives no flow unit (section 7)
-            jobs.append((c["seg"], prefix + ("flow-L%d-q%d" % (l, q),), M, freq_map))
+            jobs.append((c["seg"], pool_key(l, q), M, freq_map))
             meta.append((l, q))
     return jobs, meta
 

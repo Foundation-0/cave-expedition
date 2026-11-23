@@ -64,20 +64,29 @@ def increasing_maps():
     return {"cubic": lambda v: v ** 3 + v, "exp": np.exp, "rank": lambda v: ranks.twice_midrank(v).astype(np.float64) / 2.0}
 
 
-def amp_normal_scores(x):
-    """Amplitude-map net 1 (scale-flow transfer only): normal scores of the ranks."""
+def midranks(x):
+    """The mid-ranks of x as floats (tied values share the mean rank). K5's rank-mapped cascade is the mid-ranks of the cascade (SK8)."""
+    x = np.asarray(x, dtype=np.float64)
+    if not np.all(np.isfinite(x)):
+        raise ValueError("mid-ranks need finite values")
+    return ranks.twice_midrank(x).astype(np.float64) / 2.0
+
+
+def amp_scores(x):
+    """Amplitude-map net `amp_scores` (scale-flow transfer only): normal scores of the mid-ranks. Depends on the stream only through its
+    mid-ranks, so it is finite, keeps tied values tied and creates no ties (D19)."""
+    if not np.all(np.isfinite(np.asarray(x, dtype=np.float64))):
+        raise ValueError("amp_scores needs finite values")
     return ranks.normal_scores(x)
 
 
-def amp_exp_standardised(x):
-    """Amplitude-map net 2 (scale-flow transfer only): exp of the series standardised to mean 0, unit variance."""
-    x = np.asarray(x, dtype=np.float64)
-    sd = x.std() if x.size > 1 else 0.0
-    if not (np.isfinite(sd) and sd > 0.0):
-        raise ValueError("cannot standardise a constant or non-finite series (standard deviation is zero)")
-    return np.exp((x - x.mean()) / sd)
+def amp_lognormal(x):
+    """Amplitude-map net `amp_lognormal` (scale-flow transfer only): exp of the normal scores of the mid-ranks. The scores lie within
+    Phi^-1(1 - 1/(2n)) of 0, below 7.131 for n up to 10^12, so exp of them is below 1,251 (D19)."""
+    return np.exp(amp_scores(x))
 
 
 def map_guard_ok(x, y):
-    """A map is usable in the exact identity only if it leaves the number of distinct values unchanged."""
-    return ranks.n_distinct(x) == ranks.n_distinct(y)
+    """The representability guard (K1, section 5): the mapped series is finite and has as many distinct values as its input."""
+    y = np.asarray(y)
+    return bool(np.all(np.isfinite(y))) and ranks.n_distinct(x) == ranks.n_distinct(y)

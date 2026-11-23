@@ -1,12 +1,14 @@
-"""K5 Scale flow (PREREG section 10, as amended by Amendment 2, B9). Every series has 2^19 samples, cut by the segment rule at flow levels 0 to 3 (32, 32,
+"""K5 Scale flow (PREREG section 10, as amended by Amendments 2 and 3). Every series has 2^19 samples, cut by the segment rule at flow levels 0 to 3 (32, 32,
 31 and 15 units). A unit departs if at most 4 of its 99 surrogates have a sum of squared standardised features at or above its own (equal sums count as
 at or above); a level shows departure if the departing units are at or above the binomial 1 percent point for its units at rate 0.05. 10 seeds per case,
 criteria required in at least 9 of 10.
 - independent exponential values: no level shows departure. Cascade: departure at level 0 and level 3. Shuffled cascade: no level shows departure
   (must-fail control: the cascade criterion on the shuffled cascade must hold in at most 1 of 10 seeds). y_t = e_t^2 + e_(t-1)^2: departure at level 0.
-- transfers: cascade (fit) to the exp-mapped cascade (verdict) must give p at most 0.001 in the primary run and in both amplitude-map runs; cascade (fit) to
-  y' = g^2 (verdict, g AR(1), c = 0.9859) and the IAAFT cascade (fit) to the cascade (verdict) must give p above 0.05 in the primary run. Every transfer must be
-  evaluable (at least 8 features populated in both series) in at least 9 of 10 seeds, else K5 fails; a seed that is not evaluable counts as failing its criterion.
+- transfers: cascade (fit) to the rank-mapped cascade (the mid-ranks of the cascade, verdict) must give p at most 0.001 in the primary run and in both
+  amplitude-map runs (amp_scores, amp_lognormal); a seed in which this map or a run's amplitude map fails the representability guard counts as failing the
+  criterion. Cascade (fit) to y' = g^2 (verdict, g AR(1), c = 0.9859) and the IAAFT cascade (fit) to the cascade (verdict) must give p above 0.05 in the primary
+  run. Every transfer must be evaluable (at least 8 features populated in both series) in at least 9 of 10 seeds, else K5 fails; a seed that is not evaluable
+  counts as failing its criterion.
 usage: k5_scale_flow.py smoke|full [part nparts] (parts split the seeds)"""
 import os
 import sys
@@ -14,14 +16,15 @@ from fractions import Fraction
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
-import flow, levels, nets, par, segments, seeds, synth, tasks, transfer
+import flow, keys, levels, nets, par, segments, synth, tasks, transfer
 from kcommon import header, summary, parse_mode, sizes
 
 N = 4096
 
 
-def stream_jobs(x, case, role):
-    return flow.stream_units(x, ("K5b:" + case, role, "native"), N=N)
+def stream_jobs(x, case, role, run, s):
+    """Unit jobs of a stream cut into flow units. The pool key names the series the units are cut from (D14): case, split, run, seed, level, unit."""
+    return flow.stream_units(x, lambda l, q: keys.k5_pool(case, role, run, s, l, q), N=N)
 
 
 def one_seed(s):
@@ -33,46 +36,56 @@ def one_seed(s):
     ser[("cascade_iaaft", "fit")] = synth.k5_series("cascade_iaaft", s, "fit")
     ser[("cascade_shuffled", "verdict")] = synth.k5_series("cascade_shuffled", s, "verdict")
     ser[("y", "verdict")] = synth.k5_series("y", s, "verdict")
-    # the exp-mapped cascade (verdict) in three runs: primary, and the two amplitude-map runs (the maps act on the whole stream, D10)
-    b0 = nets.amp_exp_standardised(ser[("cascade", "verdict")])
-    ser[("cascade_exp", "verdict")] = b0
-    ser[("cascade_exp:amp_scores", "verdict")] = nets.amp_normal_scores(b0)
-    ser[("cascade_exp:amp_exp", "verdict")] = nets.amp_exp_standardised(b0)
+    # the rank-mapped cascade (verdict): the mid-ranks of the cascade (SK8), in three runs. The amplitude nets act on the whole stream (D10).
+    rank = nets.midranks(ser[("cascade", "verdict")])
+    streams = {("native", "native"): rank, ("amp_scores", "amp_scores"): nets.amp_scores(rank), ("amp_lognormal", "amp_lognormal"): nets.amp_lognormal(rank)}
+    guard = {}
+    for (run, _), x in streams.items():
+        inp = ser[("cascade", "verdict")] if run == "native" else rank
+        guard[run] = bool(nets.map_guard_ok(inp, x))
     tau, shift = {}, {}
     for case in ("cascade", "yprime", "cascade_iaaft"):
         segs = [c["seg"] for c in segments.cut_segments(ser[(case, "fit")], N=N)]
         tau[case], shift[case] = transfer.level_shift(segs)
-    shift["cascade_exp"] = shift["cascade"]       # the exp map leaves the ranks, so tau0 of its fit series is the cascade's
-    need = [("expo", "verdict"), ("cascade", "fit"), ("cascade", "verdict"), ("cascade_shuffled", "verdict"), ("y", "verdict"),
-            ("yprime", "verdict"), ("cascade_iaaft", "fit"), ("cascade_exp", "verdict"), ("cascade_exp:amp_scores", "verdict"),
-            ("cascade_exp:amp_exp", "verdict")]
+    shift["cascade_rank"] = shift["cascade"]       # the ranks of its fit series are the cascade's, so tau0 is the cascade's
+    need = [("expo", "verdict", "native"), ("cascade", "fit", "native"), ("cascade", "verdict", "native"), ("cascade_shuffled", "verdict", "native"),
+            ("y", "verdict", "native"), ("yprime", "verdict", "native"), ("cascade_iaaft", "fit", "native")]
     jobs, meta, owner = [], [], []
-    for (case, role) in need:
-        j, m = stream_jobs(ser[(case, role)], case, role)
+    for (case, role, run) in need:
+        j, m = stream_jobs(ser[(case, role)], case, role, run, s)
         jobs += j
         meta += m
-        owner += [(case, role)] * len(j)
+        owner += [(case, role, run)] * len(j)
+    for run in ("native", "amp_scores", "amp_lognormal"):
+        if guard[run]:
+            j, m = stream_jobs(streams[(run, run)], "cascade_rank", "verdict", run, s)
+            jobs += j
+            meta += m
+            owner += [("cascade_rank", "verdict", run)] * len(j)
     res = par.pmap(tasks.unit_task, jobs)
     U = {}
     for o, m, r in zip(owner, meta, res):
         U.setdefault(o, []).append(dict(l=m[0], q=m[1], **r))
-    out = {"seed": s, "tau0": tau, "shift": shift}
+    out = {"seed": s, "tau0": tau, "shift": shift, "guard": guard}
     dep = {}
     for case in ("expo", "cascade", "cascade_shuffled", "y"):
-        d = flow.level_departure(U[(case, "verdict")])
+        d = flow.level_departure(U[(case, "verdict", "native")])
         dep[case] = {int(l): [int(v[0]), int(v[1]), int(levels.excess_point(v[0]))] for l, v in sorted(d.items())}
     out["departure"] = dep
 
-    def tr(tag, run, Ac, Arole, Bc, Brole, shA, shB):
-        rng = seeds.rng_for("K5b:" + tag, "verdict", run, s, "detectors-flow", 0)
-        r = flow.flow_transfer(U[(Ac, Arole)], shA, U[(Bc, Brole)], shB, rng)
+    def tr(criterion, run, A, B, shA, shB):
+        rng = keys.rng(keys.k5_detectors(criterion, run, s))
+        r = flow.flow_transfer(U[A], shA, U[B], shB, rng)
         return {"p": "%d/%d" % (r["p"].numerator, r["p"].denominator), "m": int(r["m"]), "below_floor": bool(r["below_floor"]), "D": int(r["D"]),
-                "adverse": bool(r["adverse"]), "S_A": float(r["S_A"])}
+                "adverse": bool(r["adverse"]), "S_A": float(r["S_A"]), "representable": True}
 
-    for run, Bc in (("native", "cascade_exp"), ("amp_scores", "cascade_exp:amp_scores"), ("amp_exp", "cascade_exp:amp_exp")):
-        out["T1|" + run] = tr("cascade>cascade_exp", run, "cascade", "fit", Bc, "verdict", shift["cascade"], shift["cascade"])
-    out["T2|native"] = tr("cascade>yprime", "native", "cascade", "fit", "yprime", "verdict", shift["cascade"], shift["yprime"])
-    out["T3|native"] = tr("cascade_iaaft>cascade", "native", "cascade_iaaft", "fit", "cascade", "verdict", shift["cascade_iaaft"], shift["cascade"])
+    for run in ("native", "amp_scores", "amp_lognormal"):
+        if guard[run]:
+            out["T1|" + run] = tr("cascade>cascade_rank", run, ("cascade", "fit", "native"), ("cascade_rank", "verdict", run), shift["cascade"], shift["cascade"])
+        else:    # map not representable: the run does not pass and is never adverse (section 5)
+            out["T1|" + run] = {"p": "1/1", "m": 0, "below_floor": True, "D": 1, "adverse": False, "S_A": 0.0, "representable": False}
+    out["T2|native"] = tr("cascade>yprime", "native", ("cascade", "fit", "native"), ("yprime", "verdict", "native"), shift["cascade"], shift["yprime"])
+    out["T3|native"] = tr("cascade_iaaft>cascade", "native", ("cascade_iaaft", "fit", "native"), ("cascade", "verdict", "native"), shift["cascade_iaaft"], shift["cascade"])
     return out
 
 
@@ -112,7 +125,7 @@ def evaluate(results, nseeds, mode):
         cnt["T2 evaluable"] += ev2
         cnt["T3 evaluable"] += ev3
         # a seed that is not evaluable counts as failing its criterion
-        cnt["T1 positive (3 runs)"] += ev1 and all(frac(x["p"]) <= Fraction(1, 1000) for x in t1)
+        cnt["T1 positive (3 runs)"] += ev1 and all(x["representable"] and frac(x["p"]) <= Fraction(1, 1000) for x in t1)
         cnt["T2 negative"] += ev2 and frac(t2["p"]) > Fraction(1, 20)
         cnt["T3 negative"] += ev3 and frac(t3["p"]) > Fraction(1, 20)
 

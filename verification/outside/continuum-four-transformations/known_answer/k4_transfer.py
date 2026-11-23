@@ -1,15 +1,16 @@
-"""K4 Transfer (PREREG section 10). Synthetic A: the K3 shots. B: shots at twice the rate on 1/f noise, every second sample kept, sign flipped.
-C: the time reverse of a fresh series of kind A. Each instrument has two independent streams per seed (fit, verdict) of 33 blocks, so the
-primary grid and the grid shifted by half a block both give 32 segments. Templates and tau0 come from fit streams only; scores from verdict
-streams only. 10 seeds (the plan's number; smoke uses all 10 because the smoke rule says at least 10).
-Runs: the primary grid and the shifted grid (synthetic instruments have no second channel).
-- A to B: arrow p and profile p at most 0.001 in every run, in at least 9 of 10 seeds.
-- A to C: the arrow score S_B(w_A) below the 2.5th percentile of its random detectors in every run, in at least 9 of 10 seeds. The profile
-  transfer A to C is reported.
-- Must-fail controls: A to A' (A cut into its 33 blocks, the block order shuffled and each block replaced by an IAAFT surrogate of itself, with its
-  own fit stream made the same way): neither the arrow nor the profile transfer may reach p at most 0.01 in more than 1 of 10 seeds, where a seed
-  reaches it if p is at most 0.01 in any run (primary grid or shifted grid).
-- Blind spot, reported: sawtooth and its time reverse, arrow transfer in both directions (primary run), expected not to reject.
+"""K4 Transfer (PREREG section 10, reading D20 of Amendment 3). Synthetic A: the K3 shots. B: shots at twice the rate on 1/f noise, every second
+sample kept, sign flipped. C: the time reverse of a fresh series of kind A. Each instrument has two independent streams per seed (fit, verdict) of
+33 blocks, so the primary grid and the grid shifted by half a block both give 32 segments. 10 seeds.
+K4 passes only if it passes under both readings of its stream set (D20):
+  reading 1 (D20): templates from the fit streams of A, S and Sr cut in the primary grid, reused by the placement run; level shifts from the fit
+    streams of every kind (A' included) in the primary grid; pools for the verdict streams of B, C and A' in both runs and for S and Sr in the
+    primary run; detectors for A>B, A>C and A>Aprime in both runs and for S>Sr and Sr>S in the primary run.
+  reading 2: each run takes its templates and level shifts from the fit streams cut in that run's own grid, and the blind spot is scored in both runs.
+Criteria within each reading: A to B arrow p and profile p at most 0.001 in every run, in at least 9 of 10 seeds. A to C arrow adverse in every run, in
+at least 9 of 10 seeds (the profile transfer A to C is reported). Must-fail control A to A' (A cut into its 33 blocks, the block order shuffled and each
+block replaced by an IAAFT surrogate of itself, with its own fit stream made the same way): neither the arrow nor the profile transfer may reach p at
+most 0.01 in more than 1 of 10 seeds, where a seed reaches it if p is at most 0.01 in any run, judged within each reading. Blind spot, reported: sawtooth
+and its time reverse, arrow and profile transfer in both directions.
 usage: k4_transfer.py smoke|full [part nparts] (parts split the seeds)"""
 import ast
 import os
@@ -18,22 +19,23 @@ from fractions import Fraction
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
-import iaaft, par, pipeline, ranks, segments, seeds, synth, transfer
+import iaaft, keys, par, pipeline, ranks, segments, synth, tasks, transfer
 from kcommon import header, summary, parse_mode, sizes
 
 N = 4096
 BLK = N + segments.PAD
 RUNS = ("native", "placement")
+KINDS = ("A", "B", "C", "Aprime", "S", "Sr")
 
 
-def surrogate_blocks_stream(stream, tag, seed_idx):
-    """A': the stream cut into its 33 blocks, block order shuffled, each block replaced by an IAAFT surrogate of itself."""
+def surrogate_blocks_stream(stream, split, seed_idx):
+    """A': the A stream of the same split cut into its 33 blocks, block order shuffled and each block replaced by an IAAFT surrogate of itself.
+    The draws use keys.k4_aprime_shuffle and keys.k4_aprime_block (index the block's position in the shuffled order)."""
     blocks = [stream[i * BLK:(i + 1) * BLK] for i in range(len(stream) // BLK)]
-    rng = seeds.rng_for("K4:Aprime:" + tag, "verdict", "native", seed_idx, "shuffle", 0)
-    order = rng.permutation(len(blocks))
+    order = keys.rng(keys.k4_aprime_shuffle(split, seed_idx)).permutation(len(blocks))
     out = []
-    for q, k in enumerate(order):
-        Y, _, _ = iaaft.iaaft_surrogates(blocks[int(k)], 1, seeds.rng_for("K4:Aprime:" + tag, "verdict", "native", seed_idx, "block-surrogate", q))
+    for pos, k in enumerate(order):
+        Y, _, _ = iaaft.iaaft_surrogates(blocks[int(k)], 1, keys.rng(keys.k4_aprime_block(split, seed_idx, pos)))
         out.append(Y[0])
     return np.concatenate(out)
 
@@ -43,61 +45,56 @@ def cut(stream, run):
     return [c["seg"] for c in segments.cut_segments(stream, N=N, start=start)]
 
 
-def shift_of(stream):
-    t0, sh = transfer.level_shift(cut(stream, "native"))
-    return t0, sh
-
-
 def one_seed(s):
-    """All K4 quantities for one seed. Returns a dict of literals."""
+    """All K4 quantities for one seed, under both readings. Returns a dict of literals."""
     st = {}
-    for kind in ("A", "B", "C"):
-        st[(kind, "fit")] = synth.k4_stream(kind, s, "fit")
-        st[(kind, "verdict")] = synth.k4_stream(kind, s, "verdict")
-    st[("Ap", "fit")] = surrogate_blocks_stream(st[("A", "fit")], "fit", s)
-    st[("Ap", "verdict")] = surrogate_blocks_stream(st[("A", "verdict")], "verdict", s)
-    for kind in ("S", "Sr"):
-        st[(kind, "fit")] = synth.k4_stream(kind, s, "fit")
-        st[(kind, "verdict")] = synth.k4_stream(kind, s, "verdict")
-    shifts = {k: shift_of(st[(k, "fit")]) for k in ("A", "B", "C", "Ap", "S", "Sr")}
-    # jobs: (stream key, split, run)
+    for kind in ("A", "B", "C", "S", "Sr"):
+        for split in ("fit", "verdict"):
+            st[(kind, split)] = synth.k4_stream(kind, s, split)
+    for split in ("fit", "verdict"):
+        st[("Aprime", split)] = surrogate_blocks_stream(st[("A", split)], split, s)
+    # level shifts from the fit streams cut in each grid (no pools); reading 1 uses the primary grid for every run
+    shifts = {}
+    for kind in KINDS:
+        for run in RUNS:
+            shifts[(kind, run)] = transfer.level_shift(cut(st[(kind, "fit")], run))
+    # pools: reading 1 (D20), then the extra pools of reading 2
     plan = [("A", "fit", "native")]
-    for k in ("B", "C", "Ap"):
+    for k in ("B", "C", "Aprime"):
         plan += [(k, "verdict", "native"), (k, "verdict", "placement")]
     plan += [("S", "fit", "native"), ("Sr", "verdict", "native"), ("Sr", "fit", "native"), ("S", "verdict", "native")]
+    plan += [("A", "fit", "placement"), ("S", "fit", "placement"), ("Sr", "fit", "placement"), ("S", "verdict", "placement"), ("Sr", "verdict", "placement")]
     jobs, meta = [], []
     for (k, split, run) in plan:
-        segs = cut(st[(k, split)], run)
-        for q, sg in enumerate(segs):
-            jobs.append((sg, ("K4:%s:s%d" % (k, s), split, run, q), "iaaft"))
+        for q, sg in enumerate(cut(st[(k, split)], run)):
+            jobs.append((sg, keys.k4_pool(k, split, run, s, q), "iaaft"))
             meta.append((k, split, run))
-    import tasks
     res = par.pmap(tasks.seg_task, jobs)
     R = {}
     for m, r in zip(meta, res):
         R.setdefault(m, []).append(r)
-    out = {"seed": s, "tau0": {k: shifts[k][0] for k in shifts}, "shift": {k: shifts[k][1] for k in shifts}}
-
-    def tr(Akey, Bkey, run, tag):
-        rng_a = seeds.rng_for("K4:" + tag, "verdict", run, s, "detectors-arrow", 0)
-        rng_p = seeds.rng_for("K4:" + tag, "verdict", run, s, "detectors-profile", 0)
-        a, p = pipeline.transfer_arrow_profile(R[(Akey, "fit", "native")], shifts[Akey][1], R[(Bkey, "verdict", run)], shifts[Bkey][1], rng_a, rng_p)
-        return a, p
+    out = {"seed": s, "tau0": {"%s|%s" % (k, r): shifts[(k, r)][0] for (k, r) in shifts}, "shift": {"%s|%s" % (k, r): shifts[(k, r)][1] for (k, r) in shifts}}
 
     def lit(r):
         return {"p": "%d/%d" % (r["p"].numerator, r["p"].denominator), "adverse": bool(r["adverse"]), "m": int(r["m"]),
                 "below_floor": bool(r["below_floor"]), "S_A": float(r["S_A"]), "D": int(r["D"]), "n_ge": int(r["n_ge"])}
 
-    for tag, Bk in (("A>B", "B"), ("A>C", "C"), ("A>Ap", "Ap")):
-        for run in RUNS:
-            a, p = tr("A", Bk, run, tag)
-            out["%s|%s" % (tag, run)] = {"arrow": lit(a), "profile": lit(p)}
-    # blind spot, primary run
-    for tag, A_, B_ in (("S>Sr", "S", "Sr"), ("Sr>S", "Sr", "S")):
-        rng_a = seeds.rng_for("K4:" + tag, "verdict", "native", s, "detectors-arrow", 0)
-        rng_p = seeds.rng_for("K4:" + tag, "verdict", "native", s, "detectors-profile", 0)
-        a, p = pipeline.transfer_arrow_profile(R[(A_, "fit", "native")], shifts[A_][1], R[(B_, "verdict", "native")], shifts[B_][1], rng_a, rng_p)
-        out["%s|native" % tag] = {"arrow": lit(a), "profile": lit(p)}
+    def tr(pair, run, reading):
+        Ak, Bk = pair.split(">")
+        if reading == 1:
+            tmpl_grid, shA, shB = "native", shifts[(Ak, "native")][1], shifts[(Bk, "native")][1]
+        else:
+            tmpl_grid, shA, shB = run, shifts[(Ak, run)][1], shifts[(Bk, run)][1]
+        rng_a = keys.rng(keys.k4_detectors(pair, run, s, "detectors-arrow"))
+        rng_p = keys.rng(keys.k4_detectors(pair, run, s, "detectors-profile"))
+        a, p = pipeline.transfer_arrow_profile(R[(Ak, "fit", tmpl_grid)], shA, R[(Bk, "verdict", run)], shB, rng_a, rng_p)
+        return {"arrow": lit(a), "profile": lit(p)}
+
+    for reading in (1, 2):
+        pairs = [(p_, r) for p_ in ("A>B", "A>C", "A>Aprime") for r in RUNS]
+        pairs += [(p_, "native") for p_ in ("S>Sr", "Sr>S")] if reading == 1 else [(p_, r) for p_ in ("S>Sr", "Sr>S") for r in RUNS]
+        for (p_, r) in pairs:
+            out["r%d:%s|%s" % (reading, p_, r)] = tr(p_, r, reading)
     return out
 
 
@@ -106,43 +103,57 @@ def frac(s):
     return Fraction(int(n), int(d))
 
 
-def evaluate(seed_results, nseeds, mode):
-    n = len(seed_results)
-    ab_ok = ac_ok = 0
-    ctrl_arrow = ctrl_prof = 0
-    print("seed  tau0 A/B/C/A'/S/Sr   shifts   A>B p arrow (native, placement)   A>B p profile      A>C arrow adverse S_A (native, placement)   A>C profile p   A>Ap min p over runs arrow/profile   blind S>Sr, Sr>S arrow p")
-    for r in sorted(seed_results, key=lambda r: r["seed"]):
-        ab = [r["A>B|%s" % run] for run in RUNS]
-        ac = [r["A>C|%s" % run] for run in RUNS]
-        ap = [r["A>Ap|%s" % run] for run in RUNS]
+def evaluate_reading(results, nseeds, reading):
+    """Criteria of one reading. Returns (ok, counts dict, lines)."""
+    n = len(results)
+    need = -(-9 * n // 10)
+    cap = 1 if n == 10 else n // 10
+    ab_ok = ac_ok = ctrl_arrow = ctrl_prof = 0
+    blind_arrow = blind_prof = blind_tot = 0
+    lines = []
+    for r in sorted(results, key=lambda r: r["seed"]):
+        g = lambda pair, run: r["r%d:%s|%s" % (reading, pair, run)]
+        ab = [g("A>B", run) for run in RUNS]
+        ac = [g("A>C", run) for run in RUNS]
+        ap = [g("A>Aprime", run) for run in RUNS]
         ab_pass = all(frac(x["arrow"]["p"]) <= Fraction(1, 1000) and frac(x["profile"]["p"]) <= Fraction(1, 1000) for x in ab)
         ac_pass = all(x["arrow"]["adverse"] for x in ac)
-        ap_arrow = min(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100)     # any run (Amendment 2, D17)
+        ap_arrow = min(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100)     # any run, within this reading (D17, D20)
         ap_prof = min(frac(x["profile"]["p"]) for x in ap) <= Fraction(1, 100)
         ab_ok += ab_pass
         ac_ok += ac_pass
         ctrl_arrow += ap_arrow
         ctrl_prof += ap_prof
-        bl = [r["S>Sr|native"]["arrow"], r["Sr>S|native"]["arrow"]]
-        print("%2d  %s  %s  AB %s %s | %s %s  AC %s %s | prof p %s %s  Ap %s/%s  blind %s %s  [m AB %s, floor %s]" % (
-            r["seed"], "/".join("%g" % r["tau0"][k] for k in ("A", "B", "C", "Ap", "S", "Sr")), "/".join(str(r["shift"][k]) for k in ("A", "B", "C", "Ap", "S", "Sr")),
-            "%.2e" % float(frac(ab[0]["arrow"]["p"])), "%.2e" % float(frac(ab[1]["arrow"]["p"])),
-            "%.2e" % float(frac(ab[0]["profile"]["p"])), "%.2e" % float(frac(ab[1]["profile"]["p"])),
-            ac[0]["arrow"]["adverse"], ac[1]["arrow"]["adverse"],
-            "%.2e" % float(frac(ac[0]["profile"]["p"])), "%.2e" % float(frac(ac[1]["profile"]["p"])),
-            "%.2e" % float(min(frac(x["arrow"]["p"]) for x in ap)), "%.2e" % float(min(frac(x["profile"]["p"]) for x in ap)),
-            "%.3f" % float(frac(bl[0]["p"])), "%.3f" % float(frac(bl[1]["p"])),
-            ab[0]["arrow"]["m"], ab[0]["arrow"]["below_floor"]))
-    need = -(-9 * n // 10)
-    print("A to B passes (arrow and profile p <= 0.001 in every run): %d of %d seeds (need %d)" % (ab_ok, n, need))
-    print("A to C arrow adverse in every run: %d of %d seeds (need %d)" % (ac_ok, n, need))
-    cap = (n + 9) // 10 if n < 20 else n // 10
-    cap = 1 if n == 10 else n // 10
-    print("must-fail control A to A' reaches p <= 0.01 in any run: arrow in %d, profile in %d of %d seeds (allowed at most %d each)" % (ctrl_arrow, ctrl_prof, n, cap))
-    blind = sum(1 for r in seed_results for k in ("S>Sr|native", "Sr>S|native") if frac(r[k]["arrow"]["p"]) <= Fraction(1, 100))
-    print("blind spot (reported): arrow transfer rejects (p <= 0.01) in %d of %d seed-directions" % (blind, 2 * n))
+        bl = []
+        for pair in ("S>Sr", "Sr>S"):
+            for run in (RUNS if reading == 2 else ("native",)):
+                x = g(pair, run)
+                bl.append("%s %s arrow %.3f profile %.3f" % (pair, run, float(frac(x["arrow"]["p"])), float(frac(x["profile"]["p"]))))
+                blind_tot += 1
+                blind_arrow += frac(x["arrow"]["p"]) <= Fraction(1, 100)
+                blind_prof += frac(x["profile"]["p"]) <= Fraction(1, 100)
+        lines.append("%2d  AB arrow %s profile %s | AC adverse %s %s, profile p %s | A>Aprime min p arrow %.2e profile %.2e | blind: %s | m AB %s floor %s" % (
+            r["seed"], " ".join("%.2e" % float(frac(x["arrow"]["p"])) for x in ab), " ".join("%.2e" % float(frac(x["profile"]["p"])) for x in ab),
+            ac[0]["arrow"]["adverse"], ac[1]["arrow"]["adverse"], " ".join("%.2e" % float(frac(x["profile"]["p"])) for x in ac),
+            float(min(frac(x["arrow"]["p"]) for x in ap)), float(min(frac(x["profile"]["p"]) for x in ap)), "; ".join(bl), ab[0]["arrow"]["m"], ab[0]["arrow"]["below_floor"]))
     ok = ab_ok >= need and ac_ok >= need and ctrl_arrow <= cap and ctrl_prof <= cap
-    return ("PASS" if ok else "FAIL"), "A>B %d/%d, A>C %d/%d, control arrow %d profile %d (cap %d)" % (ab_ok, n, ac_ok, n, ctrl_arrow, ctrl_prof, cap)
+    lines.append("reading %d: A to B passes in %d of %d seeds (need %d). A to C arrow adverse in every run in %d of %d (need %d)." % (reading, ab_ok, n, need, ac_ok, n, need))
+    lines.append("reading %d: must-fail control A to A' reaches p <= 0.01 in any run: arrow in %d, profile in %d of %d seeds (allowed at most %d each)" % (reading, ctrl_arrow, ctrl_prof, n, cap))
+    lines.append("reading %d: blind spot (reported): arrow rejects (p <= 0.01) in %d and profile in %d of %d seed-direction-runs" % (reading, blind_arrow, blind_prof, blind_tot * 1))
+    lines.append("reading %d: %s" % (reading, "PASS" if ok else "FAIL"))
+    return ok, {"ab": ab_ok, "ac": ac_ok, "ctrl_arrow": ctrl_arrow, "ctrl_prof": ctrl_prof}, lines
+
+
+def evaluate(seed_results, nseeds, mode):
+    oks, texts = [], []
+    for reading in (1, 2):
+        ok, counts, lines = evaluate_reading(seed_results, nseeds, reading)
+        print("--- reading %d (%s)" % (reading, "D20: templates and shifts from the primary-grid fit streams" if reading == 1 else "each run uses the fit streams of its own grid"))
+        for ln in lines:
+            print(ln)
+        oks.append(ok)
+        texts.append("reading %d A>B %d/%d, A>C %d/%d, control arrow %d profile %d" % (reading, counts["ab"], len(seed_results), counts["ac"], len(seed_results), counts["ctrl_arrow"], counts["ctrl_prof"]))
+    return ("PASS" if all(oks) else "FAIL"), "; ".join(texts) + "; K4 passes only if both readings pass"
 
 
 def main():
@@ -165,8 +176,6 @@ def main():
         return
     status, text = evaluate(results, ns, mode)
     summary("K4", status, text, mode)
-    if status != "PASS":
-        raise SystemExit(1)
 
 
 if __name__ == "__main__":

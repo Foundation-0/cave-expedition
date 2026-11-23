@@ -1,6 +1,7 @@
 """Top-level task functions for the parallel map (must be importable by name). Results never depend on the worker count."""
 import numpy as np
 import flow
+import keys
 import nets
 import ranks
 import segments
@@ -10,7 +11,7 @@ import synth
 
 
 def seg_task(a):
-    """a = (x (series after its net), key, kind). Presence statistics and the standardised real-series features."""
+    """a = (x (series after its net), pool key (six fields, keys.py), kind). Presence statistics and the standardised real-series features."""
     x, key, kind = a
     r = stats43.segment_test(x, key, 99, kind)
     zu, z1, z23 = stats43.arrow_profile_features(r["C3"])
@@ -28,7 +29,8 @@ def k2_task(a):
     """a = (cls, n, idx, kind): one K2 segment, native net, surrogate kind."""
     cls, n, idx, kind = a
     x = synth.k2_series(cls, idx, n)
-    r = stats43.segment_test(x, ("K2:%s:%d" % (cls, n), "synthetic", "native", idx), 99, kind)
+    # the pool key is that of the plain class draw, also for the must-fail control on the exp version (D14, K2)
+    r = stats43.segment_test(x, keys.k2_pool(cls.partition("|")[0], n, idx), 99, kind)
     return {"pn": r["pn"], "reject": r["reject"], "iters": r["iters"], "nconv": r["nconv"],
             "zero": r["flag_zero_spread"]}
 
@@ -55,7 +57,7 @@ def k3_task(a):
         seg = blk[o:o + N]
         net = {"native4096": "native"}.get(use, use)
     y = nets.apply(net, seg)
-    r = stats43.segment_test(y, ("K3:%s" % case, "synthetic", use, idx), 99, kind)
+    r = stats43.segment_test(y, keys.k3_pool(case, use, idx), 99, kind)
     return {"pn": r["pn"], "reject": r["reject"], "iters": r["iters"], "nconv": r["nconv"]}
 
 
@@ -90,15 +92,15 @@ def k1_task(a):
     if source == "class":
         plain = synth.k1_series(base, idx, n)
         v = synth.k1_series(cls, idx, n)
-        key = ("K1:%s:%d" % (base, n), "synthetic", "native", idx)
+        key = keys.k1_pool(base, n, idx)
     elif source == "int":
         plain = synth.k1_int_series(base, idx, n)
         v = plain
-        key = ("K1int:%s:%d" % (base, n), "synthetic", "native", idx)
+        key = keys.k1int_pool(base, idx, n)
     elif source == "wave":
         plain = synth.tied_waveform()
         v = plain
-        key = ("K1wave:4096", "synthetic", "native", 0)
+        key = keys.k1wave_pool()
     else:
         raise ValueError("unknown K1 source " + source)
     with np.errstate(all="ignore"):

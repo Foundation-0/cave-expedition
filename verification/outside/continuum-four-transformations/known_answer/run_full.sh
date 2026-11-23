@@ -2,7 +2,7 @@
 # Full known-answer runs, K1 to K6, at the plan's full seed counts, in three Python modes, one mode after another.
 # usage: run_full.sh <results dir> <build folder>
 # Run from a clean checkout of the code commit. Long tests are split into parts with the same seeds and joined afterwards
-# (K2 in 8 parts, K3 in 4, K4 and K5 by seed in 10 parts). At most 6 worker processes run at once. Each run is timed (wall and
+# (K2 in 8 parts, K3 in 4, K4 and K5 by seed in 10 parts). At most 4 worker processes run at once. Each run is timed (wall and
 # processor seconds) and its exit status goes to <results dir>/status.txt; outputs go to <results dir>/mode<N>/.
 RES="$1"
 BUILD="$2"

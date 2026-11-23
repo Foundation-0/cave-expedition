@@ -1,6 +1,7 @@
 """Per-segment irreversibility test of PREREG 4.3 and the standardised features that the transfer tests use."""
 import numpy as np
 import iaaft
+import keys
 import nets
 import patterns
 import ranks
@@ -39,9 +40,12 @@ def loo_standardise(V):
 
 def make_pool(x, key, M=99, kind="iaaft"):
     """Pool = real series (row 0, raw values; patterns depend only on order) + M surrogates made from the normal
-    scores of x. key = (instrument, split, net, segment). kinds: iaaft (confirmatory), raw and leaky (must-fail)."""
+    scores of x. key = the full key of the pool, (instrument, split, net, segment, purpose, index), from keys.py (D14).
+    kinds: iaaft (confirmatory), raw and leaky (must-fail)."""
     x = np.asarray(x, dtype=np.float64)
-    rng = seeds.rng_for(*key, "surrogates", 0)
+    if not (isinstance(key, tuple) and len(key) == 6):
+        raise ValueError("a pool key has six fields: instrument, split, net, segment, purpose, index")
+    rng = keys.rng(key)
     if kind == "iaaft":
         Y, it, cv = iaaft.iaaft_surrogates(x, M, rng)
     elif kind == "raw":

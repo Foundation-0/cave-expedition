@@ -101,11 +101,12 @@ def main():
     r = attempt("tau0 of the constant segment cut from that stream", lambda: transfer.tau0_segment(const))
     if not explicit(r):
         BAD.append("CAVE8-05 tau0 on the cut constant segment")
-    r = attempt("amp_exp_standardised on the constant segment", lambda: nets.amp_exp_standardised(const))
+    r = attempt("amp_lognormal on the constant segment (finite, constant: invalid downstream, section 7)", lambda: float(np.ptp(nets.amp_lognormal(const))))
+    r = attempt("amp_lognormal on a series with a NaN", lambda: nets.amp_lognormal(np.array([1.0, np.nan])))
     if not explicit(r):
-        BAD.append("CAVE8-05 amp_exp_standardised")
+        BAD.append("CAVE8-05 amp_lognormal non-finite")
     attempt("q8 net on the constant segment (distinct values)", lambda: ranks.n_distinct(nets.apply("q8", const)))
-    r = attempt("segment_test on the constant segment: reject, all zero spread", lambda: (stats43.segment_test(const, ("w", "s", "n", 0))["reject"], stats43.segment_test(const, ("w", "s", "n", 0))["all_zero_spread"]))
+    r = attempt("segment_test on the constant segment: reject, all zero spread", lambda: (stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0))["reject"], stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0))["all_zero_spread"]))
     print("CAVE8-06 ties, degenerate lags and tolerances")
     print("  no tie-share rule is applied (Amendment 1, A5); tied patterns are kept as patterns of their own")
     print("  degenerate lags are left out of T and the segment is flagged; all-degenerate counts as not rejecting (plan, section 4.3)")

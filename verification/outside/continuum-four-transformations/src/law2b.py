@@ -7,8 +7,8 @@ D first differences, O4 order 4, E event-rich domain, B block maxima, R normal s
 import math
 import numpy as np
 import patterns
+import keys
 import ranks
-import seeds
 
 
 # T1 gauge: W ------------------------------------------------------------------------------------------------
@@ -36,9 +36,12 @@ def whiten_W(x):
 
 # T4 spectral shift: F -----------------------------------------------------------------------------------------
 def white_floor_F(x, key):
-    """Independent Gaussian noise with standard deviation 1/1000 of the segment's standard deviation, added first."""
+    """Independent Gaussian noise with standard deviation 1/1000 of the segment's standard deviation, added first. key is the full key of
+    the noise draw, keys.f_noise(...): the key the draw has without the instance, with net law2b-F:<run> and purpose law2b-F (D14)."""
     x = np.asarray(x, dtype=np.float64)
-    rng = seeds.rng_for(*key, "law2b-F", 0)
+    if not (isinstance(key, tuple) and len(key) == 6):
+        raise ValueError("a noise key has six fields")
+    rng = keys.rng(key)
     return x + (x.std() / 1000.0) * rng.standard_normal(len(x))
 
 
