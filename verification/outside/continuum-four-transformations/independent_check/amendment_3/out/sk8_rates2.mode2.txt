@@ -1,0 +1,4 @@
+200 cascades (seeds sha256 'A3verify|rate|i'): exp-mapped cascade (exp of the standardised cascade) lost distinct values or overflowed in 0 (0.000); exp(z) overflowed or merged where max z above 709.78: 0; max z quantiles 5/50/95%: 112/186/357, largest 480
+exp of the re-standardised exp-mapped cascade overflowed in 186 of 200 (0.930)
+centred form exp(z - (max z + min z)/2) lost distinct values in 14 of 200 (0.070)
+rate of the loss in the centred form 0.070, 95% Wilson interval 0.042 to 0.114; the author's 2 of 10 is outside it

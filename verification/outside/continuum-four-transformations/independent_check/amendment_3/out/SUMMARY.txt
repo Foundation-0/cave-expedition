@@ -1,0 +1,27 @@
+sk_keys: modes IDENTICAL; rc=0 stderr_bytes=0; md5 b1d1e7466ecc006af7db2404a5984bda
+sk_keys2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 af41bb5e21b282eb9f55d6b9dc255180
+sk_keys3b: modes IDENTICAL; rc=0 stderr_bytes=0; md5 91cb76193fefd95f862f9f188912cc34
+sk_keys4: modes IDENTICAL; rc=0 stderr_bytes=0; md5 680850560e57c6c615115fd697448ca9
+sk_keys5: modes IDENTICAL; rc=0 stderr_bytes=0; md5 19b69159af924fe357ac16636670dc68
+sk_mustfail: modes IDENTICAL; rc=0 stderr_bytes=0; md5 a8a45316c01c1ba39c7e26f30811f824
+sk_counts: modes IDENTICAL; rc=0 stderr_bytes=0; md5 3a4d14e5744ef644286cb55485c288d0
+sk8_maps: modes IDENTICAL; rc=0 stderr_bytes=0; md5 0ded303f321f32150a56fab048943c47
+sk8_rates2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 8a767b121f89c7b5e45f027c6eaa14ff
+sk8_proxy2: modes IDENTICAL; rc=0 stderr_bytes=0; md5 be1f6d562ab1a1d97bc13981948112da
+sk9_compute: modes IDENTICAL; rc=0 stderr_bytes=0; md5 15d670736fbe1ecd90e86bef0034024f
+sk_quotes: modes IDENTICAL; rc=0 stderr_bytes=0; md5 2963cd8c57a81abbdbb8937ee3f937f5
+test_counts: modes IDENTICAL; rc=0 stderr_bytes=0; md5 b358db39f4e4d94d6954bf531e25fbfc
+outcomes: modes IDENTICAL; rc=0 stderr_bytes=0; md5 e0a6397d4d94a46274c857b17815f7b9
+seed_keys: modes IDENTICAL; rc=0 stderr_bytes=0; md5 fd3390d7d2b28da86421e922561e1d3a
+  seed_keys mode1 equals the committed output
+  seed_keys mode2 equals the committed output
+  seed_keys mode3 equals the committed output
+compute_k3: modes IDENTICAL; rc=0 stderr_bytes=0; md5 f3ee9206c8b7e051c02d2425e816c8eb
+  compute_k3 mode1 equals the committed output
+  compute_k3 mode2 equals the committed output
+  compute_k3 mode3 equals the committed output
+amp_maps: modes IDENTICAL; rc=0 stderr_bytes=0; md5 964f513d790042316847f20a6a5cd18c
+  amp_maps mode1 equals the committed output
+  amp_maps mode2 equals the committed output
+  amp_maps mode3 equals the committed output
+published files equal to the manifest: 27 of 27

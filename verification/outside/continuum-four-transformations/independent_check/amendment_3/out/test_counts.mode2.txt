@@ -1,0 +1,7 @@
+# counts
+CLAIM count40 | confirmatory family, section 9 table | text=40 | mine=40 | REPRODUCED
+INFO instances per column from the 12a table: {'a': 8, 'b': 7, 'c': 6}
+CLAIM count102 | 24 + 42 + 36 from the 12a table | text=102 | mine=102 | REPRODUCED
+CLAIM thr102 | 0.05/102 | text=0.000490 | mine=0.000490 | REPRODUCED
+CONTROL wrong family size 93 flagged | wrong input flagged = True
+DONE test_counts

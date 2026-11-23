@@ -1,0 +1,7 @@
+K1: events 6,884, distinct keys 1,001, owners 1,001, key collisions 0, owner with two keys 0
+K2: events 36,400, distinct keys 36,000, owners 36,000, key collisions 0, owner with two keys 0
+K3: events 13,000, distinct keys 9,600, owners 9,600, key collisions 0, owner with two keys 0
+K4 streams the criteria score: events 4,050, distinct keys 4,040, owners 4,040, key collisions 0, owner with two keys 0
+K4 every kind, split, run: events 8,680, distinct keys 8,660, owners 8,660, key collisions 0, owner with two keys 0
+K5 the 10 series sets of B9: events 11,150, distinct keys 11,130, owners 11,130, key collisions 0, owner with two keys 0
+K5 every case, split, run: events 46,420, distinct keys 46,400, owners 46,400, key collisions 0, owner with two keys 0
