@@ -1,0 +1,35 @@
+name: twin-coherence
+
+"on":
+  push:
+  pull_request:
+
+jobs:
+  twin-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check out the twin repo (Foundation-0/aletheia)
+        uses: actions/checkout@v4
+        with:
+          repository: Foundation-0/aletheia
+          path: aletheia
+
+      - name: Install the aletheia CLI from the twin repo (zero external dependencies)
+        run: |
+          python3 -m pip install --no-deps ./aletheia
+
+      - name: Machine-check the claims the two repos make about each other
+        run: |
+          if python3 -m aletheia twin-check --help > /dev/null 2>&1; then
+            python3 -I -O -B -W error -m aletheia twin-check \
+              --aletheia-root "$GITHUB_WORKSPACE/aletheia" \
+              --cave-root "$GITHUB_WORKSPACE" \
+              --json
+          else
+            echo "the aletheia CLI on the default branch has no twin-check command yet; skipping"
+          fi
