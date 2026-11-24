@@ -87,7 +87,7 @@ Every active expedition track reached `VERIFIED` status, except two early audits
 cave-expedition/
 ├── README.md                                  # Executive map, 8-way Schur claim with its Gate-5 ruling, ledger & repro guide
 ├── LICENSE                                    # Apache License 2.0
-├── AGENTS.md                                  # Draft for the owner: the repo's rules for agents, with sources
+├── AGENTS.md                                  # Draft for the owner: rules for agents, with sources; new items marked as proposals
 ├── cartography/
 │   ├── session1_instrument_map.md             # Extracted mathematical objects, operators/sheaves & falsifiable entry points (Session 1)
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
@@ -101,7 +101,7 @@ cave-expedition/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2); status and successor note at the top
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
     ├── OUTSIDE_RULINGS_INDEX.md               # Internal label beside the outside ruling, per audit (single source)
-    ├── outside/                               # Outside-observer checks and rulings (contributed from outside; not edited by the team)
+    ├── outside/                               # Outside-observer checks and rulings (a contribution from outside the team; see its README, "Standing")
     └── checks/                                # 14 numbered check scripts (check_001..check_014) plus verify_round10_standalone.py
         ├── check_001_lemma32_and_tcb.py
         ├── check_002_session1_instruments.py
