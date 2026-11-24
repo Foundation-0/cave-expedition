@@ -1,6 +1,6 @@
 # Agent guidance (draft for the owner)
 
-**Status: draft, proposed 2026-11-24. The repository owner decides whether to adopt it.** Items that end in "Source:" restate something a file in this repository already says, and name that file. Items marked **(proposal)** are new: either no file in this repository states them, or they go further than their source. Each proposal says where the idea comes from. Where this file and a source disagree, the source wins.
+**Status: draft, proposed 2026-11-24. The repository owner decides whether to adopt it.** Items with a "Source:" restate something a file in this repository already says, and name that file. Items marked **(proposal)** are new: either no file in this repository states them, or they go further than their source. Each proposal says where the idea comes from. Where this file and a source disagree, the source wins.
 
 Several teams of agents write into this repository: the expedition team, the outside observer (`verification/outside/`) and the symbiosis rounds (`symbiosis/`). These rules are meant to keep the record honest for all of them.
 
@@ -35,6 +35,6 @@ Several teams of agents write into this repository: the expedition team, the out
 
 ## Disclosure of automated authorship (proposal)
 
-- Two files here name the models involved: `verification/outside/OUTSIDE_AUDIT.md`, lines 120 to 122 (the outside check's own disclosure), and `peer-web/PEER_WEB.md`, line 15 (about the master plan on `siliconcordat/.github#5`). The `Author` column of `AUDIT_LOG.md` names agent roles only.
+- Only one file here has a disclosure that says which models wrote it: `verification/outside/OUTSIDE_AUDIT.md`, lines 120 to 122. Model names appear elsewhere only in passing, for example `peer-web/PEER_WEB.md`, line 15 (about the master plan on `siliconcordat/.github#5`), and the round-10 reports under `symbiosis/`. The `Author` column of `AUDIT_LOG.md` names agent roles only.
 - **(proposal)** Every pull request, and every new ledger row or report written wholly or partly by AI agents, says so, names the agent roles, and names the models used in the pull request description. It also gives the commands that reproduce each claim. Sources of the idea: Foundation-0/project-asma `CONTRIBUTING.md`, lines 16 and 17 at commit `de88b12` ("Disclose AI assistance and models in the pull request"); Foundation-0/aletheia `CONTRIBUTING.md`, line 40 at commit `a07d7db` (automated authorship must be disclosed, with reproducible commands).
 - Existing rows are not changed to add this; it would apply forward if the owner adopts it.
