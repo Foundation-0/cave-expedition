@@ -125,6 +125,32 @@ python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
 ```
 
+### R5 Must-Fail Controls (`verification/tests/`)
+
+PROTOCOL.md R5 asks for a must-fail control for every named check, and that deleting any refusal branch turns the test suite red. These team-side suites cover the three verifiers that run from a fresh clone. Each control trips one refusal and compares its full message. `check_003_seam01_ropt.py` is not edited: the suite loads it with `importlib` and drives each guard by patching the helper that feeds it, so its bytes keep the sha256 `ae239507...feac86` that the outside Gate-5 anchor recorded. The `check_totals.py` suite copies that script and the files it reads into a temporary directory; nothing under `verification/outside/` is written.
+
+```bash
+python3 -I -B verification/tests/test_check_003_r5.py          # about 7 s
+python3 -I -B verification/tests/test_verify_round10_r5.py
+python3 -I -B verification/tests/test_check_totals_r5.py
+```
+
+Run each under `-I -O -B` and `-I -B -W error` as well. Kill rates were measured on 2026-11-24 with [`Foundation-0/aletheia`](https://github.com/Foundation-0/aletheia) at commit `a07d7db` (`aletheia mutate`, exhaustive: `--max-mutants 0`, so no discovered site was skipped). Run from the repository root, with `<aletheia>` a clone of that repository:
+
+```bash
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/checks/check_003_seam01_ropt.py --work-root . --max-mutants 0 --timeout 120 --test-cmd "python3 -I -B verification/tests/test_check_003_r5.py"
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/checks/verify_round10_standalone.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_verify_round10_r5.py"
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/outside/check_totals.py --work-root . --max-mutants 0 --guards need --test-cmd "python3 -I -B verification/tests/test_check_totals_r5.py"
+```
+
+| Verifier | Mutants killed | Time |
+|---|---|---|
+| `check_003_seam01_ropt.py` | 68 of 68 | about 7 min 20 s |
+| `verify_round10_standalone.py` | 11 of 11 | about 7 s |
+| `outside/check_totals.py` (`need` treated as a guard) | 14 of 14 | about 15 s |
+
+What these numbers do and do not show: aletheia mutates a temporary copy (the files here are unchanged) and runs the test command under `-I -O -B`. It applies two operators at refusal sites, guard deletion and comparison-boundary flips, so a full kill rate says every such site has a control that notices it. It does not say the checks are complete or correct. Two `check_003` boundaries are never reached by its seeded data, and their controls patch a helper to reach them: exactly 50 regime-1 instances (every S scaled by 10012/10000) and a construction error of exactly `1e-9` (`abs` shadowed in the module). A run without the second control killed 67 of 68; the survivor was the `err < 1e-09` to `err <= 1e-09` flip on line 711.
+
 ### Cross-Repository Audit Suite (`check_001` – `check_012`)
 
 Scripts `check_004`–`check_012` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
