@@ -1,0 +1,16 @@
+REAL d8_s1 {"D1_zero":true,"D2_zero":true,"S_inertia":[1,0,35],"S_lat_inertia":[1,0,63],"S_zero":false,"collapse":true,"cross_direct_equal":true,"dimSigma":21,"dim_ker_Mrot":1}
+PASS real lattice: collapse and D1 zero and D2 zero
+FAMILY c1 {"D1_zero":200,"D2_zero":199,"D2_zero_among_nonzero_S":0,"S_rank_hist":{"0":199,"1":1},"S_zero":199,"collapse":1,"cross_direct_equal":[true,true,true,true,true,true,true,true],"dimSigma_hist":{"20":199,"21":1},"dim_ker_Mrot_hist":{"0":199,"1":1},"n":200,"nonzero_S":1}
+PASS c1: self-stress engine equals direct Schur on the cross-checked trials
+FAMILY c2 {"D1_zero":200,"D2_zero":0,"D2_zero_among_nonzero_S":0,"S_rank_hist":{"1":200},"S_zero":0,"collapse":200,"cross_direct_equal":[true,true,true,true,true,true,true,true],"dimSigma_hist":{"21":200},"dim_ker_Mrot_hist":{"1":200},"n":200,"nonzero_S":200}
+PASS c2: self-stress engine equals direct Schur on the cross-checked trials
+FAMILY c3 {"D1_zero":200,"D2_zero":200,"D2_zero_among_nonzero_S":0,"S_rank_hist":{"0":200},"S_zero":200,"collapse":0,"cross_direct_equal":[true,true,true,true,true,true,true,true],"dimSigma_hist":{"20":200},"dim_ker_Mrot_hist":{"0":200},"n":200,"nonzero_S":0}
+PASS c3: self-stress engine equals direct Schur on the cross-checked trials
+FAMILY c4 {"D1_zero":200,"D2_zero":0,"D2_zero_among_nonzero_S":0,"S_rank_hist":{"1":200},"S_zero":0,"collapse":200,"cross_direct_equal":[true,true,true,true,true,true,true,true],"dimSigma_hist":{"21":200},"dim_ker_Mrot_hist":{"1":200},"n":200,"nonzero_S":200}
+PASS c4: self-stress engine equals direct Schur on the cross-checked trials
+PASS every sampled lattice has |det| equal to the real one; first 20 per family have the same Smith form (scale 1)
+CONTROL-DETECTED a wrong pullback R makes the D1 defect nonzero on a collapsing random lattice
+CONTROL-DETECTED breaking the symmetry of a symmetric random lattice destroys the collapse
+OBJECT_SHA256 null_lattices_d8_s1.json 7689d39eed8473921a822e99886f333e0a28c025c9d15645ce55ac55e7f61e9f
+SUMMARY_SHA256 6c5787671b585b43c10820347c6d868c7e8c6b8467da75fff9851e5ead7bc3aa
+FAILS 0

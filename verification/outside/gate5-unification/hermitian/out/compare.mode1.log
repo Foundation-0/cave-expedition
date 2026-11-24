@@ -1,0 +1,107 @@
+== objects: L points=17 G points=14 S points=12 (S candidate draws rejected outside regime 1: 82)
+
+== 3a  invariants (inertia is (pos,neg,zero); classes are (sign, squarefree part) mod squares and (sign, primes 3 mod 4) mod norms of Q(i))
+S  full G (2x2, pivot b | reduced S-t^2/b): kind 'symmetric' x12 | rank 2 x12 | inertia [2, 0, 0] x12
+S  pivot b inertia [1, 0, 0] x12 | reduced inertia [1, 0, 0] x12
+S  det G class mod squares [1, 1454431] x1; [1, 180480365763305] x1; [1, 181662346356985] x1; [1, 18600701956990] x1; [1, 1917841577810] x1; [1, 207146005] x1; [1, 232403126153010] x1; [1, 602703073605] x1; [1, 60331672747270] x1; [1, 644538570] x1; [1, 6600005192145] x1; [1, 67198138490] x1
+S  det G class mod norms   [1, 1454431] x1; [1, 1] x1; [1, 2143] x1; [1, 23240312615301] x1; [1, 354892192631] x1; [1, 49089] x1; [1, 596249] x1; [1, 6719813849] x1; [1, 7037] x1; [1, 913] x1; [1, 93] x1; [1, 954573] x1
+S  reduced class (S - t^2/b) mod squares [1, 180480365763305] x1; [1, 181662346356985] x1; [1, 18600701956990] x1; [1, 1917841577810] x1; [1, 232403126153010] x1; [1, 2908862] x1; [1, 322269285] x1; [1, 33599069245] x1; [1, 414292010] x1; [1, 602703073605] x1; [1, 60331672747270] x1; [1, 6600005192145] x1 | mod norms [1, 1454431] x1; [1, 1] x1; [1, 2143] x1; [1, 23240312615301] x1; [1, 354892192631] x1; [1, 49089] x1; [1, 596249] x1; [1, 6719813849] x1; [1, 7037] x1; [1, 913] x1; [1, 93] x1; [1, 954573] x1
+S  bordered lift B (3x3, pivot G | corner): kind 'symmetric' x12 | inertia [2, 1, 0] x12 | pivot inertia [2, 0, 0] x12 | reduced inertia [0, 1, 0] x12
+S  Hermitian carrier M (n x n over Q(i)): n 3 x5; 4 x7 | kind 'hermitian' x12 | rank 3 x6; 4 x6 | inertia [2, 1, 0] x1; [2, 1, 1] x1; [3, 0, 0] x4; [3, 1, 0] x1; [4, 0, 0] x5
+S  chain rank P >= rank P_perp >= n+(H_perp) >= R_opt holds: True x12 | R_opt == u^2 (G^{-1})_11: True x12 | R_opt == -Schur(B): True x12
+L  full (16x16, pivot witness 8x8 | reduced invariant 8x8): kind 'neither' x17 | rank 14 x17 | det '0' x17 | inertia of symmetric part [0, 12, 4] x17
+L  pivot kind 'neither' x2; 'symmetric' x15 | pivot inertia of symmetric part [0, 8, 0] x17 | reduced kind 'neither' x2; 'symmetric' x15 | reduced rank 6 x17 | reduced inertia (if symmetric) None x2; [0, 6, 2] x15
+L  pivot det class mod squares (anchor/omega=0 points) [1, 1] x12
+L  pseudo-determinant of the reduced 8x8 (product of nonzero diagonal entries) class mod squares / norms, omega=0 points: ([1, 1], [1, 1]) x6
+G  full H2 (3x3, pivot (chi,p) | reduced P): kind 'symmetric' x14 | rank 2 x1; 3 x13 | inertia [2, 0, 1] x1; [2, 1, 0] x5; [3, 0, 0] x8
+G  pivot inertia [2, 0, 0] x14 | reduced S_P inertia [0, 0, 1] x1; [0, 1, 0] x5; [1, 0, 0] x8
+G  reduced S_P class mod squares None x1; [-1, 108205] x1; [-1, 1] x1; [-1, 203] x1; [-1, 2] x1; [-1, 3] x1; [1, 135807] x1; [1, 14145] x1; [1, 2805] x1; [1, 35] x1; [1, 4947591] x1; [1, 510] x1; [1, 58485] x1; [1, 7527] x1 | mod norms None x1; [-1, 1273] x1; [-1, 1] x2; [-1, 3] x1; [-1, 7] x1; [1, 15807] x1; [1, 21] x1; [1, 33] x1; [1, 3] x2; [1, 4683] x1; [1, 69] x1; [1, 7] x1
+G  det H2 class mod squares None x1; [-1, 1938] x1; [-1, 1] x1; [-1, 30] x1; [-1, 42] x1; [-1, 7] x1; [1, 15] x1; [1, 1] x1; [1, 230] x1; [1, 31614] x1; [1, 51] x1; [1, 546] x1; [1, 58] x1; [1, 66] x1
+G  S_P == -G_AA/(4 r) exactly: True x14 | sign(G_AA) vs inertia: (G_AA<0 <-> (3,0,0)), (=0 <-> (2,0,1)), (>0 <-> (2,1,0)): ('neg', (3, 0, 0)) x8; ('pos', (2, 1, 0)) x5; ('zero', (2, 0, 1)) x1
+
+== 3b  function family
+sign of the coupling cycle product x_12*x_21 of the pivot/rest pair: S '+' x12 | L (minimal 2x2 carrier of Gamma_eff) '-' x17 | G: coupling is symmetric by construction; the 2x2 pivot is eliminated in two nested steps: True x14
+L  coupling product is exactly -4 g^2 at every omega=0 point (checked); S coupling product is t^2 >= 0
+  minimal (deg N, deg D): (1, 1) <- G: S_P(Kpp), KB=1,lam=1,r=9
+  minimal (deg N, deg D): (1, 2) <- G: S_P(r), KB=1,lam=1,Kpp=4
+  minimal (deg N, deg D): (2, 0) <- L: Gamma_eff(g), N=2,gamma1=1/4,gt=1/100
+  minimal (deg N, deg D): (1, 1) <- L: Gamma_eff(gamma1), N=1,g=3/2,gt=1/100
+  minimal (deg N, deg D): (0, 1) <- S: R_opt(S) = u^2 (G^-1)_11, u=5,t=3,b=2
+  minimal (deg N, deg D): (0, 2) <- S: R_opt(t), u=5,S=50,b=2
+G  linear relations (with constant) among the 6 Hessian entries across the 14 points: 1 independent; m01 == m02 at every point: True x14
+Schur determinant formula det(X)=det(pivot) det(reduced) at all points of all three domains: True x43 (identity of block elimination, no domain content)
+G  (H2^-1)_PP == 1/S_P == -4r/G_AA where H2 is invertible: None x1; True x13
+
+== 3c  equivalence verdicts, partition respecting, over Q(i) (Landherr: dimension, signature, determinant mod norms) for symmetric/Hermitian objects
+  S_G     vs S_B     : 1_size x144
+  S_G     vs L_A     : 2_symmetry_type x204
+  S_G     vs L_full  : 1_size x204
+  S_G     vs G_H2    : 1_size x168
+  S_B     vs L_A     : 1_size x204
+  S_B     vs L_full  : 1_size x204
+  S_B     vs G_H2    : 5_reduced_inertia x108; 6_pivot_det_class x59; 7_reduced_det_class x1
+  L_A     vs L_full  : 1_size x289
+  L_A     vs G_H2    : 1_size x238
+  L_full  vs G_H2    : 1_size x238
+  within S_B     (instance pairs): 6_pivot_det_class x66
+  within G_H2    (instance pairs): 5_reduced_inertia x53; 6_pivot_det_class x31; 7_reduced_det_class x7
+  S_B vs G_H2 allowing a rational unit rescale c>0: 5_reduced_inertia x108; 6_pivot_det_class x59; equivalent_over_Q(i)_after_unit_rescale x1
+  L_A under the Q(i) gauge diag(1,i): (complex-symmetric, Hermitian, Schur value unchanged) = (True, False, True) x15
+  L_A real diagonal similarity can never make the coupling symmetric: needs rho^2 = -1; cycle product x12*x21 = -4g^2 < 0 is invariant
+  L_A discriminant sign (underdamped=neg / EP2=zero / overdamped=pos) over omega=0 points: 'neg' x5; 'pos' x10 ; a real symmetric 2x2 always has disc >= 0
+
+== sharpness / exactness of the reduced quantity
+L  Schur value is NOT an exact eigenvalue of the 2x2 block (char poly residual != 0) at points: True x15
+L  Schur complement of the symmetric part has IX entry -2*gamma_tid (no g), differs from the Schur entry of L itself: (no-g, differs) = (True, True) x17
+G  min over (chi,p) of H2 at P=1 equals S_P/2 exactly: True x14
+S  rank P >= max(1, ceil R_opt) and equality (the bound is attained at the point) over instances: (bound held, attained) = (True, False) x7; (True, True) x5
+
+== 3d  matched null (seeded)
+property                                     | S(G 2x2)  | G(H2 3x3) | L(16x16)  | L_A(2x2)  | shared(S,G,L) | null_sym2   | null_sym3   | null_gen16  | null_gksl16 | null_gen2  
+pivot_invertible                             | 12/12     | 14/14     | 17/17     | 17/17     | YES            | 221/240     | 233/240     | 240/240     | 240/240     | 219/240    
+pivot_definite                               | 12/12     | 14/14     | 17/17     | 17/17     | YES            | 221/240     | 64/240      | 0/240       | 240/240     | 219/240    
+pivot_positive_definite                      | 12/12     | 14/14     | 0/17      | 0/17      | no             | 98/240      | 30/240      | 0/240       | 0/240       | 98/240     
+pivot_negative_definite                      | 0/12      | 0/14      | 17/17     | 17/17     | no             | 123/240     | 34/240      | 0/240       | 240/240     | 121/240    
+pivot_sign_normalised_full_semidefinite      | 12/12     | 9/14      | 17/17     | 17/17     | no             | 56/240      | 5/240       | 0/240       | 240/240     | 63/240     
+reduced_sign_matches_pivot_sign              | 12/12     | 9/14      | 17/17     | 17/17     | no             | 56/240      | 5/240       | 0/240       | 240/240     | 113/240    
+schur_lowers_diag_in_pivot_sign              | 12/12     | 14/14     | 0/17      | 0/17      | no             | 221/240     | 64/240      | 0/240       | 81/240      | 119/240    
+pivot_pd_and_schur_negative                  | 0/12      | 5/14      | 0/17      | 0/17      | no             | 78/240      | 28/240      | 0/240       | 0/240       | 43/240     
+coupling_reciprocal_sym                      | 12/12     | 14/14     | 0/17      | 0/17      | no             | 221/240     | 233/240     | 0/240       | 81/240      | 22/240     
+coupling_antisym                             | 0/12      | 0/14      | 17/17     | 17/17     | no             | 0/240       | 0/240       | 0/240       | 159/240     | 20/240     
+pivot_diagonal                               | 12/12     | 0/14      | 15/17     | 17/17     | no             | 221/240     | 16/240      | 0/240       | 80/240      | 219/240    
+reduced_diagonal                             | 12/12     | 14/14     | 15/17     | 17/17     | no             | 221/240     | 233/240     | 0/240       | 61/240      | 219/240    
+coupling_rank_le_1                           | 12/12     | 14/14     | 0/17      | 17/17     | no             | 221/240     | 233/240     | 0/240       | 81/240      | 219/240    
+full_singular                                | 0/12      | 1/14      | 17/17     | 0/17      | no             | 1/240       | 4/240       | 0/240       | 240/240     | 15/240     
+haynsworth_applies                           | 12/12     | 14/14     | 0/17      | 0/17      | no             | 221/240     | 233/240     | 0/240       | 4/240       | 22/240     
+properties held by every sampled point of all three real sets: ['pivot_invertible', 'pivot_definite']
+joint null rate (matched triples sym2, sym3, gen16 each holding all shared properties): 0/240
+joint null rate (matched triples sym2, sym3, gksl16 each holding all shared properties): 60/240
+sign-normalised statement 'pivot definite and the whole symmetric part semidefinite with the pivot sign': S 12/12, G 9/14, L 17/17
+equivalence (S_B ~ partition-respecting up to unit rescale) rate: real S_B vs G_H2 1/168; S_B vs random symmetric 3x3 (2|1) 12/1401
+coincident pair (seeded_3, IR_clustering), strict verdict under unit rescale of the S_B side: c=1:7_reduced_det_class; c=3/7:7_reduced_det_class; c=5:7_reduced_det_class; c=2:7_reduced_det_class
+  the rescale that works is c* = 191784157781/99632342348000; strict verdict at c*: equivalent_over_Q(i) (a unit choice for one pair, not a family-wide map)
+
+== 3e  invariance of the conclusions
+  structural conclusions (kind, pivot sign/inertia, reduced inertia, antisymmetric part) unchanged under basis_change(congruence, partition respecting): 60/60
+  structural conclusions (kind, pivot sign/inertia, reduced inertia, antisymmetric part) unchanged under unit_rescale(c=3/7 and c=5): 120/120
+  verdict (first failing condition) unchanged when one object is unit-rescaled: {'L_A/G_H2': '476/476', 'S_B/G_H2': '336/336', 'S_G/G_H2': '336/336', 'S_G/L_A': '408/408'}
+  (a verdict that changes under rescale can only be a determinant-class condition, 6 or 7; structural conditions 1-5 never change)
+  S: R_opt invariant under (u,t,S)->(cu,ct,c^2 S): True x6
+  L: Gamma_eff scales with c under (gamma1,g,gamma_tid)->c(.) (time unit change), signs and inertia fixed: True x6
+  G: (G_AA invariant, S_P scales as 1/c) under (Kpp,r)->c(Kpp,r): (True, True) x8
+
+== must-fail controls
+  control inertia of a non-Hermitian matrix is refused                   rejected (good)
+  control wrong R_opt = u^2/(S + t^2/b) matches no point                 rejected (good)
+  control sign-flipped Gamma_eff = 2gt - 2g^2/gcm matches no point       rejected (good)
+  control sign-flipped min H2 = +G_AA D^2/2k^2 matches no point with G_AA != 0 rejected (good)
+  control equivalence tester accepts S_G ~ L_A                           rejected (good)
+  control positive control: congruent copy of B is NOT recognised as equivalent (tester broken) rejected (good)
+  control canonical JSON hash does not distinguish tampered objects      rejected (good)
+  control random 16x16 is not flagged antisymmetric-coupled in >5% of draws rejected (good)
+  object file aest_gravity_hamiltonian.json sha256=431ba7ba9c623b458e5aadc581c0ad8140aa02b188b25b221a01b32c1afa98b3 matches regenerated: True
+  object file open_quantum_liouvillian.json sha256=65336d6e8393c803b1dde4d6560e16ad922602864203564a4298927b370ca191 matches regenerated: True
+  object file spectral_inertia_hermitian.json sha256=b903837006f775341b4608a35d58ed51c92370498acd7522db01150ff4b2378e matches regenerated: True
+  control tampered object text is not detected                           rejected (good)
+
+RESULT compare: PASS controls=9 failures=0

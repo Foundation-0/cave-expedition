@@ -1,0 +1,535 @@
+[
+  {
+    "id": "G5-01",
+    "statement": "Every predicate that can be read out of README section 1, Portal 10 and SF-01 (Schur complement exists, Haynsworth inertia additivity, congruence to diag(A, S), determinant and quotient identities, Loewner monotonicity) is a theorem for any block system with an invertible pivot, so the stated criterion does not separate the listed rows from unrelated systems.",
+    "verdict": "VERIFIED",
+    "oracle_class": "sampled",
+    "scope": "Two panels of 360 systems (seeds 20261121, 11235813; sizes 2 to 12) and a third independent panel of 576 (sizes 2 to 10), over Q and Q(i). Every test passes wherever its hypothesis holds. Partition scrambling leaves the pass count of every theorem test unchanged. The pseudo-inverse form exists for every matrix. Inertia additivity with it is guaranteed when the range condition A A^+ B = B holds (the matrix is then congruent to diag(A, S)), so the condition is sufficient. It is not necessary. Exact witnesses with symmetric M = [[A,B],[B^T,D]]: (1) A = [[-1,-1],[-1,-1]], B = [-1,-1]^T, D = [-1]: the condition holds and In(M) = (0,1,2) = (0,1,1) + (0,0,1). (2) A = [0], B = [1], D = [0]: the condition fails and In(M) = (1,1,0) is not (0,0,2). (3) A = [0], B = [[1,0]], D = [[0,1],[1,0]]: the condition fails and the inertia still adds, (1,1,1) = (0,0,1) + (1,1,0). In exhaustive small searches (entries in {-1,0,1}) the condition held in 75 and 27 of 243 systems with additivity in every one, and failed in 168 and 216 with additivity in 0 and 32. It fails in 6 of 720 systems of the panels. The identities themselves are textbook theorems (exact argument); the pass counts are sampled.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/PREDICATE.md",
+      "predicate/RESULTS.md",
+      "predicate/results.json",
+      "predicate/p_check.py",
+      "predicate/null_panel.py",
+      "second/out/c1_block.txt",
+      "second/src/c1_block.py",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/oth.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-01",
+        "statement": "Every predicate that can be read out of README section 1, Portal 10 and SF-01 (Schur complement exists, Haynsworth inertia additivity, congruence to diag(A, S), determinant and quotient identities, Loewner monotonicity) is a theorem for any block system with an invertible pivot, so the stated criterion does not separate the listed rows from unrelated systems.",
+        "verdict": "VERIFIED",
+        "oracle_class": "sampled",
+        "scope": "Two panels of 360 systems (seeds 20261121, 11235813; sizes 2 to 12) and a third independent panel of 576 (sizes 2 to 10), over Q and Q(i). Every test passes wherever its hypothesis holds. Partition scrambling leaves the pass count of every theorem test unchanged. The pseudo-inverse form exists for every matrix, but inertia additivity with it needs the range condition A A^+ B = B (fails in 6 of 720 systems). The identities themselves are textbook theorems (exact argument); the pass counts are sampled.",
+        "novelty": "N0",
+        "evidence": [
+          "predicate/PREDICATE.md",
+          "predicate/RESULTS.md",
+          "predicate/results.json",
+          "predicate/p_check.py",
+          "predicate/null_panel.py",
+          "second/out/c1_block.txt",
+          "second/src/c1_block.py"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "The earlier scope said inertia additivity with the pseudo-inverse form 'needs' the range condition. The condition is sufficient but not necessary. Three exact witnesses show both directions."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact witnesses and exhaustive small searches, two checkers that share no code; panel counts sampled."
+  },
+  {
+    "id": "G5-02",
+    "statement": "Row 4 is a (min,+) system with no additive inverse, so no additive Schur complement exists for that object itself. Its Q[q] lift has an exact elimination (G5-13, G5-18). Row 6 is a non-Hermitian Liouvillian: inertia is undefined, its coupling is antisymmetric (exactly +-2g at the 15 points with omega = 0) and its pivot is negative definite, so no minimum exists (17 of 17 points). The quadratic form of M does not see the coupling: the Schur complement of its symmetric part is the symmetric part of D, not S(M). Both rows lie outside the invariant as SF-01 states it.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Row 4: the (min,+) semiring; control reports that no additive Schur complement exists. Row 6: 17 sampled parameter points of the Liouvillian object; the symmetric-part inertia, antisymmetric coupling and negative-definite pivot hold at all 17. Other Liouvillian parameters were not tested. Law 2b recheck by two checkers: the coupling is exactly +-2g at 15 of 15 omega = 0 points, and the Schur complement of the symmetric part equals the symmetric part of D at 17 of 17.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "hermitian/objects/open_quantum_liouvillian.json",
+      "hermitian/out/compare.mode1.log",
+      "hermitian/src/compare.py",
+      "tropical/out/mode1/s4row4.json",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r6.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-02",
+        "statement": "Row 4 is a (min,+) system with no additive inverse, so no additive Schur complement exists. Row 6 is a non-Hermitian Liouvillian: inertia is undefined, its coupling is antisymmetric and its pivot is negative definite, so no minimum exists (17 of 17 points). Both lie outside the invariant as SF-01 states it.",
+        "verdict": "VERIFIED",
+        "oracle_class": "exact",
+        "scope": "Row 4: the (min,+) semiring; control reports that no additive Schur complement exists. Row 6: 17 sampled parameter points of the Liouvillian object; the symmetric-part inertia, antisymmetric coupling and negative-definite pivot hold at all 17. Other Liouvillian parameters were not tested.",
+        "novelty": "N0",
+        "evidence": [
+          "predicate/RESULTS.md",
+          "hermitian/objects/open_quantum_liouvillian.json",
+          "hermitian/out/compare.mode1.log",
+          "hermitian/src/compare.py",
+          "tropical/out/mode1/s4row4.json"
+        ],
+        "second_checker": false,
+        "superseded_on": "2026-11-22",
+        "reason": "Two additions found by the Law 2b search: the (min,+) statement is about the (min,+) object itself and its Q[q] lift does have an exact elimination; the quadratic form of the Liouvillian does not see the coupling. The earlier wording left both open."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic, two checkers that share no code."
+  },
+  {
+    "id": "G5-03",
+    "statement": "Row 8 cites AUDIT-010, whose ledger entry contains no Kron-reduction or Schur reduction, and Portal 10 marks the row as routed to a probe, not built.",
+    "verdict": "VERIFIED",
+    "oracle_class": "anchor",
+    "scope": "Ledger text read at the pr1 and pr4 commits. The row 8 object was not built or run.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/PREDICATE.md",
+      "predicate/RESULTS.md"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-04",
+    "statement": "No equivalence exists among the three matrix rows tested (spectral inertia, the Liouvillian, AeST). Each pairing fails on size, symmetry type or inertia of the reduced block, or on a determinant class. No transformation in the seven families rescues the equivalence non-vacuously (Law 2b, G5-20).",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Equivalence over Q(i) by dimension, signature and determinant class (Landherr), partition respecting. Cross-domain pairs: 108 of 168 spectral inertia against AeST fail on reduced inertia, 59 on the pivot determinant class and 1 on the reduced determinant class. The one near-match holds only after a unit rescale chosen for that pair (1 of 168 real pairs against 12 of 1,401 random symmetric 3x3 pairs, sampled). Only one regime of R_opt is a Schur value (51 of the ledger's own 420 instances). Equivalence over Q by Hasse invariants was not tested. Law 2b recheck, square classes of rational determinants (a different class group from the Q(i) norm classes above, so the counts differ): 0 of 168 pairs agree. 108 fail on the inertia of the reduced block, 60 more on the square class of det A, and every one of the 168 fails on the square class of both det A and det S. A global shift M + 871 I makes all 38 row 1 and row 5 objects positive definite, so 168 of 168 pairs then agree in inertia, as would random pairs (vacuous). The value 871 is a bound for rows 1 and 5 only. The row 6 matrices have row sums up to about 5,003, and sym(M) + 871 I is positive definite at only 15 of its 17 points.",
+    "novelty": "N0",
+    "evidence": [
+      "hermitian/out/compare.mode1.log",
+      "hermitian/out/anchor_check003.stdout",
+      "hermitian/src/compare.py",
+      "hermitian/objects/spectral_inertia_hermitian.json",
+      "hermitian/objects/open_quantum_liouvillian.json",
+      "hermitian/objects/aest_gravity_hamiltonian.json",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r156.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-04",
+        "statement": "No equivalence exists among the three matrix rows tested (spectral inertia, the Liouvillian, AeST). Each pairing fails on size, symmetry type or inertia of the reduced block, or on a determinant class.",
+        "verdict": "VERIFIED",
+        "oracle_class": "exact",
+        "scope": "Equivalence over Q(i) by dimension, signature and determinant class (Landherr), partition respecting. Cross-domain pairs: 108 of 168 spectral inertia against AeST fail on reduced inertia, 59 on the pivot determinant class and 1 on the reduced determinant class. The one near-match holds only after a unit rescale chosen for that pair (1 of 168 real pairs against 12 of 1,401 random symmetric 3x3 pairs, sampled). Only one regime of R_opt is a Schur value (51 of the ledger's own 420 instances). Equivalence over Q by Hasse invariants was not tested.",
+        "novelty": "N0",
+        "evidence": [
+          "hermitian/out/compare.mode1.log",
+          "hermitian/out/anchor_check003.stdout",
+          "hermitian/src/compare.py",
+          "hermitian/objects/spectral_inertia_hermitian.json",
+          "hermitian/objects/open_quantum_liouvillian.json",
+          "hermitian/objects/aest_gravity_hamiltonian.json"
+        ],
+        "second_checker": false,
+        "superseded_on": "2026-11-22",
+        "reason": "Law 2b search over seven families. Added the statement that no transformation rescues the equivalence non-vacuously, the scope of the shift lambda = 871, and the square-class counts next to the norm-class counts. The earlier counts stay valid for the class group they use."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic, two checkers that share no code."
+  },
+  {
+    "id": "G5-05",
+    "statement": "For AUDIT-017 and AUDIT-019, Phi = [[I, X],[0, R_L]] gives R_el = R_lat Phi and H_el = Phi^T H_lat Phi with zero commuting defect, and a shared rank-1 stress with the same scalar on both sides. The commuting test does not single Phi out: every block-upper-triangular map also gives zero defect and dense maps never do.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Five n=8 instances (E8 s=1 and s=1/2, D8 s=1 and s=1/2, D8 at (4/3, 1/3)), exact over Q and Q(sqrt 2). Stress scalar 3/92 for E8 s=1 and 1/32 for D8 s=1. Null maps on E8 s=1 and D8 s=1: block upper triangular 200 of 200 with zero defect, dense 0 of 200, block lower triangular 0 of 200 (sampled). The identity R_el = R_lat Phi is what identifies Phi. Law 2b recheck at n = 3: 12 of 12 random block-upper-triangular maps give zero defect, 0 of 12 dense maps do, 0 of 12 satisfy R_el = R_lat Phi. The block-upper-triangular class has 162 free entries against 21 independent defect constraints (guard G2 fails) and 12 of 12 nulls pass (guard G1 fails).",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/real_A.txt",
+      "lattice/out/nullmap_e8_s1_A.txt",
+      "lattice/out/nullmap_d8_s1_A.txt",
+      "lattice/out/checker2_A.txt",
+      "lattice/out/anchor_A.txt",
+      "second/out/c2_real.txt",
+      "second/out/c2_panel.txt",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/lat.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-05",
+        "statement": "For AUDIT-017 and AUDIT-019, Phi = [[I, X],[0, R_L]] gives R_el = R_lat Phi and H_el = Phi^T H_lat Phi with zero commuting defect, and a shared rank-1 stress with the same scalar on both sides. The commuting test does not single Phi out: every block-upper-triangular map also gives zero defect and dense maps never do.",
+        "verdict": "VERIFIED",
+        "oracle_class": "exact",
+        "scope": "Five n=8 instances (E8 s=1 and s=1/2, D8 s=1 and s=1/2, D8 at (4/3, 1/3)), exact over Q and Q(sqrt 2). Stress scalar 3/92 for E8 s=1 and 1/32 for D8 s=1. Null maps on E8 s=1 and D8 s=1: block upper triangular 200 of 200 with zero defect, dense 0 of 200, block lower triangular 0 of 200 (sampled). The identity R_el = R_lat Phi is what identifies Phi.",
+        "novelty": "N0",
+        "evidence": [
+          "lattice/SPEC.md",
+          "lattice/out/real_A.txt",
+          "lattice/out/nullmap_e8_s1_A.txt",
+          "lattice/out/nullmap_d8_s1_A.txt",
+          "lattice/out/checker2_A.txt",
+          "lattice/out/anchor_A.txt",
+          "second/out/c2_real.txt",
+          "second/out/c2_panel.txt"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "Law 2b: the repaired statement (block-upper-triangular maps, family T6) is exact but is rejected by guards G1 and G2, which confirms the ruling and adds the numbers."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic, two checkers that share no code."
+  },
+  {
+    "id": "G5-06",
+    "statement": "If no diagonal D makes D L symmetric, S is zero. If such a D is unique up to scale and the stress is non-zero, S has rank 1. The converse fails (smallest witness diag(3,2,2)); the transformed statement that holds is the rank formula of G5-07 (family T6). A plain basis change of the same lattice loses the collapse in 44 of 45 small cases and 4 of 4 at n=8. A carried change, which keeps every bar vector, leaves S_el unchanged and gives S_lat' = (U^-1 x I)^T S_lat (U^-1 x I) (family T1, transformed-exact).",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "n >= 3. The proviso that the intra-cell framework has only rigid motions is removed for every n >= 3: the flex classification in Theorem B's proof shows that for n >= 3 the only flexes are rigid motions, and at n = 2 an extra flex exists. Basis: exact tests on instances (second/out/c5_thmB.txt) plus a step-by-step reading of the proof by an independent reader. Not machine-checked. Both implications were also checked exactly by the second checker on 904 lattices (n=3..6 and n=8). Basis-change counts: 45 cases at n=3..5 and 4 at n=8. Law 2b recheck by two checkers at n = 3 and 4: naive change keeps the collapse in 0 of 16, carried change leaves S_el unchanged in 16 of 16; L = diag(3,2,2) has rank 1 with dim Z_B = 3.",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/nulllat_e8_s1_A.txt",
+      "lattice/out/nulllat_d8_s1_A.txt",
+      "second/REPORT.md",
+      "second/out/c2_panel.txt",
+      "second/src/c2_panel.py",
+      "second/out/c5_thmB.txt",
+      "second/src/c5_thmB.py",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/lat.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-06",
+        "statement": "If no diagonal D makes D L symmetric, S is zero. If such a D is unique up to scale and the stress is non-zero, S has rank 1. The converse fails (smallest witness diag(3,2,2)). A plain basis change of the same lattice loses the collapse in 44 of 45 small cases and 4 of 4 at n=8; a carried change leaves S_el unchanged.",
+        "verdict": "VERIFIED",
+        "oracle_class": "exact",
+        "scope": "Both implications are argued in lattice/SPEC.md section 5 under the proviso that the intra-cell framework has only rigid motions (checked exactly for n=3..8, not proved for all n), and are not machine-proved in general. The second checker found no violation in exact computations on 904 lattices (n=3..6 and n=8). Basis-change counts: 45 cases at n=3..5 and 4 at n=8, both with the second checker's U.",
+        "novelty": "N0",
+        "evidence": [
+          "lattice/SPEC.md",
+          "lattice/out/nulllat_e8_s1_A.txt",
+          "lattice/out/nulllat_d8_s1_A.txt",
+          "second/REPORT.md",
+          "second/out/c2_panel.txt",
+          "second/src/c2_panel.py"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "Two changes. The proviso that the intra-cell framework has only rigid motions is removed for every n >= 3 by the flex classification in Theorem B's proof, as read step by step by an independent reader. The Law 2b search names the transformed statements: the rank formula (family T6) and the carried basis change (family T1)."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact tests on instances plus a step-by-step reading of the proof. Not machine-checked."
+  },
+  {
+    "id": "G5-07",
+    "statement": "For n >= 3 and rational L (n is the size of L): on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}. The formula is refuted at n = 2, with witnesses L = diag(3,2) (actual rank 0, formula 1) and L = 3I (actual rank 1, formula 2).",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "n >= 3, rational L. Instances: 1,725 (900 at n = 3, 600 at n = 4, 180 at n = 5 and 45 at n = 6, across 15 families), 0 mismatches. Two constructions of S_el agree on 40 of 40. Must-fail controls caught: dropping the second term (677 of 1,725), formula + 1 (1,725), L - 2I in place of L (L - 2I) (486), min(dim Z_B, 1) (737). Step checks: dim ker of the intra-cell map is n + n(n-1)/2 for n = 3 to 6. 128 of 128 basis vectors of Z_B lift to self-stresses with virial diag(z) L (L - 2I). The statement 'lift exists iff z in Z_B' held on 60 of 60 random z. n = 2: the formula is wrong on 237 of 400 random instances, and the intra-cell map has one extra flex (dim ker 4, rigid motions 3). Instances were tested for n = 3 to 6. The proof reading covers all n >= 3. Singular L is allowed.",
+    "novelty": "N0",
+    "evidence": [
+      "second/out/c5_thmB.txt",
+      "second/src/c5_thmB.py",
+      "second/out/hashes.txt",
+      "second/REPORT.md",
+      "second/out/c2_panel.txt",
+      "second/src/c2_panel.py"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "Conjecture: on Z_B = {z : diag(z) L symmetric}, sigma(z) = diag(z) L (L - 2I), and rank S = dim Z_B - dim{z in Z_B : z_i = 0 wherever row i of L (L - 2I) is non-zero}.",
+        "verdict": "PARTIAL",
+        "oracle_class": "sampled",
+        "scope": "Held on 904 of 904 lattices (440 main seed, 176 and 264 fresh seeds, 24 at n=8), 11 families. Derived before running. Not proved.",
+        "novelty": "N0",
+        "evidence": [
+          "second/REPORT.md",
+          "second/out/c2_panel.txt",
+          "second/src/c2_panel.py"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "The team offered Theorem B (rank formula for all n >= 3, failing at n = 2). An independent exact check of 1,725 instances with must-fail controls, and a step-by-step reading of the proof, support it for n >= 3. The earlier ruling carried no restriction on n, which was a defect in our wording: the formula is false at n = 2."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
+  },
+  {
+    "id": "G5-08",
+    "statement": "Rows 4 and 8 are exact partial minimizations of convex functions, and so are 300 of 300 unrelated convex problems, so partial minimization classifies the rows and does not discriminate.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Row 4 tower and LP layers and row 8 boxes with integer log2 endpoints; 300 seeded unrelated problems (100 positive-definite quadratics, 100 LP blocks, 100 shortest-path quotients). A non-convex control set has no infimum in 100 of 100 cases.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s4row4.json",
+      "tropical/out/mode1/s4row8.json",
+      "tropical/out/mode1/s4null.json",
+      "tropical/out/mode1/s4bridge.json",
+      "tropical/src/tropical_audit.py"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-09",
+    "statement": "The valuation map commutes with elimination on the ledger's own Cole-Hopf matrices.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "45 witness blocks (acc4 10, boltz5 25, rigid4 10) and 528 size-1 and size-2 eliminations of the 32-state matrix; zero entries with a defect.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s5real.json",
+      "tropical/objects/cole_hopf.json",
+      "tropical/src/tropical_audit.py"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-10",
+    "statement": "Over Q[q] with val(K_BB) >= 1: val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over the minimizing walks is non-zero. Where that sum is zero and S_ij is non-zero, 1 <= val(S_ij) - T_ij <= (|B|+1)D - T_ij, with D the largest degree of an entry.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "val(K_BB) >= 1 over Q[q]. Instances: 7,600 (n = 3 to 6, |B| = 1 to n-1, D = 1 to 4), 27,502 entries with T finite. Violations of the lower bound, of [q^T]S = L, and of the equality condition: 0 of 27,502. L = 0 and S non-zero on 1,416 entries: gap bound held on 1,416 of 1,416, attained on 21. Exhaustive family |A| = 2, |B| = 1 (177,147 systems): val(S) <= 2D attained in 520. Must-fail controls caught: val >= T+1 (25,632 entries), val <= T (1,870), sign-blind rule (1,870), gap bound one lower (268), lead = L+1 (27,502), single hop with no Kleene star (853). The team's sentence that the regularity condition is necessary is not adopted. Observed, not proved (sampled-exact evidence): in a random panel that allowed val(K_BB) = 0, the lower bound failed only where det(I - K_BB)(0) = 0 (1,377 violations in 3,733 entries) and never where it was non-zero (0 violations in 41,702 entries, with 260 systems skipped because det is identically 0). The output does not count how many of the 41,702 entries have val(K_BB) = 0. One hand-built system with val(K_BB) = 0 and det(I - K_BB) = -1 satisfies the bound, but there the set of minimizing walks is infinite.",
+    "novelty": "N0",
+    "evidence": [
+      "second/out/c4_thmA.txt",
+      "second/src/c4_thmA.py",
+      "second/out/hashes.txt",
+      "second/out/c3_trop.txt",
+      "second/src/c3_trop.py",
+      "tropical/out/mode1/s5random.json",
+      "tropical/out/mode1/controls.json"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "In general val(S_ij) >= T_ij, with equality exactly when the leading-coefficient sum over minimizing walks is non-zero.",
+        "verdict": "PARTIAL",
+        "oracle_class": "sampled",
+        "scope": "Second checker: 2400 instances, 19,456 entries, no violation of either direction; first checker: seeded random matrices over Q[q]. No proof is included. Order of truncation N = (|B|+1)D + 1.",
+        "novelty": "N0",
+        "evidence": [
+          "second/out/c3_trop.txt",
+          "second/src/c3_trop.py",
+          "tropical/out/mode1/s5random.json",
+          "tropical/out/mode1/controls.json"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "The team offered Theorem A (valuation bound under a regularity condition). An independent exact check of 7,600 instances with must-fail controls, and a step-by-step reading of the proof, support the lower bound and the equality condition under val(K_BB) >= 1. The earlier ruling carried no condition on K_BB, and the bound fails without one."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
+  },
+  {
+    "id": "G5-11",
+    "statement": "Surviving statement (a): a taxonomy, not an invariant. Partial minimization covers the symmetric, tropical and LP rows, and Schur reduction of a linear operator covers the matrix rows. The two coincide on symmetric positive-definite pivots, where both are classical.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Classification of the listed rows by mechanism; no domain-specific theorem is transferred.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "tropical/out/mode1/s4null.json",
+      "hermitian/out/compare.mode1.log"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-12",
+    "statement": "Surviving statement (b): AUDIT-017 and AUDIT-019 are linked by one exact congruence, with the symmetrizer criterion of G5-06 deciding when the rank-1 collapse occurs.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "n=8 only, five instances; lattices BW16 and Leech not covered.",
+    "novelty": "N0",
+    "evidence": [
+      "lattice/SPEC.md",
+      "lattice/out/real_A.txt",
+      "lattice/out/checker2_A.txt",
+      "second/out/c2_real.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-13",
+    "statement": "Surviving statement (c), with changed scope: the map from Q[q] to (min,+) by valuation, with its lower bound and its exact no-cancellation condition (G5-10), holds under val(K_BB) >= 1. It is not extended to general matrices.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Under val(K_BB) >= 1 over Q[q], as G5-10. Exact on the ledger's Cole-Hopf matrices (G5-09). Outside that hypothesis the ruling is NOT_SHOWN: the lower bound is refuted by the hand-built witness K_22 = 1 - q, K_02 = K_21 = q (val(S_01) = 1, T_01 = 2) and fails on 1,377 of 3,733 sampled entries where det(I - K_BB)(0) = 0. Where det(I - K_BB)(0) is non-zero the bound held on 41,702 sampled entries (sampled-exact evidence, no proof), and the equality condition is not available as a statement about a finite sum, because the minimizing walks can be infinite in number.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/out/mode1/s5real.json",
+      "tropical/out/mode1/s5random.json",
+      "second/out/c3_trop.txt",
+      "second/out/c4_thmA.txt",
+      "second/src/c4_thmA.py"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "statement": "Surviving statement (c): one running map exists between the Q[q] and (min,+) objects, with an exact no-cancellation condition (G5-10).",
+        "verdict": "PARTIAL",
+        "oracle_class": "exact",
+        "scope": "The map is exact on the ledger's Cole-Hopf matrices (G5-09); the no-cancellation condition is sampled (G5-10).",
+        "novelty": "N0",
+        "evidence": [
+          "tropical/out/mode1/s5real.json",
+          "tropical/out/mode1/s5random.json",
+          "second/out/c3_trop.txt"
+        ],
+        "second_checker": true,
+        "superseded_on": "2026-11-22",
+        "reason": "With G5-10 ruled VERIFIED under val(K_BB) >= 1, the valuation map is ruled for that hypothesis and no further. It is not extended to general matrices."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on the stated finite sets of instances, with must-fail controls, plus a step-by-step reading of the proof. Not machine-checked."
+  },
+  {
+    "id": "G5-14",
+    "statement": "The sentence in README section 1, read with SF-01's inertia invariant, is false for row 6 (invariant-falsified under Law 2b). For row 4 it fails as worded: its elimination clause has an exact transformed form (valuation, family T5, on the stated domain, G5-18), and its inertia clause has no non-vacuous transformed form (G5-19).",
+    "verdict": "FALSIFIED",
+    "oracle_class": "exact",
+    "scope": "Row 6: the 17 sampled Liouvillian points, all seven families searched, obstruction proved for diagonal and block-diagonal similarity, congruence, complex affine maps and partition-respecting compressions (G5-17). Row 4: see G5-18 and G5-19. The verdict FALSIFIED rests on row 6 alone.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "hermitian/out/compare.mode1.log",
+      "tropical/out/mode1/s4row4.json",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r6.mode1.out"
+    ],
+    "second_checker": true,
+    "history": [
+      {
+        "id": "G5-14",
+        "statement": "The sentence in README section 1, read with SF-01's inertia invariant, is false for rows 4 and 6.",
+        "verdict": "FALSIFIED",
+        "oracle_class": "exact",
+        "scope": "Follows from G5-02.",
+        "novelty": "N0",
+        "evidence": [
+          "predicate/RESULTS.md",
+          "hermitian/out/compare.mode1.log",
+          "tropical/out/mode1/s4row4.json"
+        ],
+        "second_checker": false,
+        "superseded_on": "2026-11-22",
+        "reason": "The owner's rule Law 2b asks for a search over seven families of transformations before a claim is closed as falsified. The search was run by two checkers that share no code. Row 6 is invariant-falsified. Row 4 fails as worded but its inertia clause cannot be certified either way, so the old wording 'false for rows 4 and 6' claimed more than the rule allows for row 4."
+      }
+    ],
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic recomputed by two checkers that share no code (law2b/src/law2b_check.py and law2b/clean_room/src), with must-fail controls, plus a step-by-step reading of the trace argument. Not machine-checked."
+  },
+  {
+    "id": "G5-15",
+    "statement": "The sentence in its weakest reading (each row uses block elimination) is true of any block system.",
+    "verdict": "VERIFIED",
+    "oracle_class": "sampled",
+    "scope": "Follows from G5-01.",
+    "novelty": "N0",
+    "evidence": [
+      "predicate/RESULTS.md",
+      "second/out/c1_block.txt"
+    ],
+    "second_checker": true
+  },
+  {
+    "id": "G5-16",
+    "statement": "Gate 5 is met for the eight-way claim.",
+    "verdict": "NOT_SHOWN",
+    "oracle_class": "anchor",
+    "scope": "Gate 5 requires typed objects and a running map that beats matched random maps. A map exists only for one pair (G5-05); the criterion does not discriminate (G5-01); two rows lie outside it (G5-02). Rows 2 and 8 as objects, BW16, Leech, the live percolation boxes and prior art were not covered.",
+    "novelty": "N0",
+    "evidence": [
+      "README.md",
+      "predicate/PREDICATE.md"
+    ],
+    "second_checker": false
+  },
+  {
+    "id": "G5-17",
+    "statement": "Under Law 2b, the claim that Sylvester inertia is additive for the row 6 Liouvillian (In(M) = In(A) + In(S) with M Hermitian) is invariant-falsified: all seven families were searched and the obstruction is the antisymmetric coupling C = -B^T with B non-zero.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "17 sampled Liouvillian points. No diagonal or block-diagonal similarity over C, no congruence, no complex affine map c M + lambda I and no partition-respecting compression makes M Hermitian while keeping a coupling (trace argument, rank of M - M^*, and exhaustive enumeration of all 65,025 partition-respecting coordinate subsets, 20,225 of which are Hermitian and all decoupled). Tropicalization has no instance. A non-block-diagonal similarity to a real symmetric matrix exists at 10 of 17 points (diagonalizable with real spectrum) and carries no Schur complement with it. The one exact repair, spectral inertia (eigenvalues counted by the sign of the real part), holds at 17 of 17 points but is true of nearly any system of the same shape (G5-20). Other Liouvillian parameters were not tested.",
+    "novelty": "N0",
+    "evidence": [
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r6.mode1.out",
+      "law2b/clean_room/out/r6.mode1.out"
+    ],
+    "second_checker": true,
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic recomputed by two checkers that share no code, with must-fail controls. The team's certifier admits the specification, but it checks numbers and schema only."
+  },
+  {
+    "id": "G5-18",
+    "statement": "Under Law 2b, the elimination clause of row 4 has an exact transformed form: for a Q[q] matrix K with non-negative coefficients and val(K_BB) >= 1, the valuation of the Schur complement of I - K equals the (min,+) Kleene-star elimination (family T5). The ruling that no additive Schur complement exists for the (min,+) object itself (G5-02) stays true as worded.",
+    "verdict": "VERIFIED",
+    "oracle_class": "exact",
+    "scope": "Domain: non-negative coefficients and val(K_BB) >= 1 (G5-10, G5-13). On the 32-state matrix K: 528 of 528 blocks of size 1 and 2. On the Doob-peeled matrix: 479 of 479 blocks that satisfy the hypothesis; the 49 blocks outside it also match on these matrices. The inverse becomes a Kleene star; the inertia statement is not part of this claim. Cancellation witness, inside val(K_BB) >= 1 but outside non-negative coefficients: K_00 = -q^2, K_01 = K_10 = q, K_11 = 0 gives val(S_00) = infinity against a tropical value of 2. Witness outside val(K_BB) >= 1: K_22 = 1 - q, K_02 = K_21 = q gives val(S_01) = 1 against 2.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/objects/cole_hopf.json",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r4.mode1.out"
+    ],
+    "second_checker": true,
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic recomputed by two checkers that share no code. Valuation matches on the stated finite set of matrices; the general statement is G5-10."
+  },
+  {
+    "id": "G5-19",
+    "statement": "Row 4 inertia clause under Law 2b: neither certificate applies. It is not invariant-falsified, because block-diagonal symmetrizations exist for some singleton blocks. It is not transformed-exact, because where a symmetric form exists the matrix is positive definite and the inertia statement is true of any such system (guard G1).",
+    "verdict": "PARTIAL",
+    "oracle_class": "exact",
+    "scope": "Shown at q = 1/10, 1/100 and 1/1000 for blocks of size 1 and 2 (528 partitions of the 32 states), by exact null spaces and exact positive-definiteness tests: no fully diagonal gauge works; for 480 of 528 partitions the solution space is {0}, so no block-diagonal P exists; for the 9 pairs that contain a one-way edge no P exists at any q (K_BB = [[0,k],[0,0]] forces a zero diagonal entry); for the 16 antipodal pairs the one-dimensional solution is indefinite; a positive definite solution exists for 8 of 32 singletons at q = 1/10 and 18 of 32 at q = 1/100 and 1/1000. An unrestricted P exists at those q (32 distinct real eigenvalues). At q = 1/2 no real P of any shape exists. Where P exists, I - K is positive definite, so every inertia is (size,0,0). Not decided: symbolic q, blocks of size 3 or more, P depending on q beyond these three values.",
+    "novelty": "N0",
+    "evidence": [
+      "tropical/objects/cole_hopf.json",
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r4b.mode1.out"
+    ],
+    "second_checker": true,
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic recomputed by two checkers that share no code (the clean-room script also screens by rank modulo a prime; my script restricts a verified basis of the symmetrizer space)."
+  },
+  {
+    "id": "G5-20",
+    "statement": "The exact repairs found by the Law 2b search give no cross-field link: spectral inertia for row 6, spectral inertia of the Q[q] lift for row 4, a global shift and a pivot-only comparison for G5-04 are all true of nearly any system of the same shape (guard G1), so they do not discriminate.",
+    "verdict": "VERIFIED",
+    "oracle_class": "sampled",
+    "scope": "Null panels are our choice and the rates depend on them. Row 6 spectral inertia: 56 of 58 on a sparse random panel (first checker), 77 of 120 on dense random coupling and 60 of 60 on row 6's own support pattern with independent values (clean-room checker; pooled 137 of 180); every reading is far above the cap 1/10. Row 4 lift: strictly row-diagonally dominant on 528 of 528 blocks, so every spectrum has positive real part, and 40 of 40 random supports behave the same. G5-04: after the shift 168 of 168 pairs and 10 of 10 random pairs agree; pivot-only comparison 168 of 168 and 60 of 60 random positive definite pairs.",
+    "novelty": "N0",
+    "evidence": [
+      "law2b/REPORT.md",
+      "law2b/out/law2b_check.mode1.out",
+      "law2b/clean_room/out/r6.mode1.out",
+      "law2b/clean_room/out/r156.mode1.out"
+    ],
+    "second_checker": true,
+    "ruled_on": "2026-11-22",
+    "basis": "Exact arithmetic on seeded random panels; the verdict does not depend on the panel, the rate does."
+  }
+]

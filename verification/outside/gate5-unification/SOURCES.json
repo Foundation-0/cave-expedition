@@ -1,0 +1,95 @@
+{
+  "note": "Third-party repositories used by the five parts. PR numbers and commits are taken from each part's own notes or from the clone it used. A null PR means no note names one. None of these repositories is included in this folder.",
+  "repos": [
+    {
+      "owner": "Foundation-0",
+      "repo": "cave-expedition",
+      "pr": 1,
+      "commit": "a7f837042d2e421c5a97cb1a25e5962dd96c1d9e",
+      "used_by": ["predicate", "hermitian"],
+      "use": "README section 1, Portal 10, SF-01 and PROTOCOL Gate 5 read at this commit; hermitian/upstream/ledger-pr1 holds check_003_seam01_ropt.py from it",
+      "source_note": "predicate/PREDICATE.md, local ref pr1"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "cave-expedition",
+      "pr": 4,
+      "commit": "742f3b2bf82cb4f8c1b4beb31cbe867c3d3bd574",
+      "used_by": ["predicate"],
+      "use": "README and Portal 10 statements read at other line numbers",
+      "source_note": "predicate/PREDICATE.md, local ref pr4"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "fractals",
+      "pr": 59,
+      "commit": "84535c15e76489c75cbdf1c6dc2ccd8fc4794fae",
+      "used_by": ["hermitian"],
+      "use": "Lindblad Zeno study (AUDIT-018), probe4 run untouched in the sandbox",
+      "source_note": "hermitian/src/anchor_compare.py comment 'fractals PR 59'; commit read from the clone"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "gravity",
+      "pr": 30,
+      "commit": "00d8b1b652952dadf8fd769d9d0690dabd4bcc13",
+      "used_by": ["hermitian"],
+      "use": "AeST Helmholtz probes (AUDIT-011R/012/013R); the committed results JSON is the anchor because numpy was missing",
+      "source_note": "hermitian/src/anchor_compare.py comment 'gravity PR 30'; commit read from the clone"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "spectral-inertia",
+      "pr": null,
+      "commit": "8394da989912bbc3a0e8702124aeec1d05b4801f",
+      "used_by": ["hermitian"],
+      "use": "spectral inertia domain, read as a reference clone",
+      "source_note": "no part note names a PR; commit read from the clone"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "fractals",
+      "pr": 60,
+      "commit": "f6cb822d9ac5fd8c4247c5994a51b1058bca0af9",
+      "used_by": ["tropical"],
+      "use": "multiplicative quotient-LP and 4-ray Farkas study; verify_mult_farkas_dsi.py run untouched",
+      "source_note": "branch name pr60 in the tropical clone"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "quotient-lp-bounds",
+      "pr": null,
+      "commit": "996108af84dd03598df1ffca43281a9c331faa72",
+      "used_by": ["tropical"],
+      "use": "Farkas peeling tower and Q[q] Doob homotopy study (AUDIT-004, AUDIT-008R); two scripts run untouched",
+      "source_note": "no part note names a PR. The clone also has a local branch pr5 at a different commit (abceb7f1e16f10252a7aec92140790b6b3d96df9), so the number 5 is not assigned here"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "incentre-lattices",
+      "pr": 106,
+      "commit": "33ff6da0c52b2fb3023ca06d200eab1bec32c0a3",
+      "used_by": ["lattice"],
+      "use": "verify_e8_spinor_fold.py (AUDIT-020R), called by path from a sandboxed driver",
+      "source_note": "lattice/SPEC.md section 6"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "incentre-lattices",
+      "pr": 107,
+      "commit": "edc795b0073d660576649937af0e6174ac2e229a",
+      "used_by": ["lattice"],
+      "use": "fold_sheaf_collapse.py (AUDIT-019), called by path from a sandboxed driver",
+      "source_note": "lattice/SPEC.md section 6"
+    },
+    {
+      "owner": "Foundation-0",
+      "repo": "cave-expedition",
+      "pr": 1,
+      "commit": "4564fd6e7131d63778b34106a34c5735a2972dff",
+      "used_by": [],
+      "use": "head of the team ledger on 2026-11-22. The SF-01 instance count and the absence of the team's check files for Theorems A and B were read at this commit. No script reads it",
+      "source_note": "README, section on the SF-01 instance count"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+ "all_pass": true,
+ "doob_monomial_similarity_commutes_with_valuation": true,
+ "partition_function_valuation": {
+  "meaning": "valuation of the exact path-sum Z(s) equals the shortest-path distance; after the tower it is 0 everywhere",
+  "sum_of_val_Z": 124,
+  "val_Z_doob_peeled_equals_0_all_31": true,
+  "val_Z_equals_d_star_all_31": true
+ },
+ "section": "s5real",
+ "state_32": {
+  "K_32": {
+   "blocks_satisfying_nonneg_and_M_matrix": 528,
+   "blocks_tested_sizes_1_and_2": 528,
+   "blocks_with_K_BB_constant_term_zero": 528,
+   "entries_with_defect": 0,
+   "lead_prediction_agree": 528,
+   "series_checker_agree": 528,
+   "singular": 0
+  },
+  "K_32_doob_peeled": {
+   "blocks_satisfying_nonneg_and_M_matrix": 528,
+   "blocks_tested_sizes_1_and_2": 528,
+   "blocks_with_K_BB_constant_term_zero": 479,
+   "entries_with_defect": 0,
+   "lead_prediction_agree": 479,
+   "series_checker_agree": 479,
+   "singular": 0
+  }
+ },
+ "witnesses": {
+  "acc4": {
+   "blocks_tested": 10,
+   "entries_with_defect": 0,
+   "lead_prediction_agree": 10,
+   "n": 4,
+   "series_checker_agree": 10,
+   "singular_blocks": 0,
+   "val_K_equals_cost_matrix": true
+  },
+  "boltz5": {
+   "blocks_tested": 25,
+   "entries_with_defect": 0,
+   "lead_prediction_agree": 25,
+   "n": 5,
+   "series_checker_agree": 25,
+   "singular_blocks": 0,
+   "val_K_equals_cost_matrix": true
+  },
+  "rigid4": {
+   "blocks_tested": 10,
+   "entries_with_defect": 0,
+   "lead_prediction_agree": 10,
+   "n": 4,
+   "series_checker_agree": 10,
+   "singular_blocks": 0,
+   "val_K_equals_cost_matrix": true
+  }
+ }
+}

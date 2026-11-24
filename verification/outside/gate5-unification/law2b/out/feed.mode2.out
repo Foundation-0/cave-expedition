@@ -1,0 +1,92 @@
+{
+ "R1a_row4_elimination_T5": {
+  "my_admitted": true,
+  "my_reasons": [],
+  "team_admitted": true,
+  "team_reasons": [],
+  "team_status": "CERTIFIED_TRANSFORMED_EXACT"
+ },
+ "R1b_row4_inertia_incomplete": {
+  "my_admitted": false,
+  "my_reasons": [
+   "G4_OBSTRUCTION"
+  ],
+  "team_admitted": false,
+  "team_reasons": [
+   "G4_OBSTRUCTION_NOT_INVARIANT_ACROSS_FAMILIES"
+  ],
+  "team_status": "REJECTED_LAW2B_GATE"
+ },
+ "R2_row6_inertia_IF": {
+  "my_admitted": true,
+  "my_reasons": [],
+  "team_admitted": true,
+  "team_reasons": [],
+  "team_status": "CERTIFIED_INVARIANT_FALSIFIED"
+ },
+ "R2x_row6_spectral_rescue_rejected": {
+  "my_admitted": false,
+  "my_reasons": [
+   "G1_VACUOUS"
+  ],
+  "team_admitted": false,
+  "team_reasons": [
+   "G1_VACUOUS_NULL_DISCRIMINATION_FAILED"
+  ],
+  "team_status": "REJECTED_LAW2B_GATE"
+ },
+ "R3_equiv_IF": {
+  "my_admitted": true,
+  "my_reasons": [],
+  "team_admitted": true,
+  "team_reasons": [],
+  "team_status": "CERTIFIED_INVARIANT_FALSIFIED"
+ },
+ "R3x_equiv_T4_shift_rejected": {
+  "my_admitted": false,
+  "my_reasons": [
+   "G1_VACUOUS"
+  ],
+  "team_admitted": false,
+  "team_reasons": [
+   "G1_VACUOUS_NULL_DISCRIMINATION_FAILED"
+  ],
+  "team_status": "REJECTED_LAW2B_GATE"
+ },
+ "R3y_equiv_T6_pivot_only_rejected": {
+  "my_admitted": false,
+  "my_reasons": [
+   "G1_VACUOUS"
+  ],
+  "team_admitted": false,
+  "team_reasons": [
+   "G1_VACUOUS_NULL_DISCRIMINATION_FAILED"
+  ],
+  "team_status": "REJECTED_LAW2B_GATE"
+ },
+ "R4_lattice_basis_change_T1": {
+  "my_admitted": true,
+  "my_reasons": [],
+  "team_admitted": true,
+  "team_reasons": [],
+  "team_status": "CERTIFIED_TRANSFORMED_EXACT"
+ },
+ "R5_commuting_test_rejected": {
+  "my_admitted": false,
+  "my_reasons": [
+   "G1_VACUOUS",
+   "G2_DOF"
+  ],
+  "team_admitted": false,
+  "team_reasons": [
+   "G1_VACUOUS_NULL_DISCRIMINATION_FAILED",
+   "G2_OVERPARAMETERIZED_EPICYCLE_DOF"
+  ],
+  "team_status": "REJECTED_LAW2B_GATE"
+ },
+ "_probes": {
+  "admits_any_self_reported_numbers": true,
+  "admits_unchecked_obstruction_string": true,
+  "refuses_iF_with_zero_gap": true
+ }
+}

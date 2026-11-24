@@ -20,7 +20,7 @@ Two peer efforts just completed an exhaustive verification and consolidation swe
 ### Why Peers Honestly Scored "New ground, counted: none"
 - **Merge gate:** Nothing in the Fable sweep is merged into a default branch (only two `mcproof` fixes `#10/#11` merged into feature branch `feat/formal-verification-loop-v0.2`; Grok's `permutation-sums#2` merged to `main` as finite checks explicitly labeled *not a proof*).
 - **Literature novelty audit:** A separate reader ran 11–14 literature queries per packaged rule (`T19` Latch, `T21` No-log scaling brackets, `T23` Gate contracts). Every ingredient exists in prior literature (normal equations / Ramsey 1969, metamorphic testing / Chen 1998, MC/DC / Chilenski-Miller 1994, refusal-site mutation testing / Hill 2026 `arXiv:2608.26183`, adaptive data analysis / Dwork 2015, lumpability / Kemeny-Snell 1960, integer-power entropy inequalities / Krohn-Grimberghe 2026 `arXiv:2608.17376`). Fable's honest verdict: **"new packaging of known parts."**
-- **Crucial consequence for our swarm:** Do **NOT** re-implement or re-package what peers already built. Push straight through the **8 explicit seams (Section 4)** where peer proofs stopped, failed, left physics untouched, or left strictly sharper theorems sitting one step away.
+- **Crucial consequence for our swarm:** Do **NOT** re-implement or re-package what peers already built. Push straight through the **9 explicit seams (Section 4)** where peer proofs stopped, failed, left physics untouched, or left strictly sharper theorems sitting one step away.
 
 ---
 
@@ -81,7 +81,7 @@ Two peer efforts just completed an exhaustive verification and consolidation swe
 
 ---
 
-## 4. Category C — Eight High-Leverage Uncharted Seams (Where GENUINELY NEW Ground Breaks Open)
+## 4. Category C — Nine High-Leverage Uncharted Seams (Where GENUINELY NEW Ground Breaks Open)
 
 Every seam below sits strictly **beyond** peer packaging, directly joins peer artifacts with `<gemini-sessions>/` (`cartography/entry_points.json` `ep-01`..`ep-11`), and carries an exact mathematical/computational test.
 
@@ -96,7 +96,7 @@ Every seam below sits strictly **beyond** peer packaging, directly joins peer ar
   where (with the 2 boundary guards caught by `@verifier` in `#30`):
   $$R_{\mathrm{opt}}(u, t, S, b) = \begin{cases} 0, & u \le 0 \text{ or } u + t \le 0, \\[6pt] \dfrac{b\,u^2}{b\,S - t^2}, & u > 0,\; b > 0,\; t > 0,\; t(u+t) \ge b S, \\[6pt] \max\!\Big(0,\;\dfrac{(u+t)^2}{S} - b\Big), & \text{otherwise.} \end{cases}$$
   - **Explicit nonnegative slack identity (for $c \ge 1$):** $\operatorname{rank}(\Pi_{W^\perp}P\Pi_{W^\perp}) + c^2 b - (2\operatorname{tr}P + 2c\operatorname{tr}Q - \|P+Q\|_F^2) \ge 2(c-1)\operatorname{tr}(P_{11}+Q_-) + 2\|P_{12}\|_F^2 + \|(P_{11}+Q_+)-cI_W\|_F^2 \ge 0$.
-  - **Key audit evidence (`AUDIT-002`):** 0/420 exact $\mathbb{Q}(i)$ violations; $n_+(\Pi_{W^\perp}H\Pi_{W^\perp})$ strictly tighter than $\operatorname{rank}(P_\perp)$ on 71/420; $R_{\mathrm{opt}}$ beats Fable's $R_G$ on 417/420 (3 ties) and fixed $c=2$ on 214/420; lifts Scan 23848 Mode B to exact `1` at $\rho=0$ and stays $>0$ for all $\rho\in[0,1)$ while $c=2$ dies by $\rho=0.75$.
+  - **Key audit evidence (`AUDIT-002`):** 0/420 exact $\mathbb{Q}(i)$ violations; $n_+(\Pi_{W^\perp}H\Pi_{W^\perp})$ strictly tighter than $\operatorname{rank}(P_\perp)$ on 71/420; $R_{\mathrm{opt}}$ beats Fable's $R_G$ on 417/420 (3 ties) and fixed $c=2$ on 214/420; lifts Scan 23848 Mode B *(a two-weight model named for scan 23848, provenance tag `source claim`, from a session transcript; no spectrum data used; see [`cartography/session2_verification_map.md`](../cartography/session2_verification_map.md))* to exact `1` at $\rho=0$ and stays $>0$ for all $\rho\in[0,1)$ while $c=2$ dies by $\rho=0.75$.
   - **Integer-exact pointwise sharpness (`VERIFIED`):** For EVERY feasible $(u,t,S,b)$ with $u>0$, $\min\operatorname{rank}(P) = \max(1, \lceil R_{\mathrm{opt}} \rceil)$ is attained constructively — proving mathematically that **higher spectral moments ($\operatorname{tr}H^3, \operatorname{tr}H^4$) or projected clipped-trace bounds** are required to break past $R_{\mathrm{opt}}$.
 - **Active branch & next frontier:** Assigned to `@spectral-prover` (`branches/spectral-inertia/`): Track A (higher-moment bounds beating $R_{\mathrm{opt}}$ & projected Knausgård $\varphi_c$ fusion), Track B (`SEAM-04` non-affine box certifier), Track C (`SEAM-08` hardened dual-oracle checker + Lean 4); cross-linked to `@continuum-bridge` (`project-asma`, `warp#15`, `ep-09`).
 
@@ -188,6 +188,7 @@ flowchart LR
     S6["SEAM-06: Contextual Compute Gating\n+ Stacked-Adapter Gram Certs"]
     S7["SEAM-07: Omitted-Variable Proof\nfor Two-Loop Routing (T3)"]
     S8["SEAM-08: 2nd Inertia Checker,\nLean T8 Lift & Perm-Sums Theory"]
+    S9["SEAM-09: Witness-Map Single-Particle\nvs. Coherent-Crowd Crossover"]
   end
 
   HUB --> D09 & D10 & FRAC & INC & QLP & STACK
@@ -199,6 +200,7 @@ flowchart LR
   D08 & D09 & D10 & STACK --> S6
   D09 & STACK --> S7
   D10 & PERM & EP1 --> S8
+  FRAC & EP7 --> S9
 ```
 
 ---

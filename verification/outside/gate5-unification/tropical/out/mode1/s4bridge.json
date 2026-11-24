@@ -1,0 +1,621 @@
+{
+ "aest": [
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "UV_stable",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "1/1260"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    0,
+    1
+   ],
+   "label": "CRITICAL",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "0"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    1,
+    0
+   ],
+   "label": "IR_clustering",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "-1/812"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    1,
+    0
+   ],
+   "label": "lam0",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "-1/48"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_0",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "11/4080"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    1,
+    0
+   ],
+   "label": "seeded_1",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "-25/196"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    1,
+    0
+   ],
+   "label": "seeded_2",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "-323/3015"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_3",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "29/18732"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_4",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "1/7527"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_5",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "479/10329"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_6",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "3/77980"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_7",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "17/1920"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    3,
+    0,
+    0
+   ],
+   "label": "seeded_8",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "23/2460"
+    ]
+   ]
+  },
+  {
+   "full_inertia_of_H": [
+    2,
+    1,
+    0
+   ],
+   "label": "seeded_9",
+   "min_matrix_equals_schur_and_object": true,
+   "reduced": [
+    [
+     "-1/800"
+    ]
+   ]
+  }
+ ],
+ "aest_summary": {
+  "equal": 14,
+  "points": 14
+ },
+ "all_pass": true,
+ "liouvillian": [
+  {
+   "f(0,t e): t=1,2,4": [
+    "-13/25",
+    "-52/25",
+    "-208/25"
+   ],
+   "label": "anchor_N1",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-101/50",
+    "-202/25",
+    "-808/25"
+   ],
+   "label": "anchor_N2",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-113/25",
+    "-452/25",
+    "-1808/25"
+   ],
+   "label": "anchor_N3",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-313/25",
+    "-1252/25",
+    "-5008/25"
+   ],
+   "label": "anchor_N5",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-2501/50",
+    "-5002/25",
+    "-20008/25"
+   ],
+   "label": "anchor_N10",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-10001/50",
+    "-20002/25",
+    "-80008/25"
+   ],
+   "label": "anchor_N20",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-62501/50",
+    "-125002/25",
+    "-500008/25"
+   ],
+   "label": "anchor_N50",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-250001/50",
+    "-500002/25",
+    "-2000008/25"
+   ],
+   "label": "anchor_N100",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-59/94",
+    "-118/47",
+    "-472/47"
+   ],
+   "label": "seeded_0",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-3398/159",
+    "-13592/159",
+    "-54368/159"
+   ],
+   "label": "seeded_1",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-1158/23",
+    "-4632/23",
+    "-18528/23"
+   ],
+   "label": "seeded_2",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-858/53",
+    "-3432/53",
+    "-13728/53"
+   ],
+   "label": "seeded_3",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-368/129",
+    "-1472/129",
+    "-5888/129"
+   ],
+   "label": "seeded_4",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-2307/8",
+    "-2307/2",
+    "-4614"
+   ],
+   "label": "seeded_5",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-358/29",
+    "-1432/29",
+    "-5728/29"
+   ],
+   "label": "seeded_6",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": true,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-1418/105",
+    "-5672/105",
+    "-22688/105"
+   ],
+   "label": "seeded_omega_0",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": false,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  },
+  {
+   "f(0,t e): t=1,2,4": [
+    "-1068/59",
+    "-4272/59",
+    "-17088/59"
+   ],
+   "label": "seeded_omega_1",
+   "pivot_sym_part_inertia": [
+    0,
+    8,
+    0
+   ],
+   "pivot_symmetric": false,
+   "sup_matrix_equals_ledger_schur": false,
+   "sup_matrix_equals_sym_part_of_ledger_schur": false
+  }
+ ],
+ "liouvillian_summary": {
+  "full_symmetric": 0,
+  "inf_exists": 0,
+  "ledger_schur_recomputed_equals_object": 17,
+  "ledger_schur_symmetric": 15,
+  "pivot_symmetric": 15,
+  "pivot_symmetric_part_negative_definite": 17,
+  "points": 17,
+  "sup_matrix_equals_ledger_schur": 0,
+  "sup_matrix_equals_sym_part_of_ledger_schur": 0
+ },
+ "section": "s4bridge",
+ "spectral_B": [
+  {
+   "g": "-48125514646125/36096073152661",
+   "label": "seeded_0",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-12615000000/40180204907",
+   "label": "seeded_1",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-388111500/959973407",
+   "label": "seeded_2",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-122699929000/191784157781",
+   "label": "seeded_3",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-4861108180845/3720140391398",
+   "label": "seeded_4",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-121108764168/626616665125",
+   "label": "seeded_5",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-124138571760/440000346143",
+   "label": "seeded_6",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-423471377000/354892192631",
+   "label": "seeded_7",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-24200000/64453857",
+   "label": "seeded_8",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-6049754282880/7746770871767",
+   "label": "seeded_9",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-570719672000/1172015137787",
+   "label": "seeded_10",
+   "minus_Ropt_equal": true,
+   "ok": true
+  },
+  {
+   "g": "-3940700625/7865562848",
+   "label": "seeded_11",
+   "minus_Ropt_equal": true,
+   "ok": true
+  }
+ ],
+ "spectral_G": [
+  {
+   "label": "seeded_0",
+   "ok": true
+  },
+  {
+   "label": "seeded_1",
+   "ok": true
+  },
+  {
+   "label": "seeded_2",
+   "ok": true
+  },
+  {
+   "label": "seeded_3",
+   "ok": true
+  },
+  {
+   "label": "seeded_4",
+   "ok": true
+  },
+  {
+   "label": "seeded_5",
+   "ok": true
+  },
+  {
+   "label": "seeded_6",
+   "ok": true
+  },
+  {
+   "label": "seeded_7",
+   "ok": true
+  },
+  {
+   "label": "seeded_8",
+   "ok": true
+  },
+  {
+   "label": "seeded_9",
+   "ok": true
+  },
+  {
+   "label": "seeded_10",
+   "ok": true
+  },
+  {
+   "label": "seeded_11",
+   "ok": true
+  }
+ ],
+ "spectral_summary": {
+  "B_equal": 12,
+  "G_equal": 12,
+  "note": "the Hermitian matrix M over Q(i) carries no block elimination in the object; only the real symmetric lift B and its pivot G are tested",
+  "points": 12
+ }
+}

@@ -1,0 +1,91 @@
+CONVENTION: M = [[D, Bp],[C, A]] with D=M[0:8,0:8] (rest), Bp=M[0:8,8:16], C=M[8:16,0:8], A=M[8:16,8:16] (pivot = indices 8..15); S = D - Bp A^-1 C
+points 17 omega=0 at 15
+OK   C1a M not symmetric at 17/17 :: 17/17
+OK   C1b C = -Bp^T at 17/17 :: 17/17
+OK   C1c Bp nonzero at 17/17 :: 17/17
+OK   C1d at omega=0 (15 pts) all nonzero coupling entries are +-2g :: 15/15
+  (info) +-2g also holds at all 17 points: 17 /17
+C2 rank(M-M^T): omega=0 points -> [8]  other points -> [12]
+OK   C2 rank 8 at omega=0 and 12 at others
+C3 inertia(sym M) values: [(0, 12, 4)]  inertia(sym A): [(0, 8, 0)]  inertia(sym S): [(0, 6, 2)]
+OK   C3 sym(M) (0,12,4), A (0,8,0), sym(S) (0,6,2) at 17/17
+   Sylvester sum In(A)+In(sym S): [(0, 14, 2)]  vs In(sym M): [(0, 12, 4)]
+OK   C3 sum (0,14,2) differs from (0,12,4)
+OK   C4 Schur(sym M) == sym(D) at 17/17 :: 17/17
+C5 coupled pairs (i in 0..7, j in 8..15 with M_ij or M_ji nonzero): 68  violations of (both nonzero and product<0): 0
+OK   C5 every coupled pair has M_ij*M_ji < 0
+OK   CTRL symmetric control is recognised as symmetric (the test can say yes)
+OK   CTRL rank(M-M^T) = 0 on symmetric control
+OK   CTRL Haynsworth additivity holds on the symmetric control (positive control) :: (4, 10, 2) = (0, 8, 0) + (4, 2, 2)
+OK   CTRL sign-product test flags the symmetric control (no negative products)
+C6 proof check: for P=diag(Pr,Pp): P^-1 M P Hermitian requires, in the off-diagonal blocks, -Bp^T Gr = Gp Bp^T with Gr=Pr Pr^T, Gp=Pp Pp^T (real case)
+   point 0: solution space of (Gr,Gp) has dimension 30 of 72
+OK   C6 on every point, tr(Bp^T Gr Bp) + tr(Gp Bp^T Bp) = 0 identically on the linear solution space and Bp != 0 (with Gr,Gp PD the first term is >0 and the second >=0: contradiction) :: 17/17
+OK   CTRL C=+Bp^T: Gr=Gp=I solves Bp^T Gr = Gp Bp^T (the argument genuinely uses the sign)
+OK   CTRL C=-Bp^T: Gr=Gp=I does NOT solve -Bp^T Gr = Gp Bp^T
+OK   C6 step "tr(Gp B^T B) >= 0" on 200 exact random PD/PSD pairs
+OK   C7 rank(M-M^T) preserved by X^T M X (random invertible X) and result still non-symmetric at 17/17 :: 17/17
+OK   CTRL singular X changes rank(M-M^T)
+OK   CTRL similarity does not preserve rank(M-M^T) (so claim 6 is needed separately)
+  C8 pt0 omega0=True repeated_eigs: distinct_real 4 of 8 distinct; real_with_mult 8; diag
+  C8 pt1 omega0=True repeated_eigs: distinct_real 4 of 8 distinct; real_with_mult 8; diag
+  C8 pt2 omega0=True repeated_eigs: distinct_real 4 of 8 distinct; real_with_mult 8; diag
+  C8 pt3 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt4 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt5 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt6 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt7 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt8 omega0=True repeated_eigs: distinct_real 4 of 8 distinct; real_with_mult 8; diag
+  C8 pt9 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt10 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt11 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt12 omega0=True repeated_eigs: distinct_real 4 of 8 distinct; real_with_mult 8; diag
+  C8 pt13 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt14 omega0=True repeated_eigs: distinct_real 8 of 8 distinct; real_with_mult 16; diag
+  C8 pt15 omega0=False repeated_eigs: distinct_real 4 of 12 distinct; real_with_mult 8; diag
+  C8 pt16 omega0=False repeated_eigs: distinct_real 4 of 12 distinct; real_with_mult 8; diag
+C8 totals: all-real & diagonalizable 10 ; non-real eigenvalues present 7 ; all-real but not diagonalizable 0
+OK   C8 10 of 17 all-real diagonalizable, 7 of 17 with non-real pair
+   number of non-real eigenvalues per point: [8, 8, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 8, 8]
+OK   CTRL Jordan block flagged: real but not diagonalizable
+OK   CTRL rotation flagged: non-real
+OK   CTRL diag(2,3): real and diagonalizable
+OK   C9 sym(M) not scalar at 17/17 :: 17/17
+OK   C9 exact: the only (Re c, Im c, Im lambda) making cM+lambda I Hermitian is zero at 17/17 (so c=0) :: 17/17
+OK   CTRL for symmetric M the same system has a nonzero solution (Re c free)
+C10 first point: D symmetric True  A symmetric True
+OK   C10 65,025 subsets enumerated :: 65025
+OK   C10 symmetric <=> compressed coupling zero, for all subsets :: 65025/65025
+C10 symmetric subsets: 20225  Schur==compressed D in 20225 of 20225 (singular pivot sub-blocks: 0 )
+OK   C10 20,225 symmetric subsets, Schur equals compressed D in each
+OK   CTRL a non-symmetric subset exists where Schur differs from compressed D
+  C11 pt0 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt1 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt2 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt3 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt4 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt5 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt6 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt7 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt8 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt9 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt10 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt11 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt12 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt13 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt14 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt15 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+  C11 pt16 In_spec(M)=(0, 14, 2) In_spec(A)=(0, 8, 0) In_spec(S)=(0, 6, 2) alg_mult(0)=2 dim ker M=2
+OK   C11 M, A, S dissipative (sym part has no positive eigenvalue) at 17/17 :: 17/17
+OK   C11 In_spec(M) = In_spec(A) + In_spec(S) = (0,14,2) at 17/17 :: 17/17
+OK   CTRL spectral_inertia([[1,0],[0,-1]]) = (1,1,0)
+OK   CTRL spectral_inertia(rotation) = (0,0,2)
+OK   CTRL spectral_inertia([[1,5],[-5,1]]) = (2,0,0)
+OK   CTRL spectral_inertia of [[0,1],[0,0]] = (0,0,2) (Jordan, double zero)
+C12 panel dense-independent seed 424242: identity holds 35 of 60 (scale 1/4: 14/15, scale 1/2: 13/15, scale 1: 4/15, scale 2: 4/15); systems with a right-half-plane eigenvalue: 49
+C12 panel row6-support-independent seed 515151: identity holds 60 of 60 (scale 1/4: 15/15, scale 1/2: 15/15, scale 1: 15/15, scale 2: 15/15); systems with a right-half-plane eigenvalue: 24
+C12 panel dense-independent-fresh-seed seed 777001: identity holds 42 of 60 (scale 1/4: 15/15, scale 1/2: 13/15, scale 1: 8/15, scale 2: 6/15); systems with a right-half-plane eigenvalue: 44
+C12 pooled: 137 of 180 = 137/180
+OK   C12 pooled identity rate is above 1/10 (so the identity does not distinguish row 6 from a random system)
+C12 note: with strictly negative D (no zero diagonal) the zero count of S is typically 0, unlike row 6 (0,6,2); see report for the stricter reading
+FAILS: []

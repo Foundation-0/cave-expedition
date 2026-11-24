@@ -1,0 +1,207 @@
+{
+  "portal_7_maslov_doob_homotopy": {
+    "doob_h_transform_equals_farkas_peeling_32states": [
+      {
+        "q": "1/2",
+        "exact_doob_similarity_K_red_eq_Dinv_K_D": true,
+        "cycle_traces_k1_to_k4_match": true,
+        "tr_K2": "20",
+        "max_suboptimal_entry_in_K_red": "1/4"
+      },
+      {
+        "q": "1/4",
+        "exact_doob_similarity_K_red_eq_Dinv_K_D": true,
+        "cycle_traces_k1_to_k4_match": true,
+        "tr_K2": "5",
+        "max_suboptimal_entry_in_K_red": "1/16"
+      },
+      {
+        "q": "1/8",
+        "exact_doob_similarity_K_red_eq_Dinv_K_D": true,
+        "cycle_traces_k1_to_k4_match": true,
+        "tr_K2": "5/4",
+        "max_suboptimal_entry_in_K_red": "1/64"
+      },
+      {
+        "q": "1/16",
+        "exact_doob_similarity_K_red_eq_Dinv_K_D": true,
+        "cycle_traces_k1_to_k4_match": true,
+        "tr_K2": "5/16",
+        "max_suboptimal_entry_in_K_red": "1/256"
+      }
+    ],
+    "accidental_single_q_lumpability_witness": {
+      "polynomial_gap": "P_{1->0}(q) - P_{2->0}(q) = q(1 - 2q)",
+      "q_sweep": [
+        {
+          "q": "1/4",
+          "P1_minus_P2": "1/8",
+          "commutation_defect_hs2": "1/256",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "1/3",
+          "P1_minus_P2": "1/9",
+          "commutation_defect_hs2": "1/324",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "1/2",
+          "P1_minus_P2": "0",
+          "commutation_defect_hs2": "0",
+          "exact_lumpable_at_q": true
+        },
+        {
+          "q": "2/3",
+          "P1_minus_P2": "-2/9",
+          "commutation_defect_hs2": "1/81",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "3/4",
+          "P1_minus_P2": "-3/8",
+          "commutation_defect_hs2": "9/256",
+          "exact_lumpable_at_q": false
+        }
+      ],
+      "tropical_defect_at_q_to_0": "1",
+      "exact_only_at_q_half": true
+    },
+    "row_normalized_boltzmann_single_q_witness": {
+      "normalized_gap": "P_q(1->Y) - P_q(2->Y) = (1 - 2q)/(2(2q + 1))",
+      "q_sweep": [
+        {
+          "q": "1/4",
+          "P1_minus_P2": "1/6",
+          "commutation_defect_hs2": "1/48",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "1/3",
+          "P1_minus_P2": "1/10",
+          "commutation_defect_hs2": "3/400",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "1/2",
+          "P1_minus_P2": "0",
+          "commutation_defect_hs2": "0",
+          "exact_lumpable_at_q": true
+        },
+        {
+          "q": "2/3",
+          "P1_minus_P2": "-1/14",
+          "commutation_defect_hs2": "3/784",
+          "exact_lumpable_at_q": false
+        },
+        {
+          "q": "3/4",
+          "P1_minus_P2": "-1/10",
+          "commutation_defect_hs2": "3/400",
+          "exact_lumpable_at_q": false
+        }
+      ],
+      "tropical_defect_at_q_to_0": "1",
+      "exact_only_at_q_half": true
+    },
+    "all_beta_multiset_rigid_control": {
+      "zero_defect_at_all_tested_q": true,
+      "tropical_defect": "0",
+      "exact_micro_optimal": true
+    }
+  },
+  "portal_8_nonlinear_bregman_pythagoras": {
+    "cubic_bregman_global_pythagoras": {
+      "D_F_p_qstar": "10",
+      "D_F_p_qadapt": "46/3",
+      "D_F_qstar_qadapt": "16/3",
+      "exact_inflation_identity_holds": true,
+      "D_F_p_qrev_partial": "6",
+      "D_F_qrev_qstar": "4",
+      "exact_contraction_identity_holds": true,
+      "D_F_p_full_rev": "0",
+      "strict_global_ordering": true
+    },
+    "genuinely_curved_pythagorean_cone_pythagoras": {
+      "q_star": [
+        "3",
+        "4",
+        "5"
+      ],
+      "q_adapt": [
+        "5",
+        "12",
+        "13"
+      ],
+      "p": [
+        "4",
+        "5",
+        "4"
+      ],
+      "D_F_p_qstar": "37/3",
+      "D_F_qstar_qadapt": "1276",
+      "D_F_p_qadapt": "3865/3",
+      "exact_curved_identity_holds": true
+    },
+    "fisher_rao_curved_tangent_boundary": {
+      "nonuniform_hessian_diag": [
+        "4",
+        "4",
+        "6",
+        "6"
+      ],
+      "fisher_inflation_dq_HF_dq": "96/5",
+      "sweep": [
+        {
+          "alpha": "-1",
+          "fisher_ratio_rhoG_over_kappa": "-6/5",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "484/25",
+          "falsifier6_fires": false
+        },
+        {
+          "alpha": "0",
+          "fisher_ratio_rhoG_over_kappa": "0",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "4",
+          "falsifier6_fires": false
+        },
+        {
+          "alpha": "1",
+          "fisher_ratio_rhoG_over_kappa": "6/5",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "4/25",
+          "falsifier6_fires": true
+        },
+        {
+          "alpha": "2",
+          "fisher_ratio_rhoG_over_kappa": "12/5",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "196/25",
+          "falsifier6_fires": false
+        },
+        {
+          "alpha": "3",
+          "fisher_ratio_rhoG_over_kappa": "18/5",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "676/25",
+          "falsifier6_fires": false
+        },
+        {
+          "alpha": "5",
+          "fisher_ratio_rhoG_over_kappa": "6",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "100",
+          "falsifier6_fires": false
+        },
+        {
+          "alpha": "6",
+          "fisher_ratio_rhoG_over_kappa": "36/5",
+          "err_sq_before": "4",
+          "err_sq_after_fisher_adapt": "3844/25",
+          "falsifier6_fires": false
+        }
+      ]
+    }
+  }
+}

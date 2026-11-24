@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cave Expedition · The field record of a first-principles expedition</title>
+<meta name="description" content="Cave Expedition is the field record of a November 2026 first-principles expedition. It holds the cartography, the peer-web seam map and the independent verification ledger.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cave Expedition">
+<meta property="og:description" content="The field record of a first-principles expedition. Born with the Aletheia method.">
+<meta property="og:url" content="https://foundation-0.github.io/cave-expedition/">
+<link rel="canonical" href="https://foundation-0.github.io/cave-expedition/">
+<meta name="theme-color" content="#070b0e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f0e6" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search),t=q.get("theme")||localStorage.getItem("joint-theme"),m=q.get("motion")||localStorage.getItem("joint-motion");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var r=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;d.setAttribute("data-motion",(m==="on"||m==="off")?m:(r?"off":"on"));}catch(e){d.setAttribute("data-motion","on");}})();</script>
+<script defer src="assets/site.js"></script>
+<script defer src="assets/figures.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="zero" viewBox="-50 -50 100 100"><path d="M-40-40L40 40M40-40L-40 40" fill="none" stroke-width="2" style="stroke:var(--ink-3)"/><g fill="none" stroke-width="4"><circle cy="-23.431" r="16.569" style="stroke:var(--bio)"/><circle cy="23.431" r="16.569" style="stroke:var(--bio)"/><circle cx="-23.431" r="16.569" style="stroke:var(--dig)"/><circle cx="23.431" r="16.569" style="stroke:var(--dig)"/></g><rect x="-40" y="-40" width="80" height="80" fill="none" stroke-width="4.4" style="stroke:var(--ink)"/></symbol></defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="./" aria-label="Cave Expedition home"><svg aria-hidden="true"><use href="#zero"/></svg>Cave Expedition</a>
+  <span class="twin"><span class="pair" aria-hidden="true"><i></i><i></i></span>Twin site <a href="https://foundation-0.github.io/aletheia/">Aletheia</a></span>
+  <nav class="nav" aria-label="Main">
+    <a href="./" aria-current="page">Home</a><a href="ledger/">Ledger</a><a href="joint-map/">Joint map</a><a href="reproduce/">Reproduce</a><a href="https://github.com/Foundation-0/cave-expedition">Source</a>
+  </nav>
+  <div class="tools">
+    <button class="tbtn" type="button" data-motion-toggle aria-pressed="true"><span class="t-txt">Motion</span></button>
+    <button class="tbtn" type="button" data-theme-toggle><span class="t-txt">Theme</span></button>
+  </div>
+</div></header>
+<main id="main">
+<section class="hero">
+  <canvas id="weft-bg" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="kicker"><span class="pair" aria-hidden="true"><i></i><i></i></span>Foundation0 · Field record, checked in public</p>
+      <h1 class="display">Cave Expedition</h1>
+      <p class="promise">Cave Expedition is the field record of a first-principles expedition run in November 2026. It holds three things in one place: a map of the raw sources, a map of the seams between live repositories, and an independent ledger that checked every claim. The method that grew out of the run has its own site.</p>
+      <p class="hint">Read this site as the evidence side of the pair. The rules side is <a href="https://foundation-0.github.io/aletheia/">Aletheia</a>. Claims here link to ledger rows. Ledger rows link to check scripts you can run. Internal novelty labels are shown next to the outside rulings that later cut most of them down.</p>
+      <div class="cta">
+        <a class="btn primary" href="ledger/">Read the ledger</a>
+        <a class="btn" href="reproduce/">Run a check</a>
+      </div>
+      <dl class="stats" aria-label="Cave Expedition in numbers">
+        <div><dt class="k">Numbered audits</dt><dd class="v">19</dd></div>
+        <div><dt class="k">Check scripts</dt><dd class="v">14</dd></div>
+        <div><dt class="k">Portals</dt><dd class="v">11</dd></div>
+        <div><dt class="k">Seams</dt><dd class="v">9</dd></div>
+      </dl>
+      <p style="margin-top:16px"><span class="chip"><span class="dot" aria-hidden="true"></span>November 2026</span> <span class="chip">Apache-2.0</span></p>
+      <p class="quiet" style="margin-top:12px">The ledger holds 19 numbered audits, AUDIT-001 to AUDIT-019, in 22 rows. Three of those rows hold re-audits of patched work, seven re-audit ids in all. Failed and partial audits stay on record.</p>
+    </div>
+    <figure class="fig" aria-labelledby="field-title">
+      <div class="frame">
+        <canvas class="stage" id="field" role="img" aria-label="Interference field with eight wave sources, one for each expedition front. Sources in the same family share a frequency and make still fringes. The same eight fronts follow as text links." data-sources='[{"x":0.16,"y":0.28,"k":2.0,"w":0.9},{"x":0.30,"y":0.18,"k":2.0,"w":0.8},{"x":0.55,"y":0.24,"k":3.0,"w":0.8},{"x":0.70,"y":0.38,"k":1.4,"w":0.7},{"x":0.82,"y":0.22,"k":2.6,"w":0.7},{"x":0.78,"y":0.68,"k":2.6,"w":0.7},{"x":0.48,"y":0.72,"k":3.0,"w":1.0},{"x":0.22,"y":0.66,"k":1.4,"w":0.6}]'></canvas>
+        <span class="corner tl" id="field-title">Interference field</span>
+        <span class="corner tr">Live in your browser</span>
+        <span class="corner bl">Dot: one front</span>
+        <span class="corner br">Still fringe: shared k</span>
+      </div>
+      <p class="numbers" id="field-numbers" style="margin-top:10px"></p>
+      <figcaption class="figcap"><span><b>How to read:</b> each dot is one front. Amplitude is weight. Frequency k is family. Two sources with the same k make fringes that hold still. Sources with different k drift past each other. The picture shows the claim the team made, that eight fronts share one elimination pattern. An outside check later found that pattern too broad to count as a link. Read the standing note below before citing the eight-way claim.</span><span>No picture is stored. The field is the equation above.</span></figcaption>
+      <p class="quiet" style="margin-top:12px">The eight fronts as text: <a href="ledger/#audit-002">spectral inertia</a>, <a href="ledger/#audit-014">higher moments</a>, <a href="ledger/#audit-019">lattice elasticity</a>, <a href="ledger/#audit-004">coarse-graining</a>, <a href="ledger/#audit-011">gravity AeST</a>, <a href="ledger/#audit-018">open quantum</a>, <a href="ledger/#audit-017">packing E8</a>, <a href="ledger/#audit-010">fractal Kigami</a>.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="sec alt" id="fronts">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>00</b><i>//</i>Eight fronts, one mechanism</p><span class="chip">Internal claim, outside ruling below</span></div>
+    <h2 class="h2" data-reveal>Eight places the team saw the same step.</h2>
+    <p class="lede" data-reveal>Each front removes one block of variables and works with what is left. In matrix work that remainder is called a Schur complement. The team recorded the same step in eight places. The table gives the short form. Full statements sit in the ledger.</p>
+    <div class="table-wrap" data-reveal>
+      <table class="data">
+        <thead><tr><th scope="col">Front</th><th scope="col">What gets removed</th><th scope="col">Ledger</th></tr></thead>
+        <tbody>
+          <tr><td>Spectral inertia</td><td>The known positive block. The bound counts new directions outside it.</td><td><a href="ledger/#audit-002">AUDIT-002</a></td></tr>
+          <tr><td>Higher moments</td><td>Lower moment blocks. Higher traces sharpen the first bound.</td><td><a href="ledger/#audit-014">AUDIT-014</a></td></tr>
+          <tr><td>Lattice elasticity</td><td>Internal vertex motion. The remainder is the elastic stiffness.</td><td><a href="ledger/#audit-019">AUDIT-019</a></td></tr>
+          <tr><td>Coarse-graining</td><td>States inside each coarse block. The remainder tracks cost on blocks.</td><td><a href="ledger/#audit-004">AUDIT-004</a></td></tr>
+          <tr><td>Gravity AeST</td><td>The fast scalar pair. The remainder gives the slow response.</td><td><a href="ledger/#audit-011">AUDIT-011R</a></td></tr>
+          <tr><td>Open quantum</td><td>Fast centre-of-mass coherence. The remainder gives the slow internal rate.</td><td><a href="ledger/#audit-018">AUDIT-018</a></td></tr>
+          <tr><td>Packing E8</td><td>Half of each 2 by 2 block on the fold curve. The remainder proves the fold stays apart.</td><td><a href="ledger/#audit-017">AUDIT-017</a></td></tr>
+          <tr><td>Fractal Kigami</td><td>Interior vertices of the next graph level. The remainder rescales the last level.</td><td><a href="ledger/#audit-010">AUDIT-010</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout cy" data-reveal>
+      <p><b>Outside ruling on this claim.</b> A later outside check tested the eight-way sentence on its own. It found that block removal, stated this broadly, holds for almost any block system and so does not link the fields. Two rows sit outside the matrix form as stated. One exact link does hold: the E8 fold and the elastic collapse share one congruence map. Treat the eight-way sentence as a sorting label for the record, not as a proved link. Detail sits in <a href="ledger/#outside">the ledger outside section</a>.</p>
+    </div>
+    <a class="more" href="ledger/">Open the ledger</a>
+  </div>
+</section>
+
+<section class="sec" id="turn">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>01</b><i>//</i>The turn</p><span class="chip">Same sources, worked twice</span></div>
+    <h2 class="h2" data-reveal>First pass closed empty. Second pass filled the ledger.</h2>
+    <p class="lede" data-reveal>The team worked the same raw transcripts twice. The first pass graded rough drafts as finished work and closed with nothing new. One instruction changed the second pass: keep the map maker in the loop and repair each draft before judging it.</p>
+    <div class="prose" data-reveal style="margin-top:24px">
+      <p>In the second pass the map maker stayed active and went back into the raw sources after each surprise. Bugs were logged in full. The team then stated the strongest sound claim near each broken draft and tested that claim with separate code. The checker stopped giving plain yes or no answers and started giving counterexamples and exact walls. Those walls told the team what to build next.</p>
+      <p>This was a before and after comparison, not a controlled trial. The second pass also ran longer. The joint map shows which cave event forced which rule on the twin site.</p>
+    </div>
+    <p data-reveal style="margin-top:16px"><a class="more" href="joint-map/">Open the joint map</a> <a class="more" href="https://foundation-0.github.io/aletheia/">Read the twin site</a></p>
+  </div>
+</section>
+
+<section class="sec alt" id="record">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>02</b><i>//</i>Read the record</p><span class="chip">Three folders, one repo</span></div>
+    <h2 class="h2" data-reveal>Map, seams, checks.</h2>
+    <div class="cards">
+      <article class="card" data-reveal style="--acc:var(--bio)">
+        <p class="kick"><span>Cartography</span><span>11 portals</span></p>
+        <h3><a href="https://github.com/Foundation-0/cave-expedition/tree/main/cartography">What the sources contain</a></h3>
+        <p class="dek">Two session maps list the objects and entry points in the raw transcripts. The portals file turns them into 11 testable hypotheses. Each portal names a target repo and a check that could fail.</p>
+        <p class="links"><a href="joint-map/#portals">Portal list</a><a href="https://github.com/Foundation-0/cave-expedition/blob/main/cartography/frontier_portals.md">Portals file</a></p>
+      </article>
+      <article class="card" data-reveal style="--acc:var(--dig)">
+        <p class="kick"><span>Peer-web</span><span>9 seams</span></p>
+        <h3><a href="https://github.com/Foundation-0/cave-expedition/tree/main/peer-web">Where live repos meet</a></h3>
+        <p class="dek">A snapshot of work across siliconcordat, Foundation-0 and peers. It marks what peers had already built, where their proofs stopped, and the nine seams the expedition pushed through instead of repeating finished work.</p>
+        <p class="links"><a href="joint-map/#seams">Seam list</a><a href="https://github.com/Foundation-0/cave-expedition/blob/main/peer-web/PEER_WEB.md">Peer-web file</a></p>
+      </article>
+      <article class="card" data-reveal style="--acc:var(--acc)">
+        <p class="kick"><span>Verification</span><span>14 checks</span></p>
+        <h3><a href="ledger/">What survived checking</a></h3>
+        <p class="dek">A nine-gate protocol and a permanent audit log. Exact claims run in rational or symbolic arithmetic with a second checker that shares no code. One check runs from a fresh clone with no extra files.</p>
+        <p class="links"><a href="ledger/">Ledger page</a><a href="reproduce/">Reproduce page</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="standing">
+  <div class="wrap">
+    <div class="sec-head"><p class="sec-label"><b>03</b><i>//</i>Standing</p><span class="chip">Drafts await human review</span></div>
+    <h2 class="h2" data-reveal>What the outside check kept.</h2>
+    <p class="lede" data-reveal>Domain proofs live in sibling repositories as draft pull requests. They await human review. Nothing in the ledger counts as merged or settled on the word of this site alone.</p>
+    <div class="prose" data-reveal style="margin-top:20px">
+      <p>An outside check re-read the ledger cold. It kept one result as new ground with medium confidence: the continuous fold from the cross-polytope tiling to the E8 lattice, AUDIT-017, with determinant 16 and kissing number 240. It rated one more, the all-dimension fold to D<sub>n</sub>, AUDIT-009, as a strong local advance and a candidate for new ground: strong N1, candidate N2. It did not check AUDIT-015R beyond its statement. It moved the other internal N2 labels down to local advances or to known results under other names. The site shows internal labels and outside rulings side by side so the cut stays visible.</p>
+      <p>Style on this site carries from the twin. The style point control lives on the Aletheia home page. There is no second control here. If you set the point there, the shared figures script applies your saved choice here on its own.</p>
+    </div>
+    <div class="badges" data-reveal aria-label="Standing badges">
+      <span class="badge v"><span class="ladder" data-r="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>AUDIT-017 · N2 kept, medium</span>
+      <span class="badge r"><span class="ladder" data-r="3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>AUDIT-009 · Strong N1, candidate N2</span>
+      <span class="badge c"><span class="ladder" data-r="2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Other internal N2 · Now N1 or N0; 015R not checked</span>
+    </div>
+    <p class="quiet" data-reveal style="margin-top:12px">Badge colour shows standing. Bar height shows strength on a five-step ladder. The ledger page defines each step.</p>
+    <a class="more" href="ledger/#outside">Read the outside summary</a>
+  </div>
+</section>
+</main>
+<footer class="coda"><div class="wrap">
+  <span>Cave Expedition is a <a href="https://foundation-0.github.io/f0/">Foundation0</a> project. Twin site: <a href="https://foundation-0.github.io/aletheia/">Aletheia</a>.</span>
+  <span>Code Apache-2.0 · <a href="https://github.com/Foundation-0/cave-expedition">Source</a> · Design after <a href="https://foundation-0.github.io/f0/">F0</a> and <a href="https://moissanite-labs.github.io/weft-eido/">Eido</a></span>
+</div></footer>
+</body>
+</html>

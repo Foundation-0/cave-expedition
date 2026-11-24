@@ -1,0 +1,11 @@
+=== PROBE 4: WITNESS-MAP UNIFICATION & 16x16 LINDBLAD ZENO SCHUR COMPLEMENT ===
+R3 negative controls: True
+Part A (exact Q multipoles): N=2..10 W_CM/W_1 == N^3, O(k^2)==0, F^inv==0, broken-CM ctrl PASS
+Part B (exact Q(i) 16x16 GKSL): [D_CM, Delta_rho]==0 on V_inv, Schur==-(2*gt+2*g^2/N^2g1), EP2 Jordan PASS
+Part C soliton bridge: M*r_c=2.6794 (model.js), M*r_(1/2)=3.9251 (gravity C-03=3.9251, rel_diff=1.45e-06)
+  crowd=sun       log10(N)=93.04  log10(W1)=-159.10 -> log10(W_CM)=120.01  tau_BH=2.41e-14 s  in_tLump=True  in_age=True
+  crowd=sun-heavy log10(N)=79.13  log10(W1)=-169.53 -> log10(W_CM)= 67.85  tau_BH=1.42e+21 s  in_tLump=False  in_age=False
+  crowd=core      log10(N)=96.85  log10(W1)=-154.76 -> log10(W_CM)=135.80  tau_BH=7.14e-25 s  in_tLump=True  in_age=True
+  Sgr A* @ 8.18 kpc crossover masses: m*(tau=tLump)=2.83e-20 eV, m*(tau=age)=1.34e-19 eV
+Saved: <WORKDIR>/out/anchor_fractals/probe4_witness_zeno_results.json
+Canonical SHA-256: 899d65178959d397a1121ec0a494dbe9cf6a5e7fd2ef2ecb29ef4f22b30c3451

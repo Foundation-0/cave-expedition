@@ -35,3 +35,7 @@ Chronological ledger of adversarial verification audits performed by `verifier` 
 | Pred ID | Date/Time | Author | Prediction & Hit/Miss Criterion (recorded pre-inspection) | Target | Score (`hit`/`partial`/`miss`) | Evidence |
 |---|---|---|---|---|---|---|
 | *(none registered yet)* | — | — | — | — | — | — |
+
+## Outside rulings (pointer, added 2026-11-24)
+
+This pointer changes no row above. (Gate 8 of [`PROTOCOL.md`](PROTOCOL.md) says misses are never deleted or retroactively rewritten.) The outside check in [`outside/`](outside/) later gave its own labels, and those can differ from the labels above. [`OUTSIDE_RULINGS_INDEX.md`](OUTSIDE_RULINGS_INDEX.md) lists them per audit, next to the internal label from each row and the source line of each ruling. That index is the source that the outside-ruling columns in the README and on the site's ledger page are copied from. Cite a row by its audit id, its oracle class and its outside ruling.

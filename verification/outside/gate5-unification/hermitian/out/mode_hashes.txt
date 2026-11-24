@@ -1,0 +1,10 @@
+build_objects mode1 flags='-I -B' exit=0 sha256=2e72b11e6fcfbbf047a420532aa105abba234d46566d9b665c99be3cf475b343
+build_objects mode2 flags='-I -O -B' exit=0 sha256=2e72b11e6fcfbbf047a420532aa105abba234d46566d9b665c99be3cf475b343
+build_objects mode3 flags='-I -B -W error' exit=0 sha256=2e72b11e6fcfbbf047a420532aa105abba234d46566d9b665c99be3cf475b343
+compare mode1 flags='-I -B' exit=0 sha256=165fd8bc6c005bfe5b671ee14057b31e7cc93efe9b21bb7edea27281d839e10b
+compare mode2 flags='-I -O -B' exit=0 sha256=165fd8bc6c005bfe5b671ee14057b31e7cc93efe9b21bb7edea27281d839e10b
+compare mode3 flags='-I -B -W error' exit=0 sha256=165fd8bc6c005bfe5b671ee14057b31e7cc93efe9b21bb7edea27281d839e10b
+anchor_compare mode1 flags='-I -B' exit=0 sha256=6e2071ed572a0f9eb64320feffd5da2f87f0bd89f81965da55226c5201433aac
+anchor_compare mode2 flags='-I -O -B' exit=0 sha256=6e2071ed572a0f9eb64320feffd5da2f87f0bd89f81965da55226c5201433aac
+anchor_compare mode3 flags='-I -B -W error' exit=0 sha256=6e2071ed572a0f9eb64320feffd5da2f87f0bd89f81965da55226c5201433aac
+run_all exit=0

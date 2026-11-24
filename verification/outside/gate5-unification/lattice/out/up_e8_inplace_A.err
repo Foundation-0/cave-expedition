@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "./upstream/pr106/results/expedition-dn-e8-folds/verify_e8_spinor_fold.py", line 997, in <module>
+    main()
+  File "./upstream/pr106/results/expedition-dn-e8-folds/verify_e8_spinor_fold.py", line 984, in main
+    with open(out_path, "w", encoding="utf-8", newline="\n") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted: './upstream/pr106/results/expedition-dn-e8-folds/e8_spinor_fold_certificate.json'

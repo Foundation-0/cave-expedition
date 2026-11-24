@@ -1,0 +1,39 @@
+== B0: two constructions of S_el (SPEC Schur with free vars 0 vs (1/2) ae^T Pi ae) agree exactly ==
+   40 of 40 agree (n=3,4, all 15 families rotated)
+== B1: rank(S_el) vs formula ==
+   instances: 1725 (n=3: 60, n=4: 40, n=5: 12, n=6: 3 per family x 15 families)
+   mismatches between actual rank and formula: 0
+   family random int                            115 instances, 0 mismatches
+   family random rational                       115 instances, 0 mismatches
+   family diagonal                              115 instances, 0 mismatches
+   family symmetric                             115 instances, 0 mismatches
+   family symmetrizable, generic D              115 instances, 0 mismatches
+   family symmetrizable, several D (blocks)     115 instances, 0 mismatches
+   family L(L-2I)=0, nonsymmetric 2P            115 instances, 0 mismatches
+   family L(L-2I)=0, symmetric 2P               115 instances, 0 mismatches
+   family nilpotent (conjugated)                115 instances, 0 mismatches
+   family c I + nilpotent                       115 instances, 0 mismatches
+   family Jordan-type repeated eigenvalue       115 instances, 0 mismatches
+   family scalar c I                            115 instances, 0 mismatches
+   family 2I + symmetric block                  115 instances, 0 mismatches
+   family sparse random                         115 instances, 0 mismatches
+   family zero rows                             115 instances, 0 mismatches
+   (dim Z_B, actual rank) -> count: (0, 0):421, (1, 0):230, (1, 1):440, (2, 0):120, (2, 1):85, (2, 2):51, (3, 0):78, (3, 1):38, (3, 2):34, (3, 3):81, (4, 0):30, (4, 1):3, (4, 2):17, (4, 3):12, (4, 4):46, (5, 0):11, (5, 1):1, (5, 2):2, (5, 3):3, (5, 4):5, (5, 5):8, (6, 0):5, (6, 2):1, (6, 4):2, (6, 6):1
+== must-fail controls (wrong formulas; must disagree with the actual rank somewhere) ==
+   F1 drop second term (rank=dim Z_B)            disagrees on 677 of 1725
+   F2 off by one (formula+1)                     disagrees on 1725 of 1725
+   F3 row test uses L-2I instead of L(L-2I)      disagrees on 486 of 1725
+   F4 rank = min(dim Z_B,1)                      disagrees on 737 of 1725
+== B2: n = 2 ==
+   L=diag(3,2): actual rank 0, stress-map rank 0, formula 1
+   L=3 I: actual rank 1, stress-map rank 1, formula 2
+   random n=2 instances: 400, formula wrong on 237
+== B3: proof-step checks ==
+   n=2: dim ker(d0 intra) = 4; translations+rotations = 3
+   n=3: dim ker(d0 intra) = 6; translations+rotations = 6
+   n=4: dim ker(d0 intra) = 10; translations+rotations = 10
+   n=5: dim ker(d0 intra) = 15; translations+rotations = 15
+   n=6: dim ker(d0 intra) = 21; translations+rotations = 21
+   z in Z_B basis vectors lifted to self-stresses: 128 (failures 0); virial of lift == diag(z)L(L-2I) in strain coordinates: 128 of 128
+   random z: 'lift exists iff z in Z_B' held on 60 of 60
+ALL CHECKS PASSED, ALL CONTROLS CAUGHT

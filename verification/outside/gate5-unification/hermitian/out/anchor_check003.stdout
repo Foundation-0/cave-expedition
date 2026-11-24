@@ -1,0 +1,58 @@
+{
+  "edge_cases_audit": {
+    "edge1_u0_t1_S1_b1_raw_peer_weaver": "ZeroDivisionError: Fraction(1, 0)",
+    "edge1_guarded_R_opt": "0",
+    "edge2_raw_negative_else_branch": "-23/5",
+    "edge2_guarded_clamped": "0"
+  },
+  "complex_hermitian_audit": {
+    "complex_hermitian_instances_Q_i": 420,
+    "strictly_noncommuting": 356,
+    "strictly_complex_nonzero_imag": 413,
+    "violations_strengthened_chain_n_pos_H_perp_ge_R_opt": 0,
+    "instances_with_rank_P_perp_strictly_lt_rank_P": 190,
+    "instances_with_n_pos_H_perp_strictly_lt_rank_P_perp": 71,
+    "R_opt_strictly_beats_Fable_RG": 417,
+    "R_opt_ties_Fable_RG": 3,
+    "R_opt_strictly_beats_fixed_c2": 214,
+    "regime_counts": {
+      "regime1_u2_over_S_minus_t2_b": 51,
+      "regime2_u_plus_t_sq_over_S_minus_b": 279,
+      "regime0_zero": 90
+    },
+    "scale_invariance_exact": true,
+    "scan23848_mode_b_comparison": {
+      "rho=0.0": {
+        "R_opt": 1.0,
+        "R_opt_exact_is_1": true,
+        "Lemma32_c2": 0.875896
+      },
+      "rho=0.5": {
+        "R_opt": 0.386736,
+        "R_opt_exact_is_1": false,
+        "Lemma32_c2": 0.264391
+      },
+      "rho=0.75": {
+        "R_opt": 0.189731,
+        "R_opt_exact_is_1": false,
+        "Lemma32_c2": 0.0
+      },
+      "rho=0.9": {
+        "R_opt": 0.074411,
+        "R_opt_exact_is_1": false,
+        "Lemma32_c2": 0.0
+      }
+    }
+  },
+  "sharpness_audit": {
+    "exact_rational_equality_witnesses_verified": 4,
+    "constructive_integer_sharpness_tuples_verified": 200,
+    "max_construction_error": 2.842170943040401e-14,
+    "subcases_covered": {
+      "R1": 50,
+      "R2_caseA": 104,
+      "R2_caseB": 7,
+      "u_plus_t_le_0": 39
+    }
+  }
+}

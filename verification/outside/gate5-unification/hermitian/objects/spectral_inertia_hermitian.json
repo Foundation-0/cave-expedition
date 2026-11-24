@@ -1,0 +1,2342 @@
+{
+ "convention": "inertia is (positive, negative, zero); Q(i) entries as re+imi",
+ "domain": "spectral_inertia",
+ "draws_rejected_outside_regime_1": 82,
+ "points": [
+  {
+   "B": {
+    "full_inv": {
+     "det": "-4489/144",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "36096073152661/1543790178000",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-48125514646125/36096073152661"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-48125514646125/36096073152661",
+     "det_class": {
+      "norm": [
+       -1,
+       596249
+      ],
+      "sq": [
+       -1,
+       180480365763305
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "36096073152661/1543790178000",
+     "det_class": {
+      "norm": [
+       1,
+       596249
+      ],
+      "sq": [
+       1,
+       180480365763305
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "36096073152661/1543790178000"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "36096073152661/1543790178000",
+     "det_class": {
+      "norm": [
+       1,
+       596249
+      ],
+      "sq": [
+       1,
+       180480365763305
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "12542506/2917215",
+     "-3004441/6482700-75882607/58344300i",
+     "-43486/4862025+1882754/1620675i",
+     "-7882627/9724050-30726379/14586075i"
+    ],
+    [
+     "-3004441/6482700+75882607/58344300i",
+     "128772863/58344300",
+     "-316058/1620675+373033/4862025i",
+     "33116969/58344300-120191/555660i"
+    ],
+    [
+     "-43486/4862025-1882754/1620675i",
+     "-316058/1620675-373033/4862025i",
+     "551092/324135",
+     "-1020329/1620675+1769216/4862025i"
+    ],
+    [
+     "-7882627/9724050+30726379/14586075i",
+     "33116969/58344300+120191/555660i",
+     "-1020329/1620675-1769216/4862025i",
+     "40498838/14586075"
+    ]
+   ],
+   "M_inv": {
+    "det": "328369149168173/20841167403000",
+    "det_class": {
+     "norm": [
+      1,
+      985107447504519
+     ],
+     "sq": [
+      1,
+      9851074475045190
+     ]
+    },
+    "inertia": [
+     4,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "48125514646125/36096073152661",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "48125514646125/36096073152661",
+    "n_plus_H_perp": 3,
+    "ok": true,
+    "rank_P": 4,
+    "rank_P_perp": 3
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_0",
+   "n": 4,
+   "scalars": {
+    "S": "81112994743141/1543790178000",
+    "t": "27/5",
+    "u": "67/12"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-25/9",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "40180204907/4541400000",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-12615000000/40180204907"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-12615000000/40180204907",
+     "det_class": {
+      "norm": [
+       -1,
+       954573
+      ],
+      "sq": [
+       -1,
+       602703073605
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "40180204907/4541400000",
+     "det_class": {
+      "norm": [
+       1,
+       954573
+      ],
+      "sq": [
+       1,
+       602703073605
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "40180204907/4541400000"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "40180204907/4541400000",
+     "det_class": {
+      "norm": [
+       1,
+       954573
+      ],
+      "sq": [
+       1,
+       602703073605
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "4258043/1345600",
+     "-46738079/20184000+11935681/10092000i",
+     "564151/807360+4836499/4036800i"
+    ],
+    [
+     "-46738079/20184000-11935681/10092000i",
+     "29338487/12110400",
+     "-8476741/60552000-77917033/60552000i"
+    ],
+    [
+     "564151/807360-4836499/4036800i",
+     "-8476741/60552000+77917033/60552000i",
+     "9565163/6055200"
+    ]
+   ],
+   "M_inv": {
+    "det": "2694494627/3406050000",
+    "det_class": {
+     "norm": [
+      1,
+      11
+     ],
+     "sq": [
+      1,
+      13472473135
+     ]
+    },
+    "inertia": [
+     3,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 3
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "12615000000/40180204907",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "12615000000/40180204907",
+    "n_plus_H_perp": 2,
+    "ok": true,
+    "rank_P": 2,
+    "rank_P_perp": 2
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_1",
+   "n": 3,
+   "scalars": {
+    "S": "177557554907/4541400000",
+    "t": "11/2",
+    "u": "5/3"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-8",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       2
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "1919946814/97027875",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-388111500/959973407"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-388111500/959973407",
+     "det_class": {
+      "norm": [
+       -1,
+       6719813849
+      ],
+      "sq": [
+       -1,
+       33599069245
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "1919946814/97027875",
+     "det_class": {
+      "norm": [
+       1,
+       6719813849
+      ],
+      "sq": [
+       1,
+       67198138490
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "2",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "959973407/97027875"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "959973407/97027875",
+     "det_class": {
+      "norm": [
+       1,
+       6719813849
+      ],
+      "sq": [
+       1,
+       33599069245
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "1809440783/482983200",
+     "-114334223/120745800-612157/3285600i",
+     "3831663701/2414916000-1588101229/1207458000i",
+     "28082326/75466125+77535173/804972000i"
+    ],
+    [
+     "-114334223/120745800+612157/3285600i",
+     "209351363/96596640",
+     "20450583/26832400-16852327/53664800i",
+     "28313757/53664800-83790433/40248600i"
+    ],
+    [
+     "3831663701/2414916000+1588101229/1207458000i",
+     "20450583/26832400+16852327/53664800i",
+     "7774802071/2414916000",
+     "13972363/32634000-251542211/482983200i"
+    ],
+    [
+     "28082326/75466125-77535173/804972000i",
+     "28313757/53664800+83790433/40248600i",
+     "13972363/32634000+251542211/482983200i",
+     "6681710339/2414916000"
+    ]
+   ],
+   "M_inv": {
+    "det": "-6924344237/2173424400",
+    "det_class": {
+     "norm": [
+      -1,
+      1
+     ],
+     "sq": [
+      -1,
+      6924344237
+     ]
+    },
+    "inertia": [
+     3,
+     1,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "388111500/959973407",
+   "b": 2,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "388111500/959973407",
+    "n_plus_H_perp": 1,
+    "ok": true,
+    "rank_P": 1,
+    "rank_P_perp": 1
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_2",
+   "n": 4,
+   "scalars": {
+    "S": "45718595371/776223000",
+    "t": "99/10",
+    "u": "2"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-4",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "191784157781/30674982250",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-122699929000/191784157781"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-122699929000/191784157781",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1917841577810
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "191784157781/30674982250",
+     "det_class": {
+      "norm": [
+       1,
+       1
+      ],
+      "sq": [
+       1,
+       1917841577810
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "191784157781/30674982250"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "191784157781/30674982250",
+     "det_class": {
+      "norm": [
+       1,
+       1
+      ],
+      "sq": [
+       1,
+       1917841577810
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "1368030247/1226999290",
+     "3737081023/2453998580-116498421/122699929i",
+     "-277935698/613499645-1602333/11575465i",
+     "-3809393623/6134996450+323107757/12269992900i"
+    ],
+    [
+     "3737081023/2453998580+116498421/122699929i",
+     "3515087753/1226999290",
+     "-506590181/2453998580-68167679/111545390i",
+     "-3033451427/3067498225-2134410031/3067498225i"
+    ],
+    [
+     "-277935698/613499645+1602333/11575465i",
+     "-506590181/2453998580+68167679/111545390i",
+     "1401332373/1226999290",
+     "-672954684/3067498225-11342068223/12269992900i"
+    ],
+    [
+     "-3809393623/6134996450-323107757/12269992900i",
+     "-3033451427/3067498225+2134410031/3067498225i",
+     "-672954684/3067498225+11342068223/12269992900i",
+     "1568345083/1226999290"
+    ]
+   ],
+   "M_inv": {
+    "det": "0",
+    "det_class": null,
+    "inertia": [
+     2,
+     1,
+     1
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "122699929000/191784157781",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "122699929000/191784157781",
+    "n_plus_H_perp": 1,
+    "ok": true,
+    "rank_P": 1,
+    "rank_P_perp": 1
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_3",
+   "n": 4,
+   "scalars": {
+    "S": "785651814141/30674982250",
+    "t": "22/5",
+    "u": "2"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-2209/144",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "1860070195699/158442638760",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-4861108180845/3720140391398"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-4861108180845/3720140391398",
+     "det_class": {
+      "norm": [
+       -1,
+       2143
+      ],
+      "sq": [
+       -1,
+       18600701956990
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "1860070195699/158442638760",
+     "det_class": {
+      "norm": [
+       1,
+       2143
+      ],
+      "sq": [
+       1,
+       18600701956990
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "1860070195699/158442638760"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "1860070195699/158442638760",
+     "det_class": {
+      "norm": [
+       1,
+       2143
+      ],
+      "sq": [
+       1,
+       18600701956990
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "10144909387/5868245880",
+     "367611323/1956081960-5886207457/5868245880i",
+     "-5061498079/3912163920+1277093807/2347298352i",
+     "-393930373/3912163920-28499599/260810928i"
+    ],
+    [
+     "367611323/1956081960+5886207457/5868245880i",
+     "1644371059/586824588",
+     "-3774061771/2934122940-1433991127/1956081960i",
+     "-28719751/108671220-86336507/279440280i"
+    ],
+    [
+     "-5061498079/3912163920-1277093807/2347298352i",
+     "-3774061771/2934122940+1433991127/1956081960i",
+     "1123369343/317202480",
+     "332228023/1304054640+262706543/391216392i"
+    ],
+    [
+     "-393930373/3912163920+28499599/260810928i",
+     "-28719751/108671220+86336507/279440280i",
+     "332228023/1304054640-262706543/391216392i",
+     "970536671/1304054640"
+    ]
+   ],
+   "M_inv": {
+    "det": "11041992503429/2535082220160",
+    "det_class": {
+     "norm": [
+      1,
+      1
+     ],
+     "sq": [
+      1,
+      110419925034290
+     ]
+    },
+    "inertia": [
+     4,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "4861108180845/3720140391398",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "4861108180845/3720140391398",
+    "n_plus_H_perp": 3,
+    "ok": true,
+    "rank_P": 4,
+    "rank_P_perp": 3
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_4",
+   "n": 4,
+   "scalars": {
+    "S": "28321389761633/792213193800",
+    "t": "49/10",
+    "u": "47/12"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-2",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       2
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "626616665125/60554382084",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-121108764168/626616665125"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-121108764168/626616665125",
+     "det_class": {
+      "norm": [
+       -1,
+       913
+      ],
+      "sq": [
+       -1,
+       414292010
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "626616665125/60554382084",
+     "det_class": {
+      "norm": [
+       1,
+       913
+      ],
+      "sq": [
+       1,
+       207146005
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "2",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "626616665125/121108764168"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "626616665125/121108764168",
+     "det_class": {
+      "norm": [
+       1,
+       913
+      ],
+      "sq": [
+       1,
+       414292010
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "2530249963/747584964",
+     "-6931877681/4485509784+69948653/1495169928i",
+     "-8034483073/4485509784-4075264967/4485509784i"
+    ],
+    [
+     "-6931877681/4485509784-69948653/1495169928i",
+     "62464510547/13456529352",
+     "-1831901698/1682066169-30905389/434081592i"
+    ],
+    [
+     "-8034483073/4485509784+4075264967/4485509784i",
+     "-1831901698/1682066169+30905389/434081592i",
+     "46741077667/13456529352"
+    ]
+   ],
+   "M_inv": {
+    "det": "116826015955/6728264676",
+    "det_class": {
+     "norm": [
+      1,
+      11
+     ],
+     "sq": [
+      1,
+      116826015955
+     ]
+    },
+    "inertia": [
+     3,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 3
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "121108764168/626616665125",
+   "b": 2,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "121108764168/626616665125",
+    "n_plus_H_perp": 1,
+    "ok": true,
+    "rank_P": 1,
+    "rank_P_perp": 1
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_5",
+   "n": 3,
+   "scalars": {
+    "S": "3651368644943/60554382084",
+    "t": "21/2",
+    "u": "1"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-16/9",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "440000346143/69827946615",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-124138571760/440000346143"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-124138571760/440000346143",
+     "det_class": {
+      "norm": [
+       -1,
+       93
+      ],
+      "sq": [
+       -1,
+       6600005192145
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "440000346143/69827946615",
+     "det_class": {
+      "norm": [
+       1,
+       93
+      ],
+      "sq": [
+       1,
+       6600005192145
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "440000346143/69827946615"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "440000346143/69827946615",
+     "det_class": {
+      "norm": [
+       1,
+       93
+      ],
+      "sq": [
+       1,
+       6600005192145
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "17560933/7164045",
+     "-1523552/2388015-82204/41895i",
+     "-67978/377055+12233432/7164045i"
+    ],
+    [
+     "-1523552/2388015+82204/41895i",
+     "5817698/2388015",
+     "-14948/17955-98065/159201i"
+    ],
+    [
+     "-67978/377055-12233432/7164045i",
+     "-14948/17955+98065/159201i",
+     "19283707/14328090"
+    ]
+   ],
+   "M_inv": {
+    "det": "-4733620072/13965589323",
+    "det_class": {
+     "norm": [
+      -1,
+      3
+     ],
+     "sq": [
+      -1,
+      3550215054
+     ]
+    },
+    "inertia": [
+     2,
+     1,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 3
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "124138571760/440000346143",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "124138571760/440000346143",
+    "n_plus_H_perp": 1,
+    "ok": true,
+    "rank_P": 1,
+    "rank_P_perp": 1
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_6",
+   "n": 3,
+   "scalars": {
+    "S": "42331386887383/1396558932300",
+    "t": "49/10",
+    "u": "4/3"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-961/36",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "354892192631/15863652000",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-423471377000/354892192631"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-423471377000/354892192631",
+     "det_class": {
+      "norm": [
+       -1,
+       354892192631
+      ],
+      "sq": [
+       -1,
+       60331672747270
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "354892192631/15863652000",
+     "det_class": {
+      "norm": [
+       1,
+       354892192631
+      ],
+      "sq": [
+       1,
+       60331672747270
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "354892192631/15863652000"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "354892192631/15863652000",
+     "det_class": {
+      "norm": [
+       1,
+       354892192631
+      ],
+      "sq": [
+       1,
+       60331672747270
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "181299985789/89894028000",
+     "-50066267429/44947014000-37774346887/89894028000i",
+     "-18287082677/89894028000+67638282227/44947014000i",
+     "-5457253533/29964676000+4705103201/8989402800i"
+    ],
+    [
+     "-50066267429/44947014000+37774346887/89894028000i",
+     "85756926499/29964676000",
+     "-2272397087/3745584500-158454835579/89894028000i",
+     "42767659/330492750-71676208937/89894028000i"
+    ],
+    [
+     "-18287082677/89894028000-67638282227/44947014000i",
+     "-2272397087/3745584500+158454835579/89894028000i",
+     "20291179247/5992935200",
+     "77142857467/89894028000+4921660423/11236753500i"
+    ],
+    [
+     "-5457253533/29964676000-4705103201/8989402800i",
+     "42767659/330492750+71676208937/89894028000i",
+     "77142857467/89894028000-4921660423/11236753500i",
+     "144015955609/89894028000"
+    ]
+   ],
+   "M_inv": {
+    "det": "10529567645543/1057576800000",
+    "det_class": {
+     "norm": [
+      1,
+      18429
+     ],
+     "sq": [
+      1,
+      2685039749613465
+     ]
+    },
+    "inertia": [
+     4,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "423471377000/354892192631",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "423471377000/354892192631",
+    "n_plus_H_perp": 3,
+    "ok": true,
+    "rank_P": 4,
+    "rank_P_perp": 3
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_7",
+   "n": 4,
+   "scalars": {
+    "S": "705320265311/15863652000",
+    "t": "47/10",
+    "u": "31/6"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-9/2",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       2
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "580084713/48400000",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-24200000/64453857"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-24200000/64453857",
+     "det_class": {
+      "norm": [
+       -1,
+       49089
+      ],
+      "sq": [
+       -1,
+       322269285
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "580084713/48400000",
+     "det_class": {
+      "norm": [
+       1,
+       49089
+      ],
+      "sq": [
+       1,
+       644538570
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "2",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "580084713/96800000"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "580084713/96800000",
+     "det_class": {
+      "norm": [
+       1,
+       49089
+      ],
+      "sq": [
+       1,
+       322269285
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "4500501/1210000",
+     "-764143/484000-1080213/2420000i",
+     "913813/1210000+249413/1210000i"
+    ],
+    [
+     "-764143/484000+1080213/2420000i",
+     "3206961/1210000",
+     "1190993/1210000+105703/302500i"
+    ],
+    [
+     "913813/1210000-249413/1210000i",
+     "1190993/1210000-105703/302500i",
+     "2740769/605000"
+    ]
+   ],
+   "M_inv": {
+    "det": "18787967349/774400000",
+    "det_class": {
+     "norm": [
+      1,
+      80635053
+     ],
+     "sq": [
+      1,
+      187879673490
+     ]
+    },
+    "inertia": [
+     3,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 3
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "24200000/64453857",
+   "b": 2,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "24200000/64453857",
+    "n_plus_H_perp": 1,
+    "ok": true,
+    "rank_P": 1,
+    "rank_P_perp": 1
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_8",
+   "n": 3,
+   "scalars": {
+    "S": "4856708713/96800000",
+    "t": "47/5",
+    "u": "3/2"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-64/9",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "7746770871767/850746696030",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-6049754282880/7746770871767"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-6049754282880/7746770871767",
+     "det_class": {
+      "norm": [
+       -1,
+       23240312615301
+      ],
+      "sq": [
+       -1,
+       232403126153010
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "7746770871767/850746696030",
+     "det_class": {
+      "norm": [
+       1,
+       23240312615301
+      ],
+      "sq": [
+       1,
+       232403126153010
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "7746770871767/850746696030"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "7746770871767/850746696030",
+     "det_class": {
+      "norm": [
+       1,
+       23240312615301
+      ],
+      "sq": [
+       1,
+       232403126153010
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "53268908677/18905482134",
+     "71520941677/47263705335-20320758389/47263705335i",
+     "-38778881/245525742+342126670/350101521i",
+     "-22763447899/18905482134-4206776890/9452741067i"
+    ],
+    [
+     "71520941677/47263705335+20320758389/47263705335i",
+     "89599814519/47263705335",
+     "-8460707921/94527410670+27552669289/47263705335i",
+     "-3290352617/4501305270-38783279947/47263705335i"
+    ],
+    [
+     "-38778881/245525742-342126670/350101521i",
+     "-8460707921/94527410670-27552669289/47263705335i",
+     "39056583677/37810964268",
+     "-18141524347/37810964268+3933271642/9452741067i"
+    ],
+    [
+     "-22763447899/18905482134+4206776890/9452741067i",
+     "-3290352617/4501305270+38783279947/47263705335i",
+     "-18141524347/37810964268-3933271642/9452741067i",
+     "49923228181/37810964268"
+    ]
+   ],
+   "M_inv": {
+    "det": "551559167641/765672026427",
+    "det_class": {
+     "norm": [
+      1,
+      20131611
+     ],
+     "sq": [
+      1,
+      1654677502923
+     ]
+    },
+    "inertia": [
+     4,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "6049754282880/7746770871767",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "6049754282880/7746770871767",
+    "n_plus_H_perp": 3,
+    "ok": true,
+    "rank_P": 3,
+    "rank_P_perp": 3
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_9",
+   "n": 4,
+   "scalars": {
+    "S": "121086134534539/4253733480150",
+    "t": "22/5",
+    "u": "8/3"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-4",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       1
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "1172015137787/142679918000",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-570719672000/1172015137787"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-570719672000/1172015137787",
+     "det_class": {
+      "norm": [
+       -1,
+       7037
+      ],
+      "sq": [
+       -1,
+       181662346356985
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "1172015137787/142679918000",
+     "det_class": {
+      "norm": [
+       1,
+       7037
+      ],
+      "sq": [
+       1,
+       181662346356985
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "1",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "1172015137787/142679918000"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "1172015137787/142679918000",
+     "det_class": {
+      "norm": [
+       1,
+       7037
+      ],
+      "sq": [
+       1,
+       181662346356985
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "12110960079/14267991800",
+     "-16271640913/28535983600-1828315753/28535983600i",
+     "5949428663/28535983600-21269927697/28535983600i"
+    ],
+    [
+     "-16271640913/28535983600+1828315753/28535983600i",
+     "72622314421/28535983600",
+     "188967077/771242800+9958463/4602578i"
+    ],
+    [
+     "5949428663/28535983600+21269927697/28535983600i",
+     "188967077/771242800-9958463/4602578i",
+     "85786060461/28535983600"
+    ]
+   ],
+   "M_inv": {
+    "det": "64301184744349/35384619664000",
+    "det_class": {
+     "norm": [
+      1,
+      326401953017
+     ],
+     "sq": [
+      1,
+      643011847443490
+     ]
+    },
+    "inertia": [
+     3,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 3,
+    "size": 3
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "570719672000/1172015137787",
+   "b": 1,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "570719672000/1172015137787",
+    "n_plus_H_perp": 2,
+    "ok": true,
+    "rank_P": 3,
+    "rank_P_perp": 2
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_10",
+   "n": 3,
+   "scalars": {
+    "S": "3934298350267/142679918000",
+    "t": "22/5",
+    "u": "2"
+   }
+  },
+  {
+   "B": {
+    "full_inv": {
+     "det": "-25/2",
+     "det_class": {
+      "norm": [
+       -1,
+       1
+      ],
+      "sq": [
+       -1,
+       2
+      ]
+     },
+     "inertia": [
+      2,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 3,
+     "size": 3
+    },
+    "pivot_definite": true,
+    "pivot_det": "3932781424/157628025",
+    "pivot_indices": [
+     0,
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     2,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "-3940700625/7865562848"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "-3940700625/7865562848",
+     "det_class": {
+      "norm": [
+       -1,
+       1454431
+      ],
+      "sq": [
+       -1,
+       2908862
+      ]
+     },
+     "inertia": [
+      0,
+      1,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     2
+    ]
+   },
+   "G": {
+    "full_inv": {
+     "det": "3932781424/157628025",
+     "det_class": {
+      "norm": [
+       1,
+       1454431
+      ],
+      "sq": [
+       1,
+       1454431
+      ]
+     },
+     "inertia": [
+      2,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 2,
+     "size": 2
+    },
+    "pivot_definite": true,
+    "pivot_det": "2",
+    "pivot_indices": [
+     1
+    ],
+    "pivot_inertia_of_symmetric_part": [
+     1,
+     0,
+     0
+    ],
+    "pivot_kind": "symmetric",
+    "pivot_sign": 1,
+    "reduced": [
+     [
+      "1966390712/157628025"
+     ]
+    ],
+    "reduced_inv": {
+     "det": "1966390712/157628025",
+     "det_class": {
+      "norm": [
+       1,
+       1454431
+      ],
+      "sq": [
+       1,
+       2908862
+      ]
+     },
+     "inertia": [
+      1,
+      0,
+      0
+     ],
+     "kind": "symmetric",
+     "rank": 1,
+     "size": 1
+    },
+    "rest_indices": [
+     0
+    ]
+   },
+   "M_full": [
+    [
+     "219515927/56045520",
+     "-10686697/28022760-32037713/28022760i",
+     "-62560099/56045520+8685389/6227280i",
+     "19886557/56045520+15870271/28022760i"
+    ],
+    [
+     "-10686697/28022760+32037713/28022760i",
+     "24811637/7005690",
+     "871943/2802276+4559477/7005690i",
+     "7328359/5604552+12527267/9340920i"
+    ],
+    [
+     "-62560099/56045520-8685389/6227280i",
+     "871943/2802276-4559477/7005690i",
+     "77318263/28022760",
+     "73231777/56045520-11781041/11209104i"
+    ],
+    [
+     "19886557/56045520-15870271/28022760i",
+     "7328359/5604552-12527267/9340920i",
+     "73231777/56045520+11781041/11209104i",
+     "150341659/56045520"
+    ]
+   ],
+   "M_inv": {
+    "det": "164197472843/9079374240",
+    "det_class": {
+     "norm": [
+      1,
+      787771
+     ],
+     "sq": [
+      1,
+      1641974728430
+     ]
+    },
+    "inertia": [
+     4,
+     0,
+     0
+    ],
+    "kind": "hermitian",
+    "rank": 4,
+    "size": 4
+   },
+   "M_kind": "hermitian",
+   "Ropt_equals_minus_B_schur": true,
+   "Ropt_equals_u2_G11inv": true,
+   "Ropt_from_G": "3940700625/7865562848",
+   "b": 2,
+   "base_ring": "Q(i) for M, Q for G and B",
+   "chain": {
+    "R_opt": "3940700625/7865562848",
+    "n_plus_H_perp": 2,
+    "ok": true,
+    "rank_P": 3,
+    "rank_P_perp": 2
+   },
+   "domain": "spectral_inertia",
+   "label": "seeded_11",
+   "n": 4,
+   "scalars": {
+    "S": "10490914304/157628025",
+    "t": "52/5",
+    "u": "5/2"
+   }
+  }
+ ],
+ "seed": 20261121303
+}

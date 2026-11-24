@@ -1,0 +1,103 @@
+{
+ "all_pass": true,
+ "bound_sequence": [
+  "64",
+  "112",
+  "124"
+ ],
+ "layers": [
+  {
+   "all_checks_pass": true,
+   "anchor_matches": true,
+   "anchor_primal_eq_dual_obj": "16",
+   "anchor_sum_H_after_layer": "64",
+   "certificate_mu_fiber": {
+    "concrete_cost": "64",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 7,
+    "potential_feasible": true,
+    "primal_value": "64"
+   },
+   "certificate_mu_one": {
+    "concrete_cost": "16",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 7,
+    "potential_feasible": true,
+    "primal_value": "16"
+   },
+   "g_mu_fiber": "64",
+   "g_mu_one": "16",
+   "layer": "pi_x",
+   "ledger_layer_increment": "64",
+   "ledger_lp_mu_one": "16",
+   "reduced_object_equals_g": true
+  },
+  {
+   "all_checks_pass": true,
+   "anchor_matches": true,
+   "anchor_primal_eq_dual_obj": "12",
+   "anchor_sum_H_after_layer": "112",
+   "certificate_mu_fiber": {
+    "concrete_cost": "48",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 7,
+    "potential_feasible": true,
+    "primal_value": "48"
+   },
+   "certificate_mu_one": {
+    "concrete_cost": "12",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 7,
+    "potential_feasible": true,
+    "primal_value": "12"
+   },
+   "g_mu_fiber": "48",
+   "g_mu_one": "12",
+   "layer": "pi_y",
+   "ledger_layer_increment": "48",
+   "ledger_lp_mu_one": "12",
+   "reduced_object_equals_g": true
+  },
+  {
+   "all_checks_pass": true,
+   "anchor_matches": true,
+   "anchor_primal_eq_dual_obj": "2",
+   "anchor_sum_H_after_layer": "124",
+   "certificate_mu_fiber": {
+    "concrete_cost": "12",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 3,
+    "potential_feasible": true,
+    "primal_value": "12"
+   },
+   "certificate_mu_one": {
+    "concrete_cost": "2",
+    "equal": true,
+    "flow_feasible": true,
+    "n_flow_edges": 3,
+    "potential_feasible": true,
+    "primal_value": "2"
+   },
+   "g_mu_fiber": "12",
+   "g_mu_one": "2",
+   "layer": "pi_imbalance",
+   "ledger_layer_increment": "12",
+   "ledger_lp_mu_one": "2",
+   "reduced_object_equals_g": true
+  }
+ ],
+ "section": "s4row4",
+ "statement": {
+  "convex_f_and_g": "f is linear plus polyhedral indicators; g is linear on x >= 0",
+  "f": "f(x,y) = sum_e c(e) y_e over concrete cross-fiber edges, plus the indicator of y >= 0 and of sum over the fiber of (a,b) of y_e = x_ab, where x is a flow on quotient edges",
+  "fiber_y": "the split of each aggregated quotient flow x_ab over the concrete edges of the fiber (a,b): a product of simplices",
+  "g": "g(x) = inf_y f(x,y) = sum_ab w_ab x_ab with w_ab = min over the fiber of the residual cost (parallel-edge minimum)",
+  "value": "min over feasible x of g = quotient LP value; equals the max sum mu h by LP duality (certified on the concrete graph)"
+ },
+ "sum_d_star": "124"
+}

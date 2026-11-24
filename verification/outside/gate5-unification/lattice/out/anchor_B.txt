@@ -1,0 +1,24 @@
+PASS anchor d8_s1 all fields equal upstream d8
+PASS anchor d8_s1 inertia [1,0,35]
+PASS anchor d8_k1 all fields equal upstream d8
+PASS anchor d8_k1 inertia [1,0,35]
+PASS anchor d8 (8/9,7/9) all fields equal upstream
+PASS anchor e8_s1 all fields equal upstream function fed H8/2
+PASS anchor e8_s1 inertia [1,0,35], H0=29, H1=21
+PASS anchor e8_s1 S = c * sigma sigma^T with sigma = 2I+H8 (c=3/92)
+PASS anchor 2I+H8 inertia (4,4,0)
+PASS anchor rk(M_rot)=7 for C_8 (upstream 7) and for H8/2
+PASS anchor twisted cycles n=3..7 (11 points) equal upstream --json
+PASS anchor non-symmetrizable C3 control equals upstream
+PASS L8(0) = (2+sqrt2) I
+PASS L8(1) = 2I + H8/2
+PASS det L8(1) = 16
+PASS bar identity |b_i|^2=2 exactly and G(s)-G(1) positive semidefinite at 4 rational s
+PASS upstream certificate hash recomputed by sandboxed driver = e4f14b92
+PASS H_el = Phi^T H_lat Phi for the real Phi (e8_s1)
+CONTROL-DETECTED wrong Phi (X sign flipped) breaks the congruence
+CONTROL-DETECTED perturbed lattice loses the rank-1 collapse
+CONTROL-DETECTED perturbed lattice does not match upstream S fields
+CONTROL-DETECTED comparison rejects a wrong inertia [1,0,34]
+CONTROL-DETECTED swapped diagonal entries break |b_0|^2 = 2
+SUMMARY passes=18 fails=0 control_fails=0
