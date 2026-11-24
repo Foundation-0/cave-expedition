@@ -183,6 +183,23 @@ python3 -I -O -B verification/checks/check_010_spectral_inertia_reaudit.py
 python3 -I -B -W error verification/checks/check_010_spectral_inertia_reaudit.py
 ```
 
+### Which Sibling Bytes an Audit Recorded (`verification/expedition_root.pins.json`)
+
+The ledger rows record few byte pins, so a replay under `EXPEDITION_ROOT` cannot always be tied to what the audit saw. `verification/expedition_root.pins.json` sets out what the rows do record, in three sections:
+
+- `audited`: only values a ledger row itself records, each with its line, whether it is a full hash, a hash prefix or a commit prefix, the row's own words, and whether the row says the value hashes a file. One row records a full SHA-256 (AUDIT-018), five record 8- to 10-digit prefixes, and one names a commit (`dfc8516`, AUDIT-015R / 016R).
+- `post_audit_reference`: two `Foundation-0/project-asma` files tied to `check_012`, at the public commits that first carry these bytes: the Lean file it reads (`formal/AsmaIdentifiabilityProofs.lean` at `94b70f3`) and `optimal_inertia_rank.py`, which it imports from `synthesis/` and which project-asma publishes in its AUDIT-006R study (`studies/expedition-mobius-ropt/optimal_inertia_rank.py` at `f2f92ee`); both commits are dated 2026-11-22. They are public bytes committed after the audit, not the audited bytes. The Lean file's last public version before the audit (`6259ef2`, 2026-11-13) is listed as probable, not recorded.
+- `unrecorded`: the 15 of 22 rows that record no byte pin. Their audited bytes cannot be recovered now, and nothing is back-filled.
+
+Each row also carries a `replay_class`: 1 row replays from a bare clone (AUDIT-002, through `check_003`), 19 need the `EXPEDITION_ROOT` layout and 2 need the private transcripts.
+
+```bash
+EXPEDITION_ROOT=/path/to/expedition python3 -I -B verification/check_expedition_root.py
+python3 -I -B verification/tests/test_check_expedition_root.py
+```
+
+The checker first confirms that every audited value appears on the ledger line it names and that every row is listed once. It then reports `OK`, `MISMATCH`, `NOT_SHOWN` (file or clone absent, git cannot read HEAD, or the row does not say its value hashes the file) or `UNRECORDED` per entry, and compares `git rev-parse HEAD` of the clone for the commit pin. It exits 1 only on a `MISMATCH` of an audited value and 2 on a malformed manifest. Post-audit reference entries are reported but never fail the run. On a bare clone every file is `NOT_SHOWN`. The suite's controls include a must-fail run with wrong bytes for AUDIT-018's two named files. With aletheia at `a07d7db`, `mutate verification/check_expedition_root.py --guards _need --max-mutants 0` against this suite killed 42 of 42 mutants; CI runs the same command.
+
 ---
 
 ## License

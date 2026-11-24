@@ -1,0 +1,180 @@
+{
+  "schema": "cave.expedition_root_pins.v1",
+  "about": "Which sibling bytes each audit row recorded, for replays under EXPEDITION_ROOT. Checked offline by verification/check_expedition_root.py. 'audited' holds only values the ledger row itself records. 'post_audit_reference' holds public bytes committed after the audits, kept so a replay can say which public version it ran; they are not the audited bytes. 'unrecorded' names every row that records no byte pin. Nothing here back-fills an audited value.",
+  "root_variable": "EXPEDITION_ROOT",
+  "ledger": "verification/AUDIT_LOG.md",
+  "audited": [
+    {
+      "row_label": "AUDIT-011",
+      "audit_log_line": 20,
+      "pin": "prefix",
+      "value": "fa4d3a1b",
+      "hashes": "not stated",
+      "ledger_words": "Both `probe1` (`-B`, `-O -B -W error`, SHA-256 `fa4d3a1b...`)",
+      "candidate_paths": ["probes/gravity/probe1_aest_helmholtz_closure.py"],
+      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+    },
+    {
+      "row_label": "AUDIT-012",
+      "audit_log_line": 21,
+      "pin": "prefix",
+      "value": "ed74a3a4",
+      "hashes": "not stated",
+      "ledger_words": "R4 parity clean (`-B`, `-O -B -W error`, SHA-256 `ed74a3a4...`)",
+      "candidate_paths": ["probes/gravity/probe2_latch_outside_anchors_and_chirp.py"],
+      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+    },
+    {
+      "row_label": "AUDIT-013",
+      "audit_log_line": 22,
+      "pin": "prefix",
+      "value": "35e16732",
+      "hashes": "not stated",
+      "ledger_words": "R4 parity clean (SHA-256 `35e16732...`)",
+      "candidate_paths": ["probes/gravity/probe3_nonaffine_inertia_box_certifier.py"],
+      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+    },
+    {
+      "row_label": "AUDIT-017",
+      "audit_log_line": 26,
+      "pin": "prefix",
+      "value": "e4f14b92",
+      "hashes": "not stated",
+      "ledger_words": "Clean-room 4-mode `-I` R4 replay of `verify_e8_spinor_fold.py` bit-identical (`SHA-256 e4f14b92...`",
+      "candidate_paths": ["probes/fractals/verify_e8_spinor_fold.py"],
+      "candidate_basis": "the script the row replayed; check_009 reads it from probes/fractals. The row does not say whether the value hashes the file or its output."
+    },
+    {
+      "row_label": "AUDIT-015R / 016R",
+      "audit_log_line": 27,
+      "pin": "commit_prefix",
+      "value": "dfc8516",
+      "ledger_words": "Clean-room 4-mode `-I` R4 replay of `dfc8516` `run_all.py` passed",
+      "clone": "branches/spectral-inertia",
+      "clone_basis": "check_010 reads branches/spectral-inertia, which README section 5 maps to siliconcordat/spectral-inertia. The row names the commit but not the repository."
+    },
+    {
+      "row_label": "AUDIT-011R / 013R",
+      "audit_log_line": 28,
+      "pin": "prefix",
+      "value": "bcde49380e",
+      "hashes": "not stated",
+      "ledger_words": "canonical SHAs verified: Probe 1 `bcde49380e...`",
+      "candidate_paths": ["probes/gravity/probe1_aest_helmholtz_closure.py"],
+      "candidate_basis": "Probe 1 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+    },
+    {
+      "row_label": "AUDIT-011R / 013R",
+      "audit_log_line": 28,
+      "pin": "prefix",
+      "value": "ed74a3a43d",
+      "hashes": "not stated",
+      "ledger_words": "Probe 2 `ed74a3a43d...`",
+      "candidate_paths": ["probes/gravity/probe2_latch_outside_anchors_and_chirp.py"],
+      "candidate_basis": "Probe 2 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+    },
+    {
+      "row_label": "AUDIT-011R / 013R",
+      "audit_log_line": 28,
+      "pin": "prefix",
+      "value": "6d46734781",
+      "hashes": "not stated",
+      "ledger_words": "Probe 3 `6d46734781...`",
+      "candidate_paths": ["probes/gravity/probe3_nonaffine_inertia_box_certifier.py"],
+      "candidate_basis": "Probe 3 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+    },
+    {
+      "row_label": "AUDIT-018",
+      "audit_log_line": 29,
+      "pin": "full",
+      "value": "899d65178959d397a1121ec0a494dbe9cf6a5e7fd2ef2ecb29ef4f22b30c3451",
+      "hashes": "file",
+      "ledger_words": "Clean-room R4 parity passed (file SHA-256 `899d65178959d397a1121ec0a494dbe9cf6a5e7fd2ef2ecb29ef4f22b30c3451`",
+      "candidate_paths": [
+        "probes/gravity/probe4_witness_zeno_schur.py",
+        "probes/gravity/probe4_witness_zeno_results.json"
+      ],
+      "candidate_basis": "the two artifacts the row names, where check_011 reads probe 4 (probes/gravity). The row says 'file SHA-256' but not which of the two files."
+    }
+  ],
+  "post_audit_reference": [
+    {
+      "label": "public bytes committed 2026-11-22, after the audit; not the audited bytes",
+      "repository": "Foundation-0/project-asma",
+      "repository_path": "formal/AsmaIdentifiabilityProofs.lean",
+      "commit": "94b70f303af0cf8dba92bb31f23e37505147564b",
+      "committed": "2026-11-22T23:30:52-06:00",
+      "sha256": "25dcb2e77e03063d20bcbbfd1a43419319d3c04ecb5c20f9045462d2d44597fa",
+      "paths": ["repos/project-asma/formal/AsmaIdentifiabilityProofs.lean"],
+      "read_by": "check_012 (LEAN_ASMA), which requires four literal qNum substrings, two of them with a double space",
+      "row_labels": ["AUDIT-006R / 007R / 008R"],
+      "before_audit": {
+        "label": "last public version before the audit; probable, not recorded",
+        "commit": "6259ef297846025ae6daa21f5a398aa8f4455d3e",
+        "committed": "2026-11-13T00:39:07-06:00",
+        "sha256": "be155493551934b418424239915af0e5223d703655eb0cffc91ea978864e26d3"
+      }
+    },
+    {
+      "label": "public bytes committed 2026-11-22, after the audit; not the audited bytes",
+      "repository": "Foundation-0/project-asma",
+      "repository_path": "studies/expedition-mobius-ropt/optimal_inertia_rank.py",
+      "commit": "f2f92ee9f753850aa5f7d089bedea1b6d54ef73b",
+      "committed": "2026-11-22T23:30:57-06:00",
+      "sha256": "84aba2bdce27c1243ee5e3de2a2d248126c17ad2337269c43c227e099367f7c9",
+      "paths": [
+        "synthesis/optimal_inertia_rank.py",
+        "repos/project-asma/studies/expedition-mobius-ropt/optimal_inertia_rank.py"
+      ],
+      "read_by": "check_012 imports synthesis/optimal_inertia_rank.py; the public copy sits at the project-asma study path. Whether the audited synthesis file had these bytes was not recorded.",
+      "row_labels": ["AUDIT-006R / 007R / 008R"],
+      "before_audit": null
+    }
+  ],
+  "unrecorded": [
+    {"row_label": "AUDIT-001", "audit_log_line": 10},
+    {"row_label": "AUDIT-002", "audit_log_line": 11, "note": "The row records no hash. check_003's bytes and stdout are pinned separately: by the outside Gate-5 anchor (verification/outside/gate5-unification) and by the CI workflow."},
+    {"row_label": "AUDIT-003", "audit_log_line": 12},
+    {"row_label": "AUDIT-004", "audit_log_line": 13, "note": "The digits 09478356 in this row belong to a decimal value (lambda_min=0.09478356), not a hash."},
+    {"row_label": "AUDIT-005", "audit_log_line": 14},
+    {"row_label": "AUDIT-006", "audit_log_line": 15},
+    {"row_label": "AUDIT-007", "audit_log_line": 16},
+    {"row_label": "AUDIT-008", "audit_log_line": 17},
+    {"row_label": "AUDIT-009", "audit_log_line": 18},
+    {"row_label": "AUDIT-010", "audit_log_line": 19},
+    {"row_label": "AUDIT-014", "audit_log_line": 23},
+    {"row_label": "AUDIT-015", "audit_log_line": 24},
+    {"row_label": "AUDIT-016", "audit_log_line": 25},
+    {"row_label": "AUDIT-019", "audit_log_line": 30},
+    {"row_label": "AUDIT-006R / 007R / 008R", "audit_log_line": 31, "note": "The audited synthesis/optimal_inertia_rank.py and project-asma Lean bytes were not recorded; see post_audit_reference."}
+  ],
+  "replay_classes": {
+    "bare-clone": "runs from a fresh clone of this repository with the Python standard library",
+    "needs EXPEDITION_ROOT": "needs the sibling layout under EXPEDITION_ROOT (README section 5), which is not published as one tree",
+    "needs private transcripts": "needs the private session transcripts under GEMINI_SESSIONS_DIR, which are not public"
+  },
+  "replay_class": [
+    {"row_label": "AUDIT-001", "class": "needs private transcripts", "scripts": ["check_001_lemma32_and_tcb.py"]},
+    {"row_label": "AUDIT-002", "class": "bare-clone", "scripts": ["check_003_seam01_ropt.py", "check_001_lemma32_and_tcb.py"], "note": "check_003 runs from a bare clone; the check_001 part needs private transcripts"},
+    {"row_label": "AUDIT-003", "class": "needs private transcripts", "scripts": ["check_002_session1_instruments.py"]},
+    {"row_label": "AUDIT-004", "class": "needs EXPEDITION_ROOT", "scripts": ["check_004_continuum_bridge_suite.py"]},
+    {"row_label": "AUDIT-005", "class": "needs EXPEDITION_ROOT", "scripts": ["check_004_continuum_bridge_suite.py"]},
+    {"row_label": "AUDIT-006", "class": "needs EXPEDITION_ROOT", "scripts": ["check_004_continuum_bridge_suite.py"]},
+    {"row_label": "AUDIT-007", "class": "needs EXPEDITION_ROOT", "scripts": ["check_004_continuum_bridge_suite.py"]},
+    {"row_label": "AUDIT-008", "class": "needs EXPEDITION_ROOT", "scripts": ["check_005_portal78.py"]},
+    {"row_label": "AUDIT-009", "class": "needs EXPEDITION_ROOT", "scripts": ["check_006_fractals_deliverables.py"]},
+    {"row_label": "AUDIT-010", "class": "needs EXPEDITION_ROOT", "scripts": ["check_006_fractals_deliverables.py"]},
+    {"row_label": "AUDIT-011", "class": "needs EXPEDITION_ROOT", "scripts": ["check_007_gravity_probes.py"]},
+    {"row_label": "AUDIT-012", "class": "needs EXPEDITION_ROOT", "scripts": ["check_007_gravity_probes.py"]},
+    {"row_label": "AUDIT-013", "class": "needs EXPEDITION_ROOT", "scripts": ["check_007_gravity_probes.py"]},
+    {"row_label": "AUDIT-014", "class": "needs EXPEDITION_ROOT", "scripts": ["check_008_spectral_inertia.py"]},
+    {"row_label": "AUDIT-015", "class": "needs EXPEDITION_ROOT", "scripts": ["check_008_spectral_inertia.py"]},
+    {"row_label": "AUDIT-016", "class": "needs EXPEDITION_ROOT", "scripts": ["check_008_spectral_inertia.py"]},
+    {"row_label": "AUDIT-017", "class": "needs EXPEDITION_ROOT", "scripts": ["check_009_e8_spinor_fold.py"]},
+    {"row_label": "AUDIT-015R / 016R", "class": "needs EXPEDITION_ROOT", "scripts": ["check_010_spectral_inertia_reaudit.py"]},
+    {"row_label": "AUDIT-011R / 013R", "class": "needs EXPEDITION_ROOT", "scripts": ["check_011_gravity_reaudit_and_probe4.py"]},
+    {"row_label": "AUDIT-018", "class": "needs EXPEDITION_ROOT", "scripts": ["check_011_gravity_reaudit_and_probe4.py"]},
+    {"row_label": "AUDIT-019", "class": "needs EXPEDITION_ROOT", "scripts": ["check_012_continuum_bridge_reaudit_and_fold_sheaf.py"]},
+    {"row_label": "AUDIT-006R / 007R / 008R", "class": "needs EXPEDITION_ROOT", "scripts": ["check_012_continuum_bridge_reaudit_and_fold_sheaf.py"]}
+  ]
+}
