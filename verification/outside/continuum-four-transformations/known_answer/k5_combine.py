@@ -1,16 +1,19 @@
-"""Join part outputs of K5. usage: k5_combine.py smoke|full <part files...>"""
+"""Join part outputs of K5. usage: k5_combine.py smoke [epoch=0] <part files...> | full epoch=<k> <part files...>
+The parts must be parts of K5 of the same size and key epoch as this run, from one clean code commit equal to this run's, covering every part
+number once (kcommon.check_parts); otherwise nothing is joined and the exit status is 1."""
 import ast, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
-from kcommon import header, summary, parse_mode, sizes
-import k5_transfer as k5
+from kcommon import header, summary, parse_cli, sizes, join_parts
+import k5_scale_flow as k5
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    ns = sizes(mode)["K5_SEEDS"]
+    run = parse_cli(sys.argv, seeded=True, files=True)
+    commit = join_parts("K5", run)
+    ns = sizes(run["mode"])["K5_SEEDS"]
     res = []
-    for path in sys.argv[2:]:
+    for path in run["files"]:
         with open(path, "r", encoding="utf-8") as fh:
             for line in fh:
                 if line.startswith("K5SEED "):
@@ -18,11 +21,9 @@ def main():
     if sorted(r["seed"] for r in res) != list(range(ns)):
         print("FAIL: parts do not cover seeds 0 to %d" % (ns - 1))
         raise SystemExit(1)
-    header("K5", "transfer (parts joined)", mode)
-    status, text = k5.evaluate(res, ns, mode)
-    summary("K5", status, text, mode)
-    if status != "PASS":
-        raise SystemExit(1)
+    header("K5", "scale flow (parts joined)", run, commit)
+    status, text = k5.evaluate(res, ns)
+    summary("K5", status, text, run)
 
 
 if __name__ == "__main__":

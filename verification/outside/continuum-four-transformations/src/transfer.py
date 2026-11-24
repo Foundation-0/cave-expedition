@@ -1,5 +1,6 @@
 """Sameness (transfer) tests of PREREG 4.3: aligned levels, arrow and profile features, templates, matched random
-detectors, the exact count of distinct detectors, the smallest reachable p, and the adverse rule.
+detectors, the exact count of distinct detectors, the smallest reachable p, and the adverse rule (reading D8 as amended by
+Amendment 4, item C1: a detector tied with S_B(w_A) counts as at or below it, so a tie can only remove "adverse").
 
 The same machinery serves the scale-flow transfer (flow.py), whose features are entries of a vector too."""
 import math
@@ -122,11 +123,33 @@ def smallest_reachable_p(R, D):
     return (1 + Fraction(R, D)) / (R + 1)
 
 
+def adverse_rule(n_le, R):
+    """Reading D8 as amended by Amendment 4 (item C1). In one run a transfer is adverse if and only if fewer than R/40 of the R random
+    detectors score at or below S_B(w_A), that is, if 40 times that count is less than R. n_le counts the detectors whose score is below
+    S_B(w_A), equal to it, or tied with it under the tolerance of section 4.3 (ties.tied). Exact integers only: a bool, a float or any
+    other type is refused, and so is a count outside 0 to R."""
+    for name, v in (("n_le", n_le), ("R", R)):
+        if isinstance(v, (bool, np.bool_)) or not isinstance(v, (int, np.integer)):
+            raise TypeError("%s must be an int, got %s" % (name, type(v).__name__))
+    n_le, R = int(n_le), int(R)
+    if R < 1:
+        raise ValueError("R must be at least 1")
+    if n_le < 0 or n_le > R:
+        raise ValueError("need 0 <= n_le <= R")
+    return ADVERSE_DEN * n_le < ADVERSE_NUM * R
+
+
 def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
     """One transfer test of template w against B's mean feature vector g (S_B(w) = w . g).
     kind 'arrow': permutation of the entries at jointly populated positions with an independent random sign for each;
     kind 'profile' or 'flow': permutations only. pop_mask: positions populated in both A and B.
-    Returns a dict: m (entries permuted), D, p (Fraction), floor (smallest reachable p), n_ge, n_lt, S_A, adverse."""
+    Returns a dict: m (entries permuted), D, p (Fraction), floor (smallest reachable p), S_A, and the counts of the R detectors:
+    n_ge (at or above S_A, ties included), n_lt (below S_A beyond the tie tolerance), n_tie (tied with S_A; an exact equality is a tie),
+    n_le = n_lt + n_tie (at or below), n_nonfinite (detectors whose score is not finite); adverse (adverse_rule on n_le, reading D8 as
+    amended by Amendment 4) and nonfinite.
+    The p-value is unchanged by Amendment 4: a tie counts against w_A, p = (1 + n_ge) / (R + 1).
+    A run in which S_A or any detector score is not finite is neither adverse nor passing: nonfinite is True, adverse is False and
+    p = 1, which cannot pass."""
     if kind not in ("arrow", "profile", "flow"):
         raise ValueError("unknown transfer kind " + str(kind))
     if isinstance(R, (bool, np.bool_)) or not isinstance(R, (int, np.integer)) or R < 1:
@@ -141,16 +164,22 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
     pos = np.flatnonzero(pop_mask)
     m = int(pos.size)
     signs = kind == "arrow"
-    S_A = float(w @ g)
+    with np.errstate(over="ignore", invalid="ignore"):   # an overflow gives a non-finite score, handled below, not a warning
+        S_A = float(w @ g)
     out = {"m": m, "kind": kind, "S_A": S_A}
     if m == 0:
-        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "adverse": False})
+        # no jointly populated entry: every detector is w_A itself, scores S_A and so ties with it (when S_A is finite)
+        fin = bool(np.isfinite(S_A))
+        n_tie = R if fin else 0
+        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "n_tie": n_tie, "n_le": n_tie,
+                    "n_nonfinite": 0 if fin else R, "nonfinite": not fin, "adverse": fin and adverse_rule(n_tie, R)})
         return out
     wp, gp = w[pos], g[pos]
-    S_pop = float(wp @ gp)
-    rest = S_A - S_pop  # entries outside the jointly populated set stay in place; they multiply zeros
+    with np.errstate(over="ignore", invalid="ignore"):
+        S_pop = float(wp @ gp)
+        rest = S_A - S_pop  # entries outside the jointly populated set stay in place; they multiply zeros
     D = distinct_detectors(wp, signs)
-    n_ge = 0
+    n_lt = n_tie = n_bad = 0
     done = 0
     while done < R:
         c = min(chunk, R - done)
@@ -158,12 +187,18 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
         ww = wp[perm]
         if signs:
             ww = ww * (rng.integers(0, 2, size=(c, m)) * 2 - 1)
-        sc = np.einsum("rm,m->r", ww, gp) + rest
-        n_ge += int(c - ties.below(sc, S_A).sum())   # a tie counts as at or above, never as below
+        with np.errstate(over="ignore", invalid="ignore"):
+            sc = np.einsum("rm,m->r", ww, gp) + rest
+        n_lt += int(ties.below(sc, S_A).sum())   # below S_A beyond the tie tolerance
+        n_tie += int(ties.tied(sc, S_A).sum())   # tied with S_A (section 4.3); never true for a non-finite value
+        n_bad += int((~np.isfinite(sc)).sum())
         done += c
-    n_lt = R - n_ge
-    out.update({"D": D, "p": Fraction(1 + n_ge, R + 1), "floor": smallest_reachable_p(R, D), "n_ge": n_ge,
-                "n_lt": n_lt, "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R})
+    n_ge = R - n_lt          # at or above, ties included: the p-value counts a tie against w_A (unchanged)
+    n_le = n_lt + n_tie      # at or below, ties included: the adverse decision (D8 as amended by Amendment 4)
+    finite = bool(np.isfinite(S_A)) and n_bad == 0
+    out.update({"D": D, "p": Fraction(1 + n_ge, R + 1) if finite else Fraction(1), "floor": smallest_reachable_p(R, D), "n_ge": n_ge,
+                "n_lt": n_lt, "n_tie": n_tie, "n_le": n_le, "n_nonfinite": n_bad, "nonfinite": not finite,
+                "adverse": finite and adverse_rule(n_le, R)})
     return out
 
 
@@ -178,6 +213,30 @@ def apply_floor(res, kind):
     r = dict(res)
     r["below_floor"] = False
     return r
+
+
+PAIR_RESULTS = ("pass", "adverse", "neither")
+
+
+def pair_result(runs, passes_holm):
+    """The result of one ordered pair for the outcome rules of section 12, from the results of its runs (dicts of transfer_test after
+    apply_floor) and whether its transfer test passes at its Holm step (a bool computed from levels.transfer_p and levels.holm).
+    'adverse' if the transfer is adverse in every run (reading D8 as amended by Amendment 4), 'pass' if it passes at its Holm step,
+    otherwise 'neither'. A run with a non-finite score is neither adverse nor passing, so a pair with such a run is 'neither'.
+    No verdict-stage code calls this yet: the real-data stage is not built."""
+    if not isinstance(passes_holm, (bool, np.bool_)):
+        raise TypeError("passes_holm must be a bool")
+    runs = list(runs)
+    if not runs:
+        raise ValueError("a pair needs at least one run")
+    if any(r["nonfinite"] for r in runs):
+        return "neither"
+    adverse = all(r["adverse"] for r in runs)
+    if adverse and passes_holm:
+        raise ValueError("a pair cannot both pass and be adverse")
+    if passes_holm:
+        return "pass"
+    return "adverse" if adverse else "neither"
 
 
 def pop_both(popA, popB, per_level=1):

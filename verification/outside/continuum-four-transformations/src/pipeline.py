@@ -41,13 +41,14 @@ def run_series(native_segs, run):
     return out
 
 
-def analyse_list(series, key_of, kind="iaaft", workers=None):
-    """series: list of series or None (invalid). key_of(q) gives the full pool key of entry q (keys.py, D14). Returns a list of result
-    dicts or None. Invalid blocks stay in the list (they count as non-rejecting segments)."""
+def analyse_list(series, key_of, kind="iaaft", workers=None, *, epoch):
+    """series: list of series or None (invalid). key_of(q) gives the full pool key of entry q (keys.py, D14) and epoch the key epoch of
+    the pools (required; the work item carries it to the worker). Returns a list of result dicts or None. Invalid blocks stay in the list
+    (they count as non-rejecting segments)."""
     jobs, where = [], []
     for q, s in enumerate(series):
         if s is not None:
-            jobs.append((s, key_of(q), kind))
+            jobs.append((s, key_of(q), kind, epoch))
             where.append(q)
     res = par.pmap(tasks.seg_task, jobs, workers)
     full = [None] * len(series)
@@ -66,24 +67,27 @@ def presence_counts(results):
 def control_series(native_segs, run, channel):
     """C2 and C3 (one each per native segment, None stays None) for a run. They are made from the native segment, with the draws of
     keys.control_series, and are put through the run's net by the caller. The C2 and C3 series of an invalid segment are invalid and
-    non-rejecting (None), section 7. C4 does not depend on any segment (controls.c4_generated_noise)."""
+    non-rejecting (None), section 7. C4 does not depend on any segment (controls.c4_generated_noise). Real-data draws keep epoch 0
+    (keys.REAL_DATA_EPOCH)."""
     valid = [s is not None and not transfer.segments_constant(nets.apply(RUN_NET[run], s)) for s in native_segs]
-    c2 = [controls.c2_surrogate_as_data(s, keys.control_series("C2", channel, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
-    c3 = [controls.c3_shuffle(s, keys.control_series("C3", channel, run, q)) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    ep = keys.REAL_DATA_EPOCH
+    c2 = [controls.c2_surrogate_as_data(s, keys.control_series("C2", channel, run, q), epoch=ep) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
+    c3 = [controls.c3_shuffle(s, keys.control_series("C3", channel, run, q), epoch=ep) if v else None for q, (s, v) in enumerate(zip(native_segs, valid))]
     return c2, c3
 
 
 def presence_run(native_segs, run, channel, c4_native, kind="iaaft", workers=None):
     """One presence run: the real segments and the three controls through the same net. The pools use keys.real_pool for the real
     segments and the control pools of D14 (purposes C2-surrogates, C3-surrogates, C4-surrogates). Returns dict with K, S and the
-    control counts, and run_passes needs the per-run level (levels.run_level)."""
+    control counts, and run_passes needs the per-run level (levels.run_level). Real-data draws keep epoch 0 (keys.REAL_DATA_EPOCH)."""
+    ep = keys.REAL_DATA_EPOCH
     net_series = run_series(native_segs, run)
-    res = analyse_list(net_series, lambda q: keys.real_pool(channel, "verdict", run, q), kind, workers)
+    res = analyse_list(net_series, lambda q: keys.real_pool(channel, "verdict", run, q), kind, workers, epoch=ep)
     K, S = presence_counts(res)
     c2, c3 = control_series(native_segs, run, channel)
-    r2 = analyse_list(run_series(c2, run), lambda q: keys.control_pool("C2", channel, run, q), kind, workers)
-    r3 = analyse_list(run_series(c3, run), lambda q: keys.control_pool("C3", channel, run, q), kind, workers)
-    r4 = analyse_list(run_series(c4_native, run), lambda q: keys.c4_pool(channel, run, q), kind, workers)
+    r2 = analyse_list(run_series(c2, run), lambda q: keys.control_pool("C2", channel, run, q), kind, workers, epoch=ep)
+    r3 = analyse_list(run_series(c3, run), lambda q: keys.control_pool("C3", channel, run, q), kind, workers, epoch=ep)
+    r4 = analyse_list(run_series(c4_native, run), lambda q: keys.c4_pool(channel, run, q), kind, workers, epoch=ep)
     K2, S2 = presence_counts(r2)
     K3, S3 = presence_counts(r3)
     K4, S4 = presence_counts(r4)

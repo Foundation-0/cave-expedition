@@ -1,6 +1,8 @@
 """Unit checks of the building blocks, with known answers (exact where the plan's quantity is exact). Exit status 1 and
 the text FAIL on any failed check. Output is identical in python -I -B, -I -O -B and -I -B -W error."""
+import contextlib
 import hashlib
+import io
 import os
 import sys
 from fractions import Fraction
@@ -9,7 +11,7 @@ import math
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
-import flow, gates, iaaft, law2b, levels, nets, outcomes, patterns, pipeline, ranks, second_impl, segments, seeds, stats43, synth, tasks, ties, transfer
+import controls, flow, gates, iaaft, law2b, levels, nets, outcomes, patterns, pipeline, ranks, second_impl, segments, seeds, stats43, synth, tasks, ties, transfer
 from kcommon import Checker
 
 C = Checker()
@@ -108,19 +110,19 @@ def u_surrogates_identity():
         x = synth.standardise(synth.ar1(0.9, n, rng))
         maps = {"cubic": x ** 3 + x, "exp": np.exp(x), "rank": nets.increasing_maps()["rank"](x)}
         key = ("U", "s", "native", n, "surrogates", 0)
-        base = stats43.segment_test(x, key)
+        base = stats43.segment_test(x, key, epoch=0)
         for nm, y in maps.items():
             ck("map %s leaves distinct values unchanged (n=%d)" % (nm, n), nets.map_guard_ok(x, y))
-            r = stats43.segment_test(y, key)
+            r = stats43.segment_test(y, key, epoch=0)
             eq("C3 counts identical, %s, n=%d" % (nm, n), r["C3"], base["C3"])
             eq("standardised features identical, %s, n=%d" % (nm, n), r["Z"], base["Z"])
             eq("p identical, %s, n=%d" % (nm, n), r["pn"], base["pn"])
-        pool_x, _, _ = stats43.make_pool(x, key)
-        pool_y, _, _ = stats43.make_pool(np.exp(x), key)
+        pool_x, _, _ = stats43.make_pool(x, key, epoch=0)
+        pool_y, _, _ = stats43.make_pool(np.exp(x), key, epoch=0)
         eq("surrogate pool identical under exp, n=%d" % n, pool_x[1:], pool_y[1:])
-        pool_m, _, _ = stats43.make_pool(-x, key)
+        pool_m, _, _ = stats43.make_pool(-x, key, epoch=0)
         eq("pool of -x is the negated pool of x, n=%d" % n, pool_m[1:], -pool_x[1:])
-        rm = stats43.segment_test(-x, key)
+        rm = stats43.segment_test(-x, key, epoch=0)
         eq("p of -x equals p of x, n=%d" % n, rm["pn"], base["pn"])
     # surrogates have exactly the normal scores as values and end on the rank step
     x = synth.standardise(synth.ar1(0.5, 512, rng))
@@ -523,9 +525,9 @@ def u_gates_and_seeds():
     except ValueError:
         ck("validity flags of the wrong length refused", True)
     s = "20261121|a|b|c|d|e|0"
-    eq("seed string", seeds.seed_string("a", "b", "c", "d", "e", 0), s)
-    eq("seed integer is the first 16 hex digits of SHA-256", seeds.seed_int("a", "b", "c", "d", "e", 0), int(hashlib.sha256(s.encode("utf-8")).hexdigest()[:16], 16))
-    ck("same key gives the same stream, a different index a different one", seeds.rng_for("a", "b", "c", "d", "e", 0).random() == seeds.rng_for("a", "b", "c", "d", "e", 0).random() and seeds.rng_for("a", "b", "c", "d", "e", 1).random() != seeds.rng_for("a", "b", "c", "d", "e", 0).random())
+    eq("seed string (epoch 0)", seeds.seed_string("a", "b", "c", "d", "e", 0, epoch=0), s)
+    eq("seed integer is the first 16 hex digits of SHA-256", seeds.seed_int("a", "b", "c", "d", "e", 0, epoch=0), int(hashlib.sha256(s.encode("utf-8")).hexdigest()[:16], 16))
+    ck("same key gives the same stream, a different index a different one", seeds.rng_for("a", "b", "c", "d", "e", 0, epoch=0).random() == seeds.rng_for("a", "b", "c", "d", "e", 0, epoch=0).random() and seeds.rng_for("a", "b", "c", "d", "e", 1, epoch=0).random() != seeds.rng_for("a", "b", "c", "d", "e", 0, epoch=0).random())
 
 
 def u_law2b():
@@ -553,9 +555,9 @@ def u_law2b():
     wx = law2b.whiten_W(x)
     ck("W: the zero frequency is 0 and the length is kept", abs(float(wx.mean())) < 1e-12 and wx.size == 1024)
     ck("W refuses a series with a zero median periodogram", _raises(lambda: law2b.whiten_W(np.zeros(64))))
-    f = law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0))
+    f = law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0), epoch=0)
     ck("F adds noise of about 1/1000 of the standard deviation", 0 < float(np.abs(f - x).max()) < 0.01 * x.std() * 10 and float(np.std(f - x)) > 0)
-    eq("F is reproducible", law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0)), f)
+    eq("F is reproducible", law2b.white_floor_F(x, ("k", "s", "law2b-F:native", 0, "law2b-F", 0), epoch=0), f)
     eq("tail spread of the 0..1000 ramp by order statistics (ranks 1000, 2, 751, 251), exact", law2b.tail_spread(np.arange(1001.0)), Fraction(998, 500))
     eq("event-rich threshold is the exact median (mean of the two middle values)", law2b.event_rich_threshold([np.arange(1001.0), np.arange(1001.0) * 2.0]), Fraction(998, 500))
     ck("E: a heavy-tailed segment is event-rich against the Gaussian median", law2b.event_rich(synth.shots_ar(4096, np.random.default_rng(3)), law2b.event_rich_threshold([np.random.default_rng(i).standard_normal(4096) for i in range(5)])))
@@ -633,17 +635,18 @@ def u_review_guards():
     ck("amp_scores refuses non-finite values", _refused(lambda: nets.amp_scores(np.array([1.0, np.inf, 2.0]))))
     ck("midranks refuses non-finite values", _refused(lambda: nets.midranks(np.array([1.0, np.nan]))))
     # exit status: summary ends the script with status 1 on FAIL and returns on PASS
+    smoke_run = kcommon.parse_args(["t", "smoke"], seeded=True)
     try:
-        kcommon.summary("T", "FAIL", "x", "smoke")
+        kcommon.summary("T", "FAIL", "x", smoke_run)
         ck("summary exits with status 1 on FAIL", False)
     except SystemExit as e:
         ck("summary exits with status 1 on FAIL", e.code == 1)
     try:
-        kcommon.summary("T", "PASS", "x", "smoke")
+        kcommon.summary("T", "PASS", "x", smoke_run)
         ck("summary returns on PASS", True)
     except SystemExit:
         ck("summary returns on PASS", False)
-    ck("summary refuses a status other than PASS or FAIL", _refused(lambda: kcommon.summary("T", "MAYBE", "x", "smoke")))
+    ck("summary refuses a status other than PASS or FAIL", _refused(lambda: kcommon.summary("T", "MAYBE", "x", smoke_run)))
     # the tied symmetric waveform: exact time symmetry survives every map used in K1 (identity of counts and sigma_hat = 0)
     q = np.array([0, 0, 1, 2, 2, 1, 0, 0] * 512, dtype=float)
     base, _ = patterns.counts_one(q, 3, 1)
@@ -700,8 +703,8 @@ def u_amendment2():
     ck("features refuses when no segment is usable", _refused(lambda: pipeline.features([None, rows[0]], 0)))
     cs = np.random.default_rng(6).standard_normal(640 * 80)
     cs[640 * 10:640 * 11] = 3.0
-    base_jobs, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 80), lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512)
-    jobs, _ = flow.stream_units(cs, lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512)
+    base_jobs, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 80), lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512, epoch=0)
+    jobs, _ = flow.stream_units(cs, lambda l, q: ("u", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512, epoch=0)
     ck("flow: a constant segment gives no unit", len(jobs) < len(base_jobs))
     # B5 and B6 constructions
     xx = np.array([-4.0, 1.0, 2.0])
@@ -714,31 +717,31 @@ def u_amendment2():
     tb = np.argsort(np.argsort(w, kind="stable"), kind="stable").astype(np.float64)
     c, _ = patterns.counts_one(tb, 3, 1)
     ck("must-fail ranking (ties in time order) gives a non-zero Sigma_hat on the waveform", float(patterns.sigma_hat(c, 3)) != 0.0)
-    qi = synth.k1_int_series("white", 0, 1024)
+    qi = synth.k1_int_series("white", 0, 1024, epoch=0)
     ck("integer-valued class: integer values with ties", bool(np.all(qi == np.round(qi))) and ranks.n_distinct(qi) < 1024)
-    ck("K1 draws use their own key: the K1 plain draw differs from the K2 draw", not np.array_equal(synth.k1_series("white", 0, 1024), synth.k2_series("white", 0, 1024)))
-    eq("exp and cube versions are maps of the plain draw (K1)", ranks.normal_scores(synth.k1_series("g2|exp", 3, 512)).tolist(), ranks.normal_scores(synth.k1_series("g2", 3, 512)).tolist())
+    ck("K1 draws use their own key: the K1 plain draw differs from the K2 draw", not np.array_equal(synth.k1_series("white", 0, 1024, epoch=0), synth.k2_series("white", 0, 1024, epoch=0)))
+    eq("exp and cube versions are maps of the plain draw (K1)", ranks.normal_scores(synth.k1_series("g2|exp", 3, 512, epoch=0)).tolist(), ranks.normal_scores(synth.k1_series("g2", 3, 512, epoch=0)).tolist())
     # K5b series
-    rng = seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0)
+    rng = seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0, epoch=0)
     xs = np.ones(1)
     for j in range(3):
         wv = np.exp(0.5 * rng.standard_normal(2 ** (j + 1)) - 0.125)
         xs = np.repeat(xs, 2) * wv
-    eq("cascade construction: start [1], repeat twice and multiply by exp(0.5 Z - 0.125), Z drawn in order", synth.cascade(8, seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0)).tolist(), xs.tolist())
+    eq("cascade construction: start [1], repeat twice and multiply by exp(0.5 Z - 0.125), Z drawn in order", synth.cascade(8, seeds.rng_for("K5b:cascade", "fit", "native", 2, "data", 0, epoch=0)).tolist(), xs.tolist())
     old = synth.K5_N
     synth.K5_N = 4096
     try:
-        ci = synth.k5_series("cascade_iaaft", 1, "fit")
-        cc = synth.k5_series("cascade", 1, "fit")
+        ci = synth.k5_series("cascade_iaaft", 1, "fit", epoch=0)
+        cc = synth.k5_series("cascade", 1, "fit", epoch=0)
         ck("IAAFT cascade has the normal scores of the cascade as its values", np.array_equal(np.sort(ci), np.sort(ranks.normal_scores(cc))))
         ck("IAAFT cascade is not the cascade or its scores in place", not np.array_equal(ci, ranks.normal_scores(cc)))
-        ck("IAAFT cascade exists as a fit series only", _refused(lambda: synth.k5_series("cascade_iaaft", 1, "verdict")))
-        yp = synth.k5_series("yprime", 0, "verdict")
+        ck("IAAFT cascade exists as a fit series only", _refused(lambda: synth.k5_series("cascade_iaaft", 1, "verdict", epoch=0)))
+        yp = synth.k5_series("yprime", 0, "verdict", epoch=0)
         ck("y' = g^2 is non-negative", bool(np.all(yp >= 0)) and yp.size == 4096)
     finally:
         synth.K5_N = old
     ck("y' coefficient is 0.9859", synth.YPRIME_C == 0.9859)
-    ck("K5 draws are under the tag K5b (differ from the old tag)", not np.array_equal(synth.cascade(64, seeds.rng_for("K5:cascade", "fit", "native", 0, "data", 0)), synth.cascade(64, seeds.rng_for("K5b:cascade", "fit", "native", 0, "data", 0))))
+    ck("K5 draws are under the tag K5b (differ from the old tag)", not np.array_equal(synth.cascade(64, seeds.rng_for("K5:cascade", "fit", "native", 0, "data", 0, epoch=0)), synth.cascade(64, seeds.rng_for("K5b:cascade", "fit", "native", 0, "data", 0, epoch=0))))
 
 
 def u_audit_three():
@@ -756,36 +759,46 @@ def u_audit_three():
 
 
 def u_code_keys():
-    section("the keys the K1, K2 and K3 code builds are the keys of keys.py (D14)")
+    section("the keys the K1, K2 and K3 code builds are the keys of keys.py (D14), each drawn in the epoch its work item carries")
     import keys
     seen = []
-    orig_seg, orig_pool = stats43.segment_test, stats43.make_pool
+    epochs_seen = []
+    EP = np.int64(0)   # epoch 0, as a numpy integer: the check below finds it by identity, so a literal 0 anywhere on the way would be found
+    orig_seg, orig_pool, orig_rng = stats43.segment_test, stats43.make_pool, seeds.rng_for
 
     class Stop(Exception):
         pass
 
-    def fake_segment_test(x, key, M=99, kind="iaaft"):
+    def fake_segment_test(x, key, M=99, kind="iaaft", *, epoch):
         seen.append(key)
+        epochs_seen.append(epoch)
         return {"pn": 50, "den": 100, "reject": False, "iters": 0, "nconv": 0, "flag_zero_spread": False, "T": 0.0, "js": [0], "C3": np.zeros((100, 1, 13), dtype=np.int64),
                 "all_zero_spread": True}
 
-    def fake_make_pool(x, key, M=99, kind="iaaft"):
+    def fake_make_pool(x, key, M=99, kind="iaaft", *, epoch):
         seen.append(key)
+        epochs_seen.append(epoch)
         raise Stop()
+
+    def rec_rng(*key, epoch):
+        epochs_seen.append(epoch)
+        return orig_rng(*key, epoch=epoch)
     try:
-        stats43.segment_test, stats43.make_pool = fake_segment_test, fake_make_pool
-        tasks.k2_task(("ar1_0.9|exp", 4096, 7, "raw"))
-        tasks.k2_task(("white", 2048, 3, "iaaft"))
+        stats43.segment_test, stats43.make_pool, seeds.rng_for = fake_segment_test, fake_make_pool, rec_rng
+        tasks.k2_task(("ar1_0.9|exp", 4096, 7, "raw", EP))
+        tasks.k2_task(("white", 2048, 3, "iaaft", EP))
         for use in ("native4096", "native2048", "bm2", "sub2", "q12", "q8", "placement", "wlen2048"):
-            tasks.k3_task(("shots", use, 5, "iaaft"))
-        tasks.k3_task(("shots", "native4096", 6, "leaky"))
+            tasks.k3_task(("shots", use, 5, "iaaft", EP))
+        tasks.k3_task(("shots", "native4096", 6, "leaky", EP))
         for src_, cls_, n_ in (("class", "g2|exp", 1024), ("int", "white", 1024), ("wave", "waveform", 4096)):
             try:
-                tasks.k1_task((src_, cls_, 4, n_, "cubic", "iaaft"))
+                tasks.k1_task((src_, cls_, 4, n_, "cubic", "iaaft", EP))
             except Stop:
                 pass
     finally:
-        stats43.segment_test, stats43.make_pool = orig_seg, orig_pool
+        stats43.segment_test, stats43.make_pool, seeds.rng_for = orig_seg, orig_pool, orig_rng
+    ck("every data draw and pool of the K1, K2 and K3 tasks gets the epoch of its work item (%d draws)" % len(epochs_seen), len(epochs_seen) > len(seen) and all(e is EP for e in epochs_seen))
+    ck("a work item without its epoch is refused (it does not unpack)", _refused(lambda: tasks.k2_task(("white", 2048, 3, "iaaft"))) and _refused(lambda: tasks.seg_task((np.zeros(8), ("u",) * 6, "iaaft"))))
     want = [keys.k2_pool("ar1_0.9", 4096, 7), keys.k2_pool("white", 2048, 3)]
     want += [keys.k3_pool("shots", u, 5) for u in ("native4096", "native2048", "bm2", "sub2", "q12", "q8", "placement", "wlen2048")]
     want += [keys.k3_pool("shots", "native4096", 6), keys.k1_pool("g2", 1024, 4), keys.k1int_pool("white", 4), keys.k1wave_pool()]
@@ -794,12 +807,235 @@ def u_code_keys():
     eq("a K3 pool uses the instrument of its data draw (length of the block)", (seen[2][0], seen[6][0], seen[7][0]), ("K3:shots:4224", "K3:shots:4224", "K3:shots:4224"))
     eq("K3 native2048 and wlen2048 pools use the 2176-sample block", (seen[3][0], seen[9][0]), ("K3:shots:2176", "K3:shots:2176"))
     ck("the circular-shift control shares the key of the shots native4096 pool, by design", seen[10] == keys.k3_pool("shots", "native4096", 6) and keys.k3_pool("shots", "native4096", 6)[2] == "native4096")
-    ck("a pool key with fewer than six fields is refused", _refused(lambda: stats43.make_pool(np.arange(10.0), ("a", "b", "c", "d"))))
+    ck("a pool key with fewer than six fields is refused", _refused(lambda: stats43.make_pool(np.arange(10.0), ("a", "b", "c", "d"), epoch=0)))
     eq("keys: K4 detector key names the pair, run and seed", keys.k4_detectors("A>Aprime", "placement", 3, "detectors-arrow"), ("K4:A>Aprime", "verdict", "placement", 3, "detectors-arrow", 0))
     eq("keys: K5 pool key names the series, run and seed", keys.k5_pool("cascade_rank", "verdict", "amp_lognormal", 3, 2, 5), ("K5b:cascade_rank", "verdict", "amp_lognormal", "s3-flow-L2-q5", "surrogates", 0))
     eq("keys: control pool", keys.control_pool("C2", "GW:H1", "native", 3), ("GW:H1", "verdict", "native", 3, "C2-surrogates", 0))
     ck("keys: control must be C2 or C3", _refused(lambda: keys.control_series("C4", "x", "native", 0)))
     eq("keys: a Law 2b net", keys.l2b_net("W", "native"), "law2b-W:native")
+
+
+def _printed(f):
+    """What f prints, and the exit code if it ends with SystemExit (None otherwise)."""
+    buf = io.StringIO()
+    code = None
+    with contextlib.redirect_stdout(buf):
+        try:
+            f()
+        except SystemExit as e:
+            code = e.code
+    return buf.getvalue(), code
+
+
+def u_amendment4():
+    section("Amendment 4: a tie counts as at or below in the adverse decision (C1), key epoch (D14), epoch rules of the runs (C3), untested Law 2b instances (C2)")
+    import keys
+    import kcommon
+    import epochs
+    F = Fraction
+    ar = transfer.adverse_rule
+    # C1: reading D8 as amended, on exact integers (40 x n_le < R)
+    ck("D8 at R = 99,999: 2,499 detectors at or below is adverse (40 x 2,499 = 99,960 < 99,999)", ar(2499, 99999) is True)
+    ck("D8 at R = 99,999: 2,500 detectors at or below is not adverse (40 x 2,500 = 100,000)", ar(2500, 99999) is False)
+    ck("D8: exactly R/40 at or below is not fewer than R/40 (2 of 80 is not adverse, 1 of 80 is)", ar(2, 80) is False and ar(1, 80) is True)
+    ck("D8 at R = 1: no detector at or below is adverse, the one detector at or below is not", ar(0, 1) is True and ar(1, 1) is False)
+    ck("D8: every detector at or below is not adverse (R = 99,999)", ar(99999, 99999) is False)
+    ck("D8 accepts numpy integers", ar(np.int64(2499), np.int64(99999)) is True)
+    for nm, a, b in (("a bool count", True, 99999), ("a bool R", 1, True), ("a float count", 2499.0, 99999), ("a numpy float count", np.float64(2499), 99999),
+                     ("a float R", 1, 99999.0), ("a string count", "2499", 99999), ("a missing count", None, 99999)):
+        ck("D8 refuses %s (TypeError)" % nm, _refused(lambda: ar(a, b), (TypeError,)))
+    for nm, a, b in (("R = 0", 0, 0), ("a negative count", -1, 5), ("a count above R", 100000, 99999)):
+        ck("D8 refuses %s (ValueError)" % nm, _refused(lambda: ar(a, b), (ValueError,)))
+    # C1 in the transfer test: the all-tied case of the archived patch, now under the amended rule
+    r = transfer.transfer_test("profile", np.ones(10) / np.sqrt(10), np.ones(10), np.ones(10, dtype=bool), np.random.default_rng(3), R=100)
+    ck("all tied (every detector ties with w_A): D = 1, p = 1, n_lt 0, n_tie 100, n_le 100", (r["D"], r["p"], r["n_lt"], r["n_tie"], r["n_le"]) == (1, 1, 0, 100, 100))
+    ck("all tied: not adverse under D8 as amended (the rule before Amendment 4, 40 x n_lt < R, gave adverse here)", r["adverse"] is False and transfer.ADVERSE_DEN * r["n_lt"] < r["m"] * 10)
+    w8 = np.array([1.0, 3, 3, 3, 3, 3, 3, 3])
+    rp = transfer.transfer_test("profile", w8 / np.sqrt(w8 @ w8), np.array([1.0, 0, 0, 0, 0, 0, 0, 0]), np.ones(8, dtype=bool), np.random.default_rng(3), R=100)
+    ck("partly tied (about one detector in eight ties with S_A, none below): n_le = n_tie > 2, not adverse", rp["n_lt"] == 0 and rp["n_le"] == rp["n_tie"] > 2 and rp["adverse"] is False)
+    ck("partly tied: the decision is adverse_rule(n_le, R)", rp["adverse"] == ar(rp["n_le"], 100))
+    w6 = np.array([3.0, 1.0, 4.0, 1.5, 9.0, 2.6])
+    rs = transfer.transfer_test("arrow", w6 / np.sqrt(w6 @ w6), np.array([1.0, -2.0, 0.5, 3.0, -1.0, 2.0]), np.ones(6, dtype=bool), np.random.default_rng(9), R=3000)
+    ck("counts are consistent: n_ge + n_lt = R, n_le = n_lt + n_tie, p = (1 + n_ge) / (R + 1) (the p-value counts a tie against w_A, unchanged)", rs["n_ge"] + rs["n_lt"] == 3000 and rs["n_le"] == rs["n_lt"] + rs["n_tie"] and rs["p"] == F(1 + rs["n_ge"], 3001) and rs["nonfinite"] is False)
+    r0 = transfer.transfer_test("arrow", np.arange(1.0, 7.0), np.arange(1.0, 7.0), np.zeros(6, dtype=bool), np.random.default_rng(1), R=500)
+    ck("no jointly populated entry (m = 0): every detector ties, consistent counts, not adverse, p = 1", (r0["m"], r0["n_ge"], r0["n_lt"], r0["n_tie"], r0["n_le"], r0["p"], r0["adverse"], r0["nonfinite"]) == (0, 500, 0, 500, 500, 1, False, False))
+    big = np.full(8, 1e300)
+    rn = transfer.transfer_test("profile", big, big, np.ones(8, dtype=bool), np.random.default_rng(1), R=50)
+    ck("S_B(w_A) not finite (overflow): neither adverse nor passing, p = 1, flagged", rn["nonfinite"] is True and rn["adverse"] is False and rn["p"] == 1 and not np.isfinite(rn["S_A"]))
+    rd = transfer.transfer_test("arrow", np.array([1e300, 1e300]), np.array([1e8, -1e8]), np.ones(2, dtype=bool), np.random.default_rng(1), R=200)
+    ck("S_B(w_A) finite but some detector scores not finite: neither adverse nor passing, p = 1, flagged", bool(np.isfinite(rd["S_A"])) and rd["n_nonfinite"] > 0 and rd["nonfinite"] is True and rd["adverse"] is False and rd["p"] == 1)
+    r0n = transfer.transfer_test("profile", big, big, np.zeros(8, dtype=bool), np.random.default_rng(1), R=50)
+    ck("m = 0 with S_B(w_A) not finite: flagged, no tie counted, not adverse", r0n["nonfinite"] is True and r0n["n_tie"] == 0 and r0n["adverse"] is False and r0n["p"] == 1)
+    ck("the populated-feature floor keeps the non-finite flag", transfer.apply_floor(rd, "arrow")["nonfinite"] is True and transfer.apply_floor(rd, "arrow")["adverse"] is False)
+    run_adv = {"adverse": True, "nonfinite": False}
+    run_nei = {"adverse": False, "nonfinite": False}
+    run_bad = {"adverse": False, "nonfinite": True}
+    pr = transfer.pair_result
+    ck("pair result: adverse in every run gives 'adverse', a Holm pass gives 'pass', otherwise 'neither'", pr([run_adv, run_adv], False) == "adverse" and pr([run_nei, run_nei], True) == "pass" and pr([run_adv, run_nei], False) == "neither")
+    ck("pair result: a run with a non-finite score makes the pair 'neither', even with the other runs adverse or a Holm pass", pr([run_adv, run_bad], False) == "neither" and pr([run_nei, run_bad], True) == "neither")
+    ck("pair result refuses a non-bool Holm result (TypeError, on a run that is not adverse), no runs, and a pair both passing and adverse",
+       _refused(lambda: pr([run_nei], 1), (TypeError,)) and _refused(lambda: pr([], False)) and _refused(lambda: pr([run_adv], True)))
+    # D14 key epoch
+    eq("master field: 20261121 in epoch 0, 20261121e<k> in epoch k", (seeds.master_field(0), seeds.master_field(1), seeds.master_field(np.int64(7))), ("20261121", "20261121e1", "20261121e7"))
+    eq("seed string in epoch 1: only the master field changes", seeds.seed_string("a", "b", "c", "d", "e", 0, epoch=1), "20261121e1|a|b|c|d|e|0")
+    for nm, e in (("True", True), ("False", False), ("-1", -1), ("1.0", 1.0), ("'1'", "1"), ("None", None), ("a numpy float", np.float64(1)), ("a numpy bool", np.bool_(True))):
+        ck("the key epoch refuses %s" % nm, _refused(lambda: seeds.check_epoch(e)))
+    uk = ("unit-epoch", "synthetic", "native", 0, "surrogates", 0)   # a key of no test: draws on epoch 1 are allowed here
+    ck("a draw without an epoch is refused at every draw point (seed rule, keys.rng, pools, units, series, controls, instance F)",
+       _refused(lambda: seeds.rng_for(*uk), (TypeError,)) and _refused(lambda: seeds.seed_string(*uk), (TypeError,)) and _refused(lambda: keys.rng(uk), (TypeError,))
+       and _refused(lambda: stats43.make_pool(np.arange(64.0), uk), (TypeError,)) and _refused(lambda: stats43.segment_test(np.arange(64.0), uk), (TypeError,))
+       and _refused(lambda: flow.analyse_unit(np.arange(64.0), uk), (TypeError,)) and _refused(lambda: synth.k2_series("white", 0, 64), (TypeError,))
+       and _refused(lambda: synth.k4_stream("A", 0, "fit"), (TypeError,)) and _refused(lambda: synth.k5_series("expo", 0, "verdict"), (TypeError,))
+       and _refused(lambda: controls.c3_shuffle(np.arange(64.0), uk), (TypeError,)) and _refused(lambda: law2b.white_floor_F(np.arange(64.0), uk), (TypeError,))
+       and _refused(lambda: flow.stream_units(np.arange(64.0), lambda l, q: uk), (TypeError,)) and _refused(lambda: pipeline.analyse_list([None], lambda q: uk), (TypeError,)))
+    a0, a1, b1 = keys.rng(uk, 0).random(4), keys.rng(uk, 1).random(4), keys.rng(uk, 1).random(4)
+    ck("a key of no test: epoch 1 gives another stream than epoch 0, and the same stream each time", not np.array_equal(a0, a1) and np.array_equal(a1, b1))
+    xs = synth.standardise(synth.ar1(0.8, 256, np.random.default_rng(12)))
+    p0, _, _ = stats43.make_pool(xs, uk, 9, epoch=0)
+    p1, _, _ = stats43.make_pool(xs, uk, 9, epoch=1)
+    ck("a pool of a key of no test differs between epochs 0 and 1 and keeps the real series as row 0", not np.array_equal(p0[1:], p1[1:]) and np.array_equal(p0[0], p1[0]))
+    E1 = np.int64(1)
+    sj, _ = flow.stream_units(np.random.default_rng(6).standard_normal(640 * 40), lambda l, q: ("unit-epoch", "s", "n", "L%dq%d" % (l, q), "surrogates", 0), N=512, epoch=E1)
+    ck("every flow-unit job carries the run's epoch as its last field", len(sj) > 0 and all(j[-1] is E1 for j in sj))
+    job = (synth.standardise(synth.ar1(0.7, 256, np.random.default_rng(20))), ("unit-epoch", "synthetic", "native", 0, "surrogates", 0), "iaaft", 1)
+    t1, t1b, t0 = tasks.seg_task(job), tasks.seg_task(job), tasks.seg_task(job[:3] + (0,))
+    ck("a segment task draws its pool in the epoch its work item carries (key of no test: epoch 1 repeats, and differs from epoch 0)",
+       np.array_equal(t1["zu"], t1b["zu"]) and not np.array_equal(t1["zu"], t0["zu"]))
+    # C3: command line of the known-answer scripts
+    pa = kcommon.parse_args
+    s0 = pa(["t", "smoke"], seeded=True)
+    eq("smoke run: epoch 0 when none is given, a diagnostic", (s0["mode"], s0["epoch"], s0["diagnostic"]), ("smoke", 0, True))
+    eq("smoke run with epoch=0", pa(["t", "smoke", "epoch=0"], seeded=True)["epoch"], 0)
+    f0 = pa(["t", "full", "epoch=0"], seeded=True)
+    f1 = pa(["t", "full", "epoch=1", "part=3/8"], seeded=True, parts=True)
+    k6 = pa(["t", "full"], seeded=False)
+    k6s = pa(["t", "smoke"], seeded=False)
+    eq("full run on epoch 0 is a diagnostic; full run on epoch 1 with a part is not", ((f0["epoch"], f0["diagnostic"]), (f1["epoch"], f1["part"], f1["nparts"], f1["diagnostic"])), ((0, True), (1, 3, 8, False)))
+    eq("K6 has no epoch, and any run of it is a full run, smoke included (not a diagnostic)", (k6["epoch"], k6["diagnostic"], k6s["epoch"], k6s["diagnostic"]), (None, False, None, False))
+    bad_args = (("a smoke run on epoch 1", ["t", "smoke", "epoch=1"], {}), ("a full run without an epoch", ["t", "full"], {}), ("a negative epoch", ["t", "full", "epoch=-1"], {}),
+                ("an epoch with a leading zero", ["t", "full", "epoch=01"], {}), ("a float epoch", ["t", "full", "epoch=1.0"], {}), ("an empty epoch", ["t", "full", "epoch="], {}),
+                ("the epoch twice", ["t", "full", "epoch=1", "epoch=1"], {}), ("the old positional part (part and count as bare words)", ["t", "full", "epoch=1", "3", "8"], {"parts": True}),
+                ("a part without its count", ["t", "full", "epoch=1", "part=3"], {"parts": True}), ("part 8 of 8", ["t", "full", "epoch=1", "part=8/8"], {"parts": True}),
+                ("0 parts", ["t", "full", "epoch=1", "part=0/0"], {"parts": True}), ("a part where the script has none", ["t", "full", "epoch=1", "part=0/2"], {}),
+                ("an unknown size", ["t", "medium", "epoch=1"], {}), ("no size", ["t"], {}), ("a combine run with no part files", ["t", "full", "epoch=1"], {"files": True}))
+    for nm, argv, kw in bad_args:
+        ck("command line refuses %s" % nm, _refused(lambda: pa(argv, seeded=True, **kw), (kcommon.UsageError,)))
+    ck("command line refuses an epoch for K6 (no random draws)", _refused(lambda: pa(["t", "full", "epoch=1"], seeded=False), (kcommon.UsageError,)))
+    out, code = _printed(lambda: kcommon.parse_cli(["t", "full"], seeded=True))
+    ck("a usage error prints the usage and ends with exit status 2", code == 2 and "usage error" in out and "epoch=<k>" in out)
+    eq("summary words: SMOKE, DIAGNOSTIC (full on epoch 0), none (full from epoch 1, and K6 in either size)", [kcommon.summary_tag(x) for x in (s0, f0, f1, k6, k6s)], ["SMOKE ", "DIAGNOSTIC ", "", "", ""])
+    out, code = _printed(lambda: kcommon.summary("T", "PASS", "x", f0))
+    ck("a full run on epoch 0 says DIAGNOSTIC in its SUMMARY line", out == "SUMMARY T DIAGNOSTIC PASS | x\n" and code is None)
+    out, code = _printed(lambda: kcommon.summary("T", "FAIL", "x", f0))
+    ck("a diagnostic FAIL still ends with exit status 1", out.startswith("SUMMARY T DIAGNOSTIC FAIL") and code == 1)
+    c40 = "0123456789abcdef0123456789abcdef01234567"
+    out, _ = _printed(lambda: kcommon.header("T", "title", f0, c40))
+    ck("the header of a full run on epoch 0 says DIAGNOSTIC and prints the master field and the commit", "DIAGNOSTIC" in out and "EPOCH 0 | master field 20261121" in out and "CODE COMMIT " + c40 in out)
+    out, _ = _printed(lambda: kcommon.header("T", "title", f1, c40))
+    ck("the header of a full run on epoch 1 prints its master field, the seed rule with it, and its part", "EPOCH 1 | master field 20261121e1" in out and "20261121e1|<instrument>|" in out
+       and "PART 3 of 8" in out and "RUN test=T size=full epoch=1 part=3/8 commit=" + c40 in out and "DIAGNOSTIC" not in out)
+    out, _ = _printed(lambda: kcommon.header("K6", "title", k6, c40))
+    ck("the header of K6 prints no master field", "EPOCH not used" in out and "master field" not in out and "RUN test=K6 size=full epoch=- part=- commit=" in out)
+    out, _ = _printed(lambda: kcommon.header("K6", "title", k6s, c40))
+    ck("the header of a K6 smoke run calls it a full run and names no epoch and no diagnostic", "the same run as FULL" in out and "EPOCH not used" in out
+       and "epoch 0" not in out and "diagnostic" not in out.lower())
+    ck("the code commit is a string (a commit, a commit with +modified, or unknown)", isinstance(kcommon.code_commit(), str))
+    comb = pa(["c", "full", "epoch=1", "p0", "p1", "p2"], seeded=True, files=True)
+    good = [kcommon.parse_run_line(kcommon.run_line("K2", pa(["t", "full", "epoch=1", "part=%d/3" % i], seeded=True, parts=True), c40)) for i in range(3)]
+    eq("combine: parts of one test, size, epoch and clean commit covering every part are joined", (comb["files"], kcommon.check_parts(good, "K2", comb, c40)), (["p0", "p1", "p2"], []))
+    def changed(k, field, value):
+        g = [dict(x) for x in good]
+        g[k][field] = value
+        return g
+    for nm, lines, commit in (("a part on another epoch", changed(1, "epoch", "2"), c40), ("a part from another commit", changed(2, "commit", "f" * 40), c40),
+                              ("parts and run with an unknown commit", [dict(x, commit="unknown") for x in good], "unknown"),
+                              ("parts from a modified checkout", [dict(x, commit=c40 + "+modified") for x in good], c40 + "+modified"),
+                              ("a combine run on another commit", good, "e" * 40), ("a missing part", good[:2], c40), ("a part given twice", good + good[:1], c40),
+                              ("parts with different counts", changed(0, "part", "0/4"), c40), ("a part of another test", changed(0, "test", "K3"), c40),
+                              ("a part of another size", changed(0, "size", "smoke"), c40), ("a file that is not a part", changed(0, "part", "-"), c40)):
+        ck("combine refuses %s" % nm, len(kcommon.check_parts(lines, "K2", comb, commit)) > 0)
+    # C3: the ledger of used epochs. The shipped ledger is checked against the rules only, never for its contents, which grow with the runs.
+    rows = epochs.read_ledger()
+    ck("EPOCHS.tsv parses, and for each seeded test the lowest unused epoch is allowed and every epoch the test has used is refused",
+       all(epochs.check_full_run(rows, t, epochs.next_epoch(rows, t)) is None and all(epochs.check_full_run(rows, t, e) is not None for e in epochs.used_epochs(rows, t))
+           for t in epochs.SEEDED))
+    H = "\t".join(epochs.HEADER) + "\n"
+    L1 = epochs.parse_ledger(H + "K4\t1\tabcdef1\t2026-11-25\tfull-count\tround 1 rerun\n")
+    ck("after K4 used epoch 1: K4's next epoch is 2, K1's is still 1 (epochs are per test)", epochs.next_epoch(L1, "K4") == 2 and epochs.next_epoch(L1, "K1") == 1)
+    ck("a full-count run is refused on an epoch the test used, on epoch 0 and on any epoch but the lowest unused one; allowed on that one",
+       epochs.check_full_run(L1, "K4", 1) is not None and epochs.check_full_run(L1, "K4", 0) is not None and epochs.check_full_run(L1, "K4", 3) is not None and epochs.check_full_run(L1, "K4", 2) is None)
+    ck("K6 is exempt from the epoch rule, and an unknown test or a bool epoch is refused", epochs.check_full_run(L1, "K6", 1) is not None and epochs.check_full_run(L1, "K7", 1) is not None and epochs.check_full_run(L1, "K4", True) is not None)
+    L2 = epochs.parse_ledger(H + "K4\t1\t-\t2026-11-25\tfull-count\ta\nK4\t3\t-\t2026-11-26\tfull-count\tb\nK2\t1\t-\t2026-11-25\tlaw2b-check\tc\n")
+    ck("the lowest unused epoch fills a gap (K4 used 1 and 3: next 2); an epoch whose draws a Law 2b check used counts as used (K2 next 2)", epochs.next_epoch(L2, "K4") == 2 and epochs.next_epoch(L2, "K2") == 2)
+    bad_ledgers = (("no header", "K4\t1\t-\t2026-11-25\tfull-count\tx\n"), ("a row of five fields", H + "K4\t1\t-\t2026-11-25\tfull-count\n"),
+                   ("a K6 row", H + "K6\t1\t-\t2026-11-25\tfull-count\tx\n"), ("an unknown test", H + "K9\t1\t-\t2026-11-25\tfull-count\tx\n"),
+                   ("an epoch with a leading zero", H + "K4\t01\t-\t2026-11-25\tfull-count\tx\n"), ("a full-count run on epoch 0", H + "K4\t0\t-\t2026-11-25\tfull-count\tx\n"),
+                   ("a diagnostic run on epoch 2", H + "K4\t2\t-\t2026-11-25\tdiagnostic\tx\n"), ("two full-count runs on one epoch", H + "K4\t1\t-\t2026-11-25\tfull-count\tx\nK4\t1\t-\t2026-11-26\tfull-count\ty\n"),
+                   ("a bad date", H + "K4\t1\t-\t25.11.2026\tfull-count\tx\n"), ("a bad commit", H + "K4\t1\tHEAD\t2026-11-25\tfull-count\tx\n"), ("an unknown kind", H + "K4\t1\t-\t2026-11-25\tsmoke\tx\n"))
+    for nm, text in bad_ledgers:
+        ck("ledger refuses %s" % nm, _refused(lambda: epochs.parse_ledger(text), (epochs.LedgerError,)))
+    L0 = epochs.parse_ledger(H)
+    ck("an empty ledger: every seeded test's next epoch is 1, and a full-count run on epoch 1 is allowed", all(epochs.next_epoch(L0, t) == 1 and epochs.check_full_run(L0, t, 1) is None for t in epochs.SEEDED))
+    L3 = epochs.parse_ledger(H + "K4\t1\t-\t2026-11-25\tdraws-seen\tdiagnostic under other detector keys on the draws of epoch 1\n")
+    ck("an epoch whose draws an outcome of another run used (draws-seen) counts as used: K4's next epoch is 2", epochs.next_epoch(L3, "K4") == 2 and epochs.check_full_run(L3, "K4", 1) is not None)
+    ck("ledger refuses a draws-seen row on epoch 0 (epoch 0 is the diagnostic epoch)", _refused(lambda: epochs.parse_ledger(H + "K4\t0\t-\t2026-11-25\tdraws-seen\tx\n"), (epochs.LedgerError,)))
+    rK4 = "K4\t1\tabcdef1\t2026-11-25\tfull-count\trun_full.sh, three modes, results folder r1\n"
+    J = epochs.parse_ledgers([H, H + rK4])
+    ck("two ledgers read as one: a run recorded only in the second (the build folder's) uses its epoch", epochs.check_full_run(J, "K4", 1) is not None and epochs.next_epoch(J, "K4") == 2)
+    ck("two ledgers read as one: a row both hold counts once", len(epochs.parse_ledgers([H + rK4, H + rK4])) == 1)
+    ck("two ledgers read as one: two different full-count rows of one test and epoch are refused",
+       _refused(lambda: epochs.parse_ledgers([H + rK4, H + rK4.replace("r1", "r2")]), (epochs.LedgerError,)))
+    ck("one ledger: the same full-count row written twice is refused", _refused(lambda: epochs.parse_ledger(H + rK4 + rK4), (epochs.LedgerError,)))
+    # C3: a full run by hand is checked against the ledger before any draw
+    lr = kcommon.ledger_refusal
+    k4f = lambda e: pa(["t", "full", "epoch=%d" % e, "part=0/10"], seeded=True, parts=True)
+    ck("a hand run on the lowest unused epoch is allowed; on a used epoch or one that is not the lowest unused, it is refused",
+       lr(k4f(1), "K4", L0) is None and lr(k4f(2), "K4", L1) is None and lr(k4f(1), "K4", L1) is not None and lr(k4f(3), "K4", L1) is not None and lr(k4f(2), "K4", L0) is not None)
+    ck("the ledger does not touch a smoke run, a full run on epoch 0 or a combine run", lr(s0, "K4", L1) is None and lr(f0, "K4", L1) is None and lr(comb, "K4", J) is None)
+    ck("parse_cli needs the test id of a seeded script before a full run from epoch 1", _refused(lambda: kcommon.parse_cli(["t", "full", "epoch=1"], seeded=True), (ValueError,)))
+    nk4 = epochs.next_epoch(rows, "K4")
+    out, code = _printed(lambda: kcommon.parse_cli(["t", "full", "epoch=%d" % nk4, "part=0/10"], seeded=True, parts=True, test="K4"))
+    ck("parse_cli reads the shipped ledger: a full run of K4 on its lowest unused epoch goes ahead", code is None and out == "")
+    out, code = _printed(lambda: kcommon.parse_cli(["t", "full", "epoch=%d" % (nk4 + 1), "part=0/10"], seeded=True, parts=True, test="K4"))
+    ck("parse_cli reads the shipped ledger: a full run of K4 on an epoch above its lowest unused one ends with exit status 2 before any draw",
+       code == 2 and out.startswith("refused by the ledger known_answer/EPOCHS.tsv:"))
+    # C2: an instance that fails its pre-data check is not tested
+    ut = law2b.untested_instances({"W": {"K2": True, "K3": True, "paired K4": False}, "Q": {"K2": True, "K3": True}, "O4": {"K2": False}})
+    eq("an instance that fails any pre-data check is not tested", sorted(ut), ["O4", "W"])
+    ck("untested_instances refuses an instance with no recorded check, a non-bool result and an unknown instance",
+       _refused(lambda: law2b.untested_instances({"W": {}})) and _refused(lambda: law2b.untested_instances({"W": {"K2": 1}})) and _refused(lambda: law2b.untested_instances({"Z": {"K2": True}})))
+    tn = law2b.test_name
+    computed = {tn("b", "Q", "GW-SEIS"): F(1, 10000), tn("b", "H", "GW-SEIS"): F(1, 100)}
+    hf = law2b.holm_family(computed, ut)
+    explicit = levels.holm(dict(computed, **{tn("b", "W", "GW-SEIS"): F(1)}), m=levels.LAW2B_FAMILY)
+    ck("Holm over the 102 tests: an untested instance's test is left out, which is the same as entering it with p = 1", hf[tn("b", "Q", "GW-SEIS")] == explicit[tn("b", "Q", "GW-SEIS")] and hf[tn("b", "H", "GW-SEIS")] == explicit[tn("b", "H", "GW-SEIS")] and hf[tn("b", "Q", "GW-SEIS")][0])
+    ck("Holm refuses a computed p for a test of an untested instance, and a name that is not a Law 2b test",
+       _refused(lambda: law2b.holm_family({tn("b", "W", "GW-SEIS"): F(1, 10000)}, ut)) and _refused(lambda: law2b.holm_family({"t": F(1, 2)}, ut)) and _refused(lambda: law2b.holm_family({tn("b", "O4", "GW-SEIS"): F(1, 2)}, frozenset())))
+    items = ("GW-SEIS", "GW-WAVES")
+    def passes(kind, untested, ok):
+        return {(i, it): (i, it) in ok for i in law2b.INSTANCES[kind] if i not in untested for it in items}
+    st = law2b.search_state("b", items, {"W"}, passes("b", {"W"}, {("Q", "GW-SEIS"), ("Q", "GW-WAVES")}), set(), False)
+    ck("with W not tested, Q passing for every triggering item gives transformed core under Q, and the report names the untested route W",
+       st["state"] == "transformed core" and st["rescued_by"] == ["Q"] and "transformed core passed under instance Q" in st["wording"] and "instance W (T1_GAUGE_SIMILARITY) for arrow transfer (b): not tested" in st["wording"])
+    st = law2b.search_state("b", items, {"W"}, passes("b", {"W"}, {("Q", "GW-SEIS")}), set(), False)
+    ck("with W not tested and no instance passing for every item: evidence against at the confirmatory level, Law 2b search unresolved", st["state"] == "unresolved" and st["wording"].startswith("evidence against at the confirmatory level, Law 2b search unresolved"))
+    st = law2b.search_state("b", items, {"W"}, passes("b", {"W"}, set()), set(), True)
+    ck("with W not tested, no instance passing and the obstruction holding, the outcome is still not final (the search is incomplete)", st["state"] == "unresolved" and st["untested_routes"] == ["instance W (T1_GAUGE_SIMILARITY) for arrow transfer (b): not tested"])
+    st = law2b.search_state("b", items, set(), passes("b", set(), set()), set(), True)
+    ck("with every instance tested, none passing and the obstruction holding: final, with no untested route", st["state"] == "final" and st["wording"] == "evidence against, final" and st["untested_routes"] == [])
+    st = law2b.search_state("b", items, {"O4"}, passes("b", set(), set()), set(), True)
+    ck("an untested instance that kind (b) does not list (O4) does not touch its search", st["state"] == "final")
+    st = law2b.search_state("b", items, set(), passes("b", set(), {("Q", "GW-SEIS"), ("Q", "GW-WAVES")}), {"Q"}, True)
+    ck("a vacuous instance cannot rescue, and its pass keeps the outcome from being final", st["state"] == "unresolved" and st["rescued_by"] == [])
+    allc = law2b.INSTANCES["c"]
+    st = law2b.search_state("c", items, set(), {(i, it): True for i in allc for it in items}, set(allc), False)
+    ck("every tested instance vacuous (each passing on the data): accepted, nothing rescues, unresolved", st["state"] == "unresolved" and st["rescued_by"] == [])
+    ck("search_state refuses an unknown kind, no item, a result for an untested instance (it cannot rescue), a missing result, a vacuous untested instance and a non-bool obstruction",
+       _refused(lambda: law2b.search_state("d", items, set(), {}, set(), True)) and _refused(lambda: law2b.search_state("b", (), set(), {}, set(), True))
+       and _refused(lambda: law2b.search_state("b", items, {"W"}, passes("b", set(), set()), set(), True)) and _refused(lambda: law2b.search_state("b", items, set(), passes("b", {"W"}, set()), set(), True))
+       and _refused(lambda: law2b.search_state("b", items, {"W"}, passes("b", {"W"}, set()), {"W"}, True)) and _refused(lambda: law2b.search_state("b", items, set(), passes("b", set(), set()), set(), 1)))
+    ck("search_state refuses a pass result that is not a bool", _refused(lambda: law2b.search_state("b", items, set(), {k: 1 for k in passes("b", set(), set())}, set(), True), (TypeError,)))
+    ck("search_state refuses a triggering item named twice", _refused(lambda: law2b.search_state("b", ("GW-SEIS", "GW-SEIS"), set(), {}, set(), True)))
 
 
 def _raises(f):
@@ -813,7 +1049,7 @@ def _raises(f):
 def main():
     print("UNIT CHECKS of the building blocks (known answers)")
     print("python", sys.version.split()[0], "numpy", np.__version__)
-    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_amendment2(); u_audit_three(); u_code_keys(); u_outcomes()
+    u_ranks(); u_patterns(); u_surrogates_identity(); u_segments(); u_nets(); u_levels(); u_transfer(); u_flow(); u_gates_and_seeds(); u_law2b(); u_review_guards(); u_amendment2(); u_audit_three(); u_code_keys(); u_amendment4(); u_outcomes()
     ok = C.done("UNIT CHECKS")
     if not ok:
         print("FAIL")

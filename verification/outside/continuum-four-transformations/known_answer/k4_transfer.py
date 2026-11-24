@@ -7,11 +7,14 @@ K4 passes only if it passes under both readings of its stream set (D20):
     primary run; detectors for A>B, A>C and A>Aprime in both runs and for S>Sr and Sr>S in the primary run.
   reading 2: each run takes its templates and level shifts from the fit streams cut in that run's own grid, and the blind spot is scored in both runs.
 Criteria within each reading: A to B arrow p and profile p at most 0.001 in every run, in at least 9 of 10 seeds. A to C arrow adverse in every run, in
-at least 9 of 10 seeds (the profile transfer A to C is reported). Must-fail control A to A' (A cut into its 33 blocks, the block order shuffled and each
+at least 9 of 10 seeds (the profile transfer A to C is reported), where a run is adverse as reading D8 defines it after Amendment 4 (fewer than R/40
+of the detectors at or below S_B(w_A), ties counted as at or below). Must-fail control A to A' (A cut into its 33 blocks, the block order shuffled and each
 block replaced by an IAAFT surrogate of itself, with its own fit stream made the same way): neither the arrow nor the profile transfer may reach p at
 most 0.01 in more than 1 of 10 seeds, where a seed reaches it if p is at most 0.01 in any run, judged within each reading. Blind spot, reported: sawtooth
 and its time reverse, arrow and profile transfer in both directions.
-usage: k4_transfer.py smoke|full [part nparts] (parts split the seeds)"""
+Every draw uses the run's key epoch (reading D14 as amended by Amendment 4). A run with a non-finite score is neither adverse nor passing (D8); READING
+(AMENDMENTS_NEEDED.md): such a run counts as failing the criterion it enters, and in the control as reaching p at most 0.01, so it can never help K4 pass.
+usage: k4_transfer.py smoke [epoch=0] [part=<p>/<n>] | full epoch=<k> [part=<p>/<n>] (parts split the seeds; join them with k4_combine.py)"""
 import ast
 import os
 import sys
@@ -20,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
 import iaaft, keys, par, pipeline, ranks, segments, synth, tasks, transfer
-from kcommon import header, summary, parse_mode, sizes
+from kcommon import header, summary, parse_cli, sizes
 
 N = 4096
 BLK = N + segments.PAD
@@ -28,14 +31,14 @@ RUNS = ("native", "placement")
 KINDS = ("A", "B", "C", "Aprime", "S", "Sr")
 
 
-def surrogate_blocks_stream(stream, split, seed_idx):
+def surrogate_blocks_stream(stream, split, seed_idx, epoch):
     """A': the A stream of the same split cut into its 33 blocks, block order shuffled and each block replaced by an IAAFT surrogate of itself.
-    The draws use keys.k4_aprime_shuffle and keys.k4_aprime_block (index the block's position in the shuffled order)."""
+    The draws use keys.k4_aprime_shuffle and keys.k4_aprime_block (index the block's position in the shuffled order), in the run's key epoch."""
     blocks = [stream[i * BLK:(i + 1) * BLK] for i in range(len(stream) // BLK)]
-    order = keys.rng(keys.k4_aprime_shuffle(split, seed_idx)).permutation(len(blocks))
+    order = keys.rng(keys.k4_aprime_shuffle(split, seed_idx), epoch).permutation(len(blocks))
     out = []
     for pos, k in enumerate(order):
-        Y, _, _ = iaaft.iaaft_surrogates(blocks[int(k)], 1, keys.rng(keys.k4_aprime_block(split, seed_idx, pos)))
+        Y, _, _ = iaaft.iaaft_surrogates(blocks[int(k)], 1, keys.rng(keys.k4_aprime_block(split, seed_idx, pos), epoch))
         out.append(Y[0])
     return np.concatenate(out)
 
@@ -45,14 +48,14 @@ def cut(stream, run):
     return [c["seg"] for c in segments.cut_segments(stream, N=N, start=start)]
 
 
-def one_seed(s):
-    """All K4 quantities for one seed, under both readings. Returns a dict of literals."""
+def one_seed(s, epoch):
+    """All K4 quantities for one seed, under both readings, with every draw in the key epoch `epoch`. Returns a dict of literals."""
     st = {}
     for kind in ("A", "B", "C", "S", "Sr"):
         for split in ("fit", "verdict"):
-            st[(kind, split)] = synth.k4_stream(kind, s, split)
+            st[(kind, split)] = synth.k4_stream(kind, s, split, epoch=epoch)
     for split in ("fit", "verdict"):
-        st[("Aprime", split)] = surrogate_blocks_stream(st[("A", split)], split, s)
+        st[("Aprime", split)] = surrogate_blocks_stream(st[("A", split)], split, s, epoch)
     # level shifts from the fit streams cut in each grid (no pools); reading 1 uses the primary grid for every run
     shifts = {}
     for kind in KINDS:
@@ -67,7 +70,7 @@ def one_seed(s):
     jobs, meta = [], []
     for (k, split, run) in plan:
         for q, sg in enumerate(cut(st[(k, split)], run)):
-            jobs.append((sg, keys.k4_pool(k, split, run, s, q), "iaaft"))
+            jobs.append((sg, keys.k4_pool(k, split, run, s, q), "iaaft", epoch))
             meta.append((k, split, run))
     res = par.pmap(tasks.seg_task, jobs)
     R = {}
@@ -77,7 +80,8 @@ def one_seed(s):
 
     def lit(r):
         return {"p": "%d/%d" % (r["p"].numerator, r["p"].denominator), "adverse": bool(r["adverse"]), "m": int(r["m"]),
-                "below_floor": bool(r["below_floor"]), "S_A": float(r["S_A"]), "D": int(r["D"]), "n_ge": int(r["n_ge"])}
+                "below_floor": bool(r["below_floor"]), "S_A": float(r["S_A"]), "D": int(r["D"]), "n_ge": int(r["n_ge"]),
+                "n_le": int(r["n_le"]), "nonfinite": bool(r["nonfinite"])}
 
     def tr(pair, run, reading):
         Ak, Bk = pair.split(">")
@@ -85,8 +89,8 @@ def one_seed(s):
             tmpl_grid, shA, shB = "native", shifts[(Ak, "native")][1], shifts[(Bk, "native")][1]
         else:
             tmpl_grid, shA, shB = run, shifts[(Ak, run)][1], shifts[(Bk, run)][1]
-        rng_a = keys.rng(keys.k4_detectors(pair, run, s, "detectors-arrow"))
-        rng_p = keys.rng(keys.k4_detectors(pair, run, s, "detectors-profile"))
+        rng_a = keys.rng(keys.k4_detectors(pair, run, s, "detectors-arrow"), epoch)
+        rng_p = keys.rng(keys.k4_detectors(pair, run, s, "detectors-profile"), epoch)
         a, p = pipeline.transfer_arrow_profile(R[(Ak, "fit", tmpl_grid)], shA, R[(Bk, "verdict", run)], shB, rng_a, rng_p)
         return {"arrow": lit(a), "profile": lit(p)}
 
@@ -110,16 +114,21 @@ def evaluate_reading(results, nseeds, reading):
     cap = 1 if n == 10 else n // 10
     ab_ok = ac_ok = ctrl_arrow = ctrl_prof = 0
     blind_arrow = blind_prof = blind_tot = 0
+    n_nonfinite = 0
     lines = []
     for r in sorted(results, key=lambda r: r["seed"]):
         g = lambda pair, run: r["r%d:%s|%s" % (reading, pair, run)]
         ab = [g("A>B", run) for run in RUNS]
         ac = [g("A>C", run) for run in RUNS]
         ap = [g("A>Aprime", run) for run in RUNS]
-        ab_pass = all(frac(x["arrow"]["p"]) <= Fraction(1, 1000) and frac(x["profile"]["p"]) <= Fraction(1, 1000) for x in ab)
-        ac_pass = all(x["arrow"]["adverse"] for x in ac)
-        ap_arrow = min(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100)     # any run, within this reading (D17, D20)
-        ap_prof = min(frac(x["profile"]["p"]) for x in ap) <= Fraction(1, 100)
+        # a run with a non-finite score is neither adverse nor passing (D8); it counts as failing its criterion (READING)
+        ab_pass = all(frac(x["arrow"]["p"]) <= Fraction(1, 1000) and frac(x["profile"]["p"]) <= Fraction(1, 1000)
+                      and not x["arrow"]["nonfinite"] and not x["profile"]["nonfinite"] for x in ab)
+        ac_pass = all(x["arrow"]["adverse"] and not x["arrow"]["nonfinite"] for x in ac)
+        # any run, within this reading (D17, D20); a non-finite run counts against the control (READING)
+        ap_arrow = min(frac(x["arrow"]["p"]) for x in ap) <= Fraction(1, 100) or any(x["arrow"]["nonfinite"] for x in ap)
+        ap_prof = min(frac(x["profile"]["p"]) for x in ap) <= Fraction(1, 100) or any(x["profile"]["nonfinite"] for x in ap)
+        n_nonfinite += sum(int(x[t]["nonfinite"]) for x in ab + ac + ap for t in ("arrow", "profile"))
         ab_ok += ab_pass
         ac_ok += ac_pass
         ctrl_arrow += ap_arrow
@@ -140,11 +149,12 @@ def evaluate_reading(results, nseeds, reading):
     lines.append("reading %d: A to B passes in %d of %d seeds (need %d). A to C arrow adverse in every run in %d of %d (need %d)." % (reading, ab_ok, n, need, ac_ok, n, need))
     lines.append("reading %d: must-fail control A to A' reaches p <= 0.01 in any run: arrow in %d, profile in %d of %d seeds (allowed at most %d each)" % (reading, ctrl_arrow, ctrl_prof, n, cap))
     lines.append("reading %d: blind spot (reported): arrow rejects (p <= 0.01) in %d and profile in %d of %d seed-direction-runs" % (reading, blind_arrow, blind_prof, blind_tot * 1))
+    lines.append("reading %d: transfer runs of A to B, A to C and A to A' with a non-finite score: %d (each counts as failing its criterion)" % (reading, n_nonfinite))
     lines.append("reading %d: %s" % (reading, "PASS" if ok else "FAIL"))
     return ok, {"ab": ab_ok, "ac": ac_ok, "ctrl_arrow": ctrl_arrow, "ctrl_prof": ctrl_prof}, lines
 
 
-def evaluate(seed_results, nseeds, mode):
+def evaluate(seed_results, nseeds):
     oks, texts = [], []
     for reading in (1, 2):
         ok, counts, lines = evaluate_reading(seed_results, nseeds, reading)
@@ -157,25 +167,23 @@ def evaluate(seed_results, nseeds, mode):
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    ns = sizes(mode)["K4_SEEDS"]
-    part = None
-    if len(sys.argv) >= 5:
-        part, nparts = int(sys.argv[3]), int(sys.argv[4])
+    run = parse_cli(sys.argv, seeded=True, parts=True, test="K4")
+    ns = sizes(run["mode"])["K4_SEEDS"]
+    part, nparts = run["part"], run["nparts"]
     mine = [s for s in range(ns) if part is None or s % nparts == part]
-    header("K4", "transfer", mode)
+    header("K4", "transfer", run)
     print("seeds: %s of %d (the plan has 10 seeds, so the smoke size equals the full seed count)" % (mine, ns))
     results = []
     for s in mine:
-        r = one_seed(s)
+        r = one_seed(s, run["epoch"])
         results.append(r)
         if part is not None:
             print("K4SEED", repr(r))
     par.close()
     if part is not None:
         return
-    status, text = evaluate(results, ns, mode)
-    summary("K4", status, text, mode)
+    status, text = evaluate(results, ns)
+    summary("K4", status, text, run)
 
 
 if __name__ == "__main__":

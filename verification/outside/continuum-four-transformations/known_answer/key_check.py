@@ -3,7 +3,12 @@ functions of src/keys.py (the functions the code draws from), names for each dra
 is, never from its key), and checks that no two owners share a key except the draws on the plan's "Shared by design" list. Prints draws and distinct keys per
 family, and the totals of the plan: K4 6,180 draws on 6,100 keys, 417,545 distinct keys over all families. Exit status 1 on any fault or mismatch.
 Real-data counts are the plan's upper bounds (32 segments per run, 7 levels of at most 32 flow units) and the null replicates use the plan's reduced grid.
+Key epoch (reading D14 as amended by Amendment 4): the families are built in epoch 0. The check also shows that the epoch-0 strings are byte for byte
+the strings of the seed rule before the epoch existed (a digest of every distinct string, pinned from the code before the change, and each string
+against the old formula), and that the strings of epochs 1 to 3 never coincide with those of epoch 0 or of another epoch. Building a seed string
+makes no draw.
 usage: key_check.py"""
+import hashlib
 import os
 import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -38,6 +43,11 @@ L2B_ARROW = ("W", "Q", "H", "F", "M", "D", "E")
 L2B_FLOW = ("W", "H", "F", "B", "D", "R")
 L2B_CHANGE_SEGMENT = ("W", "F", "D")
 L2B_CHANGE_FLOW = ("W", "F", "D", "B", "R")
+# SHA-256 of the sorted distinct seed strings of the 12 families below, joined by newlines, computed with the code before Amendment 4 was carried out
+# (src/seeds.py without the epoch, commit b2ef206), over 417,545 strings. Epoch 0 must reproduce it exactly.
+EPOCH0_DIGEST = "3da7954bbaf21b3ce83629bb4c08e860677d9988c08f7aa49012563fb4a31585"
+EPOCH0_STRINGS = 417545
+OTHER_EPOCHS = (1, 2, 3)
 PRIMARY = ("GW:H1", "SEIS:VBB", "WAVES:Z", "TESS:1")
 SECOND = {"GW:H1": "GW:L1", "SEIS:VBB": "SEIS:SP", "WAVES:Z": "WAVES:S"}
 INSTRUMENTS = {"GW:H1": "GW", "SEIS:VBB": "SEIS", "WAVES:Z": "WAVES", "TESS:1": "TESS"}
@@ -52,10 +62,12 @@ C4_SERIES = 32
 class Family:
     """Draws with owners. An owner is the random start a draw is meant to use. Sharing a key is allowed only for a draw that names a stated reason."""
 
-    def __init__(self, name, expect_draws, expect_keys):
+    def __init__(self, name, expect_draws, expect_keys, epoch=0):
         self.name, self.expect = name, (expect_draws, expect_keys)
+        self.epoch = epoch
         self.n = 0
         self.owner_key, self.key_owner = {}, {}
+        self.keys = set()
         self.collisions = self.splits = self.unstated = 0
         self.shared = {}
 
@@ -64,7 +76,8 @@ class Family:
 
     def draw(self, owner, key, share=None):
         self.n += 1
-        s = seeds.seed_string(*key)
+        self.keys.add(tuple(key))
+        s = seeds.seed_string(*key, epoch=self.epoch)
         if owner in self.owner_key:
             if share is None:
                 self.unstated += 1
@@ -413,9 +426,43 @@ def planted_unstated():
     return f
 
 
+def old_seed_string(key):
+    """The seed string as the code made it before the key epoch existed: master 20261121 and the six fields, joined by '|'."""
+    return "|".join(str(v) for v in (20261121,) + tuple(key))
+
+
+def epoch_checks(C, fams):
+    """Reading D14 as amended by Amendment 4: epoch 0 unchanged, epochs never coinciding. Builds strings only, never a generator."""
+    keyset = set()
+    for f in fams:
+        keyset |= f.keys
+    keylist = sorted(keyset, key=repr)
+    s0 = [seeds.seed_string(*k, epoch=0) for k in keylist]
+    C.eq("epoch 0: every key's string equals the old seed string (master 20261121, no epoch), byte for byte", sum(1 for k, s in zip(keylist, s0) if s != old_seed_string(k)), 0)
+    distinct0 = sorted(set(s0))
+    dig = hashlib.sha256("\n".join(distinct0).encode("utf-8")).hexdigest()
+    print("epoch 0: %d distinct strings over %d distinct keys, SHA-256 of the sorted strings %s" % (len(distinct0), len(keylist), dig))
+    C.eq("epoch 0: the sorted distinct strings reproduce the digest pinned from the code before the change (%d strings)" % EPOCH0_STRINGS, (len(distinct0), dig), (EPOCH0_STRINGS, EPOCH0_DIGEST))
+    C.eq("no key field contains '|', so the master field is always the first field of a string", sum(1 for k in keylist for v in k if "|" in str(v)), 0)
+    C.eq("master field of epoch 0 is 20261121 and of epoch 1 is 20261121e1", (seeds.master_field(0), seeds.master_field(1), seeds.master_field(12)), ("20261121", "20261121e1", "20261121e12"))
+    mf = [seeds.master_field(k) for k in range(10001)]
+    C.check("master fields of epochs 0 to 10,000 are distinct and contain no '|' (so no two epochs give one string, for any key)", len(set(mf)) == len(mf) and not any("|" in m for m in mf))
+    per = {0: set(distinct0)}
+    for e in OTHER_EPOCHS:
+        per[e] = {seeds.seed_string(*k, epoch=e) for k in keylist}
+        C.eq("epoch %d: every key gives its own string (%d)" % (e, len(keylist)), len(per[e]), len(keylist))
+    overlaps = sum(len(per[a] & per[b]) for a in per for b in per if a < b)
+    allstr = set().union(*per.values())
+    print("epochs %s: %d strings, %d shared between two epochs" % (", ".join(str(e) for e in sorted(per)), len(allstr), overlaps))
+    C.eq("the strings of epochs 0 to %d never coincide across epochs" % max(OTHER_EPOCHS), overlaps, 0)
+    C.eq("distinct 64-bit seeds equal distinct strings over epochs 0 to %d" % max(OTHER_EPOCHS), len({int(hashlib.sha256(s.encode("utf-8")).hexdigest()[:16], 16) for s in allstr}), len(allstr))
+    planted = {old_seed_string(k) for k in keylist[:1000]}
+    C.check("must-fail: epoch-1 strings built without the epoch are flagged as coinciding with epoch 0", len(planted & per[0]) > 0)
+
+
 def main():
     C = Checker()
-    print("KEY CHECK: every seed key of D14 (Amendment 3), built with src/keys.py at the plan's counts. Master seed %d." % seeds.MASTER)
+    print("KEY CHECK: every seed key of D14 (Amendment 3), built with src/keys.py at the plan's counts, in key epoch 0 (master field %s)." % seeds.master_field(0))
     fams = [fam_k1(), fam_k2(), fam_k3(), fam_k4(False), fam_k4(True), fam_k5(False), fam_k5(True), fam_real(), fam_controls(), fam_law2b_known_answer(), fam_law2b_real(), fam_replicates()]
     for f in fams:
         print(f.line())
@@ -443,6 +490,7 @@ def main():
         C.check("must-fail: %s is flagged" % f.name, not f.ok())
     k4 = [f for f in fams if f.name.startswith("K4 (")][0]
     C.eq("K4 draws on keys (the plan's 6,180 on 6,100)", (k4.n, len(k4.key_owner)), (6180, 6100))
+    epoch_checks(C, fams)
     ok = C.done("KEY CHECK")
     if not ok:
         print("FAIL")

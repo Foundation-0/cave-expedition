@@ -3,9 +3,14 @@
 NOT called by the confirmatory path: no other module imports this one (units_check.py verifies it). The instances are
 fixed here so that they are available to the fixed rule of section 12a; their statistics are checked against hand-made
 counts only. Window names: W whitening, Q Bregman (quadratic generator), H Hellinger, F white floor, M max-plus,
-D first differences, O4 order 4, E event-rich domain, B block maxima, R normal scores before block averaging."""
+D first differences, O4 order 4, E event-rich domain, B block maxima, R normal scores before block averaging.
+
+Also here: the minimal state of the Law 2b search that Amendment 4 (item C2) needs, for an instance whose pre-data check failed. Such an
+instance is "not tested": it cannot rescue, each of its tests enters the Holm procedure with p = 1, and an adverse outcome that lists it
+cannot be recorded as final. The instance checks themselves and the verdict stage that would call these functions are not built."""
 import math
 import numpy as np
+import levels
 import patterns
 import keys
 import ranks
@@ -35,13 +40,14 @@ def whiten_W(x):
 
 
 # T4 spectral shift: F -----------------------------------------------------------------------------------------
-def white_floor_F(x, key):
+def white_floor_F(x, key, *, epoch):
     """Independent Gaussian noise with standard deviation 1/1000 of the segment's standard deviation, added first. key is the full key of
-    the noise draw, keys.f_noise(...): the key the draw has without the instance, with net law2b-F:<run> and purpose law2b-F (D14)."""
+    the noise draw, keys.f_noise(...): the key the draw has without the instance, with net law2b-F:<run> and purpose law2b-F (D14), and
+    epoch its key epoch (required): the epoch of the known-answer test whose draws a pre-data check reuses, or 0 on real data."""
     x = np.asarray(x, dtype=np.float64)
     if not (isinstance(key, tuple) and len(key) == 6):
         raise ValueError("a noise key has six fields")
-    rng = keys.rng(key)
+    rng = keys.rng(key, epoch)
     return x + (x.std() / 1000.0) * rng.standard_normal(len(x))
 
 
@@ -149,3 +155,101 @@ def flow_normal_scores_R(x):
 
 FLOW_BLOCK_OP_B = "max"             # B: block maxima of 2 replace block means (flow.block_average op)
 flow_freq_map_H = np.sqrt           # H: square roots of the class frequencies before standardisation
+
+
+# Law 2b search state with untested instances (section 12a as amended by Amendment 4, item C2) --------------------------
+ADVERSE_KINDS = ("a", "b", "c")      # (a) presence, per absent counting instrument; (b) arrow, per adverse pair; (c) scale flow, per adverse pair
+INSTANCES = {"a": ("W", "Q", "H", "F", "M", "D", "O4", "E"), "b": ("W", "Q", "H", "F", "M", "D", "E"), "c": ("W", "H", "F", "B", "D", "R")}
+FAMILY_OF = {"W": "T1_GAUGE_SIMILARITY", "Q": "T2_AFFINE_BREGMAN", "H": "T3_METRIC_CHART", "F": "T4_SPECTRAL_PSD_SHIFT", "M": "T5_SEMIRING_TROPICAL",
+             "B": "T5_SEMIRING_TROPICAL", "D": "T6_SUBSPACE_PROJECTION", "O4": "T6_SUBSPACE_PROJECTION", "E": "T7_ORDER_DOMAIN_RESIDUAL",
+             "R": "T7_ORDER_DOMAIN_RESIDUAL"}
+KIND_NAME = {"a": "presence (a)", "b": "arrow transfer (b)", "c": "scale-flow transfer (c)"}
+STATE_WORDING = {"transformed core": "evidence against at the confirmatory level, transformed core passed under instance %s",
+                 "final": "evidence against, final",
+                 "unresolved": "evidence against at the confirmatory level, Law 2b search unresolved"}
+
+
+def untested_instances(checks):
+    """The instances that are not tested (C2): those that failed any of their pre-data checks. checks: dict instance -> dict check name ->
+    bool (True when the check passed). Every instance named must have at least one recorded check, since the list of untested instances
+    is fixed before any data file is opened. Returns a frozenset of instance names."""
+    out = set()
+    for inst, res in checks.items():
+        if inst not in FAMILY_OF:
+            raise ValueError("unknown Law 2b instance %r" % (inst,))
+        if not res:
+            raise ValueError("instance %s has no recorded pre-data check" % inst)
+        for name, ok in res.items():
+            if not isinstance(ok, (bool, np.bool_)):
+                raise TypeError("check %s of instance %s must be a bool" % (name, inst))
+        if not all(res.values()):
+            out.add(inst)
+    return frozenset(out)
+
+
+def test_name(kind, instance, item):
+    """Name of one test of the 102-test Law 2b family: kind, instance and triggering item."""
+    return "law2b:%s:%s:%s" % (kind, instance, item)
+
+
+def holm_family(computed, untested):
+    """Holm over the Law 2b family (levels.holm, m = 102). computed: dict test name -> p of the tests computed. A test of an untested
+    instance must not be computed: it stays out of the dict, so levels.holm counts it with p = 1, as a test that is not computed.
+    untested: the untested instances; a computed test of one of them is refused."""
+    for name in computed:
+        parts = name.split(":")
+        if len(parts) != 4 or parts[0] != "law2b" or parts[1] not in ADVERSE_KINDS or parts[2] not in INSTANCES[parts[1]]:
+            raise ValueError("not a Law 2b test name: %r" % (name,))
+        if parts[2] in untested:
+            raise ValueError("instance %s is not tested, so its test %s enters Holm with p = 1 and has no computed p" % (parts[2], name))
+    return levels.holm(computed, m=levels.LAW2B_FAMILY)
+
+
+def untested_routes(kind, untested):
+    """The rescue routes of one kind that could not be tested, in the order of the table of section 12a, named for the report."""
+    return ["instance %s (%s) for %s: not tested" % (i, FAMILY_OF[i], KIND_NAME[kind]) for i in INSTANCES[kind] if i in untested]
+
+
+def search_state(kind, items, untested, passes, vacuous, obstruction):
+    """State of one triggered kind of "evidence against" (section 12a, Recording, with Amendment 4, item C2).
+    kind: 'a', 'b' or 'c'. items: the triggering items (the absent counting instruments for (a), the adverse pairs for (b) and (c)).
+    untested: instances whose pre-data check failed (untested_instances). passes: dict (instance, item) -> bool, for every tested instance
+    of the kind and every item, True when the instance's test passes for that item. vacuous: tested instances found vacuous under G1.
+    obstruction: bool, whether the obstruction of G4 holds under the confirmatory run and every tested instance.
+    Returns dict(state, rescued_by, untested_routes, wording). Transformed core: a tested instance that is not vacuous passes for every
+    item. Otherwise an untested instance leaves the search incomplete, so the state is unresolved and never final. Otherwise final if no
+    instance passes for any item and the obstruction holds, and unresolved if not."""
+    if kind not in ADVERSE_KINDS:
+        raise ValueError("kind must be one of %s" % (ADVERSE_KINDS,))
+    items = list(items)
+    if not items or len(set(items)) != len(items):
+        raise ValueError("need at least one triggering item, each named once")
+    listed = INSTANCES[kind]
+    untested = frozenset(i for i in untested if i in listed)
+    tested = [i for i in listed if i not in untested]
+    if not set(vacuous) <= set(tested):
+        raise ValueError("only a tested instance of this kind can be vacuous")
+    if not isinstance(obstruction, (bool, np.bool_)):
+        raise TypeError("obstruction must be a bool")
+    want = {(i, it) for i in tested for it in items}
+    if set(passes) != want:
+        raise ValueError("passes needs a result for every tested instance and item, and none for an untested instance")
+    if any(not isinstance(v, (bool, np.bool_)) for v in passes.values()):
+        raise TypeError("each pass result must be a bool")
+    rescued = [i for i in tested if i not in vacuous and all(passes[(i, it)] for it in items)]
+    if rescued:
+        state = "transformed core"
+        wording = STATE_WORDING[state] % ", ".join(rescued)
+    elif untested:
+        state = "unresolved"
+        wording = STATE_WORDING[state]
+    elif obstruction and not any(passes.values()):
+        state = "final"
+        wording = STATE_WORDING[state]
+    else:
+        state = "unresolved"
+        wording = STATE_WORDING[state]
+    routes = untested_routes(kind, untested)
+    if routes:
+        wording += "; rescue routes not tested: " + "; ".join(routes)
+    return {"state": state, "rescued_by": rescued, "untested_routes": routes, "wording": wording}

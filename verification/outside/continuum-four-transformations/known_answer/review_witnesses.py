@@ -106,7 +106,7 @@ def main():
     if not explicit(r):
         BAD.append("CAVE8-05 amp_lognormal non-finite")
     attempt("q8 net on the constant segment (distinct values)", lambda: ranks.n_distinct(nets.apply("q8", const)))
-    r = attempt("segment_test on the constant segment: reject, all zero spread", lambda: (stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0))["reject"], stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0))["all_zero_spread"]))
+    r = attempt("segment_test on the constant segment: reject, all zero spread", lambda: (stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0), epoch=0)["reject"], stats43.segment_test(const, ("w", "s", "n", 0, "surrogates", 0), epoch=0)["all_zero_spread"]))
     print("CAVE8-06 ties, degenerate lags and tolerances")
     print("  no tie-share rule is applied (Amendment 1, A5); tied patterns are kept as patterns of their own")
     print("  degenerate lags are left out of T and the segment is flagged; all-degenerate counts as not rejecting (plan, section 4.3)")
@@ -130,6 +130,12 @@ def main():
         if not explicit(r):
             BAD.append("CAVE8-08 " + label)
     print("  scores are compared with a tolerance of %g relative, with an absolute floor of 1e-12, not by exact equality (the AUC of the frozen plan is gone)" % ties.REL)
+    # the all-tied template: this witness pins the behaviour of reading D8 as amended by Amendment 4 (item C1), under which a detector tied with
+    # S_B(w_A) counts as at or below it. The code before Amendment 4 gave adverse = True here (AMENDMENTS_NEEDED.md, tie rule); that is no longer accepted.
+    r = attempt("transfer_test, every detector ties with w_A (D8 as amended: not adverse)", lambda: (lambda t: "D %d, p %s, n_lt %d, n_tie %d, adverse %s" % (t["D"], t["p"], t["n_lt"], t["n_tie"], t["adverse"]))(
+        transfer.transfer_test("profile", np.ones(10) / np.sqrt(10), np.ones(10), np.ones(10, dtype=bool), np.random.default_rng(3), R=100)))
+    if r[0] != "ok" or not r[1].endswith("adverse False"):
+        BAD.append("CAVE8-08 all-tied template judged adverse (D8 as amended by Amendment 4 says a tie never creates a verdict)")
     print("UNGUARDED:", BAD if BAD else "none")
     if BAD:
         raise SystemExit(1)
