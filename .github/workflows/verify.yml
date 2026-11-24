@@ -67,6 +67,8 @@ jobs:
           verification/tests/test_check_totals_r5.py
           verification/check_expedition_root.py
           verification/tests/test_check_expedition_root.py
+          verification/check_tracked_private_paths.py
+          verification/tests/test_check_tracked_private_paths.py
       - name: Mutation check of the fast verifiers (exhaustive)
         # check_003 takes about 7 minutes; its command is in README section 5.
         run: |
@@ -74,6 +76,7 @@ jobs:
           python3 -I -B -m aletheia mutate verification/checks/verify_round10_standalone.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_verify_round10_r5.py"
           python3 -I -B -m aletheia mutate verification/outside/check_totals.py --work-root . --max-mutants 0 --guards need --test-cmd "python3 -I -B verification/tests/test_check_totals_r5.py"
           python3 -I -B -m aletheia mutate verification/check_expedition_root.py --work-root . --max-mutants 0 --guards _need --test-cmd "python3 -I -B verification/tests/test_check_expedition_root.py"
+          python3 -I -B -m aletheia mutate verification/check_tracked_private_paths.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_check_tracked_private_paths.py"
       - name: Safety scan of the workflow files
         run: python3 -I -B -m aletheia audit-check .github --safety-scan
       - name: Safety scan of the whole repository (advisory)

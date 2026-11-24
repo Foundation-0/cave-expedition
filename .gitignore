@@ -4,3 +4,14 @@ __pycache__/
 venv/
 .DS_Store
 *.swp
+
+# Default EXPEDITION_ROOT is this repository's root (README section 5), so the sibling
+# layout and upstream clones would land here. Keep them out of git.
+/synthesis/
+/probes/
+/branches/
+/repos/
+# Default GEMINI_SESSIONS_DIR is a working-directory-relative gemini-sessions/ folder of
+# private session transcripts.
+gemini-sessions/
+gemini-session-*/

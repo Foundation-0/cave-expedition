@@ -96,7 +96,7 @@ cave-expedition/
         └── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
 ```
 
-**Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
+**Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`). Because both variables default to paths inside the checkout, `.gitignore` lists the default layout (`/synthesis/`, `/probes/`, `/branches/`, `/repos/`, `gemini-sessions/`), and `python3 -I -B verification/check_tracked_private_paths.py` fails if git tracks or stages any of it, including through `git add -f`. It exits 2, not 0, when git cannot list the tree. CI runs it.
 
 ---
 
