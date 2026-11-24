@@ -43,7 +43,7 @@ The outside team's labels are its own reading and open to correction ([`verifica
 
 Every active expedition track reached `VERIFIED` status, except two early audits that did not survive their own check and have no closing row: `AUDIT-001` is `FALSIFIED` and `AUDIT-003` is `PARTIAL/FRAGILE` (see full evidence, SHA-256 digests, counterexamples, and scope notes in [`verification/AUDIT_LOG.md`](verification/AUDIT_LOG.md)):
 
-`VERIFIED` here is this repository's verdict: passed all applicable gates G1–G8 ([`verification/PROTOCOL.md`](verification/PROTOCOL.md), verdict table). Each table shows the outside ruling next to the internal label. The outside column is copied from [`verification/OUTSIDE_RULINGS_INDEX.md`](verification/OUTSIDE_RULINGS_INDEX.md), the single source for those rulings, which also gives the internal label from each `AUDIT_LOG.md` row and the source line of each ruling. Cite a row by its audit id, its oracle class and its outside ruling (the citation rule on the [ledger page](https://foundation-0.github.io/cave-expedition/ledger/#outside)). Where a team summary uses a phrase that the outside check repaired, the repair follows it in italics. The other rows of the outside repair table ([`verification/outside/OUTSIDE_AUDIT.md`](verification/outside/OUTSIDE_AUDIT.md), lines 79 to 95) concern text in sibling drafts, not in this repository.
+`VERIFIED` here is this repository's verdict: passed all applicable gates G1–G8 ([`verification/PROTOCOL.md`](verification/PROTOCOL.md), verdict table). Each table shows the outside ruling next to the internal label. The outside column is copied from [`verification/OUTSIDE_RULINGS_INDEX.md`](verification/OUTSIDE_RULINGS_INDEX.md), which also gives the internal label from each `AUDIT_LOG.md` row and the source line of each ruling. Cite a row by its audit id, its oracle class and its outside ruling (the citation rule on the [ledger page](https://foundation-0.github.io/cave-expedition/ledger/#outside)). Where a team summary uses a phrase that the outside check repaired, the repair follows it in italics. The other rows of the outside repair table ([`verification/outside/OUTSIDE_AUDIT.md`](verification/outside/OUTSIDE_AUDIT.md), lines 79 to 95) concern text in sibling drafts, not in this repository.
 
 ### Results with an internal `N2` label
 
@@ -100,7 +100,7 @@ cave-expedition/
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2); status and successor note at the top
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
-    ├── OUTSIDE_RULINGS_INDEX.md               # Internal label beside the outside ruling, per audit (single source)
+    ├── OUTSIDE_RULINGS_INDEX.md               # Internal label beside the outside ruling, per audit (README and site columns copy it)
     ├── outside/                               # Outside-observer checks and rulings (a contribution from outside the team; see its README, "Standing")
     └── checks/                                # 14 numbered check scripts (check_001..check_014) plus verify_round10_standalone.py
         ├── check_001_lemma32_and_tcb.py

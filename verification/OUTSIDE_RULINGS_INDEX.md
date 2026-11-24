@@ -1,6 +1,6 @@
 # Outside rulings index
 
-This file lists, for every audit number, the internal label from [`AUDIT_LOG.md`](AUDIT_LOG.md) next to the label the outside check gave it. It is the single place in this repository where the outside rulings are restated. The README (section 2) and the site's ledger page (`docs/ledger/index.html`) link here instead of keeping their own copies.
+This file lists, for every audit number, the internal label from [`AUDIT_LOG.md`](AUDIT_LOG.md) next to the label the outside check gave it. The "Outside ruling" columns in README section 2 and on the site's ledger page (`docs/ledger/index.html`) are copied from this file. Other places restate some rulings in shorter form: README section 1, the italic notes in README sections 1 and 2, the site's home page and joint map, and the Portal 11 standing note in `cartography/frontier_portals.md`. If a copy differs from this file, check the outside file and line named here.
 
 It adds no ruling of its own. Each entry is copied from the file and line given in its row.
 
