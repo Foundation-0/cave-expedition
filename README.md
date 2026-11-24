@@ -101,7 +101,7 @@ cave-expedition/
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
     ├── OUTSIDE_RULINGS_INDEX.md               # Internal label beside the outside ruling, per audit (single source)
     ├── outside/                               # Outside-observer checks and rulings (contributed from outside; not edited by the team)
-    └── checks/                                # All 12 independent adversarial verification scripts (check_001..check_012)
+    └── checks/                                # 14 numbered check scripts (check_001..check_014) plus verify_round10_standalone.py
         ├── check_001_lemma32_and_tcb.py
         ├── check_002_session1_instruments.py
         ├── check_003_seam01_ropt.py           # Zero-dependency standalone stdlib verifier (AUDIT-002)
@@ -113,7 +113,10 @@ cave-expedition/
         ├── check_009_e8_spinor_fold.py
         ├── check_010_spectral_inertia_reaudit.py
         ├── check_011_gravity_reaudit_and_probe4.py
-        └── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
+        ├── check_012_continuum_bridge_reaudit_and_fold_sheaf.py
+        ├── check_013_bw16_leech24.py          # AUDIT-020 (row only on pull request #1)
+        ├── check_014_bw16_leech24_reaudit.py  # AUDIT-020R (row only on pull request #1)
+        └── verify_round10_standalone.py       # Runs the committed round-10 certifiers under symbiosis/round10/
 ```
 
 **Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
@@ -145,9 +148,9 @@ python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
 ```
 
-### Cross-Repository Audit Suite (`check_001` – `check_012`)
+### Cross-Repository Audit Suite (`check_001` – `check_014`)
 
-Scripts `check_004`–`check_012` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
+Scripts `check_004`–`check_014` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
 
 | Script | Audits Covered | Oracle Class | Runtime Dependencies | Target Layout Under `EXPEDITION_ROOT` |
 |---|---|---|---|---|
@@ -163,6 +166,8 @@ Scripts `check_004`–`check_012` independently import and audit the sibling ins
 | `check_010_spectral_inertia_reaudit.py` | `AUDIT-015R`, `016R` | `exact` | Python 3 stdlib | `branches/spectral-inertia/` (`siliconcordat/spectral-inertia`) |
 | `check_011_gravity_reaudit_and_probe4.py` | `AUDIT-011R`, `013R`, `018` | `exact` + `anchor` | `sympy`, `node` | `probes/gravity/`, `repos/fractals/witness-map/` |
 | `check_012_continuum_bridge_reaudit_and_fold_sheaf.py` | `AUDIT-006R`, `007R`, `008R`, `019` | `exact` + `sampled` | `sympy`, `numpy` | `synthesis/`, `repos/project-asma/` (imports `optimal_inertia_rank` from `synthesis/`; its public copy is project-asma `studies/expedition-mobius-ropt/optimal_inertia_rank.py` at `f2f92ee`. Reads `repos/project-asma/formal/AsmaIdentifiabilityProofs.lean` and matches four literal substrings, two with double spaces, line 399 of the script) |
+| `check_013_bw16_leech24.py` | `AUDIT-020` (row only on pull request #1) | not on `main` | `sympy`, `numpy` | `probes/fractals/` |
+| `check_014_bw16_leech24_reaudit.py` | `AUDIT-020R` (row only on pull request #1) | not on `main` | Python 3 stdlib | `probes/fractals/` |
 
 **About the name "Scan 23848".** In these checks it names a two-weight synthetic model, not a spectrum: `check_003_seam01_ropt.py` (lines 460 to 470) hard-codes $w_1 = (6404/10000)^2$ and $w_2 = (3596/10000)^2$ and reads no file. Its output key `scan23848_mode_b_comparison` stays as it is, because renaming it would change the stdout bytes that CI and the outside Gate-5 anchor pin. The name also comes from upstream: `check_008_spectral_inertia.py` (line 60) imports `spectral_inertia.examples.scan23848_benchmark` from `siliconcordat/spectral-inertia`, and the AUDIT-014 row cites `scan23848_benchmark.py`. The source-verified record of the real scan is in Foundation-0/project-asma, `CLAIMS.md` row V38; see the provenance note in [`cartography/session2_verification_map.md`](cartography/session2_verification_map.md).
 
