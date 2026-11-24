@@ -87,6 +87,7 @@ Every active expedition track reached `VERIFIED` status, except two early audits
 cave-expedition/
 ├── README.md                                  # Executive map, 8-way Schur claim with its Gate-5 ruling, ledger & repro guide
 ├── LICENSE                                    # Apache License 2.0
+├── AGENTS.md                                  # Draft for the owner: the repo's rules for agents, with sources
 ├── cartography/
 │   ├── session1_instrument_map.md             # Extracted mathematical objects, operators/sheaves & falsifiable entry points (Session 1)
 │   ├── session2_verification_map.md           # Formal verification architecture, quadratic-form/chimeric rank bounds & repo graph (Session 2)
