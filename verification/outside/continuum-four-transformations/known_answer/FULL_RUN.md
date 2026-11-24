@@ -33,6 +33,7 @@ What the checks can see:
 - The checkout under test never holds the rows of its own runs, since they are committed afterwards. So the ledger of a checkout cannot refuse a second run of the same commit on the same epoch.
 - `run_full.sh` therefore also appends the run's rows, before any test starts, to `<build folder>/EPOCHS_started.tsv`, and checks every later call with that build folder against it as well. A second run of a test on the same epoch from the same build folder is refused. It also refuses a results folder that exists and is not empty, so an earlier run's record is never overwritten.
 - A seeded script run by hand with `full epoch=<k>`, for k from 1, checks the epoch against the ledger of its checkout and stops with exit status 2, before any draw, if that ledger refuses it. It cannot see the build folder's ledger.
+- Every write that records the run is checked. After appending, `run_full.sh` reads the build folder's ledger back and starts no test unless it now shows each seeded test of the run on this epoch. A run is never started unrecorded.
 - A rerun from another build folder, or by hand, is refused only if the ledger it reads holds the earlier rows. Start it from a commit whose `EPOCHS.tsv` holds them, or check it first with `epochs.py check <test> <epoch> <build folder>/EPOCHS_started.tsv`.
 
 ## Round accounting
@@ -66,7 +67,7 @@ Python 3.14 and numpy 2.5 are needed. Nothing else is installed or downloaded.
 known_answer/run_full.sh <results dir> <build folder> <epoch> [test ...]
 ```
 
-The tests are any of K1 K2 K3 K4 K5 K6, all six by default. Tests whose next epochs differ are run in separate calls. The script refuses a missing epoch, epoch 0, an unknown test, a checkout whose tracked files differ from its commit, a results folder that exists and is not empty, and any seeded test for which `epochs.py check` refuses the epoch, with the checkout's ledger joined to `<build folder>/EPOCHS_started.tsv`. It records the code commit, the epoch and the tests in `<results dir>/run_info.txt`, appends the run's rows to `<build folder>/EPOCHS_started.tsv`, and passes `epoch=<epoch>` to every seeded script. K6 runs without an epoch.
+The tests are any of K1 K2 K3 K4 K5 K6, all six by default. Tests whose next epochs differ are run in separate calls. The script refuses a missing epoch, epoch 0, an epoch of more than 9 digits, a build folder that is not a writable folder, an unknown test, a checkout whose tracked files differ from its commit, a results folder that exists and is not empty, and any seeded test for which `epochs.py check` refuses the epoch, with the checkout's ledger joined to `<build folder>/EPOCHS_started.tsv`. It records the code commit, the epoch and the tests in `<results dir>/run_info.txt`, appends the run's rows to `<build folder>/EPOCHS_started.tsv`, and passes `epoch=<epoch>` to every seeded script. K6 runs without an epoch.
 
 ## Run one test by hand
 

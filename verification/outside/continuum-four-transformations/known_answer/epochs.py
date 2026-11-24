@@ -3,9 +3,10 @@ reading D14 as amended by Amendment 4).
 
 known_answer/EPOCHS.tsv has a header line and one row per run that used an epoch of a test, with six tab-separated fields:
     test        K1 to K5 (K6 has no random draws and is exempt from the epoch rule, so it has no rows)
-    epoch       a whole number; 0 is the diagnostic epoch of smoke runs and of every run before Amendment 4 was carried out
+    epoch       a whole number of at most 9 digits; 0 is the diagnostic epoch of smoke runs and of every run before Amendment 4 was
+                carried out
     code_commit the full or short commit of the code that ran, or - when it is not known
-    date        the start date of the run, YYYY-MM-DD
+    date        the start date of the run, YYYY-MM-DD, a real calendar date
     kind        full-count (a run at the plan's full seed count, with its must-fail controls), diagnostic (only on epoch 0), law2b-check
                 (a Law 2b pre-data check that reuses the test's draws on that epoch) or draws-seen (only from epoch 1: an outcome of some
                 other run that used the same data draws as that epoch, even under other surrogate or detector keys, was seen)
@@ -20,6 +21,7 @@ usage: epochs.py next <test> [<ledger file> ...]              print the lowest e
                                                                with the reason
        (the ledger read is the EPOCHS.tsv beside this file, joined with each ledger file named, for example the ledger of the runs
        started from a build folder that run_full.sh keeps)"""
+import datetime
 import os
 import re
 import sys
@@ -30,6 +32,9 @@ HEADER = ("test", "epoch", "code_commit", "date", "kind", "note")
 SEEDED = ("K1", "K2", "K3", "K4", "K5")
 KINDS = ("full-count", "diagnostic", "law2b-check", "draws-seen")
 USAGE = "usage: epochs.py next <test> [<ledger file> ...] | epochs.py check <test> <epoch> [<ledger file> ...]"
+# An epoch is written as a whole number of at most 9 digits with no leading zero, so that its conversion to int never meets Python's
+# limit on the digits of an int (an over-long epoch is refused as such, not by a ValueError from int()).
+EPOCH_RE = r"0|[1-9][0-9]{0,8}"
 
 
 class LedgerError(ValueError):
@@ -53,13 +58,17 @@ def _rows_of(text, where):
             raise LedgerError("%sline %d: K6 has no random draws and is exempt from the epoch rule" % (where, no))
         if test not in SEEDED:
             raise LedgerError("%sline %d: unknown test %r" % (where, no, test))
-        if not re.fullmatch(r"0|[1-9][0-9]*", epoch):
-            raise LedgerError("%sline %d: the epoch must be a whole number, got %r" % (where, no, epoch))
+        if not re.fullmatch(EPOCH_RE, epoch):
+            raise LedgerError("%sline %d: the epoch must be a whole number of at most 9 digits, got %r" % (where, no, epoch[:40]))
         e = int(epoch)
         if commit != "-" and not re.fullmatch(r"[0-9a-f]{7,40}", commit):
             raise LedgerError("%sline %d: the code commit must be a hex commit or -, got %r" % (where, no, commit))
         if not re.fullmatch(r"20[0-9]{2}-[01][0-9]-[0-3][0-9]", date):
             raise LedgerError("%sline %d: the date must be YYYY-MM-DD, got %r" % (where, no, date))
+        try:
+            datetime.date.fromisoformat(date)
+        except ValueError:
+            raise LedgerError("%sline %d: the date %r is not a calendar date" % (where, no, date)) from None
         if kind not in KINDS:
             raise LedgerError("%sline %d: kind must be one of %s" % (where, no, ", ".join(KINDS)))
         if e == 0 and kind != "diagnostic":
@@ -148,8 +157,8 @@ def main(argv):
             print(next_epoch(rows, argv[2]))
             return 0
         if len(argv) >= 4 and argv[1] == "check":
-            if not re.fullmatch(r"0|[1-9][0-9]*", argv[3]):
-                print("REFUSED: the epoch must be a whole number written in digits, got %r" % argv[3])
+            if not re.fullmatch(EPOCH_RE, argv[3]):
+                print("REFUSED: the epoch must be a whole number of at most 9 digits, got %r" % argv[3][:40])
                 return 1
             rows = read_ledger(extra=argv[4:])
             why = check_full_run(rows, argv[2], int(argv[3]))

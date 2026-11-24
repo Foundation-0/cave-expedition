@@ -1,6 +1,6 @@
 # Record of the code change that carries out Amendment 4
 
-Date: 2026-11-24. Written by the code author, the orda-aska account, an automated Claude Code session. Revised the same day after a review of the uncommitted change: the round accounting, the outcomes seen, the items not yet stated, the ledger guards, the mutation tool and its results. Revised once more by the same account before the first commit: K1's run history, the keys of the K4 diagnostic run, and what the code author read to settle them.
+Date: 2026-11-24. Written by the code author, the orda-aska account, an automated Claude Code session. Revised the same day after a review of the uncommitted change: the round accounting, the outcomes seen, the items not yet stated, the ledger guards, the mutation tool and its results. Revised once more by the same account before the first commit: K1's run history, the keys of the K4 diagnostic run, and what the code author read to settle them. Revised a third time, after the first review on pull request #25: the ledger and run guards (section "Revision after the first review on #25").
 
 This is the dated record of the code change that `AMENDMENT_4.md` (item C3) asks for: what changed, which tests' code it touches, the round of repair it is, the outcomes the code author had seen when it was made, and the scripts run for it.
 The change was made on the branch `study/amendment4-code`, based on commit `b2ef206` of `main`. The commit that holds it is the first commit on that branch whose tree holds this file.
@@ -149,6 +149,25 @@ No run of K1, K2, K3, K4 or K5 was made, at any epoch, size or mode, and `run_fu
 - `mutation_test.py --lines`, after the revision: 37 mutants on the 305 changed lines of `src/`, 16 in `transfer.py`, 7 in `seeds.py` and 14 in `law2b.py`. The other changed modules have no mutation site on their changed lines. The baseline passed in all 4 work copies, and all 37 mutants were killed, among them the refusal in `transfer.pair_result` that the review found surviving. Wall time 7.5 minutes.
 - The baseline step itself: in a work copy without `EPOCHS.tsv` the suite fails (exit status 1 in `units_check.py`), and with the ledger it passes.
 - `hygiene.sh origin/main origin/main`, under `sh` and under `bash`: every check ok, the prose check skipped because its checker is not installed, last line "HYGIENE PASS (check-prose not run: checker not installed)", exit status 0.
+
+## Revision after the first review on #25
+
+A review of commit `1561d0d` on pull request #25 found that `run_full.sh` did not check its writes, that the ledger accepted a date that is not a calendar date, and that an epoch of more digits than Python's `int()` converts (4,300) ended `epochs.py` with a traceback instead of a refusal. Each is fixed:
+
+- `run_full.sh` refuses a build folder that is not a writable folder and an epoch of more than 9 digits. Every write that records the run (the results folder, `run_info.txt`, `EPOCHS_rows.tsv`, the build folder's `EPOCHS_started.tsv`, `status.txt`, `timing.txt`) is checked, and a failed one stops the script with exit status 2 before any test starts.
+  After the append it reads the build folder's ledger back with `epochs.py next`, and starts no test unless that ledger now gives each seeded test of the run a next epoch above this one.
+- `epochs.py`: an epoch is a whole number of at most 9 digits (`EPOCH_RE`) in the ledger and on the command line, and a date must be a calendar date (`datetime.date.fromisoformat`). `kcommon._whole`, which reads the epoch and the part option of the scripts, uses the same bound, and `kcommon.check_parts` reads the part numbers of part files with it, so an over-long or non-ASCII digit string is a refusal, not a `ValueError`.
+- The interpreter that `run_full.sh` names in `run_info.txt` (`/usr/local/bin/python3.14`) is the one `sbpy.sh` runs every script with. It is unchanged from `main`. The ledger check runs through `sbpy.sh` before anything is recorded, so a machine without that interpreter refuses the run.
+- `units_check.py` gains 11 checks: an epoch of 10 and of 5,000 digits and a part count of 5,000 digits on the command line, a part number of 5,000 digits or in other digits in a part file, a date of month 19 and day 39 and 29 February of a common year in the ledger, an epoch of 10 and of 5,000 digits in the ledger, 29 February of a leap year and the largest 9-digit epoch accepted, and `epochs.py check` refusing a 5,000-digit epoch with exit status 1 and a reason.
+
+Scripts run for this revision, with the same flags:
+
+- `known_answer/units_check.py` under `-I -B`, `-I -O -B` and `-I -B -W error`, with the outputs compared; `key_check.py`, `review_witnesses.py` and `k6_gate_checks.py full` and `smoke` in the same three modes.
+- `known_answer/epochs.py next K4` and `check K4 <5,000 digits>` with a scratch ledger whose date was `2026-19-39` or whose epoch had 5,000 digits, to reproduce the findings before the fix.
+- `run_full.sh` in a scratch copy of the package, cut off before its first test, with a stub `sbpy.sh` that runs the system Python, under `dash` and `bash`: a first run on K4 epoch 1, the same epoch again from the same build folder (refused), epoch 2 (allowed), a build folder that is a file, a build ledger that cannot be written (`/dev/full`), a results folder that cannot be made, an epoch of 10 digits, and a read-back that does not show the row or cannot be read. Each refusal ended with exit status 2 and no test stage was reached. The copy was then deleted.
+- `known_answer/hygiene.sh origin/main origin/main` under `sh` and `bash`, `sha256sum -c MANIFEST.sha256`, and the six steps of `verify.yml`.
+
+To reproduce the over-long epoch, the code author started `known_answer/k4_transfer.py full epoch=<5,000 digits>` once under `-I -B`. It imported its modules, then stopped in its argument parsing with a `ValueError`, before any draw. No K4 test ran, and no key was built. No other K1 to K5 script was started.
 
 ## Limits
 

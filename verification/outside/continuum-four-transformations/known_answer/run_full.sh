@@ -15,6 +15,8 @@
 # The checkout's own ledger cannot hold the rows of a run of its own commit, so before any test starts the rows are also appended to
 # <build folder>/EPOCHS_started.tsv, which every later call with that build folder checks: a second run of a test on the same epoch from
 # the same build folder is refused. The results folder must be new or empty, so that no earlier run's record is overwritten.
+# Every write that records the run is checked, and after the append the build folder's ledger is read back: unless it now gives each
+# seeded test a next epoch above this one, the run stops before any test starts (a run is never started unrecorded).
 if [ $# -lt 3 ]; then
   echo "usage: run_full.sh <results dir> <build folder> <epoch> [test ...]"
   echo "refused: the key epoch is missing (a full-count run names its epoch, from 1)"
@@ -29,6 +31,9 @@ TESTS="$*"
 case "$EPOCH" in
   ''|*[!0-9]*|0*) echo "refused: the epoch must be a whole number from 1 without a leading zero (epoch 0 is a diagnostic and cannot pass a test), got '$EPOCH'"; exit 2;;
 esac
+if [ "${#EPOCH}" -gt 9 ]; then
+  echo "refused: the epoch must have at most 9 digits (epochs.py EPOCH_RE)"; exit 2
+fi
 for t in $TESTS; do
   case "$t" in
     K1|K2|K3|K4|K5|K6) ;;
@@ -50,6 +55,10 @@ if [ -e "$RES" ]; then
     exit 2
   fi
 fi
+if [ ! -d "$BUILD" ] || [ ! -w "$BUILD" ]; then
+  echo "refused: the build folder '$BUILD' is not a writable folder; it holds the checkout, the outputs and the ledger of started runs"
+  exit 2
+fi
 STARTED="$BUILD/EPOCHS_started.tsv"
 for t in K1 K2 K3 K4 K5; do
   if want "$t"; then
@@ -60,7 +69,8 @@ for t in K1 K2 K3 K4 K5; do
     fi
   fi
 done
-mkdir -p "$RES"
+norec() { echo "refused: $1; no test was started"; exit 2; }
+mkdir -p "$RES" || norec "cannot make the results folder '$RES'"
 START="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 {
   echo "code commit: $COMMIT"
@@ -69,17 +79,29 @@ START="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   echo "python: $(/usr/local/bin/python3.14 --version 2>&1)"
   echo "numpy: $(/usr/local/bin/python3.14 -c 'import numpy; print(numpy.__version__)')"
   echo "start: $START"
-} > "$RES/run_info.txt"
-: > "$RES/EPOCHS_rows.tsv"
+} > "$RES/run_info.txt" || norec "cannot write $RES/run_info.txt"
+: > "$RES/EPOCHS_rows.tsv" || norec "cannot write $RES/EPOCHS_rows.tsv"
 for t in K1 K2 K3 K4 K5; do
   if want "$t"; then
-    printf '%s\t%s\t%s\t%s\tfull-count\trun_full.sh, three modes, results folder %s\n' "$t" "$EPOCH" "$COMMIT" "$(echo "$START" | cut -c1-10)" "$(basename "$RES")" >> "$RES/EPOCHS_rows.tsv"
+    printf '%s\t%s\t%s\t%s\tfull-count\trun_full.sh, three modes, results folder %s\n' "$t" "$EPOCH" "$COMMIT" "$(echo "$START" | cut -c1-10)" "$(basename "$RES")" >> "$RES/EPOCHS_rows.tsv" \
+      || norec "cannot write the ledger row of $t to $RES/EPOCHS_rows.tsv"
   fi
 done
-[ -f "$STARTED" ] || printf 'test\tepoch\tcode_commit\tdate\tkind\tnote\n' > "$STARTED"
-cat "$RES/EPOCHS_rows.tsv" >> "$STARTED"
-: > "$RES/status.txt"
-: > "$RES/timing.txt"
+if [ ! -f "$STARTED" ]; then
+  printf 'test\tepoch\tcode_commit\tdate\tkind\tnote\n' > "$STARTED" || norec "cannot make the build folder's ledger $STARTED"
+fi
+cat "$RES/EPOCHS_rows.tsv" >> "$STARTED" || norec "cannot append the run's rows to the build folder's ledger $STARTED"
+for t in K1 K2 K3 K4 K5; do
+  if want "$t"; then
+    nxt="$("$HERE/sbpy.sh" "$BUILD" 600 -I -B "$HERE/epochs.py" next "$t" "$STARTED")"
+    case "$nxt" in
+      ''|*[!0-9]*) norec "the build folder's ledger $STARTED cannot be read back for $t (got '$nxt')";;
+    esac
+    [ "$nxt" -gt "$EPOCH" ] || norec "the build folder's ledger $STARTED does not show $t on epoch $EPOCH after the append"
+  fi
+done
+: > "$RES/status.txt" || norec "cannot write $RES/status.txt"
+: > "$RES/timing.txt" || norec "cannot write $RES/timing.txt"
 flags() { case "$1" in 1) echo "-I -B";; 2) echo "-I -O -B";; 3) echo "-I -B -W error";; esac; }
 timed() {  # timed <label> <out file> <err file> <mode> <script and args...>
   label="$1"; of="$2"; ef="$3"; m="$4"; shift 4

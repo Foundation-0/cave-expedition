@@ -45,9 +45,10 @@ def sizes(mode):
 
 
 def _whole(text, what):
-    """A whole number written in decimal digits with no sign and no leading zero (0 itself allowed)."""
-    if not re.fullmatch(r"0|[1-9][0-9]*", text):
-        raise UsageError("%s must be a whole number written in digits, got %r" % (what, text))
+    """A whole number written in decimal digits with no sign and no leading zero (0 itself allowed), of at most 9 digits (epochs.EPOCH_RE),
+    so that an over-long number is a usage error, not a ValueError from int()."""
+    if not re.fullmatch(epochs.EPOCH_RE, text):
+        raise UsageError("%s must be a whole number of at most 9 digits written in digits, got %r" % (what, text[:40]))
     return int(text)
 
 
@@ -254,7 +255,7 @@ def check_parts(lines, tid, run, commit):
         if f["commit"] != commit:
             faults.append("part file %d is from code commit %s, the combine run from %s" % (k, f["commit"], commit))
         p, sep, n = f["part"].partition("/")
-        if sep != "/" or not (p.isdigit() and n.isdigit()):
+        if sep != "/" or not (re.fullmatch(epochs.EPOCH_RE, p) and re.fullmatch(epochs.EPOCH_RE, n)):
             faults.append("part file %d is not a part (part=%s)" % (k, f["part"]))
             continue
         seen.append(int(p))

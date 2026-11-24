@@ -917,7 +917,9 @@ def u_amendment4():
                 ("the epoch twice", ["t", "full", "epoch=1", "epoch=1"], {}), ("the old positional part (part and count as bare words)", ["t", "full", "epoch=1", "3", "8"], {"parts": True}),
                 ("a part without its count", ["t", "full", "epoch=1", "part=3"], {"parts": True}), ("part 8 of 8", ["t", "full", "epoch=1", "part=8/8"], {"parts": True}),
                 ("0 parts", ["t", "full", "epoch=1", "part=0/0"], {"parts": True}), ("a part where the script has none", ["t", "full", "epoch=1", "part=0/2"], {}),
-                ("an unknown size", ["t", "medium", "epoch=1"], {}), ("no size", ["t"], {}), ("a combine run with no part files", ["t", "full", "epoch=1"], {"files": True}))
+                ("an unknown size", ["t", "medium", "epoch=1"], {}), ("no size", ["t"], {}), ("a combine run with no part files", ["t", "full", "epoch=1"], {"files": True}),
+                ("an epoch of 10 digits", ["t", "full", "epoch=1000000000"], {}), ("an epoch of 5,000 digits (more than int() converts)", ["t", "full", "epoch=" + "1" * 5000], {}),
+                ("a part count of 5,000 digits", ["t", "full", "epoch=1", "part=0/" + "1" * 5000], {"parts": True}))
     for nm, argv, kw in bad_args:
         ck("command line refuses %s" % nm, _refused(lambda: pa(argv, seeded=True, **kw), (kcommon.UsageError,)))
     ck("command line refuses an epoch for K6 (no random draws)", _refused(lambda: pa(["t", "full", "epoch=1"], seeded=False), (kcommon.UsageError,)))
@@ -952,7 +954,9 @@ def u_amendment4():
                               ("parts from a modified checkout", [dict(x, commit=c40 + "+modified") for x in good], c40 + "+modified"),
                               ("a combine run on another commit", good, "e" * 40), ("a missing part", good[:2], c40), ("a part given twice", good + good[:1], c40),
                               ("parts with different counts", changed(0, "part", "0/4"), c40), ("a part of another test", changed(0, "test", "K3"), c40),
-                              ("a part of another size", changed(0, "size", "smoke"), c40), ("a file that is not a part", changed(0, "part", "-"), c40)):
+                              ("a part of another size", changed(0, "size", "smoke"), c40), ("a file that is not a part", changed(0, "part", "-"), c40),
+                              ("a part number of 5,000 digits (more than int() converts)", changed(0, "part", "1" * 5000 + "/3"), c40),
+                              ("a part number in other digits than 0 to 9", changed(0, "part", "\u00b2/3"), c40)):
         ck("combine refuses %s" % nm, len(kcommon.check_parts(lines, "K2", comb, commit)) > 0)
     # C3: the ledger of used epochs. The shipped ledger is checked against the rules only, never for its contents, which grow with the runs.
     rows = epochs.read_ledger()
@@ -971,7 +975,11 @@ def u_amendment4():
                    ("a K6 row", H + "K6\t1\t-\t2026-11-25\tfull-count\tx\n"), ("an unknown test", H + "K9\t1\t-\t2026-11-25\tfull-count\tx\n"),
                    ("an epoch with a leading zero", H + "K4\t01\t-\t2026-11-25\tfull-count\tx\n"), ("a full-count run on epoch 0", H + "K4\t0\t-\t2026-11-25\tfull-count\tx\n"),
                    ("a diagnostic run on epoch 2", H + "K4\t2\t-\t2026-11-25\tdiagnostic\tx\n"), ("two full-count runs on one epoch", H + "K4\t1\t-\t2026-11-25\tfull-count\tx\nK4\t1\t-\t2026-11-26\tfull-count\ty\n"),
-                   ("a bad date", H + "K4\t1\t-\t25.11.2026\tfull-count\tx\n"), ("a bad commit", H + "K4\t1\tHEAD\t2026-11-25\tfull-count\tx\n"), ("an unknown kind", H + "K4\t1\t-\t2026-11-25\tsmoke\tx\n"))
+                   ("a bad date", H + "K4\t1\t-\t25.11.2026\tfull-count\tx\n"), ("a bad commit", H + "K4\t1\tHEAD\t2026-11-25\tfull-count\tx\n"), ("an unknown kind", H + "K4\t1\t-\t2026-11-25\tsmoke\tx\n"),
+                   ("a date that is not a calendar date (month 19, day 39)", H + "K4\t1\t-\t2026-19-39\tfull-count\tx\n"),
+                   ("29 February in a common year", H + "K4\t1\t-\t2026-02-29\tfull-count\tx\n"),
+                   ("an epoch of 10 digits", H + "K4\t1000000000\t-\t2026-11-25\tfull-count\tx\n"),
+                   ("an epoch of 5,000 digits (more than int() converts)", H + "K4\t" + "1" * 5000 + "\t-\t2026-11-25\tfull-count\tx\n"))
     for nm, text in bad_ledgers:
         ck("ledger refuses %s" % nm, _refused(lambda: epochs.parse_ledger(text), (epochs.LedgerError,)))
     L0 = epochs.parse_ledger(H)
@@ -986,6 +994,10 @@ def u_amendment4():
     ck("two ledgers read as one: two different full-count rows of one test and epoch are refused",
        _refused(lambda: epochs.parse_ledgers([H + rK4, H + rK4.replace("r1", "r2")]), (epochs.LedgerError,)))
     ck("one ledger: the same full-count row written twice is refused", _refused(lambda: epochs.parse_ledger(H + rK4 + rK4), (epochs.LedgerError,)))
+    ck("a ledger accepts 29 February in a leap year and the largest epoch of 9 digits",
+       len(epochs.parse_ledger(H + "K4\t1\t-\t2028-02-29\tfull-count\tx\nK4\t999999999\t-\t2026-11-25\tfull-count\ty\n")) == 2)
+    out, code = _printed(lambda: (_ for _ in ()).throw(SystemExit(epochs.main(["epochs.py", "check", "K4", "1" * 5000]))))
+    ck("epochs.py check refuses an epoch of 5,000 digits with exit status 1 and a reason, not a traceback", code == 1 and out.startswith("REFUSED: the epoch must be a whole number of at most 9 digits"))
     # C3: a full run by hand is checked against the ledger before any draw
     lr = kcommon.ledger_refusal
     k4f = lambda e: pa(["t", "full", "epoch=%d" % e, "part=0/10"], seeded=True, parts=True)
