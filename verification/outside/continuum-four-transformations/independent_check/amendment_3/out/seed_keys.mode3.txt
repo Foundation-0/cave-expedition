@@ -1,0 +1,66 @@
+Amendment 3: seed keys of section 11a (D14). Master seed 20261121. Seeds are numbered from 0.
+
+== D14 as Amendment 3 words it ==
+K1 (amended): draws 6884, independent random starts 1001, distinct keys 1001, distinct 64-bit seeds 1001 | OK, one key per independent random start
+    shared by design (K1 identity): 5163 draws reuse a key. The 13 series of a class and seed (versions, maps, negation) are maps of the plain draw and use its data and pool keys, as do the 4 series of each integer-valued class and seed and the waveform with its 3 maps. The identities of K1 need the same random start.
+    shared by design (K1 versions at 4096 and 2048): 720 draws reuse a key. The exp and cube versions are compared by their normal scores with the plain draw they are maps of.
+K2 (amended, wording unchanged): draws 36400, independent random starts 36000, distinct keys 36000, distinct 64-bit seeds 36000 | OK, one key per independent random start
+    shared by design (K2 control): 400 draws reuse a key. The must-fail control (raw-value surrogates) runs on the exp version of the AR(1) 0.9 draw at 4,096 samples, seeds 0 to 199, and draws from that draw's pool key, so that only the surrogate method differs.
+K3 (amended): draws 13000, independent random starts 9600, distinct keys 9600, distinct 64-bit seeds 9600 | OK, one key per independent random start
+    shared by design (K3 nets): 3200 draws reuse a key. The nets bm2, sub2, q12 and q8 are changes of observation of the native4096 draw and use it.
+    shared by design (K3 control): 200 draws reuse a key. The circular-shift control on the shots draws its shifts from the shots native4096 pool key, so that only the surrogate method differs.
+K4 (amended, the streams of D20 and its second reading): draws 6180, independent random starts 6100, distinct keys 6100, distinct 64-bit seeds 6100 | OK, one key per independent random start
+    shared by design (K4 Aprime): 20 draws reuse a key. A' is made from the A stream of the same split and seed, because the control removes structure from that stream.
+    shared by design (K4 two readings): 60 draws reuse a key. Under D20's second reading the placement-run detectors of A>B, A>C and A>Aprime use D20's keys, so that only the template differs between the readings.
+K4 (amended, superset: every kind, split and run): draws 8680, independent random starts 8660, distinct keys 8660, distinct 64-bit seeds 8660 | OK, one key per independent random start
+    shared by design (K4 Aprime): 20 draws reuse a key. A' is made from the A stream of the same split and seed, because the control removes structure from that stream.
+K5 (amended, the 10 series sets of B9): draws 11150, independent random starts 11130, distinct keys 11130, distinct 64-bit seeds 11130 | OK, one key per independent random start
+    shared by design (K5 maps): 20 draws reuse a key. The rank-mapped cascade is a map of the cascade (verdict) draw, and the IAAFT cascade is made from the cascade (fit) draw, as their criteria require.
+K5 (amended, superset: every case, split and run): draws 46420, independent random starts 46400, distinct keys 46400, distinct 64-bit seeds 46400 | OK, one key per independent random start
+    shared by design (K5 maps): 20 draws reuse a key. The rank-mapped cascade is a map of the cascade (verdict) draw, and the IAAFT cascade is made from the cascade (fit) draw, as their criteria require.
+Real data, segment and flow-unit pools and random detectors (amended): draws 7436, independent random starts 7172, distinct keys 7172, distinct 64-bit seeds 7172 | OK, one key per independent random start
+    shared by design (C5 substitution): 264 draws reuse a key. The same transfer with B's C2 or C3 series in place of B (section 5, control C5) uses the random detectors of the transfer it checks, so that only B changes.
+Controls C2, C3, C4 with the segment pools they sit beside (amended): draws 28224, independent random starts 28224, distinct keys 28224, distinct 64-bit seeds 28224 | OK, one key per independent random start
+Law 2b pre-data checks on the known-answer draws (amended): draws 104320, independent random starts 99520, distinct keys 99520, distinct 64-bit seeds 99520 | OK, one key per independent random start
+    shared by design (Law 2b on known-answer data): 4800 draws reuse a key. Each check applies the instance to the known-answer data draw (K2 seeds 0 to 199 at 4,096 and K3 native4096 listed here, and the K4 and K5 streams likewise), so that only the instance differs.
+Law 2b instance tests on real data (amended): draws 89376, independent random starts 89376, distinct keys 89376, distinct 64-bit seeds 89376 | OK, one key per independent random start
+Law 2b G1 null replicates on real data (amended, segments 0 to 3 and flow units L0-q0, L0-q1, L3-q0, L6-q31 of every channel and run): draws 99240, independent random starts 99240, distinct keys 99240, distinct 64-bit seeds 99240 | OK, one key per independent random start
+
+== across families ==
+keys over all amended families: 417545 distinct keys, 417545 distinct 64-bit seeds, 0 keys used by two different owners in different families
+
+== D14 as published at 1aa53fb, the parts Amendment 3 changes (must-fail controls: each must show a fault, except K3) ==
+K5 flow-unit pools with a mapped series named by the draw it is made from (the reading that D14 now rules out): draws 11000, independent random starts 11000, distinct keys 8800, distinct 64-bit seeds 8800 | FAULT: 2200 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K5b:cascade|fit|native|s0-flow-L0-q0|surrogates|0 used by ('K5 pool', 'cascade', 'fit', 'native', 0, 0, 0) and ('K5 pool', 'cascade_iaaft', 'fit', 'native', 0, 0, 0)
+K5 flow-unit pools, published (segment flow-L<level>-q<unit>, net native): draws 11000, independent random starts 11000, distinct keys 880, distinct 64-bit seeds 880 | FAULT: 10120 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K5b:cascade_exp|verdict|native|flow-L0-q0|surrogates|0 used by ('K5 pool', 'cascade_exp', 'verdict', 'native', 0, 0, 0) and ('K5 pool', 'cascade_exp', 'verdict', 'amp_scores', 0, 0, 0)
+K5 flow-unit pools, seed added, net still native: draws 11000, independent random starts 11000, distinct keys 8800, distinct 64-bit seeds 8800 | FAULT: 2200 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K5b:cascade_exp|verdict|native|s0-flow-L0-q0|surrogates|0 used by ('K5 pool', 'cascade_exp', 'verdict', 'native', 0, 0, 0) and ('K5 pool', 'cascade_exp', 'verdict', 'amp_scores', 0, 0, 0)
+K5 flow-unit pools, run named in the net, seed still missing: draws 11000, independent random starts 11000, distinct keys 1100, distinct 64-bit seeds 1100 | FAULT: 9900 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K5b:expo|verdict|native|flow-L0-q0|surrogates|0 used by ('K5 pool', 'expo', 'verdict', 'native', 0, 0, 0) and ('K5 pool', 'expo', 'verdict', 'native', 1, 0, 0)
+K4 random detectors, published (purpose and run only, instrument of the template's kind): draws 200, independent random starts 200, distinct keys 120, distinct 64-bit seeds 120 | FAULT: 80 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K4:A|verdict|native|0|detectors-arrow|0 used by ('K4 detectors', 'A>B', 'native', 'detectors-arrow', 0) and ('K4 detectors', 'A>C', 'native', 'detectors-arrow', 0)
+K5 random detectors, published (purpose only, instrument of the template's case, net native): draws 50, independent random starts 50, distinct keys 20, distinct 64-bit seeds 20 | FAULT: 30 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|K5b:cascade|verdict|native|0|detectors-flow|0 used by ('K5 detectors', 'cascade>cascade_exp', 'native', 0) and ('K5 detectors', 'cascade>cascade_exp', 'amp_scores', 0)
+Controls C2, C3, C4 with the segment pools they sit beside (published: a pool takes its segment's key with purpose surrogates): draws 28224, independent random starts 28224, distinct keys 16736, distinct 64-bit seeds 16736 | FAULT: 11488 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|GW:H1|verdict|native|0|surrogates|0 used by ('real pool', 'GW:H1', 'verdict', 'native', 0) and ('C2 pool', 'GW:H1', 'native', 0)
+Law 2b W, F, D pools beside the confirmatory pools, published (a pool takes its segment's key): draws 4864, independent random starts 4864, distinct keys 1216, distinct 64-bit seeds 1216 | FAULT: 3648 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|GW:H1|verdict|native|0|surrogates|0 used by ('real pool', 'GW:H1', 'verdict', 'native', 0) and ('L2b real pool', 'W', 'GW:H1', 'verdict', 'native', 0)
+Law 2b G1 null replicates on real data (published: purpose law2b-null with the key of the segment, segments 0 to 3 and flow units L0-q0, L0-q1, L3-q0, L6-q31 of every channel and run): draws 14480, independent random starts 14480, distinct keys 200, distinct 64-bit seeds 200 | FAULT: 14280 owners share another owner's key, 0 owners get two keys, 0 unstated reuses
+    first fault: key 20261121|GW:H1|verdict|native|0|law2b-null|0 used by ('L2b null series', 'W', 'GW:H1', 'native', 0, 1) and ('L2b null series', 'W', 'GW:H1', 'native', 0, 2)
+K3 (published pool instrument K3:<case>): draws 13000, independent random starts 9600, distinct keys 9600, distinct 64-bit seeds 9600 | OK, one key per independent random start
+    shared by design (K3 nets): 3200 draws reuse a key. The nets bm2, sub2, q12 and q8 are changes of observation of the native4096 draw and use it.
+    shared by design (K3 control): 200 draws reuse a key. The circular-shift control on the shots draws its shifts from the shots native4096 pool key, so that only the surrogate method differs.
+
+== planted faults (must-fail controls) ==
+Planted fault: K1 maps given their own pool keys: draws 78, independent random starts 6, distinct keys 6, distinct 64-bit seeds 6 | FAULT: 0 owners share another owner's key, 72 owners get two keys, 0 unstated reuses
+    first fault: owner ('K1 pool', 'white', 0) gets two keys: 20261121|K1:white:1024|synthetic|plain|0|surrogates|0 and 20261121|K1:white:1024|synthetic|plain:cube_map|0|surrogates|0
+    shared by design (K1 identity): 72 draws reuse a key. as in K1
+Planted fault: K2 control sharing the pool key with no stated reason: draws 10, independent random starts 5, distinct keys 5, distinct 64-bit seeds 5 | FAULT: 0 owners share another owner's key, 0 owners get two keys, 5 unstated reuses
+    first fault: owner ('K2 pool', 'ar1_0.9', 4096, 0) drawn twice with no stated sharing
+
+RESULT amended families with a fault: none
+RESULT must-fail controls not flagged: none
+RESULT published K3 pool keys distinct (wording only): yes
+RESULT keys shared across families without a stated reason: 0
+DONE seed_keys: all checks hold

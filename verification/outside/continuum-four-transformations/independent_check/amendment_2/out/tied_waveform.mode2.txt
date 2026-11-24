@@ -1,0 +1,23 @@
+INFO order-3 patterns: 13 (plan: 13)
+INFO n = 4096; lags used [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+CLAIM wave-sym | each pattern count equals its reversed pattern's count at every lag used | text=exact | mine=exact | REPRODUCED
+CLAIM wave-maps | every pattern count identical under the three maps (and the identity) | text=identical | mine=identical | REPRODUCED
+INFO lag 1: 4094 windows, 3070 tied
+CLAIM wave-zero | Sigma_hat and a1, a2, a3 are exactly 0 (all ratios exactly 1) at every lag | text=exactly 0 | mine=exactly 0 | REPRODUCED
+INFO Sigma_hat when ties are ranked in time order (no tied patterns remain):
+   lag 1: 2.533481
+   lag 2: 2.174368
+   lag 4: 8.302854
+   lag 8: 8.992795
+   lag 16: 8.988816
+   lag 32: 8.980811
+   lag 64: 8.964606
+   lag 128: 8.931387
+   lag 256: 8.861450
+   lag 512: 8.704975
+CONTROL ranking ties in time order gives a non-zero Sigma_hat at some lag (so the new control can fail) | wrong input flagged = True
+INFO lags where the time-order ranking gives non-zero: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+CONTROL floating Sigma_hat on the waveform is exactly 0.0 at every lag | wrong input flagged = True
+CONTROL a wrong waveform (not a palindrome) is not exactly symmetric | wrong input flagged = True
+CONTROL a non-palindromic waveform fails the symmetry test | wrong input flagged = True
+DONE tied_waveform

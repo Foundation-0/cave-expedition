@@ -1,0 +1,36 @@
+TEST X1 - extra exact checks of the plan's own arithmetic and of the small functions (not a section 10 test)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+PASS plan 9: smallest Holm threshold 0.05/28 = 0.00179
+PASS plan 9: K needed to reach 0.00179 at S=12 is 5 computed 5; p(K=4)=0.002236, p(K=5)=0.000184
+PASS plan 9: K needed to reach 0.00179 at S=32 is 7 computed 7; p(K=6)=0.004600, p(K=7)=0.000868
+PASS plan 9: 0.05^12 = 2.4e-16 and 0.05^32 = 2.3e-42 
+PASS plan 6: 1 percent excess point is K=4 at S=12 computed 4
+PASS plan 6: 1 percent excess point is K=6 at S=32 computed 6
+FAIL plan K2: 99 percent bound for 200 draws is 0.086 smallest K with tail <= 0.01 is 19, so rates up to 18/200 = 0.090 are inside the bound
+note: P(Binomial(200, 0.05) >= 18) = 0.0121, so a rate of 0.086 or less is a 0.0121 chance event per class; with 21 classes the chance that at least one calibrated class is flagged is 0.225
+note: 0.086 equals 0.05 + 2.326 * sqrt(0.05 * 0.95 / 200) = 0.0858, the normal approximation
+PASS plan 6: control rule at S=12 accepts K=1, rejects K=2 
+PASS plan 6: control rule at S=32 accepts K=3, rejects K=4 
+PASS Holm textbook case (m=4) 
+PASS Holm m=28: p = 1/560 rejected, 2/560 not 
+PASS Holm m=28: p just above 1/560 not rejected 
+PASS combination rule: largest p over runs 
+PASS plan 4: (a,b,c) with b<c<a is pattern 201 
+PASS tied window dropped and counted 
+PASS segment rule: 32 blocks -> k=1, 32 selected 
+PASS segment rule: 100 blocks -> k=3, 32 selected, last block index 93 
+PASS segment rule: 20 blocks -> 20 selected 
+PASS segment rule: planted best offset is found 
+PASS segment rule: block choice depends on length only 
+PASS net block mean by 2 
+PASS net lag ranges: native 10, bm2 9, bm4 8, sub2 9 
+PASS net quantize 8 bits: at most 256 levels, integer valued 
+PASS net whitening flattens a coloured spectrum log-periodogram sd 2.40 -> 1.32
+PASS tau0: white noise gives 1, a ramp is capped at 512 
+PASS features: u changes sign under reversal 
+PASS features: u unchanged by polarity flip 
+PASS features: m1 and m23 unchanged by reversal and by flip 
+PASS features: levels outside the range are zero shift 3 -> level -4 is lag 2^-1, absent
+PASS leave-one-out standardisation by hand 
+SUMMARY X1 FAIL | 29 of 30 checks pass

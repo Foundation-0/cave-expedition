@@ -1,0 +1,32 @@
+== smallest Holm step 0.05/40
+  r=0.100 control 0.00: maximum 0.011869 at (runs, S, K) = (5, 26, 7); ties: []
+  r=0.100 control 0.05: maximum 0.008593 at (runs, S, K) = (5, 19, 6); ties: []
+  r=0.129 control 0.00: maximum 0.046395 at (runs, S, K) = (8, 32, 8); ties: [(7, 32, 8), (5, 32, 8)]
+  r=0.129 control 0.05: maximum 0.028009 at (runs, S, K) = (5, 19, 6); ties: []
+== largest Holm step 0.05/1
+  r=0.100 control 0.00: maximum 0.068406 at (runs, S, K) = (7, 16, 4); ties: [(5, 16, 4)]
+  r=0.100 control 0.05: maximum 0.034161 at (runs, S, K) = (8, 13, 4); ties: [(7, 13, 4), (5, 13, 4)]
+  r=0.129 control 0.00: maximum 0.141847 at (runs, S, K) = (7, 16, 4); ties: [(5, 16, 4)]
+  r=0.129 control 0.05: maximum 0.075861 at (runs, S, K) = (8, 13, 4); ties: [(7, 13, 4), (5, 13, 4)]
+  r=0.10 control 0.05 at S=32 (8 runs): 0.000809; 7 runs: 0.000809; 5 runs: 0.000809
+== maxima over all 40 Holm steps (r = 0.10, control 0.05)
+  step 0.05/40: 0.00859 at (5, 19, 6)
+  step 0.05/30: 0.01125 at (5, 20, 6)
+  step 0.05/20: 0.01125 at (7, 20, 6)
+  step 0.05/10: 0.01700 at (5, 16, 5)
+  step 0.05/5: 0.01700 at (8, 16, 5)
+  step 0.05/2: 0.03416 at (8, 13, 4)
+  step 0.05/1: 0.03416 at (8, 13, 4)
+CLAIM step-large-0.10-c0 | text=0.069 (rounded up) | mine=0.068406 at (7, 16, 4) | REPRODUCED
+CLAIM step-large-0.10-c05 | text=0.035 (rounded up) | mine=0.034161 at (8, 13, 4) | REPRODUCED
+CLAIM step-large-0.129-c0 | text=0.142 (rounded up) | mine=0.141847 at (7, 16, 4) | REPRODUCED
+CLAIM step-large-0.129-c05 | text=0.076 (rounded up) | mine=0.075861 at (8, 13, 4) | REPRODUCED
+CLAIM small-0.10-c0 | text=0.012 (rounded up) | mine=0.011869 at (5, 26, 7) | REPRODUCED
+CLAIM small-0.10-c05 | text=0.0086 (rounded up) | mine=0.008593 at (5, 19, 6) | REPRODUCED
+CLAIM small-0.10-S32 | text=0.00081 (rounded up) | mine=0.000809 | REPRODUCED
+CONTROL a wrong figure 0.0007 is not the round-up of the S=32 value | wrong input flagged = True
+CLAIM small-0.129-c0 | text=0.047 (rounded up) | mine=0.046395 at (8, 32, 8) | REPRODUCED
+CLAIM small-0.129-c05 | text=0.029 (rounded up) | mine=0.028009 at (5, 19, 6) | REPRODUCED
+CONTROL threshold one lower gives a strictly larger maximum | wrong input flagged = True
+CONTROL a wrong text value (0.012 as 0.0012) is not an upper bound-with-slack | wrong input flagged = True
+DONE holm_steps

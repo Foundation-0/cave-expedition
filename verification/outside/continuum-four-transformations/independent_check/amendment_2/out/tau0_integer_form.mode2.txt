@@ -1,0 +1,7 @@
+CLAIM tau0-integer | the integer form (2 x numerator < denominator) equals exact rational 'autocorrelation below 1/2' | text=equivalent | mine=equal in all 23505 cases | REPRODUCED
+INFO exact-equality cases found (autocorrelation exactly 1/2): 6; first: [((0, 1, 0, 1), 2), ((0, 2, 0, 2), 2)]
+   example (0, 1, 0, 1), lag 2: integer form numerator 128, denominator 256, below-1/2 verdict False; the float autocorrelation is 0.5
+CONTROL integer form does not count an exact one half as below | wrong input flagged = True
+CONTROL denominator positive for a non-constant series | wrong input flagged = True
+CONTROL a constant series has denominator 0 (invalid by the B7 rule, never reaches tau0) | wrong input flagged = True
+DONE tau0_integer_form

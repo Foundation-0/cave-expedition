@@ -1,0 +1,10 @@
+Record 10, written at 2026-11-23T11:29:49Z (date -u on this machine when this file was written), in amend4_author. Records up to RECORD_7 are kept as they were.
+When the plan's author made these changes, the plan's author had seen no outcome on the code built for Amendment 3, and did not open prereg/amend4/ or the check report after the outcome paragraph was filled.
+
+Changes, after the final check's two items: lines 319, 320, 321 and 332 of PREREG.md scoped to a full-count outcome on the code built for Amendment 3, or a later build (with such in lines 320 and 321), and the rounds sentence counted from the publication of Amendment 4, with code changes made before publication not counted, except carrying out Amendment 4 itself.
+Line 321 was not in the checker's list. It has the same unscoped phrase and would otherwise make a code-only change to K1, K2 or K3 a round, against line 332. The README sentence replaced by the other hand is left in place. The placeholder between the markers is untouched.
+
+Hashes now:
+2aed8d4aa07c6c78daf1dac591b54476c5d921ff2ec3b31329e06820978f4356  AMENDMENT_4.md
+3adc9cdbc2b13fc15a0f3de5a67a4c033601e6d747139767cc4002b90eaaa206  PREREG.md
+01b0753e5a58e6499c8895178631bf7d68f501dc2b2d30c7c249b435dd18debd  README.md

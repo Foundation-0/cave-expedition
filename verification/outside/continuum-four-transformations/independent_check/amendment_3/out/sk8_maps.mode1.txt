@@ -1,0 +1,116 @@
+== 1. Bounds of reading D19 ==
+[ok] (a) exp(64) < 6.3e27 and 64^3 < 2.7e5 (n = 4096, |z| < 64): exp(64)=6.235e+27, 64^3=262144
+[ok] (a) exp overflows above 709.78 in double precision
+[ok] (a) |z| < sqrt(n) for unit variance: sqrt(2^19) = 724.08 > 709.78: 724.08
+   n = 5.24e+05: max score 4.7630, exp 117.1
+   n = 1e+06: max score 4.8916, exp 133.2
+   n = 1e+12: max score 7.1305, exp 1249.5
+[ok] (b) scores below 7.2 for n up to 1e12: 7.1305
+[ok] (b) published D19: scores below 7.131, so exp below 1,251 (the first draft's chain through 7.2 did not follow: exp(7.2) = 1,339): true bound 7.1305, exp of it 1249.49, exp(7.131) = 1250.13
+[ok] (b) the actual bound, exp(max score) at 1e12, is below 1,300: 1249.5
+[ok] (b) min score gap sqrt(2 pi)/n at n=1e12 exceeds 1000 x rounding (1 ulp at the largest score): gap 2.51e-12, ulp 8.88e-16, ratio 2822
+[ok] (b) adjacent score gap >= sqrt(2 pi)/n at n=1000: min gap 0.002507 vs bound 0.002507
+[ok] (b) adjacent score gap >= sqrt(2 pi)/n at n=100000: min gap 2.507e-05 vs bound 2.507e-05
+[ok] (c) cascade overflow needs max of 19 draws >= 1424.31/19 = 74.96 (> 74.9): 74.964
+
+== 2. Old amplitude map (exp of the standardised series) on the K5 cascade, 10 seeds ==
+   seed 4760306809985474070: distinct x 524288, max z 146.3; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 3 of 524288
+   seed 1487005345210434868: distinct x 524288, max z 125.5; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 8 of 524288
+   seed 13194326603654114225: distinct x 524288, max z 233.5; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 2 of 524288
+   seed 5133000316186236164: distinct x 524288, max z 153.8; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 3 of 524288
+   seed 9980028773223356452: distinct x 524288, max z 172.9; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 3 of 524288
+   seed 3035978574401242320: distinct x 524288, max z 108.1; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 4 of 524288
+   seed 16608288173483706830: distinct x 524288, max z 188.6; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 3 of 524288
+   seed 13023123105732551734: distinct x 524288, max z 121.2; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 5 of 524288
+   seed 12062589061837475738: distinct x 524288, max z 146.2; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 6 of 524288
+   seed 14275157151330177041: distinct x 524288, max z 194.6; exp(z) finite True, distinct 524288; max z2 724.1; exp(z2) finite False; stable-form distinct 2 of 524288
+   exp(z2) overflowed in 10 of 10 seeds; stable-form distinct values: min 2, max 8; exp-mapped cascade itself lost distinct values in 0 of 10 seeds
+   author's claim: 2 to 16 distinct values after standardising; exp-mapped cascade loses values in 2 of 10 seeds. Mine are on other seeds (4760306809985474070...).
+[ok] collapse reproduced (stable-form distinct values at most a few dozen in every seed): max 8
+
+== 3. amp_lognormal and amp_scores on four streams: finite, ties, bound ==
+[ok] AR(1) 0.9: finite, same number of distinct values, tie structure kept (equal inputs equal outputs, unequal unequal): distinct 65536 -> 65536; max 75.6 <= bound 75.6
+[ok] AR(1) 0.9: amp_lognormal below exp(Phi^-1(1 - 1/(2n)))
+[ok] AR(1) 0.9: invariant under increasing maps with distinct values kept (cube-root of the stream, exp of z/ (max|z|))
+[ok] AR(1) 0.9: x^3-ish (y^3+y) gives bit-identical amp_lognormal and amp_scores
+[ok] AR(1) 0.9: sign-preserving cube root gives bit-identical amp_lognormal and amp_scores
+[ok] AR(1) 5 spikes: finite, same number of distinct values, tie structure kept (equal inputs equal outputs, unequal unequal): distinct 65532 -> 65532; max 52.2 <= bound 75.6
+[ok] AR(1) 5 spikes: amp_lognormal below exp(Phi^-1(1 - 1/(2n)))
+[ok] AR(1) 5 spikes: invariant under increasing maps with distinct values kept (cube-root of the stream, exp of z/ (max|z|))
+[ok] AR(1) 5 spikes: x^3-ish (y^3+y) gives bit-identical amp_lognormal and amp_scores
+[ok] AR(1) 5 spikes: sign-preserving cube root gives bit-identical amp_lognormal and amp_scores
+[ok] integer AR(1): finite, same number of distinct values, tie structure kept (equal inputs equal outputs, unequal unequal): distinct 62 -> 62; max 52.2 <= bound 75.6
+[ok] integer AR(1): amp_lognormal below exp(Phi^-1(1 - 1/(2n)))
+[ok] integer AR(1): invariant under increasing maps with distinct values kept (cube-root of the stream, exp of z/ (max|z|))
+[ok] integer AR(1): x^3-ish (y^3+y) gives bit-identical amp_lognormal and amp_scores
+[ok] integer AR(1): sign-preserving cube root gives bit-identical amp_lognormal and amp_scores
+[ok] K5 cascade: finite, same number of distinct values, tie structure kept (equal inputs equal outputs, unequal unequal): distinct 524288 -> 524288; max 117.1 <= bound 117.1
+[ok] K5 cascade: amp_lognormal below exp(Phi^-1(1 - 1/(2n)))
+[ok] K5 cascade: invariant under increasing maps with distinct values kept (cube-root of the stream, exp of z/ (max|z|))
+[ok] K5 cascade: x^3-ish (y^3+y) gives bit-identical amp_lognormal and amp_scores
+[ok] K5 cascade: sign-preserving cube root gives bit-identical amp_lognormal and amp_scores
+
+== 4. Candidate table (top1 = share of sum of squared deviations carried by the largest 1 percent of VALUES; also by squared deviation; r = Pearson with the native stream) ==
+   AR(1) 0.9:
+     native    top1(value) 0.072..0.073 mean 0.072 | top1(dev) mean 0.085 | r 1.000..1.000 mean 1.000
+     cube      top1(value) 0.102..0.109 mean 0.106 | top1(dev) mean 0.135 | r 0.993..0.995 mean 0.994
+     lognormal top1(value) 0.484..0.484 mean 0.484 | top1(dev) mean 0.484 | r 0.764..0.765 mean 0.765
+     scores    top1(value) 0.072..0.072 mean 0.072 | top1(dev) mean 0.084 | r 1.000..1.000 mean 1.000
+   AR(1) 5 spikes:
+     native    top1(value) 0.988..0.988 mean 0.988 | top1(dev) mean 0.988 | r 1.000..1.000 mean 1.000
+     cube      top1(value) 0.997..0.997 mean 0.997 | top1(dev) mean 0.997 | r 0.998..0.998 mean 0.998
+     lognormal top1(value) 0.480..0.480 mean 0.480 | top1(dev) mean 0.480 | r 0.291..0.292 mean 0.291
+     scores    top1(value) 0.072..0.072 mean 0.072 | top1(dev) mean 0.084 | r 0.148..0.148 mean 0.148
+   integer AR(1):
+     native    top1(value) 0.069..0.076 mean 0.072 | top1(dev) mean 0.083 | r 1.000..1.000 mean 1.000
+     cube      top1(value) 0.099..0.116 mean 0.107 | top1(dev) mean 0.133 | r 0.993..0.995 mean 0.994
+     lognormal top1(value) 0.481..0.484 mean 0.482 | top1(dev) mean 0.482 | r 0.763..0.771 mean 0.766
+     scores    top1(value) 0.072..0.072 mean 0.072 | top1(dev) mean 0.084 | r 1.000..1.000 mean 1.000
+   K5 cascade:
+     native    top1(value) 0.935..0.994 mean 0.965 | top1(dev) mean 0.965 | r 1.000..1.000 mean 1.000
+     cube      top1(value) 0.958..0.998 mean 0.978 | top1(dev) mean 0.978 | r 0.954..0.974 mean 0.966
+     lognormal top1(value) 0.486..0.486 mean 0.486 | top1(dev) mean 0.486 | r 0.341..0.752 mean 0.623
+     scores    top1(value) 0.072..0.072 mean 0.072 | top1(dev) mean 0.084 | r 0.111..0.326 mean 0.244
+   comparison with the amendment table (mean of mine, top1 by value, against the author's one number; the stream's own spread is printed above):
+     AR(1) 0.9 native: mine 0.072, author 0.070
+     AR(1) 0.9 cube: mine (0.106, 0.994), author (0.102, 0.993)
+     AR(1) 0.9 lognormal: mine (0.484, 0.765), author (0.484, 0.760)
+     AR(1) 0.9 scores: mine (0.072, 1.000), author (0.072, 1.000)
+     AR(1) 5 spikes native: mine 0.988, author 0.988
+     AR(1) 5 spikes cube: mine (0.997, 0.998), author (0.997, 0.998)
+     AR(1) 5 spikes lognormal: mine (0.480, 0.291), author (0.484, 0.305)
+     AR(1) 5 spikes scores: mine (0.072, 0.148), author (0.072, 0.148)
+     integer AR(1) native: mine 0.072, author 0.070
+     integer AR(1) cube: mine (0.107, 0.994), author (0.102, 0.993)
+     integer AR(1) lognormal: mine (0.482, 0.766), author (0.481, 0.762)
+     integer AR(1) scores: mine (0.072, 1.000), author (0.072, 1.000)
+     K5 cascade native: mine 0.965, author 0.956
+     K5 cascade cube: mine (0.978, 0.966), author (0.968, 0.974)
+     K5 cascade lognormal: mine (0.486, 0.623), author (0.486, 0.724)
+     K5 cascade scores: mine (0.072, 0.244), author (0.072, 0.290)
+
+== 5. One extreme value (middle value of the AR(1) stream set to 1e6 standard deviations) ==
+   seed 9424133715655295254: cube 1-r 0.0082 -> 2.2e-16; lognormal 1-r 0.240 -> 0.235; share of other values changed by >0.1% 0.53%, largest change 22.0%, max rank shift 1
+   seed 14026911788964223509: cube 1-r 0.0056 -> 1.1e-15; lognormal 1-r 0.239 -> 0.234; share of other values changed by >0.1% 0.53%, largest change 22.0%, max rank shift 1
+   seed 16785448945592640505: cube 1-r 0.0062 -> 0; lognormal 1-r 0.234 -> 0.228; share of other values changed by >0.1% 0.53%, largest change 22.0%, max rank shift 1
+   seed 3536266771520246778: cube 1-r 0.0075 -> 4.4e-16; lognormal 1-r 0.234 -> 0.228; share of other values changed by >0.1% 0.53%, largest change 22.0%, max rank shift 1
+   seed 1675366131840205270: cube 1-r 0.0076 -> 0; lognormal 1-r 0.236 -> 0.231; share of other values changed by >0.1% 0.53%, largest change 22.0%, max rank shift 1
+   author: cube 0.0072 -> 0; lognormal 0.240 -> 0.235; 0.5% of other values change by more than 0.1%, largest 22%
+[ok] cube becomes linear on the other values (1-r below 1e-6) with the spike
+[ok] lognormal moves every other value by at most one rank
+
+== 6. K5 identity: both nets see the rank-mapped cascade exactly as they see the cascade ==
+[ok] amp_scores(mid-ranks) == amp_scores(cascade) bit for bit
+[ok] amp_lognormal(mid-ranks) == amp_lognormal(cascade) bit for bit
+[ok] the mid-ranks of the cascade have as many distinct values as the cascade: 524288 of 524288
+[ok] top1 of the mid-ranks is 0.029 (uniform marginal) and r with the cascade is 0.205: top1 0.029, r 0.296 (this seed)
+   r(mid-ranks, cascade) over 5 seeds: 0.192..0.272
+[ok] three marginals: top1 of mid-ranks, amp_scores and amp_lognormal differ: 0.029, 0.072, 0.486
+
+== 7. Must-fail controls ==
+[ok] guard flags exp of values spaced 1e-17 apart (distinct count drops)
+[ok] guard flags an overflow (inf)
+[ok] measure control: a linear rescaling has r = 1 and the native top1
+[ok] measure control: a map that merges values would be caught by the distinct count
+
+RESULT all SK8 checks hold

@@ -1,0 +1,14 @@
+AMENDMENT_3 lines 43-44 vs PREREG (1aa53fb) lines 428-429 (lines): QUOTE MATCHES
+AMENDMENT_3 lines 74-74 vs PREREG (1aa53fb) lines 425-425 (lines): QUOTE MATCHES
+AMENDMENT_3 lines 90-90 vs PREREG (1aa53fb) lines 426-426 (sub): QUOTE MATCHES
+AMENDMENT_3 lines 94-94 vs PREREG (1aa53fb) lines 428-428 (sub): QUOTE MATCHES
+AMENDMENT_3 lines 113-113 vs PREREG (1aa53fb) lines 421-421 (sub): QUOTE MATCHES
+AMENDMENT_3 lines 117-117 vs PREREG (1aa53fb) lines 430-430 (lines): QUOTE MATCHES
+AMENDMENT_3 lines 156-167 vs PREREG (1aa53fb) lines 421-432 (lines): QUOTE MATCHES
+AMENDMENT_3 lines 271-271 vs PREREG (1aa53fb) lines 191-191 (lines): QUOTE MATCHES
+AMENDMENT_3 lines 275-275 vs PREREG (1aa53fb) lines 356-356 (sub): QUOTE MATCHES
+AMENDMENT_3 lines 279-279 vs PREREG (1aa53fb) lines 358-358 (sub): QUOTE MATCHES
+AMENDMENT_3 lines 363-363 vs PREREG (1aa53fb) lines 384-384 (lines): QUOTE MATCHES
+inline quotation in SK6 found in base line 430:  True
+control: a corrupted quotation is flagged: True
+RESULT all quotations match

@@ -1,0 +1,28 @@
+INFO mean of exp(0.5 Z - 0.125) over 2e6 draws: 1.0001 (text: mean 1); exact value exp(-0.125 + 0.125) = 1
+seeds 20269000..20269011 for the cascade, +500 for y'; lengths {524288} (text 2^19 = 524288)
+   seed 20269000: cascade tau0 11 shift 3; y' tau0 17 shift 4; joint features cascade -> y' 27
+   seed 20269001: cascade tau0 13 shift 4; y' tau0 15 shift 4; joint features cascade -> y' 27
+   seed 20269002: cascade tau0 17 shift 4; y' tau0 17 shift 4; joint features cascade -> y' 27
+   seed 20269003: cascade tau0 14 shift 4; y' tau0 16 shift 4; joint features cascade -> y' 27
+   seed 20269004: cascade tau0 12 shift 4; y' tau0 15 shift 4; joint features cascade -> y' 27
+   seed 20269005: cascade tau0 9 shift 3; y' tau0 16 shift 4; joint features cascade -> y' 27
+   seed 20269006: cascade tau0 10 shift 3; y' tau0 16 shift 4; joint features cascade -> y' 27
+   seed 20269007: cascade tau0 13 shift 4; y' tau0 14 shift 4; joint features cascade -> y' 27
+   seed 20269008: cascade tau0 13 shift 4; y' tau0 16 shift 4; joint features cascade -> y' 27
+   seed 20269009: cascade tau0 12 shift 4; y' tau0 15 shift 4; joint features cascade -> y' 27
+   seed 20269010: cascade tau0 8 shift 3; y' tau0 16 shift 4; joint features cascade -> y' 27
+   seed 20269011: cascade tau0 11 shift 3; y' tau0 16 shift 4; joint features cascade -> y' 27
+RESULT cascade tau0 over 12 seeds: min 8, max 17, median 12; shifts [3, 4] (text: 9 to 18 in 10 seeds, shifts 3 and 4)
+RESULT y' tau0 over 12 seeds: [14, 15, 16, 17]; shifts [4] (text: shift 4 in every seed)
+RESULT cascade -> y': jointly populated features [27]; at least 8 in all seeds: True; at least 2 aligned levels (18 features) in all seeds: True
+   IAAFT cascade seed 20269000: cascade tau0 11 (shift 3), IAAFT cascade tau0 10 (shift 3); joint features IAAFT cascade -> cascade 36
+   IAAFT cascade seed 20269001: cascade tau0 13 (shift 4), IAAFT cascade tau0 11 (shift 3); joint features IAAFT cascade -> cascade 27
+   IAAFT cascade seed 20269002: cascade tau0 17 (shift 4), IAAFT cascade tau0 12 (shift 4); joint features IAAFT cascade -> cascade 27
+   IAAFT cascade seed 20269003: cascade tau0 14 (shift 4), IAAFT cascade tau0 12 (shift 4); joint features IAAFT cascade -> cascade 27
+   IAAFT cascade seed 20269004: cascade tau0 12 (shift 4), IAAFT cascade tau0 10 (shift 3); joint features IAAFT cascade -> cascade 27
+   IAAFT cascade seed 20269005: cascade tau0 9 (shift 3), IAAFT cascade tau0 15 (shift 4); joint features IAAFT cascade -> cascade 27
+RESULT IAAFT cascade -> cascade: jointly populated features [27, 36]; at least 8 in all 6 seeds: True
+INFO shared aligned levels for shift pairs: (3,3) 4, (3,4) 3, (4,4) 3, (3,5) 2, (2,5) 1, (4,0) 0
+CONTROL a pair of shifts 4 and 0 shares no level and is flagged non-evaluable | wrong input flagged = True
+CONTROL the construction has the stated length | wrong input flagged = True
+DONE cascade_tau0

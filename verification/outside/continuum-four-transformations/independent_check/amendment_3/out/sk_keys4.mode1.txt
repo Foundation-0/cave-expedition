@@ -1,0 +1,6 @@
+K4 as D20 words it: events 4,480, distinct keys 4,460, owners 4,460, collisions 0
+K5 the 10 series sets of B9: events 11,150, distinct keys 11,130, owners 11,130, collisions 0
+K5 pools, other reading (instrument of the source draw): events 11,000, distinct keys 8,800, owners 11,000, collisions 2,200
+Law 2b null replicates, reduced grid: events 26,400, distinct keys 26,400, owners 26,400, collisions 0
+Law 2b null replicates, reduced grid: events 26,400, distinct keys 6,960, owners 26,400, collisions 3,120
+all families with K4 per D20 and the K4 superset: 417,545 distinct keys, 417,545 distinct 64-bit seeds, keys with two owners 0

@@ -1,0 +1,28 @@
+TEST K5 - scale flow
+SIZE SMOKE (one twentieth of the plan's seeds, at least 10; NOT a result)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] of 10 (the plan has 10 seeds, so the smoke size equals the full seed count)
+seed  shifts(cascade, y', iaaft)  departing/units by level: expo | cascade | shuffled | y   transfers p (m): T1 native, amp_scores, amp_lognormal | T2 | T3
+ 0  4/4/4  L0:2/32 L1:2/32 L2:1/31 L3:0/15 | L0:32/32 L1:25/32 L2:20/31 L3:11/15 | L0:1/32 L1:1/32 L2:2/31 L3:0/15 | L0:32/32 L1:26/32 L2:1/31 L3:0/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 1.32e-01(m27)
+ 1  4/4/4  L0:0/32 L1:2/32 L2:3/31 L3:3/15 | L0:32/32 L1:23/32 L2:19/31 L3:4/15 | L0:0/32 L1:3/32 L2:2/31 L3:1/15 | L0:32/32 L1:21/32 L2:5/31 L3:0/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 7.17e-01(m27)
+ 2  3/4/4  L0:0/32 L1:0/32 L2:0/31 L3:1/15 | L0:32/32 L1:27/32 L2:18/31 L3:12/15 | L0:3/32 L1:2/32 L2:1/31 L3:1/15 | L0:32/32 L1:22/32 L2:4/31 L3:1/15   1.00e-05(m36), 1.00e-05(m36), 1.00e-05(m36) | 1.00e+00(m27) | 7.74e-01(m27)
+ 3  4/4/4  L0:2/32 L1:2/32 L2:2/31 L3:0/15 | L0:32/32 L1:26/32 L2:24/31 L3:6/15 | L0:1/32 L1:1/32 L2:2/31 L3:0/15 | L0:32/32 L1:26/32 L2:0/31 L3:3/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 9.96e-01(m27)
+ 4  4/4/4  L0:3/32 L1:1/32 L2:1/31 L3:1/15 | L0:32/32 L1:26/32 L2:21/31 L3:7/15 | L0:1/32 L1:1/32 L2:2/31 L3:0/15 | L0:32/32 L1:23/32 L2:1/31 L3:0/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 2.68e-01(m27)
+ 5  4/4/4  L0:0/32 L1:0/32 L2:3/31 L3:1/15 | L0:32/32 L1:25/32 L2:19/31 L3:12/15 | L0:1/32 L1:1/32 L2:2/31 L3:3/15 | L0:32/32 L1:25/32 L2:1/31 L3:0/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 7.54e-01(m27)
+ 6  3/4/4  L0:1/32 L1:1/32 L2:3/31 L3:2/15 | L0:32/32 L1:20/32 L2:22/31 L3:12/15 | L0:0/32 L1:2/32 L2:6/31 L3:0/15 | L0:32/32 L1:24/32 L2:0/31 L3:0/15   1.00e-05(m36), 1.00e-05(m36), 1.00e-05(m36) | 1.00e+00(m27) | 6.18e-02(m27)
+ 7  3/4/4  L0:2/32 L1:2/32 L2:2/31 L3:3/15 | L0:31/32 L1:29/32 L2:20/31 L3:9/15 | L0:3/32 L1:2/32 L2:2/31 L3:1/15 | L0:32/32 L1:25/32 L2:3/31 L3:0/15   1.00e-05(m36), 1.00e-05(m36), 1.00e-05(m36) | 1.00e+00(m27) | 8.75e-01(m27)
+ 8  4/4/3  L0:3/32 L1:2/32 L2:1/31 L3:1/15 | L0:31/32 L1:28/32 L2:21/31 L3:9/15 | L0:0/32 L1:2/32 L2:0/31 L3:0/15 | L0:32/32 L1:20/32 L2:4/31 L3:1/15   1.00e-05(m27), 1.00e-05(m27), 1.00e-05(m27) | 1.00e+00(m27) | 6.01e-01(m27)
+ 9  3/4/4  L0:2/32 L1:3/32 L2:1/31 L3:1/15 | L0:32/32 L1:28/32 L2:21/31 L3:9/15 | L0:3/32 L1:0/32 L2:2/31 L3:0/15 | L0:32/32 L1:19/32 L2:1/31 L3:1/15   1.00e-05(m36), 1.00e-05(m36), 1.00e-05(m36) | 1.00e+00(m27) | 8.90e-02(m27)
+criterion expo none               : 10 of 10 seeds (need 9)
+criterion cascade L0 and top      : 10 of 10 seeds (need 9)
+criterion shuffled none           : 9 of 10 seeds (need 9)
+criterion y L0                    : 10 of 10 seeds (need 9)
+criterion T1 positive (3 runs)    : 10 of 10 seeds (need 9)
+criterion T2 negative             : 10 of 10 seeds (need 9)
+criterion T3 negative             : 10 of 10 seeds (need 9)
+criterion T1 evaluable            : 10 of 10 seeds (need 9)
+criterion T2 evaluable            : 10 of 10 seeds (need 9)
+criterion T3 evaluable            : 10 of 10 seeds (need 9)
+must-fail control, ctrl shuffled shows cascade criterion: 0 of 10 seeds (allowed at most 1)
+SUMMARY K5 SMOKE PASS | criteria {'expo none': 10, 'cascade L0 and top': 10, 'shuffled none': 9, 'y L0': 10, 'T1 positive (3 runs)': 10, 'T2 negative': 10, 'T3 negative': 10, 'T1 evaluable': 10, 'T2 evaluable': 10, 'T3 evaluable': 10, 'ctrl shuffled shows cascade criterion': 0}; shuffled-cascade control flagged: True

@@ -1,0 +1,31 @@
+TEST K4 - transfer: A = shots in AR(1) 0.9; B = shots in 1/f background, half rate, polarity flipped; C = time-reversed shots
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+streams of 139392 samples (33 blocks); runs: primary grid and grid shifted by half a block (start 2112); p = largest over runs
+seed example, A fit data: 15568704957844303805
+run native A fit: 32 segments, tau0 7.0, level shift 3
+  A -> A': presence K=30 of S=32, p=4.18e-37 | tau0 7.0 shift 3 | AUC 1.0000, permuted 2.5th pct 0.5644, permuted mean 0.8442, p=0.01250 (n>=124)
+  A -> B : presence K=32 of S=32, p=2.33e-42 | tau0 5.5 shift 2 | AUC 1.0000, permuted 2.5th pct 0.5896, permuted mean 0.9055, p=0.15490 (n>=1548)
+  A -> C : presence K=32 of S=32, p=2.33e-42 | tau0 7.0 shift 3 | AUC 1.0000, permuted 2.5th pct 0.4040, permuted mean 0.7900, p=0.02610 (n>=260)
+run shift  A fit: 32 segments, tau0 7.0, level shift 3
+  A -> A': presence K=31 of S=32, p=1.42e-39 | tau0 7.0 shift 3 | AUC 1.0000, permuted 2.5th pct 0.6136, permuted mean 0.8713, p=0.01140 (n>=113)
+  A -> B : presence K=32 of S=32, p=2.33e-42 | tau0 5.5 shift 2 | AUC 1.0000, permuted 2.5th pct 0.6733, permuted mean 0.9313, p=0.20250 (n>=2024)
+  A -> C : presence K=31 of S=32, p=1.42e-39 | tau0 7.0 shift 3 | AUC 1.0000, permuted 2.5th pct 0.4375, permuted mean 0.8026, p=0.03000 (n>=299)
+--- criteria
+A -> B transfer p (largest over runs) = 0.20250, need <= 0.001: FAIL
+A -> C AUC below 2.5th percentile of permuted templates in every run: FAIL (native 1.0000 vs 0.4040; shift 1.0000 vs 0.4375)
+--- extras from the plan's controls (descriptive, not in section 10)
+A -> A' (same kind, new data) p (largest over runs) = 0.01250
+presence on verdict-like streams, instrument p = largest over the two runs: A' 4.18e-37, B 2.33e-42, C 1.42e-39
+C5 transfer on surrogates (B's C2 series in place of B, primary run): K=0 of S=32, p=0.75550, need > 0.01: PASS
+--- descriptive diagnostic (not scored, 2,000 permutations): the template cut to its u entries or to its m entries
+  diagnostic run native A -> A': u-only AUC 0.9236 (2.5th pct 0.3766, p=0.30235); m-only AUC 1.0000 (2.5th pct 0.5252, p=0.01099)
+  diagnostic run native A -> B : u-only AUC 0.9804 (2.5th pct 0.3204, p=0.29285); m-only AUC 1.0000 (2.5th pct 0.5281, p=0.13843)
+  diagnostic run native A -> C : u-only AUC 0.1856 (2.5th pct 0.2695, p=0.99450); m-only AUC 1.0000 (2.5th pct 0.3440, p=0.03098)
+  diagnostic run shift  A -> A': u-only AUC 0.9113 (2.5th pct 0.3857, p=0.32634); m-only AUC 1.0000 (2.5th pct 0.5584, p=0.00750)
+  diagnostic run shift  A -> B : u-only AUC 0.9855 (2.5th pct 0.2932, p=0.29685); m-only AUC 1.0000 (2.5th pct 0.5931, p=0.17391)
+  diagnostic run shift  A -> C : u-only AUC 0.1809 (2.5th pct 0.2380, p=0.98951); m-only AUC 1.0000 (2.5th pct 0.3725, p=0.02199)
+--- must-fail control: arrow-blind template (u replaced by |u|); the A -> C criterion must fail
+arrow-blind A -> C AUC vs 2.5th percentile, per run: native 1.0000 vs 0.5707; shift 1.0000 vs 0.6212
+control FLAGGED (criterion fails for the broken detector)
+SUMMARY K4 FAIL | A->B p=0.20250, A->C AUC<q025 no, arrow-blind control flagged

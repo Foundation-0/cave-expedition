@@ -1,0 +1,17 @@
+Case 1: A's arrow template all one sign, B's arrow profile flat across levels
+  m=4: permutation-only p = 1 ; permutation+sign p = 1/16 = 0.06250 (expected 1/2^m = 1/16)
+  m=5: permutation-only p = 1 ; permutation+sign p = 1/32 = 0.03125 (expected 1/2^m = 1/32)
+  m=6: permutation-only p = 1 ; permutation+sign p = 1/64 = 0.01562 (expected 1/2^m = 1/64)
+Case 2: same-sign template, B's profile has the same arrangement (levels ordered alike)
+  m=4: permutation-only p = 1/24 ; permutation+sign p = 1/384
+  m=5: permutation-only p = 1/120 ; permutation+sign p = 1/3840
+  m=6: permutation-only p = 1/720 ; permutation+sign p = 1/46080
+Case 3: same-sign template, B's profile arranged in the opposite order
+  m=4: permutation-only p = 1 ; permutation+sign p = 49/384
+  m=5: permutation-only p = 1 ; permutation+sign p = 353/3840
+  m=6: permutation-only p = 1 ; permutation+sign p = 3431/46080
+Reading: 'every permuted template scores as well as w_A' (AMENDMENT_1.md line 105) holds only for a level-flat B profile.
+In case 1 the sign-aware null is easier to beat than the permutation-only null (p drops from 1 to 1/2^m).
+CONTROL claim p_perm < 1 for flat profile refuted | wrong input flagged = True
+CONTROL claim p_sign == 1 for flat profile refuted | wrong input flagged = True
+DONE exact_signnull

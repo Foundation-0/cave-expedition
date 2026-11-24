@@ -1,0 +1,31 @@
+TEST K2 - nothing found in noise: joined from 7 part outputs, 200 seeds per class
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+class              reject    rate  flagged   slope
+white                  11   0.055       ok   -0.01
+white|exp              17   0.085       ok    0.04
+white|cube             10   0.050       ok   -0.02
+ar1_0.5                 9   0.045       ok   -0.05
+ar1_0.5|exp            20   0.100  FLAGGED   -0.04
+ar1_0.5|cube           18   0.090  FLAGGED   -0.04
+ar1_0.9                 8   0.040       ok   -0.81
+ar1_0.9|exp            59   0.295  FLAGGED   -0.65
+ar1_0.9|cube           31   0.155  FLAGGED   -0.62
+ar1_0.99               13   0.065       ok   -1.98
+ar1_0.99|exp           50   0.250  FLAGGED   -1.87
+ar1_0.99|cube          48   0.240  FLAGGED   -1.74
+pl_1                    9   0.045       ok   -1.01
+pl_1|exp               44   0.220  FLAGGED   -0.87
+pl_1|cube              19   0.095  FLAGGED   -0.83
+pl_2                   10   0.050       ok   -1.97
+pl_2|exp               18   0.090  FLAGGED   -1.97
+pl_2|cube              27   0.135  FLAGGED   -1.98
+sines3                  9   0.045       ok   -0.11
+sines3|exp             20   0.100  FLAGGED   -0.05
+sines3|cube            11   0.055       ok   -0.09
+classes flagged (rate > 0.086): 11 of 21
+flagged classes: ar1_0.5|exp, ar1_0.5|cube, ar1_0.9|exp, ar1_0.9|cube, ar1_0.99|exp, ar1_0.99|cube, pl_1|exp, pl_1|cube, pl_2|exp, pl_2|cube, sines3|exp
+slope matching, nearest class by slope among all 21: ar1_0.9 -> pl_1|cube, pl_1 -> pl_1|exp, white -> white|cube (each class matched against the other 20)
+--- must-fail control: detector with no correction for the ten lags
+  white class rate 0.315 (bound 0.086): FLAGGED; classes above the bound: 21 of 21
+SUMMARY K2 FAIL | 11 of 21 classes above the 0.086 bound; must-fail control flagged

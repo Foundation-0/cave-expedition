@@ -1,0 +1,12 @@
+must-fail: published D14, K5 flow-unit pools: events 11,000, distinct keys 880, owners 11,000, collisions 880, flagged YES
+must-fail: same, 14 series sets per seed (my first count): events 15,400, distinct keys 1,320, owners 15,400, collisions 1,320, flagged YES
+must-fail: old detectors-flow (K5, 5 per seed x 10 seeds): events 50, distinct keys 1, owners 50, collisions 1, flagged YES
+must-fail: old K4 detectors without pair and run: events 120, distinct keys 20, owners 120, collisions 20, flagged YES
+planted fault: Law 2b net without the run (real-data instance tests): events 52,176, distinct keys 22,842, owners 45,936, collisions 7,572, flagged YES
+planted fault: K4 pools without the split: events 2,560, distinct keys 1,280, owners 2,560, collisions 1,280, flagged YES
+alternative reading: null replicate keys without net law2b-<instance>: events 26,400, distinct keys 6,960, owners 26,400, collisions 3,120, flagged YES
+draft with net law2b-<instance>:<run> in every replicate draw: events 26,400, distinct keys 26,400, owners 26,400, collisions 0, flagged no
+alternative reading: rank-mapped cascade pools use instrument K5b:cascade: events 4,400, distinct keys 3,300, owners 4,400, collisions 1,100, flagged YES
+planted fault: control pools keyed like segment pools (the SK5 fault): events 10,496, distinct keys 5,248, owners 10,496, collisions 5,248, flagged YES
+Seeds in the rule: first 16 hex digits of SHA-256 as a 64-bit seed; collisions among all distinct keys of the checked families: 0 (see sk_keys2.py)
+must-fail controls all flagged: yes

@@ -1,0 +1,16 @@
+TEST K3 - planted structure found: 200 seeds per case, N = 4096 (part 2 of 3: case sawtooth)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+cases: sawtooth | seed example, sawtooth idx 0: 5221160921805849533
+nets: native (need >= 0.80), block mean by 2 (need >= 0.50), zero-phase whitening (need >= 0.50)
+case       net       detect    rate   need   result tie-excl
+sawtooth   native        43   0.215   0.80     FAIL        0
+sawtooth   bm2           80   0.400   0.50     FAIL        0
+sawtooth   whiten        37   0.185   0.50     FAIL        0
+--- must-fail control: surrogate generator that leaks the time arrow (circular shifts of the series), native net
+sawtooth   leaky         11   0.055  need>=0.80 -> FLAGGED (below criterion)
+ROW|sawtooth|native|43|0.80
+ROW|sawtooth|bm2|80|0.50
+ROW|sawtooth|whiten|37|0.50
+ROW|sawtooth|leaky|11|0.80
+SUMMARY K3-part2 PART | detection criteria NOT all met; leaky-surrogate control flagged in all cases

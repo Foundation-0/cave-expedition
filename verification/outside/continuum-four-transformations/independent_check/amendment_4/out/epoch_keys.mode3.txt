@@ -1,0 +1,11 @@
+epoch 0: master field '20261121', 417,545 distinct keys
+epoch 1: master field '20261121e1', 417,545 distinct keys
+epoch 2: master field '20261121e2', 417,545 distinct keys
+[ok] each epoch has the same number of keys as epoch 0 (417,545 for the families with the K4 superset): 417,545
+[ok] keys of different epochs differ only in the master field
+[ok] no key string occurs in two epochs: 1,252,635 distinct of 1,252,635
+[ok] the 64-bit seeds of all three epochs are distinct: 1,252,635 distinct seeds
+[ok] the master field never contains the separator and epochs 1 and 10 differ
+[ok] control: reusing the master field for a rerun gives the same keys (all collide)
+
+RESULT all epoch checks hold

@@ -1,0 +1,179 @@
+== PREREG-01a: control rule at PREREG.md line 150 ==
+S=12: 1% excess point K>=4 (tail 0.002236); ratio clause allows K<=1; ratio clause binds
+   original: one control fails 0.118360; one instrument (3 controls, independent) 0.314711; >=1 of 3 instruments 0.678173; >=1 of 4 0.779455
+   binomial only: one control fails 0.002236; one instrument (3 controls, independent) 0.006694; >=1 of 3 instruments 0.019949; >=1 of 4 0.026509
+S=16: 1% excess point K>=4 (tail 0.007004); ratio clause allows K<=1; ratio clause binds
+   original: one control fails 0.189240; one instrument (3 controls, independent) 0.467062; >=1 of 3 instruments 0.848634; >=1 of 4 0.919331
+   binomial only: one control fails 0.007004; one instrument (3 controls, independent) 0.020865; >=1 of 3 instruments 0.061298; >=1 of 4 0.080884
+S=24: 1% excess point K>=5 (tail 0.005975); ratio clause allows K<=2; ratio clause binds
+   original: one control fails 0.115945; one instrument (3 controls, independent) 0.309063; >=1 of 3 instruments 0.670151; >=1 of 4 0.772095
+   binomial only: one control fails 0.005975; one instrument (3 controls, independent) 0.017817; >=1 of 3 instruments 0.052504; >=1 of 4 0.069385
+S=32: 1% excess point K>=6 (tail 0.004600); ratio clause allows K<=3; ratio clause binds
+   original: one control fails 0.073805; one instrument (3 controls, independent) 0.205477; >=1 of 3 instruments 0.498444; >=1 of 4 0.601502
+   binomial only: one control fails 0.004600; one instrument (3 controls, independent) 0.013736; >=1 of 3 instruments 0.040644; >=1 of 4 0.053822
+== PREREG-01b: K2 cutoff at PREREG.md line 211 ==
+rate <= 0.086 of 200 passes K <= 17; tail P(K >= 18) = 0.012089
+exact 1% point for n=200: fail at K >= 19 (tail 0.005824); P(K >= 18) = 0.012089
+   fail at K >= 19: per class 0.005824; 21 classes at least one false flag 0.115429
+   fail at K >= 21: per class 0.001160; 21 classes at least one false flag 0.024078
+exact 1% point for n=1000: fail at K >= 68 (tail 0.007408)
+power of K2 to flag a miscalibrated class (true per-segment rate r):
+   r=0.06: n=200 fail at K>=19 flags with prob 0.0328; n=200 fail at K>=21 flags with prob 0.0093; n=1000 fail at K>=68 flags with prob 0.1588
+   r=0.07: n=200 fail at K>=19 flags with prob 0.1093; n=200 fail at K>=21 flags with prob 0.0418; n=1000 fail at K>=68 flags with prob 0.6155
+   r=0.08: n=200 fail at K>=19 flags with prob 0.2506; n=200 fail at K>=21 flags with prob 0.1225; n=1000 fail at K>=68 flags with prob 0.9302
+   r=0.10: n=200 fail at K>=19 flags with prob 0.6276; n=200 fail at K>=21 flags with prob 0.4408; n=1000 fail at K>=68 flags with prob 0.9998
+false presence from an undetected miscalibration (needs K >= 7 of 32, or K >= 5 of 12):
+   r=0.06: S=32 0.0025; S=12 0.0004
+   r=0.07: S=32 0.0058; S=12 0.0009
+   r=0.08: S=32 0.0119; S=12 0.0016
+   r=0.10: S=32 0.0358; S=12 0.0043
+== Holm family ==
+28 tests: smallest Holm threshold 1/560 = 0.001786
+   presence S=12: needs K >= 5 (tail 0.000184); p_min 0.05^S = 2.441e-16
+   presence S=16: needs K >= 5 (tail 0.000857); p_min 0.05^S = 1.526e-21
+   presence S=24: needs K >= 6 (tail 0.000962); p_min 0.05^S = 5.960e-32
+   presence S=32: needs K >= 7 (tail 0.000868); p_min 0.05^S = 2.328e-42
+40 tests: smallest Holm threshold 1/800 = 0.001250
+   presence S=12: needs K >= 5 (tail 0.000184); p_min 0.05^S = 2.441e-16
+   presence S=16: needs K >= 5 (tail 0.000857); p_min 0.05^S = 1.526e-21
+   presence S=24: needs K >= 6 (tail 0.000962); p_min 0.05^S = 5.960e-32
+   presence S=32: needs K >= 7 (tail 0.000868); p_min 0.05^S = 2.328e-42
+== smallest p of a template test with m jointly populated features ==
+m=3: permutations 6 -> p_min 0.166667; permutations with sign flips 48 -> p_min 0.020833
+m=4: permutations 24 -> p_min 0.041667; permutations with sign flips 384 -> p_min 0.002604
+m=5: permutations 120 -> p_min 0.008333; permutations with sign flips 3840 -> p_min 0.000260
+m=6: permutations 720 -> p_min 0.001389; permutations with sign flips 46080 -> p_min 0.000100
+m=7: permutations 5040 -> p_min 0.000198; permutations with sign flips 645120 -> p_min 0.000100
+m=8: permutations 40320 -> p_min 0.000100; permutations with sign flips 10321920 -> p_min 0.000100
+m=9: permutations 362880 -> p_min 0.000100; permutations with sign flips 185794560 -> p_min 0.000100
+m=10: permutations 3628800 -> p_min 0.000100; permutations with sign flips 3715891200 -> p_min 0.000100
+== Bonferroni split across net runs inside each test (Aletheia v2.0.0, OTF-TIGHT-01) ==
+confirmatory family: 40 tests, smallest Holm threshold 1/800 = 0.0012500
+   presence, 13 runs: smallest per-run level 1/10400 = 9.615e-05
+      S=12: needs K >= 6 (tail 1.111e-05)
+      S=16: needs K >= 6 (tail 8.090e-05)
+      S=24: needs K >= 8 (tail 1.393e-05)
+      S=32: needs K >= 9 (tail 1.911e-05)
+   presence TESS, 12 runs: smallest per-run level 1/9600 = 1.042e-04
+      S=12: needs K >= 6 (tail 1.111e-05)
+      S=16: needs K >= 6 (tail 8.090e-05)
+      S=24: needs K >= 8 (tail 1.393e-05)
+      S=32: needs K >= 9 (tail 1.911e-05)
+   transfer, 5 runs: smallest per-run level 1/4000 = 2.500e-04
+      smallest m with 1/m! within it: 7; with signs, 1/(m! 2^m): 6
+      R = 9999: smallest p 1/10000 within the level
+      R = 99999: smallest p 1/100000 within the level
+listed transformations family: 99 tests, smallest Holm threshold 1/1980 = 0.0005051
+   presence, 13 runs: smallest per-run level 1/25740 = 3.885e-05
+      S=12: needs K >= 6 (tail 1.111e-05)
+      S=16: needs K >= 7 (tail 5.983e-06)
+      S=24: needs K >= 8 (tail 1.393e-05)
+      S=32: needs K >= 9 (tail 1.911e-05)
+   presence TESS, 12 runs: smallest per-run level 1/23760 = 4.209e-05
+      S=12: needs K >= 6 (tail 1.111e-05)
+      S=16: needs K >= 7 (tail 5.983e-06)
+      S=24: needs K >= 8 (tail 1.393e-05)
+      S=32: needs K >= 9 (tail 1.911e-05)
+   transfer, 5 runs: smallest per-run level 1/9900 = 1.010e-04
+      smallest m with 1/m! within it: 8; with signs, 1/(m! 2^m): 6
+      R = 9999: smallest p 1/10000 within the level
+      R = 99999: smallest p 1/100000 within the level
+== control ceiling c_max(S) for signal-over-control dominance (Rule 5), Bonferroni over 3 controls x 13 runs ==
+S=12: level 2.564e-04, smallest k with tail within it 5 (tail 1.839e-04); c_max = 4/12 = 0.3333; chance a calibrated control exceeds it in one run 1.84e-04, in any of 39 checks at most 0.0071
+S=16: level 2.564e-04, smallest k with tail within it 6 (tail 8.090e-05); c_max = 5/16 = 0.3125; chance a calibrated control exceeds it in one run 8.09e-05, in any of 39 checks at most 0.0032
+S=24: level 2.564e-04, smallest k with tail within it 7 (tail 1.270e-04); c_max = 6/24 = 0.2500; chance a calibrated control exceeds it in one run 1.27e-04, in any of 39 checks at most 0.0049
+S=32: level 2.564e-04, smallest k with tail within it 8 (tail 1.391e-04); c_max = 7/32 = 0.2188; chance a calibrated control exceeds it in one run 1.39e-04, in any of 39 checks at most 0.0054
+== null resolution for Law 2b guard G1 ==
+null replicates 10: n * 1/10 = 1 (needs >= 1); false passes allowed at rate <= 1/10: 1
+null replicates 20: n * 1/10 = 2 (needs >= 1); false passes allowed at rate <= 1/10: 2
+== practical smallest p with R sampled detectors: (1 + R/D)/(R + 1), D distinct detectors ==
+R=9999, signs+perm m=5, D=3840: 3.604e-04; within 0.00025: False; within 1/9900: False
+R=9999, signs+perm m=6, D=46080: 1.217e-04; within 0.00025: True; within 1/9900: False
+R=9999, perm m=7, D=5040: 2.984e-04; within 0.00025: False; within 1/9900: False
+R=9999, perm m=8, D=40320: 1.248e-04; within 0.00025: True; within 1/9900: False
+R=9999, perm m=9, D=362880: 1.028e-04; within 0.00025: True; within 1/9900: False
+R=99999, signs+perm m=5, D=3840: 2.704e-04; within 0.00025: False; within 1/9900: False
+R=99999, signs+perm m=6, D=46080: 3.170e-05; within 0.00025: True; within 1/9900: True
+R=99999, perm m=7, D=5040: 2.084e-04; within 0.00025: True; within 1/9900: False
+R=99999, perm m=8, D=40320: 3.480e-05; within 0.00025: True; within 1/9900: True
+R=99999, perm m=9, D=362880: 1.276e-05; within 0.00025: True; within 1/9900: True
+== K2: chance a calibrated instrument is marked not calibrated (each check flags at 68 of 1,000, tail t) ==
+1 independent checks: 0.0074
+3 independent checks: 0.0221
+4 independent checks: 0.0293
+9 independent checks: 0.0647
+12 independent checks: 0.0854
+== final per-run levels ==
+confirmatory: 40 tests, smallest Holm threshold 1.2500e-03
+   presence, 10 runs: per-run level 1.250e-04; S=12: K>=6, S=16: K>=6, S=24: K>=8, S=32: K>=9
+   presence TESS, 9 runs: per-run level 1.389e-04; S=12: K>=6, S=16: K>=6, S=24: K>=7, S=32: K>=9
+   arrow/profile transfer, 3 runs: per-run level 4.167e-04; R=99999: 6 levels with signs within it True; 8 features with permutations within it True
+   scale-flow transfer, 5 runs: per-run level 2.500e-04; R=99999: 6 levels with signs within it True; 8 features with permutations within it True
+Law 2b family: 93 tests, smallest Holm threshold 5.3763e-04
+   presence, 10 runs: per-run level 5.376e-05; S=12: K>=6, S=16: K>=7, S=24: K>=8, S=32: K>=9
+   presence TESS, 9 runs: per-run level 5.974e-05; S=12: K>=6, S=16: K>=7, S=24: K>=8, S=32: K>=9
+   arrow/profile transfer, 3 runs: per-run level 1.792e-04; R=99999: 6 levels with signs within it True; 8 features with permutations within it True
+   scale-flow transfer, 5 runs: per-run level 1.075e-04; R=99999: 6 levels with signs within it True; 8 features with permutations within it True
+== control ceiling c_max(S), 1 percent split over 3 controls x 10 runs ==
+S=12: c_max = 4/12; any of 30 checks exceeded by a calibrated pipeline with probability at most 0.0055
+S=16: c_max = 5/16; any of 30 checks exceeded by a calibrated pipeline with probability at most 0.0024
+S=24: c_max = 6/24; any of 30 checks exceeded by a calibrated pipeline with probability at most 0.0038
+S=32: c_max = 7/32; any of 30 checks exceeded by a calibrated pipeline with probability at most 0.0042
+== K2 after the change: one base class per instrument, checked at 3 or 4 window lengths ==
+3 checks at tail 0.0074: 0.0221
+4 checks at tail 0.0074: 0.0293
+== Law 2b instance known-answer tests: 200 seeds per class, exact 1 percent point ==
+fail at K >= 19 of 200 (tail 0.0058)
+== per-run levels with 8 presence runs (7 for TESS) ==
+confirmatory: 40 tests, smallest Holm threshold 1.2500e-03
+   presence, 8 runs: per-run level 1.563e-04; S=12: K>=6, S=16: K>=6, S=24: K>=7, S=32: K>=8
+   presence TESS, 7 runs: per-run level 1.786e-04; S=12: K>=6, S=16: K>=6, S=24: K>=7, S=32: K>=8
+   arrow/profile transfer, 3 runs: per-run level 4.167e-04; signs: 6 levels True, 5 levels True; permutations: 8 features True, 7 features True
+   scale-flow transfer, 5 runs: per-run level 2.500e-04; signs: 6 levels True, 5 levels False; permutations: 8 features True, 7 features True
+Law 2b family: 102 tests, smallest Holm threshold 4.9020e-04
+   presence, 8 runs: per-run level 6.127e-05; S=12: K>=6, S=16: K>=7, S=24: K>=8, S=32: K>=9
+   presence TESS, 7 runs: per-run level 7.003e-05; S=12: K>=6, S=16: K>=7, S=24: K>=8, S=32: K>=9
+   arrow/profile transfer, 3 runs: per-run level 1.634e-04; signs: 6 levels True, 5 levels False; permutations: 8 features True, 7 features False
+   scale-flow transfer, 5 runs: per-run level 9.804e-05; signs: 6 levels True, 5 levels False; permutations: 8 features True, 7 features False
+== control ceiling over 3 controls x 8 runs = 24 checks ==
+S=12: c_max = 4/12; probability any of 24 checks is breached by a calibrated pipeline 0.00441
+S=16: c_max = 5/16; probability any of 24 checks is breached by a calibrated pipeline 0.00194
+S=24: c_max = 6/24; probability any of 24 checks is breached by a calibrated pipeline 0.00304
+S=32: c_max = 7/32; probability any of 24 checks is breached by a calibrated pipeline 0.00333
+== K2 gate: 7 null classes x 2 window lengths (4,096 and 2,048) = 14 checks; 2 reversible classes x 2 = 4 checks ==
+K2a flag: k_a = 74 of 1,000 (rate 0.074); per-check tail at 0.05 6.476e-04; chance any of 14 calibrated checks flags 0.0090
+   true null rate 0.052: per check 0.0018; any of 14 checks 0.0249
+   true null rate 0.055: per check 0.0068; any of 14 checks 0.0914
+   true null rate 0.060: per check 0.0393; any of 14 checks 0.4297
+   true null rate 0.070: per check 0.3270; any of 14 checks 0.9961
+   true null rate 0.080: per check 0.7736; any of 14 checks 1.0000
+   true null rate 0.100: per check 0.9982; any of 14 checks 1.0000
+K2b flag (rate clearly above 0.10): k_b = 129 of 1,000, the smallest k with P(Bin(1000, 0.10) >= k) <= 0.01/4 (tail 1.841e-03)
+   true rate 0.07: flagged at one length with probability 0.0000
+   true rate 0.09: flagged at one length with probability 0.0000
+   true rate 0.10: flagged at one length with probability 0.0018
+   true rate 0.12: flagged at one length with probability 0.2030
+   true rate 0.15: flagged at one length with probability 0.9734
+why a reversible series at rate <= 0.10 cannot alone produce presence in one run:
+   S=12: needs K >= 6; P(Bin(S, 0.10) >= 6) = 5.41e-04
+   S=16: needs K >= 6; P(Bin(S, 0.10) >= 6) = 3.30e-03
+   S=24: needs K >= 8; P(Bin(S, 0.10) >= 8) = 1.68e-03
+   S=32: needs K >= 10; P(Bin(S, 0.10) >= 10) = 8.09e-04
+== old instrument-level false-flag figures (superseded), for the record ==
+   3 checks: 0.0221
+   4 checks: 0.0293
+   9 checks: 0.0647
+   three instruments, 3 checks each: 0.0647
+   true rate 0.052: per check 0.0164; over 3 checks 0.0483
+   true rate 0.055: per check 0.0448; over 3 checks 0.1286
+   true rate 0.060: per check 0.1588; over 3 checks 0.4048
+K3 must-fail and Law 2b instance tests: 200 seeds; K3 pass needs at least 100 of 200 per net
+== one presence run passed by a series whose segment rate is r (binomial level 0.00125 / runs, margin 1/4 over the controls) ==
+8 runs, r = 0.100 (controls at 0 / controls at 0.05): S=12: 0.0005 / 0.0005; S=16: 0.0033 / 0.0033; S=20: 0.0024 / 0.0024; S=24: 0.0075 / 0.0017; S=28: 0.0050 / 0.0012; S=32: 0.0117 / 0.0008
+   largest with controls at 0: 0.0117 at S = 32; with controls at 0.05: 0.0033 at S = 16
+8 runs, r = 0.129 (controls at 0 / controls at 0.05): S=12: 0.0021 / 0.0021; S=16: 0.0116 / 0.0116; S=20: 0.0099 / 0.0099; S=24: 0.0279 / 0.0083; S=28: 0.0218 / 0.0068; S=32: 0.0464 / 0.0055
+   largest with controls at 0: 0.0464 at S = 32; with controls at 0.05: 0.0116 at S = 16
+5 runs, r = 0.100 (controls at 0 / controls at 0.05): S=12: 0.0043 / 0.0043; S=16: 0.0033 / 0.0033; S=20: 0.0024 / 0.0024; S=24: 0.0075 / 0.0017; S=28: 0.0050 / 0.0012; S=32: 0.0117 / 0.0008
+   largest with controls at 0: 0.0117 at S = 32; with controls at 0.05: 0.0043 at S = 12
+5 runs, r = 0.129 (controls at 0 / controls at 0.05): S=12: 0.0129 / 0.0129; S=16: 0.0116 / 0.0116; S=20: 0.0099 / 0.0099; S=24: 0.0279 / 0.0083; S=28: 0.0218 / 0.0068; S=32: 0.0464 / 0.0055
+   largest with controls at 0: 0.0464 at S = 32; with controls at 0.05: 0.0129 at S = 12

@@ -1,0 +1,16 @@
+TEST K1 - exact checks
+SIZE SMOKE (one twentieth of the plan's seeds, at least 10; NOT a result)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+seeds per class: 10; pipeline identity at n = 1024; scores at n = (4096, 2048)
+-- integer counts, complement, reversal, sigma_hat, lag doubling, second implementation
+-- offset identity
+-- normal scores of the exp and cube versions at the K2 lengths
+-- pipeline identity: pool, features, p-value (kind iaaft)
+pipeline identity failures: 0, cases excluded by the distinct-value guard: 0
+K1 main checks: 2928 checks, 0 failed
+-- must-fail controls (each must produce failing checks)
+  counter that drops the last window                             failing checks     82: FLAGGED
+  counter that orders ties by position                           failing checks     58: FLAGGED
+  surrogate step that uses the raw values (identity under exp)   failing checks   1379: FLAGGED
+SUMMARY K1 SMOKE PASS | 2928 main checks, 0 failed; guard exclusions 0; must-fail controls all flagged: yes

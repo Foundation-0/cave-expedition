@@ -1,0 +1,30 @@
+-- S=12: single control old 0.11835986, new 0.00223640
+REVIEWFIG S12 old single | review says 0.118359 | mine 0.118360 | AGREES
+REVIEWFIG S12 new single | review says 0.002236 | mine 0.002236 | AGREES
+REVIEWFIG S12 ratio | review says 52.92x | mine 52.92x | AGREES
+REVIEWFIG S12 instrument | review says 31.47% | mine 31.47% | AGREES
+REVIEWFIG S12 >=1 of 3 | review says 67.82% | mine 67.82% | AGREES
+-- S=32: single control old 0.07380549, new 0.00459975
+REVIEWFIG S32 old single | review says 0.073805 | mine 0.073805 | AGREES
+REVIEWFIG S32 new single | review says 0.004599 | mine 0.004600 | AGREES
+REVIEWFIG S32 ratio | review says 16.05x | mine 16.05x | AGREES
+REVIEWFIG S32 instrument | review says 20.55% | mine 20.55% | AGREES
+REVIEWFIG S32 >=1 of 3 | review says 49.84% | mine 49.84% | AGREES
+REVIEWFIG S12 >=1 of 4 | review says 77.95% | mine 77.95% | AGREES
+REVIEWFIG S32 new per instrument | review says 1.37% | mine 1.37% | AGREES
+REVIEWFIG S32 new across 4 instruments | review says 5.38% | mine 5.38% | AGREES
+REVIEWFIG K2 tail >=18 | review says 0.012089 | mine 0.012089 | AGREES
+REVIEWFIG K2 21-class FWER old | review says 22.54% | mine 22.54% | AGREES
+INFO exact tail at >=19 to 10 digits: 0.0058235580 (review prints 0.005823, amendment prints 0.005824)
+REVIEWFIG K2 'K<=18' tail | review says 0.005823 | mine 0.005824 | DIFFERS
+REVIEWFIG K2 21-class FWER at K<=20 (fail >=21) | review says 2.41% | mine 2.41% | AGREES
+K2 catch rates at true per-segment rate 0.08, 200 draws:
+   review option 1 (pass K<=18, fail >=19): P(Bin(200,0.08) >= 19) = 0.250561
+   review option 2 (pass K<=20, fail >=21): P(Bin(200,0.08) >= 21) = 0.122457
+   original plan (fail >=18): P(Bin(200,0.08) >= 18) = 0.336627
+REVIEWFIG TESS 27 d at 20 s | review says 116,640 samples | mine 116,640 | AGREES
+REVIEWFIG TESS zero-padded share | review says 40/56 = 71.43% | mine 71.43% | AGREES
+REVIEWFIG Arm B 4320*50 | review says 216,000 | mine 216,000 | AGREES
+CONTROL wrong figure 0.118359 vs 0.19 flagged | wrong input flagged = True
+CONTROL wrong tail 0.005823 vs 0.0074 flagged | wrong input flagged = True
+DONE exact_review_numbers

@@ -1,0 +1,21 @@
+== T3, rule 7 counts adverse pairs inside V
+states enumerated: 11664000 (text: 11,664,000; 2 x 5^3 x 3^6 x 2^6 = 11664000); states meeting no rule: 0
+first-match outcome counts: {'Invalid': 5832000, 'EvidenceAgainst': 638528, 'Supported': 64, 'NetDependent': 448, 'Partial': 129867, 'DoesNotDiscriminate': 465205, 'Inconclusive': 4597888}
+states with known-answer pass whose outcome is also met by a lower-ranked rule: {'EvidenceAgainst': 11200, 'Supported': 64, 'NetDependent': 448}
+   text A9: 11,200 evidence against, all 64 supported, 448 net-dependent
+odd states (known-answer pass): {'partial_via_profile_on_adverse_pair': 0, 'partial_with_one_adverse_pair': 26964, 'partial_with_absent': 26880, 'supported_without_all_present': 0, 'favourable_with_kfail': 0, 'evidence_against_with_2_present_and_a_pass_pair': 0, 'inconclusive_with_adverse_pair_outside_V': 1354112}
+   example inconclusive_with_adverse_pair_outside_V: status ('INV', 'INV', 'INV') arrow ('pass', 'pass', 'pass', 'adverse', 'pass', 'adverse') profile ('pass', 'pass', 'pass', 'pass', 'pass', 'pass')
+CLAIM t3-states | 11,664,000 states, every state one outcome | mine 11664000, uncovered 0 | REPRODUCED
+CLAIM t3-partial | partial states after the change | text=129,867 | mine=129867 | REPRODUCED
+CLAIM t3-partial-moved | partial fell from 215,506 and the difference moved to does-not-discriminate | text=difference moves to DND | mine: partial 85639 fewer, DND 465205 (was 379,566; change 85639) | REPRODUCED
+CLAIM t3-partial-adverse | partial states where the pair that carries partial is arrow-adverse in either direction | text=none | mine=0 | REPRODUCED
+== T1 scale flow
+states enumerated: 11664 (text 11,664 = 2 x 2^3 x 3^6 = 11664); uncovered 0
+first-match counts: {'Invalid': 5832, 'EvidenceAgainst': 25, 'Supported': 1, 'Partial': 456, 'DoesNotDiscriminate': 2434, 'Inconclusive': 2916}
+known-answer pass, also met by a lower-ranked rule: {'EvidenceAgainst': 25, 'Supported': 1} (text: 25 evidence against, 1 supported)
+CLAIM t1-states | text 11,664 states, exactly one outcome, 25 and 1 | mine as above | REPRODUCED
+INFO T1 has no presence test: 'Partial' and 'Supported' need only transfer passes between usable instruments; usable means not invalid for T3 and >= 12 segments at some level.
+CONTROL broken precedence (Partial ranked above Evidence against) changes the outcome on a constructed state | wrong input flagged = True
+CONTROL an all-pass all-present state is Supported | wrong input flagged = True
+CONTROL a known-answer failure is Invalid whatever else | wrong input flagged = True
+DONE outcomes

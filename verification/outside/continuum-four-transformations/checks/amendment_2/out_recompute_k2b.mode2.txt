@@ -1,0 +1,21 @@
+== Holm step: smallest (per-run level = 0.05/40 / runs) ==
+rate 0.10, control shares 0: maximum 0.011869 (exact 29671797708763579996009/2500000000000000000000000 has 25 digits) at runs = 5, S = 26, K >= 7; rounded up: 0.012 (three decimals: 0.012)
+rate 0.10, control shares 0.05: maximum 0.008593 (exact 10741275922307669/1250000000000000000 has 19 digits) at runs = 5, S = 19, K >= 6; rounded up: 0.0086 (three decimals: 0.009)
+rate 0.129, control shares 0: maximum 0.046395 (exact 1855784473427997278195065119564107395554661203101357215640099493940276179008637720815054267103/40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 has 95 digits) at runs = 5, S = 32, K >= 8; rounded up: 0.047 (three decimals: 0.047)
+rate 0.129, control shares 0.05: maximum 0.028009 (exact 3501088808422827900165271050989050483147929508375132101/125000000000000000000000000000000000000000000000000000000 has 57 digits) at runs = 5, S = 19, K >= 6; rounded up: 0.029 (three decimals: 0.029)
+== Holm step: largest (per-run level = 0.05 / runs) ==
+rate 0.10, control shares 0: maximum 0.068406 (exact 136812347834843/2000000000000000 has 16 digits) at runs = 5, S = 16, K >= 4; rounded up: 0.069 (three decimals: 0.069)
+rate 0.10, control shares 0.05: maximum 0.034161 (exact 34160720923/1000000000000 has 13 digits) at runs = 5, S = 13, K >= 4; rounded up: 0.035 (three decimals: 0.035)
+rate 0.129, control shares 0: maximum 0.141847 (exact 28369378190619984126412542597797801207510443611/200000000000000000000000000000000000000000000000 has 48 digits) at runs = 5, S = 16, K >= 4; rounded up: 0.15 (three decimals: 0.142)
+rate 0.129, control shares 0.05: maximum 0.075861 (exact 3793042345303307710466278015349216871/50000000000000000000000000000000000000 has 38 digits) at runs = 5, S = 13, K >= 4; rounded up: 0.076 (three decimals: 0.076)
+== where the largest-step maximum falls, for each run count (all S attaining it) ==
+rate 0.10, control shares 0: 5 runs: 0.068406 at S = 16, K >= 4; 7 runs: 0.068406 at S = 16, K >= 4; 8 runs: 0.055556 at S = 15, K >= 4
+rate 0.10, control shares 0.05: 5 runs: 0.034161 at S = 13, K >= 4; 7 runs: 0.034161 at S = 13, K >= 4; 8 runs: 0.034161 at S = 13, K >= 4
+rate 0.129, control shares 0: 5 runs: 0.141847 at S = 16, K >= 4; 7 runs: 0.141847 at S = 16, K >= 4; 8 runs: 0.117826 at S = 15, K >= 4
+rate 0.129, control shares 0.05: 5 runs: 0.075861 at S = 13, K >= 4; 7 runs: 0.075861 at S = 13, K >= 4; 8 runs: 0.075861 at S = 13, K >= 4
+== rate 0.10, controls 0.05, at S = 32 for each run count (smallest Holm step) ==
+runs = 5: K >= 10, chance 0.000809, rounded up 0.00081
+runs = 7: K >= 10, chance 0.000809, rounded up 0.00081
+runs = 8: K >= 10, chance 0.000809, rounded up 0.00081
+second route agrees exactly on all four maxima (smallest Holm step): True
+control: threshold K - 1 at the same cell gives 0.039859; flagged = True

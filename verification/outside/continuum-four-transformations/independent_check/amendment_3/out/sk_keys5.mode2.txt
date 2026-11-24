@@ -1,0 +1,5 @@
+K4 under D20 alone: draws 4,480, distinct keys 4,460, owners 4,460, collisions 0, owner-two-keys 0
+K4 under D20 and its second reading: draws 6,180, distinct keys 6,100, owners 6,100, collisions 0, owner-two-keys 0
+second-reading draws on a key D20 already uses: 60; new pool draws 1600; new detector sets 40
+all families with the K4 superset: 417,545 keys; adding the D20 and second-reading K4 family: 417,545 keys, two-owner keys 0
+planted fault (second reading keyed with the primary net): 1920 draws, 960 keys, flagged YES

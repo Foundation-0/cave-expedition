@@ -1,0 +1,7 @@
+cascade fit vs cascade verdict (raw): cosine min 0.997, median 0.998, max 0.999
+cascade fit vs rank-mapped cascade (primary run): cosine min 0.997, median 0.998, max 0.998
+scores(cascade fit) vs scores(rank-mapped) (amp_scores run): cosine min 0.997, median 0.998, max 0.998
+cascade fit vs y' (negative): cosine min 0.966, median 0.968, max 0.970
+cascade fit vs shuffled cascade (negative): cosine min -0.065, median 0.065, max 0.255
+control: cosine of a profile with its negative = -1.000 (must be -1)
+These are proxies. They show whether the shape of the departure survives the map, not the plan's p-values.

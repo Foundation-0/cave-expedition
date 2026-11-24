@@ -1,0 +1,18 @@
+K3 shots native4096 segments=100 seeds 20263001..20263100: detected 97 (0.970), Wilson 95% [0.915, 0.990]
+K3 shots q8         segments=100 seeds 20263001..20263100: detected 97 (0.970), Wilson 95% [0.915, 0.990]
+K3 shots q12        segments= 40 seeds 20263001..20263040: detected 40 (1.000), Wilson 95% [0.912, 1.000]
+K3 shots mean2      segments=100 seeds 20263001..20263100: detected 61 (0.610), Wilson 95% [0.512, 0.700]
+K3 shots sub2       segments=100 seeds 20263001..20263100: detected 70 (0.700), Wilson 95% [0.604, 0.781]
+K3 shots native2048 segments=100 seeds 20264001..20264100: detected 70 (0.700), Wilson 95% [0.604, 0.781]
+K3 shots circ       segments=200 seeds 20265001..20265200: detected 6 (0.030), Wilson 95% [0.014, 0.064]
+K3 requirement: native 0.80; 0.50 in every other net (mean2, sub2, q12, q8, placement, window N/2 = native 2048).
+   native4096: observed 0.970 vs 0.8: above
+   mean2: observed 0.610 vs 0.5: above
+   sub2: observed 0.700 vs 0.5: above
+   q8: observed 0.970 vs 0.5: above
+   q12: observed 1.000 vs 0.5: above
+   native2048: observed 0.700 vs 0.5: above
+   if K3 is also run with a 2,048-sample native series under the 80 percent rule: observed 0.700: fails
+CONTROL circular-shift surrogates detect at most 20 of 200 (rate 0.030): flagged = True
+CONTROL true surrogates detect planted shots at 4096 (rate above 0.7): flagged = True
+DONE k3_detection

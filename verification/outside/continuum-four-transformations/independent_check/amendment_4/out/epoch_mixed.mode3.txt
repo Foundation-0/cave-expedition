@@ -1,0 +1,12 @@
+[ok] epoch 0 keys, bodies without the master field: 417,545
+   keys per test: K1 1,001, K2 43,200, K3 12,000, K4 40,780, K5 101,800, real 218,764
+[ok] every instrument tag belongs to exactly one test or to real data
+[ok] mixed epochs {'K1': 1, 'K2': 1, 'K3': 1, 'K4': 1, 'K5': 1}: keys distinct, seeds distinct
+[ok] mixed epochs {'K1': 1, 'K2': 2, 'K3': 1, 'K4': 3, 'K5': 1}: keys distinct, seeds distinct
+[ok] mixed epochs {'K1': 2, 'K2': 3, 'K3': 2, 'K4': 2, 'K5': 3}: keys distinct, seeds distinct
+[ok] mixed epochs {'K1': 0, 'K2': 1, 'K3': 0, 'K4': 1, 'K5': 0}: keys distinct, seeds distinct
+[ok] the Law 2b pre-data checks draw only from K2, K3, K4 and K5 instrument tags: ['K2', 'K3', 'K4', 'K5']
+[ok] real-data keys, controls, Law 2b real-data tests and null replicates carry no known-answer tag
+[ok] control: a rule that drops the instrument field collapses keys: 2,000 of 36,000
+
+RESULT all mixed-epoch checks hold

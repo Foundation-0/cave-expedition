@@ -1,0 +1,14 @@
+KEYS K5 data: draws 140, distinct keys 140, intended independent draws 140 | all distinct
+KEYS K5 flow-unit pools (as written): draws 15400, distinct keys 1540, intended independent draws 15400 | COLLISION: 15400 draws, 1540 distinct keys
+KEYS K5 flow-unit pools (seed added to the segment field): draws 15400, distinct keys 15400, intended independent draws 15400 | all distinct
+KEYS K3 data (four uses with their own draw): draws 3200, distinct keys 3200, intended independent draws 3200 | all distinct
+KEYS K3 pools (one per use): draws 6400, distinct keys 6400, intended independent draws 6400 | all distinct
+INFO K3 data keys and pool keys share a key: 0
+KEYS K4 pools: draws 6400, distinct keys 6400, intended independent draws 6400 | all distinct
+KEYS K2 data and pools: draws 8000, distinct keys 8000, intended independent draws 8000 | all distinct
+INFO K2 control keys equal the K2 ar1_0.9 / 4096 pool keys for seeds 0..199: True (stated: the control pairs with the same random start)
+INFO detectors-flow keys as D14 words them (instrument, split and segment not stated): 30 draws, 1 distinct strings
+CONTROL a key with the seed missing collides across seeds (the K5 pool keys as written) | wrong input flagged = True
+CONTROL keys with the seed present are distinct | wrong input flagged = True
+RESULT keys that collide as written: ['K5 pools']
+DONE seed_keys

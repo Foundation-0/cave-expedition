@@ -1,0 +1,20 @@
+== (1) presence tail with constant segments (S = 32, 8 runs: K needed 8 at level 0.00125/8)
+   constant segments 0: invalid share 0.000 (within the 25 percent limit); largest possible K 32; can reach K >= 8: True
+   constant segments 4: invalid share 0.125 (within the 25 percent limit); largest possible K 28; can reach K >= 8: True
+   constant segments 8: invalid share 0.250 (within the 25 percent limit); largest possible K 24; can reach K >= 8: True
+   constant segments 9: invalid share 0.281 (above the 25 percent limit); largest possible K 23; can reach K >= 8: True
+   constant segments 24: invalid share 0.750 (above the 25 percent limit); largest possible K 8; can reach K >= 8: True
+   constant segments 25: invalid share 0.781 (above the 25 percent limit); largest possible K 7; can reach K >= 8: False
+CLAIM b7-monotone | K cannot rise and the tail is non-increasing in K | text=cannot raise the chance of present | mine=confirmed | REPRODUCED
+INFO the 25 percent limit is crossed at 9 constant segments of 32; at that point K can still be 23 >= 8
+== (2) known-answer tests pass; each state with an absent instrument, that instrument flipped to underpowered (3499200 flips)
+   EvidenceAgainst -> Inconclusive: 1134144
+   EvidenceAgainst -> DoesNotDiscriminate: 4464
+   EvidenceAgainst -> Partial: 336
+INFO flips that leave 'EvidenceAgainst': 1138944; flips into 'Supported' or 'NetDependent' or 'Partial': 336
+INFO states without an outcome in this enumeration: 0
+CLAIM b7-no-present | turning an absent instrument into an underpowered one never creates a 'present' instrument or a supported outcome | text=cannot raise the chance of present | mine=confirmed | REPRODUCED
+FINDING absent -> underpowered turns an adverse outcome into a less adverse one in 1138944 flips (e.g. evidence against -> inconclusive); this is the existing underpowered rule, reachable here by 9 or more constant segments of 32
+CONTROL a flip that changes nothing is not counted as a change | wrong input flagged = True
+CONTROL the monotonicity check would catch a rising tail | wrong input flagged = True
+DONE constant_segments

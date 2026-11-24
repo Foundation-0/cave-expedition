@@ -1,0 +1,8 @@
+one synthetic shot segment, n=1024, 99 surrogates, same surrogate seed for every variant
+x: real Sigma_hat 0.002312, surrogate mean 0.004770, segment p 0.66
+-x: real Sigma_hat 0.002312, surrogate mean 0.004770, segment p 0.66
+exp(x): real Sigma_hat 0.002312, surrogate mean 0.004832, segment p 0.64
+x^3: real Sigma_hat 0.002312, surrogate mean 0.004931, segment p 0.69
+real Sigma_hat identical across maps: True
+surrogate pool for -x equals that for x: True
+surrogate pool for exp(x) equals that for x: False

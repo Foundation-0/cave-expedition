@@ -1,0 +1,8 @@
+TEST X4 - extra, descriptive: K3 sawtooth with the other reading of 'noise of half its amplitude' (noise sd = half the sawtooth's standard deviation)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+not a plan test; the K3 verdict for the sawtooth stays as K3 reports it with the first reading (AMENDMENTS_NEEDED.md, A6)
+sawtooth, noise sd 0.1443, net native  detect 200 of 200, rate 1.000
+sawtooth, noise sd 0.1443, net bm2     detect 200 of 200, rate 1.000
+sawtooth, noise sd 0.1443, net whiten  detect 200 of 200, rate 1.000
+SUMMARY X4 DESCRIPTIVE | sawtooth rates, second reading: native 1.000, bm2 1.000, whiten 1.000

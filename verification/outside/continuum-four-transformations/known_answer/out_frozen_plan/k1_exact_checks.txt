@@ -1,0 +1,10 @@
+TEST K1 - exact checks
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+checks run: 228
+production code failures: 0
+--- must-fail controls (each must be flagged by the suite)
+  off_by_one_window_counter: FLAGGED (136 failing checks)
+  tie_breaking_counter: FLAGGED (20 failing checks)
+  wrong_reversal_pairing_in_sigma: FLAGGED (10 failing checks)
+SUMMARY K1 PASS | 228 checks, 0 production failures, must-fail controls all flagged

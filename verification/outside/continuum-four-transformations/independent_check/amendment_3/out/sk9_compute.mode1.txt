@@ -1,0 +1,18 @@
+[ok] eight uses price 6 pools per case and seed: 6
+[ok] K3 row 11,450.00: 11,450.00
+[ok] old K3 row 10,534.00 (7 runs at 5.5 pools, native2048 left out): 10,534.00
+[ok] difference 916.00
+[ok] K4 second-reading row 3,664.00
+[ok] known-answer total 258,126.41 (sum of the ten rows): 258,126.41
+[ok] old total 253,546.41 without the K3 correction and the new row
+[ok] confirmatory total 27,938.00
+[ok] one mode 288,981.87: 288,981.87
+[ok] hours 80.3: 80.273
+[ok] three modes 866,945.61
+[ok] three-mode hours 240.8: 240.818
+[ok] Law 2b paired K4 row 29,400.00 = 3 x 9,800 (D20 alone)
+[ok] Law 2b worst case 243,926.22 unchanged
+[ok] Law 2b worst hours 67.8 and 203.3 (three modes): 67.757, 203.272
+[ok] Law 2b K2 and K3 row unchanged: 12 cases x 200 seeds x 3 instances x 2.29 = 16,488.00
+[ok] must-fail: pricing the old 5.5 pools gives a different row
+RESULT all SK9 figures reproduced

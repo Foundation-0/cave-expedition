@@ -1,0 +1,10 @@
+block [10, 10, 0, 1, 11, 11, 2, 2], segment length 6, offsets 0..2
+raw-value cost, map identity: costs ['1', '65', '5'] -> chosen offset(s) [0]
+raw-value cost, map x^3 + x: costs ['110224', '1103684', '104'] -> chosen offset(s) [2]
+raw-value cost, map polarity -x: costs ['1', '65', '5'] -> chosen offset(s) [0]
+raw-value cost, map 2^x: costs ['1048576', '2082841', '10'] -> chosen offset(s) [2]
+mid-rank cost, map identity: costs ['4', '17/4', '29/4'] -> chosen offset(s) [0]
+mid-rank cost, map x^3 + x: costs ['4', '17/4', '29/4'] -> chosen offset(s) [0]
+mid-rank cost, map polarity -x: costs ['4', '17/4', '29/4'] -> chosen offset(s) [0]
+mid-rank cost, map 2^x: costs ['4', '17/4', '29/4'] -> chosen offset(s) [0]
+Note: mid-ranks are computed once on the whole block, then the cost is taken on each candidate segment.

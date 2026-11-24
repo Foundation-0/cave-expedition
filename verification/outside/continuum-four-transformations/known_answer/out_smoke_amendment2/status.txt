@@ -1,0 +1,7 @@
+k6_gate_checks exit 0
+k1_exact_checks exit 1
+k3_planted_structure exit 1
+k2_nothing_in_noise exit 1
+k4_transfer exit 0
+k5_scale_flow exit 1
+k1_exact_checks (rerun after the harness fix) exit 0

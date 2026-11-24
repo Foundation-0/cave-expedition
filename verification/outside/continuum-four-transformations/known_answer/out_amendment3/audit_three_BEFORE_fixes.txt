@@ -1,0 +1,12 @@
+SUMMARY T SMOKE FAIL | x
+SUMMARY T SMOKE PASS | x
+  FAIL tau0_segment refuses a NaN (fails closed)
+  FAIL tau0_segment refuses an infinity (fails closed)
+  FAIL segments_constant refuses a non-finite series (nan == nan is False, so it was not 'constant')
+  FAIL ties: at_or_above(inf, inf) is False (an infinity ties with nothing and gives no verdict)
+  FAIL ties: at_or_above(inf, 1) is False (a non-finite value gives no verdict)
+  FAIL ties: below(-inf, 1) is False
+  FAIL transfer: a template whose every detector ties with it gives no adverse verdict (B8: a tie never creates a verdict)
+  FAIL transfer: a target on which every permuted detector scores the same gives no adverse verdict either
+UNIT CHECKS: 346 checks, 8 failed
+FAIL

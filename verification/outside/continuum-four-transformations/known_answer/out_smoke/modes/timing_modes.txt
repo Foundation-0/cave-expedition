@@ -1,0 +1,21 @@
+wall (real) and processor (user+sys) seconds; machine load low at this time
+units_check mode1: real 27.28 user 26.94 sys 0.07 
+units_check mode2: real 26.97 user 26.77 sys 0.08 
+units_check mode3: real 26.84 user 26.71 sys 0.06 
+review_witnesses mode1: real 0.27 user 0.22 sys 0.03 
+review_witnesses mode2: real 0.36 user 0.22 sys 0.04 
+review_witnesses mode3: real 0.27 user 0.22 sys 0.04 
+k6_gate_checks mode1: gates_mutant_24:26: ComplexWarning: Casting complex values to real discards the imaginary part real 0.11 user 0.08 sys 0.02 
+k6_gate_checks mode2: gates_mutant_24:26: ComplexWarning: Casting complex values to real discards the imaginary part real 0.11 user 0.08 sys 0.02 
+k6_gate_checks mode3: real 0.11 user 0.08 sys 0.02 
+k3_planted_structure mode1: real 43.04 user 249.92 sys 0.86 
+k3_planted_structure mode2: real 43.11 user 250.67 sys 0.95 
+k3_planted_structure mode3: real 42.86 user 250.19 sys 0.98 
+(lines below come from the previous three-mode run of the same code apart from the later guards in nets.py, which K1 and K2 do not use; their outputs in this folder are the ones compared)
+k1_exact_checks mode1: real 56.82 user 300.69 sys 1.91
+k1_exact_checks mode2: real 57.01 user 304.02 sys 2.14
+k1_exact_checks mode3: real 56.97 user 304.86 sys 1.48
+k2_nothing_in_noise mode1: real 162.12 user 906.25 sys 4.94
+k2_nothing_in_noise mode2: real 155.33 user 892.28 sys 2.97
+k2_nothing_in_noise mode3: real 157.26 user 898.04 sys 3.75
+k5_scale_flow mode1 (after the nets guard, output byte-identical to the first smoke run): real 1491.94 user 8667.67 sys 21.53

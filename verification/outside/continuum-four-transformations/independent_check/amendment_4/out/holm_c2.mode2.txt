@@ -1,0 +1,9 @@
+   m = 5, 7 p-values per test, every failed subset: 521,017 cases
+[ok] with p = 1 the family size stays m: no test outside the failed set is rejected that was not rejected with its true p-values, and no failed test is rejected
+[ok] dropping the failed tests and shrinking the family would reject more in some cases (the looser reading C2 does not take): 163,520 cases where dropping rejects a test that p = 1 does not
+[ok] smallest Holm threshold stays 0.05 / 102 for the Law 2b family when 15 tests of a failed instance enter with p = 1: 0.05/102 = 0.000490
+   tests of one instance: presence 3, arrow 6, flow 6 (only the kinds the instance has: 8 presence instances have 3 tests, 7 arrow instances 6, 6 flow instances 6)
+[ok] instance test counts add to the family of 102: 102
+   tests of W: 15 (all enter with p = 1 if W fails its pre-data check)
+
+RESULT all Holm checks hold

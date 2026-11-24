@@ -1,0 +1,11 @@
+Sixth record, written at 2026-11-23T07:08:13Z (date -u on this machine when this file was written). Earlier records are kept as they were. Snapshot of the files before this round: snapshots/r4/.
+Still no outcome of the code built for Amendment 3 seen by the plan's author.
+
+Changes in this round, after the fourth independent check: the K4 round sentence replaced by the checker's text from the report (fuller version with the parentheses), K6 exempt from the epoch rule only (two places), one sentence added to the D14 epoch bullet, FOR_THE_OTHER_HAND.md items 3 and 4 extended. Nothing else changed.
+
+Hashes now:
+16b75e2ec7a2f70e64fe5f33df7b1bc5fc11a9b58056c6ba96a8835f82116ffc  AMENDMENT_4.md
+8b31e9625390da8ca88f1574c22f328f008567fd4de2dd7830bd6f66f4f29b3f  PREREG.md
+d55633d621ac1e8652481d75c92205f905d6fa0e99c17e3f59ce1a7cda35c4f7  README.md
+f64915fdff03d5b3a4e292764a486a314c28751feba9840848357e580d566738  CHECK_BRIEF.md
+a6eaefc43c05ee91d05e0ff862a4a0139b71df5ad763ae7a1ef595c99ecb4483  FOR_THE_OTHER_HAND.md

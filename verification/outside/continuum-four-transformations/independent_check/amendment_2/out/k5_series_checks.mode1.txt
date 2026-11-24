@@ -1,0 +1,38 @@
+INFO c = 2^(-1/32) = 0.978572 (text: about 0.9786); c^32 = 0.500000
+CLAIM b9-c2k | Pearson autocorrelation of g^2 is c^(2k): equals 0.5 at k = 16 | text=below 1/2 near k = 16 | mine=c^32 = 0.500000 | REPRODUCED
+INFO lag: biased autocorrelation of mid-ranks | of the values | c^(2k)
+   8: 0.5817 | 0.7098 | 0.7071
+   12: 0.4628 | 0.5980 | 0.5946
+   14: 0.4150 | 0.5485 | 0.5453
+   15: 0.3934 | 0.5253 | 0.5221
+   16: 0.3730 | 0.5032 | 0.5000
+   17: 0.3539 | 0.4820 | 0.4788
+   18: 0.3361 | 0.4617 | 0.4585
+   20: 0.3032 | 0.4237 | 0.4204
+   24: 0.2476 | 0.3570 | 0.3536
+INFO on 2^21 samples the rank autocorrelation first drops below 1/2 at lag 11
+CLAIM b9-rank | for c = 2^(-1/32) the mid-rank autocorrelation of g^2 first falls below 1/2 at lag 11 (AMENDMENT_2 B9 states this) | text=lag 11 | mine=lag 11 | REPRODUCED
+== tau0 (median over 32 segments of 4,096; rule of plan 4.3) and level shift round(log2 tau0), by series
+   yprime           : tau0 over 3 seeds [11, 11, 11]; level shift [3, 3, 3]
+   cascade          : tau0 over 3 seeds [12, 11, 12]; level shift [4, 3, 4]
+   (IAAFT cascade seed 0: stopped after 151 iterations)
+   (IAAFT cascade seed 1: stopped after 194 iterations)
+   (IAAFT cascade seed 2: stopped after 169 iterations)
+   iaaft_cascade    : tau0 over 3 seeds [10, 14, 12]; level shift [3, 4, 4]
+   shuffled_cascade : tau0 over 3 seeds [1, 1, 1]; level shift [0, 0, 0]
+   y_t              : tau0 over 3 seeds [1, 1, 1]; level shift [0, 0, 0]
+   iid_exp          : tau0 over 3 seeds [1, 1, 1]; level shift [0, 0, 0]
+== jointly populated aligned levels and features (9 per level; the plan needs at least 8)
+   cascade -> exp-mapped cascade (same series, same tau0): jointly populated features per seed [27, 36, 27]; evaluable (>= 8) in 3 of 3
+   cascade -> y': jointly populated features per seed [27, 36, 27]; evaluable (>= 8) in 3 of 3
+   IAAFT cascade -> cascade: jointly populated features per seed [27, 27, 27]; evaluable (>= 8) in 3 of 3
+   cascade -> y_t (old criterion): jointly populated features per seed [0, 9, 0]; evaluable (>= 8) in 1 of 3
+   shuffled cascade -> cascade (old criterion): jointly populated features per seed [0, 9, 0]; evaluable (>= 8) in 1 of 3
+INFO builder's cascade tau0 of 16 (shift 4) against tau0 1 (shift 0): jointly populated features 0 (the old criteria could not be evaluated); my cascade construction gives tau0 11 or 12 (shift 3 or 4), so the old criteria had [0, 9] features in my seeds
+CLAIM b9-old | the old negative criteria shared no aligned level with the cascade (builder: cascade tau0 16) | text=met only through the floor | mine=no shared level at tau0 16; my own cascade (tau0 11 to 12) shares one level in some seeds | REPRODUCED for tau0 16, depends on the cascade construction
+CLAIM b9-new | the new negative criteria are evaluable (at least 8 jointly populated features) | text=share aligned levels | mine=evaluable | REPRODUCED
+INFO IAAFT cascade tau0 [10, 14, 12] against cascade tau0 [12, 11, 12] (same seeds, the IAAFT series is made from the cascade of the same seed)
+INFO seed-rule strings built with the new tags and with K5-style tags are all distinct: True
+CONTROL a pair with fewer than 8 jointly populated features is flagged non-evaluable (shift 4 against shift 0) | wrong input flagged = True
+CONTROL evaluable pair is not flagged (cascade vs y') | wrong input flagged = True
+DONE k5_series_checks

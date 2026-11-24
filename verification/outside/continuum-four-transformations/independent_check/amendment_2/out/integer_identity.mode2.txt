@@ -1,0 +1,24 @@
+white     seed 20264000: distinct values 50 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.45
+white     seed 20264001: distinct values 48 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.57
+white     seed 20264002: distinct values 48 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.95
+ar1_0.5   seed 20264100: distinct values 50 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.52
+ar1_0.5   seed 20264101: distinct values 44 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.38
+ar1_0.5   seed 20264102: distinct values 48 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.65
+ar1_0.9   seed 20264200: distinct values 48 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.78
+ar1_0.9   seed 20264201: distinct values 42 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.63
+ar1_0.9   seed 20264202: distinct values 49 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.33
+ar1_0.99  seed 20264300: distinct values 42 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.22
+ar1_0.99  seed 20264301: distinct values 41 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.18
+ar1_0.99  seed 20264302: distinct values 35 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.56
+pl_1      seed 20264400: distinct values 47 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.21
+pl_1      seed 20264401: distinct values 48 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.1
+pl_1      seed 20264402: distinct values 45 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.89
+pl_2      seed 20264500: distinct values 39 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.19
+pl_2      seed 20264501: distinct values 38 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.08
+pl_2      seed 20264502: distinct values 33 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.08
+sines3    seed 20264600: distinct values 46 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.51
+sines3    seed 20264601: distinct values 47 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.3
+sines3    seed 20264602: distinct values 47 of 1024; maps representable True; pool, features, p identical under the 3 maps True; p=0.15
+CLAIM int-identity | whole-pipeline identity for integer-valued null classes (21 class-seeds, 3 maps each) | text=identity must hold | mine=identical | REPRODUCED
+CONTROL a non-monotone map is detected as different | wrong input flagged = True
+DONE integer_identity

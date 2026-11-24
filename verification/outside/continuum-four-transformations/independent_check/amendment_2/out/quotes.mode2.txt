@@ -1,0 +1,28 @@
+INFO fenced blocks: [('B1', 'Old text', 32), ('B2', 'Old text', 64), ('B2', 'New text', 70), ('B4', 'Old text', 91), ('B5', 'Old text', 114), ('B6', 'Old text', 135), ('B7', 'Old text', 152), ('B8', 'Old text', 173), ('B9', 'Old text', 195)]
+-- B1 old text (draft line 32); cited: Old text, `PREREG.md` lines 286 and 287 (and the same figures in `AMENDMENT_1.md` line 500, A14 item 1):
+   FOUND at base line(s) [286]: A rate up to 0.10 does not stop it. A series whose segment rate is 0.1
+   FOUND at base line(s) [287]: At the stopping line, a rate of 0.129, these are 0.046 and 0.013 (exac
+-- B2 old text (draft line 64); cited: Old text, `PREREG.md` line 480 (section 12b, Gate 10 row), the part changed:
+   FOUND at base line(s) [480]: If they do not respond within seven days, an independent reviewer with
+-- B4 old text (draft line 91); cited: Old text, `PREREG.md` lines 335 and 336:
+   FOUND at base line(s) [335]: Compute (estimate, `checks/check_compute.py`, at the builder's measure
+   FOUND at base line(s) [336]: The Law 2b search adds up to about 68 per mode (about 203 for three) i
+-- B5 old text (draft line 114); cited: Old text, `PREREG.md` lines 273 and 274 (section 10, K1):
+   FOUND at base line(s) [273]: - With the same seeds, the normal scores, the surrogate pool, every st
+   FOUND at base line(s) [274]: This is checked exactly for every K2 class (plain, exp and cube versio
+-- B6 old text (draft line 135); cited: Old text: `PREREG.md` lines 273 and 277 (section 10, K1) name no tied input. Line 277:
+   FOUND at base line(s) [277]: - Must-fail controls, each to be flagged: a counter that drops the las
+-- B7 old text (draft line 152); cited: Old text, `PREREG.md` line 216 (section 7):
+   FOUND at base line(s) [216]: An invalid selected block counts as a non-rejecting segment. It is not
+-- B8 old text (draft line 173); cited: Old text, `PREREG.md` line 102 (section 4.3), the part changed:
+   FOUND at base line(s) [102]: Values within 1e-12 relative of each other count as ties against the r
+-- B9 old text (draft line 195); cited: Old text, `PREREG.md` line 316 (section 10, K5):
+   FOUND at base line(s) [316]: - Cascade to cascade after a monotone map (exp of the standardised ser
+-- B8 old text line 102: FOUND at base line(s) [102]
+-- B11 K2 control line 291: FOUND at base line(s) [291]
+-- B11 K4 control line 307: FOUND at base line(s) [307]
+INFO base lines 18 to 21: ['A12', 'A14', 'A13', 'A11'] (draft says A12, A14, A13, A11)
+INFO the five A14 item 1 figures are in base AMENDMENT_1 line 500
+INFO base 335: Compute (estimate, `checks/check_compute.py`, at t | base 336: The Law 2b search adds up to about 68 per mode (ab
+CONTROL a doctored quotation is not found | wrong input flagged = True
+DONE quotes

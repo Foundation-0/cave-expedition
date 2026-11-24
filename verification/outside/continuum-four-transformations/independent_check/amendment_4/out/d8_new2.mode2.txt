@@ -1,0 +1,9 @@
+[ok] the new rule never gives an adverse verdict that the old literal rule does not: 270,000 sampled cases (seed 20261123), 77,577 where they differ
+[ok] exhaustive finite grid, R = 1 to 5, thresholds 1, 1/2, 1/4: 'both readings' equals the new rule: 222,732 cases
+[ok] a nan template, an inf template or any non-finite detector score: the new rule is not adverse
+[ok] the old text gave adverse for a nan template (so the new text removes that)
+[ok] boundary R = 99,999: 2,499 at or below is adverse, 2,500 is not
+[ok] all tied (R = 99,999 detectors equal to the template): not adverse
+[ok] control: a rule that leaves ties out of 'at or below' is different from the new rule: 64 of the 3-detector multisets at template 1.0
+
+RESULT all D8 checks hold

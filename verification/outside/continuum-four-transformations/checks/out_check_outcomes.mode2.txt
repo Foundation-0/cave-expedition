@@ -1,0 +1,21 @@
+== T3 outcome procedure (rule 5: a profile pass counts only if the arrow is adverse in neither direction; rule 7 counts adverse pairs inside V) ==
+states enumerated: 11664000 = 2 (known-answer tests) x 5^3 (instrument status) x 6^6 (ordered-pair results)
+states matching no outcome: 0 (resolve() raises on any such state)
+  INVALID: 5832000 states, of which 0 also matched a lower-precedence outcome
+  EVIDENCE AGAINST: 638528 states, of which 11200 also matched a lower-precedence outcome
+  SUPPORTED: 64 states, of which 64 also matched a lower-precedence outcome
+  NET-DEPENDENT: 448 states, of which 448 also matched a lower-precedence outcome
+  PARTIAL: 129867 states, of which 0 also matched a lower-precedence outcome
+  DOES NOT DISCRIMINATE: 465205 states, of which 0 also matched a lower-precedence outcome
+  INCONCLUSIVE: 4597888 states, of which 0 also matched a lower-precedence outcome
+== T1 (scale flow) outcome procedure ==
+states enumerated: 11664 = 2 x 2^3 (instrument valid) x 3^6 (ordered-pair results)
+  INVALID: 5832 states, of which 0 also matched a lower-precedence outcome
+  EVIDENCE AGAINST: 25 states, of which 25 also matched a lower-precedence outcome
+  SUPPORTED: 1 states, of which 1 also matched a lower-precedence outcome
+  PARTIAL: 456 states, of which 0 also matched a lower-precedence outcome
+  DOES NOT DISCRIMINATE: 2434 states, of which 0 also matched a lower-precedence outcome
+  INCONCLUSIVE: 2916 states, of which 0 also matched a lower-precedence outcome
+== Wind/WAVES channels under the every-k rule (J complete blocks, k = max(1, J // 32), first 32 selected) ==
+J from 32 to 719 (688 values). Old rule, block b from channel b mod 4: one channel only for 160 values, two or three channels for 176 values.
+New rule, the i-th selected block from channel i mod 4: values of J where some channel is missing or counts differ by more than one: 0.
