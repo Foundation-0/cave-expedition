@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<build folder>/repo/verification/outside/continuum-four-transformations/known_answer/k5_scale_flow.py", line 174, in <module>
+    main()
+    ~~~~^^
+  File "<build folder>/repo/verification/outside/continuum-four-transformations/known_answer/k5_scale_flow.py", line 167, in main
+    status, text = evaluate(results, ns, mode)
+                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "<build folder>/repo/verification/outside/continuum-four-transformations/known_answer/k5_scale_flow.py", line 120, in evaluate
+    t1 = [r["T1|" + k] for k in ("native", "amp_scores", "amp_exp")]
+          ~^^^^^^^^^^^
+KeyError: 'T1|amp_exp'
+real 3494.14
+user 12474.23
+sys 51.27

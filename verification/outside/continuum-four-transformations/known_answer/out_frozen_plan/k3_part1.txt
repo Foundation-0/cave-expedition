@@ -1,0 +1,16 @@
+TEST K3 - planted structure found: 200 seeds per case, N = 4096 (part 1 of 3: case logistic)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+cases: logistic | seed example, logistic idx 0: 9299107312219714240
+nets: native (need >= 0.80), block mean by 2 (need >= 0.50), zero-phase whitening (need >= 0.50)
+case       net       detect    rate   need   result tie-excl
+logistic   native       200   1.000   0.80     PASS        0
+logistic   bm2          200   1.000   0.50     PASS        0
+logistic   whiten       200   1.000   0.50     PASS        0
+--- must-fail control: surrogate generator that leaks the time arrow (circular shifts of the series), native net
+logistic   leaky         27   0.135  need>=0.80 -> FLAGGED (below criterion)
+ROW|logistic|native|200|0.80
+ROW|logistic|bm2|200|0.50
+ROW|logistic|whiten|200|0.50
+ROW|logistic|leaky|27|0.80
+SUMMARY K3-part1 PART | detection criteria all met; leaky-surrogate control flagged in all cases

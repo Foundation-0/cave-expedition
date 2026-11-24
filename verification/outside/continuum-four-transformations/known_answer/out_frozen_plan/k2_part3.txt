@@ -1,0 +1,18 @@
+TEST K2 - nothing found in noise: 200 seeds per class, N = 4096 (part 3 of 7: base noise ar1_0.99)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+classes in this run: 3 | seed example, class ar1_0.99 idx 0: 5963368586748868083
+IAAFT: provisional rule, start from a random permutation, stop when ranks stop changing or at 100 rounds
+class              reject    rate  flagged  tie/deg iters/surr converged   slope
+ar1_0.99               13   0.065       ok        0      61.3    0.963   -1.98
+ar1_0.99|exp           50   0.250  FLAGGED        0     100.0    0.002   -1.87
+ar1_0.99|cube          48   0.240  FLAGGED        0     100.0    0.000   -1.74
+classes flagged (rate > 0.086): 2 of 3
+must-fail control, detector with no correction for the ten lags (rejects if the best single-lag p <= 0.05), rate per class:
+  ar1_0.99           0.430 above the bound
+  ar1_0.99|exp       0.690 above the bound
+  ar1_0.99|cube      0.690 above the bound
+ROW|ar1_0.99|13|86|0|-1.982318
+ROW|ar1_0.99|exp|50|138|0|-1.872156
+ROW|ar1_0.99|cube|48|138|0|-1.739736
+SUMMARY K2-part3 PART | 2 of 3 classes above the 0.086 bound

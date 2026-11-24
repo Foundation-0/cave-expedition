@@ -1,0 +1,7 @@
+k1_exact_checks: real 185.04 user 709.94 sys 3.08 
+k3_planted_structure: real 68.11 user 257.13 sys 1.66 
+k2_nothing_in_noise: real 381.96 user 954.86 sys 8.90 
+k4_transfer: real 2405.49 user 6916.70 sys 46.83 
+k5_scale_flow: Traceback (most recent call last):   File "<build folder>/repo/verification/outside/continu
+k5_scale_flow rerun: real 3188.36 user 12293.81 sys 29.53 
+k4_transfer rerun: real 1701.13 user 6604.84 sys 21.76 

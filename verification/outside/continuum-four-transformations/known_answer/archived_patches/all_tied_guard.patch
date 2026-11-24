@@ -1,0 +1,52 @@
+diff --git a/verification/outside/continuum-four-transformations/known_answer/units_check.py b/verification/outside/continuum-four-transformations/known_answer/units_check.py
+index 12eae49..588daa7 100644
+--- a/verification/outside/continuum-four-transformations/known_answer/units_check.py
++++ b/verification/outside/continuum-four-transformations/known_answer/units_check.py
+@@ -751,6 +751,12 @@ def u_audit_three():
+     ck("ties: below(-inf, 1) is False", not bool(ties.below(-np.inf, 1.0)))
+     ck("ties: at_or_above on finite values is unchanged", bool(ties.at_or_above(2.0, 1.0)) and bool(ties.at_or_above(1.0, 1.0)) and not bool(ties.at_or_above(1.0, 2.0)))
+     ck("ties: at_or_above(-inf, 1) stays False (a surrogate with no lag kept never counts against the real series)", not bool(ties.at_or_above(-np.inf, 1.0)))
++    r = transfer.transfer_test("profile", np.ones(10) / np.sqrt(10), np.ones(10), np.ones(10, dtype=bool), np.random.default_rng(3), R=100)
++    ck("transfer: a template whose every detector ties with it gives no adverse verdict (B8: a tie never creates a verdict)", r["D"] == 1 and r["p"] == 1 and not r["adverse"])
++    g = np.ones(10)
++    w = np.arange(1.0, 11.0)
++    r2 = transfer.transfer_test("profile", w / np.sqrt(w @ w), g, np.ones(10, dtype=bool), np.random.default_rng(3), R=100)
++    ck("transfer: a target on which every permuted detector scores the same gives no adverse verdict either", r2["n_lt"] == 0 and not r2["adverse"])
+     low = transfer.transfer_test("arrow", np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), -np.array([3.0, 1.0, 2.0, 5.0, 4.0, 6.0]), np.ones(6, dtype=bool), np.random.default_rng(3), R=500)
+     ck("transfer: a template strictly below every detector is still adverse (D8 unchanged where scores differ)", low["adverse"] and low["n_lt"] == 0)
+ 
+diff --git a/verification/outside/continuum-four-transformations/src/transfer.py b/verification/outside/continuum-four-transformations/src/transfer.py
+index 3557e85..038edfd 100644
+--- a/verification/outside/continuum-four-transformations/src/transfer.py
++++ b/verification/outside/continuum-four-transformations/src/transfer.py
+@@ -144,13 +144,14 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
+     S_A = float(w @ g)
+     out = {"m": m, "kind": kind, "S_A": S_A}
+     if m == 0:
+-        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "adverse": False})
++        out.update({"D": 1, "p": Fraction(1), "floor": Fraction(1), "n_ge": R, "n_lt": 0, "n_tied": R, "adverse": False})
+         return out
+     wp, gp = w[pos], g[pos]
+     S_pop = float(wp @ gp)
+     rest = S_A - S_pop  # entries outside the jointly populated set stay in place; they multiply zeros
+     D = distinct_detectors(wp, signs)
+     n_ge = 0
++    n_tied = 0
+     done = 0
+     while done < R:
+         c = min(chunk, R - done)
+@@ -160,10 +161,13 @@ def transfer_test(kind, w, g, pop_mask, rng, R=R_DETECTORS, chunk=20000):
+             ww = ww * (rng.integers(0, 2, size=(c, m)) * 2 - 1)
+         sc = np.einsum("rm,m->r", ww, gp) + rest
+         n_ge += int(c - ties.below(sc, S_A).sum())   # a tie counts as at or above, never as below
++        n_tied += int(ties.tied(sc, S_A).sum())
+         done += c
+     n_lt = R - n_ge
+     out.update({"D": D, "p": Fraction(1 + n_ge, R + 1), "floor": smallest_reachable_p(R, D), "n_ge": n_ge,
+-                "n_lt": n_lt, "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R})
++                "n_lt": n_lt, "n_tied": n_tied,
++                # D8, and no verdict when every detector ties with w_A (B8: a tie never creates a verdict)
++                "adverse": ADVERSE_DEN * n_lt < ADVERSE_NUM * R and n_tied < R})
+     return out
+ 
+ 

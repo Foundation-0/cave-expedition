@@ -1,0 +1,8 @@
+TEST X3 - extra, descriptive: K2 rejection rate of the worst flagged classes with the IAAFT iteration cap at 100 and at 1000 (first 60 seeds of K2) (part 2 of 3: ar1_0.9|cube)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+not a plan test; the K2 verdict stays as K2 reports it. The plan fixes no iteration cap (AMENDMENTS_NEEDED.md, A1).
+class            cap  reject    rate  iters/surr  converged
+ar1_0.9|cube     100      11   0.183       100.0      0.000
+ar1_0.9|cube    1000      10   0.167       598.1      0.974
+SUMMARY X3-part2 DESCRIPTIVE | rates at cap 100 vs 1000: ar1_0.9|cube 0.183 -> 0.167

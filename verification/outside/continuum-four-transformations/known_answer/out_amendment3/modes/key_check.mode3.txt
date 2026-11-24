@@ -1,0 +1,16 @@
+KEY CHECK: every seed key of D14 (Amendment 3), built with src/keys.py at the plan's counts. Master seed 20261121.
+K1                                             draws    6884, distinct keys    1001, shared by design 5883
+K2                                             draws   36400, distinct keys   36000, shared by design 400
+K3                                             draws   13000, distinct keys    9600, shared by design 3400
+K4 (D20 and its second reading)                draws    6180, distinct keys    6100, shared by design 80
+K4 superset (every kind, split and run)        draws    8680, distinct keys    8660, shared by design 20
+K5 (the 10 series sets of B9)                  draws   11150, distinct keys   11130, shared by design 20
+K5 superset (every case, split and run)        draws   46420, distinct keys   46400, shared by design 20
+Real data pools and random detectors           draws    7436, distinct keys    7172, shared by design 264
+Controls C2, C3, C4 with the segment pools     draws   28224, distinct keys   28224, shared by design 0
+Law 2b pre-data checks                         draws  104320, distinct keys   99520, shared by design 4800
+Law 2b instance tests, real data               draws   89376, distinct keys   89376, shared by design 0
+Law 2b G1 null replicates (reduced grid)       draws   99240, distinct keys   99240, shared by design 0
+all families together: 417545 distinct keys, 0 keys used by two different owners in different families
+KEY CHECK: 42 checks, 0 failed
+PASS

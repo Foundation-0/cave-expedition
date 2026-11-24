@@ -1,0 +1,11 @@
+TEST X2 - extra: controls C2, C3, C4 on synthetic shots data, order-4 statistic, and a must-fail control (not a section 10 test)
+python 3.14.6 numpy 2.5.4
+master seed 20261121 | seed rule: first 16 hex digits of SHA-256 of 20261121|<instrument>|<split>|<net>|<segment>|<purpose>|<index>
+real verdict-like segments: K=29 of S=32, presence p=7.96e-35
+order 4 (reported, not part of the verdict): mean standardised T4 7.72, mean standardised T3 10.72
+C2 surrogate as data   K=3 of S=32, excess point 6, K/S=0.094: ABSENT (pass)
+C3 shuffle             K=1 of S=32, excess point 6, K/S=0.031: ABSENT (pass)
+C4 generated noise     K=1 of S=32, excess point 6, K/S=0.031: ABSENT (pass)
+--- must-fail control: 'C2' made with a time-arrow-keeping generator (circular shifts) must be flagged as present
+leaky C2: K=28 of S=32: FLAGGED (present)
+SUMMARY X2 PASS | controls C2, C3, C4 absent: yes; leaky control flagged

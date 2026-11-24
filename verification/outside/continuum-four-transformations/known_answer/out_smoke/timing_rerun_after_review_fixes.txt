@@ -1,0 +1,6 @@
+k6_gate_checks: gates_mutant_24:26: ComplexWarning: Casting complex values to real discards the imaginary part real 0.26 user 0.09 sys 0.03 
+k1_exact_checks: real 115.05 user 322.85 sys 3.06 
+k3_planted_structure: real 81.26 user 259.65 sys 2.37 
+k2_nothing_in_noise: real 241.90 user 927.68 sys 7.48 
+k4_transfer: real 1615.02 user 4594.84 sys 33.43 
+k5_scale_flow: real 1999.13 user 8972.65 sys 67.29 
