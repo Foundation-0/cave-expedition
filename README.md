@@ -125,6 +125,8 @@ python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
 ```
 
+CI also compares the script's sha256 and the sha256 of its `-I -B` stdout with the values the outside Gate-5 anchor recorded (`ae239507...feac86` in `verification/outside/gate5-unification/hermitian/out/anchor_input_hashes.txt`, `c00ad701...fcdc855` in `verification/outside/gate5-unification/MANIFEST_sha256.txt`), so an edit that keeps the three modes in agreement still fails.
+
 ### R5 Must-Fail Controls (`verification/tests/`)
 
 PROTOCOL.md R5 asks for a must-fail control for every named check, and that deleting any refusal branch turns the test suite red. These team-side suites cover the three verifiers that run from a fresh clone. Each control trips one refusal and compares its full message. `check_003_seam01_ropt.py` is not edited: the suite loads it with `importlib` and drives each guard by patching the helper that feeds it, so its bytes keep the sha256 `ae239507...feac86` that the outside Gate-5 anchor recorded. The `check_totals.py` suite copies that script and the files it reads into a temporary directory; nothing under `verification/outside/` is written.
