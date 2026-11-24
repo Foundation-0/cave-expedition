@@ -151,6 +151,8 @@ PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/outside/check_t
 
 What these numbers do and do not show: aletheia mutates a temporary copy (the files here are unchanged) and runs the test command under `-I -O -B`. It applies two operators at refusal sites, guard deletion and comparison-boundary flips, so a full kill rate says every such site has a control that notices it. It does not say the checks are complete or correct. Two `check_003` boundaries are never reached by its seeded data, and their controls patch a helper to reach them: exactly 50 regime-1 instances (every S scaled by 10012/10000) and a construction error of exactly `1e-9` (`abs` shadowed in the module). A run without the second control killed 67 of 68; the survivor was the `err < 1e-09` to `err <= 1e-09` flip on line 711.
 
+CI (`.github/workflows/verify.yml`, job `aletheia-audit`) installs aletheia at commit `a07d7db` into the runner and runs `aletheia audit-check` over the repository (hygiene, strict JSON, `AUDIT_LOG.md` row structure, seeded RNG, three-mode parity of the scripts and suites above), `aletheia mutate` (exhaustive) for the fast verifiers, and a safety scan of `.github/`. A full-repository safety scan runs as an advisory step, because it matches keywords and can trip on prose. A passing audit-check does not certify the `N2` requirements of `PROTOCOL.md` section 1.
+
 ### Cross-Repository Audit Suite (`check_001` – `check_012`)
 
 Scripts `check_004`–`check_012` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.

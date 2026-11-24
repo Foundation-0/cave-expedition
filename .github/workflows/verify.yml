@@ -27,3 +27,40 @@ jobs:
           cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode2.txt"
           cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode3.txt"
           cat "${RUNNER_TEMP}/mode1.txt"
+
+  aletheia-audit:
+    # Repository-wide checks by Foundation-0/aletheia. It is installed into the runner at a
+    # pinned commit, not vendored into this repository (README section 3), so this job needs
+    # read access to github.com/Foundation-0/aletheia at run time.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install aletheia at a pinned commit
+        run: python3 -m pip install --no-deps "git+https://github.com/Foundation-0/aletheia@a07d7db02018ab852d7653f08678ee7c692f3a33"
+      - name: audit-check (hygiene, strict JSON, AUDIT_LOG rows, seeded RNG, three-mode parity)
+        # A PASS here does not certify the N2 requirements of PROTOCOL.md section 1.
+        run: >-
+          python3 -I -B -m aletheia audit-check . --audit-log verification/AUDIT_LOG.md --strict-unseeded
+          --scripts
+          verification/checks/check_003_seam01_ropt.py
+          verification/checks/verify_round10_standalone.py
+          verification/outside/check_totals.py
+          verification/tests/test_check_003_r5.py
+          verification/tests/test_verify_round10_r5.py
+          verification/tests/test_check_totals_r5.py
+      - name: Mutation check of the fast verifiers (exhaustive)
+        # check_003 takes about 7 minutes; its command is in README section 5.
+        run: |
+          set -euo pipefail
+          python3 -I -B -m aletheia mutate verification/checks/verify_round10_standalone.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_verify_round10_r5.py"
+          python3 -I -B -m aletheia mutate verification/outside/check_totals.py --work-root . --max-mutants 0 --guards need --test-cmd "python3 -I -B verification/tests/test_check_totals_r5.py"
+      - name: Safety scan of the workflow files
+        run: python3 -I -B -m aletheia audit-check .github --safety-scan
+      - name: Safety scan of the whole repository (advisory)
+        # The scan is keyword-based, so prose that quotes a risky command can trip it.
+        continue-on-error: true
+        run: python3 -I -B -m aletheia audit-check . --safety-scan
