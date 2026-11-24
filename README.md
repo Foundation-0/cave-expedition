@@ -103,7 +103,11 @@ cave-expedition/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2); status and successor note at the top
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
     ├── OUTSIDE_RULINGS_INDEX.md               # Internal label beside the outside ruling, per audit (README and site columns copy it)
+    ├── expedition_root.pins.json              # Byte pins the ledger rows record, for replays under EXPEDITION_ROOT (section 5)
+    ├── check_expedition_root.py               # Offline checker for that manifest
+    ├── check_tracked_private_paths.py         # Fails if git tracks the default sibling or transcript layout
     ├── outside/                               # Outside-observer checks and rulings (a contribution from outside the team; see its README, "Standing")
+    ├── tests/                                 # R5 must-fail suites for check_003, verify_round10, check_totals and the two tools above
     └── checks/                                # 14 numbered check scripts (check_001..check_014) plus verify_round10_standalone.py
         ├── check_001_lemma32_and_tcb.py
         ├── check_002_session1_instruments.py
@@ -122,7 +126,7 @@ cave-expedition/
         └── verify_round10_standalone.py       # Runs the committed round-10 certifiers under symbiosis/round10/
 ```
 
-**Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`).
+**Deliberately Excluded:** Private raw conversation session dumps (`<gemini-sessions>/`), local machine scratch/workshop files (`<local-workshop>/`), upstream repo clones, virtual environments, and byte-compiled caches are excluded from this repository. All file paths in docs and check scripts have been sanitized and parameterized via environment variables (`EXPEDITION_ROOT`, `GEMINI_SESSIONS_DIR`). Because both variables default to paths inside the checkout, `.gitignore` lists the default layout (`/synthesis/`, `/probes/`, `/branches/`, `/repos/`, `gemini-sessions/`, `gemini-session-*/`), and `python3 -I -B verification/check_tracked_private_paths.py` fails if git tracks or stages any of it, including through `git add -f`. It exits 2, not 0, when git cannot list the tree. CI runs it.
 
 ---
 
@@ -151,6 +155,36 @@ python3 -I -O -B verification/checks/check_003_seam01_ropt.py
 python3 -I -B -W error verification/checks/check_003_seam01_ropt.py
 ```
 
+CI also compares the script's sha256 and the sha256 of its `-I -B` stdout with the values the outside Gate-5 anchor recorded (`ae239507...feac86` in `verification/outside/gate5-unification/hermitian/out/anchor_input_hashes.txt`, `c00ad701...fcdc855` in `verification/outside/gate5-unification/MANIFEST_sha256.txt`), so an edit that keeps the three modes in agreement still fails.
+
+### R5 Must-Fail Controls (`verification/tests/`)
+
+PROTOCOL.md R5 asks for a must-fail control for every named check, and that deleting any refusal branch turns the test suite red. These team-side suites cover the three verifiers that run from a fresh clone. Each control trips one refusal and compares its full message. `check_003_seam01_ropt.py` is not edited: the suite loads it with `importlib` and drives each guard by patching the helper that feeds it, so its bytes keep the sha256 `ae239507...feac86` that the outside Gate-5 anchor recorded. The `check_totals.py` suite copies that script and the files it reads into a temporary directory; nothing under `verification/outside/` is written.
+
+```bash
+python3 -I -B verification/tests/test_check_003_r5.py          # about 7 s
+python3 -I -B verification/tests/test_verify_round10_r5.py
+python3 -I -B verification/tests/test_check_totals_r5.py
+```
+
+Run each under `-I -O -B` and `-I -B -W error` as well. Kill rates were measured on 2026-11-24 with [`Foundation-0/aletheia`](https://github.com/Foundation-0/aletheia) at commit `a07d7db` (`aletheia mutate`, exhaustive: `--max-mutants 0`, so no discovered site was skipped). Run from the repository root, with `<aletheia>` a clone of that repository:
+
+```bash
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/checks/check_003_seam01_ropt.py --work-root . --max-mutants 0 --timeout 120 --test-cmd "python3 -I -B verification/tests/test_check_003_r5.py"
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/checks/verify_round10_standalone.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_verify_round10_r5.py"
+PYTHONPATH=<aletheia> python3 -B -m aletheia mutate verification/outside/check_totals.py --work-root . --max-mutants 0 --guards need --test-cmd "python3 -I -B verification/tests/test_check_totals_r5.py"
+```
+
+| Verifier | Mutants killed | Time |
+|---|---|---|
+| `check_003_seam01_ropt.py` | 68 of 68 | about 7 min 20 s |
+| `verify_round10_standalone.py` | 11 of 11 | about 7 s |
+| `outside/check_totals.py` (`need` treated as a guard) | 14 of 14 | about 15 s |
+
+What these numbers do and do not show: aletheia mutates a temporary copy (the files here are unchanged) and runs the test command under `-I -O -B`. It applies two operators at refusal sites, guard deletion and comparison-boundary flips, so a full kill rate says every such site has a control that notices it. It does not say the checks are complete or correct. Two `check_003` boundaries are never reached by its seeded data, and their controls patch a helper to reach them: exactly 50 regime-1 instances (every S scaled by 10012/10000) and a construction error of exactly `1e-9` (`abs` shadowed in the module). A run without the second control killed 67 of 68; the survivor was the `err < 1e-09` to `err <= 1e-09` flip on line 711.
+
+CI (`.github/workflows/verify.yml`, job `aletheia-audit`) installs aletheia at commit `a07d7db` into the runner and runs `aletheia audit-check` over the repository (hygiene, strict JSON, `AUDIT_LOG.md` row structure, seeded RNG, three-mode parity of the scripts and suites above), `aletheia mutate` (exhaustive) for the fast verifiers, and a safety scan of `.github/`. A full-repository safety scan runs as an advisory step, because it matches keywords and can trip on prose. A passing audit-check does not certify the `N2` requirements of `PROTOCOL.md` section 1.
+
 ### Cross-Repository Audit Suite (`check_001` – `check_014`)
 
 Scripts `check_004`–`check_014` independently import and audit the sibling instruments, proofs, and upstream reference models via `EXPEDITION_ROOT` (defaulting to the repo root if unset). Scripts `check_001`–`check_002` target the private raw session transcripts via `GEMINI_SESSIONS_DIR`.
@@ -172,7 +206,7 @@ Scripts `check_004`–`check_014` independently import and audit the sibling ins
 | `check_013_bw16_leech24.py` | `AUDIT-020` (row only on pull request #1) | — (no row on `main`) | `sympy`, `numpy` | `probes/fractals/` |
 | `check_014_bw16_leech24_reaudit.py` | `AUDIT-020R` (row only on pull request #1) | — (no row on `main`) | Python 3 stdlib | `probes/fractals/` |
 
-**About the name "Scan 23848".** In these checks it names a two-weight synthetic model, not a spectrum: `check_003_seam01_ropt.py` (lines 460 to 470) hard-codes $w_1 = (6404/10000)^2$ and $w_2 = (3596/10000)^2$ and reads no file. Its output key `scan23848_mode_b_comparison` stays as it is, because renaming it would change the stdout bytes whose SHA-256 the outside Gate-5 anchor recorded ([`verification/outside/gate5-unification/hermitian/out/anchor_output_hashes_raw.txt`](verification/outside/gate5-unification/hermitian/out/anchor_output_hashes_raw.txt), line 1). On `main` at commit `9729839`, CI only compares the three run modes with each other and does not pin that hash. The name also comes from upstream: `check_008_spectral_inertia.py` (line 60) imports `spectral_inertia.examples.scan23848_benchmark` from `siliconcordat/spectral-inertia`, and the AUDIT-014 row cites `scan23848_benchmark.py`. The source-verified record of the real scan is in Foundation-0/project-asma, `CLAIMS.md` row V38; see the provenance note in [`cartography/session2_verification_map.md`](cartography/session2_verification_map.md).
+**About the name "Scan 23848".** In these checks it names a two-weight synthetic model, not a spectrum: `check_003_seam01_ropt.py` (lines 460 to 470) hard-codes $w_1 = (6404/10000)^2$ and $w_2 = (3596/10000)^2$ and reads no file. Its output key `scan23848_mode_b_comparison` stays as it is, because renaming it would change the stdout bytes whose SHA-256 the outside Gate-5 anchor recorded ([`verification/outside/gate5-unification/hermitian/out/anchor_output_hashes_raw.txt`](verification/outside/gate5-unification/hermitian/out/anchor_output_hashes_raw.txt), line 1). On `main` at commit `9729839`, CI only compared the three run modes with each other; it now also checks that hash and the script's own sha256 (see "Standalone Zero-Dependency Verification" above). The name also comes from upstream: `check_008_spectral_inertia.py` (line 60) imports `spectral_inertia.examples.scan23848_benchmark` from `siliconcordat/spectral-inertia`, and the AUDIT-014 row cites `scan23848_benchmark.py`. The source-verified record of the real scan is in Foundation-0/project-asma, `CLAIMS.md` row V38; see the provenance note in [`cartography/session2_verification_map.md`](cartography/session2_verification_map.md).
 
 Example cross-repo audit invocation:
 
@@ -182,6 +216,31 @@ python3 -I -B verification/checks/check_010_spectral_inertia_reaudit.py
 python3 -I -O -B verification/checks/check_010_spectral_inertia_reaudit.py
 python3 -I -B -W error verification/checks/check_010_spectral_inertia_reaudit.py
 ```
+
+### Which Sibling Bytes an Audit Recorded (`verification/expedition_root.pins.json`)
+
+The ledger rows record few byte pins, so a replay under `EXPEDITION_ROOT` cannot always be tied to what the audit saw. `verification/expedition_root.pins.json` sets out what the rows do record, in three sections:
+
+- `audited`: only values a ledger row itself records, each with its line, whether it is a full hash, a hash prefix or a commit prefix, and the row's own words. One row records a full SHA-256 (AUDIT-018), five record 8- to 10-digit prefixes, and one names a commit (`dfc8516`, AUDIT-015R / 016R). Most rows do not say which file a hash covers or how it was taken, so each hash also names the file and the hash kind used by the check script the row cites, with the script lines that show it. `check_007` (AUDIT-011, 012, 013) and `check_011` (AUDIT-011R / 013R) take a canonical JSON hash of `probes/gravity/probe1_aest_results.json`, `probe2_latch_chirp_results.json` and `probe3_inertia_boxes_results.json`: the SHA-256 of the JSON with its `sha256_canonical` field removed, keys sorted and compact separators. `check_009` (AUDIT-017) hashes the raw bytes of `probes/fractals/e8_spinor_fold_certificate.json`, and `check_011` (AUDIT-018) the raw bytes of `probes/gravity/probe4_witness_zeno_results.json`. `check_009` line 160 also holds the certificate's full hash, but the ledger records only its prefix, so the prefix is the pin.
+- `post_audit_reference`: two `Foundation-0/project-asma` files tied to `check_012`, at the public commits that first carry these bytes: the Lean file it reads (`formal/AsmaIdentifiabilityProofs.lean` at `94b70f3`) and `optimal_inertia_rank.py`, which it imports from `synthesis/` and which project-asma publishes in its AUDIT-006R study (`studies/expedition-mobius-ropt/optimal_inertia_rank.py` at `f2f92ee`); both commits are dated 2026-11-22. They are public bytes committed after the audit, not the audited bytes. The Lean file's last public version before the audit (`6259ef2`, 2026-11-13) is listed as probable, not recorded.
+- `unrecorded`: the 15 of 22 rows that record no byte pin. Their audited bytes cannot be recovered now, and nothing is back-filled.
+
+Each row also carries a `replay_class`: 1 row replays from a bare clone (AUDIT-002, through `check_003`; the row also cites `check_001`, which needs the private transcripts), 19 need the `EXPEDITION_ROOT` layout and 2 need the private transcripts.
+
+```bash
+EXPEDITION_ROOT=/path/to/expedition python3 -I -B verification/check_expedition_root.py
+python3 -I -B verification/tests/test_check_expedition_root.py
+```
+
+The checker first validates the manifest. Every audited value and its quoted words must appear on the ledger line it names. For each hash, the value, the file name, its folder and the hashing code must appear on the cited lines of the check script. Every ledger row must sit in exactly one of `audited` and `unrecorded`, no row may appear twice in `unrecorded`, and every row label must appear once in `replay_class` (line 28 has three entries in `audited`, one per probe). It then hashes each named file the way its check script does and reports per entry:
+
+- `OK`: the hash (or the clone's `git rev-parse HEAD`, for the commit pin) starts with the row's value.
+- `OTHER_ROW`: the file matches the value another audited row records for the same file. AUDIT-011 and AUDIT-011R / 013R pin two versions of `probe1_aest_results.json`, and AUDIT-013 and AUDIT-011R / 013R two versions of `probe3_inertia_boxes_results.json`, so a folder can match at most one of each pair. The outside check reports the second version of each pair in Foundation-0/gravity draft pull request 30 at commit `00d8b1b` (`a011r_probe_hashes.py` in `verification/outside/checks/physics/`).
+- `MISMATCH`: the file is present but matches no audited value for it, or cannot be hashed the way its check script does (not JSON, no `sha256_canonical` field, or that field differs from the recomputed hash), or the clone is at another commit.
+- `NOT_SHOWN`: the file or clone is absent, or git cannot read HEAD.
+- `UNRECORDED`: the row records no byte pin.
+
+It exits 1 only on a `MISMATCH` of an audited value. It exits 2 on a malformed or unreadable manifest, an unreadable ledger or cited check script, or a ledger with no audit rows. Post-audit reference entries are reported but never fail the run. On a bare clone every file is `NOT_SHOWN`. The suite holds a positive control: the outside Gate-5 check's copy of the probe 4 results (`verification/outside/gate5-unification/hermitian/out/anchor_fractals/probe4_witness_zeno_results.json`) reports `OK` for AUDIT-018. It also holds must-fail runs with wrong bytes for AUDIT-018 and with probe 1 results that no row records or that the check scripts would refuse. No real canonical JSON file was at hand, so the `OTHER_ROW` control patches in the digest. With aletheia at `a07d7db`, `mutate verification/check_expedition_root.py --guards _need --max-mutants 0` against this suite killed 50 of 50 mutants; CI runs the same command.
 
 ---
 

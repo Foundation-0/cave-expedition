@@ -27,3 +27,59 @@ jobs:
           cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode2.txt"
           cmp "${RUNNER_TEMP}/mode1.txt" "${RUNNER_TEMP}/mode3.txt"
           cat "${RUNNER_TEMP}/mode1.txt"
+      - name: Compare check_003 bytes and stdout with the outside Gate-5 anchor
+        # The pins are the values the outside Gate-5 check recorded:
+        #   verification/outside/gate5-unification/hermitian/out/anchor_input_hashes.txt (script bytes)
+        #   verification/outside/gate5-unification/MANIFEST_sha256.txt (anchor_check003.stdout)
+        # Any edit to check_003 or its output fails here, even if the three modes still agree.
+        run: |
+          set -euo pipefail
+          src_pin=ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86
+          out_pin=c00ad70189f376b34ba5fae253df0fd1c3b211ecd5bffb51b81fced27fcdc855
+          grep -qx "${src_pin}  upstream/ledger-pr1/check_003_seam01_ropt.py" verification/outside/gate5-unification/hermitian/out/anchor_input_hashes.txt
+          grep -qx "${out_pin}  hermitian/out/anchor_check003.stdout" verification/outside/gate5-unification/MANIFEST_sha256.txt
+          echo "${src_pin}  verification/checks/check_003_seam01_ropt.py" | sha256sum -c -
+          echo "${out_pin}  ${RUNNER_TEMP}/mode1.txt" | sha256sum -c -
+
+  aletheia-audit:
+    # Repository-wide checks by Foundation-0/aletheia. It is installed into the runner at a
+    # pinned commit, not vendored into this repository (README section 3), so this job needs
+    # read access to github.com/Foundation-0/aletheia at run time.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install aletheia at a pinned commit
+        run: python3 -m pip install --no-deps "git+https://github.com/Foundation-0/aletheia@a07d7db02018ab852d7653f08678ee7c692f3a33"
+      - name: audit-check (hygiene, strict JSON, AUDIT_LOG rows, seeded RNG, three-mode parity)
+        # A PASS here does not certify the N2 requirements of PROTOCOL.md section 1.
+        run: >-
+          python3 -I -B -m aletheia audit-check . --audit-log verification/AUDIT_LOG.md --strict-unseeded
+          --scripts
+          verification/checks/check_003_seam01_ropt.py
+          verification/checks/verify_round10_standalone.py
+          verification/outside/check_totals.py
+          verification/tests/test_check_003_r5.py
+          verification/tests/test_verify_round10_r5.py
+          verification/tests/test_check_totals_r5.py
+          verification/check_expedition_root.py
+          verification/tests/test_check_expedition_root.py
+          verification/check_tracked_private_paths.py
+          verification/tests/test_check_tracked_private_paths.py
+      - name: Mutation check of the fast verifiers (exhaustive)
+        # check_003 takes about 7 minutes; its command is in README section 5.
+        run: |
+          set -euo pipefail
+          python3 -I -B -m aletheia mutate verification/checks/verify_round10_standalone.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_verify_round10_r5.py"
+          python3 -I -B -m aletheia mutate verification/outside/check_totals.py --work-root . --max-mutants 0 --guards need --test-cmd "python3 -I -B verification/tests/test_check_totals_r5.py"
+          python3 -I -B -m aletheia mutate verification/check_expedition_root.py --work-root . --max-mutants 0 --guards _need --test-cmd "python3 -I -B verification/tests/test_check_expedition_root.py"
+          python3 -I -B -m aletheia mutate verification/check_tracked_private_paths.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B verification/tests/test_check_tracked_private_paths.py"
+      - name: Safety scan of the workflow files
+        run: python3 -I -B -m aletheia audit-check .github --safety-scan
+      - name: Safety scan of the whole repository (advisory)
+        # The scan is keyword-based, so prose that quotes a risky command can trip it.
+        continue-on-error: true
+        run: python3 -I -B -m aletheia audit-check . --safety-scan
