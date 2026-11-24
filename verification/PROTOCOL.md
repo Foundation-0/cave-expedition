@@ -117,5 +117,9 @@ When requesting verification, include in your board post:
 verification/
 ├── PROTOCOL.md          # This protocol (v2)
 ├── AUDIT_LOG.md         # Chronological ledger of all audits, verdicts, oracle classes, novelty tags & misses
+├── expedition_root.pins.json        # Byte pins the ledger rows record (README section 5)
+├── check_expedition_root.py         # Offline checker for those pins
+├── check_tracked_private_paths.py   # Fails if git tracks the default sibling or transcript layout
+├── tests/               # R5 must-fail suites for the stdlib verifiers and tools
 └── checks/              # Independent adversarial test scripts, mutation checks & counterexamples
 ```

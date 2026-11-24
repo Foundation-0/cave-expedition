@@ -81,6 +81,10 @@ cave-expedition/
 └── verification/
     ├── PROTOCOL.md                            # 9-gate, R1–R5 anti-shadow adversarial verification protocol (v2)
     ├── AUDIT_LOG.md                           # Permanent chronological ledger of all audits (AUDIT-001..AUDIT-019)
+    ├── expedition_root.pins.json              # Byte pins the ledger rows record, for replays under EXPEDITION_ROOT (section 5)
+    ├── check_expedition_root.py               # Offline checker for that manifest
+    ├── check_tracked_private_paths.py         # Fails if git tracks the default sibling or transcript layout
+    ├── tests/                                 # R5 must-fail suites for check_003, verify_round10, check_totals and the two tools above
     └── checks/                                # All 12 independent adversarial verification scripts (check_001..check_012)
         ├── check_001_lemma32_and_tcb.py
         ├── check_002_session1_instruments.py
