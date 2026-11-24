@@ -4,32 +4,40 @@ name: twin-coherence
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   twin-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Check out the twin repo (Foundation-0/aletheia)
+      - name: Check out the twin repo (Foundation-0/aletheia) at a pinned commit
         uses: actions/checkout@v4
         with:
           repository: Foundation-0/aletheia
+          ref: ea6ea710c9fbda88c707b0e4dc212702ff299dd7
           path: aletheia
+          persist-credentials: false
 
       - name: Install the aletheia CLI from the twin repo (zero external dependencies)
         run: |
           python3 -m pip install --no-deps ./aletheia
 
-      - name: Machine-check the claims the two repos make about each other
+      - name: Machine-check the claims the two repos make about each other (fail-closed)
         run: |
-          if python3 -m aletheia twin-check --help > /dev/null 2>&1; then
-            python3 -I -O -B -W error -m aletheia twin-check \
-              --aletheia-root "$GITHUB_WORKSPACE/aletheia" \
-              --cave-root "$GITHUB_WORKSPACE" \
-              --json
-          else
-            echo "the aletheia CLI on the default branch has no twin-check command yet; skipping"
+          if ! python3 -m aletheia twin-check --help > /dev/null 2>&1; then
+            echo "ERROR: pinned aletheia has no twin-check command; failing closed" >&2
+            exit 1
           fi
+          python3 -I -O -B -W error -m aletheia twin-check \
+            --aletheia-root "$GITHUB_WORKSPACE/aletheia" \
+            --cave-root "$GITHUB_WORKSPACE" \
+            --json
