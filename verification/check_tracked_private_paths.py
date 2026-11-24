@@ -30,7 +30,8 @@ PATTERNS = (
     re.compile(r"(synthesis|probes|branches|repos)/"),
     # GEMINI_SESSIONS_DIR defaults to a path relative to the working directory, so match at any depth.
     re.compile(r"(.*/)?gemini-sessions/"),
-    re.compile(r"(.*/)?gemini-session-[0-9a-f]+/"),
+    # Same set as the .gitignore entry gemini-session-*/ (check_002 reads gemini-session-<hex>/).
+    re.compile(r"(.*/)?gemini-session-[^/]*/"),
 )
 UNCHECKED = "the tree was not checked"
 

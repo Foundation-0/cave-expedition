@@ -90,6 +90,16 @@ class TrackedPrivatePathGuard(unittest.TestCase):
             ["  gemini-session-488274c3e0040dac/code_blocks/b.py", "  verification/checks/gemini-sessions/s2.txt"],
         )
 
+    def test_every_name_gitignore_drops_is_caught(self):
+        # .gitignore has gemini-session-*/, so a forced add of any such folder must fail, not
+        # only a hex-named one.
+        self.git("init", "-q")
+        (self.repo / ".gitignore").write_text("gemini-session-*/\n", encoding="utf-8")
+        self.stage(".gitignore", "gemini-session-old/notes.txt", "docs/gemini-session-/a.txt", force=True)
+        run = self.run_guard()
+        self.assertEqual(run.returncode, 1, run.stdout)
+        self.assertEqual(run.stdout.splitlines()[1:], ["  docs/gemini-session-/a.txt", "  gemini-session-old/notes.txt"])
+
     def test_not_a_checkout_is_not_a_pass(self):
         run = self.run_guard()
         self.assertEqual(run.returncode, 2, run.stdout)
