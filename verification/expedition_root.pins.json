@@ -1,48 +1,56 @@
 {
   "schema": "cave.expedition_root_pins.v1",
-  "about": "Which sibling bytes each audit row recorded, for replays under EXPEDITION_ROOT. Checked offline by verification/check_expedition_root.py. 'audited' holds only values the ledger row itself records. 'post_audit_reference' holds public bytes committed after the audits, kept so a replay can say which public version it ran; they are not the audited bytes. 'unrecorded' names every row that records no byte pin. Nothing here back-fills an audited value.",
+  "about": "Which sibling bytes each audit row recorded, for replays under EXPEDITION_ROOT. Checked offline by verification/check_expedition_root.py. 'audited' holds only values the ledger row itself records. The ledger rows mostly do not say which file a value hashes or how, so each audited hash names the file and the hash kind that the check script the row cites uses, with the script lines that show it; the checker confirms the value, the file name and the recipe appear on those lines. 'post_audit_reference' holds public bytes committed after the audits, kept so a replay can say which public version it ran; they are not the audited bytes. 'unrecorded' names every row that records no byte pin. Nothing here back-fills an audited value.",
   "root_variable": "EXPEDITION_ROOT",
   "ledger": "verification/AUDIT_LOG.md",
+  "hash_kinds": {
+    "file bytes": "SHA-256 of the file's raw bytes",
+    "canonical JSON": "SHA-256 of the JSON re-serialised with json.dumps(sort_keys=True, separators=(',', ':')) after the top-level sha256_canonical field is removed; that field must equal the result. This is the recipe of check_007 lines 82-89 and check_011 lines 66-73."
+  },
   "audited": [
     {
       "row_label": "AUDIT-011",
       "audit_log_line": 20,
       "pin": "prefix",
       "value": "fa4d3a1b",
-      "hashes": "not stated",
       "ledger_words": "Both `probe1` (`-B`, `-O -B -W error`, SHA-256 `fa4d3a1b...`)",
-      "candidate_paths": ["probes/gravity/probe1_aest_helmholtz_closure.py"],
-      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+      "path": "probes/gravity/probe1_aest_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_007_gravity_probes.py", "lines": [[64, 64], [82, 89], [104, 104]]},
+      "basis_note": "The row does not say what the value hashes. check_007, the script the row cites, passes fa4d3a1b to check_canonical_sha256 for probe1_aest_results.json under probes/gravity (lines 64, 104), and that function hashes the canonical JSON (lines 82-89)."
     },
     {
       "row_label": "AUDIT-012",
       "audit_log_line": 21,
       "pin": "prefix",
       "value": "ed74a3a4",
-      "hashes": "not stated",
       "ledger_words": "R4 parity clean (`-B`, `-O -B -W error`, SHA-256 `ed74a3a4...`)",
-      "candidate_paths": ["probes/gravity/probe2_latch_outside_anchors_and_chirp.py"],
-      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+      "path": "probes/gravity/probe2_latch_chirp_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_007_gravity_probes.py", "lines": [[64, 64], [82, 89], [312, 312]]},
+      "basis_note": "The row does not say what the value hashes. check_007, the script the row cites, passes ed74a3a4 to check_canonical_sha256 for probe2_latch_chirp_results.json under probes/gravity (lines 64, 312), and that function hashes the canonical JSON (lines 82-89)."
     },
     {
       "row_label": "AUDIT-013",
       "audit_log_line": 22,
       "pin": "prefix",
       "value": "35e16732",
-      "hashes": "not stated",
       "ledger_words": "R4 parity clean (SHA-256 `35e16732...`)",
-      "candidate_paths": ["probes/gravity/probe3_nonaffine_inertia_box_certifier.py"],
-      "candidate_basis": "the row's target script; check_007 reads the gravity probes from probes/gravity. The row does not say whether the value hashes the file or its output."
+      "path": "probes/gravity/probe3_inertia_boxes_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_007_gravity_probes.py", "lines": [[64, 64], [82, 89], [499, 499]]},
+      "basis_note": "The row does not say what the value hashes. check_007, the script the row cites, passes 35e16732 to check_canonical_sha256 for probe3_inertia_boxes_results.json under probes/gravity (lines 64, 499), and that function hashes the canonical JSON (lines 82-89)."
     },
     {
       "row_label": "AUDIT-017",
       "audit_log_line": 26,
       "pin": "prefix",
       "value": "e4f14b92",
-      "hashes": "not stated",
       "ledger_words": "Clean-room 4-mode `-I` R4 replay of `verify_e8_spinor_fold.py` bit-identical (`SHA-256 e4f14b92...`",
-      "candidate_paths": ["probes/fractals/verify_e8_spinor_fold.py"],
-      "candidate_basis": "the script the row replayed; check_009 reads it from probes/fractals. The row does not say whether the value hashes the file or its output."
+      "path": "probes/fractals/e8_spinor_fold_certificate.json",
+      "hash_kind": "file bytes",
+      "basis": {"script": "verification/checks/check_009_e8_spinor_fold.py", "lines": [[53, 53], [155, 161]]},
+      "basis_note": "The row quotes the prefix next to its replay of verify_e8_spinor_fold.py but does not say what it hashes. check_009, the script the row cites, hashes the raw bytes of e8_spinor_fold_certificate.json under probes/fractals (lines 53, 155-161). check_009 line 160 records the full value e4f14b928a3b08897e562ed56e334c6471ccf12e6bd55f52b6273f2577b0ef31; the ledger records only the prefix, so the pin here is the prefix."
     },
     {
       "row_label": "AUDIT-015R / 016R",
@@ -58,43 +66,44 @@
       "audit_log_line": 28,
       "pin": "prefix",
       "value": "bcde49380e",
-      "hashes": "not stated",
       "ledger_words": "canonical SHAs verified: Probe 1 `bcde49380e...`",
-      "candidate_paths": ["probes/gravity/probe1_aest_helmholtz_closure.py"],
-      "candidate_basis": "Probe 1 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+      "path": "probes/gravity/probe1_aest_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_011_gravity_reaudit_and_probe4.py", "lines": [[57, 57], [66, 73], [77, 77]]},
+      "basis_note": "check_011, the script the row cites, passes bcde49380e to check_probe_canonical_sha for probe1_aest_results.json under probes/gravity (lines 57, 77), and that function hashes the canonical JSON (lines 66-73). Same file as AUDIT-011's fa4d3a1b: a folder can match at most one of the two."
     },
     {
       "row_label": "AUDIT-011R / 013R",
       "audit_log_line": 28,
       "pin": "prefix",
       "value": "ed74a3a43d",
-      "hashes": "not stated",
       "ledger_words": "Probe 2 `ed74a3a43d...`",
-      "candidate_paths": ["probes/gravity/probe2_latch_outside_anchors_and_chirp.py"],
-      "candidate_basis": "Probe 2 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+      "path": "probes/gravity/probe2_latch_chirp_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_011_gravity_reaudit_and_probe4.py", "lines": [[57, 57], [66, 73], [78, 78]]},
+      "basis_note": "check_011, the script the row cites, passes ed74a3a43d to check_probe_canonical_sha for probe2_latch_chirp_results.json under probes/gravity (lines 57, 78), and that function hashes the canonical JSON (lines 66-73). It extends AUDIT-012's prefix ed74a3a4 for the same file."
     },
     {
       "row_label": "AUDIT-011R / 013R",
       "audit_log_line": 28,
       "pin": "prefix",
       "value": "6d46734781",
-      "hashes": "not stated",
       "ledger_words": "Probe 3 `6d46734781...`",
-      "candidate_paths": ["probes/gravity/probe3_nonaffine_inertia_box_certifier.py"],
-      "candidate_basis": "Probe 3 as check_011 reads it from probes/gravity. The row does not say what 'canonical SHA' hashes."
+      "path": "probes/gravity/probe3_inertia_boxes_results.json",
+      "hash_kind": "canonical JSON",
+      "basis": {"script": "verification/checks/check_011_gravity_reaudit_and_probe4.py", "lines": [[57, 57], [66, 73], [79, 79]]},
+      "basis_note": "check_011, the script the row cites, passes 6d46734781 to check_probe_canonical_sha for probe3_inertia_boxes_results.json under probes/gravity (lines 57, 79), and that function hashes the canonical JSON (lines 66-73). Same file as AUDIT-013's 35e16732: a folder can match at most one of the two."
     },
     {
       "row_label": "AUDIT-018",
       "audit_log_line": 29,
       "pin": "full",
       "value": "899d65178959d397a1121ec0a494dbe9cf6a5e7fd2ef2ecb29ef4f22b30c3451",
-      "hashes": "file",
       "ledger_words": "Clean-room R4 parity passed (file SHA-256 `899d65178959d397a1121ec0a494dbe9cf6a5e7fd2ef2ecb29ef4f22b30c3451`",
-      "candidate_paths": [
-        "probes/gravity/probe4_witness_zeno_schur.py",
-        "probes/gravity/probe4_witness_zeno_results.json"
-      ],
-      "candidate_basis": "the two artifacts the row names, where check_011 reads probe 4 (probes/gravity). The row says 'file SHA-256' but not which of the two files."
+      "path": "probes/gravity/probe4_witness_zeno_results.json",
+      "hash_kind": "file bytes",
+      "basis": {"script": "verification/checks/check_011_gravity_reaudit_and_probe4.py", "lines": [[57, 57], [139, 145]]},
+      "basis_note": "The row says 'file SHA-256' and names probe4_witness_zeno_schur.py and probe4_witness_zeno_results.json. check_011, the script the row cites, hashes the raw bytes of probe4_witness_zeno_results.json under probes/gravity (lines 57, 139-145). The outside Gate-5 check keeps a copy with these bytes: verification/outside/gate5-unification/hermitian/out/anchor_fractals/probe4_witness_zeno_results.json."
     }
   ],
   "post_audit_reference": [

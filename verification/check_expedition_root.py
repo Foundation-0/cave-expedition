@@ -1,22 +1,31 @@
 #!/usr/bin/env python3
 """Compare an EXPEDITION_ROOT layout with the byte pins in verification/expedition_root.pins.json.
 
+Each audited hash names one file and how it is hashed, taken from the check script the ledger row
+cites: "file bytes" (SHA-256 of the raw bytes) or "canonical JSON" (SHA-256 of the JSON with the
+top-level sha256_canonical field removed, sorted keys and compact separators; the field must equal
+the result). The checker hashes the file the same way.
+
 What it reports, per entry:
-  OK          a present file (or clone HEAD) matches a value the ledger row records
-  MISMATCH    the row says it hashed a file, every candidate file is present, and none matches;
-              or the clone named for a commit pin is at a different HEAD
-  NOT_SHOWN   nothing to compare: the file or clone is absent, git cannot read HEAD, or the row
-              does not say whether its value hashes file bytes or an output
+  OK          the file's hash (or the clone's HEAD) starts with the value the ledger row records
+  OTHER_ROW   the file matches the value another audited row records for the same file, not this
+              row's value (AUDIT-011 and AUDIT-011R / 013R pin two versions of one file, for example)
+  MISMATCH    the file is present and matches no audited value for it, or cannot be hashed the
+              way the check script does; or the clone named for a commit pin is at another HEAD
+  NOT_SHOWN   nothing to compare: the file or clone is absent, or git cannot read HEAD
   UNRECORDED  the row records no byte pin at all
 Post-audit reference entries are public bytes committed after the audits. They are reported
 (REFERENCE_MATCH, BEFORE_AUDIT_MATCH, REFERENCE_DIFFERS) but never fail the run, because they are
 not the audited bytes.
 
-Before comparing anything it checks the manifest against the ledger: strict JSON, every audited
-value present on the ledger line it names, and every audit row listed exactly once across
-'audited' and 'unrecorded' and once in 'replay_class'.
+Before comparing anything it checks the manifest against the ledger and the check scripts: strict
+JSON; every audited value and its quoted words present on the ledger line it names; for each hash,
+the value, the file name, its folder and the hash recipe present on the cited lines of the check
+script; every ledger row in exactly one of 'audited' and 'unrecorded', no row twice in
+'unrecorded', and every row label once in 'replay_class'.
 
-Exit codes: 0 no MISMATCH; 1 at least one MISMATCH; 2 manifest or ledger malformed.
+Exit codes: 0 no MISMATCH; 1 at least one MISMATCH; 2 manifest malformed or unreadable, ledger or
+a cited check script unreadable, or ledger without audit rows.
 Root: --root, else the EXPEDITION_ROOT environment variable, else this repository's root (the
 default the check scripts use). A bare clone therefore reports NOT_SHOWN for every file.
 Run: python3 -I -B verification/check_expedition_root.py   (also -I -O -B and -I -B -W error)
@@ -45,6 +54,11 @@ COMMIT_FULL = re.compile(r"[0-9a-f]{40}\Z")
 COMMIT_PREFIX = re.compile(r"[0-9a-f]{7,40}\Z")
 ROW_LABEL = re.compile(r"\| \*\*(AUDIT-[^*]+)\*\* \|")
 CLASSES = ("bare-clone", "needs EXPEDITION_ROOT", "needs private transcripts")
+# Each hash kind, with the code fragments the cited check-script lines must contain to show it.
+HASH_KINDS = {
+    "canonical JSON": ('pop("sha256_canonical")', 'sort_keys=True, separators=(",", ":")'),
+    "file bytes": ("read_bytes()", "hashlib.sha256("),
+}
 
 
 class Malformed(ValueError):
@@ -117,7 +131,27 @@ def _row(entry: dict[str, Any], rows: dict[int, tuple[str, str]], where: str) ->
     return line
 
 
-def validate(data: dict[str, Any], rows: dict[int, tuple[str, str]]) -> None:
+def _basis_text(basis: Any, where: str, repo_root: Path) -> str:
+    """Return the cited lines of the check script named by basis, joined with newlines."""
+    _need(type(basis) is dict, f"{where}: basis must be an object")
+    script = _rel_path(basis.get("script"), where)
+    try:
+        lines = (repo_root / script).read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeDecodeError):
+        raise Malformed(f"{where}: cannot read basis script {script}") from None
+    spans = basis.get("lines")
+    _need(type(spans) is list and len(spans) > 0, f"{where}: basis lines must be a non-empty list of [first, last] pairs")
+    cited: list[str] = []
+    for span in spans:
+        _need(
+            type(span) is list and len(span) == 2 and all(type(n) is int for n in span) and 1 <= span[0] <= span[1] <= len(lines),
+            f"{where}: basis lines {span!r} are not a line range of {script}",
+        )
+        cited.extend(lines[span[0] - 1 : span[1]])
+    return "\n".join(cited)
+
+
+def validate(data: dict[str, Any], rows: dict[int, tuple[str, str]], repo_root: Path = REPO_ROOT) -> None:
     for key in ("audited", "post_audit_reference", "unrecorded", "replay_class"):
         _need(type(data.get(key)) is list, f"section {key!r} must be a list")
     pinned_lines: set[int] = set()
@@ -130,14 +164,20 @@ def validate(data: dict[str, Any], rows: dict[int, tuple[str, str]]) -> None:
         _need(pattern is not None, f"{where}: pin must be full, prefix or commit_prefix")
         _need(type(value) is str and pattern.match(value) is not None, f"{where}: value {value!r} is not a valid {pin}")
         _need(value in rows[line][1], f"{where}: value {value} does not appear on ledger line {line}")
+        words = entry.get("ledger_words")
+        _need(type(words) is str and value in words and words in rows[line][1], f"{where}: ledger_words must quote ledger line {line} around the value")
         if pin == "commit_prefix":
             _rel_path(entry.get("clone"), where)
         else:
-            _need(entry.get("hashes") in ("file", "not stated"), f"{where}: hashes must be 'file' or 'not stated'")
-            paths = entry.get("candidate_paths")
-            _need(type(paths) is list and len(paths) > 0, f"{where}: candidate_paths must be a non-empty list")
-            for p in paths:
-                _rel_path(p, where)
+            kind = entry.get("hash_kind")
+            _need(kind in HASH_KINDS, f"{where}: hash_kind must be one of {sorted(HASH_KINDS)}")
+            path = PurePosixPath(_rel_path(entry.get("path"), where))
+            text = _basis_text(entry.get("basis"), where, repo_root)
+            _need(value in text, f"{where}: value {value} is not on the cited lines of the basis script")
+            _need(f'"{path.name}"' in text, f"{where}: file name {path.name} is not on the cited lines of the basis script")
+            _need(f'"{path.parent}"' in text, f"{where}: folder {path.parent} is not on the cited lines of the basis script")
+            missing = [fragment for fragment in HASH_KINDS[kind] if fragment not in text]
+            _need(not missing, f"{where}: the cited lines do not show the {kind} recipe (no {' or '.join(missing)})")
         pinned_lines.add(line)
     unrecorded_lines: set[int] = set()
     for i, entry in enumerate(data["unrecorded"]):
@@ -176,6 +216,24 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def file_digest(path: Path, kind: str) -> tuple[str | None, str]:
+    """Hash the file the way the cited check script does: (digest, '') or (None, why it cannot)."""
+    if kind == "file bytes":
+        return sha256_file(path), ""
+    # canonical JSON, as check_007 lines 82-89 and check_011 lines 66-73 compute it
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, RecursionError) as exc:  # JSONDecodeError and UnicodeDecodeError are ValueErrors
+        return None, f"not UTF-8 JSON ({type(exc).__name__})"
+    if type(data) is not dict or "sha256_canonical" not in data:
+        return None, "no top-level sha256_canonical field"
+    recorded = data.pop("sha256_canonical")
+    digest = hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+    if recorded != digest:
+        return None, f"its sha256_canonical field {str(recorded)[:12]!r} is not the recomputed {digest[:12]}"
+    return digest, ""
+
+
 def clone_head(clone: Path) -> tuple[str | None, str]:
     """Return (HEAD, '') for the top of a git work tree, else (None, reason)."""
     if not clone.is_dir():
@@ -194,7 +252,7 @@ def clone_head(clone: Path) -> tuple[str | None, str]:
     return head.stdout.strip(), ""
 
 
-def check_audited(entry: dict[str, Any], root: Path) -> tuple[str, str]:
+def check_audited(entry: dict[str, Any], root: Path, audited: list[dict[str, Any]]) -> tuple[str, str]:
     pin, value = entry["pin"], entry["value"]
     if pin == "commit_prefix":
         head, reason = clone_head(root / entry["clone"])
@@ -203,17 +261,19 @@ def check_audited(entry: dict[str, Any], root: Path) -> tuple[str, str]:
         if head.startswith(value):
             return "OK", f"{entry['clone']} HEAD {head[:12]}"
         return "MISMATCH", f"{entry['clone']} HEAD {head[:12]} is not {value}"
-    present = [(p, sha256_file(root / p)) for p in entry["candidate_paths"] if (root / p).is_file()]
-    for p, digest in present:
-        if digest.startswith(value):
-            return "OK", f"file bytes of {p}"
-    if not present:
-        return "NOT_SHOWN", "absent: " + ", ".join(entry["candidate_paths"])
-    if entry["hashes"] == "file" and len(present) == len(entry["candidate_paths"]):
-        return "MISMATCH", "no candidate file matches: " + ", ".join(f"{p} {d[:12]}" for p, d in present)
-    if entry["hashes"] == "file":
-        return "NOT_SHOWN", "present candidates differ, others absent: " + ", ".join(p for p, _ in present)
-    return "NOT_SHOWN", "file bytes differ; the row does not say it hashed the file: " + ", ".join(p for p, _ in present)
+    path, kind = entry["path"], entry["hash_kind"]
+    script = PurePosixPath(entry["basis"]["script"]).name
+    if not (root / path).is_file():
+        return "NOT_SHOWN", f"{path}: absent"
+    digest, problem = file_digest(root / path, kind)
+    if digest is None:
+        return "MISMATCH", f"{path}: {problem}; {script} would refuse it"
+    if digest.startswith(value):
+        return "OK", f"{kind} of {path}"
+    for other in audited:
+        if other.get("path") == path and other.get("hash_kind") == kind and digest.startswith(other["value"]):
+            return "OTHER_ROW", f"{kind} of {path} matches line {other['audit_log_line']} {other['row_label']} {other['value']} instead"
+    return "MISMATCH", f"{kind} of {path} is {digest[:12]}, which no audited row records for it"
 
 
 def check_reference(entry: dict[str, Any], path: str, root: Path) -> tuple[str, str]:
@@ -254,7 +314,7 @@ def main(argv: list[str] | None = None) -> int:
     print("AUDITED (values the ledger rows record)")
     audited = Counter()
     for entry in data["audited"]:
-        status, detail = check_audited(entry, root)
+        status, detail = check_audited(entry, root, data["audited"])
         audited[status] += 1
         print(f"  {status:<10} line {entry['audit_log_line']} {entry['row_label']} {entry['pin']} {entry['value'][:12]}: {detail}")
     print("POST-AUDIT REFERENCE (public bytes committed after the audits; not the audited bytes)")
@@ -275,7 +335,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  {name}: {len(by_class[name])}")
     status = "MISMATCH" if audited["MISMATCH"] else "NO_MISMATCH"
     print(
-        f"RESULT check_expedition_root: {status} (audited: {audited['OK']} OK, {audited['MISMATCH']} MISMATCH, "
+        f"RESULT check_expedition_root: {status} (audited: {audited['OK']} OK, {audited['OTHER_ROW']} OTHER_ROW, {audited['MISMATCH']} MISMATCH, "
         f"{audited['NOT_SHOWN']} NOT_SHOWN; references: {references['REFERENCE_MATCH']} match, "
         f"{references['BEFORE_AUDIT_MATCH']} before-audit match, {references['REFERENCE_DIFFERS']} differ, "
         f"{references['NOT_SHOWN']} not shown; unrecorded rows: {len(data['unrecorded'])})"
