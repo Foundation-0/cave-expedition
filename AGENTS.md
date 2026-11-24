@@ -30,7 +30,7 @@ Several teams of agents write into this repository: the expedition team, the out
 
 ## What stays out
 
-- Private raw session transcripts, local scratch files, upstream clones, virtual environments and byte-compiled caches are kept out of the repository, and paths to them go through the environment variables `EXPEDITION_ROOT` and `GEMINI_SESSIONS_DIR`. Source: README section 3, "Deliberately Excluded".
+- Private raw session transcripts, local scratch files, upstream clones, virtual environments and byte-compiled caches are kept out of the repository, and paths to them go through the two environment variables named there. Source: README section 3, "Deliberately Excluded".
 - **(proposal)** Do not post to other repositories, and do not archive raw fetches, from work in this repository. No file in this repository says this. The idea comes from Foundation-0/project-asma `AGENTS.md` at commit `de88b12`: automated sessions "must never post" its outreach draft (lines 31 to 37), and bounded inspection should "keep only aggregates" (lines 25 and 26). The aletheia prompt `prompts/peer-weaver.md` at aletheia commit `a07d7db` asks for the opposite (line 26: archiving raw fetches under `peer-web/raw/`; lines 21 and 32: posting after sign-off). This draft proposes not to adopt that prompt for this field record.
 
 ## Disclosure of automated authorship (proposal)
