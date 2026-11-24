@@ -15,7 +15,7 @@ if [ -n "$d" ]; then echo "FAIL plan files differ from $PLAN:"; echo "$d"; rc=1;
 if ! git merge-base --is-ancestor "$PLAN" HEAD; then echo "FAIL the branch does not contain $PLAN"; rc=1; fi
 hits=$(grep -rIl "/Users/\|kethuda" $P --exclude-dir=.git --exclude-dir=checks --exclude-dir=independent_check --exclude-dir=frozen_plan_code --exclude-dir=out_frozen_plan --exclude=hygiene.sh 2>/dev/null)
 if [ -n "$hits" ]; then echo "FAIL local path or name in:"; echo "$hits"; rc=1; else echo "ok   no local path or name"; fi
-crlf=$(grep -rIl $'\r' $P/src $P/known_answer --include='*.py' --include='*.md' --include='*.sh' 2>/dev/null)
+crlf=$(grep -rIl "$(printf '\r')" $P/src $P/known_answer --include='*.py' --include='*.md' --include='*.sh' 2>/dev/null)
 if [ -n "$crlf" ]; then echo "FAIL CRLF in: $crlf"; rc=1; else echo "ok   LF endings"; fi
 pyc=$(find $P -name __pycache__ 2>/dev/null | head -1)
 if [ -n "$pyc" ]; then echo "FAIL __pycache__ present"; rc=1; else echo "ok   no __pycache__"; fi
