@@ -24,8 +24,9 @@ the value, the file name, its folder and the hash recipe present on the cited li
 script; every ledger row in exactly one of 'audited' and 'unrecorded', no row twice in
 'unrecorded', and every row label once in 'replay_class'.
 
-Exit codes: 0 no MISMATCH; 1 at least one MISMATCH; 2 manifest malformed or unreadable, ledger or
-a cited check script unreadable, or ledger without audit rows.
+Exit codes: 0 no MISMATCH; 1 at least one MISMATCH; 2 manifest malformed or unreadable (including
+not valid UTF-8), ledger or a cited check script unreadable, ledger without audit rows, or a root
+that is not a directory (so a mistyped --root or EXPEDITION_ROOT cannot pass as a clean run).
 Root: --root, else the EXPEDITION_ROOT environment variable, else this repository's root (the
 default the check scripts use). A bare clone therefore reports NOT_SHOWN for every file.
 Run: python3 -I -B verification/check_expedition_root.py   (also -I -O -B and -I -B -W error)
@@ -85,7 +86,7 @@ def _no_constant(text: str) -> Any:
 def load_pins(path: Path) -> dict[str, Any]:
     try:
         raw = path.read_text(encoding="utf-8")
-    except OSError as exc:
+    except (OSError, UnicodeDecodeError) as exc:
         raise Malformed(f"cannot read manifest: {exc}") from None
     try:
         data = json.loads(raw, object_pairs_hook=_no_duplicates, parse_float=_no_float, parse_constant=_no_constant)
@@ -100,7 +101,7 @@ def ledger_rows(path: Path) -> dict[int, tuple[str, str]]:
     """Map 1-based line number to (row label, line text) for every audit row of the ledger."""
     try:
         lines = path.read_text(encoding="utf-8").splitlines()
-    except OSError as exc:
+    except (OSError, UnicodeDecodeError) as exc:
         raise Malformed(f"cannot read ledger: {exc}") from None
     rows = {}
     for number, line in enumerate(lines, start=1):
@@ -302,6 +303,7 @@ def main(argv: list[str] | None = None) -> int:
     else:
         root, source = REPO_ROOT, "default (this repository's root)"
     try:
+        _need(root.is_dir(), f"root {root} ({source}) is not a directory")
         data = load_pins(Path(args.pins))
         rows = ledger_rows(Path(args.ledger))
         validate(data, rows)

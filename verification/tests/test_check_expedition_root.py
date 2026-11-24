@@ -225,6 +225,27 @@ class ExpeditionRootChecker(unittest.TestCase):
         run = run_checker(self.root, "--pins", str(duplicate))
         self.assertEqual((run.returncode, run.stdout.splitlines()[0]), (2, "MALFORMED: duplicate JSON key 'schema'"))
 
+    def test_must_fail_unreadable_inputs_and_missing_root(self):
+        # A manifest or ledger that is not valid UTF-8 is MALFORMED (exit 2), not a traceback (exit 1,
+        # the MISMATCH code).
+        bad_pins = self.tmp / "latin1.json"
+        bad_pins.write_bytes(b'{"schema": "\xff"}')
+        run = run_checker(self.root, "--pins", str(bad_pins))
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertTrue(run.stdout.startswith("MALFORMED: cannot read manifest:"), run.stdout)
+        self.assertEqual(run.stderr, "")
+        bad_ledger = self.tmp / "latin1.md"
+        bad_ledger.write_bytes(b"| **`AUDIT-001`** | \xff |\n")
+        run = run_checker(self.root, "--ledger", str(bad_ledger))
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertTrue(run.stdout.startswith("MALFORMED: cannot read ledger:"), run.stdout)
+        # A root that does not exist must not report a clean run.
+        missing = self.tmp / "no-such-root"
+        run = run_checker(missing)
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertEqual(run.stdout.splitlines()[0], f"MALFORMED: root {missing} (--root argument) is not a directory")
+        self.assertEqual(run.stdout.splitlines()[-1], "RESULT check_expedition_root: MALFORMED")
+
 
 
 def _set(path, value):
