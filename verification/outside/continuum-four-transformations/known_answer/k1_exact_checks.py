@@ -1,7 +1,8 @@
 """K1 Exact checks (PREREG section 10, as amended by Amendment 2, B5 and B6). Integer counts are compared exactly. The identities
 of the pipeline under the comparison maps (y^3 + y, exp(y), ranks, with y = x / max|x|), under polarity and over the 27 class versions
 are compared bit for bit through digests. Tied inputs: the time-symmetric tied waveform and integer-valued null classes. Four must-fail
-controls. usage: k1_exact_checks.py smoke|full"""
+controls. Every draw from a K1 seed key uses the run's key epoch (reading D14 as amended by Amendment 4).
+usage: k1_exact_checks.py smoke [epoch=0] | full epoch=<k>"""
 import io
 import contextlib
 import os
@@ -10,7 +11,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
 import nets, par, patterns, ranks, second_impl, segments, stats43, synth, tasks
-from kcommon import Checker, header, summary, parse_mode, sizes
+from kcommon import Checker, header, summary, parse_cli, sizes
 
 PIPE_N = 1024
 REAL_N = (4096, 2048)
@@ -122,7 +123,7 @@ def waveform_checks(C, tag, ranker=None):
                         C.eq("%s waveform: counts identical under %s, tau=%d" % (tag, mn, tau), cy, c)
 
 
-def identity_jobs(nseeds, kind):
+def identity_jobs(nseeds, kind, epoch):
     jobs = []
     for base in synth.K2_CLASSES:
         for idx in range(nseeds):
@@ -130,26 +131,26 @@ def identity_jobs(nseeds, kind):
                 cls = base + ver
                 variants = ("id", "cubic", "exp", "rank", "neg") if ver == "" else ("id", "cubic", "exp", "rank")
                 for v in variants:
-                    jobs.append(("class", cls, idx, PIPE_N, v, kind))
+                    jobs.append(("class", cls, idx, PIPE_N, v, kind, epoch))
     for base in synth.K2A_CLASSES:
         for idx in range(nseeds):
             for v in ("id", "cubic", "exp", "rank"):
-                jobs.append(("int", base, idx, PIPE_N, v, kind))
+                jobs.append(("int", base, idx, PIPE_N, v, kind, epoch))
     for v in ("id", "cubic", "exp", "rank"):
-        jobs.append(("wave", "waveform", 0, 4096, v, kind))
+        jobs.append(("wave", "waveform", 0, 4096, v, kind, epoch))
     return jobs
 
 
-def pipeline_identity(C, nseeds, tag, kind):
+def pipeline_identity(C, nseeds, tag, kind, epoch):
     """The whole pipeline over the class versions, the integer-valued classes and the waveform. Every case that is representable is
     compared with the plain series bit for bit. Returns (failed checks, coverage dict, case counts)."""
-    jobs = identity_jobs(nseeds, kind)
+    jobs = identity_jobs(nseeds, kind, epoch)
     res = par.pmap(tasks.k1_task, jobs)
     R = {(j[0], j[1], j[2], j[4]): r for j, r in zip(jobs, res)}
     cov = {}
     nfail0 = len(C.failed)
     ncase = 0
-    for (src, cls, idx, n, v, kd), r in zip(jobs, res):
+    for (src, cls, idx, n, v, kd, _), r in zip(jobs, res):
         base, _, ver = cls.partition("|")
         refkey = (src, base, idx, "id")
         ref = R[refkey]
@@ -203,7 +204,7 @@ def coverage_report(C, cov, nseeds):
     return nr
 
 
-def real_length_scores(C, nseeds):
+def real_length_scores(C, nseeds, epoch):
     """At 4,096 and 2,048 samples the normal scores of the exp and cube versions equal those of the plain version, exactly, for
     all 9 classes. A version that is not representable is recorded and not counted."""
     n_checked = 0
@@ -211,10 +212,10 @@ def real_length_scores(C, nseeds):
     for n in REAL_N:
         for cls in synth.K2_CLASSES:
             for idx in range(nseeds):
-                x = synth.k1_series(cls, idx, n)
+                x = synth.k1_series(cls, idx, n, epoch=epoch)
                 z = ranks.normal_scores(x)
                 for m in ("exp", "cube"):
-                    y = synth.k1_series(cls + "|" + m, idx, n)
+                    y = synth.k1_series(cls + "|" + m, idx, n, epoch=epoch)
                     if not representable(x, y):
                         notrep += 1
                         print("  version not representable: %s|%s n=%d seed %d" % (cls, m, n, idx))
@@ -224,10 +225,10 @@ def real_length_scores(C, nseeds):
     return n_checked, notrep
 
 
-def offset_identity(C, nseeds):
+def offset_identity(C, nseeds, epoch):
     for cls in synth.K2_CLASSES:
         for idx in range(min(nseeds, 10)):
-            blk = synth.k1_series(cls, idx, 4096 + 128)
+            blk = synth.k1_series(cls, idx, 4096 + 128, epoch=epoch)
             o = segments.best_offset(blk, 4096)
             for nm in ("neg", "cubic", "exp", "rank"):
                 with np.errstate(all="ignore"):
@@ -247,10 +248,11 @@ def guard_checks(C):
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    sz = sizes(mode)
+    run = parse_cli(sys.argv, seeded=True, test="K1")
+    ep = run["epoch"]
+    sz = sizes(run["mode"])
     ns = sz["K1_SEEDS"]
-    header("K1", "exact checks", mode)
+    header("K1", "exact checks", run)
     print("seeds per class version: %d; pipeline identity at n = %d; scores at n = %s; 27 class versions" % (ns, PIPE_N, REAL_N))
     C = Checker()
     print("-- integer counts, complement, reversal, sigma_hat, lag doubling, second implementation (maps on y = x / max|x|)")
@@ -261,12 +263,12 @@ def main():
     print("-- representability guard")
     guard_checks(C)
     print("-- offset identity")
-    offset_identity(C, ns)
+    offset_identity(C, ns, ep)
     print("-- normal scores of the exp and cube versions at the K2 lengths, all 9 classes")
-    nsc, nrs = real_length_scores(C, ns)
+    nsc, nrs = real_length_scores(C, ns, ep)
     print("score checks: %d, versions not representable: %d" % (nsc, nrs))
     print("-- pipeline identity: pool, features, p-value (27 class versions, integer-valued classes, waveform)")
-    nf, cov, ncase = pipeline_identity(C, ns, "pipe", "iaaft")
+    nf, cov, ncase = pipeline_identity(C, ns, "pipe", "iaaft", ep)
     nrep = coverage_report(C, cov, ns)
     print("pipeline identity failures: %d over %d representable cases" % (nf, ncase))
     ok_main = C.done("K1 main checks")
@@ -283,7 +285,7 @@ def main():
     flags["counter that orders ties by position"] = len(Ct.failed)
     Cr = Checker()
     with contextlib.redirect_stdout(buf):
-        nfr, _, _ = pipeline_identity(Cr, min(ns, 10), "raw-surrogates", "raw")
+        nfr, _, _ = pipeline_identity(Cr, min(ns, 10), "raw-surrogates", "raw", ep)
     flags["surrogate step that uses the raw values (identity under exp)"] = nfr
     Cw = Checker()
     with contextlib.redirect_stdout(buf):
@@ -296,7 +298,7 @@ def main():
         print("  %-90s failing checks %6d: %s" % (k, v, "FLAGGED" if fl else "NOT FLAGGED"))
     status = "PASS" if (ok_main and allflag) else "FAIL"
     par.close()
-    summary("K1", status, "%d main checks, %d failed; cases not representable %d; must-fail controls all flagged: %s" % (C.n, len(C.failed), nrep + nrs + notrep_counts, "yes" if allflag else "NO"), mode)
+    summary("K1", status, "%d main checks, %d failed; cases not representable %d; must-fail controls all flagged: %s" % (C.n, len(C.failed), nrep + nrs + notrep_counts, "yes" if allflag else "NO"), run)
 
 
 if __name__ == "__main__":

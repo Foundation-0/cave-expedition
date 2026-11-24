@@ -1,5 +1,6 @@
 """Synthetic series for the known-answer tests (PREREG section 10). Seeds follow the rule of section 11
-(seeds.rng_for). Readings that the plan leaves open are marked READING and listed in AMENDMENTS_NEEDED.md."""
+(seeds.rng_for). Readings that the plan leaves open are marked READING and listed in AMENDMENTS_NEEDED.md.
+Every function that draws a known-answer series takes the key epoch of its test as a required keyword (D14 as amended by Amendment 4)."""
 import math
 import numpy as np
 import keys
@@ -72,13 +73,13 @@ def _plain(base, n, rng):
     raise ValueError("unknown class " + base)
 
 
-def class_series(cls, idx, n=4096, prefix="K2"):
+def class_series(cls, idx, n=4096, prefix="K2", *, epoch):
     """One series of class cls, optionally 'cls|exp' or 'cls|cube', seed index idx. The seed depends on the plain class only
     (instrument `<prefix>:<class>:<length>`), so the exp and cube versions are the same draw, mapped. For the exp and cube
     versions, exp and cube act on the standardised series (for the 7 null classes it is the plain series already; for g^2 and |h|
     the versions exist for K1 only, B5)."""
     base, _, m = cls.partition("|")
-    rng = keys.rng(keys.k2_data(base, n, idx) if prefix == "K2" else keys.k1_data(base, n, idx))
+    rng = keys.rng(keys.k2_data(base, n, idx) if prefix == "K2" else keys.k1_data(base, n, idx), epoch)
     x = _plain(base, n, rng)
     if m in ("", "id"):
         return x
@@ -90,18 +91,18 @@ def class_series(cls, idx, n=4096, prefix="K2"):
     raise ValueError("unknown map " + m)
 
 
-def k2_series(cls, idx, n=4096):
-    return class_series(cls, idx, n, "K2")
+def k2_series(cls, idx, n=4096, *, epoch):
+    return class_series(cls, idx, n, "K2", epoch=epoch)
 
 
-def k1_series(cls, idx, n=1024):
-    return class_series(cls, idx, n, "K1")
+def k1_series(cls, idx, n=1024, *, epoch):
+    return class_series(cls, idx, n, "K1", epoch=epoch)
 
 
-def k1_int_series(cls, idx, n=1024):
+def k1_int_series(cls, idx, n=1024, *, epoch):
     """K1 tied input (b): a null class made integer-valued as round(8 z), z the standardised plain series; draws under `K1int`."""
     base = cls.partition("|")[0]
-    rng = keys.rng(keys.k1int_data(base, idx, n))
+    rng = keys.rng(keys.k1int_data(base, idx, n), epoch)
     return np.round(8.0 * standardise(_plain(base, n, rng)))
 
 
@@ -164,11 +165,11 @@ def sawtooth(n, rng, noise_sd=SAW_SD):
 K3_CASES = ("shots", "logistic", "sawtooth", "sawtooth_noisy")
 
 
-def k3_series(case, tag, idx, n):
+def k3_series(case, tag, idx, n, *, epoch):
     """One K3 series of length n. tag names the use (native, placement, ...) so that each use is an independent draw."""
     if keys.K3_BLOCK[tag] != n:
         raise ValueError("K3 use %s draws blocks of %d samples" % (tag, keys.K3_BLOCK[tag]))
-    rng = keys.rng(keys.k3_data(case, tag, idx))
+    rng = keys.rng(keys.k3_data(case, tag, idx), epoch)
     if case == "shots":
         return shots_ar(n, rng)
     if case == "logistic":
@@ -206,12 +207,12 @@ K4_BLOCKS = 33
 K4_LEN = K4_BLOCKS * (4096 + 128)
 
 
-def k4_stream(kind, seed_idx, role):
+def k4_stream(kind, seed_idx, role, *, epoch):
     """K4 instruments: 'A' shots, 'B' shots at twice the rate on 1/f noise, half rate, flipped, 'C' time reverse of a fresh
     A, 'S' and 'Sr' the sawtooth and its time reverse (blind spot). role 'fit' or 'verdict': independent streams made
     with different seed purposes."""
     n = K4_LEN
-    rng = keys.rng(keys.k4_data(kind, role, seed_idx))
+    rng = keys.rng(keys.k4_data(kind, role, seed_idx), epoch)
     if kind == "A":
         return shots_ar(n, rng)
     if kind == "B":
@@ -230,7 +231,7 @@ K5_CASES = ("expo", "cascade", "cascade_shuffled", "y", "yprime", "cascade_iaaft
 YPRIME_C = 0.9859   # B9: the coefficient at which the population mid-rank autocorrelation of g^2 first falls below 1/2 at lag 16
 
 
-def k5_series(case, seed_idx, role):
+def k5_series(case, seed_idx, role, *, epoch):
     """K5 draws (Amendment 2, B9) use the seed-rule instrument tag `K5b:<case>`, split `fit` or `verdict`, net `native`,
     segment the seed number, purpose `data`. cascade_iaaft is an IAAFT surrogate of the whole cascade fit series, started from
     the generator of `K5b:cascade_iaaft` (split fit, purpose `whole-surrogate`); it exists as a fit series only."""
@@ -238,10 +239,10 @@ def k5_series(case, seed_idx, role):
         if role != "fit":
             raise ValueError("cascade_iaaft exists as a fit series only")
         import iaaft
-        src = k5_series("cascade", seed_idx, "fit")
-        Y, _, _ = iaaft.iaaft_surrogates(src, 1, keys.rng(keys.k5_whole(seed_idx)))
+        src = k5_series("cascade", seed_idx, "fit", epoch=epoch)
+        Y, _, _ = iaaft.iaaft_surrogates(src, 1, keys.rng(keys.k5_whole(seed_idx), epoch))
         return Y[0]
-    rng = keys.rng(keys.k5_data(case, role, seed_idx))
+    rng = keys.rng(keys.k5_data(case, role, seed_idx), epoch)
     if case == "expo":
         return exponential_values(K5_N, rng)
     if case == "cascade":

@@ -38,14 +38,14 @@ def loo_standardise(V):
     return z, deg
 
 
-def make_pool(x, key, M=99, kind="iaaft"):
+def make_pool(x, key, M=99, kind="iaaft", *, epoch):
     """Pool = real series (row 0, raw values; patterns depend only on order) + M surrogates made from the normal
-    scores of x. key = the full key of the pool, (instrument, split, net, segment, purpose, index), from keys.py (D14).
-    kinds: iaaft (confirmatory), raw and leaky (must-fail)."""
+    scores of x. key = the full key of the pool, (instrument, split, net, segment, purpose, index), from keys.py (D14), and epoch its
+    key epoch (required, D14 as amended by Amendment 4). kinds: iaaft (confirmatory), raw and leaky (must-fail)."""
     x = np.asarray(x, dtype=np.float64)
     if not (isinstance(key, tuple) and len(key) == 6):
         raise ValueError("a pool key has six fields: instrument, split, net, segment, purpose, index")
-    rng = keys.rng(key)
+    rng = keys.rng(key, epoch)
     if kind == "iaaft":
         Y, it, cv = iaaft.iaaft_surrogates(x, M, rng)
     elif kind == "raw":
@@ -90,11 +90,12 @@ def presence_stats(C3):
             "flag_zero_spread": bool(deg[0].any()), "all_zero_spread": False, "sigma": sig}
 
 
-def segment_test(x, key, M=99, kind="iaaft"):
-    """Presence test of one segment (series after its net): returns presence_stats plus the counts and pool facts."""
+def segment_test(x, key, M=99, kind="iaaft", *, epoch):
+    """Presence test of one segment (series after its net): returns presence_stats plus the counts and pool facts. epoch is the key
+    epoch of the pool (required)."""
     x = np.asarray(x, dtype=np.float64)
     js = nets.lag_js(len(x))
-    pool, it, cv = make_pool(x, key, M, kind)
+    pool, it, cv = make_pool(x, key, M, kind, epoch=epoch)
     C3, nw = counts3(pool, js)
     r = presence_stats(C3)
     r.update({"C3": C3, "js": js, "iters": int(it.sum()), "nconv": int(cv.sum())})

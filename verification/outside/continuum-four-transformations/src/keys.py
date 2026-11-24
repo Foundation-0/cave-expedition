@@ -2,17 +2,23 @@
 (instrument, split, net, segment, purpose, index) that follows the master seed in the string of section 11 (see seeds.py).
 Every random draw of the code takes its key from here. Two draws that the plan treats as independent never share a key. The keys
 that more than one draw uses are listed in the plan under "Shared by design", and `known_answer/key_check.py` builds every key at the
-plan's counts and checks both statements. Seeds are numbered from 0 and the index is 0 unless a function says otherwise."""
+plan's counts and checks both statements. Seeds are numbered from 0 and the index is 0 unless a function says otherwise.
+
+Key epoch (reading D14 as amended by Amendment 4): a draw is made from a key and a key epoch. The epoch is a required argument of
+rng(), and every function of src/ that draws takes it as a required keyword and hands it on, so the epoch reaches the draw explicitly
+(also inside the worker processes of par.pmap, which get it with each work item). A known-answer test uses its own epoch for every draw,
+its must-fail controls included. Real-data draws keep epoch 0 (REAL_DATA_EPOCH)."""
 import seeds
 
 K3_BLOCK = {"native4096": 4224, "placement": 4224, "native2048": 2176, "wlen2048": 2176,
             "bm2": 4224, "sub2": 4224, "q12": 4224, "q8": 4224}
 K3_OWN_DRAW = ("native4096", "native2048", "placement", "wlen2048")
+REAL_DATA_EPOCH = 0
 
 
-def rng(key):
-    """The numpy generator of a key."""
-    return seeds.rng_for(*key)
+def rng(key, epoch):
+    """The numpy generator of a key in a key epoch. The epoch has no default: a call that forgets it fails."""
+    return seeds.rng_for(*key, epoch=epoch)
 
 
 def l2b_net(instance, run):

@@ -4,27 +4,29 @@ gate). 200 seeds per case (smoke: one twentieth, at least 10).
 Required: segment detection (p <= 0.05) of at least 80 percent on the native net at 4,096 samples and at least 50 percent at 2,048
 samples (native) and under block mean by 2, subsampling by 2, 12 and 8 bit quantization, window placement and window length N/2.
 Must-fail control: circular-shift surrogates on the shots must give native detection of at most 20 of 200 (smoke: the same fraction).
-usage: k3_planted_structure.py smoke|full [part nparts]"""
+Every draw uses the run's key epoch (reading D14 as amended by Amendment 4).
+usage: k3_planted_structure.py smoke [epoch=0] [part=<p>/<n>] | full epoch=<k> [part=<p>/<n>] (join parts with k3_combine.py)"""
 import os
 import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import par, synth, tasks
-from kcommon import header, summary, parse_mode, sizes
+from kcommon import header, summary, parse_cli, sizes
 
 USES = ("native4096", "native2048", "bm2", "sub2", "q12", "q8", "placement", "wlen2048")
 GATING = ("shots", "logistic", "sawtooth")
 NEED_80 = {"native4096"}
 
 
-def items(ns):
+def items(ns, epoch):
+    """The work items (case, use, seed, surrogate kind, key epoch); the epoch travels with each item to the worker."""
     out = []
     for case in synth.K3_CASES:
         for use in USES:
             for idx in range(ns):
-                out.append((case, use, idx, "iaaft"))
+                out.append((case, use, idx, "iaaft", epoch))
     for idx in range(ns):
-        out.append(("shots", "native4096", idx, "leaky"))
+        out.append(("shots", "native4096", idx, "leaky", epoch))
     return out
 
 
@@ -54,18 +56,16 @@ def evaluate(counts, ns):
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    ns = sizes(mode)["K3_SEEDS"]
-    part = None
-    if len(sys.argv) >= 5:
-        part, nparts = int(sys.argv[3]), int(sys.argv[4])
-    allitems = items(ns)
+    run = parse_cli(sys.argv, seeded=True, parts=True, test="K3")
+    ns = sizes(run["mode"])["K3_SEEDS"]
+    part, nparts = run["part"], run["nparts"]
+    allitems = items(ns, run["epoch"])
     mine = allitems if part is None else [it for i, it in enumerate(allitems) if i % nparts == part]
-    header("K3", "planted structure found", mode)
+    header("K3", "planted structure found", run)
     print("segments in this run: %d of %d%s" % (len(mine), len(allitems), "" if part is None else " (part %d of %d)" % (part, nparts)))
     res = par.pmap(tasks.k3_task, mine)
     counts, tot = {}, {}
-    for (case, use, idx, kind), r in zip(mine, res):
+    for (case, use, idx, kind, _), r in zip(mine, res):
         key = (case, use, kind)
         counts[key] = counts.get(key, 0) + (1 if r["reject"] else 0)
         tot[key] = tot.get(key, 0) + 1
@@ -76,7 +76,7 @@ def main():
         return
     status, text = evaluate(counts, ns)
     par.close()
-    summary("K3", status, text, mode)
+    summary("K3", status, text, run)
     if status != "PASS":
         raise SystemExit(1)
 

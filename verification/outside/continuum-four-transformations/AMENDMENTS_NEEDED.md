@@ -370,3 +370,32 @@ A run of the real K4 and K5 seed-making code (`known_answer/key_count.py`) build
 One sweep over every module of `src/`, with the unit checks, the key check and K6 as the suite: 289 mutants, 154 killed, 135 survived. None of the 135 survivors has been triaged. The list is in `known_answer/out_mutation/mutation_run_amendment3.txt`.
 
 On the lines changed since the Amendment 2 push (14 mutants) 9 were killed and 5 survived. Why they survive has not been analysed. The plan's pre-data condition (every mutant killed or recorded as equivalent) is not met.
+
+# Amendment 4 build
+
+The code that carries out Amendment 4 is described in `known_answer/AMENDMENT4_CODE_RECORD.md`. The tie question above (reading D8 against item B8) is settled by Amendment 4, item C1, and the code follows the amended reading D8. The points below are questions for the plan's author. Each states the reading the code uses until the plan's author answers. None is a ruling.
+
+## Questions
+
+Q4-1. A non-finite run in the K4 and K5 criteria (C1, reading D8). D8 as amended says that a run in which S_B(w_A) or any detector score is not finite is neither adverse nor passing. The code gives such a run adverse = False, p = 1 and a flag. The K4 and K5 criteria read p and "adverse". Read through p = 1 alone, a non-finite run would meet K5's negative criteria (p above 0.05) and would not count against K4's must-fail control (p at most 0.01).
+The code reads it the other way, so that a non-finite score can never help a test pass: in K5 a non-finite transfer run counts as not evaluable, so its seed fails the criterion, positive or negative; in K4 it fails the A to B and A to C criteria and, in the control, counts as reaching p at most 0.01. A unit-length template with finite standardised features cannot give a non-finite score, so this is a guard.
+Question: is this reading right, or should a non-finite run enter those criteria with p = 1?
+
+Q4-2. Fixed generators outside the seed rule (reading D14, key epoch). K1's count checks use two series made by numpy generators with fixed seeds, not by the seed rule (`np.random.default_rng(20261121)` and `np.random.default_rng(7)` in `series_for_counts`). K6 uses `np.random.default_rng(1)` for its good input. These draws do not change with the key epoch. The checks they feed are exact identities that hold for any series.
+Two of K1's must-fail controls also run on these fixed draws: the counter that drops the last window and the counter that orders ties by position each run the count checks (`run_count_checks`, which calls `series_for_counts`). Section 10 says every draw of a test and of its must-fail controls uses the test's epoch. So on epoch 1 these draws, of the count checks and of both controls, are the same as on epoch 0, whose K1 outcomes have been seen.
+The code keeps these draws fixed until the plan's author answers, since a new seed key would change K1's definition. The answer is needed before K1's first full-count run on epoch 1.
+Question: should these draws, for the count checks and the two must-fail controls, move to the seed rule and take the test's epoch, or stay fixed?
+
+Q4-3. Scope of an untested instance (C2). The code treats an instance whose pre-data check failed as not tested for every kind of adverse outcome that lists it, following "for every kind of adverse outcome that lists it", also when the check that failed is the paired K4 or K5 test of one kind only. For example, W failing its paired K4 check is then also not tested for kinds (a) and (c).
+When more than one tested instance rescues a kind, the code's wording names each of them.
+Question: is an instance not tested for every kind, or only for the kinds whose checks it failed?
+
+Q4-4. The epoch of a Law 2b pre-data check (C2 and C3). Section 10 says the Law 2b pre-data checks that reuse a test's draws use that test's epoch. Section 12a says a repaired instance check is rerun on the lowest epoch from 1 that it has not used, with the data draws of that epoch of the known-answer test. The plan does not say which epoch an instance check's first run uses.
+The ledger `known_answer/EPOCHS.tsv` counts an epoch whose draws a Law 2b check used as used by that test (kind `law2b-check`), so the test's next full-count run moves to a new epoch.
+Question: does an instance check's first run use the epoch on which its paired known-answer test passed, and does that run count as using that epoch for the test?
+
+Q4-5. Is carrying out Amendment 4 round 1 for K2 and K3 (C3)? Amendment 4 says that carrying it out is not a repair for a test with no full-count outcome on the code built for Amendment 3, "as K1, K2 and K3 so far". Since then, `known_answer/DIAGNOSIS_EPOCH0.md` (lines 17 to 19) has recorded that, because of the part-option fault, the K3 "parts" 0 to 3 each ran the full K3 and the K2 "part 0" ran the full K2, on epoch 0 on that code.
+Section 10 says a change to the code that computes a test, made after a full-count outcome of that test on that code exists, is a repair and counts as a round. This change does change the code that computes K2 and K3: the epoch field of their keys, through `synth.k2_series`, `synth.k3_series`, `tasks.k2_task`, `tasks.k3_task` and `keys.rng`.
+Until the plan's author answers, the code applies the stricter reading: this change is round 1 for K2 and K3 as well as for K4 and K5, each one's first full-count run on epoch 1 ends that round, and one round is then left for each. Their first epoch-1 runs wait for the reviewed commit, as K4's and K5's do.
+K1 has no full-count run on that code: `known_answer/OUTCOME_LOG.md`, which lists every run on that code once, has one K1 row, a smoke run, and `known_answer/DIAGNOSIS_EPOCH0.md` lists no K1 run. The question does not arise for K1.
+Questions: do the accidental full-count runs of K2 and K3 on epoch 0, made as diagnostics, make this change round 1 for them? And does a diagnostic run that reaches the full seed count by a fault count as a full-count outcome under section 10?

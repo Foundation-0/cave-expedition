@@ -92,18 +92,19 @@ def unit_features(C4, freq_map=None):
     return z, (z * z).sum(axis=1)
 
 
-def analyse_unit(seg, key, M=99, freq_map=None):
-    pool, it, cv = stats43.make_pool(seg, key, M, "iaaft")
+def analyse_unit(seg, key, M=99, freq_map=None, *, epoch):
+    pool, it, cv = stats43.make_pool(seg, key, M, "iaaft", epoch=epoch)
     C4, _ = patterns.counts_batch(pool, 4, 1)
     z, S2 = unit_features(C4, freq_map)
     n_ge = int(ties.at_or_above(S2[1:], S2[0]).sum())   # an equal sum counts as at or above, so a tie never makes a unit depart
     return {"z": z[0].copy(), "S2": float(S2[0]), "n_ge": n_ge, "departs": n_ge <= 4}
 
 
-def stream_units(x, pool_key, N=4096, start=0, runs=None, op="mean", freq_map=None, M=99):
+def stream_units(x, pool_key, N=4096, start=0, runs=None, op="mean", freq_map=None, M=99, *, epoch):
     """The jobs of all units of a stream: for each level, cut segments (section 7). pool_key(level, unit) gives the full key of a
-    unit's pool (keys.k5_pool or the real-data flow-unit key, D14). Returns (jobs, meta): jobs are (segment, key, M, freq_map) for
-    tasks.unit_task, meta the (level, unit) of each."""
+    unit's pool (keys.k5_pool or the real-data flow-unit key, D14) and epoch its key epoch (required). Returns (jobs, meta): jobs are
+    (segment, key, M, freq_map, epoch) for tasks.unit_task, so that a worker process gets the epoch with its job, meta the (level, unit)
+    of each."""
     lv = level_streams(x, N, segments.PAD, start, runs, op)
     jobs, meta = [], []
     for (l, ser, rr) in lv:
@@ -111,7 +112,7 @@ def stream_units(x, pool_key, N=4096, start=0, runs=None, op="mean", freq_map=No
         for q, c in enumerate(cut):
             if c["seg"] is None or transfer.segments_constant(c["seg"]):
                 continue   # an invalid or constant segment gives no flow unit (section 7)
-            jobs.append((c["seg"], pool_key(l, q), M, freq_map))
+            jobs.append((c["seg"], pool_key(l, q), M, freq_map, epoch))
             meta.append((l, q))
     return jobs, meta
 

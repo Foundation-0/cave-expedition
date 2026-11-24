@@ -2,27 +2,30 @@
 twentieth, at least 10). K2a: the 7 null classes, flagged at the binomial point for the check level 0.01 / 14.
 K2b: the 2 reversible non-Gaussian classes, flagged where P(Binomial(n, 0.10) >= k) <= 0.01 / 4, reported with Clopper-Pearson
 99 percent intervals. Must-fail control: raw-value surrogates on AR(1) 0.9 after exp at 4,096 samples (200 seeds; smoke: 10).
-usage: k2_nothing_in_noise.py smoke|full [part nparts]. With part and nparts the script prints counts only (join with k2_combine.py)."""
+Every draw uses the run's key epoch (reading D14 as amended by Amendment 4).
+usage: k2_nothing_in_noise.py smoke [epoch=0] [part=<p>/<n>] | full epoch=<k> [part=<p>/<n>]. With a part the script prints counts only
+(join the parts with k2_combine.py)."""
 import os
 import sys
 from fractions import Fraction
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import levels, par, synth, tasks
-from kcommon import header, summary, parse_mode, sizes
+from kcommon import header, summary, parse_cli, sizes
 
 LENGTHS = (4096, 2048)
 CTRL_CLASS = "ar1_0.9|exp"
 
 
-def items(ns, nctrl):
+def items(ns, nctrl, epoch):
+    """The work items (class, length, seed, surrogate kind, key epoch); the epoch travels with each item to the worker."""
     out = []
     for n in LENGTHS:
         for cls in synth.K2_CLASSES:
             for idx in range(ns):
-                out.append((cls, n, idx, "iaaft"))
+                out.append((cls, n, idx, "iaaft", epoch))
     for idx in range(nctrl):
-        out.append((CTRL_CLASS, 4096, idx, "raw"))
+        out.append((CTRL_CLASS, 4096, idx, "raw", epoch))
     return out
 
 
@@ -91,23 +94,22 @@ def evaluate(counts, ns, nctrl, mode):
 
 
 def main():
-    mode = parse_mode(sys.argv)
+    run = parse_cli(sys.argv, seeded=True, parts=True, test="K2")
+    mode = run["mode"]
     sz = sizes(mode)
     ns, nctrl = sz["K2_SEEDS"], sz["K2_CTRL_SEEDS"]
     if mode == "smoke":
         nctrl = 10
-    part = None
-    if len(sys.argv) >= 5:
-        part, nparts = int(sys.argv[3]), int(sys.argv[4])
-    allitems = items(ns, nctrl)
+    part, nparts = run["part"], run["nparts"]
+    allitems = items(ns, nctrl, run["epoch"])
     mine = allitems if part is None else [it for i, it in enumerate(allitems) if i % nparts == part]
-    header("K2", "nothing found in noise", mode)
+    header("K2", "nothing found in noise", run)
     print("segments in this run: %d of %d%s" % (len(mine), len(allitems), "" if part is None else " (part %d of %d)" % (part, nparts)))
     res = par.pmap(tasks.k2_task, mine)
     counts = {}
     tot = {}
     zero = 0
-    for (cls, n, idx, kind), r in zip(mine, res):
+    for (cls, n, idx, kind, _), r in zip(mine, res):
         key = (cls, n, kind)
         counts[key] = counts.get(key, 0) + (1 if r["reject"] else 0)
         tot[key] = tot.get(key, 0) + 1
@@ -120,7 +122,7 @@ def main():
         return
     status, text = evaluate(counts, ns, nctrl, mode)
     par.close()
-    summary("K2", status, text, mode)
+    summary("K2", status, text, run)
     if status != "PASS":
         raise SystemExit(1)
 

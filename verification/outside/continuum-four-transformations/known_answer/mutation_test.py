@@ -5,8 +5,11 @@ For every refusal, comparison and threshold in src/*.py three kinds of mutant ar
   threshold : a numeric constant that is an operand of a comparison moved by one unit (up and down). A unit is 1 for an integer, the
               smallest step of the stated decimal for a decimal (0.05 -> 0.01), one representable step for a float written in
               exponent form (1e-12).
-Each mutant is run against the suite given by --suite (default: the unit checks and K6). A mutant is killed if the suite exits
-non-zero or runs out of time. Survivors are listed; each is to be killed by an added test or recorded as equivalent with its reason.
+Each mutant is run against the suite (K6, the key check and the unit checks). A mutant is killed if the suite exits non-zero or runs
+out of time. Survivors are listed; each is to be killed by an added test or recorded as equivalent with its reason.
+Each work copy holds src/, the scripts of known_answer/ and the data files the suite reads there (DATA_FILES). Before any mutant, the
+suite runs on the unmutated code in every work copy, and the run stops with exit status 1 unless it passes there: a suite that fails
+on correct code would count every mutant as killed.
 usage: mutation_test.py count
        mutation_test.py run <work dir> [module ...]      (at most 4 worker processes)
        mutation_test.py run <work dir> --lines <file>    (only mutants on the lines listed as "module.py:lineno", one per line)"""
@@ -25,6 +28,8 @@ KA = HERE
 FLIP = {ast.Lt: ast.LtE, ast.LtE: ast.Lt, ast.Gt: ast.GtE, ast.GtE: ast.Gt}
 WORKERS = 4
 TIMEOUT = 400
+DATA_FILES = ("EPOCHS.tsv",)   # files of known_answer/ other than scripts that the suite reads (the ledger of used key epochs)
+SUITE = (("known_answer/k6_gate_checks.py", "smoke"), ("known_answer/key_check.py",), ("known_answer/units_check.py",))
 
 
 def unit_of(const_node, source_segment):
@@ -103,8 +108,20 @@ def prepare(work):
     shutil.copytree(SRC, os.path.join(work, "src"), ignore=shutil.ignore_patterns("__pycache__"))
     os.makedirs(os.path.join(work, "known_answer"))
     for f in os.listdir(KA):
-        if f.endswith(".py"):
+        if f.endswith(".py") or f in DATA_FILES:
             shutil.copy(os.path.join(KA, f), os.path.join(work, "known_answer", f))
+
+
+def run_suite(work):
+    """Run the suite in one work copy: (failed, why). failed is True if a script exits non-zero or runs out of time."""
+    try:
+        for script in SUITE:
+            r = subprocess.run([sys.executable, "-I", "-B", *script], cwd=work, capture_output=True, text=True, timeout=TIMEOUT)
+            if r.returncode != 0:
+                return True, "exit %d in %s" % (r.returncode, script[0].split("/")[-1])
+    except subprocess.TimeoutExpired:
+        return True, "timeout"
+    return False, ""
 
 
 def run_one(args):
@@ -112,18 +129,8 @@ def run_one(args):
     path = os.path.join(work, "src", module)
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(mutated)
-    killed = False
-    why = ""
     try:
-        for script in (("known_answer/k6_gate_checks.py", "smoke"), ("known_answer/key_check.py",), ("known_answer/units_check.py",)):
-            r = subprocess.run([sys.executable, "-I", "-B", *script], cwd=work, capture_output=True, text=True, timeout=TIMEOUT)
-            if r.returncode != 0:
-                killed = True
-                why = "exit %d in %s" % (r.returncode, script[0].split("/")[-1])
-                break
-    except subprocess.TimeoutExpired:
-        killed = True
-        why = "timeout"
+        killed, why = run_suite(work)
     finally:
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(original)
@@ -172,6 +179,16 @@ def main():
     for w in slots:
         os.makedirs(w, exist_ok=True)
         prepare(w)
+    # baseline: the suite must pass on the unmutated code in every work copy, or no mutant result means anything
+    with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        base = list(ex.map(run_suite, slots))
+    bad = [(w, why) for w, (failed, why) in zip(slots, base) if failed]
+    if bad:
+        for w, why in bad:
+            print("BASELINE FAIL in work copy %s: %s" % (os.path.basename(w), why))
+        print("STOPPED: the suite fails on the unmutated code, so no mutant was run")
+        raise SystemExit(1)
+    print("baseline: the suite passes on the unmutated code in all %d work copies" % len(slots))
     results = [None] * len(jobs)
 
     def worker(k):

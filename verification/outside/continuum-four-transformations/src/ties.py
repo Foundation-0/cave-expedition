@@ -1,9 +1,11 @@
-"""The one tie rule for floating values (PREREG sections 4.3 and 11a, D4 as replaced by Amendment 2, B8).
+"""The one tie rule for floating values (PREREG sections 4.3 and 11a, D4 as replaced by Amendment 2, B8, and reading D8 as amended by
+Amendment 4).
 
 Two floating values a and b count as tied when |a - b| <= 1e-12 x max(1, |a|, |b|). Exact quantities (pattern counts, ranks,
 binomial tails, levels, thresholds) are compared exactly and never use this rule. A tie never creates a verdict in either
 direction: it counts against the real series in the segment p-value, against w_A in the transfer p-value, against departure
-for a K5 unit, and not as "below" when deciding an adverse transfer."""
+for a K5 unit, and as at or below S_B(w_A) when deciding an adverse transfer (Amendment 4, item C1, which replaces B8's clause
+that a tie is not "below" there; transfer.adverse_rule)."""
 import numpy as np
 
 REL = 1e-12

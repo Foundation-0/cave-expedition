@@ -9,7 +9,9 @@ criteria required in at least 9 of 10.
   criterion. Cascade (fit) to y' = g^2 (verdict, g AR(1), c = 0.9859) and the IAAFT cascade (fit) to the cascade (verdict) must give p above 0.05 in the primary
   run. Every transfer must be evaluable (at least 8 features populated in both series) in at least 9 of 10 seeds, else K5 fails; a seed that is not evaluable
   counts as failing its criterion.
-usage: k5_scale_flow.py smoke|full [part nparts] (parts split the seeds)"""
+Every draw uses the run's key epoch (reading D14 as amended by Amendment 4). A transfer run with a non-finite score is neither adverse nor passing (D8);
+READING (AMENDMENTS_NEEDED.md): such a run counts as not evaluable, so its seed fails the criterion, positive or negative.
+usage: k5_scale_flow.py smoke [epoch=0] [part=<p>/<n>] | full epoch=<k> [part=<p>/<n>] (parts split the seeds; join them with k5_combine.py)"""
 import os
 import sys
 from fractions import Fraction
@@ -17,25 +19,27 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
 import flow, keys, levels, nets, par, segments, synth, tasks, transfer
-from kcommon import header, summary, parse_mode, sizes
+from kcommon import header, summary, parse_cli, sizes
 
 N = 4096
 
 
-def stream_jobs(x, case, role, run, s):
-    """Unit jobs of a stream cut into flow units. The pool key names the series the units are cut from (D14): case, split, run, seed, level, unit."""
-    return flow.stream_units(x, lambda l, q: keys.k5_pool(case, role, run, s, l, q), N=N)
+def stream_jobs(x, case, role, run, s, epoch):
+    """Unit jobs of a stream cut into flow units. The pool key names the series the units are cut from (D14): case, split, run, seed, level, unit.
+    Each job carries the key epoch."""
+    return flow.stream_units(x, lambda l, q: keys.k5_pool(case, role, run, s, l, q), N=N, epoch=epoch)
 
 
-def one_seed(s):
+def one_seed(s, epoch):
+    """All K5 quantities for one seed, with every draw in the key epoch `epoch`."""
     ser = {}
-    ser[("expo", "verdict")] = synth.k5_series("expo", s, "verdict")
+    ser[("expo", "verdict")] = synth.k5_series("expo", s, "verdict", epoch=epoch)
     for case in ("cascade", "yprime"):
-        ser[(case, "fit")] = synth.k5_series(case, s, "fit")
-        ser[(case, "verdict")] = synth.k5_series(case, s, "verdict")
-    ser[("cascade_iaaft", "fit")] = synth.k5_series("cascade_iaaft", s, "fit")
-    ser[("cascade_shuffled", "verdict")] = synth.k5_series("cascade_shuffled", s, "verdict")
-    ser[("y", "verdict")] = synth.k5_series("y", s, "verdict")
+        ser[(case, "fit")] = synth.k5_series(case, s, "fit", epoch=epoch)
+        ser[(case, "verdict")] = synth.k5_series(case, s, "verdict", epoch=epoch)
+    ser[("cascade_iaaft", "fit")] = synth.k5_series("cascade_iaaft", s, "fit", epoch=epoch)
+    ser[("cascade_shuffled", "verdict")] = synth.k5_series("cascade_shuffled", s, "verdict", epoch=epoch)
+    ser[("y", "verdict")] = synth.k5_series("y", s, "verdict", epoch=epoch)
     # the rank-mapped cascade (verdict): the mid-ranks of the cascade (SK8), in three runs. The amplitude nets act on the whole stream (D10).
     rank = nets.midranks(ser[("cascade", "verdict")])
     streams = {("native", "native"): rank, ("amp_scores", "amp_scores"): nets.amp_scores(rank), ("amp_lognormal", "amp_lognormal"): nets.amp_lognormal(rank)}
@@ -52,13 +56,13 @@ def one_seed(s):
             ("y", "verdict", "native"), ("yprime", "verdict", "native"), ("cascade_iaaft", "fit", "native")]
     jobs, meta, owner = [], [], []
     for (case, role, run) in need:
-        j, m = stream_jobs(ser[(case, role)], case, role, run, s)
+        j, m = stream_jobs(ser[(case, role)], case, role, run, s, epoch)
         jobs += j
         meta += m
         owner += [(case, role, run)] * len(j)
     for run in ("native", "amp_scores", "amp_lognormal"):
         if guard[run]:
-            j, m = stream_jobs(streams[(run, run)], "cascade_rank", "verdict", run, s)
+            j, m = stream_jobs(streams[(run, run)], "cascade_rank", "verdict", run, s, epoch)
             jobs += j
             meta += m
             owner += [("cascade_rank", "verdict", run)] * len(j)
@@ -74,16 +78,16 @@ def one_seed(s):
     out["departure"] = dep
 
     def tr(criterion, run, A, B, shA, shB):
-        rng = keys.rng(keys.k5_detectors(criterion, run, s))
+        rng = keys.rng(keys.k5_detectors(criterion, run, s), epoch)
         r = flow.flow_transfer(U[A], shA, U[B], shB, rng)
         return {"p": "%d/%d" % (r["p"].numerator, r["p"].denominator), "m": int(r["m"]), "below_floor": bool(r["below_floor"]), "D": int(r["D"]),
-                "adverse": bool(r["adverse"]), "S_A": float(r["S_A"]), "representable": True}
+                "adverse": bool(r["adverse"]), "S_A": float(r["S_A"]), "representable": True, "nonfinite": bool(r["nonfinite"])}
 
     for run in ("native", "amp_scores", "amp_lognormal"):
         if guard[run]:
             out["T1|" + run] = tr("cascade>cascade_rank", run, ("cascade", "fit", "native"), ("cascade_rank", "verdict", run), shift["cascade"], shift["cascade"])
         else:    # map not representable: the run does not pass and is never adverse (section 5)
-            out["T1|" + run] = {"p": "1/1", "m": 0, "below_floor": True, "D": 1, "adverse": False, "S_A": 0.0, "representable": False}
+            out["T1|" + run] = {"p": "1/1", "m": 0, "below_floor": True, "D": 1, "adverse": False, "S_A": 0.0, "representable": False, "nonfinite": False}
     out["T2|native"] = tr("cascade>yprime", "native", ("cascade", "fit", "native"), ("yprime", "verdict", "native"), shift["cascade"], shift["yprime"])
     out["T3|native"] = tr("cascade_iaaft>cascade", "native", ("cascade_iaaft", "fit", "native"), ("cascade", "verdict", "native"), shift["cascade_iaaft"], shift["cascade"])
     return out
@@ -101,7 +105,7 @@ def shows(d, l):
     return k >= thr
 
 
-def evaluate(results, nseeds, mode):
+def evaluate(results, nseeds):
     n = len(results)
     need = -(-9 * n // 10)
     names = ["expo none", "cascade L0 and top", "shuffled none", "y L0", "T1 positive (3 runs)", "T2 negative", "T3 negative",
@@ -119,8 +123,9 @@ def evaluate(results, nseeds, mode):
         cnt["y L0"] += shows(D["y"], 0)
         t1 = [r["T1|" + k] for k in ("native", "amp_scores", "amp_lognormal")]
         t2, t3 = r["T2|native"], r["T3|native"]
-        ev1 = all(x["m"] >= 8 for x in t1)
-        ev2, ev3 = t2["m"] >= 8, t3["m"] >= 8
+        # evaluable: at least 8 features populated in both series, and every score finite (a non-finite run gives no verdict; READING)
+        ev1 = all(x["m"] >= 8 and not x["nonfinite"] for x in t1)
+        ev2, ev3 = t2["m"] >= 8 and not t2["nonfinite"], t3["m"] >= 8 and not t3["nonfinite"]
         cnt["T1 evaluable"] += ev1
         cnt["T2 evaluable"] += ev2
         cnt["T3 evaluable"] += ev3
@@ -147,25 +152,23 @@ def evaluate(results, nseeds, mode):
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    ns = sizes(mode)["K5_SEEDS"]
-    part = None
-    if len(sys.argv) >= 5:
-        part, nparts = int(sys.argv[3]), int(sys.argv[4])
+    run = parse_cli(sys.argv, seeded=True, parts=True, test="K5")
+    ns = sizes(run["mode"])["K5_SEEDS"]
+    part, nparts = run["part"], run["nparts"]
     mine = [s for s in range(ns) if part is None or s % nparts == part]
-    header("K5", "scale flow", mode)
+    header("K5", "scale flow", run)
     print("seeds: %s of %d (the plan has 10 seeds, so the smoke size equals the full seed count)" % (mine, ns))
     results = []
     for s in mine:
-        r = one_seed(s)
+        r = one_seed(s, run["epoch"])
         results.append(r)
         if part is not None:
             print("K5SEED", repr(r))
     par.close()
     if part is not None:
         return
-    status, text = evaluate(results, ns, mode)
-    summary("K5", status, text, mode)
+    status, text = evaluate(results, ns)
+    summary("K5", status, text, run)
     if status != "PASS":
         raise SystemExit(1)
 

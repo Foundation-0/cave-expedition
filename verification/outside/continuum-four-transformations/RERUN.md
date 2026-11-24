@@ -22,14 +22,16 @@ python3.14 -I -O -B        known_answer/units_check.py
 python3.14 -I -B -W error  known_answer/units_check.py
 ```
 
-The known-answer scripts take a size as their first argument: `smoke` (one twentieth of the plan's seeds, at least 10) or `full`. Smoke output is labelled SMOKE in its first lines and in its summary line. A smoke run is not a result.
+The known-answer scripts take a size as their first argument: `smoke` (one twentieth of the plan's seeds, at least 10) or `full`. The seeded tests K1 to K5 also take a key epoch (reading D14 as amended by Amendment 4). A smoke run uses epoch 0 and refuses any other. A full run names its epoch, `epoch=<k>`. A full run on epoch 0 is a diagnostic: it cannot pass a test, and its header and summary line say DIAGNOSTIC. K6 has no random draws and takes no epoch. Smoke output is labelled SMOKE in its first lines and in its summary line. A smoke run is not a result.
 
 ```text
 python3.14 -I -B known_answer/k1_exact_checks.py smoke
 python3.14 -I -B known_answer/k6_gate_checks.py smoke
 ```
 
-K2 and K3 can be split into parts with the same seeds: add the part number and the number of parts (`k2_nothing_in_noise.py full 3 12`). Each part prints counts only. Join the parts with `k2_combine.py full <part files>` and `k3_combine.py full <part files>`. K4 and K5 split by seed in the same way and join with `k4_combine.py` and `k5_combine.py`.
+K2 and K3 can be split into parts with the same seeds: add `part=<p>/<n>` (`k2_nothing_in_noise.py full epoch=1 part=3/12`). Each part prints counts only. Join the parts with `k2_combine.py full epoch=1 <part files>` and `k3_combine.py full epoch=1 <part files>`. K4 and K5 split by seed in the same way and join with `k4_combine.py` and `k5_combine.py`. A join refuses parts that disagree on test, size, epoch or code commit.
+
+A full-count run uses the lowest epoch from 1 that the test has not used (`known_answer/EPOCHS.tsv`, `known_answer/epochs.py`). `known_answer/FULL_RUN.md` says how to pick and record it.
 
 Every script ends with exit status 1 if its result is FAIL and 0 if PASS (`kcommon.summary`). The smoke driver records each exit status in `known_answer/out_smoke/status.txt`, and the three-mode runs in `known_answer/out_smoke/modes/status_modes.txt`.
 
@@ -39,7 +41,7 @@ At most 4 worker processes are used. The worker count does not change any result
 
 - `known_answer/mutation_test.py` makes the mutants of section 11 for every module of `src/` and runs the unit checks and K6 against each one.
 - `known_answer/key_count.py` counts the seed keys that K3, K4 and K5 build.
-- `known_answer/run_full.sh` runs the full known-answer tests in three modes with `sbpy.sh`. It has not been run. The full runs are on hold.
+- `known_answer/run_full.sh <results dir> <build folder> <epoch> [test ...]` runs the full known-answer tests in three modes with `sbpy.sh`, on one key epoch from 1. It has not been run. The full runs wait for a reviewed commit to be named.
 
 ## Sandbox
 

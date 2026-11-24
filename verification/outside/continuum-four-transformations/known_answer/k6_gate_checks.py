@@ -1,12 +1,13 @@
 """K6 Gate checks (PREREG section 10): empty input, missing values, a constant series and a series shorter than N are rejected with
 explicit errors, plus the numeric and shape refusals. Each refusal has a must-fail input that trips it. Removing any refusal branch
-must make the test suite fail. usage: k6_gate_checks.py smoke|full (no size effect)"""
+must make the test suite fail. K6 has no random draws, so it takes no key epoch (reading D14 as amended by Amendment 4).
+usage: k6_gate_checks.py smoke|full (no size effect)"""
 import os, sys, types
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src")); sys.path.insert(0, HERE)
 import numpy as np
 import gates, segments
-from kcommon import header, summary, parse_mode
+from kcommon import header, summary, parse_cli
 
 N = 4096
 BAD = {
@@ -72,8 +73,8 @@ def mutants():
 
 
 def main():
-    mode = parse_mode(sys.argv)
-    header("K6", "gate checks: explicit refusals and must-fail inputs", mode)
+    run = parse_cli(sys.argv, seeded=False)
+    header("K6", "gate checks: explicit refusals and must-fail inputs", run)
     f = suite(gates)
     if code_of(lambda: segments.cut_segments(np.arange(100.0))) != "GATE_SHORT":
         f.append("segment cutter does not refuse a short series")
@@ -90,7 +91,7 @@ def main():
         allflag = allflag and flagged
         print("  without the refusal at %-24s suite failures %d: %s" % (desc, len(fb), "FLAGGED" if flagged else "NOT FLAGGED"))
     ok = (len(f) == 0) and allflag
-    summary("K6", "PASS" if ok else "FAIL", "%d refusal codes, %d deletion mutants; each refusal fired on its must-fail input; every deletion flagged: %s" % (len(codes), len(ms), "yes" if allflag else "NO"), mode)
+    summary("K6", "PASS" if ok else "FAIL", "%d refusal codes, %d deletion mutants; each refusal fired on its must-fail input; every deletion flagged: %s" % (len(codes), len(ms), "yes" if allflag else "NO"), run)
     if not ok:
         raise SystemExit(1)
 
