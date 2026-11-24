@@ -41,7 +41,8 @@
       "exact_math_object": "C * C_inv == I_n and C * Q * C^T == diag(D) over Q => exact inertia (n_+, n_0, n_-) via Sylvester's Law of Inertia",
       "falsifiable_claim_or_test": "Apply rational congruence inertia certification to: (a) project-asma pxd023044_23848 multi-scan Gram matrix (with Mode B fixed to check P >= 0); (b) quadratic/SoS relaxation certificates extending quotient-lp-bounds / soko LP duals; (c) exact Hessian Morse-index certification on gravity/relative-equilibria critical points.",
       "suspected_hazards_or_bugs": [
-        "Rational bit-length blowup in exact congruence witnesses if untrusted solver does not round/project carefully onto rational feasibility"
+        "Rational bit-length blowup in exact congruence witnesses if untrusted solver does not round/project carefully onto rational feasibility",
+        "corpus/asma/pxd023044_23848 is not a project-asma artifact: no such path exists in Foundation-0/project-asma at commit de88b12. The source-verified record of scan 23848 there is CLAIMS.md row V38; the Mode B weights are a source claim from the session 2 transcript (see cartography/session2_verification_map.md)."
       ]
     },
     {
@@ -195,7 +196,8 @@
       "falsifiable_claim_or_test": "Cross-check pair_01_block_00.yaml assumptions (harness/run_phase1_6.py, harness/validate_mcproof_receipt.py, corpus/soko/III-21, corpus/asma/pxd023044_23848) against live Proven-Commons/mcproof and Foundation-0/formal-claims-audit repos to identify schema/fixture drift and external data-availability gaps.",
       "suspected_hazards_or_bugs": [
         "Wildcard rglob('*receipt*.json') in pair_01_block_00.yaml can misclassify future negative fixtures unless replaced by explicit manifest",
-        "Unpinned GitHub Actions tags (@v4, @v5) instead of 40-char commit SHAs"
+        "Unpinned GitHub Actions tags (@v4, @v5) instead of 40-char commit SHAs",
+        "corpus/asma/pxd023044_23848 is not a project-asma artifact: no such path exists in Foundation-0/project-asma at commit de88b12. The source-verified record of scan 23848 there is CLAIMS.md row V38; the Mode B weights are a source claim from the session 2 transcript (see cartography/session2_verification_map.md)."
       ]
     },
     {
