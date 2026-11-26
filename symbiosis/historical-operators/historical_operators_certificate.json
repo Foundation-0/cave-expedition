@@ -1,20 +1,14 @@
 {
   "arithmetic_domain": "exact_Z_Q_Qs2_stdlib_zero_floats_zero_logs",
-  "certificate_sha256": "af95a89d192ae20fbe239e7ac441fa8b81fd922e8cc0ae9da86e79b7bfa3b933",
+  "certificate_sha256": "e5351a09b023619f71cf4819cbdbe5ff7755a0ab2fd1e5d97cf23d12156f3e31",
+  "external_references_status": "CITED_EXTERNAL_NOT_REHASHED_HERE",
   "gate5_scope_statement": "Eight frontiers each use block elimination; AUDIT-017 and AUDIT-019 share an exact Sylvester congruence [4,4,0], whereas passive hydraulic M-matrix Laplacians have n_neg == 0 and share block elimination only.",
-  "overall_passed": true,
-  "payload_sha256": "dfb35d6970f6157169919f823f16e43ed65ae1c70f9d1a342ee7be34a7d217ae",
-  "provenance_digests": {
-    "andean_khipu_amazonian_networks_cert": "b1ba3bd1a07616e16ec5a9c5b18b29c5f1fd589806f712abf3b1a5fcf76dff23",
-    "east_asian_egyptian_maya_operators_cert": "73e94f1377b250397cfde80f3224a97b53fb275154e161457149a35aa3c4f707",
-    "logfree_53tet_power_unifier_cert": "e9f692bde32df8b8e3c7adffb3a73233ada299f2ef906157106cc21706db1f0f",
-    "mediterranean_african_operators_cert": "ec1c3c9feeebed1c7ae7e926113d2eca46c84386fa32ef574f8591b8f857b9ab",
-    "outside_anchor_check_003_seam01_ropt_py": "ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86",
-    "primary_arabic_heritage_engines_cert": "d0d2e98a6469ae6fff7954cb8b8bfd7222a2d6a549ad17bdd59d669dfd8eeb7c",
-    "south_asian_prosody_panini_madhava_cert": "6128ab702a65bb117aa1feb12c0e660aaca5029c289823bf5f4304ff007155ba",
-    "spinor_hippopede_readable_records_cert": "0223cd356d5ed7fa031c75000b9566a3ef1e163be3d7dabb9906f0f11c93fd2b"
+  "on_disk_anchor_digests": {
+    "outside_anchor_check_003_seam01_ropt_py": "ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86"
   },
-  "schema_version": "cave-expedition.historical-operators-gate5.v1",
+  "overall_passed": true,
+  "payload_sha256": "5972c872e0c918c7d229ed0fa3f17a8209beb70b697f1cf32efe8cd614a254bb",
+  "schema_version": "cave-expedition.historical-operators-gate5.v2",
   "theorems": {
     "t1_schur_and_gate5": {
       "casarabe_conductance": "2755/1806",

@@ -41,6 +41,30 @@ jobs:
           echo "${src_pin}  verification/checks/check_003_seam01_ropt.py" | sha256sum -c -
           echo "${out_pin}  ${RUNNER_TEMP}/mode1.txt" | sha256sum -c -
 
+  historical-operators:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run historical-operators verifier and R5 tests in three isolated parity modes
+        run: |
+          set -euo pipefail
+          python3 -I -B symbiosis/historical-operators/verify_historical_operators.py --check > "${RUNNER_TEMP}/ho_mode1.txt"
+          python3 -I -O -B symbiosis/historical-operators/verify_historical_operators.py --check > "${RUNNER_TEMP}/ho_mode2.txt"
+          python3 -I -B -W error symbiosis/historical-operators/verify_historical_operators.py --check > "${RUNNER_TEMP}/ho_mode3.txt"
+          sha256sum "${RUNNER_TEMP}/ho_mode1.txt" "${RUNNER_TEMP}/ho_mode2.txt" "${RUNNER_TEMP}/ho_mode3.txt"
+          cmp "${RUNNER_TEMP}/ho_mode1.txt" "${RUNNER_TEMP}/ho_mode2.txt"
+          cmp "${RUNNER_TEMP}/ho_mode1.txt" "${RUNNER_TEMP}/ho_mode3.txt"
+          cat "${RUNNER_TEMP}/ho_mode1.txt"
+          python3 -I -B symbiosis/historical-operators/verify_historical_operators.py --json > "${RUNNER_TEMP}/ho_cert.json"
+          cmp "${RUNNER_TEMP}/ho_cert.json" symbiosis/historical-operators/historical_operators_certificate.json
+          python3 -I -B symbiosis/historical-operators/test_historical_operators_r5.py
+          python3 -I -O -B symbiosis/historical-operators/test_historical_operators_r5.py
+          python3 -I -B -W error symbiosis/historical-operators/test_historical_operators_r5.py
+
   aletheia-audit:
     # Repository-wide checks by Foundation-0/aletheia. It is installed into the runner at a
     # pinned commit, not vendored into this repository (README section 3), so this job needs
@@ -69,6 +93,8 @@ jobs:
           verification/tests/test_check_expedition_root.py
           verification/check_tracked_private_paths.py
           verification/tests/test_check_tracked_private_paths.py
+          symbiosis/historical-operators/verify_historical_operators.py
+          symbiosis/historical-operators/test_historical_operators_r5.py
       - name: Mutation check of the fast verifiers (exhaustive)
         # check_003 takes about 7 minutes; its command is in README section 5.
         run: |

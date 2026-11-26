@@ -522,19 +522,27 @@ class TestHistoricalOperatorsForgedCertificateAndCli(unittest.TestCase):
         assert_core_tamper(lambda c: c.__setitem__("schema_version", "v0"), "schema_version")
         assert_core_tamper(lambda c: c.__setitem__("arithmetic_domain", "bad"), "arithmetic_domain")
         assert_core_tamper(lambda c: c.__setitem__("gate5_scope_statement", "bad"), "gate5_scope")
-        assert_core_tamper(lambda c: c.__setitem__("provenance_digests", "bad"), "provenance_digests must be dict")
         assert_core_tamper(
-            lambda c: c["provenance_digests"].__setitem__("extra", "a" * 64), "provenance keys"
+            lambda c: c.__setitem__("external_references_status", "UNVERIFIED"),
+            "external_references_status",
         )
         assert_core_tamper(
-            lambda c: c["provenance_digests"].__setitem__(
-                "primary_arabic_heritage_engines_cert", "a" * 63
+            lambda c: c.__setitem__("on_disk_anchor_digests", "bad"),
+            "on_disk_anchor_digests must be dict",
+        )
+        assert_core_tamper(
+            lambda c: c["on_disk_anchor_digests"].__setitem__("extra", "a" * 64),
+            "on_disk_anchor_digests keys",
+        )
+        assert_core_tamper(
+            lambda c: c["on_disk_anchor_digests"].__setitem__(
+                vho.OUTSIDE_ANCHOR_KEY, "a" * 63
             ),
             "must be 64-hex",
         )
         assert_core_tamper(
-            lambda c: c["provenance_digests"].__setitem__(
-                "primary_arabic_heritage_engines_cert", "0" * 64
+            lambda c: c["on_disk_anchor_digests"].__setitem__(
+                vho.OUTSIDE_ANCHOR_KEY, "0" * 64
             ),
             "mismatch",
         )
@@ -742,8 +750,52 @@ class TestHistoricalOperatorsForgedCertificateAndCli(unittest.TestCase):
                 with self.assertRaises(SystemExit):
                     vho.main(["--write", "--check"])
 
+            # Strict JSON parser must reject non-str, duplicate keys, floats, and non-finite constants
+            with self.assertRaisesRegex(ValueError, "raw_text must be str"):
+                vho.loads_strict_json(123)  # type: ignore[arg-type]
+            with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                vho.loads_strict_json('{"a": 1, "a": 2}')
+            with self.assertRaisesRegex(ValueError, "forbidden JSON float literal"):
+                vho.loads_strict_json('{"x": 1.5}')
+            for bad_const in ("NaN", "Infinity", "-Infinity"):
+                with self.assertRaisesRegex(ValueError, "forbidden non-finite JSON constant"):
+                    vho.loads_strict_json(f'{{"x": {bad_const}}}')
+
+            # Live on-disk anchor hashing must reject invalid types, missing file, and 1-byte tamper
+            with self.assertRaisesRegex(ValueError, "path must be Path"):
+                vho.sha256_file_raw("not_a_path")  # type: ignore[arg-type]
+            with self.assertRaisesRegex(ValueError, "file not found"):
+                vho.sha256_file_raw(Path(tmp) / "missing_anchor.py")
+            with self.assertRaisesRegex(ValueError, "repo_root must be Path"):
+                vho.compute_on_disk_anchor_digests(str(vho.REPO_ROOT))  # type: ignore[arg-type]
+
+            fake_root = Path(tmp) / "fake_repo"
+            fake_anchor = fake_root / vho.OUTSIDE_ANCHOR_RELPATH
+            fake_anchor.parent.mkdir(parents=True, exist_ok=True)
+            real_anchor_bytes = (vho.REPO_ROOT / vho.OUTSIDE_ANCHOR_RELPATH).read_bytes()
+            fake_anchor.write_bytes(real_anchor_bytes + b"\n")
+            with self.assertRaisesRegex(ValueError, "on-disk anchor digest mismatch"):
+                vho.compute_on_disk_anchor_digests(repo_root=fake_root)
+            with self.assertRaisesRegex(ValueError, "on-disk anchor digest mismatch"):
+                vho.check_certificate_file(cpath, repo_root=fake_root)
+            fake_anchor.write_bytes(real_anchor_bytes)
+            self.assertEqual(
+                vho.compute_on_disk_anchor_digests(repo_root=fake_root)[vho.OUTSIDE_ANCHOR_KEY],
+                vho.OUTSIDE_ANCHOR_SHA256,
+            )
+
+            # Duplicate-key on-disk JSON file must be refused by check_certificate_file
+            dup_path = Path(tmp) / "dup_cert.json"
+            dup_path.write_text('{"schema_version": "bad", "schema_version": "bad"}\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                vho.check_certificate_file(dup_path)
+
+            # 1-byte non-canonical formatting tamper AND CRLF line-ending tamper must fail raw-bytes SHA-256 check
             cpath.write_text(buf_j.getvalue() + "\n", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "formatting is not canonical"):
+            with self.assertRaisesRegex(ValueError, "raw-bytes SHA-256"):
+                vho.check_certificate_file(cpath)
+            cpath.write_bytes(buf_j.getvalue().replace("\n", "\r\n").encode("utf-8"))
+            with self.assertRaisesRegex(ValueError, "raw-bytes SHA-256"):
                 vho.check_certificate_file(cpath)
 
             cmd = [sys.executable, "-I", "-B"]
