@@ -13,7 +13,7 @@ elimination, without modifying verification/checks/check_003_seam01_ropt.py):
 
   1. Physical Schur Pushforwards & Machine-Checked Gate-5 Congruence Theorem:
      - Petra Siq 6-stage terracotta conduit vented surge attenuation (1/3 -> 64/1365).
-     - Roman Lyon Gier 9-pipe inverted siphon fault tolerance (9/1, 8/9, 7/9).
+     - Roman Lyon Gier 9-pipe inverted siphon fault tolerance (conductances 9/1, 8/1, 7/1; ratios 8/9, 7/9).
      - Amazonian Casarabe radial-ring canal graph C_{2,6} (13 nodes, 24 edges,
        betti_1 = 12): hub-to-rim Schur conductance 2755/1806 > 13/42 (ring C_13)
        > 1/12 (tree T_13), retaining 427248/498655 after primary spoke cut.
@@ -57,6 +57,7 @@ from __future__ import annotations
 import argparse
 from fractions import Fraction
 import hashlib
+import hmac
 import itertools
 import json
 import math
@@ -65,44 +66,26 @@ import sys
 from typing import Any
 
 
-SCHEMA_VERSION = "cave-expedition.historical-operators-gate5.v1"
+SCHEMA_VERSION = "cave-expedition.historical-operators-gate5.v2"
 ARITHMETIC_DOMAIN = "exact_Z_Q_Qs2_stdlib_zero_floats_zero_logs"
 GATE5_SCOPE_STATEMENT = (
     "Eight frontiers each use block elimination; AUDIT-017 and AUDIT-019 share an "
     "exact Sylvester congruence [4,4,0], whereas passive hydraulic M-matrix "
     "Laplacians have n_neg == 0 and share block elimination only."
 )
+EXTERNAL_REFERENCES_STATUS = "CITED_EXTERNAL_NOT_REHASHED_HERE"
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent.parent
 DEFAULT_CERT_PATH = SCRIPT_DIR / "historical_operators_certificate.json"
 
 HEX_LOWER = frozenset("0123456789abcdef")
 
-PROVENANCE_ARTIFACT_DIGESTS: dict[str, str] = {
-    "andean_khipu_amazonian_networks_cert": (
-        "b1ba3bd1a07616e16ec5a9c5b18b29c5f1fd589806f712abf3b1a5fcf76dff23"
-    ),
-    "east_asian_egyptian_maya_operators_cert": (
-        "73e94f1377b250397cfde80f3224a97b53fb275154e161457149a35aa3c4f707"
-    ),
-    "logfree_53tet_power_unifier_cert": (
-        "e9f692bde32df8b8e3c7adffb3a73233ada299f2ef906157106cc21706db1f0f"
-    ),
-    "mediterranean_african_operators_cert": (
-        "ec1c3c9feeebed1c7ae7e926113d2eca46c84386fa32ef574f8591b8f857b9ab"
-    ),
-    "outside_anchor_check_003_seam01_ropt_py": (
-        "ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86"
-    ),
-    "primary_arabic_heritage_engines_cert": (
-        "d0d2e98a6469ae6fff7954cb8b8bfd7222a2d6a549ad17bdd59d669dfd8eeb7c"
-    ),
-    "south_asian_prosody_panini_madhava_cert": (
-        "6128ab702a65bb117aa1feb12c0e660aaca5029c289823bf5f4304ff007155ba"
-    ),
-    "spinor_hippopede_readable_records_cert": (
-        "0223cd356d5ed7fa031c75000b9566a3ef1e163be3d7dabb9906f0f11c93fd2b"
-    ),
+OUTSIDE_ANCHOR_KEY = "outside_anchor_check_003_seam01_ropt_py"
+OUTSIDE_ANCHOR_RELPATH = "verification/checks/check_003_seam01_ropt.py"
+OUTSIDE_ANCHOR_SHA256 = "ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86"
+ON_DISK_ANCHOR_SPECS: dict[str, tuple[str, str]] = {
+    OUTSIDE_ANCHOR_KEY: (OUTSIDE_ANCHOR_RELPATH, OUTSIDE_ANCHOR_SHA256),
 }
 
 
@@ -249,6 +232,57 @@ def canonical_json_bytes(obj: Any) -> bytes:
 def sha256_bytes(data: bytes) -> str:
     """Lowercase SHA-256 hex digest."""
     return hashlib.sha256(data).hexdigest()
+
+
+def sha256_file_raw(path: Path) -> str:
+    """Compute lowercase SHA-256 hex digest over exact raw bytes of an on-disk file."""
+    require_ok(isinstance(path, Path), "path must be Path")
+    require_ok(path.is_file(), f"file not found: {path.name}")
+    return sha256_bytes(path.read_bytes())
+
+
+def compute_on_disk_anchor_digests(repo_root: Path = REPO_ROOT) -> dict[str, str]:
+    """Hash every pinned in-repo anchor file on disk and verify against its expected SHA-256."""
+    require_ok(isinstance(repo_root, Path), "repo_root must be Path")
+    digests: dict[str, str] = {}
+    for key, (rel_path, expected_sha) in ON_DISK_ANCHOR_SPECS.items():
+        actual_sha = sha256_file_raw(repo_root / rel_path)
+        require_ok(
+            hmac.compare_digest(actual_sha, expected_sha),
+            f"on-disk anchor digest mismatch for {rel_path}",
+        )
+        digests[key] = actual_sha
+    return digests
+
+
+def _no_duplicate_keys_object_pairs_hook(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Strict JSON object hook rejecting duplicate keys."""
+    out: dict[str, Any] = {}
+    for key, value in pairs:
+        require_ok(key not in out, f"duplicate JSON key: {key}")
+        out[key] = value
+    return out
+
+
+def _reject_json_constant(token: str) -> Any:
+    """Strict JSON parse_constant hook rejecting NaN/Infinity/-Infinity."""
+    raise ValueError(f"forbidden non-finite JSON constant: {token}")
+
+
+def _reject_json_float(token: str) -> Any:
+    """Strict JSON parse_float hook rejecting floating-point JSON literals."""
+    raise ValueError(f"forbidden JSON float literal: {token}")
+
+
+def loads_strict_json(raw_text: str) -> Any:
+    """Parse JSON text while rejecting duplicate keys, floats, and non-finite constants."""
+    require_ok(isinstance(raw_text, str), "raw_text must be str")
+    return json.loads(
+        raw_text,
+        object_pairs_hook=_no_duplicate_keys_object_pairs_hook,
+        parse_constant=_reject_json_constant,
+        parse_float=_reject_json_float,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1319,19 +1353,30 @@ def run_theorem_t3() -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def verify_core_invariants(core: Any) -> None:
-    """Validate structural, 64-hex provenance, and mathematical invariants of unsigned core."""
+def verify_core_invariants(core: Any, repo_root: Path = REPO_ROOT) -> None:
+    """Validate structural, live on-disk anchor SHA-256, and mathematical invariants of unsigned core."""
     require_ok(isinstance(core, dict), "certificate core must be dict")
     require_ok(core.get("schema_version") == SCHEMA_VERSION, "schema_version mismatch")
     require_ok(core.get("arithmetic_domain") == ARITHMETIC_DOMAIN, "arithmetic_domain mismatch")
     require_ok(core.get("gate5_scope_statement") == GATE5_SCOPE_STATEMENT, "gate5_scope mismatch")
+    require_ok(
+        core.get("external_references_status") == EXTERNAL_REFERENCES_STATUS,
+        "external_references_status mismatch",
+    )
 
-    prov = core.get("provenance_digests")
-    require_ok(isinstance(prov, dict), "provenance_digests must be dict")
-    require_ok(set(prov.keys()) == set(PROVENANCE_ARTIFACT_DIGESTS.keys()), "provenance keys mismatch")
-    for key, val in prov.items():
-        require_ok(is_hex64(val), f"provenance digest {key} must be 64-hex")
-        require_ok(val == PROVENANCE_ARTIFACT_DIGESTS[key], f"provenance digest {key} mismatch")
+    anchors = core.get("on_disk_anchor_digests")
+    require_ok(isinstance(anchors, dict), "on_disk_anchor_digests must be dict")
+    live_anchors = compute_on_disk_anchor_digests(repo_root=repo_root)
+    require_ok(
+        set(anchors.keys()) == set(live_anchors.keys()),
+        "on_disk_anchor_digests keys mismatch",
+    )
+    for key, val in anchors.items():
+        require_ok(is_hex64(val), f"on-disk anchor digest {key} must be 64-hex")
+        require_ok(
+            hmac.compare_digest(val, live_anchors[key]),
+            f"on-disk anchor digest {key} mismatch",
+        )
 
     thms = core.get("theorems")
     require_ok(isinstance(thms, dict), "theorems must be dict")
@@ -1381,9 +1426,9 @@ def verify_core_invariants(core: Any) -> None:
     require_ok(core.get("overall_passed") is True, "overall_passed must be True")
 
 
-def build_certificate() -> dict[str, Any]:
-    """Execute T1, T2, T3, verify invariants, and seal canonical certificate."""
-    prov = dict(PROVENANCE_ARTIFACT_DIGESTS)
+def build_certificate(repo_root: Path = REPO_ROOT) -> dict[str, Any]:
+    """Execute T1, T2, T3, hash on-disk anchors, verify invariants, and seal canonical certificate."""
+    anchors = compute_on_disk_anchor_digests(repo_root=repo_root)
     t1 = run_theorem_t1()
     t2 = run_theorem_t2()
     t3 = run_theorem_t3()
@@ -1393,7 +1438,8 @@ def build_certificate() -> dict[str, Any]:
         "schema_version": SCHEMA_VERSION,
         "arithmetic_domain": ARITHMETIC_DOMAIN,
         "gate5_scope_statement": GATE5_SCOPE_STATEMENT,
-        "provenance_digests": prov,
+        "external_references_status": EXTERNAL_REFERENCES_STATUS,
+        "on_disk_anchor_digests": anchors,
         "theorems": {
             "t1_schur_and_gate5": t1,
             "t2_parity_sona_biruni": t2,
@@ -1401,7 +1447,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "overall_passed": overall,
     }
-    verify_core_invariants(core)
+    verify_core_invariants(core, repo_root=repo_root)
     payload_sha = sha256_bytes(canonical_json_bytes(core))
     sealed = dict(core)
     sealed["payload_sha256"] = payload_sha
@@ -1409,9 +1455,9 @@ def build_certificate() -> dict[str, Any]:
     return sealed
 
 
-def validate_certificate(cert: Any) -> None:
-    """Hardened public validator checking invariants, 64-hex digests, & live-oracle equality."""
-    verify_core_invariants(cert)
+def validate_certificate(cert: Any, repo_root: Path = REPO_ROOT) -> None:
+    """Hardened public validator checking invariants, on-disk anchors, 64-hex digests, & live-oracle equality."""
+    verify_core_invariants(cert, repo_root=repo_root)
     payload_sha = cert.get("payload_sha256")
     cert_sha = cert.get("certificate_sha256")
     require_ok(is_hex64(payload_sha), "payload_sha256 must be 64-hex")
@@ -1421,38 +1467,40 @@ def validate_certificate(cert: Any) -> None:
         k: v for k, v in cert.items() if k not in ("payload_sha256", "certificate_sha256")
     }
     require_ok(
-        payload_sha == sha256_bytes(canonical_json_bytes(unsigned)),
+        hmac.compare_digest(payload_sha, sha256_bytes(canonical_json_bytes(unsigned))),
         "payload_sha256 digest mismatch",
     )
     with_payload = dict(unsigned)
     with_payload["payload_sha256"] = payload_sha
     require_ok(
-        cert_sha == sha256_bytes(canonical_json_bytes(with_payload)),
+        hmac.compare_digest(cert_sha, sha256_bytes(canonical_json_bytes(with_payload))),
         "certificate_sha256 digest mismatch",
     )
-    recomputed = build_certificate()
+    recomputed = build_certificate(repo_root=repo_root)
     require_ok(
         canonical_json_bytes(cert) == canonical_json_bytes(recomputed),
         "certificate diverges from freshly recomputed pure-Q oracle",
     )
 
 
-def format_canonical_certificate_json(cert: dict[str, Any]) -> str:
+def format_canonical_certificate_json(cert: dict[str, Any], repo_root: Path = REPO_ROOT) -> str:
     """Format validated certificate deterministically with 2-space indent."""
-    validate_certificate(cert)
+    validate_certificate(cert, repo_root=repo_root)
     return json.dumps(cert, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
-def check_certificate_file(cert_path: Path) -> dict[str, Any]:
-    """Validate on-disk certificate JSON against hardened validator & canonical formatting."""
+def check_certificate_file(cert_path: Path, repo_root: Path = REPO_ROOT) -> dict[str, Any]:
+    """Validate on-disk certificate JSON (strict duplicate-key parse & raw-bytes SHA-256 binding)."""
     require_ok(isinstance(cert_path, Path), "cert_path must be Path")
     require_ok(cert_path.is_file(), f"certificate file not found: {cert_path.name}")
-    raw_text = cert_path.read_text(encoding="utf-8")
-    loaded = json.loads(raw_text)
-    validate_certificate(loaded)
+    raw_bytes = cert_path.read_bytes()
+    raw_text = raw_bytes.decode("utf-8")
+    loaded = loads_strict_json(raw_text)
+    validate_certificate(loaded, repo_root=repo_root)
+    expected_bytes = format_canonical_certificate_json(loaded, repo_root=repo_root).encode("utf-8")
     require_ok(
-        raw_text == format_canonical_certificate_json(loaded),
-        "on-disk certificate formatting is not canonical",
+        hmac.compare_digest(sha256_bytes(raw_bytes), sha256_bytes(expected_bytes)),
+        "on-disk certificate raw-bytes SHA-256 does not match canonical certificate",
     )
     return loaded
 

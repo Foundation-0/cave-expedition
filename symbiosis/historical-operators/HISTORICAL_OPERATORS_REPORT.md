@@ -1,9 +1,9 @@
 # Historical Exact-Operator Applications & Gate-5 Congruence Boundaries
 
-- **Schema Version:** `cave-expedition.historical-operators-gate5.v1`
+- **Schema Version:** `cave-expedition.historical-operators-gate5.v2`
 - **Arithmetic Domain:** `exact_Z_Q_Qs2_stdlib_zero_floats_zero_logs` (`int`, `fractions.Fraction`, `math.gcd`, exact $\mathbb{Q}(\sqrt{2})$ pairs; zero AST float literals, zero `float()` calls, zero `math.log`, zero bare `assert` statements)
-- **Certificate Payload SHA-256:** `dfb35d6970f6157169919f823f16e43ed65ae1c70f9d1a342ee7be34a7d217ae`
-- **Sealed Certificate SHA-256:** `af95a89d192ae20fbe239e7ac441fa8b81fd922e8cc0ae9da86e79b7bfa3b933`
+- **Certificate Payload SHA-256:** `5972c872e0c918c7d229ed0fa3f17a8209beb70b697f1cf32efe8cd614a254bb`
+- **Sealed Certificate SHA-256:** `e5351a09b023619f71cf4819cbdbe5ff7755a0ab2fd1e5d97cf23d12156f3e31`
 - **Related Ledger Entries:** `AUDIT-002`, `AUDIT-004`, `AUDIT-009`, `AUDIT-010`, `AUDIT-014`, `AUDIT-017`, `AUDIT-018`, `AUDIT-019`, `AUDIT-020R`
 
 ---
@@ -62,11 +62,15 @@ All network models are constructed directly in memory over $\mathbb{Q}$ (`n_node
 
 ---
 
-## 5. Provenance Anchors & Hardened Validation Contract
+## 5. On-Disk Anchor Binding, Hardened Validation & Verification Scope
 
-`PROVENANCE_ARTIFACT_DIGESTS` pins eight `64`-hex SHA-256 reference digests (`andean_khipu_amazonian_networks_cert`, `east_asian_egyptian_maya_operators_cert`, `logfree_53tet_power_unifier_cert`, `mediterranean_african_operators_cert`, `outside_anchor_check_003_seam01_ropt_py`, `primary_arabic_heritage_engines_cert`, `south_asian_prosody_panini_madhava_cert`, and `spinor_hippopede_readable_records_cert`). `validate_certificate()` enforces:
+`on_disk_anchor_digests` binds exclusively to in-repository files hashed live from raw disk bytes: `outside_anchor_check_003_seam01_ropt_py` hashes `verification/checks/check_003_seam01_ropt.py` (`ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86`) on every run and refuses any 1-byte modification or missing file. Zero unhashed off-repo digests are included in the certificate (`external_references_status = "CITED_EXTERNAL_NOT_REHASHED_HERE"`). `check_certificate_file()` and `validate_certificate()` enforce:
 
-1. Schema, arithmetic-domain, Gate-5 scope, and `is_hex64()` validation across all provenance and envelope digests;
-2. Per-theorem invariant checks (`verify_core_invariants`);
-3. Canonical UTF-8 SHA-256 verification of `payload_sha256` and `certificate_sha256`; and
-4. Byte-exact canonical JSON identity (`canonical_json_bytes(cert) == canonical_json_bytes(build_certificate())`) against a fresh pure-$\mathbb{Q}$ oracle run, rejecting both re-hashed forged numerical witnesses and Python `bool`-for-`int` (`True == 1`) type confusion.
+1. Strict JSON parsing rejecting duplicate keys (`object_pairs_hook`), JSON float literals (`parse_float`), and non-finite constants (`NaN`, `Infinity`, `-Infinity`);
+2. Schema, arithmetic-domain, Gate-5 scope, `external_references_status`, `is_hex64()`, and live on-disk `hmac.compare_digest` anchor verification;
+3. Per-theorem invariant checks (`verify_core_invariants`);
+4. Canonical UTF-8 SHA-256 verification of `payload_sha256` and `certificate_sha256` (via `hmac.compare_digest` after `is_hex64()`);
+5. Byte-exact canonical JSON identity (`canonical_json_bytes(cert) == canonical_json_bytes(build_certificate())`) against a fresh pure-$\mathbb{Q}$ oracle run, rejecting both re-hashed forged numerical witnesses and Python `bool`-for-`int` (`True == 1`) type confusion; and
+6. Raw-bytes SHA-256 verification between the on-disk certificate bytes and `format_canonical_certificate_json(loaded).encode("utf-8")`.
+
+Continuous integration runs three-mode isolated parity (`-I -B`, `-I -O -B`, `-I -B -W error`) and `aletheia audit-check` via `.github/workflows/verify.yml`. Exhaustive mutation testing (`aletheia mutate`, both default and `--guards require_ok`) is performed as an external verification run rather than an in-tree receipt (commands documented in `README.md`).

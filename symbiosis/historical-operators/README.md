@@ -13,7 +13,7 @@ In accordance with `README.md` §1 (*"What an outside check found"*), this direc
 
 - `verify_historical_operators.py` — Standalone pure-$\mathbb{Z}/\mathbb{Q}/\mathbb{Q}(\sqrt{2})$ verifier and hardened certificate validator for Theorems 1–3.
 - `test_historical_operators_r5.py` — Isolated `unittest` suite covering static AST hygiene, predicate truth tables, bounded domain guards, per-field invariant checks, and re-hashed certificate forgery refusal (including boolean-for-integer type confusion).
-- `historical_operators_certificate.json` — Canonical deterministic JSON certificate (`payload_sha256 = dfb35d6970f6157169919f823f16e43ed65ae1c70f9d1a342ee7be34a7d217ae`, `certificate_sha256 = af95a89d192ae20fbe239e7ac441fa8b81fd922e8cc0ae9da86e79b7bfa3b933`).
+- `historical_operators_certificate.json` — Canonical deterministic JSON certificate (`schema_version = cave-expedition.historical-operators-gate5.v2`, `payload_sha256 = 5972c872e0c918c7d229ed0fa3f17a8209beb70b697f1cf32efe8cd614a254bb`, `certificate_sha256 = e5351a09b023619f71cf4819cbdbe5ff7755a0ab2fd1e5d97cf23d12156f3e31`).
 - `HISTORICAL_OPERATORS_REPORT.md` — Detailed mathematical specification, derivations, witness tables, and provenance documentation.
 
 ## CLI Usage & Verification
@@ -37,6 +37,16 @@ python3 -I -B symbiosis/historical-operators/verify_historical_operators.py --wr
 python3 -I -B symbiosis/historical-operators/test_historical_operators_r5.py
 ```
 
-### Provenance vs. In-Module Execution
+### On-Disk Anchor Binding & Strict Parsing
 
-All algebraic, graph-theoretic, Diophantine, and spectral-enclosure witnesses in Theorems 1–3 are constructed and verified directly in memory by `verify_historical_operators.py` with zero external file dependencies. The eight `64`-character lowercase hexadecimal SHA-256 entries in `PROVENANCE_ARTIFACT_DIGESTS` record immutable upstream reference digests (including `verification/checks/check_003_seam01_ropt.py`) and are validated for exact `64`-hex format and pinned equality.
+All algebraic, graph-theoretic, Diophantine, and spectral-enclosure witnesses in Theorems 1–3 are constructed and verified directly in memory by `verify_historical_operators.py` with zero external file dependencies. `on_disk_anchor_digests` binds exclusively to files actually present in this repository—specifically `verification/checks/check_003_seam01_ropt.py` (`outside_anchor_check_003_seam01_ropt_py`), which is actively re-hashed from raw on-disk bytes and verified via `hmac.compare_digest` after `64`-hex validation. No unhashed off-repo digests are carried in the certificate (`external_references_status = "CITED_EXTERNAL_NOT_REHASHED_HERE"`). On-disk certificate loading (`check_certificate_file`) rejects duplicate JSON keys, JSON float literals, and non-finite constants (`NaN`, `Infinity`, `-Infinity`) and verifies exact raw-bytes SHA-256 equality (including LF line endings) against the canonical serialized certificate.
+
+### CI & External Mutation Verification
+
+- **GitHub Actions CI (`.github/workflows/verify.yml`):** The `historical-operators` job runs `verify_historical_operators.py --check` across all three isolated modes (`-I -B`, `-I -O -B`, `-I -B -W error`) with `cmp` bit-identical stdout checks, compares `--json` byte-for-byte against `historical_operators_certificate.json`, and runs `test_historical_operators_r5.py` across all three isolated modes. Both scripts are also included in `aletheia-audit`'s `audit-check --scripts` check.
+- **External Mutation Testing (`Foundation-0/aletheia`):** Exhaustive mutation testing is executed as an external verification run (not stored as an in-tree receipt and not executed inside the fast `verify.yml` job, matching `check_003_seam01_ropt.py` in root `README.md` §5):
+
+```bash
+aletheia mutate symbiosis/historical-operators/verify_historical_operators.py --work-root . --max-mutants 0 --test-cmd "python3 -I -B symbiosis/historical-operators/test_historical_operators_r5.py"
+aletheia mutate symbiosis/historical-operators/verify_historical_operators.py --work-root . --max-mutants 0 --guards require_ok --test-cmd "python3 -I -B symbiosis/historical-operators/test_historical_operators_r5.py"
+```
