@@ -1,0 +1,149 @@
+{
+  "arithmetic_domain": "exact_Z_Q_Qs2_stdlib_zero_floats_zero_logs",
+  "certificate_sha256": "af95a89d192ae20fbe239e7ac441fa8b81fd922e8cc0ae9da86e79b7bfa3b933",
+  "gate5_scope_statement": "Eight frontiers each use block elimination; AUDIT-017 and AUDIT-019 share an exact Sylvester congruence [4,4,0], whereas passive hydraulic M-matrix Laplacians have n_neg == 0 and share block elimination only.",
+  "overall_passed": true,
+  "payload_sha256": "dfb35d6970f6157169919f823f16e43ed65ae1c70f9d1a342ee7be34a7d217ae",
+  "provenance_digests": {
+    "andean_khipu_amazonian_networks_cert": "b1ba3bd1a07616e16ec5a9c5b18b29c5f1fd589806f712abf3b1a5fcf76dff23",
+    "east_asian_egyptian_maya_operators_cert": "73e94f1377b250397cfde80f3224a97b53fb275154e161457149a35aa3c4f707",
+    "logfree_53tet_power_unifier_cert": "e9f692bde32df8b8e3c7adffb3a73233ada299f2ef906157106cc21706db1f0f",
+    "mediterranean_african_operators_cert": "ec1c3c9feeebed1c7ae7e926113d2eca46c84386fa32ef574f8591b8f857b9ab",
+    "outside_anchor_check_003_seam01_ropt_py": "ae239507fecea4fdd9d5d0ef2e298483ddf040067b5987dffdeb684873feac86",
+    "primary_arabic_heritage_engines_cert": "d0d2e98a6469ae6fff7954cb8b8bfd7222a2d6a549ad17bdd59d669dfd8eeb7c",
+    "south_asian_prosody_panini_madhava_cert": "6128ab702a65bb117aa1feb12c0e660aaca5029c289823bf5f4304ff007155ba",
+    "spinor_hippopede_readable_records_cert": "0223cd356d5ed7fa031c75000b9566a3ef1e163be3d7dabb9906f0f11c93fd2b"
+  },
+  "schema_version": "cave-expedition.historical-operators-gate5.v1",
+  "theorems": {
+    "t1_schur_and_gate5": {
+      "casarabe_conductance": "2755/1806",
+      "casarabe_single_cut_conductance": "1656/1267",
+      "casarabe_single_cut_retention": "427248/498655",
+      "gate5_passive_hydraulic_non_congruence_verified": true,
+      "gier_conductances_9_8_7": [
+        "9/1",
+        "8/1",
+        "7/1"
+      ],
+      "haynsworth_unitriangular_additivity_verified": true,
+      "ibn_al_nafis_schur_det_prior": "34/625",
+      "ibn_al_nafis_schur_det_readable": "688/15625",
+      "ibn_al_nafis_schur_trace_drop": "81/1250",
+      "inertias_pos_neg_zero": {
+        "casarabe_13x13": [
+          12,
+          0,
+          1
+        ],
+        "gier_9pipe_11x11": [
+          10,
+          0,
+          1
+        ],
+        "gram_g1_e8_endpoint": [
+          8,
+          0,
+          0
+        ],
+        "hydraulic_conduit_8x8": [
+          7,
+          0,
+          1
+        ],
+        "ibn_al_nafis_2x2": [
+          2,
+          0,
+          0
+        ],
+        "petra_vented_7x7": [
+          7,
+          0,
+          0
+        ],
+        "shifted_gram_h8_packing": [
+          4,
+          4,
+          0
+        ],
+        "sigma_star_h8_fold_sheaf": [
+          4,
+          4,
+          0
+        ]
+      },
+      "novelty_class": "N1_exact_gate5_congruence_boundary_classification",
+      "passed": true,
+      "petra_surge_unvented": "1/3",
+      "petra_surge_vented": "64/1365",
+      "related_audits": [
+        "AUDIT-002",
+        "AUDIT-004",
+        "AUDIT-017",
+        "AUDIT-018",
+        "AUDIT-019"
+      ],
+      "ring_c13_conductance": "13/42",
+      "tree_t13_conductance": "1/12",
+      "true_sylvester_congruence_h8_pair_verified": true
+    },
+    "t2_parity_sona_biruni": {
+      "bamana_rm14_codewords": 32,
+      "bamana_rm14_orth_a16_verified": true,
+      "biruni_kappa_minus_sq_qs2": [
+        "9/7",
+        "4/7"
+      ],
+      "biruni_kappa_plus_sq_qs2": [
+        "9/7",
+        "-4/7"
+      ],
+      "biruni_stereographic_f8_e8_identity_verified": true,
+      "e8_total_kissing_roots": 240,
+      "ifa_even_parity_e8_spinor_roots": 128,
+      "novelty_class": "N1_pingala_ifa_sona_biruni_lattice_sheaf_bridges",
+      "passed": true,
+      "pingala_nasta3_equals_sylvester_h8": true,
+      "related_audits": [
+        "AUDIT-004",
+        "AUDIT-009",
+        "AUDIT-017",
+        "AUDIT-019",
+        "AUDIT-020R"
+      ],
+      "sona_16_grids_gcd_ker_verified": true,
+      "sona_2x2_ker_raw_to_walled": [
+        2,
+        1
+      ],
+      "sona_2x3_ker_raw_to_walled": [
+        1,
+        2
+      ]
+    },
+    "t3_farkas_and_madhava_hankel": {
+      "farabi_global_span_pass_31_53": false,
+      "farabi_holder_53_comma": "19383245667680019896796723/19342813113834066795298816",
+      "farabi_local_steps_pass_31_53": true,
+      "fourier_motzkin_equivalence_verified": true,
+      "madhava_n2_eig3_bracket": [
+        "1/70",
+        "4/255"
+      ],
+      "n20_rh4_width_tightening_floor": 1314575,
+      "n2_ceil_rh4_madhava_r2_r3": 3,
+      "n2_ceil_rh4_raw_leibniz": 2,
+      "n2_ceil_ropt_2moment": 2,
+      "n2_rh4_madhava_lower": "3386788761049388311736/1657858848278228557931",
+      "novelty_class": "N1_diophantine_farkas_and_madhava_hankel_closure",
+      "passed": true,
+      "related_audits": [
+        "AUDIT-002",
+        "AUDIT-010",
+        "AUDIT-014"
+      ],
+      "zu_chongzhi_4ray_local_3pt_ok": true,
+      "zu_chongzhi_4ray_nonlocal_4pt_ok": false
+    }
+  }
+}
